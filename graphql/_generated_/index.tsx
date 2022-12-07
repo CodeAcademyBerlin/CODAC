@@ -1329,6 +1329,7 @@ export type LeadInput = {
 
 export type Mentor = {
   __typename?: 'Mentor';
+  avatar?: Maybe<UploadFileEntityResponse>;
   courses?: Maybe<CourseRelationResponseCollection>;
   createdAt?: Maybe<Scalars['DateTime']>;
   firstname?: Maybe<Scalars['String']>;
@@ -1375,6 +1376,7 @@ export type MentorFiltersInput = {
 };
 
 export type MentorInput = {
+  avatar?: InputMaybe<Scalars['ID']>;
   courses?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   firstname?: InputMaybe<Scalars['String']>;
   lastname?: InputMaybe<Scalars['String']>;
@@ -2183,10 +2185,10 @@ export type StringFilterInput = {
 export type Student = {
   __typename?: 'Student';
   attendance?: Maybe<AttendanceEntityResponse>;
+  avatar?: Maybe<UploadFileEntityResponse>;
   cohort?: Maybe<CohortEntityResponse>;
   courses?: Maybe<CourseRelationResponseCollection>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  email?: Maybe<Scalars['String']>;
   end_date?: Maybe<Scalars['Date']>;
   firstname?: Maybe<Scalars['String']>;
   job_center?: Maybe<Scalars['Boolean']>;
@@ -2227,7 +2229,6 @@ export type StudentFiltersInput = {
   cohort?: InputMaybe<CohortFiltersInput>;
   courses?: InputMaybe<CourseFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
-  email?: InputMaybe<StringFilterInput>;
   end_date?: InputMaybe<DateFilterInput>;
   firstname?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
@@ -2243,9 +2244,9 @@ export type StudentFiltersInput = {
 
 export type StudentInput = {
   attendance?: InputMaybe<Scalars['ID']>;
+  avatar?: InputMaybe<Scalars['ID']>;
   cohort?: InputMaybe<Scalars['ID']>;
   courses?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  email?: InputMaybe<Scalars['String']>;
   end_date?: InputMaybe<Scalars['Date']>;
   firstname?: InputMaybe<Scalars['String']>;
   job_center?: InputMaybe<Scalars['Boolean']>;
@@ -2443,6 +2444,15 @@ export type UploadFolderRelationResponseCollection = {
   data: Array<UploadFolderEntity>;
 };
 
+export type UserData = {
+  __typename?: 'UserData';
+  avatar?: Maybe<Scalars['String']>;
+  firstname?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['ID']>;
+  lastname?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+};
+
 export type UsersPermissionsCreateRolePayload = {
   __typename?: 'UsersPermissionsCreateRolePayload';
   ok: Scalars['Boolean'];
@@ -2472,6 +2482,7 @@ export type UsersPermissionsMe = {
   email?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   role?: Maybe<UsersPermissionsMeRole>;
+  userData?: Maybe<UserData>;
   username: Scalars['String'];
 };
 
@@ -2599,8 +2610,10 @@ export type UsersPermissionsUser = {
   confirmed?: Maybe<Scalars['Boolean']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   email: Scalars['String'];
+  mentor?: Maybe<MentorEntityResponse>;
   provider?: Maybe<Scalars['String']>;
   role?: Maybe<UsersPermissionsRoleEntityResponse>;
+  student?: Maybe<StudentEntityResponse>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   username: Scalars['String'];
 };
@@ -2630,12 +2643,14 @@ export type UsersPermissionsUserFiltersInput = {
   createdAt?: InputMaybe<DateTimeFilterInput>;
   email?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
+  mentor?: InputMaybe<MentorFiltersInput>;
   not?: InputMaybe<UsersPermissionsUserFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
   password?: InputMaybe<StringFilterInput>;
   provider?: InputMaybe<StringFilterInput>;
   resetPasswordToken?: InputMaybe<StringFilterInput>;
   role?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  student?: InputMaybe<StudentFiltersInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   username?: InputMaybe<StringFilterInput>;
 };
@@ -2645,10 +2660,12 @@ export type UsersPermissionsUserInput = {
   confirmationToken?: InputMaybe<Scalars['String']>;
   confirmed?: InputMaybe<Scalars['Boolean']>;
   email?: InputMaybe<Scalars['String']>;
+  mentor?: InputMaybe<Scalars['ID']>;
   password?: InputMaybe<Scalars['String']>;
   provider?: InputMaybe<Scalars['String']>;
   resetPasswordToken?: InputMaybe<Scalars['String']>;
   role?: InputMaybe<Scalars['ID']>;
+  student?: InputMaybe<Scalars['ID']>;
   username?: InputMaybe<Scalars['String']>;
 };
 
@@ -2657,6 +2674,7 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
+<<<<<<< HEAD:graphql/_generated_/index.tsx
 export type LoginMutationVariables = Exact<{
   email: Scalars['String'];
   password: Scalars['String'];
@@ -2669,12 +2687,41 @@ export type GetMeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetMeQuery = { __typename?: 'Query', me?: { __typename?: 'UsersPermissionsMe', email?: string | null, id: string, username: string, role?: { __typename?: 'UsersPermissionsMeRole', name: string } | null } | null };
+=======
+export type VsBattle = {
+  __typename?: 'VsBattle';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  option1?: Maybe<Scalars['String']>;
+  option2?: Maybe<Scalars['String']>;
+  option_1_voters?: Maybe<UsersPermissionsUserRelationResponseCollection>;
+  option_2_voters?: Maybe<UsersPermissionsUserRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type VsBattleOption_1_VotersArgs = {
+  filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type VsBattleOption_2_VotersArgs = {
+  filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+>>>>>>> ac481d9 (battle card elements & styling):graphql/global/ __generated__/types.ts
 
 export type GetStudentsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetStudentsQuery = { __typename?: 'Query', students?: { __typename?: 'StudentEntityResponseCollection', data: Array<{ __typename?: 'StudentEntity', attributes?: { __typename?: 'Student', email?: string | null } | null }> } | null };
 
+<<<<<<< HEAD:graphql/_generated_/index.tsx
 export type GetJobsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -2891,3 +2938,30 @@ export function useDeleteJobMutation(baseOptions?: Apollo.MutationHookOptions<De
 export type DeleteJobMutationHookResult = ReturnType<typeof useDeleteJobMutation>;
 export type DeleteJobMutationResult = Apollo.MutationResult<DeleteJobMutation>;
 export type DeleteJobMutationOptions = Apollo.BaseMutationOptions<DeleteJobMutation, DeleteJobMutationVariables>;
+=======
+export type VsBattleFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<VsBattleFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<VsBattleFiltersInput>;
+  option1?: InputMaybe<StringFilterInput>;
+  option2?: InputMaybe<StringFilterInput>;
+  option_1_voters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  option_2_voters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<VsBattleFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type VsBattleInput = {
+  description?: InputMaybe<Scalars['String']>;
+  option1?: InputMaybe<Scalars['String']>;
+  option2?: InputMaybe<Scalars['String']>;
+  option_1_voters?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  option_2_voters?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+>>>>>>> ac481d9 (battle card elements & styling):graphql/global/ __generated__/types.ts
