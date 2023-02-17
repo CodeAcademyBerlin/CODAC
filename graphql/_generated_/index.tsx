@@ -156,6 +156,199 @@ export type BooleanFilterInput = {
   startsWith?: InputMaybe<Scalars['Boolean']>;
 };
 
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+export type Chat = {
+  __typename?: 'Chat';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  messages?: Maybe<Array<Maybe<ComponentChatMessage>>>;
+  name?: Maybe<Scalars['String']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  users?: Maybe<UsersPermissionsUserRelationResponseCollection>;
+};
+
+
+export type ChatMessagesArgs = {
+  filters?: InputMaybe<ComponentChatMessageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type ChatUsersArgs = {
+  filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ChatEntity = {
+  __typename?: 'ChatEntity';
+  attributes?: Maybe<Chat>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type ChatEntityResponse = {
+  __typename?: 'ChatEntityResponse';
+  data?: Maybe<ChatEntity>;
+};
+
+export type ChatEntityResponseCollection = {
+  __typename?: 'ChatEntityResponseCollection';
+  data: Array<ChatEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type ChatFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ChatFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  messages?: InputMaybe<ComponentChatMessageFiltersInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ChatFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ChatFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  users?: InputMaybe<UsersPermissionsUserFiltersInput>;
+};
+
+export type ChatInput = {
+  messages?: InputMaybe<Array<InputMaybe<ComponentChatMessageInput>>>;
+  name?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  users?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+};
+
+export type CodacOverflow = {
+  __typename?: 'CodacOverflow';
+  author?: Maybe<UsersPermissionsUserEntityResponse>;
+  comments?: Maybe<Array<Maybe<ComponentCommentsComments>>>;
+  course?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['Date']>;
+  description?: Maybe<Scalars['String']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  slug?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type CodacOverflowCommentsArgs = {
+  filters?: InputMaybe<ComponentCommentsCommentsFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type CodacOverflowEntity = {
+  __typename?: 'CodacOverflowEntity';
+  attributes?: Maybe<CodacOverflow>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type CodacOverflowEntityResponse = {
+  __typename?: 'CodacOverflowEntityResponse';
+  data?: Maybe<CodacOverflowEntity>;
+};
+
+export type CodacOverflowEntityResponseCollection = {
+  __typename?: 'CodacOverflowEntityResponseCollection';
+  data: Array<CodacOverflowEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type CodacOverflowFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<CodacOverflowFiltersInput>>>;
+  author?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  comments?: InputMaybe<ComponentCommentsCommentsFiltersInput>;
+  course?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  date?: InputMaybe<DateFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<CodacOverflowFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<CodacOverflowFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type CodacOverflowInput = {
+  author?: InputMaybe<Scalars['ID']>;
+  comments?: InputMaybe<Array<InputMaybe<ComponentCommentsCommentsInput>>>;
+  course?: InputMaybe<Scalars['String']>;
+  date?: InputMaybe<Scalars['Date']>;
+  description?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  slug?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type CodingChallenge = {
+  __typename?: 'CodingChallenge';
+  author?: Maybe<UsersPermissionsUserEntityResponse>;
+  challenge?: Maybe<Scalars['String']>;
+  comments?: Maybe<Array<Maybe<ComponentCommentsComments>>>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  difficulty?: Maybe<Scalars['Int']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  tags?: Maybe<Enum_Codingchallenge_Tags>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type CodingChallengeCommentsArgs = {
+  filters?: InputMaybe<ComponentCommentsCommentsFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type CodingChallengeEntity = {
+  __typename?: 'CodingChallengeEntity';
+  attributes?: Maybe<CodingChallenge>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type CodingChallengeEntityResponse = {
+  __typename?: 'CodingChallengeEntityResponse';
+  data?: Maybe<CodingChallengeEntity>;
+};
+
+export type CodingChallengeEntityResponseCollection = {
+  __typename?: 'CodingChallengeEntityResponseCollection';
+  data: Array<CodingChallengeEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type CodingChallengeFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<CodingChallengeFiltersInput>>>;
+  author?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  challenge?: InputMaybe<StringFilterInput>;
+  comments?: InputMaybe<ComponentCommentsCommentsFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  difficulty?: InputMaybe<IntFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<CodingChallengeFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<CodingChallengeFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  tags?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type CodingChallengeInput = {
+  author?: InputMaybe<Scalars['ID']>;
+  challenge?: InputMaybe<Scalars['String']>;
+  comments?: InputMaybe<Array<InputMaybe<ComponentCommentsCommentsInput>>>;
+  difficulty?: InputMaybe<Scalars['Int']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  tags?: InputMaybe<Enum_Codingchallenge_Tags>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
 export type Cohort = {
   __typename?: 'Cohort';
   createdAt?: Maybe<Scalars['DateTime']>;
@@ -374,6 +567,57 @@ export type ComponentCardsBlogCard = {
   title?: Maybe<Scalars['String']>;
 };
 
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+export type ComponentChatMessage = {
+  __typename?: 'ComponentChatMessage';
+  body?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  timestamp?: Maybe<Scalars['DateTime']>;
+  users_permissions_user?: Maybe<UsersPermissionsUserEntityResponse>;
+};
+
+export type ComponentChatMessageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentChatMessageFiltersInput>>>;
+  body?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentChatMessageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentChatMessageFiltersInput>>>;
+  timestamp?: InputMaybe<DateTimeFilterInput>;
+  users_permissions_user?: InputMaybe<UsersPermissionsUserFiltersInput>;
+};
+
+export type ComponentChatMessageInput = {
+  body?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  timestamp?: InputMaybe<Scalars['DateTime']>;
+  users_permissions_user?: InputMaybe<Scalars['ID']>;
+};
+
+export type ComponentCommentsComments = {
+  __typename?: 'ComponentCommentsComments';
+  author?: Maybe<UsersPermissionsUserEntityResponse>;
+  id: Scalars['ID'];
+  message?: Maybe<Scalars['String']>;
+  timestamp?: Maybe<Scalars['DateTime']>;
+};
+
+export type ComponentCommentsCommentsFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentCommentsCommentsFiltersInput>>>;
+  author?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  message?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentCommentsCommentsFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentCommentsCommentsFiltersInput>>>;
+  timestamp?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type ComponentCommentsCommentsInput = {
+  author?: InputMaybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
+  message?: InputMaybe<Scalars['String']>;
+  timestamp?: InputMaybe<Scalars['DateTime']>;
+};
+
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
 export type ComponentElementsFeature = {
   __typename?: 'ComponentElementsFeature';
   id: Scalars['ID'];
@@ -633,7 +877,7 @@ export type ComponentLinksLinkFiltersInput = {
 export type ComponentMetaMetadata = {
   __typename?: 'ComponentMetaMetadata';
   id: Scalars['ID'];
-  metaDescription: Scalars['String'];
+  metaDescription?: Maybe<Scalars['String']>;
   metaTitle: Scalars['String'];
   shareImage?: Maybe<UploadFileEntityResponse>;
   twitterCardType?: Maybe<Enum_Componentmetametadata_Twittercardtype>;
@@ -787,13 +1031,33 @@ export type Course = {
   length?: Maybe<Scalars['Int']>;
   mentors?: Maybe<MentorEntityResponse>;
   name?: Maybe<Scalars['String']>;
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+  projects?: Maybe<ProjectRelationResponseCollection>;
+  spikes?: Maybe<SpikeRelationResponseCollection>;
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 
+<<<<<<< HEAD:graphql/_generated_/index.tsx
 export type CourseAchievementsArgs = {
   filters?: InputMaybe<AchievementFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
+=======
+export type CourseProjectsArgs = {
+  filters?: InputMaybe<ProjectFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type CourseSpikesArgs = {
+  filters?: InputMaybe<SpikeFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -825,6 +1089,11 @@ export type CourseFiltersInput = {
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<CourseFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<CourseFiltersInput>>>;
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+  projects?: InputMaybe<ProjectFiltersInput>;
+  spikes?: InputMaybe<SpikeFiltersInput>;
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
@@ -834,6 +1103,11 @@ export type CourseInput = {
   length?: InputMaybe<Scalars['Int']>;
   mentors?: InputMaybe<Scalars['ID']>;
   name?: InputMaybe<Scalars['String']>;
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+  projects?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  spikes?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
 };
 
 export type CourseRelationResponseCollection = {
@@ -889,10 +1163,24 @@ export type DateTimeFilterInput = {
   startsWith?: InputMaybe<Scalars['DateTime']>;
 };
 
+<<<<<<< HEAD:graphql/_generated_/index.tsx
 export enum Enum_Commentscommentreport_Reason {
   BadLanguage = 'BAD_LANGUAGE',
   Discrimination = 'DISCRIMINATION',
   Other = 'OTHER'
+=======
+export enum Enum_Achievement_Type {
+  CourseDate = 'course_date',
+  Date = 'date',
+  Other = 'other',
+  Quest = 'quest',
+  Student = 'student'
+}
+
+export enum Enum_Codingchallenge_Tags {
+  Data = 'data',
+  Web = 'web'
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
 }
 
 export enum Enum_Componentelementsnotificationbanner_Type {
@@ -1038,7 +1326,11 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
+<<<<<<< HEAD:graphql/_generated_/index.tsx
 export type GenericMorph = Achievement | Attendance | Cohort | CommentsComment | CommentsCommentReport | ComponentAchievementAchievement | ComponentAttendanceAttendanceDay | ComponentAttendanceAttendanceHour | ComponentCardsBlogCard | ComponentElementsFeature | ComponentElementsFeatureColumn | ComponentElementsFeatureRow | ComponentElementsFooterSection | ComponentElementsLogos | ComponentElementsNotificationBanner | ComponentElementsPlan | ComponentElementsTestimonial | ComponentHolidaysHolidays | ComponentHoursHours | ComponentLayoutFooter | ComponentLayoutNavbar | ComponentLinksButton | ComponentLinksButtonLink | ComponentLinksLink | ComponentMetaMetadata | ComponentSectionsBottomActions | ComponentSectionsFeatureColumnsGroup | ComponentSectionsFeatureRowsGroup | ComponentSectionsHero | ComponentSectionsLargeVideo | ComponentSectionsLeadForm | ComponentSectionsPricing | ComponentSectionsRichText | ComponentSectionsTestimonialsGroup | Course | EmailDesignerEmailTemplate | Holiday | I18NLocale | JobPost | Lead | Mentor | Page | Student | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+=======
+export type GenericMorph = Achievement | Attendance | Chat | CodacOverflow | CodingChallenge | Cohort | ComponentAchievementAchievement | ComponentAttendanceAttendanceDay | ComponentAttendanceAttendanceHour | ComponentCardsBlogCard | ComponentChatMessage | ComponentCommentsComments | ComponentElementsFeature | ComponentElementsFeatureColumn | ComponentElementsFeatureRow | ComponentElementsFooterSection | ComponentElementsLogos | ComponentElementsNotificationBanner | ComponentElementsPlan | ComponentElementsTestimonial | ComponentFeedbackFeedback | ComponentHolidaysHolidays | ComponentHoursHours | ComponentKanbanBoard | ComponentKanbanCard | ComponentKanbanColumn | ComponentLayoutFooter | ComponentLayoutNavbar | ComponentLinksButton | ComponentLinksButtonLink | ComponentLinksLink | ComponentMetaMetadata | ComponentNotificationNotifications | ComponentRatingRatings | ComponentSectionsBottomActions | ComponentSectionsFeatureColumnsGroup | ComponentSectionsFeatureRowsGroup | ComponentSectionsHero | ComponentSectionsLargeVideo | ComponentSectionsLeadForm | ComponentSectionsPricing | ComponentSectionsRichText | ComponentSectionsTestimonialsGroup | ComponentTimeOffTimeOff | Course | EmailDesignerEmailTemplate | I18NLocale | JobPost | Lead | LmsFeedback | Mentor | NewsPost | Page | PasswordlessToken | Project | Spike | Student | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VsBattle;
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
 
 export type Holiday = {
   __typename?: 'Holiday';
@@ -1389,6 +1681,12 @@ export type Mutation = {
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createAchievement?: Maybe<AchievementEntityResponse>;
   createAttendance?: Maybe<AttendanceEntityResponse>;
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+  createChat?: Maybe<ChatEntityResponse>;
+  createCodacOverflow?: Maybe<CodacOverflowEntityResponse>;
+  createCodingChallenge?: Maybe<CodingChallengeEntityResponse>;
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
   createCohort?: Maybe<CohortEntityResponse>;
   createCommentsComment?: Maybe<CommentsCommentEntityResponse>;
   createCommentsCommentReport?: Maybe<CommentsCommentReportEntityResponse>;
@@ -1400,6 +1698,12 @@ export type Mutation = {
   createMentor?: Maybe<MentorEntityResponse>;
   createPage?: Maybe<PageEntityResponse>;
   createPageLocalization?: Maybe<PageEntityResponse>;
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+  createPasswordlessToken?: Maybe<PasswordlessTokenEntityResponse>;
+  createProject?: Maybe<ProjectEntityResponse>;
+  createSpike?: Maybe<SpikeEntityResponse>;
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
   createStudent?: Maybe<StudentEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -1409,6 +1713,14 @@ export type Mutation = {
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteAchievement?: Maybe<AchievementEntityResponse>;
   deleteAttendance?: Maybe<AttendanceEntityResponse>;
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+  /** Add comment on a codac overflow item */
+  deleteCODACOverflowComment?: Maybe<GenericServerResponse>;
+  deleteChat?: Maybe<ChatEntityResponse>;
+  deleteCodacOverflow?: Maybe<CodacOverflowEntityResponse>;
+  deleteCodingChallenge?: Maybe<CodingChallengeEntityResponse>;
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
   deleteCohort?: Maybe<CohortEntityResponse>;
   deleteCommentsComment?: Maybe<CommentsCommentEntityResponse>;
   deleteCommentsCommentReport?: Maybe<CommentsCommentReportEntityResponse>;
@@ -1419,6 +1731,12 @@ export type Mutation = {
   deleteLead?: Maybe<LeadEntityResponse>;
   deleteMentor?: Maybe<MentorEntityResponse>;
   deletePage?: Maybe<PageEntityResponse>;
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+  deletePasswordlessToken?: Maybe<PasswordlessTokenEntityResponse>;
+  deleteProject?: Maybe<ProjectEntityResponse>;
+  deleteSpike?: Maybe<SpikeEntityResponse>;
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
   deleteStudent?: Maybe<StudentEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -1439,6 +1757,14 @@ export type Mutation = {
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   updateAchievement?: Maybe<AchievementEntityResponse>;
   updateAttendance?: Maybe<AttendanceEntityResponse>;
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+  /** Update comment on a codac overflow item */
+  updateCODACOverflowComment?: Maybe<GenericServerResponse>;
+  updateChat?: Maybe<ChatEntityResponse>;
+  updateCodacOverflow?: Maybe<CodacOverflowEntityResponse>;
+  updateCodingChallenge?: Maybe<CodingChallengeEntityResponse>;
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
   updateCohort?: Maybe<CohortEntityResponse>;
   updateCommentsComment?: Maybe<CommentsCommentEntityResponse>;
   updateCommentsCommentReport?: Maybe<CommentsCommentReportEntityResponse>;
@@ -1450,6 +1776,12 @@ export type Mutation = {
   updateLead?: Maybe<LeadEntityResponse>;
   updateMentor?: Maybe<MentorEntityResponse>;
   updatePage?: Maybe<PageEntityResponse>;
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+  updatePasswordlessToken?: Maybe<PasswordlessTokenEntityResponse>;
+  updateProject?: Maybe<ProjectEntityResponse>;
+  updateSpike?: Maybe<SpikeEntityResponse>;
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
   updateStudent?: Maybe<StudentEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -1478,6 +1810,24 @@ export type MutationCreateAttendanceArgs = {
 };
 
 
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+export type MutationCreateChatArgs = {
+  data: ChatInput;
+};
+
+
+export type MutationCreateCodacOverflowArgs = {
+  data: CodacOverflowInput;
+};
+
+
+export type MutationCreateCodingChallengeArgs = {
+  data: CodingChallengeInput;
+};
+
+
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
 export type MutationCreateCohortArgs = {
   data: CohortInput;
 };
@@ -1536,6 +1886,24 @@ export type MutationCreatePageLocalizationArgs = {
 };
 
 
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+export type MutationCreatePasswordlessTokenArgs = {
+  data: PasswordlessTokenInput;
+};
+
+
+export type MutationCreateProjectArgs = {
+  data: ProjectInput;
+};
+
+
+export type MutationCreateSpikeArgs = {
+  data: SpikeInput;
+};
+
+
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
 export type MutationCreateStudentArgs = {
   data: StudentInput;
 };
@@ -1571,6 +1939,30 @@ export type MutationDeleteAttendanceArgs = {
 };
 
 
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+export type MutationDeleteCodacOverflowCommentArgs = {
+  codacOverflowId: Scalars['ID'];
+  commentId: Scalars['ID'];
+};
+
+
+export type MutationDeleteChatArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteCodacOverflowArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteCodingChallengeArgs = {
+  id: Scalars['ID'];
+};
+
+
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
 export type MutationDeleteCohortArgs = {
   id: Scalars['ID'];
 };
@@ -1622,6 +2014,24 @@ export type MutationDeletePageArgs = {
 };
 
 
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+export type MutationDeletePasswordlessTokenArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteProjectArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteSpikeArgs = {
+  id: Scalars['ID'];
+};
+
+
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
 export type MutationDeleteStudentArgs = {
   id: Scalars['ID'];
 };
@@ -1699,6 +2109,34 @@ export type MutationUpdateAttendanceArgs = {
 };
 
 
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+export type MutationUpdateCodacOverflowCommentArgs = {
+  codacOverflowId: Scalars['ID'];
+  comment: Scalars['String'];
+  commentId: Scalars['ID'];
+};
+
+
+export type MutationUpdateChatArgs = {
+  data: ChatInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateCodacOverflowArgs = {
+  data: CodacOverflowInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateCodingChallengeArgs = {
+  data: CodingChallengeInput;
+  id: Scalars['ID'];
+};
+
+
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
 export type MutationUpdateCohortArgs = {
   data: CohortInput;
   id: Scalars['ID'];
@@ -1766,6 +2204,27 @@ export type MutationUpdatePageArgs = {
 };
 
 
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+export type MutationUpdatePasswordlessTokenArgs = {
+  data: PasswordlessTokenInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateProjectArgs = {
+  data: ProjectInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateSpikeArgs = {
+  data: SpikeInput;
+  id: Scalars['ID'];
+};
+
+
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
 export type MutationUpdateStudentArgs = {
   data: StudentInput;
   id: Scalars['ID'];
@@ -1808,9 +2267,10 @@ export type Page = {
   __typename?: 'Page';
   contentSections?: Maybe<Array<Maybe<PageContentSectionsDynamicZone>>>;
   createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
   locale?: Maybe<Scalars['String']>;
   localizations?: Maybe<PageRelationResponseCollection>;
-  metadata: ComponentMetaMetadata;
+  metadata?: Maybe<ComponentMetaMetadata>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   shortName?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
@@ -1825,7 +2285,11 @@ export type PageLocalizationsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+<<<<<<< HEAD:graphql/_generated_/index.tsx
 export type PageContentSectionsDynamicZone = ComponentSectionsBottomActions | ComponentSectionsFeatureColumnsGroup | ComponentSectionsFeatureRowsGroup | ComponentSectionsHero | ComponentSectionsLargeVideo | ComponentSectionsLeadForm | ComponentSectionsPricing | ComponentSectionsRichText | ComponentSectionsTestimonialsGroup | Error;
+=======
+export type PageContentSectionsDynamicZone = ComponentSectionsRichText | Error;
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
 
 export type PageEntity = {
   __typename?: 'PageEntity';
@@ -1847,6 +2311,7 @@ export type PageEntityResponseCollection = {
 export type PageFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
   locale?: InputMaybe<StringFilterInput>;
   localizations?: InputMaybe<PageFiltersInput>;
@@ -1861,6 +2326,7 @@ export type PageFiltersInput = {
 
 export type PageInput = {
   contentSections?: InputMaybe<Array<Scalars['PageContentSectionsDynamicZoneInput']>>;
+  description?: InputMaybe<Scalars['String']>;
   metadata?: InputMaybe<ComponentMetaMetadataInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   shortName?: InputMaybe<Scalars['String']>;
@@ -1887,6 +2353,116 @@ export type PaginationArg = {
   start?: InputMaybe<Scalars['Int']>;
 };
 
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+export type PasswordlessToken = {
+  __typename?: 'PasswordlessToken';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  is_active?: Maybe<Scalars['Boolean']>;
+  login_date?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type PasswordlessTokenEntity = {
+  __typename?: 'PasswordlessTokenEntity';
+  attributes?: Maybe<PasswordlessToken>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type PasswordlessTokenEntityResponse = {
+  __typename?: 'PasswordlessTokenEntityResponse';
+  data?: Maybe<PasswordlessTokenEntity>;
+};
+
+export type PasswordlessTokenEntityResponseCollection = {
+  __typename?: 'PasswordlessTokenEntityResponseCollection';
+  data: Array<PasswordlessTokenEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type PasswordlessTokenFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<PasswordlessTokenFiltersInput>>>;
+  body?: InputMaybe<StringFilterInput>;
+  context?: InputMaybe<JsonFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  email?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  is_active?: InputMaybe<BooleanFilterInput>;
+  login_date?: InputMaybe<DateTimeFilterInput>;
+  not?: InputMaybe<PasswordlessTokenFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<PasswordlessTokenFiltersInput>>>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type PasswordlessTokenInput = {
+  body?: InputMaybe<Scalars['String']>;
+  context?: InputMaybe<Scalars['JSON']>;
+  email?: InputMaybe<Scalars['String']>;
+  is_active?: InputMaybe<Scalars['Boolean']>;
+  login_date?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type Project = {
+  __typename?: 'Project';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  pages?: Maybe<PageRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type ProjectPagesArgs = {
+  filters?: InputMaybe<PageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ProjectEntity = {
+  __typename?: 'ProjectEntity';
+  attributes?: Maybe<Project>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type ProjectEntityResponse = {
+  __typename?: 'ProjectEntityResponse';
+  data?: Maybe<ProjectEntity>;
+};
+
+export type ProjectEntityResponseCollection = {
+  __typename?: 'ProjectEntityResponseCollection';
+  data: Array<ProjectEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type ProjectFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ProjectFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ProjectFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ProjectFiltersInput>>>;
+  pages?: InputMaybe<PageFiltersInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type ProjectInput = {
+  description?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  pages?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ProjectRelationResponseCollection = {
+  __typename?: 'ProjectRelationResponseCollection';
+  data: Array<ProjectEntity>;
+};
+
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
 export enum PublicationState {
   Live = 'LIVE',
   Preview = 'PREVIEW'
@@ -1898,6 +2474,15 @@ export type Query = {
   achievements?: Maybe<AchievementEntityResponseCollection>;
   attendance?: Maybe<AttendanceEntityResponse>;
   attendances?: Maybe<AttendanceEntityResponseCollection>;
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+  chat?: Maybe<ChatEntityResponse>;
+  chats?: Maybe<ChatEntityResponseCollection>;
+  codacOverflow?: Maybe<CodacOverflowEntityResponse>;
+  codacOverflows?: Maybe<CodacOverflowEntityResponseCollection>;
+  codingChallenge?: Maybe<CodingChallengeEntityResponse>;
+  codingChallenges?: Maybe<CodingChallengeEntityResponseCollection>;
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
   cohort?: Maybe<CohortEntityResponse>;
   cohorts?: Maybe<CohortEntityResponseCollection>;
   commentsComment?: Maybe<CommentsCommentEntityResponse>;
@@ -1921,6 +2506,15 @@ export type Query = {
   mentors?: Maybe<MentorEntityResponseCollection>;
   page?: Maybe<PageEntityResponse>;
   pages?: Maybe<PageEntityResponseCollection>;
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+  passwordlessToken?: Maybe<PasswordlessTokenEntityResponse>;
+  passwordlessTokens?: Maybe<PasswordlessTokenEntityResponseCollection>;
+  project?: Maybe<ProjectEntityResponse>;
+  projects?: Maybe<ProjectEntityResponseCollection>;
+  spike?: Maybe<SpikeEntityResponse>;
+  spikes?: Maybe<SpikeEntityResponseCollection>;
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
   student?: Maybe<StudentEntityResponse>;
   students?: Maybe<StudentEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
@@ -1958,6 +2552,48 @@ export type QueryAttendancesArgs = {
 };
 
 
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+export type QueryChatArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryChatsArgs = {
+  filters?: InputMaybe<ChatFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryCodacOverflowArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryCodacOverflowsArgs = {
+  filters?: InputMaybe<CodacOverflowFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryCodingChallengeArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryCodingChallengesArgs = {
+  filters?: InputMaybe<CodingChallengeFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
 export type QueryCohortArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -2094,6 +2730,47 @@ export type QueryPagesArgs = {
 };
 
 
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+export type QueryPasswordlessTokenArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryPasswordlessTokensArgs = {
+  filters?: InputMaybe<PasswordlessTokenFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryProjectArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryProjectsArgs = {
+  filters?: InputMaybe<ProjectFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QuerySpikeArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QuerySpikesArgs = {
+  filters?: InputMaybe<SpikeFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
 export type QueryStudentArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -2158,6 +2835,63 @@ export type ResponseCollectionMeta = {
   pagination: Pagination;
 };
 
+<<<<<<< HEAD:graphql/_generated_/index.tsx
+=======
+export type Spike = {
+  __typename?: 'Spike';
+  content?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  day?: Maybe<Scalars['Int']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  recording?: Maybe<UploadFileEntityResponse>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type SpikeEntity = {
+  __typename?: 'SpikeEntity';
+  attributes?: Maybe<Spike>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type SpikeEntityResponse = {
+  __typename?: 'SpikeEntityResponse';
+  data?: Maybe<SpikeEntity>;
+};
+
+export type SpikeEntityResponseCollection = {
+  __typename?: 'SpikeEntityResponseCollection';
+  data: Array<SpikeEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type SpikeFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<SpikeFiltersInput>>>;
+  content?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  day?: InputMaybe<IntFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<SpikeFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<SpikeFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type SpikeInput = {
+  content?: InputMaybe<Scalars['String']>;
+  day?: InputMaybe<Scalars['Int']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  recording?: InputMaybe<Scalars['ID']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type SpikeRelationResponseCollection = {
+  __typename?: 'SpikeRelationResponseCollection';
+  data: Array<SpikeEntity>;
+};
+
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
 export type StringFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
@@ -2444,6 +3178,7 @@ export type UploadFolderRelationResponseCollection = {
   data: Array<UploadFolderEntity>;
 };
 
+<<<<<<< HEAD:graphql/_generated_/index.tsx
 export type UserData = {
   __typename?: 'UserData';
   avatar?: Maybe<Scalars['String']>;
@@ -2453,6 +3188,8 @@ export type UserData = {
   type?: Maybe<Scalars['String']>;
 };
 
+=======
+>>>>>>> 04b9b46 (feat: install the dragg):cabServer/global/__generated__/types.ts
 export type UsersPermissionsCreateRolePayload = {
   __typename?: 'UsersPermissionsCreateRolePayload';
   ok: Scalars['Boolean'];
