@@ -1,0 +1,34 @@
+{
+  "name": "codac-administration",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index",
+  "types": "./dist/global/__generated__/types.d.ts",
+  "exports": {
+    ".": "./dist/global/__generated__/types.mjs"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "codegen": "graphql-codegen",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@apollo/client": "^3.7.1",
+    "@graphql-codegen/cli": "3.0.0",
+    "@graphql-codegen/typescript": "3.0.0",
+    "@graphql-codegen/add": "^3.2.1",
+    "@graphql-codegen/near-operation-file-preset": "^2.4.4",
+    "@graphql-codegen/typescript-operations": "^2.5.6",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.6",
+    "@types/node": "16.18.11",
+    "graphql": "16.6.0",
+    "graphql-codegen-typescript-validation-schema": "^0.7.1",
+    "tsconfig": "workspace:*",
+    "tsup": "^6.6.0",
+    "typescript": "4.9.5"
+  }
+}
