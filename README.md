@@ -1,344 +1,54 @@
-<a name="readme-top"></a>
+# 🌱 Turborepo + TailwindCSS + Storybook
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
+## What's inside?
 
-<!-- [![MIT License][license-shield]][license-url] -->
+This Turborepo includes the following packages/apps:
 
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="https://github.com/codeacademyberlin/codac-ts-frontend-students">
-    <img src="public/projects/CODAC/CODAC3_logo3D.png" alt="CODAC"  height="200">
-  </a>
+### Apps and Packages
 
-  <p align="center">
-    <br />
-    <a href="https://github.com/codeacademyberlin/codac-ts-frontend-students"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://www.codac.academy/">View Demo</a>
-    ·
-    <a href="https://github.com/codeacademyberlin/codac-ts-frontend-students/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/codeacademyberlin/codac-ts-frontend-students/issues">Request Feature</a>
-  </p>
-</div>
+- `storybook`: a Storybook app with the `codac-ui` package imported
+- `docs`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
+- `web`: another [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
+- `codac-ui`: a stub React component library with [Tailwind CSS](https://tailwindcss.com/) shared by both `web` and `docs` applications
+- `ui/eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
+- `ui/tailwind-config`: reusable tailwind configuration
+- `ui/tsconfig`: `tsconfig.json`s used throughout the monorepo
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#folder-structure">Folder Structure</a></li>
-    <li><a href="#cab-server">CAB Server</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
+Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
-<!-- ABOUT THE PROJECT -->
+### Building packages/ui
 
-## About The Project
+This example is setup to build `packages/ui` and output the transpiled source and compiled styles to `dist/`. This was chosen to make sharing one `tailwind.config.js` as easy as possible, and to ensure only the CSS that is used by the current application and its dependencies is generated.
 
-![CODAC Screen Shot](./public/assets/screenshot.png)
+Another option is to consume `packages/ui` directly from source without building. If using this option, you will need to update your `tailwind.config.js` to be aware of your package locations, so it can find all usages of the `tailwindcss` class names.
 
-**CODAC** stands for **Code Academy Berlin Community**.
+For example, in [tailwind.config.js](packages/tailwind-config/tailwind.config.js):
 
-This platform is the heart of resources necessary to carry out the courses in **Data Science** or **Web Development** offered by the start up training center [![CAB][cab-shield]][cab-url]
-
-It is intended to be improved and maintained by students of the Academy. Particularly during the last project of the web development course and introduces students to a set of advanced new concepts and technologies such as **Server Side Rendering**.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-### Built With
-
-[![React][react.js]][react-url]
-
-**React.js** is a free and open-source front-end JavaScript library for building user interfaces based on UI components.
-
-[![Next][next.js]][next-url]
-
-**Next.js** is an open-source web development framework enabling React-based web applications with server-side rendering and generating static websites.
-
-[![Typescript][typescript.js]][typescript-url]
-
-**TypeScript** is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
-
-[![GraphQL][graphql]][graphql-url]
-
-**GraphQL** is a query language for APIs and a runtime for fulfilling those queries with your existing data.
-
-<!-- GETTING STARTED -->
-
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-- Node
-- Yarn package manager
-  ```sh
-  npm i yarn -g
-  ```
-
-### Installation
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/codeacademyberlin/codac-ts-frontend-students.git
-   ```
-2. Install NPM packages
-   ```sh
-   yarn
-   ```
-3. make a copy and rename `.env.local.example` to `.env.local`
-
-4. Run the Next.js app in dev mode
-   ```bash
-   yarn dev
-   # or
-   npm run dev
-   ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-### Troubleshoot
-
-<!-- - If you get the following error on SSG pages (i.e LMS or Projects)
-  `TypeError: _jsxDEV is not a function`
-  This is linked to an environment variable NODE_ENV setting of your machine.
-
-Fix:
-on windows run in terminal: `setx NODE_ENV dev`
-on linux and macos run in terminal: `export NODE_ENV=dev`
-
-Close and restart VS code before testing again. -->
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- FOLDER STRUCTURE -->
-
-## Folder Structure
-
-### Main Structure
-
-```sh
-├── __test__ # integration tests with Jest
-├── .github # CI/CD scripts for github actions
-├── .husky # husky scripts for linting (commit msg and files)
-├── .storybook # Configuration files for Storybook
-├── cabServer # Queries & Mutations for Code Academy Berlin's GraphQl Server and generated types
-├── cypress # e2e (and/or integration) tests and fixtures for Cypress
-├── lmsDevSample # Sample data for the LMS pages
-├── projects # data for the porjects pages
-├── pagesDemo # THESE PAGES ARE CURRENTLY ONLY FOR DEMO(To be deleted)
-├── public # Static assets (Images, Fonts)**
-├── src # Next App (see below)
-├── env.local # Private variables of the app (DO NOT PUSH TO GITHUB!)
-├── env.local.example # Describe the variables names of .env.local file) (VARIABLES VALUE SHOULD BE DUMMY!)
-├── package.json
-└── .gitignore # list of files to be not tracked by source control
-└── .gitmodules # refers to the git submodule for the LMS data
-└── codegen.yml # setting for code generation of the types of CAB Servers
-└── ... # more configurations files
+```js
+  content: [
+    // app content
+    `src/**/*.{js,ts,jsx,tsx}`,
+    // include packages if not transpiling
+    "../../packages/**/*.{js,ts,jsx,tsx}",
+  ],
 ```
 
-### Next App in src directory
+### Utilities
+
+This Turborepo has some additional tools already setup for you:
+
+- [Tailwind CSS](https://tailwindcss.com/) for styles
+- [TypeScript](https://www.typescriptlang.org/) for static type checking
+- [ESLint](https://eslint.org/) for code linting
+- [Prettier](https://prettier.io) for code formatting
+
+## Using this example
+
+Run the following command:
 
 ```sh
-├── components # Home grown components organized in subfolder for every pages
-|   ├── page subfolder...
-├── componentsDemo # DEMO components for pages (to be moved to components folder if used)
-├── context # React context providers
-│   ├── authContext # User Authentication
-│   ├── settingsContext # User Preferences (look & feel)
-├── layouts # Home grown layouts components
-├── lib # Utilities
-├── navigation # Routing links
-├── pages # See below
-├── pagesDemo # THESE PAGES ARE CURRENTLY ONLY FOR DEMO(To be deleted)
-├── public #Static assets (Images, Fonts)**
-├── styles # global styles
-├── theme # MUI theme definition
-├── types # global types
+npx degit https://github.com/arevalolance/design-system-template.git design-system-template
+cd design-system-template
+pnpm install
+git init . && git add . && git commit -m "Init"
 ```
-
-### Pages Structure
-
-#### Rendering method:
-
-- λ (Server) server-side renders at runtime (uses getInitialProps or getServerSideProps)
-- ○ (Static) automatically rendered as static HTML (uses no initial props)
-- ● (SSG) automatically generated as static HTML + JSON (uses getStaticProps)
-
-```sh
-┌ ○ /
-├   /_app # Entry point of Next.js wrapped by providers
-├ ○ /401
-├ ○ /404
-├ ○ /500
-├ λ /api/lms-links
-├ λ /api/open-ai
-├ λ /api/user
-├ ○ /battles
-├ λ /community
-├ ○ /congrats
-├ λ /dashboard
-├ λ /jobs
-├ ● /lms/[[...page]] (5552 ms)
-├   ├ /lms/data/Module-1/Project-2/Machine-Learning-Fundamentals
-├   ├ /lms/career/Step-1/Chapter-1
-├   ├ /lms/career/Step-1/Chapter-2
-├   ├ /lms/career/Step-1/Chapter-3
-├   ├ /lms/career/Step-1/Chapter-4
-├   ├ /lms/career/Step-1
-├   ├ /lms/career/Step-2/Task-1
-├   └ [+70 more paths]
-├ ○ /login
-├ ○ /pagesDemo/cards
-├ ○ /pagesDemo/form-layouts
-├ ○ /pagesDemo/icons
-├ ○ /pagesDemo/register
-├ ○ /pagesDemo/tables
-├ ○ /pagesDemo/typography
-├ λ /profile
-├ λ /projects
-└ ● /projects/[project]
-    └ /projects/CODAC
-```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- CAB Server -->
-
-## CAB Server
-
-The **CAB Server** refers to the Code Academy Berlin Administration Backend and hold various data about the Academy
-
-It is built with the Framework **Strapi** and offers a **GraphQL** API.
-
-[![Strapi][strapi]][strapi-url]
-
-Queries & Mutation to are to be described in the cabServer folder before being generated through code generation for use in the app:
-
-![CODAC Screen Shot](./public/assets/codegen.png)
-
-to regenerate the api types run script
-
-```sh
-yarn codegen
- # or
-npm run codegen
-```
-
-<!-- ROADMAP -->
-
-## Roadmap
-
-See the [open issues](https://github.com/codeacademyberlin/codac-ts-frontend-students/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- CONTRIBUTING -->
-
-## Contributing
-
-Contributions are made by the students of **Code Academy Berlin**.
-
-1. Fork the Project & Request to be a collaborator
-2. Create your Feature Branch
-3. Commit your Changes
-4. Push to the Branch
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- LICENSE -->
-
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- CONTACT -->
-
-## Contact
-
-Lucas Dupias - lucas@codeacademyberlin.com
-
-[https://github.com/Loukass23](https://github.com/Loukass23)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- ACKNOWLEDGMENTS -->
-
-## Acknowledgments
-
-- December 2022 - **Neon Narwhals** Cohort
-
-  - [Alberto](https://github.com/BetoCarrillo)
-    - Job offer page
-  - [Jan](https://github.com/petrikoj)
-    - Progress bar dashboard component
-    - My Cohort dashboard component
-  - [Emily](https://github.comMadame-Aehm)
-    - Lms page
-    - Community page
-    - themes design
-  - [Philipp](https://github.com/philippspiegler)
-    - VS Battle page
-
-- []()
-- []()
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-
-[contributors-shield]: https://img.shields.io/github/contributors/codeacademyberlin/codac-ts-frontend-students.svg?style=for-the-badge
-[contributors-url]: https://github.com/codeacademyberlin/codac-ts-frontend-students/graphs/contributors
-[cab-shield]: https://img.shields.io/badge/Code%20Academy%20Berlin-%2300897D
-[cab-url]: https://www.codeacademyberlin.com
-[forks-shield]: https://img.shields.io/github/forks/codeacademyberlin/codac-ts-frontend-students.svg?style=for-the-badge
-[forks-url]: https://github.com/codeacademyberlin/codac-ts-frontend-students/network/members
-[stars-shield]: https://img.shields.io/github/stars/codeacademyberlin/codac-ts-frontend-students.svg?style=for-the-badge
-[stars-url]: https://github.com/codeacademyberlin/codac-ts-frontend-students/stargazers
-[issues-shield]: https://img.shields.io/github/issues/codeacademyberlin/codac-ts-frontend-students.svg?style=for-the-badge
-[issues-url]: https://github.com/codeacademyberlin/codac-ts-frontend-students/issues
-[license-shield]: https://img.shields.io/github/license/codeacademyberlin/codac-ts-frontend-students.svg?style=for-the-badge
-[license-url]: https://github.com/codeacademyberlin/codac-ts-frontend-students/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://www.linkedin.com/school/codeacademyberlin
-[product-screenshot]: images/screenshot.png
-[next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[next-url]: https://nextjs.org/
-[react.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[react-url]: https://reactjs.org/
-[typescript-url]: https://www.typescriptlang.org/
-[typescript.js]: https://img.shields.io/badge/Typescript.js-35495E?style=for-the-badge&logo=typescript&logoColor=3178c6
-[graphql-url]: https://graphql.org/
-[graphql]: https://img.shields.io/badge/-GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white
-[strapi-url]: https://strapi.io/
-[strapi]: https://img.shields.io/badge/strapi-%232E7EEA.svg?style=for-the-badge&logo=strapi&logoColor=white
