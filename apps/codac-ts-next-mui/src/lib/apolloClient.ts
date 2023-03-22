@@ -60,7 +60,8 @@ const createApolloClient = (req?: NextApiRequest | IncomingMessage | null) => {
       }),
       // this uses apollo-link-http under the hood, so all the options here come from that package
       createUploadLink({
-        uri: `${process.env.NEXT_PUBLIC_CAB_SERVER_API_URL_PROD}/graphql`,
+        uri: `https://codac-admin-dev.up.railway.app/graphql`,
+        // uri: `${process.env.NEXT_PUBLIC_CAB_SERVER_API_URL_PROD}/graphql`,
         // Make sure that CORS and cookies work
         fetchOptions: {
           mode: 'cors',

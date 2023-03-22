@@ -5,8 +5,8 @@ loadEnvConfig(process.cwd());
 
 const config: CodegenConfig = {
   overwrite: true,
-  // schema: `https://codac-administration.up.railway.app/graphql`,
-  schema: `${process.env.NEXT_PUBLIC_CAB_SERVER_API_URL_PROD}/graphql`,
+  schema: `https://codac-admin-dev.up.railway.app/graphql`,
+  // schema: `${process.env.NEXT_PUBLIC_CAB_SERVER_API_URL_PROD}/graphql`,
   documents: 'cabServer/**/*.graphql',
   generates: {
     'cabServer/global/__generated__/types.ts': {

@@ -5,8 +5,7 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "clean": "turbo run clean",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-     "codegen:graphql": "turbo run codegen:graphql"
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "eslint": "^7.32.0",
