@@ -6,7 +6,7 @@
 [![Issues][issues-shield]][issues-url]
 
 <!-- [![MIT License][license-shield]][license-url] -->
-
+PROJECT MOVED TO MONOREPO
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -97,6 +97,7 @@ To get a local copy up and running follow these simple example steps.
 
 - Node
 - Yarn package manager
+
   ```sh
   npm i yarn -g
   ```
@@ -104,16 +105,21 @@ To get a local copy up and running follow these simple example steps.
 ### Installation
 
 1. Clone the repo
+
    ```sh
    git clone https://github.com/codeacademyberlin/codac-ts-frontend-students.git
    ```
+
 2. Install NPM packages
+
    ```sh
    yarn
    ```
+
 3. make a copy and rename `.env.local.example` to `.env.local`
 
 4. Run the Next.js app in dev mode
+
    ```bash
    yarn dev
    # or
@@ -185,7 +191,7 @@ Close and restart VS code before testing again. -->
 
 ### Pages Structure
 
-#### Rendering method:
+#### Rendering method
 
 - λ (Server) server-side renders at runtime (uses getInitialProps or getServerSideProps)
 - ○ (Static) automatically rendered as static HTML (uses no initial props)
@@ -327,11 +333,6 @@ Lucas Dupias - lucas@codeacademyberlin.com
 [stars-url]: https://github.com/codeacademyberlin/codac-ts-frontend-students/stargazers
 [issues-shield]: https://img.shields.io/github/issues/codeacademyberlin/codac-ts-frontend-students.svg?style=for-the-badge
 [issues-url]: https://github.com/codeacademyberlin/codac-ts-frontend-students/issues
-[license-shield]: https://img.shields.io/github/license/codeacademyberlin/codac-ts-frontend-students.svg?style=for-the-badge
-[license-url]: https://github.com/codeacademyberlin/codac-ts-frontend-students/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://www.linkedin.com/school/codeacademyberlin
-[product-screenshot]: images/screenshot.png
 [next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [next-url]: https://nextjs.org/
 [react.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
