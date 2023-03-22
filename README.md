@@ -1,4 +1,4 @@
-# 🌱 Turborepo + TailwindCSS + Storybook
+# CODAC Monorepo
 
 ## What's inside?
 
