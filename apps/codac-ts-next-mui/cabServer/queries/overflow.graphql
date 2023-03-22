@@ -1,0 +1,12 @@
+query getCodacOverflows {
+  codacOverflows(sort: "createdAt:desc"){
+        data{
+            id
+            attributes{
+              title
+              description
+              course
+            }
+        }
+    }
+}
