@@ -1,0 +1,60 @@
+query getVSBattles {
+  vsBattles(sort: "createdAt:desc") {
+    data {
+      id
+      attributes {
+        archived
+        title
+        description
+        option1
+        option2
+        option_1_voters {
+          data {
+            id
+            attributes {
+              email
+              username
+              firstname
+              lastname
+              avatar {
+                data {
+                  attributes {
+                    url
+                    hash
+                    mime
+                    name
+                    provider
+                    size
+                  }
+                }
+              }
+            }
+          }
+        }
+        option_2_voters {
+          data {
+            id
+            attributes {
+              email
+              username
+              firstname
+              lastname
+              avatar {
+                data {
+                  attributes {
+                    url
+                    hash
+                    mime
+                    name
+                    provider
+                    size
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

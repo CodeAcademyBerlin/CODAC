@@ -1,0 +1,68 @@
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#__next {
+  height: 100%;
+}
+
+code {
+  font-family: "Inter", sans-serif, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue";
+  padding: 0.1rem 0.4rem;
+  font-size: 90%;
+  color: #d400ff;
+  border-radius: 0.1335rem;
+}
+
+code:not([class*="language-"]):before,
+code:not([class*="language-"]):after {
+  content: "`";
+}
+
+code[class*="language-"] {
+  padding: 0;
+}
+.boldText {
+  font-weight: bold;
+}
+
+.noDeco {
+  text-decoration: none !important;
+  color: grey;
+}
+
+.whiteColor {
+  color: white !important;
+}
+
+.jobDescription {
+  line-height: 1.5;
+  letter-spacing: 0.15px;
+  color: grey;
+}
+
+@font-face {
+  font-family: "CODAC";
+  font-display: swap;
+  src: url("/fonts/codacA2.woff2") format("woff2");
+}
+
+#dynamic-overflow-link{
+  cursor: pointer;
+  color: #26a69a;
+  margin: 5px;
+}
+
+#dynamic-overflow-link:hover{
+  color: #4ed6ca;
+}
+
+#overflow-text-style{
+  text-align: start;
+  flex-wrap: wrap;
+}
