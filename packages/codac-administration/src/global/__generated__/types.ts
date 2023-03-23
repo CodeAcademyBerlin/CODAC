@@ -3692,6 +3692,45 @@ export function useLoginMutation(baseOptions?: Apollo.MutationHookOptions<LoginM
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
+export const GetChallengesDocument = gql`
+    query getChallenges {
+  codingChallenges {
+    data {
+      attributes {
+        challenge
+        difficulty
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetChallengesQuery__
+ *
+ * To run a query within a React component, call `useGetChallengesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetChallengesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetChallengesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetChallengesQuery(baseOptions?: Apollo.QueryHookOptions<GetChallengesQuery, GetChallengesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetChallengesQuery, GetChallengesQueryVariables>(GetChallengesDocument, options);
+      }
+export function useGetChallengesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetChallengesQuery, GetChallengesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetChallengesQuery, GetChallengesQueryVariables>(GetChallengesDocument, options);
+        }
+export type GetChallengesQueryHookResult = ReturnType<typeof useGetChallengesQuery>;
+export type GetChallengesLazyQueryHookResult = ReturnType<typeof useGetChallengesLazyQuery>;
+export type GetChallengesQueryResult = Apollo.QueryResult<GetChallengesQuery, GetChallengesQueryVariables>;
 export const GetPageDocument = gql`
     query getPage($slug: String) {
   pages(filters: {slug: {eq: $slug}}) {
@@ -3853,6 +3892,11 @@ export type LoginMutationVariables = Exact<{
 
 
 export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'UsersPermissionsLoginPayload', jwt?: string | null, user: { __typename?: 'UsersPermissionsMe', username: string, id?: string | null, email?: string | null, role?: { __typename?: 'UsersPermissionsMeRole', type?: string | null, name: string, description?: string | null, id: string } | null } } };
+
+export type GetChallengesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetChallengesQuery = { __typename?: 'Query', codingChallenges?: { __typename?: 'CodingChallengeEntityResponseCollection', data: Array<{ __typename?: 'CodingChallengeEntity', attributes?: { __typename?: 'CodingChallenge', challenge?: string | null, difficulty?: number | null } | null }> } | null };
 
 export type GetPageQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']>;
