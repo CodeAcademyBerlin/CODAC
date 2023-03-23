@@ -20,6 +20,7 @@ const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 export const COOKIES_TOKEN_NAME = 'token';
 
 export const getToken = (req?: NextApiRequest | IncomingMessage | null) => {
+  if (!req ) return 
   const parsedCookies = parseCookies({ req });
   // return localStorage.getItem("token")
   return parsedCookies[COOKIES_TOKEN_NAME];

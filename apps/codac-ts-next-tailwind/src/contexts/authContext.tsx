@@ -64,10 +64,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const res = await fetch("/api/user", options);
     const data = await res.json();
     const user: User = data.user;
-    console.log("user", user);
+    );
     if (user) {
       setUser(user);
-      console.log("user", user);
+      "user", user);
     }
   };
 
@@ -81,11 +81,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
     const res = await fetch("/api/unlockAchievements", options);
     const data = await res.json();
-    console.log("data", data);
+    "data", data);
     const achievements: Achievement = data.unlockAchievements;
     if (achievements) {
       // setAchievements(achievements);
-      console.log("achievements", achievements);
+      "achievements", achievements);
     }
   };
 
