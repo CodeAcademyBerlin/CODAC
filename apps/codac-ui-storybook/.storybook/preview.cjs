@@ -1,4 +1,4 @@
-import 'codac-ui/styles.css';
+import 'ui/styles.css';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

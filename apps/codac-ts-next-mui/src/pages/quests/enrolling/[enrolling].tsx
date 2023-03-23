@@ -14,8 +14,6 @@ import { getPageMdx, mdxFilesPaths } from 'src/lib/markdown';
 import { PageData } from 'src/pages/lms/lms';
 
 const Enrollings = ({ pageData }: { pageData: PageData }) => {
-  console.log('pageData', pageData);
-
   return (
     <>
       <NextBreadcrumbs />
@@ -64,7 +62,6 @@ export const getStaticPaths = async () => {
   const paths = mdxFilesPaths(ENROLLING_PATH)
     .map((path) => path.replace(/\.md?$/, ''))
     .map((enrolling) => ({ params: { enrolling } }));
-  console.log('paths', paths);
   return {
     paths,
     fallback: false,

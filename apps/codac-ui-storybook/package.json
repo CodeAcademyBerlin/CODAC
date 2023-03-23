@@ -1,29 +1,37 @@
 {
   "name": "codac-ui-storybook",
-  "version": "1.0.0",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "next dev --port 3001",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "start-storybook -p 6006",
+    "build": "build-storybook",
+    "preview": "vite preview",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "next": "latest",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "codac-ui": "workspace:*"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/node": "^18.11.17",
-    "@types/react": "^18.0.26",
-    "@types/react-dom": "^18.0.9",
+    "@babel/core": "^7.20.12",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-interactions": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/builder-vite": "^0.4.0",
+    "@storybook/cli": "^6.5.16",
+    "@storybook/react": "^6.5.16",
+    "@storybook/testing-library": "^0.0.13",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@vitejs/plugin-react": "^3.1.0",
     "autoprefixer": "^10.4.13",
-    "eslint-config-custom": "workspace:*",
+    "babel-loader": "^8.3.0",
     "postcss": "^8.4.20",
-    "tailwind-config": "workspace:*",
-    "tailwindcss": "^3.2.4",
-    "tsconfig": "workspace:*",
-    "typescript": "^5.0.2"
+    "typescript": "^4.9.3",
+    "codac-ui": "workspace:*",
+    "vite": "^4.1.0"
   }
 }

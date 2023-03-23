@@ -11,7 +11,6 @@ import { Contributor, Quests } from 'src/types';
 import styles from '../../../components/Quests/quests.module.css';
 
 const Enrollings = ({ enrolling }: { enrolling: Quests[] }) => {
-  console.log('enrolling', enrolling);
   return (
     <>
       <NextBreadcrumbs />
@@ -28,7 +27,6 @@ export default Enrollings;
 
 export const getStaticProps: GetStaticProps = async () => {
   const enrolling = await getFrontmatters(ENROLLING_PATH);
-  console.log('enrolling path', enrolling);
   // const projects = [
   //   {
   //     name: 'CODAC',

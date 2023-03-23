@@ -13,8 +13,8 @@ export default function Home() {
         <title>Web - Turborepo Example</title>
       </Head>
       {data?.pages &&
-        data.pages.data.map((p) => (
-          <Card key={p.id} title={p?.attributes?.slug || ""} />
+        data.pages.data.map((page) => (
+          <p key={page.id}>{page?.attributes?.slug}</p>
         ))}
       <p>hello</p>
       <main className="pt-16 sm:pt-24 mx-auto w-auto px-4 pb-8 lg:px-8">
