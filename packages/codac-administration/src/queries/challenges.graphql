@@ -1,0 +1,10 @@
+query getChallenges {
+  codingChallenges {
+    data {
+      attributes {
+        challenge
+        difficulty
+      }
+    }
+  }
+}
