@@ -9,7 +9,7 @@ const Students = (data: any) => {
   const theme = useTheme();
 
   const studentProfile: Student = data && data.student.attributes;
-  console.log('studentProfile', studentProfile);
+  // console.log('studentProfile', studentProfile);
   return (
     <Container
       sx={{
@@ -108,7 +108,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
     const client = initializeApollo(null, ctx.req);
     const id = ctx.params?.id;
-    console.log('ctxparams', ctx.params);
+    // console.log('ctxparams', ctx.params);
     const { data } = await client.query({
       query: FilterStudentByUserIdDocument,
       variables: { userId: id },
@@ -118,7 +118,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       props: { student },
     };
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return {
       props: {
         data: null,

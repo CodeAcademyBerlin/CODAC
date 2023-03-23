@@ -49,7 +49,7 @@ const Challange = ({ challengeData }: any) => {
   });
 
   const handleUpdate = () => {
-    console.log('handle update challengeBody', challengeBody);
+    // console.log('handle update challengeBody', challengeBody);
     setIsChallengeFocused(false);
     updateCodingChallengeMutation();
   };

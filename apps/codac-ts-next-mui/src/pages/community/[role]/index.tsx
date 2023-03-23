@@ -11,12 +11,12 @@ import NextBreadcrumbs from 'src/components/breadcrumb/NextBreadcrumbs';
 import { initializeApollo } from 'src/lib/apolloClient';
 
 const Students = ({ data }: { data: MentorEntity[] | StudentEntity[] }) => {
-  console.log('data :>> ', data[0].__typename);
-  console.log('typeof data :>> ', typeof data);
+  // console.log('data :>> ', data[0].__typename);
+  // console.log('typeof data :>> ', typeof data);
   const theme = useTheme();
   if (data[0].__typename === 'StudentEntity') {
     const studentProfile = data && data[0]?.attributes;
-    console.log('studentProfile', studentProfile);
+    // console.log('studentProfile', studentProfile);
     return (
       <Container
         sx={{
@@ -112,7 +112,7 @@ const Students = ({ data }: { data: MentorEntity[] | StudentEntity[] }) => {
     );
   } else {
     const mentorProfile = data && data[0]?.attributes;
-    console.log('mentorProfile :>> ', mentorProfile);
+    // console.log('mentorProfile :>> ', mentorProfile);
     return (
       <Container
         sx={{
@@ -224,15 +224,15 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const role = ['mentors', 'students'];
   if (ctx?.params?.role === role[0]) {
     try {
-      console.log('id :>> ', ctx?.params);
-      console.log('ctx :>> ', ctx);
-      console.log('ctx.query :>> ', ctx?.query);
-      console.log('mentorctxparams', ctx?.params?.id);
+      // console.log('id :>> ', ctx?.params);
+      // console.log('ctx :>> ', ctx);
+      // console.log('ctx.query :>> ', ctx?.query);
+      // console.log('mentorctxparams', ctx?.params?.id);
       const { data } = await client.query({
         query: MentorsDocument,
       });
       const mentors = data.mentors.data;
-      console.log('data :>> ', data);
+      // console.log('data :>> ', data);
       return {
         props: { data: mentors },
       };
@@ -247,7 +247,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   } else if (ctx?.params?.role === role[1]) {
     try {
       const client = initializeApollo(null, ctx.req);
-      console.log('ctxparams', ctx.params);
+      // console.log('ctxparams', ctx.params);
       const { data } = await client.query({
         query: AllStudentsDocument,
       });

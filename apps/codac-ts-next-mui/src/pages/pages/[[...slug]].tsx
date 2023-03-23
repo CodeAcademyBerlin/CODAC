@@ -47,12 +47,12 @@ export const getStaticPaths = async (context: GetStaticPropsContext) => {
     : [];
 
   const pages = await (await Promise.all(allPages)).flat();
-  console.log('pages', pages);
+  // console.log('pages', pages);
   const paths = pages.map(({ attributes }) => {
     // Decompose the slug that was saved in Strapi
     const { slug, locale } = attributes as Page;
     const slugArray = !slug ? false : slug.split('/');
-    console.log('slug', slug);
+    // console.log('slug', slug);
     return {
       params: { slug: slugArray },
       // Specify the locale to render
@@ -69,12 +69,12 @@ export const getStaticProps: GetStaticProps = async (
   const { params, locale, locales, defaultLocale } = context;
 
   // Fetch pages. Include drafts if preview mode is on
-  console.log('params', params);
+  // console.log('params', params);
   const pageData = await getPageData(
     { slug: !params?.slug ? [''] : (params.slug as string[]) },
     locale || '',
   );
-  console.log('pageData', pageData);
+  // console.log('pageData', pageData);
   if (pageData == null) {
     // Giving the page no props will trigger a 404 page
     return {
@@ -93,7 +93,7 @@ export const getStaticProps: GetStaticProps = async (
     shortName,
     contentSections,
   };
-  console.log('pageContext', pageContext);
+  // console.log('pageContext', pageContext);
   return {
     props: {
       pageContext: {

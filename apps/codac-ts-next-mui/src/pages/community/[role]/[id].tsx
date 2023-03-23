@@ -14,12 +14,12 @@ import { initializeApollo } from 'src/lib/apolloClient';
 // export default Mentorprofile;
 
 const Students = ({ data }: { data: MentorEntity | StudentEntity }) => {
-  console.log('data :>> ', data);
-  console.log('typeof data :>> ', typeof data);
+  // console.log('data :>> ', data);
+  // console.log('typeof data :>> ', typeof data);
   const theme = useTheme();
   if (data.__typename === 'StudentEntity') {
     const studentProfile = data && data?.attributes;
-    console.log('studentProfile', studentProfile);
+    // console.log('studentProfile', studentProfile);
     return (
       <Container
         sx={{
@@ -115,7 +115,7 @@ const Students = ({ data }: { data: MentorEntity | StudentEntity }) => {
     );
   } else {
     const mentorProfile = data && data?.attributes;
-    console.log('mentorProfile :>> ', mentorProfile);
+    // console.log('mentorProfile :>> ', mentorProfile);
     return (
       <Container
         sx={{
@@ -227,21 +227,21 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const role = ['mentors', 'students'];
   if (ctx?.params?.role === role[0]) {
     try {
-      console.log('id :>> ', ctx?.params);
-      console.log('ctx :>> ', ctx);
-      console.log('ctx.query :>> ', ctx?.query);
-      console.log('mentorctxparams', ctx?.params?.id);
+      // console.log('id :>> ', ctx?.params);
+      // console.log('ctx :>> ', ctx);
+      // console.log('ctx.query :>> ', ctx?.query);
+      // console.log('mentorctxparams', ctx?.params?.id);
       const { data } = await client.query({
         query: filterMentorByUserIdDocument,
         variables: { id },
       });
       const mentor = data.mentors.data[0];
-      console.log('data :>> ', data);
+      // console.log('data :>> ', data);
       return {
         props: { data: mentor },
       };
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       return {
         props: {
           data: null,
@@ -252,7 +252,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     try {
       const client = initializeApollo(null, ctx.req);
       const id = ctx.params?.id;
-      console.log('ctxparams', ctx.params);
+      // console.log('ctxparams', ctx.params);
       const { data } = await client.query({
         query: FilterStudentByUserIdDocument,
         variables: { userId: id },
@@ -262,7 +262,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         props: { student },
       };
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       return {
         props: {
           data: null,

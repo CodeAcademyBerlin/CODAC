@@ -4,8 +4,8 @@
     "dbaeumer.vscode-eslint",
     "graphql.vscode-graphql",
     "ms-vscode.vscode-typescript-next",
-    "styled-components.vscode-styled-components",
     "esbenp.prettier-vscode",
-    "vivaxy.vscode-conventional-commits"
+    "vivaxy.vscode-conventional-commits",
+    "eamodio.gitlens"
   ]
 }
