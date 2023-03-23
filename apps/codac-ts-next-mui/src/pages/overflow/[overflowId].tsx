@@ -38,7 +38,7 @@ const OverflowTopic = ({
   const router = useRouter();
   const [result, setResult] = useState(codacOverflow);
   const [message, setMessage] = useState<string>('');
-  console.log('result data', result);
+  // console.log('result data', result);
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void =>
     setMessage(event.target.value);
@@ -61,7 +61,7 @@ const OverflowTopic = ({
       const { data } = await addOverflowCommentMutation();
 
       if (data) {
-        console.log('data', data);
+        // console.log('data', data);
         refreshData();
       }
 
@@ -271,7 +271,7 @@ export const getServerSideProps: GetServerSideProps<{
 }> = async (ctx) => {
   try {
     const overflowId: string | string[] = ctx?.params?.overflowId || '';
-    console.log('overflowId', overflowId);
+    // console.log('overflowId', overflowId);
     const idNumber = +overflowId;
     const client = initializeApollo(null, ctx.req);
     const { data, error } = await client.query({
@@ -279,12 +279,12 @@ export const getServerSideProps: GetServerSideProps<{
       variables: { id: idNumber },
     });
     const codacOverflow = data.codacOverflow.data;
-    console.log('Fetch was successful, see success:', data);
+    // console.log('Fetch was successful, see success:', data);
     return {
       props: { codacOverflow },
     };
   } catch (error) {
-    console.log('Fetch was not successful, see error:', error);
+    // console.log('Fetch was not successful, see error:', error);
     return {
       props: { codacOverflow: null },
     };

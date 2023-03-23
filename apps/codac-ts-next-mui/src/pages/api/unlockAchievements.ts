@@ -27,7 +27,7 @@ const unlockAchievements: NextApiHandler = async (req, res) => {
     const student = data.students.data[0];
     if (student) {
       const daysPassed = calculateDaysPassed(student.attributes.start_date);
-      console.log(daysPassed);
+      // console.log(daysPassed);
       const achievementToUnlock = student.attributes.achievements
         .filter(
           (e: {

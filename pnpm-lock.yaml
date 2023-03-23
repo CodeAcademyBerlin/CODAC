@@ -16,6 +16,61 @@ importers:
       prettier-plugin-tailwindcss: 0.1.13_prettier@2.8.6
       turbo: 1.8.5
 
+  apps/codac-ts-next-lms:
+    specifiers:
+      '@apollo/client': ^3.7.1
+      '@apollo/link-error': ^2.0.0-beta.3
+      '@types/apollo-upload-client': ^17.0.2
+      '@types/lodash.isequal': ^4.5.6
+      '@types/node': ^18.11.17
+      '@types/nprogress': ^0.2.0
+      '@types/react': ^18.0.26
+      '@types/react-dom': ^18.0.9
+      apollo-link-context: ^1.0.20
+      apollo-upload-client: ^17.0.0
+      autoprefixer: ^10.4.13
+      codac-administration: workspace:*
+      codac-ui: workspace:*
+      eslint-config-custom: workspace:*
+      lodash.isequal: ^4.5.0
+      next: latest
+      nookies: ^2.5.2
+      nprogress: ^0.2.0
+      postcss: ^8.4.20
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      tailwind-config: workspace:*
+      tailwindcss: ^3.2.4
+      tsconfig: workspace:*
+      typescript: ^4.9.4
+    dependencies:
+      '@apollo/client': 3.7.10_wxfjnvblbhu4ianu4f2qg722fu
+      '@apollo/link-error': 2.0.0-beta.3_wxfjnvblbhu4ianu4f2qg722fu
+      '@types/nprogress': 0.2.0
+      apollo-link-context: 1.0.20_graphql@15.8.0
+      apollo-upload-client: 17.0.0_jg355gmpmpc5f62cr4eh3vwaam
+      codac-ui: link:../../packages/codac-ui
+      next: 13.2.4_biqbaboplfbrettd7655fr4n2y
+      nookies: 2.5.2
+      nprogress: 0.2.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    devDependencies:
+      '@types/apollo-upload-client': 17.0.2_biqbaboplfbrettd7655fr4n2y
+      '@types/lodash.isequal': 4.5.6
+      '@types/node': 18.15.5
+      '@types/react': 18.0.28
+      '@types/react-dom': 18.0.11
+      autoprefixer: 10.4.14_postcss@8.4.21
+      codac-administration: link:../../packages/codac-administration
+      eslint-config-custom: link:../../packages/eslint-config-custom
+      lodash.isequal: 4.5.0
+      postcss: 8.4.21
+      tailwind-config: link:../../packages/tailwind-config
+      tailwindcss: 3.2.7_postcss@8.4.21
+      tsconfig: link:../../packages/tsconfig
+      typescript: 4.9.5
+
   apps/codac-ts-next-mui:
     specifiers:
       '@apollo/client': ^3.7.1

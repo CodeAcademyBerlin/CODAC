@@ -299,7 +299,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       },
     };
   } catch (err) {
-    console.log('error: ', JSON.stringify(err));
+    // console.log('error: ', JSON.stringify(err));
     return {
       props: {
         error: JSON.stringify(err),

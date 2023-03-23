@@ -8,7 +8,8 @@ This monorepo includes the following packages/apps:
 
 Apps:
 
-- `codac-ts-next-tailwind`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
+- `codac-ts-next-tailwind`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/) dedicated to UI components develoment
+- `codac-ts-next-lms`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/) dedicated to making a standadole LMS interface
 - `codac-ts-next-mui`: a [Next.js](https://nextjs.org/) app with [MUI v5](https://mui.com/)
 - `web`: another [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
 Packages:
@@ -23,7 +24,9 @@ Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
 ### Building Types packages/codac-administration
 
-This example is setup
+This page generates the types and custom Apollo GraphQl hooks from a Strapi backend
+[Strapi Admin](https://codac-admin-dev.up.railway.app/admin)
+[GraphQl Playground](https://codac-admin-dev.up.railway.app/admin/graphql)
 
 ### Building packages/codac-ui
 
