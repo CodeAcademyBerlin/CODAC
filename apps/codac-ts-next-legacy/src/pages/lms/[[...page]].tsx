@@ -1,116 +1,160 @@
-import { Breadcrumbs, Divider, Typography } from '@mui/material';
-import Box from '@mui/material/Box';
+// ** React Imports
+import { ReactNode } from 'react'
 import Head from 'next/head';
-import Link from 'next/link';
-import CommentsParent from 'src/components/lms-page/comments';
-import LmsSearchBar from 'src/components/lms-search/LmsSearchBar';
-import { createIndexArray } from 'src/lib/lms-index';
-import { getPaths } from 'src/lib/paths';
 
-import lmspages from '../../../public/assets/lmspages.json';
-import LmsContentContainer from '../../components/lms-page/LmsContentContainer';
-// ** Custom Components
-import ContentRating from '../../components/lms-page/ratings/ratingScale';
-import {
-  LMS_ASSETS_PATH,
-  LMS_CONTENT_PATH,
-} from '../../definitions/contentFilePaths';
-import { getPage, getPageMdx } from '../../lib/markdown';
-import { PageData } from './lms';
+// ** Next Import
+import Link from 'next/link'
 
-const lms = ({ pageData, slug }: { pageData: PageData; slug: string }) => {
-  return pageData ? (
+// ** MUI Components
+import Button from '@mui/material/Button'
+import { styled } from '@mui/material/styles'
+import Box, { BoxProps } from '@mui/material/Box'
+import { callListFiles, getPage, getPaths, listFiles } from '../../lib/content'
+
+
+// ** Styled Components
+const BoxWrapper = styled(Box)<BoxProps>(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    width: '90vw'
+  }
+}))
+
+const StyledLink = styled(Link)({
+  display: 'flex',
+  alignItems: 'center',
+  textDecoration: 'none'
+})
+
+const lms = ({ pageData }) => {
+
+  return (
     <>
       <Head>
         <title>{pageData.title}</title>
       </Head>
-      {/* <Breadcrumbs aria-label="breadcrumb">
-          {pageData.pagePath.split("/").map((path, i, arr) => (
-            <Link
-              href={`/lms/${pageData.pagePath.substring(
-                0,
-                pageData.pagePath.indexOf(path) + path.length
-              )}`}
-              key={path}
-            >
-              {path}
-            </Link>
-          ))}
-        </Breadcrumbs> */}
-      <Box
-        sx={{
-          p: 5,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <>
+      
+      <Box>
+        <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+
+          <StyledLink href='/dashboard'>
+            Back to Home
+          </StyledLink>
+
           <h1>{pageData.title}</h1>
-          <LmsContentContainer
-            content={pageData.contentHtml}
-            next={pageData.next}
-            prev={pageData.prev}
-          />
-          <Divider style={{ width: '75%' }} />
-          <ContentRating slug={slug} message={''} />
-          <Divider style={{ width: '75%' }} />
-          <CommentsParent slug={slug} />
-        </>
+
+          <div className='testing' style={{textAlign: "left"}} dangerouslySetInnerHTML={{ __html: pageData.contentHtml }} />
+
+          {pageData.prev && <Link href={pageData.prev}>Previous</Link>}
+          {pageData.next && <Link href={pageData.next}>Next</Link>}
+          {/* {console.log(pageData)} */}
+
+        </Box>
       </Box>
     </>
-  ) : (
-    <Box className="content-center">
-      <Box
-        sx={{
-          p: 5,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          textAlign: 'center',
-        }}
-      >
-        <Typography variant="h1">404</Typography>
-        <Typography variant="h5" sx={{ mb: 1, fontSize: '1.5rem !important' }}>
-          Page Not Found
-        </Typography>
-        <Typography variant="body2">
-          We couldn&prime;t find the page you are looking for.
-        </Typography>
-      </Box>
-    </Box>
-  );
-};
 
-export async function getStaticProps({
-  params,
-}: {
-  params: { page: string[] };
-}) {
-  try {
-    const slug = params.page.join('/');
-    const pageData = await getPageMdx(
-      '/' + params.page.join('/'),
-      LMS_CONTENT_PATH,
-      LMS_ASSETS_PATH,
-    );
-    return { props: { pageData, slug } };
-  } catch (e) {
-    return { props: { pageData: null, slug: '' } };
-  }
+  )
+}
+
+export async function getStaticProps({ params }) {
+  const pageData = await getPage(params.page.join("/"));
+  return { props: { pageData } };
 }
 
 export async function getStaticPaths() {
-  //maps 'content' folder and creates a route for every .md file
-  // const { paths } = lmspages;
-  // const filter = paths.filter(path => ["welcome", "web"].includes(path.params.page[0]))
-  const { paths } = getPaths(LMS_CONTENT_PATH);
-  createIndexArray(LMS_CONTENT_PATH);
+  //trying to automate the paths instead of hard coding them
+  
+  // const paths = getPaths();
+  // return {
+  //   paths,
+  //   fallback: false,
+  // };
+  console.log(getPaths());
+  const paths = [
+    { params: { page: ['welcome'] } },
 
+      { params: { page: ['career'] } },
+        { params: { page: ['career', 'Step-1'] } },
+          { params: { page: ['career', 'Step-1', 'Chapter-1'] } },
+          { params: { page: ['career', 'Step-1', 'Chapter-2'] } },
+          { params: { page: ['career', 'Step-1', 'Chapter-3'] } },
+          { params: { page: ['career', 'Step-1', 'Chapter-4'] } },
+        { params: { page: ['career', 'Step-2'] } },
+          { params: { page: ['career', 'Step-2', 'Task-1'] } },
+          { params: { page: ['career', 'Step-2', 'Task-2'] } },
+          { params: { page: ['career', 'Step-2', 'Task-3'] } },
+        { params: { page: ['career', 'Step-3'] } },
+          { params: { page: ['career', 'Step-3', 'Task-1'] } },
+          { params: { page: ['career', 'Step-3', 'Task-2'] } },
+
+      { params: { page: ['data'] } },
+        { params: { page: ['data', 'Module-1'] } },
+          { params: { page: ['data', 'Module-1', 'Project-1'] } },
+            { params: { page: ['data', 'Module-1', 'Project-1', 'Resources'] } },
+            { params: { page: ['data', 'Module-1', 'Project-1', 'Sprint-1'] } },
+            { params: { page: ['data', 'Module-1', 'Project-1', 'Sprint-2'] } },
+            { params: { page: ['data', 'Module-1', 'Project-1', 'Sprint-3'] } },
+            { params: { page: ['data', 'Module-1', 'Project-1', 'Sprint-4'] } },
+          { params: { page: ['data', 'Module-1', 'Project-2'] } },
+            { params: { page: ['data', 'Module-1', 'Project-2', 'Machine-Learning-Fundamentals'] } },
+            { params: { page: ['data', 'Module-1', 'Project-2', 'Sprint-1'] } },
+            { params: { page: ['data', 'Module-1', 'Project-2', 'Sprint-2'] } },
+            { params: { page: ['data', 'Module-1', 'Project-2', 'Sprint-3'] } },
+            { params: { page: ['data', 'Module-1', 'Project-2', 'Sprint-4'] } },
+            { params: { page: ['data', 'Module-1', 'Project-2', 'Sprint-5'] } },
+          { params: { page: ['data', 'Module-1', 'Project-3'] } },
+            { params: { page: ['data', 'Module-1', 'Project-3', 'Resources'] } },
+            { params: { page: ['data', 'Module-1', 'Project-3', 'Sprint-1'] } },
+            { params: { page: ['data', 'Module-1', 'Project-3', 'Sprint-2'] } },
+            { params: { page: ['data', 'Module-1', 'Project-3', 'Sprint-3'] } },
+          { params: { page: ['data', 'Module-1', 'Project-4'] } },
+            { params: { page: ['data', 'Module-1', 'Project-4', 'Sprint-1'] } },
+        { params: { page: ['data', 'Module-2'] } },
+          { params: { page: ['data', 'Module-2', 'Project-5'] } },
+            { params: { page: ['data', 'Module-2', 'Project-5', 'Sprint-1'] } },
+            { params: { page: ['data', 'Module-2', 'Project-5', 'Sprint-2'] } },
+            { params: { page: ['data', 'Module-2', 'Project-5', 'Sprint-3'] } },
+            { params: { page: ['data', 'Module-2', 'Project-5', 'Sprint-4'] } },
+        { params: { page: ['data', 'Module-3'] } },
+          { params: { page: ['data', 'Module-3', 'Project-7'] } },
+            { params: { page: ['data', 'Module-3', 'Project-7', 'Sprint-1'] } },
+
+      { params: { page: ['web'] } },
+        { params: { page: ['web', 'Module-1'] } },
+          { params: { page: ['web', 'Module-1', 'Free-APIs'] } },
+          { params: { page: ['web', 'Module-1', 'Project-1'] } },
+            { params: { page: ['web', 'Module-1', 'Project-1', 'Resources'] } },
+            { params: { page: ['web', 'Module-1', 'Project-1', 'Sprint-1'] } },
+            { params: { page: ['web', 'Module-1', 'Project-1', 'Sprint-2'] } },
+          { params: { page: ['web', 'Module-1', 'Project-2'] } },
+            { params: { page: ['web', 'Module-1', 'Project-2', 'Resources'] } },
+            { params: { page: ['web', 'Module-1', 'Project-2', 'Sprint-1'] } },
+            { params: { page: ['web', 'Module-1', 'Project-2', 'Sprint-2'] } },
+            { params: { page: ['web', 'Module-1', 'Project-2', 'Sprint-3'] } },
+            { params: { page: ['web', 'Module-1', 'Project-2', 'Sprint-4'] } },
+          { params: { page: ['web', 'Module-1', 'Project-3'] } },
+            { params: { page: ['web', 'Module-1', 'Project-3', 'Resources'] } },
+            { params: { page: ['web', 'Module-1', 'Project-3', 'Sprint-1'] } },
+            { params: { page: ['web', 'Module-1', 'Project-3', 'Sprint-2'] } },
+            { params: { page: ['web', 'Module-1', 'Project-3', 'Sprint-3'] } },
+            { params: { page: ['web', 'Module-1', 'Project-3', 'Sprint-4'] } },
+        { params: { page: ['web', 'Module-2'] } },
+          { params: { page: ['web', 'Module-2', 'Project-1'] } },
+            { params: { page: ['web', 'Module-2', 'Project-1', 'MERN-deployment'] } },
+            { params: { page: ['web', 'Module-2', 'Project-1', 'Sprint-1'] } },
+            { params: { page: ['web', 'Module-2', 'Project-1', 'Sprint-2'] } },
+            { params: { page: ['web', 'Module-2', 'Project-1', 'Sprint-3'] } },
+            { params: { page: ['web', 'Module-2', 'Project-1', 'Sprint-4'] } },
+        { params: { page: ['web', 'Module-3'] } },
+          { params: { page: ['web', 'Module-3', 'GraphQL'] } },
+            { params: { page: ['web', 'Module-3', 'GraphQL', 'Client'] } },
+          { params: { page: ['web', 'Module-3', 'Typescript'] } },
+            { params: { page: ['web', 'Module-3', 'Typescript', 'Basics'] } },
+            { params: { page: ['web', 'Module-3', 'Typescript', 'React'] } },
+  ];
   return {
     paths,
     fallback: false,
-  };
+  }
 }
 
-export default lms;
+export default lms
