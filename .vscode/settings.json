@@ -6,5 +6,5 @@
   "files.eol": "\n",
   "cSpell.enableFiletypes": ["mdx"],
   "cSpell.words": ["codac"],
-  "conventionalCommits.scopes": ["codac-ts-next-lms"]
+  "conventionalCommits.scopes": ["codac-ts-next-lms", "toxic-ui"]
 }
