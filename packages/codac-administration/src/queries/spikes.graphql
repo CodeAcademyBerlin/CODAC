@@ -1,0 +1,26 @@
+query getSpikes {
+  spikes {
+    data {
+      id
+      attributes {
+        title
+        day
+        recording {
+          data {
+            attributes {
+              __typename
+              url
+            }
+          }
+        }
+        content {
+          data {
+            attributes {
+              __typename
+            }
+          }
+        }
+      }
+    }
+  }
+}

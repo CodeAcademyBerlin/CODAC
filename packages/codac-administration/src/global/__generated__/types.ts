@@ -918,6 +918,13 @@ export type ComponentSectionsFeatureRowsGroupFeaturesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+export type ComponentSectionsFile = {
+  __typename?: 'ComponentSectionsFile';
+  description?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  media?: Maybe<UploadFileEntityResponse>;
+};
+
 export type ComponentSectionsGoogleSlide = {
   __typename?: 'ComponentSectionsGoogleSlide';
   Link?: Maybe<Scalars['String']>;
@@ -1069,6 +1076,7 @@ export type ComponentTimeOffTimeOffInput = {
 
 export type Course = {
   __typename?: 'Course';
+  content?: Maybe<PageEntityResponse>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   length?: Maybe<Scalars['Int']>;
@@ -1112,6 +1120,7 @@ export type CourseEntityResponseCollection = {
 
 export type CourseFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<CourseFiltersInput>>>;
+  content?: InputMaybe<PageFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   description?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
@@ -1125,6 +1134,7 @@ export type CourseFiltersInput = {
 };
 
 export type CourseInput = {
+  content?: InputMaybe<Scalars['ID']>;
   description?: InputMaybe<Scalars['String']>;
   length?: InputMaybe<Scalars['Int']>;
   mentors?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -1287,6 +1297,14 @@ export enum Enum_Newspost_Tags {
   Web = 'web'
 }
 
+export enum Enum_Page_Category {
+  Academy = 'academy',
+  Career = 'career',
+  Data = 'data',
+  Other = 'other',
+  Web = 'web'
+}
+
 export type EmailDesignerEmailTemplate = {
   __typename?: 'EmailDesignerEmailTemplate';
   bodyHtml?: Maybe<Scalars['String']>;
@@ -1382,7 +1400,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = Achievement | Attendance | Chat | CodacOverflow | CodingChallenge | Cohort | ComponentAchievementAchievement | ComponentAttendanceAttendanceDay | ComponentAttendanceAttendanceHour | ComponentCardsBlogCard | ComponentChatMessage | ComponentCommentsComments | ComponentElementsFeature | ComponentElementsFeatureColumn | ComponentElementsFeatureRow | ComponentElementsFooterSection | ComponentElementsLogos | ComponentElementsNotificationBanner | ComponentElementsTestimonial | ComponentFeedbackFeedback | ComponentHolidaysHolidays | ComponentHoursHours | ComponentKanbanBoard | ComponentKanbanCard | ComponentKanbanColumn | ComponentLayoutFooter | ComponentLayoutNavbar | ComponentLinksButton | ComponentLinksButtonLink | ComponentLinksLink | ComponentMetaMetadata | ComponentMetaTags | ComponentNotificationNotifications | ComponentRatingRatings | ComponentSectionsBottomActions | ComponentSectionsFeatureColumnsGroup | ComponentSectionsFeatureRowsGroup | ComponentSectionsGoogleSlide | ComponentSectionsHeader | ComponentSectionsHero | ComponentSectionsLargeVideo | ComponentSectionsLeadForm | ComponentSectionsPricing | ComponentSectionsRichText | ComponentSectionsTestimonialsGroup | ComponentStudentAchievement | ComponentStudentProject | ComponentTimeOffTimeOff | Course | EmailDesignerEmailTemplate | I18NLocale | JobPost | Lead | LmsFeedback | Mentor | NewsPost | Page | Project | Spike | Student | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VsBattle;
+export type GenericMorph = Achievement | Attendance | Chat | CodacOverflow | CodingChallenge | Cohort | ComponentAchievementAchievement | ComponentAttendanceAttendanceDay | ComponentAttendanceAttendanceHour | ComponentCardsBlogCard | ComponentChatMessage | ComponentCommentsComments | ComponentElementsFeature | ComponentElementsFeatureColumn | ComponentElementsFeatureRow | ComponentElementsFooterSection | ComponentElementsLogos | ComponentElementsNotificationBanner | ComponentElementsTestimonial | ComponentFeedbackFeedback | ComponentHolidaysHolidays | ComponentHoursHours | ComponentKanbanBoard | ComponentKanbanCard | ComponentKanbanColumn | ComponentLayoutFooter | ComponentLayoutNavbar | ComponentLinksButton | ComponentLinksButtonLink | ComponentLinksLink | ComponentMetaMetadata | ComponentMetaTags | ComponentNotificationNotifications | ComponentRatingRatings | ComponentSectionsBottomActions | ComponentSectionsFeatureColumnsGroup | ComponentSectionsFeatureRowsGroup | ComponentSectionsFile | ComponentSectionsGoogleSlide | ComponentSectionsHeader | ComponentSectionsHero | ComponentSectionsLargeVideo | ComponentSectionsLeadForm | ComponentSectionsPricing | ComponentSectionsRichText | ComponentSectionsTestimonialsGroup | ComponentStudentAchievement | ComponentStudentProject | ComponentTimeOffTimeOff | Course | EmailDesignerEmailTemplate | I18NLocale | JobPost | Lead | LmsFeedback | Mentor | NewsPost | Page | Project | Spike | Student | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VsBattle;
 
 export type GenericServerResponse = {
   __typename?: 'GenericServerResponse';
@@ -1690,6 +1708,7 @@ export type Mentor = {
   linkedin?: Maybe<Scalars['String']>;
   specialization?: Maybe<Enum_Mentor_Specialization>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+  user?: Maybe<UsersPermissionsUserEntityResponse>;
 };
 
 export type MentorEntity = {
@@ -1720,6 +1739,7 @@ export type MentorFiltersInput = {
   or?: InputMaybe<Array<InputMaybe<MentorFiltersInput>>>;
   specialization?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
+  user?: InputMaybe<UsersPermissionsUserFiltersInput>;
 };
 
 export type MentorInput = {
@@ -1727,6 +1747,7 @@ export type MentorInput = {
   github?: InputMaybe<Scalars['String']>;
   linkedin?: InputMaybe<Scalars['String']>;
   specialization?: InputMaybe<Enum_Mentor_Specialization>;
+  user?: InputMaybe<Scalars['ID']>;
 };
 
 export type MentorRelationResponseCollection = {
@@ -2476,6 +2497,7 @@ export type NewsPostInput = {
 
 export type Page = {
   __typename?: 'Page';
+  category?: Maybe<Enum_Page_Category>;
   contentSections?: Maybe<Array<Maybe<PageContentSectionsDynamicZone>>>;
   createdAt?: Maybe<Scalars['DateTime']>;
   locale?: Maybe<Scalars['String']>;
@@ -2495,7 +2517,7 @@ export type PageLocalizationsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-export type PageContentSectionsDynamicZone = ComponentSectionsGoogleSlide | ComponentSectionsHeader | ComponentSectionsHero | ComponentSectionsLargeVideo | ComponentSectionsRichText | Error;
+export type PageContentSectionsDynamicZone = ComponentSectionsFile | ComponentSectionsGoogleSlide | ComponentSectionsHeader | ComponentSectionsHero | ComponentSectionsLargeVideo | ComponentSectionsRichText | Error;
 
 export type PageEntity = {
   __typename?: 'PageEntity';
@@ -2516,6 +2538,7 @@ export type PageEntityResponseCollection = {
 
 export type PageFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>;
+  category?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   id?: InputMaybe<IdFilterInput>;
   locale?: InputMaybe<StringFilterInput>;
@@ -2530,6 +2553,7 @@ export type PageFiltersInput = {
 };
 
 export type PageInput = {
+  category?: InputMaybe<Enum_Page_Category>;
   contentSections?: InputMaybe<Array<Scalars['PageContentSectionsDynamicZoneInput']>>;
   metadata?: InputMaybe<ComponentMetaMetadataInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
@@ -2980,7 +3004,7 @@ export type ResponseCollectionMeta = {
 
 export type Spike = {
   __typename?: 'Spike';
-  content?: Maybe<Scalars['String']>;
+  content?: Maybe<PageEntityResponse>;
   createdAt?: Maybe<Scalars['DateTime']>;
   day?: Maybe<Scalars['Int']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
@@ -3008,7 +3032,7 @@ export type SpikeEntityResponseCollection = {
 
 export type SpikeFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<SpikeFiltersInput>>>;
-  content?: InputMaybe<StringFilterInput>;
+  content?: InputMaybe<PageFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   day?: InputMaybe<IntFilterInput>;
   id?: InputMaybe<IdFilterInput>;
@@ -3020,7 +3044,7 @@ export type SpikeFiltersInput = {
 };
 
 export type SpikeInput = {
-  content?: InputMaybe<Scalars['String']>;
+  content?: InputMaybe<Scalars['ID']>;
   day?: InputMaybe<Scalars['Int']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   recording?: InputMaybe<Scalars['ID']>;
@@ -3066,6 +3090,7 @@ export type Student = {
   projects?: Maybe<Array<Maybe<ComponentStudentProject>>>;
   start_date?: Maybe<Scalars['Date']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+  user?: Maybe<UsersPermissionsUserEntityResponse>;
 };
 
 
@@ -3131,6 +3156,7 @@ export type StudentFiltersInput = {
   projects?: InputMaybe<ComponentStudentProjectFiltersInput>;
   start_date?: InputMaybe<DateFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
+  user?: InputMaybe<UsersPermissionsUserFiltersInput>;
 };
 
 export type StudentInput = {
@@ -3145,6 +3171,7 @@ export type StudentInput = {
   linkedin?: InputMaybe<Scalars['String']>;
   projects?: InputMaybe<Array<InputMaybe<ComponentStudentProjectInput>>>;
   start_date?: InputMaybe<Scalars['Date']>;
+  user?: InputMaybe<Scalars['ID']>;
 };
 
 export type StudentRelationResponseCollection = {
@@ -3498,9 +3525,11 @@ export type UsersPermissionsUser = {
   firstname?: Maybe<Scalars['String']>;
   kanban?: Maybe<ComponentKanbanBoard>;
   lastname?: Maybe<Scalars['String']>;
+  mentor?: Maybe<MentorEntityResponse>;
   notifications?: Maybe<Array<Maybe<ComponentNotificationNotifications>>>;
   provider?: Maybe<Scalars['String']>;
   role?: Maybe<UsersPermissionsRoleEntityResponse>;
+  student?: Maybe<StudentEntityResponse>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   username: Scalars['String'];
 };
@@ -3540,6 +3569,7 @@ export type UsersPermissionsUserFiltersInput = {
   id?: InputMaybe<IdFilterInput>;
   kanban?: InputMaybe<ComponentKanbanBoardFiltersInput>;
   lastname?: InputMaybe<StringFilterInput>;
+  mentor?: InputMaybe<MentorFiltersInput>;
   not?: InputMaybe<UsersPermissionsUserFiltersInput>;
   notifications?: InputMaybe<ComponentNotificationNotificationsFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
@@ -3547,6 +3577,7 @@ export type UsersPermissionsUserFiltersInput = {
   provider?: InputMaybe<StringFilterInput>;
   resetPasswordToken?: InputMaybe<StringFilterInput>;
   role?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  student?: InputMaybe<StudentFiltersInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   username?: InputMaybe<StringFilterInput>;
 };
@@ -3560,11 +3591,13 @@ export type UsersPermissionsUserInput = {
   firstname?: InputMaybe<Scalars['String']>;
   kanban?: InputMaybe<ComponentKanbanBoardInput>;
   lastname?: InputMaybe<Scalars['String']>;
+  mentor?: InputMaybe<Scalars['ID']>;
   notifications?: InputMaybe<Array<InputMaybe<ComponentNotificationNotificationsInput>>>;
   password?: InputMaybe<Scalars['String']>;
   provider?: InputMaybe<Scalars['String']>;
   resetPasswordToken?: InputMaybe<Scalars['String']>;
   role?: InputMaybe<Scalars['ID']>;
+  student?: InputMaybe<Scalars['ID']>;
   username?: InputMaybe<Scalars['String']>;
 };
 
@@ -3839,6 +3872,61 @@ export function useGetPagesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<G
 export type GetPagesQueryHookResult = ReturnType<typeof useGetPagesQuery>;
 export type GetPagesLazyQueryHookResult = ReturnType<typeof useGetPagesLazyQuery>;
 export type GetPagesQueryResult = Apollo.QueryResult<GetPagesQuery, GetPagesQueryVariables>;
+export const GetSpikesDocument = gql`
+    query getSpikes {
+  spikes {
+    data {
+      id
+      attributes {
+        title
+        day
+        recording {
+          data {
+            attributes {
+              __typename
+              url
+            }
+          }
+        }
+        content {
+          data {
+            attributes {
+              __typename
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetSpikesQuery__
+ *
+ * To run a query within a React component, call `useGetSpikesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSpikesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSpikesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetSpikesQuery(baseOptions?: Apollo.QueryHookOptions<GetSpikesQuery, GetSpikesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetSpikesQuery, GetSpikesQueryVariables>(GetSpikesDocument, options);
+      }
+export function useGetSpikesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSpikesQuery, GetSpikesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetSpikesQuery, GetSpikesQueryVariables>(GetSpikesDocument, options);
+        }
+export type GetSpikesQueryHookResult = ReturnType<typeof useGetSpikesQuery>;
+export type GetSpikesLazyQueryHookResult = ReturnType<typeof useGetSpikesLazyQuery>;
+export type GetSpikesQueryResult = Apollo.QueryResult<GetSpikesQuery, GetSpikesQueryVariables>;
 export const GetMeDocument = gql`
     query getMe {
   me {
@@ -3903,12 +3991,17 @@ export type GetPageQueryVariables = Exact<{
 }>;
 
 
-export type GetPageQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', id?: string | null, attributes?: { __typename?: 'Page', locale?: string | null, slug: string, shortName?: string | null, contentSections?: Array<{ __typename?: 'ComponentSectionsGoogleSlide' } | { __typename: 'ComponentSectionsHeader', id: string, title?: string | null, subtitle?: string | null } | { __typename?: 'ComponentSectionsHero' } | { __typename?: 'ComponentSectionsLargeVideo' } | { __typename: 'ComponentSectionsRichText', id: string, content?: string | null } | { __typename?: 'Error' } | null> | null } | null }> } | null };
+export type GetPageQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', id?: string | null, attributes?: { __typename?: 'Page', locale?: string | null, slug: string, shortName?: string | null, contentSections?: Array<{ __typename?: 'ComponentSectionsFile' } | { __typename?: 'ComponentSectionsGoogleSlide' } | { __typename: 'ComponentSectionsHeader', id: string, title?: string | null, subtitle?: string | null } | { __typename?: 'ComponentSectionsHero' } | { __typename?: 'ComponentSectionsLargeVideo' } | { __typename: 'ComponentSectionsRichText', id: string, content?: string | null } | { __typename?: 'Error' } | null> | null } | null }> } | null };
 
 export type GetPagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetPagesQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', id?: string | null, attributes?: { __typename?: 'Page', locale?: string | null, slug: string, contentSections?: Array<{ __typename?: 'ComponentSectionsGoogleSlide' } | { __typename: 'ComponentSectionsHeader', id: string, title?: string | null, subtitle?: string | null } | { __typename?: 'ComponentSectionsHero' } | { __typename?: 'ComponentSectionsLargeVideo' } | { __typename: 'ComponentSectionsRichText', id: string, content?: string | null } | { __typename?: 'Error' } | null> | null } | null }> } | null };
+export type GetPagesQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', id?: string | null, attributes?: { __typename?: 'Page', locale?: string | null, slug: string, contentSections?: Array<{ __typename?: 'ComponentSectionsFile' } | { __typename?: 'ComponentSectionsGoogleSlide' } | { __typename: 'ComponentSectionsHeader', id: string, title?: string | null, subtitle?: string | null } | { __typename?: 'ComponentSectionsHero' } | { __typename?: 'ComponentSectionsLargeVideo' } | { __typename: 'ComponentSectionsRichText', id: string, content?: string | null } | { __typename?: 'Error' } | null> | null } | null }> } | null };
+
+export type GetSpikesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetSpikesQuery = { __typename?: 'Query', spikes?: { __typename?: 'SpikeEntityResponseCollection', data: Array<{ __typename?: 'SpikeEntity', id?: string | null, attributes?: { __typename?: 'Spike', title?: string | null, day?: number | null, recording?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename: 'UploadFile', url: string } | null } | null } | null, content?: { __typename?: 'PageEntityResponse', data?: { __typename?: 'PageEntity', attributes?: { __typename: 'Page' } | null } | null } | null } | null }> } | null };
 
 export type GetMeQueryVariables = Exact<{ [key: string]: never; }>;
 
