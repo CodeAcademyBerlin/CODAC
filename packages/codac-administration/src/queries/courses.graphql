@@ -1,0 +1,43 @@
+query getAllCourses {
+  courses {
+    data {
+      attributes {
+        name
+        description
+        mentors {
+          data {
+            attributes {
+              user {
+                data {
+                  attributes {
+                    firstname
+                    lastname
+                    email
+                  }
+                }
+              }
+            }
+          }
+        }
+        length
+        projects {
+          data {
+            attributes {
+              name
+              description
+              publishedAt
+              spikes {
+                data {
+                  attributes {
+                    name
+                    description
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
