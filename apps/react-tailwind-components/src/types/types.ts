@@ -61,10 +61,17 @@ type PaddingPxPy = `px-${0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9}${
 
 export type validPadding = PaddingP | PaddingPx | PaddingPy | PaddingPxPy
 
-export type validBg = 'bg-primary' | 'bg-secondary' | 'bg-action' | 'bg-light'
+/*
+Valid bg values are ----- 
+ */
+export type validBg = 'bg-primary' | 'bg-secondary' | 'bg-dark' | 'bg-light'
 export type validText =
   | 'text-primary'
   | 'text-secondary'
-  | 'text-action'
+  | 'text-dark'
   | 'text-light'
-export type validBorder = 'border-primary' | 'border-secondary' | 'border-light'
+export type validBorder =
+  | 'border-primary'
+  | 'border-secondary'
+  | 'border-light'
+  | 'border-dark'
