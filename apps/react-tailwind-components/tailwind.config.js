@@ -8,6 +8,7 @@ module.exports = {
         primary: colors.teal[600],
         secondary: colors.purple[800],
         light: colors.gray[200],
+        dark: colors.slate[800],
       },
     },
   },
