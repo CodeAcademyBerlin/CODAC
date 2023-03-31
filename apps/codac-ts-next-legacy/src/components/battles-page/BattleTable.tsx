@@ -1,17 +1,29 @@
-import React from 'react'
+import React from 'react';
 
-type Props = {}
+type Props = {
+  option1: number;
+  option2: number;
+};
 
-function BattleTable({}: Props) {
-
+function BattleTable({ option1, option2 }: Props) {
   return (
-    <table style={{width:"50%", border:"2px solid", margin:"auto"}}>
-  <tr>
-    <th>option 1</th>
-    <th>option 2</th>
-  </tr>
-</table>
-  )
+    <table
+      style={{
+        width: '50%',
+        border: '2px solid',
+        borderRadius: '10px',
+        margin: 'auto',
+        marginBottom: '1em',
+      }}
+    >
+      <tbody>
+        <tr>
+          <th>{option1}</th>
+          <th>{option2}</th>
+        </tr>
+      </tbody>
+    </table>
+  );
 }
 
-export default BattleTable
+export default BattleTable;
