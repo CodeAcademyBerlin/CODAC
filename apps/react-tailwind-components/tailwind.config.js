@@ -9,6 +9,7 @@ module.exports = {
         secondary: colors.orange[700],
         light: colors.gray[200],
         dark: colors.slate[800],
+        test: colors.red[400],
       },
     },
   },
