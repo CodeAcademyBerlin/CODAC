@@ -11,6 +11,7 @@ module.exports = {
         dark: colors.slate[800],
         test: colors.red[400],
         test2: colors.green[300],
+        test3: colors.cyan[200],
       },
     },
   },
