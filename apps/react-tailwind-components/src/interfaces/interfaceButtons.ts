@@ -1,4 +1,4 @@
-import { validPadding, validBg, validText, validBorder } from '../types/types'
+import { validPadding, validBg, validText, validBorder, validShape } from '../types/types'
 
 export interface ButtonProps {
   children: React.ReactNode
@@ -6,4 +6,5 @@ export interface ButtonProps {
   bg?: validBg
   text?: validText
   border?: validBorder
+  shape?: validShape
 }

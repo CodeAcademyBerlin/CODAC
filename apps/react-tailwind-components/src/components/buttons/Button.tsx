@@ -1,6 +1,6 @@
 import { ButtonProps } from '../../interfaces/interfaceButtons'
 
-const Button = ({ children, padding, bg, text, border }: ButtonProps) => {
+const Button = ({ children, padding, bg, text, border, shape }: ButtonProps) => {
   return (
     <button
       className={`
@@ -8,7 +8,8 @@ const Button = ({ children, padding, bg, text, border }: ButtonProps) => {
       ${bg ? bg : 'bg-primary'}
       ${text ? text : 'text-light'}
       ${border ? `border-2 ${border}` : 'border-2 border-primary'}
-     rounded  text-2xl duration-300 active:translate-y-2`}
+      ${shape? shape:'rounded'}
+       text-2xl duration-300 active:translate-y-2`}
     >
       {children}
     </button>
