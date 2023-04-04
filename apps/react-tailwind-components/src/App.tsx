@@ -1,5 +1,5 @@
 import Button from './components/buttons/Button'
-import Card from './components/cards/Card'
+// import Card from './components/cards/Card'
 import MainContainer from './components/containers/MainContainer'
 
 function App() {
@@ -23,14 +23,20 @@ function App() {
 
   return (
     <MainContainer>
-      {/* <Button bg='bg-dark' text='text-primary' padding='p-20'>
-        <span className='text-5xl'>
-          sdjhdf
+      <div className='flex flex-col gap-10'>
+         <Button >default</Button>
+        <Button bg='bg-light' text='text-dark'>light</Button>
+      <Button bg='bg-dark' text='text-light' padding='p-5'>
+          dark
+        </Button>
+      <Button bg='bg-dark'>
+          <span className='text-3xl'>
           <i className='fa-regular fa-user'></i>
         </span>
-      </Button>
-      <Button padding='px-5 py-10'>other action</Button> */}
-      <div className='flex gap-10'>
+        </Button>
+      <Button padding='px-5 py-3' shape='rounded-none'>square button</Button>
+      </div>
+      {/* <div className='flex gap-10'>
         <Card
           key={1}
           title='osKar'
@@ -38,15 +44,16 @@ function App() {
           cta='rescue me'
           img='https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_3x4.jpg'
         />
-        {/* <Card
+        <Card
           key={2}
           title='Jürgen'
           text='I am german OK? i have steuernummer, jksdhfasdglkfgjgfhkaslhfsdfs adsfg sdfg sjkdfg lsdg sdk glkdsfbg sdf gsdf gsdf gdsf gdfg ds gs fd'
           cta='rescue me'
           subtitle='i love olja'
           img='https://www.thesprucepets.com/thmb/aWULXjTWxZbCJ4GixA7JMw8K15w=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/GettyImages-1189893683-e0ff70596b3b4f0687ba573e5a671f74.jpg'
-        /> */}
-      </div>
+        />
+      </div> */}
+     
     </MainContainer>
   )
 }
