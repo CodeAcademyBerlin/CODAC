@@ -75,3 +75,5 @@ export type validBorder =
   | 'border-secondary'
   | 'border-light'
   | 'border-dark'
+export type validShape =
+  'rounded' | 'rounded-none'
