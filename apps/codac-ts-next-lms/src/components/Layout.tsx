@@ -47,7 +47,7 @@ function Navbar() {
 function Sidebar() {
   return (
     <div
-      className="sidebar fixed top-1 ml-1 min-h-screen w-2/12 bg-zinc-800 pt-0"
+      className="sidebar fixed top-1 ml-1 h-[98vh] w-2/12 bg-zinc-800 pt-0"
       id="sidebar"
     >
       <div className="sidebar-item">Web Development</div>
@@ -59,17 +59,35 @@ function Sidebar() {
     </div>
   );
 }
+function Footer() {
+  return (
+    <div
+      className="footer fixed bottom-1 ml-1 flex h-[8%] w-9/12 justify-between bg-zinc-800 p-2 "
+      id="footer"
+    >
+      <div className="footer-item">@ Copyright 2023 CodeAcademy-Berlin</div>
+      <div className="footer-item">
+        Naehe Thomas-Mann-Haltestelle, Greifswalder Str. Berlin
+      </div>
+    </div>
+  );
+}
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="container w-screen">
+    <div className="container mx-[3%] w-screen">
       <div className="flex items-start">
         <div>
           <Sidebar />
         </div>
         <div className="comeover mx-[22%]">
-          <Navbar />
-          {children}
+          <header>
+            <Navbar />
+          </header>
+          <main>{children}</main>{" "}
+          <footer>
+            <Footer />
+          </footer>
         </div>
       </div>
     </div>

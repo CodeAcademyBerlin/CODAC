@@ -3,6 +3,8 @@ import Layout from "../../components/Layout";
 
 export default function Courses() {
   const { data, loading, error } = useGetAllCoursesQuery();
+  console.log("🚀 ~ ~ error:", error);
+  console.log("🚀 ~ data ~ data:", data);
 
   const courses = data?.courses?.data;
   console.log("🚀 ~ Courses ~ data:", courses);
@@ -15,10 +17,6 @@ export default function Courses() {
         </h4>
         <div>
           SOmething SOmething SOmething SOmething SOmething SOmething SOmething
-          SOmething SOmethingSOmething SOmething SOmething SOmething SOmething
-          SOmething SOmethingSOmething SOmething SOmething SOmething SOmething
-          SOmething SOmething SOmething SOmething SOmething SOmething SOmething
-          SOmething SOmething SOmethingSOmething SOmethingSOmething
           {!courses
             ? loading
             : courses.map((course, i) => {
@@ -39,26 +37,26 @@ export default function Courses() {
                     <div className="flex flex-col">
                       <div className="flex">
                         <strong>Mentor 1:</strong> &emsp;
-                        <span>
+                        {/* <span>
                           {
                             course?.attributes?.mentors.data[0].attributes.user
                               .data.attributes.firstname
                           }
-                        </span>
+                        </span> */}
                       </div>
                       <div className="flex">
                         <strong>Mentor 2:</strong> &emsp;
-                        <span>
+                        {/* <span>
                           {
                             course?.attributes?.mentors.data[1].attributes.user
                               .data.attributes.firstname
                           }
-                        </span>
+                        </span> */}
                       </div>
                     </div>
                     <p>
                       <strong>Period:</strong> &emsp;
-                      {course?.attributes.length} months
+                      {course?.attributes?.length} months
                     </p>
                   </div>
                 );
