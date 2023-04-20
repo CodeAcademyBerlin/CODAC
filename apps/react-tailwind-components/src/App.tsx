@@ -4,24 +4,6 @@ import MainContainer from "./components/containers/MainContainer";
 import RainbowCursor from "./components/rainbowcursor/Rainbowcursor";
 
 function App() {
-  const array = [
-    {
-      key: 1,
-      title: "osKar",
-      text: "I am beatiful, OK? rescue me now",
-      cta: "rescue me",
-      img: "https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_3x4.jpg",
-    },
-    {
-      key: 1,
-      title: "Jürgen",
-      text: "I am german, OK? i have steuernummer",
-      cta: "rescue me",
-      subtitle: "i love olja",
-      img: "https://www.thesprucepets.com/thmb/aWULXjTWxZbCJ4GixA7JMw8K15w=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/GettyImages-1189893683-e0ff70596b3b4f0687ba573e5a671f74.jpg",
-    },
-  ];
-
   return (
     <MainContainer>
       <RainbowCursor/>
