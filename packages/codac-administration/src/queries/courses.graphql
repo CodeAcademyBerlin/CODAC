@@ -26,14 +26,6 @@ query getAllCourses {
               name
               description
               publishedAt
-              spikes {
-                data {
-                  attributes {
-                    name
-                    description
-                  }
-                }
-              }
             }
           }
         }

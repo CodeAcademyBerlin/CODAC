@@ -3793,14 +3793,6 @@ export const GetAllCoursesDocument = gql`
               name
               description
               publishedAt
-              spikes {
-                data {
-                  attributes {
-                    name
-                    description
-                  }
-                }
-              }
             }
           }
         }
@@ -4006,7 +3998,7 @@ export type GetChallengesQuery = { __typename?: 'Query', codingChallenges?: { __
 export type GetAllCoursesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllCoursesQuery = { __typename?: 'Query', courses?: { __typename?: 'CourseEntityResponseCollection', data: Array<{ __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name?: string | null, description?: string | null, length?: number | null, mentors?: { __typename?: 'MentorRelationResponseCollection', data: Array<{ __typename?: 'MentorEntity', attributes?: { __typename?: 'Mentor', user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', firstname?: string | null, lastname?: string | null, email: string } | null } | null } | null } | null }> } | null, projects?: { __typename?: 'ProjectRelationResponseCollection', data: Array<{ __typename?: 'ProjectEntity', attributes?: { __typename?: 'Project', name?: string | null, description?: string | null, publishedAt?: any | null, spikes?: { __typename?: 'AchievementRelationResponseCollection', data: Array<{ __typename?: 'AchievementEntity', attributes?: { __typename?: 'Achievement', name?: string | null, description?: string | null } | null }> } | null } | null }> } | null } | null }> } | null };
+export type GetAllCoursesQuery = { __typename?: 'Query', courses?: { __typename?: 'CourseEntityResponseCollection', data: Array<{ __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name?: string | null, description?: string | null, length?: number | null, mentors?: { __typename?: 'MentorRelationResponseCollection', data: Array<{ __typename?: 'MentorEntity', attributes?: { __typename?: 'Mentor', user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', firstname?: string | null, lastname?: string | null, email: string } | null } | null } | null } | null }> } | null, projects?: { __typename?: 'ProjectRelationResponseCollection', data: Array<{ __typename?: 'ProjectEntity', attributes?: { __typename?: 'Project', name?: string | null, description?: string | null, publishedAt?: any | null } | null }> } | null } | null }> } | null };
 
 export type GetPageQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']>;
