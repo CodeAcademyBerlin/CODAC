@@ -78,7 +78,7 @@ export default function Courses() {
                       {course?.attributes?.length} months
                     </p>
                     <Link
-                      className="flex justify-end font-bold underline "
+                      className="flex justify-end font-bold underline hover:decoration-double"
                       href={`courses/${course?.attributes?.name}`}
                     >
                       Course page {">>"}
