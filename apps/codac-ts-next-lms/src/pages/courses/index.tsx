@@ -79,7 +79,7 @@ export default function Courses() {
                     </p>
                     <Link
                       className="flex justify-end font-bold underline hover:decoration-double"
-                      href={`courses/${course?.attributes?.name}`}
+                      href={`courses/${course?.id}`}
                     >
                       Course page {">>"}
                     </Link>
