@@ -1,6 +1,7 @@
 query getAllCourses {
   courses {
     data {
+      id
       attributes {
         name
         description
