@@ -73,7 +73,7 @@ const Course = () => {
           ))}
         </ul>
         <ul>
-          <b>Mentors:</b>
+          <b>Mentors: </b>
           {mentors.data.map((mentor, ind: number) => (
             <li key={ind} className="flex gap-1">
               <h2>
