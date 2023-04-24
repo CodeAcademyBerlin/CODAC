@@ -22,7 +22,7 @@ export default function Courses() {
             : courses.map((course, i) => {
                 return (
                   <div
-                    className="my-2 w-fit bg-zinc-800 p-3 text-[#009688] shadow-xl"
+                    className="my-2 w-[75vw] bg-zinc-800 p-3 text-[#009688] shadow-xl"
                     key={i}
                   >
                     <p>

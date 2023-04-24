@@ -8,7 +8,7 @@ const Course = () => {
   return (
     <Layout>
       <div className="py-7">
-        <p>Course:{id}</p>
+        <p>Course: {id}</p>
       </div>
     </Layout>
   );
