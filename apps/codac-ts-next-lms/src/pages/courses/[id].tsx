@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
+import { gql } from "@apollo/client";
 
 const Course = () => {
   const router = useRouter();
