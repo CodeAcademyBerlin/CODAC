@@ -1,5 +1,6 @@
 import { useGetAllCoursesQuery } from "codac-administration";
 import Layout from "../../components/Layout";
+import Link from "next/link";
 
 export default function Courses() {
   const { data, loading, error } = useGetAllCoursesQuery();
@@ -16,7 +17,6 @@ export default function Courses() {
           Courses
         </h4>
         <div>
-          SOmething SOmething SOmething SOmething SOmething SOmething SOmething
           {!courses
             ? loading
             : courses.map((course, i) => {
@@ -35,29 +35,54 @@ export default function Courses() {
                       {course?.attributes?.description}
                     </p>
                     <div className="flex flex-col">
-                      <div className="flex">
-                        <strong>Mentor 1:</strong> &emsp;
-                        {/* <span>
-                          {
-                            course?.attributes?.mentors.data[0].attributes.user
-                              .data.attributes.firstname
-                          }
-                        </span> */}
+                      <div className="flex flex-col">
+                        {course?.attributes?.mentors?.data?.map((mentor, i) => (
+                          <div key={i}>
+                            <strong>Mentor {i + 1}:</strong> &emsp;
+                            <span>
+                              {
+                                mentor?.attributes?.user?.data?.attributes
+                                  ?.firstname
+                              }{" "}
+                              {
+                                mentor?.attributes?.user?.data?.attributes
+                                  ?.lastname
+                              }{" "}
+                              (
+                              {
+                                mentor?.attributes?.user?.data?.attributes
+                                  ?.email
+                              }
+                              )
+                            </span>
+                          </div>
+                        ))}
                       </div>
                       <div className="flex">
-                        <strong>Mentor 2:</strong> &emsp;
-                        {/* <span>
-                          {
-                            course?.attributes?.mentors.data[1].attributes.user
-                              .data.attributes.firstname
-                          }
-                        </span> */}
+                        <strong>Related projects:</strong> &emsp;
+                        {course?.attributes?.projects?.data?.map(
+                          (project, i) => (
+                            <span key={i}>
+                              {project?.attributes?.name} <br />
+                              <b>Description:</b>{" "}
+                              {project?.attributes?.description} <br />
+                              <b>Published at:</b>{" "}
+                              {project?.attributes?.publishedAt}
+                            </span>
+                          )
+                        )}
                       </div>
                     </div>
                     <p>
                       <strong>Period:</strong> &emsp;
                       {course?.attributes?.length} months
                     </p>
+                    <Link
+                      className="flex justify-end font-bold underline "
+                      href={`courses/${course?.attributes?.name}`}
+                    >
+                      Course page {">>"}
+                    </Link>
                   </div>
                 );
               })}
