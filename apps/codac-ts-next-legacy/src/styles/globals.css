@@ -1,6 +1,8 @@
 html,
 body {
   min-height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 #__next {
@@ -38,8 +40,29 @@ code[class*="language-"] {
   color: white !important;
 }
 
+.jobDescription {
+  line-height: 1.5;
+  letter-spacing: 0.15px;
+  color: grey;
+}
+
 @font-face {
   font-family: "CODAC";
   font-display: swap;
   src: url("/fonts/codacA2.woff2") format("woff2");
+}
+
+#dynamic-overflow-link{
+  cursor: pointer;
+  color: #26a69a;
+  margin: 5px;
+}
+
+#dynamic-overflow-link:hover{
+  color: #4ed6ca;
+}
+
+#overflow-text-style{
+  text-align: start;
+  flex-wrap: wrap;
 }

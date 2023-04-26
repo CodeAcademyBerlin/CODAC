@@ -3,16 +3,15 @@ import {
   Box,
   Button,
   Card,
-  CardActionArea,
-  CardContent,
+  IconButton,
   Modal,
+  TextField,
   Typography,
   useTheme,
 } from '@mui/material';
 import { ComponentKanbanCard } from 'cabServer/global/__generated__/types';
+import { Close, Pencil } from 'mdi-material-ui';
 import React from 'react';
-
-// type cardArray = ComponentKanbanCard[];
 
 function KanbanCard({
   card,
@@ -21,21 +20,32 @@ function KanbanCard({
   card: ComponentKanbanCard;
   index: number;
 }) {
-  // console.log('card', typeof card.id);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [input, setInput] = React.useState(false);
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleOpen = () => {
+    setOpen(true);
+    setInput(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setInput(false);
+  };
+
+  const handleEdit = () => {
+    setInput(false);
+  };
 
   return (
-    <Draggable draggableId={card.id} index={index}>
+    <Draggable draggableId={card.id.toString()} index={index}>
       {(provided) => (
         <Card
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          key={card.id}
+          key={card?.id}
           sx={{
             position: 'relative',
             paddingBottom: 10,
@@ -43,21 +53,21 @@ function KanbanCard({
         >
           <Box
             sx={{
-              mb: 4,
+              m: 4,
               display: 'flex',
               flexWrap: 'nowrap',
               alignItems: 'center',
               justifyContent: 'space-between',
             }}
           >
-            <Typography variant="h6">{card.task}</Typography>
+            <Typography variant="h6">{card?.task}</Typography>
           </Box>
 
           <Button
             sx={{
               backgroundColor: theme.palette.primary.light,
               position: 'absolute',
-              bottom: 26,
+              bottom: 42,
               right: 16,
             }}
             variant="contained"
@@ -83,19 +93,50 @@ function KanbanCard({
                 bgcolor: 'background.paper',
                 borderRadius: '20px',
                 borderRadiusBottom: theme.shape.borderRadius,
-                padding: '20px',
+                padding: '35px',
               }}
             >
-              <Typography
-                sx={{
-                  textTransform: 'uppercase',
-                  paddingBottom: '20px',
-                }}
-                variant="h5"
-              >
-                {card.task}
-              </Typography>
-              <Typography variant="body2">{card.description}</Typography>
+              {input ? (
+                <>
+                  <IconButton
+                    sx={{
+                      position: 'absolute',
+                      width: '700px',
+                      height: '25px',
+                    }}
+                  >
+                    <Pencil onClick={handleEdit} />
+                  </IconButton>
+
+                  <Typography
+                    sx={{
+                      textTransform: 'uppercase',
+                      paddingBottom: '20px',
+                    }}
+                    variant="h5"
+                  >
+                    {card?.task}
+                  </Typography>
+                  <Typography variant="body2">{card?.description}</Typography>
+                </>
+              ) : (
+                <form>
+                  <TextField
+                    variant="standard"
+                    sx={{
+                      width: '300px',
+                      marginTop: 3,
+                    }}
+                    InputProps={{
+                      endAdornment: (
+                        <IconButton>
+                          <Close />
+                        </IconButton>
+                      ),
+                    }}
+                  />
+                </form>
+              )}
             </Box>
           </Modal>
         </Card>
