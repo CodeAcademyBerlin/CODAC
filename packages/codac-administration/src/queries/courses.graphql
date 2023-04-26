@@ -1,6 +1,7 @@
 query getAllCourses {
   courses {
     data {
+      id
       attributes {
         name
         description
@@ -26,6 +27,21 @@ query getAllCourses {
               name
               description
               publishedAt
+              spikes {
+                data {
+                  attributes {
+                    title
+                    day
+                    content {
+                      data {
+                        attributes {
+                          shortName
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }

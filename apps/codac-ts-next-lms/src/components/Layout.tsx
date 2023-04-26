@@ -33,7 +33,7 @@ function Navbar() {
           ></path>
         </svg>
         &emsp; &emsp;
-        <p>CodeAcademy Logo</p>
+        <p className="font-semibold">CodeAcademy Logo</p>
       </div>
       <div className="flex gap-2">
         <div>Links</div>
@@ -62,7 +62,7 @@ function Sidebar() {
 function Footer() {
   return (
     <div
-      className="footer fixed bottom-1 ml-1 flex h-[8%] w-9/12 justify-between bg-zinc-800 p-2 "
+      className="footer fixed bottom-1 ml-1 mt-4 flex h-[8%] w-9/12 justify-between bg-zinc-800 p-2 pt-3 "
       id="footer"
     >
       <div className="footer-item">@ Copyright 2023 CodeAcademy-Berlin</div>
