@@ -28,7 +28,7 @@ const Course = () => {
 
   return (
     <Layout>
-      <div className="mt-6 mb-2 flex justify-start p-5">
+      <div className="mt-6 mb-2 flex justify-start p-5 font-semibold">
         <a
           className="underline hover:decoration-double"
           href="#"
