@@ -1,6 +1,8 @@
 import { ButtonProps } from '../../interfaces/interfaceButtons'
 import React from 'react'
-
+/**
+ * This is the documentation of the button
+ */
 const Button = ({ label, padding, bg, text, border, shape }: ButtonProps) => {
   return (
     <button
