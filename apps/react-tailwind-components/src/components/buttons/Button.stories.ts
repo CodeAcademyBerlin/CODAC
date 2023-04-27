@@ -7,9 +7,6 @@ const meta = {
   title: 'Toxic-Button',
   component: Button,
   tags: ['autodocs'],
-  argTypes: {
-    bg: { control: 'color' },
-  },
 } satisfies Meta<typeof Button>
 
 export default meta
