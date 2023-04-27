@@ -7,9 +7,6 @@ const meta = {
   title: 'Toxic-Button',
   component: Button,
   tags: ['autodocs'],
-  argTypes: {
-    bg: { control: 'color' },
-  },
 } satisfies Meta<typeof Button>
 
 export default meta
@@ -23,23 +20,3 @@ export const Primary: Story = {
     label: 'this is a button',
   },
 }
-
-// export const Secondary: Story = {
-//   args: {
-//     label: 'Button',
-//   },
-// }
-
-// export const Large: Story = {
-//   args: {
-//     size: 'large',
-//     label: 'Button',
-//   },
-// }
-
-// export const Small: Story = {
-//   args: {
-//     size: 'small',
-//     label: 'Button',
-//   },
-// }
