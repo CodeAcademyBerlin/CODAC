@@ -6,7 +6,8 @@ import RainbowCursor from './components/rainbowcursor/Rainbowcursor'
 function App() {
   return (
     <MainContainer>
-      {/* <RainbowCursor/> */}
+      <Button bg='bg-dark' label='this is a button' text='text-light' />
+      {/* <RainbowCursor /> */}
       <div className='flex flex-col gap-10'></div>
       <div className='flex gap-10'>
         <Card
