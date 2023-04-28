@@ -17,7 +17,7 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
-  staticDirs: isWindows ? ['..\\public'] : ['../public'],
+  staticDirs: isWindows ? ['..\\public'] : ['../public'], //based on OS conditionally use static dirs for storybook
 }
 
 export default config
