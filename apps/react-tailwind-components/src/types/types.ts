@@ -77,3 +77,8 @@ export type validBorder =
   | 'border-dark'
 export type validShape =
   'rounded' | 'rounded-none'
+export type validColor =
+  | 'bg-primary'
+  | 'bg-secondary'
+  | 'bg-light'
+  | 'bg-dark'
