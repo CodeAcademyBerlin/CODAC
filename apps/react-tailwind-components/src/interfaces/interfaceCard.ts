@@ -1,3 +1,5 @@
+import { validBg } from '../types/types'
+
 export interface CardProps {
   key: number
   title?: string
@@ -5,4 +7,5 @@ export interface CardProps {
   img?: string
   text?: string
   cta?: string
+  bg?: validBg
 }
