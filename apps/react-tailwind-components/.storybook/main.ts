@@ -1,4 +1,7 @@
 import type { StorybookConfig } from '@storybook/react-webpack5'
+
+const isWindows = process.platform === 'win32'
+
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
@@ -14,6 +17,7 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
-  staticDirs: ['..\\public'],
+  staticDirs: isWindows ? ['..\\public'] : ['../public'],
 }
+
 export default config
