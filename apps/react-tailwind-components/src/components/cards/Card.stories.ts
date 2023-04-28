@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import Card from './Card'
 
 const cardImg = require('../../assets/stockImage.png')
+const cardImgCat = require('../../assets/cutecat.jpg')
 
 const meta = {
   title: 'Toxic-Card',
@@ -20,6 +21,16 @@ export const Primary: Story = {
     img: cardImg,
     subtitle: 'I am the subtitle',
     title: 'I am the Title',
+    text: 'lorem ipsum dolor consecuencias de my own acciones lorem ipsum dolor consecuencias de my own acciones',
+  },
+}
+export const Cat: Story = {
+  args: {
+    key: 1,
+    cta: 'action button',
+    img: cardImgCat,
+    subtitle: 'I am the subtitle',
+    title: 'I am a beautiful Cat',
     text: 'lorem ipsum dolor consecuencias de my own acciones lorem ipsum dolor consecuencias de my own acciones',
   },
 }
