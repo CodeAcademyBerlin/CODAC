@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>
 export const Primary: Story = {
   args: {
     bg: 'bg-primary',
-    text: 'text-dark',
+    text: 'text-light',
     label: 'this is a button',
   },
 }

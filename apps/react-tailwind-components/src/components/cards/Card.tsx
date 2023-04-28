@@ -16,9 +16,7 @@ const Card = ({ title, subtitle, img, text, cta }: CardProps) => {
         <p className='overflow-auto'>{text}</p>
         {/* PHONES */}
 
-        {/* <Button padding='px-1 py-0' bg='bg-dark'>
-          {cta}
-        </Button> */}
+        <Button label={cta} padding='px-1 py-0' bg='bg-dark' />
       </div>
     </div>
   )
