@@ -8,7 +8,7 @@ import {
 } from '../types/types'
 
 export interface ButtonProps {
-  label: string
+  label?: string
   padding?: validPadding
   bg?: validBg
   text?: validText
