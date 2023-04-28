@@ -29,7 +29,7 @@ export const Cat: Story = {
     key: 1,
     cta: 'action button',
     img: cardImgCat,
-    subtitle: 'I am the subtitle',
+    subtitle: 'I am so cute',
     title: 'I am a beautiful Cat',
     text: 'lorem ipsum dolor consecuencias de my own acciones lorem ipsum dolor consecuencias de my own acciones',
   },
