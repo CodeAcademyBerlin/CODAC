@@ -8,7 +8,7 @@ const Button = ({ label, padding, bg, text, border, shape }: ButtonProps) => {
     <button
       className={`
       ${padding ? padding : 'px-10 py-2'}
-      ${bg ? bg : 'bg-primary'}
+      ${bg ? bg : 'bg-primary dark:bg-green-300'}
       ${text ? text : 'text-light'}
       ${border ? `border-2 ${border}` : 'border-2 border-primary'}
       ${shape ? shape : 'rounded'}
