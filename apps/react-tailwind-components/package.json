@@ -59,15 +59,18 @@
     "@storybook/addon-links": "^7.0.7",
     "@storybook/addon-styling": "^1.0.3",
     "@storybook/blocks": "^7.0.7",
+    "@storybook/manager-api": "^7.0.7",
     "@storybook/preset-create-react-app": "^7.0.7",
     "@storybook/react": "^7.0.7",
     "@storybook/react-webpack5": "^7.0.7",
     "@storybook/testing-library": "^0.0.14-next.2",
+    "@storybook/theming": "^7.0.7",
     "autoprefixer": "^10.4.14",
     "babel-plugin-named-exports-order": "^0.0.2",
     "postcss": "^8.4.23",
     "prop-types": "^15.8.1",
     "storybook": "^7.0.7",
+    "storybook-dark-mode": "^3.0.0",
     "tailwindcss": "^3.3.0",
     "webpack": "^5.81.0"
   }

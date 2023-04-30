@@ -1,8 +1,6 @@
-// .storybook/preview.js
-import { withThemeByDataAttribute } from '@storybook/addon-styling'
-import { create, themes } from '@storybook/theming'
+import { create } from '@storybook/theming/create'
 const colors = require('tailwindcss/colors')
-import '../src/index.css'
+
 const lightTheme = create({
   base: 'light',
   // Typography
@@ -52,23 +50,23 @@ const darkTheme = create({
   brandTarget: '_self',
 
   // Colors
-  colorPrimary: colors.red[500],
-  colorSecondary: colors.emerald[700],
+  colorPrimary: colors.blue[500],
+  colorSecondary: colors.gray[500],
 
   // UI
-  appBg: colors.neutral[800],
-  appContentBg: colors.neutral[800],
-  appBorderColor: colors.gray[700],
+  appBg: colors.slate[900],
+  appContentBg: colors.gray[800],
+  appBorderColor: colors.gray[600],
   appBorderRadius: 4,
 
   // Text colors
-  textColor: colors.gray[200],
-  textInverseColor: colors.red[400],
+  textColor: colors.gray[100],
+  textInverseColor: '#ffffff',
 
   // Toolbar default and active colors
-  barTextColor: colors.neutral[400],
-  barSelectedColor: colors.green[400],
-  barBg: colors.neutral[800],
+  barTextColor: colors.green[300],
+  barSelectedColor: colors.blue[500],
+  barBg: colors.gray[800],
 
   // Form colors
   inputBg: colors.gray[700],
@@ -77,24 +75,9 @@ const darkTheme = create({
   inputBorderRadius: 2,
 })
 
-export const parameters = {
-  darkMode: {
-    classTarget: 'html',
-    // Override the default dark theme
-    dark: darkTheme,
-    // Override the default light theme
-    light: lightTheme,
-  },
-  stylePreview: true,
-}
+const toxicTheme = create({
+  ...lightTheme,
+  // Customize your default theme here
+})
 
-export const decorators = [
-  withThemeByDataAttribute({
-    themes: {
-      light: 'light',
-      dark: 'dark',
-    },
-    defaultTheme: 'light',
-    attributeName: 'data-mode',
-  }),
-]
+export { toxicTheme, lightTheme, darkTheme }
