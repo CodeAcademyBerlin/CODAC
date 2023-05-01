@@ -9,7 +9,7 @@ module.exports = {
         primary: colors.teal[600],
         secondary: colors.orange[700],
         light: colors.gray[200],
-        dark: colors.neutral[500],
+        dark: colors.gray[800],
         test: colors.red[400],
         test2: colors.green[300],
         test3: colors.cyan[200],
