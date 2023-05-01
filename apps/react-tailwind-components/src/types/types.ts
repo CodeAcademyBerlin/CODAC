@@ -75,10 +75,5 @@ export type validBorder =
   | 'border-secondary'
   | 'border-light'
   | 'border-dark'
-export type validShape =
-  'rounded' | 'rounded-none'
-export type validColor =
-  | 'bg-primary'
-  | 'bg-secondary'
-  | 'bg-light'
-  | 'bg-dark'
+export type validShape = 'rounded' | 'rounded-none'
+export type validColor = 'bg-primary' | 'bg-secondary' | 'bg-light' | 'bg-dark'

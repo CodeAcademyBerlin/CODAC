@@ -8,6 +8,9 @@ const meta = {
   title: 'Toxic-Card',
   component: Card,
   tags: ['autodocs'],
+  parameters: {
+    layout: 'centered',
+  },
 } satisfies Meta<typeof Card>
 
 export default meta

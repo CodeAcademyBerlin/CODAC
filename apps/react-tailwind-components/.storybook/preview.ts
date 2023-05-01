@@ -1,6 +1,8 @@
 // .storybook/preview.js
 import { withThemeByDataAttribute } from '@storybook/addon-styling'
-import { create, themes } from '@storybook/theming'
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
+import { create } from '@storybook/theming'
+
 const colors = require('tailwindcss/colors')
 import '../src/index.css'
 const lightTheme = create({
@@ -86,6 +88,9 @@ export const parameters = {
     light: lightTheme,
   },
   stylePreview: true,
+  viewport: {
+    viewports: INITIAL_VIEWPORTS,
+  },
 }
 
 export const decorators = [
