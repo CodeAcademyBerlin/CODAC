@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Header = () => {
+const Header = ({title} : { title : string }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -12,7 +12,7 @@ const Header = () => {
             <nav className="container mx-auto px-4 py-3 md:flex md:justify-between md:items-center">
                 <div className="flex justify-between items-center">
                     <a href="/" className="font-bold text-xl">
-                        Projects
+                        {title}
                     </a>
                     <button
                         className="md:hidden"
