@@ -4,13 +4,11 @@ import Layout from "../../components/layout"
 import Link from "next/link";
 
 export default function Spikes() {
-    const [allSpikes, setAllSpikes] = useState([])
+
     const { data, loading, error } = useGetSpikesQuery();
 
-    useEffect(() => {
-        setAllSpikes(data?.spikes?.data)
-    }, [data])
-    
+    const allSpikes = data?.spikes?.data
+
     console.log('allSpikes', allSpikes)
   
   return (
