@@ -1,0 +1,11 @@
+query getSpike($id: ID!) {
+    spike(id: $id) {
+        data {
+            id
+            attributes {
+                title
+                day
+            }
+        }
+    }
+}

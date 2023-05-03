@@ -11,7 +11,7 @@ const Sidebar = ({links, onClick}: { links: {name:string, id: number}[] | undefi
             <div className="h-full px-3 py-4 bg-gray-50 dark:bg-gray-800">
                 <h3 className="font-bold text-lg mb-4 p-1">{COURSE_NAME}</h3>
                 <ul className="font-medium">
-                    {links?.map(({name, id}) => (<li>
+                    {links?.map(({name, id}) => (<li key={id}>
                         <button
                             className="flex items-center p-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                             onClick={() => handleProjectSelection(id)}
@@ -24,6 +24,7 @@ const Sidebar = ({links, onClick}: { links: {name:string, id: number}[] | undefi
                             </svg>
                             <span className="ml-1">{name}</span>
                         </button>
+                        
                     </li>))}
                 </ul>
             </div>
