@@ -9,7 +9,7 @@ import {
 import Layout from "../../components/Layout";
 import Link from "next/link";
 import { initializeApollo } from "../../lib/apolloClient";
-import { GET_COURSE_QUERY } from "../getCourse";
+import { GET_COURSE_QUERY } from "../../graphql/getCourse";
 
 export default function Courses({ courses }: { courses: CourseEntity[] }) {
   return (

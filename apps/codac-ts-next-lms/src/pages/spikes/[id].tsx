@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
-import { GET_SPIKE_QUERY } from "../getSpike";
 import Layout from "../../components/Layout";
+import { GET_SPIKE_QUERY } from "../../graphql/getSpike";
 
 const Spike = () => {
   const router = useRouter();

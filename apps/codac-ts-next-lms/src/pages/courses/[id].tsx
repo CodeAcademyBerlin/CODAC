@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
-import { useQuery } from "@apollo/client";
-import { GET_COURSE_QUERY } from "../getCourse";
+
 import {
   CourseEntity,
   GetAllCoursesDocument,
@@ -11,6 +10,7 @@ import {
   Course as CourseType,
 } from "codac-administration";
 import { initializeApollo } from "../../lib/apolloClient";
+import { GET_COURSE_QUERY } from "../../graphql/getCourse";
 
 interface CourseProps {
   course: CourseType;
