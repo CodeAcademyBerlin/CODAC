@@ -42,7 +42,7 @@ const Spike = () => {
           {"<<"} Back
         </a>
       </div>
-      <div className="mx-5 flex flex-col gap-3">
+      <div className="mx-5 flex flex-col gap-3 mb-7">
         <p>
             <b>Spike number:</b> {id}
         </p>
