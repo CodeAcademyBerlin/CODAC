@@ -9,12 +9,12 @@ const Header = ({ title }: { title: string }) => {
   };
 
   return (
-    <header className="fixed top-0 left-0 z-10 w-full bg-teal-500 text-white shadow-md">
+    <header className="fixed left-0 top-0 z-10 w-full bg-teal-500 text-white shadow-md">
       <nav className="container mx-auto px-4 py-3 md:flex md:items-center md:justify-between">
         <div className="flex items-center justify-between">
-          <a href="/projects" className="text-xl font-bold">
+          <Link href="/" className="text-xl font-bold">
             {title}
-          </a>
+          </Link>
           <button
             className="md:hidden"
             onClick={toggleMenu}
@@ -36,44 +36,44 @@ const Header = ({ title }: { title: string }) => {
           </button>
         </div>
         <div className={`${isMenuOpen ? "block" : "hidden"} mt-3 md:hidden`}>
-          <a href="#" className="mb-2 block font-semibold hover:text-gray-100">
-            Hello World!
-          </a>
-          <a href="#" className="mb-2 block font-semibold hover:text-gray-100">
-            Career
-          </a>
-          <a href="#" className="mb-2 block font-semibold hover:text-gray-100">
-            Mentors
-          </a>
-          <a href="#" className="mb-2 block font-semibold hover:text-gray-100">
-            Calendar
-          </a>
-          <a href="#" className="mb-2 block font-semibold hover:text-gray-100">
-            Login
-          </a>
-          <button className="rounded-md border border-white py-2 px-4 text-white hover:bg-teal-700 hover:text-white">
-            Sign up
-          </button>
+          <Link
+            href="/courses"
+            className="mb-2 block font-semibold hover:text-gray-100"
+          >
+            Courses
+          </Link>
+          <Link
+            href="/projects"
+            className="mb-2 block font-semibold hover:text-gray-100"
+          >
+            Projects
+          </Link>
+          <Link
+            href="/spikes"
+            className="mb-2 block font-semibold hover:text-gray-100"
+          >
+            Spikes
+          </Link>
         </div>
         <div className="hidden md:block">
-          <a href="/" className="mx-4 font-semibold hover:text-gray-100">
-            Home
-          </a>
-          <a href="#" className="mx-4 font-semibold hover:text-gray-100">
-            Career
-          </a>
-          <a href="#" className="mx-4 font-semibold hover:text-gray-100">
-            Mentors
-          </a>
-          <a href="#" className="mx-4 font-semibold hover:text-gray-100">
-            Calendar
-          </a>
-          <a href="#" className="mx-4 font-semibold hover:text-gray-100">
-            Login
-          </a>
-          <button className="rounded-md border border-white py-2 px-4 text-white hover:bg-teal-700 hover:text-white">
-            Sign up
-          </button>
+          <Link
+            href="/courses"
+            className="mx-4 font-semibold hover:text-gray-100"
+          >
+            Courses
+          </Link>
+          <Link
+            href="/projects"
+            className="mx-4 font-semibold hover:text-gray-100"
+          >
+            Projects
+          </Link>
+          <Link
+            href="/spikes"
+            className="mx-4 font-semibold hover:text-gray-100"
+          >
+            Spikes
+          </Link>
         </div>
       </nav>
     </header>

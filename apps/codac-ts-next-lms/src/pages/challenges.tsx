@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { Button, Card, Layout } from "codac-ui";
 import { useGetChallengesQuery } from "codac-administration";
 
 export default function Challenges() {

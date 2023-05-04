@@ -1,13 +1,5 @@
 {
   "extends": "tsconfig/nextjs.json",
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"],
-  "compilerOptions": {
-    "alwaysStrict": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "paths": {
-      "~*": ["../../packages/codac-ui/src/*"]
-    }
-  }
+  "exclude": ["node_modules"]
 }
