@@ -1,15 +1,17 @@
-import { useGetAllCoursesQuery } from "codac-administration";
+import {
+  Course,
+  CourseEntity,
+  CourseEntityResponseCollection,
+  GetAllCoursesDocument,
+  GetAllCoursesQuery,
+  useGetAllCoursesQuery,
+} from "codac-administration";
 import Layout from "../../components/Layout";
 import Link from "next/link";
+import { initializeApollo } from "../../lib/apolloClient";
+import { GET_COURSE_QUERY } from "../getCourse";
 
-export default function Courses() {
-  const { data, loading, error } = useGetAllCoursesQuery();
-  console.log("🚀 ~ ~ error:", error);
-  console.log("🚀 ~ data ~ data:", data);
-
-  const courses = data?.courses?.data;
-  console.log("🚀 ~ Courses ~ data:", courses);
-
+export default function Courses({ courses }: { courses: CourseEntity[] }) {
   return (
     <Layout>
       <div className="flex flex-col overflow-y-auto px-1 py-7 ">
@@ -17,77 +19,88 @@ export default function Courses() {
           Courses
         </h4>
         <div>
-          {!courses
-            ? loading
-            : courses.map((course, i) => {
-                return (
-                  <div
-                    className="my-2 w-[75vw] bg-zinc-800 p-3 text-[#009688] shadow-xl"
-                    key={i}
-                  >
-                    <p>
-                      <strong>Name of the course:</strong> &emsp;{" "}
-                      {course?.attributes?.name}
-                    </p>
-                    <p>
-                      <strong>Description:</strong>
-                      &emsp;
-                      {course?.attributes?.description}
-                    </p>
+          {courses &&
+            courses.map((course, i) => {
+              return (
+                <div
+                  className="my-2 w-[75vw] bg-zinc-800 p-3 text-[#009688] shadow-xl"
+                  key={i}
+                >
+                  <p>
+                    <strong>Name of the course:</strong> &emsp;{" "}
+                    {course?.attributes?.name}
+                  </p>
+                  <p>
+                    <strong>Description:</strong>
+                    &emsp;
+                    {course?.attributes?.description}
+                  </p>
+                  <div className="flex flex-col">
                     <div className="flex flex-col">
-                      <div className="flex flex-col">
-                        {course?.attributes?.mentors?.data?.map((mentor, i) => (
-                          <div key={i}>
-                            <strong>Mentor {i + 1}:</strong> &emsp;
-                            <span>
-                              {
-                                mentor?.attributes?.user?.data?.attributes
-                                  ?.firstname
-                              }{" "}
-                              {
-                                mentor?.attributes?.user?.data?.attributes
-                                  ?.lastname
-                              }{" "}
-                              (
-                              {
-                                mentor?.attributes?.user?.data?.attributes
-                                  ?.email
-                              }
-                              )
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                      <div className="flex">
-                        <strong>Related projects:</strong> &emsp;
-                        {course?.attributes?.projects?.data?.map(
-                          (project, i) => (
-                            <span key={i}>
-                              {project?.attributes?.name} <br />
-                              <b>Description:</b>{" "}
-                              {project?.attributes?.description} <br />
-                              <b>Published at:</b>{" "}
-                              {project?.attributes?.publishedAt}
-                            </span>
-                          )
-                        )}
-                      </div>
+                      {course?.attributes?.mentors?.data?.map((mentor, i) => (
+                        <div key={i}>
+                          <strong>Mentor {i + 1}:</strong> &emsp;
+                          <span>
+                            {
+                              mentor?.attributes?.user?.data?.attributes
+                                ?.firstname
+                            }{" "}
+                            {
+                              mentor?.attributes?.user?.data?.attributes
+                                ?.lastname
+                            }{" "}
+                            ({mentor?.attributes?.user?.data?.attributes?.email}
+                            )
+                          </span>
+                        </div>
+                      ))}
                     </div>
-                    <p>
-                      <strong>Period:</strong> &emsp;
-                      {course?.attributes?.length} months
-                    </p>
-                    <Link
-                      className="flex justify-end font-bold underline hover:decoration-double"
-                      href={`courses/${course?.id}`}
-                    >
-                      Course page {">>"}
-                    </Link>
+                    <div className="flex">
+                      <strong>Related projects:</strong> &emsp;
+                      {course?.attributes?.projects?.data?.map((project, i) => (
+                        <span key={i}>
+                          {project?.attributes?.name} <br />
+                          <b>Description:</b> {project?.attributes?.description}{" "}
+                          <br />
+                          <b>Published at:</b>{" "}
+                          {project?.attributes?.publishedAt}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                );
-              })}
+                  <p>
+                    <strong>Period:</strong> &emsp;
+                    {course?.attributes?.length} months
+                  </p>
+                  <Link
+                    className="flex justify-end font-bold underline hover:decoration-double"
+                    href={`courses/${course?.id}`}
+                  >
+                    Course page {">>"}
+                  </Link>
+                </div>
+              );
+            })}
         </div>
       </div>
     </Layout>
   );
+}
+export async function getStaticProps() {
+  // const { data, loading, error } = useGetAllCoursesQuery();
+  // console.log("🚀 ~ ~ error:", error);
+  // console.log("🚀 ~ data ~ data:", data);
+  const client = initializeApollo(null, null);
+
+  const { data, loading, error } = await client.query({
+    query: GetAllCoursesDocument,
+  });
+
+  const courses = data?.courses?.data;
+  console.log("🚀 ~ Courses ~ data:", courses);
+  return {
+    props: {
+      courses,
+    },
+  };
 }
