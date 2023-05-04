@@ -1,7 +1,7 @@
-import { FC, useEffect, useRef, useState } from 'react';
-import './Rainbowcursor.css';
+import { FC, useEffect, useRef, useState } from "react";
+import "./Rainbowcursor.css";
 
-const RainbowCursor: FC = () => {
+export const RainbowCursor: FC = () => {
   const [rainbow, setRainbow] = useState(false);
   const [trail, setTrail] = useState({ x: 0, y: 0 });
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -20,10 +20,10 @@ const RainbowCursor: FC = () => {
       }
     };
 
-    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener("mousemove", handleMouseMove);
 
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
@@ -35,7 +35,7 @@ const RainbowCursor: FC = () => {
           Math.pow(trail.y - cursorRef.current?.offsetTop!, 2)
       );
       trailElement.style.width = `${distance}px`;
-      trailElement.style.opacity = '1';
+      trailElement.style.opacity = "1";
     }
   }, [trail]);
 
@@ -48,12 +48,17 @@ const RainbowCursor: FC = () => {
   };
 
   return (
-    <div className="rainbow-cursor" onMouseEnter={handleCursorEnter} onMouseLeave={handleCursorLeave}>
-      <div className={`rainbow ${rainbow ? 'animate-rainbow' : ''}`} ref={cursorRef}>
+    <div
+      className="rainbow-cursor"
+      onMouseEnter={handleCursorEnter}
+      onMouseLeave={handleCursorLeave}
+    >
+      <div
+        className={`rainbow ${rainbow ? "animate-rainbow" : ""}`}
+        ref={cursorRef}
+      >
         <div className="trail" ref={trailRef}></div>
       </div>
     </div>
   );
 };
-
-export default RainbowCursor;
