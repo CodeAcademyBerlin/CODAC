@@ -77,11 +77,6 @@ export type AchievementInput = {
   type?: InputMaybe<Enum_Achievement_Type>;
 };
 
-export type AchievementRelationResponseCollection = {
-  __typename?: 'AchievementRelationResponseCollection';
-  data: Array<AchievementEntity>;
-};
-
 export type Attendance = {
   __typename?: 'Attendance';
   createdAt?: Maybe<Scalars['DateTime']>;
@@ -2589,7 +2584,7 @@ export type Project = {
   name?: Maybe<Scalars['String']>;
   pages?: Maybe<PageRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']>;
-  spikes?: Maybe<AchievementRelationResponseCollection>;
+  spikes?: Maybe<SpikeRelationResponseCollection>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -2603,8 +2598,9 @@ export type ProjectPagesArgs = {
 
 
 export type ProjectSpikesArgs = {
-  filters?: InputMaybe<AchievementFiltersInput>;
+  filters?: InputMaybe<SpikeFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -2636,7 +2632,7 @@ export type ProjectFiltersInput = {
   or?: InputMaybe<Array<InputMaybe<ProjectFiltersInput>>>;
   pages?: InputMaybe<PageFiltersInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
-  spikes?: InputMaybe<AchievementFiltersInput>;
+  spikes?: InputMaybe<SpikeFiltersInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
@@ -3049,6 +3045,11 @@ export type SpikeInput = {
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   recording?: InputMaybe<Scalars['ID']>;
   title?: InputMaybe<Scalars['String']>;
+};
+
+export type SpikeRelationResponseCollection = {
+  __typename?: 'SpikeRelationResponseCollection';
+  data: Array<SpikeEntity>;
 };
 
 export type StringFilterInput = {
@@ -3764,6 +3765,86 @@ export function useGetChallengesLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type GetChallengesQueryHookResult = ReturnType<typeof useGetChallengesQuery>;
 export type GetChallengesLazyQueryHookResult = ReturnType<typeof useGetChallengesLazyQuery>;
 export type GetChallengesQueryResult = Apollo.QueryResult<GetChallengesQuery, GetChallengesQueryVariables>;
+export const GetAllCoursesDocument = gql`
+    query getAllCourses {
+  courses {
+    data {
+      id
+      attributes {
+        name
+        description
+        mentors {
+          data {
+            attributes {
+              user {
+                data {
+                  attributes {
+                    firstname
+                    lastname
+                    email
+                  }
+                }
+              }
+            }
+          }
+        }
+        length
+        projects {
+          data {
+            attributes {
+              name
+              description
+              publishedAt
+              spikes {
+                data {
+                  attributes {
+                    title
+                    day
+                    content {
+                      data {
+                        attributes {
+                          shortName
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetAllCoursesQuery__
+ *
+ * To run a query within a React component, call `useGetAllCoursesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllCoursesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllCoursesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAllCoursesQuery(baseOptions?: Apollo.QueryHookOptions<GetAllCoursesQuery, GetAllCoursesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllCoursesQuery, GetAllCoursesQueryVariables>(GetAllCoursesDocument, options);
+      }
+export function useGetAllCoursesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllCoursesQuery, GetAllCoursesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllCoursesQuery, GetAllCoursesQueryVariables>(GetAllCoursesDocument, options);
+        }
+export type GetAllCoursesQueryHookResult = ReturnType<typeof useGetAllCoursesQuery>;
+export type GetAllCoursesLazyQueryHookResult = ReturnType<typeof useGetAllCoursesLazyQuery>;
+export type GetAllCoursesQueryResult = Apollo.QueryResult<GetAllCoursesQuery, GetAllCoursesQueryVariables>;
 export const GetPageDocument = gql`
     query getPage($slug: String) {
   pages(filters: {slug: {eq: $slug}}) {
@@ -3895,6 +3976,7 @@ export const GetSpikesDocument = gql`
             }
           }
         }
+
       }
     }
   }
@@ -3906,6 +3988,7 @@ export const GetSpikesDocument = gql`
  *
  * To run a query within a React component, call `useGetSpikesQuery` and pass it any options that fit your needs.
  * When your component renders, `useGetSpikesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
@@ -3927,6 +4010,7 @@ export function useGetSpikesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type GetSpikesQueryHookResult = ReturnType<typeof useGetSpikesQuery>;
 export type GetSpikesLazyQueryHookResult = ReturnType<typeof useGetSpikesLazyQuery>;
 export type GetSpikesQueryResult = Apollo.QueryResult<GetSpikesQuery, GetSpikesQueryVariables>;
+
 export const GetMeDocument = gql`
     query getMe {
   me {
@@ -3986,6 +4070,11 @@ export type GetChallengesQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetChallengesQuery = { __typename?: 'Query', codingChallenges?: { __typename?: 'CodingChallengeEntityResponseCollection', data: Array<{ __typename?: 'CodingChallengeEntity', attributes?: { __typename?: 'CodingChallenge', challenge?: string | null, difficulty?: number | null } | null }> } | null };
 
+export type GetAllCoursesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllCoursesQuery = { __typename?: 'Query', courses?: { __typename?: 'CourseEntityResponseCollection', data: Array<{ __typename?: 'CourseEntity', id?: string | null, attributes?: { __typename?: 'Course', name?: string | null, description?: string | null, length?: number | null, mentors?: { __typename?: 'MentorRelationResponseCollection', data: Array<{ __typename?: 'MentorEntity', attributes?: { __typename?: 'Mentor', user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', firstname?: string | null, lastname?: string | null, email: string } | null } | null } | null } | null }> } | null, projects?: { __typename?: 'ProjectRelationResponseCollection', data: Array<{ __typename?: 'ProjectEntity', attributes?: { __typename?: 'Project', name?: string | null, description?: string | null, publishedAt?: any | null, spikes?: { __typename?: 'SpikeRelationResponseCollection', data: Array<{ __typename?: 'SpikeEntity', attributes?: { __typename?: 'Spike', title?: string | null, day?: number | null, content?: { __typename?: 'PageEntityResponse', data?: { __typename?: 'PageEntity', attributes?: { __typename?: 'Page', shortName?: string | null } | null } | null } | null } | null }> } | null } | null }> } | null } | null }> } | null };
+
 export type GetPageQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']>;
 }>;
@@ -4002,6 +4091,7 @@ export type GetSpikesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetSpikesQuery = { __typename?: 'Query', spikes?: { __typename?: 'SpikeEntityResponseCollection', data: Array<{ __typename?: 'SpikeEntity', id?: string | null, attributes?: { __typename?: 'Spike', title?: string | null, day?: number | null, recording?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename: 'UploadFile', url: string } | null } | null } | null, content?: { __typename?: 'PageEntityResponse', data?: { __typename?: 'PageEntity', attributes?: { __typename: 'Page' } | null } | null } | null } | null }> } | null };
+
 
 export type GetMeQueryVariables = Exact<{ [key: string]: never; }>;
 
