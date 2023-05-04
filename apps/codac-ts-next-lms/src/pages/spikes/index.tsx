@@ -1,7 +1,7 @@
-import Layout from "../../components/layout";
 import Link from "next/link";
 import { SpikeEntity, GetSpikesDocument } from "codac-administration";
 import { initializeApollo } from "../../lib/apolloClient";
+import Layout from "../../components/Layout";
 
 export default function Spikes({ spikes }: { spikes: SpikeEntity[] }) {
   return (

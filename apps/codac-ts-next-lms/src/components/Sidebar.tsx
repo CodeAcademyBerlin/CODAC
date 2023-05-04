@@ -4,12 +4,12 @@ const Sidebar = ({
   links,
   onClick,
 }: {
-  links: { name: string; id: number }[] | undefined;
+  links: { name: string; id: string }[];
   onClick: Function;
 }) => {
   const COURSE_NAME = "Web development";
 
-  const handleProjectSelection = (index: number) => onClick(index);
+  const handleProjectSelection = (index: string) => onClick(index);
   return (
     <aside
       id="default-sidebar"

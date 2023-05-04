@@ -11,7 +11,6 @@ import {
   Course as CourseType,
 } from "codac-administration";
 import { initializeApollo } from "../../lib/apolloClient";
-import { Layout } from "codac-ui";
 
 interface CourseProps {
   course: CourseType;
@@ -19,6 +18,7 @@ interface CourseProps {
 }
 
 export default function Course({ course, id }: CourseProps) {
+  const router = useRouter();
   const { name, description, length, createdAt, projects, mentors } = course;
   return (
     <Layout>

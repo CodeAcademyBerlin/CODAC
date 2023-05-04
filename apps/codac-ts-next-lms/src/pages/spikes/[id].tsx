@@ -1,16 +1,16 @@
 import { useRouter } from "next/router";
-import Layout from "../../components/layout";
 import { useQuery } from "@apollo/client";
 import { GET_SPIKE_QUERY } from "../getSpike";
+import Layout from "../../components/Layout";
 
 const Spike = () => {
   const router = useRouter();
   const { id } = router.query;
-  const { loading, error, data } = useQuery(GET_SPIKE_QUERY , {
+  const { loading, error, data } = useQuery(GET_SPIKE_QUERY, {
     variables: { id },
   });
-    
-    console.log('data :>> ', data);
+
+  console.log("data :>> ", data);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -26,10 +26,9 @@ const Spike = () => {
     return <p>No spike found for ID {id}</p>;
   }
 
-    const { title, day, url } = spike;
-    
-    console.log('spike :>> ', spike);
+  const { title, day, url } = spike;
 
+  console.log("spike :>> ", spike);
 
   return (
     <Layout>
@@ -42,19 +41,20 @@ const Spike = () => {
           {"<<"} Back
         </a>
       </div>
-      <div className="mx-5 flex flex-col gap-3 mb-7">
+      <div className="mx-5 mb-7 flex flex-col gap-3">
         <p>
-            <b>Spike number:</b> {id}
+          <b>Spike number:</b> {id}
         </p>
         <p>
-            <b>Day: </b>{day}
+          <b>Day: </b>
+          {day}
         </p>
         <p className="text-md">
           <b>{title}</b>
         </p>
- 
+
         <video controls>
-            <source src={spike.recording.data.attributes.url} type="video/mp4" />
+          <source src={spike.recording.data.attributes.url} type="video/mp4" />
         </video>
       </div>
     </Layout>
