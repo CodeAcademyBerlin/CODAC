@@ -20,7 +20,7 @@ function Navbar() {
         <svg
           fill="none"
           stroke="currentColor"
-          strokeWidth="1.5"
+          stroke-width="1.5"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
           width={35}
@@ -28,8 +28,8 @@ function Navbar() {
         >
           <path
             d="M6 18L18 6M6 6l12 12"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+            stroke-linecap="round"
+            stroke-linejoin="round"
           ></path>
         </svg>
         &emsp; &emsp;
@@ -52,7 +52,7 @@ function Sidebar() {
     >
       <div className="sidebar-item">Web Development</div>
       <div className="sidebar-item">Hello World!</div>
-      <div className="sidebar-item">Spikes</div>
+      <div className="sidebar-item">Courses</div>
       <div className="sidebar-item">Mentors</div>
       <div className="sidebar-item">Calendar</div>
       <div className="sidebar-item">Family</div>
