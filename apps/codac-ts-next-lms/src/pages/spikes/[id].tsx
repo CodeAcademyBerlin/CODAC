@@ -1,42 +1,64 @@
 import { useRouter } from "next/router";
-import { useGetSpikeQuery } from "codac-administration";
-import Header from "../projects/components/Header";
+import Layout from "../../components/layout";
+import { useQuery } from "@apollo/client";
+import { GET_SPIKE_QUERY } from "../getSpike";
 
-export default function Projects() {
-  const PAGE_TITLE = "Spike";
+const Spike = () => {
   const router = useRouter();
   const { id } = router.query;
-  const { data } = useGetSpikeQuery({
-    variables: {
-      id,
-    },
+  const { loading, error, data } = useQuery(GET_SPIKE_QUERY , {
+    variables: { id },
   });
+    
+    console.log('data :>> ', data);
 
-  console.log(data);
-  console.log("spike", data?.spike);
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
+
+  const spike = data?.spike?.data?.attributes;
+
+  if (!spike) {
+    return <p>No spike found for ID {id}</p>;
+  }
+
+    const { title, day, url } = spike;
+    
+    console.log('spike :>> ', spike);
+
+
   return (
-    <div className="container">
-      <Header title={PAGE_TITLE} />
-      <main className="flex w-screen items-center justify-center pt-8">
+    <Layout>
+      <div className="mt-6 mb-2 flex justify-start p-5 font-semibold">
         <a
+          className="underline hover:decoration-double"
           href="#"
-          className="block max-w-3xl rounded-lg border border-gray-200 bg-white p-6 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+          onClick={() => router.back()}
         >
-          <h2 className="ui-text-xl font-extrabold dark:text-white">
-            {data?.spike?.data?.attributes?.title}
-          </h2>
-          <p className="my-4 text-gray-500">
-            Start developing with an open-source library of over 450+ UI
-            components, sections, and pages built with the utility classes from
-            Tailwind CSS and designed in Figma.
-          </p>
-          <p className="mb-4 font-normal text-gray-500 dark:text-gray-400">
-            Deliver great service experiences fast - without the complexity of
-            traditional ITSM solutions. Accelerate critical development work,
-            eliminate toil, and deploy changes with ease.
-          </p>
+          {"<<"} Back
         </a>
-      </main>
-    </div>
+      </div>
+      <div className="mx-5 flex flex-col gap-3 mb-7">
+        <p>
+            <b>Spike number:</b> {id}
+        </p>
+        <p>
+            <b>Day: </b>{day}
+        </p>
+        <p className="text-md">
+          <b>{title}</b>
+        </p>
+ 
+        <video controls>
+            <source src={spike.recording.data.attributes.url} type="video/mp4" />
+        </video>
+      </div>
+    </Layout>
   );
-}
+};
+
+export default Spike;

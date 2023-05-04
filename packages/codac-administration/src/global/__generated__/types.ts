@@ -3953,63 +3953,30 @@ export function useGetPagesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<G
 export type GetPagesQueryHookResult = ReturnType<typeof useGetPagesQuery>;
 export type GetPagesLazyQueryHookResult = ReturnType<typeof useGetPagesLazyQuery>;
 export type GetPagesQueryResult = Apollo.QueryResult<GetPagesQuery, GetPagesQueryVariables>;
-export const GetProjectsDocument = gql`
-    query getProjects {
-  projects {
-    data {
-      id
-      attributes {
-        name
-        description
-        spikes {
-          data {
-            id
-            attributes {
-              title
-              day
-            }
-          }
-        }
-      }
-    }
-  }
-}
-    `;
-
-/**
- * __useGetProjectsQuery__
- *
- * To run a query within a React component, call `useGetProjectsQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetProjectsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetProjectsQuery({
- *   variables: {
- *   },
- * });
- */
-export function useGetProjectsQuery(baseOptions?: Apollo.QueryHookOptions<GetProjectsQuery, GetProjectsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetProjectsQuery, GetProjectsQueryVariables>(GetProjectsDocument, options);
-      }
-export function useGetProjectsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetProjectsQuery, GetProjectsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetProjectsQuery, GetProjectsQueryVariables>(GetProjectsDocument, options);
-        }
-export type GetProjectsQueryHookResult = ReturnType<typeof useGetProjectsQuery>;
-export type GetProjectsLazyQueryHookResult = ReturnType<typeof useGetProjectsLazyQuery>;
-export type GetProjectsQueryResult = Apollo.QueryResult<GetProjectsQuery, GetProjectsQueryVariables>;
-export const GetSpikeDocument = gql`
-    query getSpike($id: ID!) {
-  spike(id: $id) {
+export const GetSpikesDocument = gql`
+    query getSpikes {
+  spikes {
     data {
       id
       attributes {
         title
         day
+        recording {
+          data {
+            attributes {
+              __typename
+              url
+            }
+          }
+        }
+        content {
+          data {
+            attributes {
+              __typename
+            }
+          }
+        }
+
       }
     }
   }
@@ -4017,32 +3984,33 @@ export const GetSpikeDocument = gql`
     `;
 
 /**
- * __useGetSpikeQuery__
+ * __useGetSpikesQuery__
  *
- * To run a query within a React component, call `useGetSpikeQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetSpikeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetSpikesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSpikesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetSpikeQuery({
+ * const { data, loading, error } = useGetSpikesQuery({
  *   variables: {
- *      id: // value for 'id'
  *   },
  * });
  */
-export function useGetSpikeQuery(baseOptions: Apollo.QueryHookOptions<GetSpikeQuery, GetSpikeQueryVariables>) {
+export function useGetSpikesQuery(baseOptions?: Apollo.QueryHookOptions<GetSpikesQuery, GetSpikesQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetSpikeQuery, GetSpikeQueryVariables>(GetSpikeDocument, options);
+        return Apollo.useQuery<GetSpikesQuery, GetSpikesQueryVariables>(GetSpikesDocument, options);
       }
-export function useGetSpikeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSpikeQuery, GetSpikeQueryVariables>) {
+export function useGetSpikesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSpikesQuery, GetSpikesQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetSpikeQuery, GetSpikeQueryVariables>(GetSpikeDocument, options);
+          return Apollo.useLazyQuery<GetSpikesQuery, GetSpikesQueryVariables>(GetSpikesDocument, options);
         }
-export type GetSpikeQueryHookResult = ReturnType<typeof useGetSpikeQuery>;
-export type GetSpikeLazyQueryHookResult = ReturnType<typeof useGetSpikeLazyQuery>;
-export type GetSpikeQueryResult = Apollo.QueryResult<GetSpikeQuery, GetSpikeQueryVariables>;
+export type GetSpikesQueryHookResult = ReturnType<typeof useGetSpikesQuery>;
+export type GetSpikesLazyQueryHookResult = ReturnType<typeof useGetSpikesLazyQuery>;
+export type GetSpikesQueryResult = Apollo.QueryResult<GetSpikesQuery, GetSpikesQueryVariables>;
+
 export const GetMeDocument = gql`
     query getMe {
   me {
@@ -4119,17 +4087,11 @@ export type GetPagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetPagesQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', id?: string | null, attributes?: { __typename?: 'Page', locale?: string | null, slug: string, contentSections?: Array<{ __typename?: 'ComponentSectionsFile' } | { __typename?: 'ComponentSectionsGoogleSlide' } | { __typename: 'ComponentSectionsHeader', id: string, title?: string | null, subtitle?: string | null } | { __typename?: 'ComponentSectionsHero' } | { __typename?: 'ComponentSectionsLargeVideo' } | { __typename: 'ComponentSectionsRichText', id: string, content?: string | null } | { __typename?: 'Error' } | null> | null } | null }> } | null };
 
-export type GetProjectsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetSpikesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetProjectsQuery = { __typename?: 'Query', projects?: { __typename?: 'ProjectEntityResponseCollection', data: Array<{ __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', name?: string | null, description?: string | null, spikes?: { __typename?: 'SpikeRelationResponseCollection', data: Array<{ __typename?: 'SpikeEntity', id?: string | null, attributes?: { __typename?: 'Spike', title?: string | null, day?: number | null } | null }> } | null } | null }> } | null };
+export type GetSpikesQuery = { __typename?: 'Query', spikes?: { __typename?: 'SpikeEntityResponseCollection', data: Array<{ __typename?: 'SpikeEntity', id?: string | null, attributes?: { __typename?: 'Spike', title?: string | null, day?: number | null, recording?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename: 'UploadFile', url: string } | null } | null } | null, content?: { __typename?: 'PageEntityResponse', data?: { __typename?: 'PageEntity', attributes?: { __typename: 'Page' } | null } | null } | null } | null }> } | null };
 
-export type GetSpikeQueryVariables = Exact<{
-  id: Scalars['ID'];
-}>;
-
-
-export type GetSpikeQuery = { __typename?: 'Query', spike?: { __typename?: 'SpikeEntityResponse', data?: { __typename?: 'SpikeEntity', id?: string | null, attributes?: { __typename?: 'Spike', title?: string | null, day?: number | null } | null } | null } | null };
 
 export type GetMeQueryVariables = Exact<{ [key: string]: never; }>;
 
