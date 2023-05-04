@@ -1,11 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-const colors = require('tailwindcss/colors')
+const colors = require("tailwindcss/colors");
 module.exports = {
-  content: [
-    "../../packages/toxic-ui/components/**/*.{js,ts,jsx,tsx}",
-    "./**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   darkMode: ['class', '[data-mode="dark"]'],
   theme: {
     extend: {
@@ -22,3 +18,4 @@ module.exports = {
   },
   plugins: [],
 }
+// module.exports = require("tailwind-config/tailwind.config");

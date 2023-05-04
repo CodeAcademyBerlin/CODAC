@@ -1,8 +1,5 @@
-import "../styles/globals.css";
-// include styles from the ui package
-import "codac-ui/styles.css";
-
 import { ApolloProvider } from "@apollo/client";
+import "toxic-ui/src/index.css";
 
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
