@@ -47,7 +47,7 @@ const navigation: NavLink[] = [
   //   path: '/battles',
   // },
   // {
-  //   title: 'Projects',
+  //   title: 'Project',
   //   path: '/projects',
   // },
   // {

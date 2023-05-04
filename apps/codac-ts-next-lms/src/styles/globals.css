@@ -3,8 +3,10 @@
 @tailwind utilities;
 
 .sidebar-item {
-    @apply bg-zinc-800 text-[#009688] py-2 my-1 px-3 drop-shadow-lg rounded-r-md w-full;
+  @apply my-1 w-full rounded-r-md bg-zinc-800 py-2 px-3 text-[#009688] drop-shadow-lg;
 }
-main, footer {
-    @apply text-[#009688] ;
+
+main,
+footer {
+  @apply text-[#009688];
 }

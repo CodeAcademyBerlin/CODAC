@@ -28,7 +28,7 @@ To do so you will use the platform Calendlys where it is important that you expl
 
 ### 📈 Each of the project development structure is adapted from the widely used Agile Scrum methodology, today present in most IT companies.
 
-Hence, you will work on different features in small increments of 5 to 8 days called sprints. Projects are usually between 1 and 5 sprints.
+Hence, you will work on different features in small increments of 5 to 8 days called sprints. Project are usually between 1 and 5 sprints.
 
 ### 📋 You will use Trello management and planning tool to track a backlog of tasks.
 
