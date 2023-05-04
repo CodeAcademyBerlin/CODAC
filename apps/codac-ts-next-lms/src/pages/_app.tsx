@@ -18,6 +18,7 @@ import { AuthProvider } from "../contexts/authContext";
 // import { SocketProvider } from '../contexts/socketContext';
 // import MainLayout from '../layouts/MainLayout/MainLayout';
 import { useApollo } from "../lib/apolloClient";
+import Layout from "../components/layout";
 // import ThemeComponent from '../theme/ThemeComponent';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -89,7 +90,10 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({
               content="initial-scale=1, width=device-width"
             />
           </Head>
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+
           {/* <SettingsProvider>
                 <SettingsConsumer>
                   {({ settings }) => {
