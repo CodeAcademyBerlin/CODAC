@@ -8,9 +8,19 @@ export const GetProjectsDocument = gql`
     query getProjects {
   projects {
     data {
+      id
       attributes {
         name
         description
+        spikes {
+          data {
+            id
+            attributes {
+              title
+              day
+            }
+          }
+        }
       }
     }
   }
@@ -46,4 +56,4 @@ export type GetProjectsQueryResult = Apollo.QueryResult<GetProjectsQuery, GetPro
 export type GetProjectsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetProjectsQuery = { __typename?: 'Query', projects?: { __typename?: 'ProjectEntityResponseCollection', data: Array<{ __typename?: 'ProjectEntity', attributes?: { __typename?: 'Project', name?: string | null, description?: string | null } | null }> } | null };
+export type GetProjectsQuery = { __typename?: 'Query', projects?: { __typename?: 'ProjectEntityResponseCollection', data: Array<{ __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', name?: string | null, description?: string | null, spikes?: { __typename?: 'SpikeRelationResponseCollection', data: Array<{ __typename?: 'SpikeEntity', id?: string | null, attributes?: { __typename?: 'Spike', title?: string | null, day?: number | null } | null }> } | null } | null }> } | null };

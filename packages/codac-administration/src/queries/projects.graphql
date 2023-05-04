@@ -1,10 +1,20 @@
 query getProjects {
-projects{
-  data{
-    attributes{
-      name
-      description
+  projects {
+    data {
+      id
+      attributes {
+        name
+        description
+        spikes {
+          data {
+            id
+            attributes {
+              title
+              day
+            }
+          }
+        }
+      }
     }
   }
-}
 }
