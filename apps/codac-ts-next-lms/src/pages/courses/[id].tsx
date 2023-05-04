@@ -5,18 +5,19 @@ import { GET_COURSE_QUERY } from "../getCourse";
 import {
   CourseEntity,
   GetAllCoursesDocument,
-  useGetAllCoursesQuery,
   MentorEntity,
   ProjectEntity,
   SpikeEntity,
+  Course as CourseType,
 } from "codac-administration";
 import { initializeApollo } from "../../lib/apolloClient";
 
 interface CourseProps {
-  course: CourseEntity;
+  course: CourseType;
+  id: string;
 }
 
-export default function Course({ course }: CourseProps) {
+export default function Course({ course, id }: CourseProps) {
   const { name, description, length, createdAt, projects, mentors } = course;
   return (
     <Layout>
@@ -31,7 +32,7 @@ export default function Course({ course }: CourseProps) {
       </div>
       <div className=" mx-5">
         <p>
-          <b>Course id:</b> {course?.id}
+          <b>Course id:</b> {id}
         </p>
       </div>
 
@@ -53,7 +54,7 @@ export default function Course({ course }: CourseProps) {
           <b>Related projects:</b>
           {projects?.data?.map((project: ProjectEntity, i: number) => (
             <li key={i}>
-              <h2>{project?.attributes?.title}</h2>
+              <h2>{project?.attributes?.name}</h2>
               <p>{project?.attributes?.description}</p>
               <ul>
                 {" "}
@@ -104,13 +105,13 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: { params: { id: string } }) {
   const { id } = params;
 
   const client = initializeApollo(null, null);
 
   const { data } = await client.query({
-    query: useGetAllCoursesQuery,
+    query: GET_COURSE_QUERY,
     variables: { id },
   });
 
@@ -127,6 +128,7 @@ export async function getStaticProps({ params }) {
   }
 
   return {
-    props: { course },
+    props: { course, id },
   };
 }
+
