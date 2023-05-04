@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
-import Layout from "../../components/Layout";
 import { useQuery } from "@apollo/client";
 import { GET_COURSE_QUERY } from "../getCourse";
+import { Layout } from "codac-ui";
 
 const Course = () => {
   const router = useRouter();
