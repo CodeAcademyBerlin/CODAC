@@ -11,6 +11,7 @@ const Header = ({ title }: { title: string }) => {
   return (
     <header className="fixed left-0 top-0 z-10 w-full bg-teal-500 text-white shadow-md">
       <nav className="container mx-auto px-4 py-3 md:flex md:items-center md:justify-between">
+
         <div className="flex items-center justify-between">
           <Link href="/" className="text-xl font-bold">
             {title}

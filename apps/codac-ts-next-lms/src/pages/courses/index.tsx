@@ -9,32 +9,34 @@ import {
 import Link from "next/link";
 import { initializeApollo } from "../../lib/apolloClient";
 import { GET_COURSE_QUERY } from "../../graphql/getCourse";
+import { MainContainer } from "toxic-ui";
 
 export default function Courses({ courses }: { courses: CourseEntity[] }) {
   return (
-    <div className="container">
-      <div className="flex justify-between">
-        <div className="flex flex-col overflow-y-auto px-1 py-7 ">
-          <h4 className=" my-2 bg-zinc-800 p-3 font-bold text-[#009688] shadow-xl">
-            Courses
-          </h4>
-          <div>
-            {courses &&
-              courses.map((course, i) => {
-                return (
-                  <div
-                    className="my-2 w-[75vw] bg-zinc-800 p-3 text-[#009688] shadow-xl"
-                    key={i}
-                  >
-                    <p>
-                      <strong>Name of the course:</strong> &emsp;{" "}
-                      {course?.attributes?.name}
-                    </p>
-                    <p>
-                      <strong>Description:</strong>
-                      &emsp;
-                      {course?.attributes?.description}
-                    </p>
+    <MainContainer>
+      <div className="mt-80 flex justify-between">
+        <h4 className=" my-2 bg-zinc-800 p-3 font-bold text-[#009688] shadow-xl">
+          Courses
+        </h4>
+        <div>
+          {courses &&
+            courses.map((course, i) => {
+              return (
+                <div
+                  className="my-2 w-[75vw] bg-zinc-800 p-3 text-[#009688] shadow-xl"
+                  key={i}
+                >
+                  <p>
+                    <strong>Name of the course:</strong> &emsp;{" "}
+                    {course?.attributes?.name}
+                  </p>
+                  <p>
+                    <strong>Description:</strong>
+                    &emsp;
+                    {course?.attributes?.description}
+                  </p>
+                  <div className="flex flex-col">
+
                     <div className="flex flex-col">
                       <div className="flex flex-col">
                         {course?.attributes?.mentors?.data?.map((mentor, i) => (
@@ -90,7 +92,8 @@ export default function Courses({ courses }: { courses: CourseEntity[] }) {
           </div>
         </div>
       </div>
-    </div>
+    </MainContainer>
+
   );
 }
 export async function getStaticProps() {

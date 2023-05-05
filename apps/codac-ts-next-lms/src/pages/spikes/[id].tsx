@@ -31,8 +31,8 @@ const Spike = () => {
   console.log("spike :>> ", spike);
 
   return (
-    <Layout>
-      <div className="mt-6 mb-2 flex justify-start p-5 font-semibold">
+    <>
+      <div className="mb-2 mt-6 flex justify-start p-5 font-semibold">
         <a
           className="underline hover:decoration-double"
           href="#"
@@ -57,7 +57,7 @@ const Spike = () => {
           <source src={spike.recording.data.attributes.url} type="video/mp4" />
         </video>
       </div>
-    </Layout>
+    </>
   );
 };
 
