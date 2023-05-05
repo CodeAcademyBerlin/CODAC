@@ -21,8 +21,8 @@ export default function Course({ course, id }: CourseProps) {
   const router = useRouter();
   const { name, description, length, createdAt, projects, mentors } = course;
   return (
-    <Layout>
-      <div className="mt-6 mb-2 flex justify-start p-5 font-semibold">
+    <>
+      <div className="mb-2 mt-6 flex justify-start p-5 font-semibold">
         <a
           className="underline hover:decoration-double"
           href="#"
@@ -83,7 +83,7 @@ export default function Course({ course, id }: CourseProps) {
           ))}
         </ul>
       </div>
-    </Layout>
+    </>
   );
 }
 
