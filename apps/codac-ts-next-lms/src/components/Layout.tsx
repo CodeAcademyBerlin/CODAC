@@ -3,6 +3,7 @@ import { Navbar, RainbowCursor } from "toxic-ui";
 import Header from "./Header";
 import Link from "next/link";
 
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
@@ -17,6 +18,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         ></Navbar>
       </Link>
       {/* <Header title="CODAC LMS" /> */}
+
 
       {children}
     </>

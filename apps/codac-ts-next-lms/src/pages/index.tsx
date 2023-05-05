@@ -7,6 +7,7 @@ export default function Home() {
   const [celebrate, setCelebrate] = useState(false);
   return (
     <MainContainer>
+
       <Card
         img={
           "https://storage.googleapis.com/lms-codeacademyberlin/cohorts/logo/636e643451f2fa36938aa1e8.jpg"
@@ -30,6 +31,7 @@ export default function Home() {
         {celebrate && <ParticlesComp type="confetti" />}
         <button onClick={() => setCelebrate(true)}>?</button>
       </div>
+
     </MainContainer>
   );
 }

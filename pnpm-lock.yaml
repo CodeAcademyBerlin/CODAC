@@ -43,12 +43,14 @@ importers:
       react: ^18.2.0
       react-dom: ^18.2.0
       react-particles: ^2.9.3
+
       tailwind-config: workspace:*
       tailwindcss: ^3.2.4
       toxic-ui: workspace:*
       tsconfig: workspace:*
       tsparticles: ^2.9.3
       tsparticles-engine: ^2.9.3
+
       typescript: ^4.9.4
     dependencies:
       '@apollo/client': 3.7.14_wxfjnvblbhu4ianu4f2qg722fu
@@ -13006,6 +13008,7 @@ packages:
       tsparticles-engine: 2.9.3
     dev: false
 
+
   /react-refresh/0.11.0:
     resolution: {integrity: sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==}
     engines: {node: '>=0.10.0'}
@@ -14924,6 +14927,7 @@ packages:
       tsparticles-updater-twinkle: 2.9.3
       tsparticles-updater-wobble: 2.9.3
     dev: false
+
 
   /tsup/6.7.0_6qtx7vkbdhwvdm4crzlegk4mvi:
     resolution: {integrity: sha512-L3o8hGkaHnu5TdJns+mCqFsDBo83bJ44rlK7e6VdanIvpea4ArPcU3swWGsLVbXak1PqQx/V+SSmFPujBK+zEQ==}

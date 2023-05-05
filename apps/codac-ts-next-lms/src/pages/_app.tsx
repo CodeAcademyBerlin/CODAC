@@ -20,6 +20,7 @@ import { AuthProvider } from "../contexts/authContext";
 import { useApollo } from "../lib/apolloClient";
 import Layout from "../components/Layout";
 import { RainbowCursor } from "toxic-ui";
+
 // import ThemeComponent from '../theme/ThemeComponent';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -92,6 +93,7 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({
             />
           </Head>
           <RainbowCursor />
+
           <Layout>
             <Component {...pageProps} />
           </Layout>

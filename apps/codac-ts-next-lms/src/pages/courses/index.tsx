@@ -36,54 +36,64 @@ export default function Courses({ courses }: { courses: CourseEntity[] }) {
                     {course?.attributes?.description}
                   </p>
                   <div className="flex flex-col">
+
                     <div className="flex flex-col">
-                      {course?.attributes?.mentors?.data?.map((mentor, i) => (
-                        <div key={i}>
-                          <strong>Mentor {i + 1}:</strong> &emsp;
-                          <span>
-                            {
-                              mentor?.attributes?.user?.data?.attributes
-                                ?.firstname
-                            }{" "}
-                            {
-                              mentor?.attributes?.user?.data?.attributes
-                                ?.lastname
-                            }{" "}
-                            ({mentor?.attributes?.user?.data?.attributes?.email}
-                            )
-                          </span>
-                        </div>
-                      ))}
+                      <div className="flex flex-col">
+                        {course?.attributes?.mentors?.data?.map((mentor, i) => (
+                          <div key={i}>
+                            <strong>Mentor {i + 1}:</strong> &emsp;
+                            <span>
+                              {
+                                mentor?.attributes?.user?.data?.attributes
+                                  ?.firstname
+                              }{" "}
+                              {
+                                mentor?.attributes?.user?.data?.attributes
+                                  ?.lastname
+                              }{" "}
+                              (
+                              {
+                                mentor?.attributes?.user?.data?.attributes
+                                  ?.email
+                              }
+                              )
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex">
+                        <strong>Related projects:</strong> &emsp;
+                        {course?.attributes?.projects?.data?.map(
+                          (project, i) => (
+                            <span key={i}>
+                              {project?.attributes?.name} <br />
+                              <b>Description:</b>{" "}
+                              {project?.attributes?.description} <br />
+                              <b>Published at:</b>{" "}
+                              {project?.attributes?.publishedAt}
+                            </span>
+                          )
+                        )}
+                      </div>
                     </div>
-                    <div className="flex">
-                      <strong>Related projects:</strong> &emsp;
-                      {course?.attributes?.projects?.data?.map((project, i) => (
-                        <span key={i}>
-                          {project?.attributes?.name} <br />
-                          <b>Description:</b> {project?.attributes?.description}{" "}
-                          <br />
-                          <b>Published at:</b>{" "}
-                          {project?.attributes?.publishedAt}
-                        </span>
-                      ))}
-                    </div>
+                    <p>
+                      <strong>Period:</strong> &emsp;
+                      {course?.attributes?.length} months
+                    </p>
+                    <Link
+                      className="flex justify-end font-bold underline hover:decoration-double"
+                      href={`courses/${course?.id}`}
+                    >
+                      Course page {">>"}
+                    </Link>
                   </div>
-                  <p>
-                    <strong>Period:</strong> &emsp;
-                    {course?.attributes?.length} months
-                  </p>
-                  <Link
-                    className="flex justify-end font-bold underline hover:decoration-double"
-                    href={`courses/${course?.id}`}
-                  >
-                    Course page {">>"}
-                  </Link>
-                </div>
-              );
-            })}
+                );
+              })}
+          </div>
         </div>
       </div>
     </MainContainer>
+
   );
 }
 export async function getStaticProps() {
