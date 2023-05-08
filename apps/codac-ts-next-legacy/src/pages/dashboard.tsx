@@ -100,7 +100,6 @@ import { FilterStudentByUserIdDocument } from 'cabServer/queries/__generated__/s
 import jwt_decode, { JwtPayload } from 'jwt-decode';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
 import AchievementsSuspense from 'src/components/dashboard/AchievementsSuspense';
-import CohortSuspense from 'src/components/dashboard/CohortSuspense';
 import ProgressBarSuspense from 'src/components/dashboard/ProgressBarSuspense';
 
 import Achievements from '../components/achievements-page/Achievements';
@@ -156,7 +155,6 @@ const Dashboard = () =>
             {/* {myStudent?.cohort?.data?.attributes && (
               <CohortCard cohort={myStudent.cohort.data.attributes} />
             )} */}
-            <CohortSuspense />
           </Grid>
           <Grid item xs={12} md={6} lg={4}>
             {/* <OpenAiImage /> */}
