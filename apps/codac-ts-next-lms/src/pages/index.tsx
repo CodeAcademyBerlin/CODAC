@@ -1,37 +1,49 @@
-import Link from "next/link";
-import { Button, Card, MainContainer, Navbar, RainbowCursor } from "toxic-ui";
-import ParticlesComp from "../components/Particles/Particles";
-import { useState } from "react";
+import Head from "next/head";
+import { Button } from "codac-ui";
+import Layout from "../components/Layout";
+
+const CARD_CONTENT = [
+  {
+    title: "Caching Tasks",
+    href: "https://turbo.build/repo/docs/core-concepts/caching",
+    cta: "Read More",
+  },
+  {
+    title: "Running Tasks",
+    href: "https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks",
+    cta: "Read More",
+  },
+  {
+    title: "Configuration Options",
+    href: "https://turbo.build/repo/docs/reference/configuration",
+    cta: "Read More",
+  },
+];
 
 export default function Home() {
-  const [celebrate, setCelebrate] = useState(false);
   return (
-    <MainContainer>
+    <div className="flex flex-col items-center justify-center py-2">
+      <Head>
+        <title>Web - Turborepo Example</title>
+      </Head>
 
-      <Card
-        img={
-          "https://storage.googleapis.com/lms-codeacademyberlin/cohorts/logo/636e643451f2fa36938aa1e8.jpg"
-        }
-        title="Powered by Toxic-UI"
-        key={1}
-      />
-      <div className="mt-5 flex w-full justify-around">
-        {" "}
-        <Link href="/courses">
-          <Button label="Courses" shape="rounded" />
-        </Link>
-        <Link href="/projects">
-          <Button label="Projects" shape="rounded" />
-        </Link>
-        <Link href="/spikes">
-          <Button label="Spikes" shape="rounded" />
-        </Link>
-      </div>
-      <div className="mt-20 flex w-full justify-around">
-        {celebrate && <ParticlesComp type="confetti" />}
-        <button onClick={() => setCelebrate(true)}>?</button>
-      </div>
+      <main className="mx-auto w-auto px-4 pb-8 pt-16 sm:pt-24 lg:px-8">
+        <h1 className="mx-auto text-center text-6xl font-extrabold tracking-tight text-white sm:text-7xl lg:text-8xl xl:text-8xl">
+          Web
+          <span className="from-brandred to-brandblue block bg-gradient-to-r bg-clip-text px-2 text-transparent">
+            Turborepo Example
+          </span>
+        </h1>
+        <div className="mx-auto mt-5 max-w-xl sm:flex sm:justify-center md:mt-8">
+          <Button title="test">Test</Button>
+        </div>
 
-    </MainContainer>
+        <div className="mt-12 grid grid-cols-1 place-content-evenly gap-4 sm:grid-cols-3">
+          {/* {CARD_CONTENT.map((card) => (
+            <Card key={card.title} {...card} />
+          ))} */}
+        </div>
+      </main>
+    </div>
   );
 }

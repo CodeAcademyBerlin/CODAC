@@ -1,4 +1,4 @@
 module.exports = {
   reactStrictMode: true,
-  transpilePackages: ["toxic-ui"],
+  transpilePackages: ["toxic-ui", "codac-ui"],
 };

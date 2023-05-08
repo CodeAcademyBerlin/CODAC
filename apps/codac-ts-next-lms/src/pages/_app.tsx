@@ -1,5 +1,7 @@
 import { ApolloProvider } from "@apollo/client";
-import "toxic-ui/src/index.css";
+// import "toxic-ui/src/index.css";
+import "codac-ui/styles/main.css";
+import "styles/globals.css";
 
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
@@ -18,8 +20,10 @@ import { AuthProvider } from "../contexts/authContext";
 // import { SocketProvider } from '../contexts/socketContext';
 // import MainLayout from '../layouts/MainLayout/MainLayout';
 import { useApollo } from "../lib/apolloClient";
-import Layout from "../components/Layout";
-import { RainbowCursor } from "toxic-ui";
+// import Layout from "../components/Layout";
+// import Layout from "../components/Layout";
+import { Layout } from "codac-ui";
+import { navigation } from "../lib/navigation";
 
 // import ThemeComponent from '../theme/ThemeComponent';
 
@@ -72,32 +76,23 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({
       Router.events.off("routeChangeError", end);
     };
   }, []);
-  // const getLayout = Component.getLayout ?? MainLayout;
-  // const getLayout = Component.getLayout ?? ((page) => <MainLayout loading={loading} >{page}</MainLayout>)
+  const getLayout =
+    Component.getLayout ??
+    ((page) => (
+      <Layout header="CODAC LMS" navigation={navigation}>
+        {page}
+      </Layout>
+    ));
 
   return (
     <>
       <ApolloProvider client={apolloClient}>
         <AuthProvider>
+          {/* <Component {...pageProps} /> */}
           {/*  <SocketProvider> */}
-          <Head>
-            <title>CODAC</title>
-            <meta
-              name="Code Academy Berlin Community App"
-              content={`CODAC – Code Academy Berlin Community App`}
-            />
-            <link rel="shortcut icon" href={favicon.src} />
-            <meta
-              name="viewport"
-              content="initial-scale=1, width=device-width"
-            />
-          </Head>
-          <RainbowCursor />
-
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-
+          {getLayout(<Component {...pageProps} />)}
+          {/* <Layout>
+          </Layout> */}
           {/* <SettingsProvider>
                 <SettingsConsumer>
                   {({ settings }) => {

@@ -36,7 +36,6 @@ export default function Courses({ courses }: { courses: CourseEntity[] }) {
                     {course?.attributes?.description}
                   </p>
                   <div className="flex flex-col">
-
                     <div className="flex flex-col">
                       <div className="flex flex-col">
                         {course?.attributes?.mentors?.data?.map((mentor, i) => (
@@ -87,13 +86,12 @@ export default function Courses({ courses }: { courses: CourseEntity[] }) {
                       Course page {">>"}
                     </Link>
                   </div>
-                );
-              })}
-          </div>
+                </div>
+              );
+            })}
         </div>
       </div>
     </MainContainer>
-
   );
 }
 export async function getStaticProps() {
