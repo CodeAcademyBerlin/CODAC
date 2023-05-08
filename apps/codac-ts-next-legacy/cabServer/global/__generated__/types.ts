@@ -74,11 +74,6 @@ export type AchievementInput = {
   type?: InputMaybe<Enum_Achievement_Type>;
 };
 
-export type AchievementRelationResponseCollection = {
-  __typename?: 'AchievementRelationResponseCollection';
-  data: Array<AchievementEntity>;
-};
-
 export type Attendance = {
   __typename?: 'Attendance';
   createdAt?: Maybe<Scalars['DateTime']>;
@@ -2586,7 +2581,7 @@ export type Project = {
   name?: Maybe<Scalars['String']>;
   pages?: Maybe<PageRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']>;
-  spikes?: Maybe<AchievementRelationResponseCollection>;
+  spikes?: Maybe<SpikeRelationResponseCollection>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -2600,8 +2595,9 @@ export type ProjectPagesArgs = {
 
 
 export type ProjectSpikesArgs = {
-  filters?: InputMaybe<AchievementFiltersInput>;
+  filters?: InputMaybe<SpikeFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -2633,7 +2629,7 @@ export type ProjectFiltersInput = {
   or?: InputMaybe<Array<InputMaybe<ProjectFiltersInput>>>;
   pages?: InputMaybe<PageFiltersInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
-  spikes?: InputMaybe<AchievementFiltersInput>;
+  spikes?: InputMaybe<SpikeFiltersInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
@@ -3046,6 +3042,11 @@ export type SpikeInput = {
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   recording?: InputMaybe<Scalars['ID']>;
   title?: InputMaybe<Scalars['String']>;
+};
+
+export type SpikeRelationResponseCollection = {
+  __typename?: 'SpikeRelationResponseCollection';
+  data: Array<SpikeEntity>;
 };
 
 export type StringFilterInput = {

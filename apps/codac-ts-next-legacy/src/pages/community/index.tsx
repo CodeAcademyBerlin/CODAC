@@ -262,14 +262,14 @@ function Community({
                             </Link>
                           </div>
                           <p>Graduation: {student.attributes?.end_date}</p>
-                          <p className="align-right">
+                          {/* <p className="align-right">
                             <b>
                               {
                                 student.attributes?.main_course?.data
                                   ?.attributes?.name
                               }
                             </b>
-                          </p>
+                          </p> */}
                         </StudentContent>
                       );
                     })}
