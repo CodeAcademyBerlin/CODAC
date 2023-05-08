@@ -26,3 +26,8 @@
   "include": ["src", "env.d.ts", "**/*.ts", "**/*.tsx", "next-env.d.ts"],
   "exclude": ["node_modules", "cypress", "cypress.config.ts"]
 }
+// {
+//   "extends": "tsconfig/nextjs.json",
+//   "include": ["src", "env.d.ts", "**/*.ts", "**/*.tsx", "next-env.d.ts"],
+//   "exclude": ["node_modules", "cypress", "cypress.config.ts"]
+// }
