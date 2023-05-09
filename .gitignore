@@ -12,6 +12,7 @@ coverage
 .next/
 out/
 build
+storybook-static/
 storybook-static
 .swc/
 
@@ -38,3 +39,4 @@ dist/
 
 # Intellij
 .idea
+packages/codac-ui/storybook-static/project.json
