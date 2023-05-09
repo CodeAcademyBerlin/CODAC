@@ -1,6 +1,4 @@
 import Head from "next/head";
-import { AddressBar } from "./address-bar";
-import { GlobalNav, Item } from "./global-nav";
 
 export function Layout({
   children,
@@ -11,7 +9,7 @@ export function Layout({
 }) {
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>CODAC</title>
         <meta
           name="Code Academy Berlin Community App"
@@ -19,7 +17,7 @@ export function Layout({
         />
         <link rel="shortcut icon" href="public/favicon.ico" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-      </Head>
+      </Head> */}
       {navigation}
 
       <div className="lg:pl-72">

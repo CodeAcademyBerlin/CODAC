@@ -5,9 +5,10 @@
     "build": {
       "env": ["NEXT_PUBLIC_CODAC_ADMINISTRATION_URL"],
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**", "storybook-static/**"]
+      "outputs": ["dist/**", ".next/**"]
     },
-    "storybook": {
+    "storybook": {},
+    "storybook-build": {
       "outputs": ["storybook-static/**"]
     },
     "lint": {},

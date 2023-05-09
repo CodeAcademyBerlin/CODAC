@@ -1,6 +1,4 @@
 "use client";
-import Header from "../../components/Header";
-
 import { useGetProjectsQuery } from "codac-administration";
 import { useState } from "react";
 import Sidebar from "../../components/Sidebar";
@@ -20,7 +18,7 @@ export default function Page() {
   return (
     <div className="container">
       <div className="flex justify-between">
-        <nav className="w-64 py-16 h-screen bg-gray-200 pt-6 shadow">
+        <nav className="h-screen w-64 bg-gray-200 py-16 pt-6 shadow">
           {projectItems && (
             <Sidebar onClick={setProjectId} links={projectItems} />
           )}

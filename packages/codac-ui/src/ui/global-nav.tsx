@@ -1,13 +1,9 @@
-"use client";
-
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { MenuAlt2Icon, XIcon } from "@heroicons/react/solid";
 import clsx from "clsx";
 import { useState } from "react";
-import { Byline } from "./byline";
 import { CodacLogo } from "./codac-logo";
-import ThemeSwitch from "./theme-provider/theme-switch";
 export type Item = {
   name: string;
   slug: string;
@@ -24,16 +20,7 @@ export function GlobalNav({
   const close = () => setIsOpen(false);
 
   return (
-    <div
-      className="fixed top-0 z-10 flex w-full flex-col border-b border-gray-800 dark:bg-black 
-    lg:bottom-0
-    lg:z-auto
-    lg:w-72
-    lg:border-b-0
-    lg:border-r
-    lg:border-gray-800
-    "
-    >
+    <div className="fixed top-0 z-10 flex w-full flex-col border-b border-gray-800 dark:bg-black lg:bottom-0 lg:z-auto lg:w-72 lg:border-b-0 lg:border-r lg:border-gray-800">
       <div className="flex h-14 items-center px-4 py-4 lg:h-auto">
         <Link
           href="/"
@@ -49,18 +36,20 @@ export function GlobalNav({
           </h3>
         </Link>
       </div>
-      <div className="group absolute right-0 top-0 flex h-14 items-center gap-x-2 px-4 lg:hidden">
-        <button type="button" onClick={() => setIsOpen(!isOpen)}>
-          <div className="font-medium text-gray-100 group-hover:text-gray-400">
-            Menu
-          </div>
-          {isOpen ? (
-            <XIcon className="block w-6 text-gray-400" />
-          ) : (
-            <MenuAlt2Icon className="block w-6 text-gray-400" />
-          )}
-        </button>
-      </div>
+      <button
+        type="button"
+        className="group absolute right-0 top-0 flex h-14 items-center gap-x-2 px-4 lg:hidden"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <div className="font-medium text-gray-100 group-hover:text-gray-400">
+          Menu
+        </div>
+        {isOpen ? (
+          <XIcon className="block w-6 text-gray-400" />
+        ) : (
+          <MenuAlt2Icon className="block w-6 text-gray-400" />
+        )}
+      </button>
       <div
         className={clsx("overflow-y-auto lg:static lg:block", {
           "fixed inset-x-0 bottom-0 top-14 mt-px bg-black": isOpen,

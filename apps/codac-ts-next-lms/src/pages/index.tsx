@@ -1,12 +1,10 @@
 import Head from "next/head";
-import { ThemeSwitch } from "codac-ui";
 import Link from "next/link";
 import { navigation } from "../lib/navigation";
 
 export default function Home() {
   return (
     <div className="space-y-8">
-      <ThemeSwitch />
       <h1 className="text-xl font-medium text-gray-300">Examples</h1>
       <div className="space-y-10 text-white">
         {navigation.map((section) => {

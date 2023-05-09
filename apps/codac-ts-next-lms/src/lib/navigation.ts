@@ -18,6 +18,21 @@ export const navigation: { name: string; items: Item[] }[] = [
         slug: "projects",
         description: "Projects",
       },
+      {
+        name: "Spikes",
+        slug: "spikes",
+        description: "Spikes",
+      },
+    ],
+  },
+  {
+    name: "Pages",
+    items: [
+      {
+        name: "Pages",
+        slug: "test",
+        description: "Pages",
+      },
     ],
   },
   {

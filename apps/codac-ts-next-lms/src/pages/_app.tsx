@@ -1,6 +1,6 @@
 import { ApolloProvider } from "@apollo/client";
 import "codac-ui/styles/main.css";
-import "styles/globals.css";
+// import "styles/globals.css";
 
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";

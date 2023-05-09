@@ -31,10 +31,11 @@
     "build:css": "pnpm tailwindcss -i ./src/input.css -o ./dist/styles/main.css",
     "build:js": "tsup src/index.ts --format esm,cjs --external react,next --dts",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook-build": "storybook build -o ./storybook-static"
   },
   "types": "./dist/index.d.ts",
   "exports": {
+    "./styles.css": "./src/input.css",
     ".": {
       "import": "./dist/index.js",
       "require": "./dist/index.js"
