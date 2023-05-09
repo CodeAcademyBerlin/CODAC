@@ -6,7 +6,7 @@ import { demos } from "../../demo/demos";
 
 export const Page = () => {
   return (
-    <body className="bg-gray-1100 ">
+    <body className="overflow-y-scroll bg-gray-1100">
       <Layout navigation={<GlobalNav navigation={demos} header="Demo" />}>
         <div className="space-y-8">
           <h1 className="text-xl font-medium text-gray-300">Examples</h1>

@@ -14,7 +14,6 @@
     "@types/nprogress": "^0.2.0",
     "apollo-link-context": "^1.0.20",
     "apollo-upload-client": "^17.0.0",
-    "toxic-ui": "workspace:*",
     "codac-ui": "workspace:*",
     "next": "latest",
     "nookies": "^2.5.2",
