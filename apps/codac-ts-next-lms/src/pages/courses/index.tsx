@@ -1,16 +1,6 @@
-import {
-  Course,
-  CourseEntity,
-  CourseEntityResponseCollection,
-  GetAllCoursesDocument,
-  GetAllCoursesQuery,
-  useGetAllCoursesQuery,
-} from "codac-administration";
-import Link from "next/link";
+import { CourseEntity, GetAllCoursesDocument } from "codac-administration";
 import { initializeApollo } from "../../lib/apolloClient";
-import { GET_COURSE_QUERY } from "../../graphql/getCourse";
-import { MainContainer } from "toxic-ui";
-import { AddressBar, Card, Particles } from "codac-ui";
+import { Card } from "codac-ui";
 
 export default function Courses({ courses }: { courses: CourseEntity[] }) {
   return (

@@ -1,11 +1,10 @@
-import Head from "next/head";
 import Link from "next/link";
 import { navigation } from "../lib/navigation";
 
 export default function Home() {
   return (
     <div className="space-y-8">
-      <h1 className="text-xl font-medium text-gray-300">Examples</h1>
+      <h1 className="text-xl font-medium text-gray-300">CODAC LMS</h1>
       <div className="space-y-10 text-white">
         {navigation.map((section) => {
           return (

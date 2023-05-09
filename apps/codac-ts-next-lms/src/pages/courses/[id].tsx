@@ -10,7 +10,6 @@ import {
 } from "codac-administration";
 import { initializeApollo } from "../../lib/apolloClient";
 import { GET_COURSE_QUERY } from "../../graphql/getCourse";
-import { AddressBar } from "codac-ui";
 
 interface CourseProps {
   course: CourseType;

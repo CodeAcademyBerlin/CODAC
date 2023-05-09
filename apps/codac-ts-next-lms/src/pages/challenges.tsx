@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { useGetChallengesQuery } from "codac-administration";
 
 export default function Challenges() {
