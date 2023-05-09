@@ -1,32 +1,21 @@
 import { ApolloProvider } from "@apollo/client";
-// import "toxic-ui/src/index.css";
 import "codac-ui/styles/main.css";
 import "styles/globals.css";
 
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
-import Head from "next/head";
 import Router from "next/router";
 // // ** Loader Import
 import NProgress from "nprogress";
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
 
-import favicon from "../../public/favicon.ico";
 import { AuthProvider } from "../contexts/authContext";
-// import {
-//   SettingsConsumer,
-//   SettingsProvider,
-// } from '../contexts/settingsContext';
-// import { SocketProvider } from '../contexts/socketContext';
-// import MainLayout from '../layouts/MainLayout/MainLayout';
-import { useApollo } from "../lib/apolloClient";
-// import Layout from "../components/Layout";
-// import Layout from "../components/Layout";
-import { Layout, GlobalNav } from "codac-ui";
-import { navigation } from "../lib/navigation";
-// import { Layout } from "../components/Layout";
 
-// import ThemeComponent from '../theme/ThemeComponent';
+import { useApollo } from "../lib/apolloClient";
+
+import { Layout, GlobalNav, ThemeProvider } from "codac-ui";
+import { navigation } from "../lib/navigation";
+import { Theme } from "tsparticles-engine";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -34,10 +23,7 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
-  // emotionCache: EmotionCache;
 };
-
-// const clientSideEmotionCache = createEmotionCache();
 
 // ** Pace Loader
 Router.events.on("routeChangeStart", () => {
@@ -81,7 +67,6 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({
     Component.getLayout ??
     ((page) => (
       <Layout
-        header="CODAC LMS"
         navigation={<GlobalNav navigation={navigation} header="CODAC LMS" />}
       >
         {page}
@@ -92,12 +77,13 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({
     <>
       <ApolloProvider client={apolloClient}>
         <AuthProvider>
-          {/* <Component {...pageProps} /> */}
-          {/*  <SocketProvider> */}
-          {getLayout(<Component {...pageProps} />)}
-          {/* <Layout>
+          <ThemeProvider>
+            {/* <Component {...pageProps} /> */}
+            {/*  <SocketProvider> */}
+            {getLayout(<Component {...pageProps} />)}
+            {/* <Layout>
           </Layout> */}
-          {/* <SettingsProvider>
+            {/* <SettingsProvider>
                 <SettingsConsumer>
                   {({ settings }) => {
                     return (
@@ -109,6 +95,7 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({
                 </SettingsConsumer>
               </SettingsProvider> 
           </SocketProvider>*/}
+          </ThemeProvider>
         </AuthProvider>
       </ApolloProvider>
     </>

@@ -23,30 +23,16 @@ export default function Course({ course, id }: CourseProps) {
   return (
     <>
       <div className="space-y-8 lg:space-y-14">
-        <div className="grid grid-cols-4 gap-6">
-          <div className="col-span-full space-y-4 lg:col-span-2">
-            <h1 className="truncate text-xl font-medium text-white lg:text-3xl">
-              {name}
-            </h1>
+        <div className="col-span-full space-y-4 lg:col-span-2">
+          <h1 className="truncate text-xl font-medium text-white lg:text-3xl">
+            {name}
+          </h1>
 
-            <div className="space-y-4 text-gray-200">{description}</div>
-          </div>
+          <div className="space-y-4 text-gray-200">{description}</div>
         </div>
-      </div>
 
-      {/* <div className="mx-5 flex flex-col gap-2">
-        <h1 className="py-2">
-          <b>{name}</b>
-        </h1>
-        <p>{description}</p>
-        <p>
-          <b>Length:</b> {length} months
-        </p>
-        <p>
-          <b>Created at:</b> {createdAt}
-        </p>
+        <b>Related projects:</b>
         <ul>
-          <b>Related projects:</b>
           {projects?.data?.map((project: ProjectEntity, i: number) => (
             <li key={i}>
               <h2>{project?.attributes?.name}</h2>
@@ -75,8 +61,8 @@ export default function Course({ course, id }: CourseProps) {
               </p>
             </li>
           ))}
-        </ul> 
-      </div>*/}
+        </ul>
+      </div>
     </>
   );
 }

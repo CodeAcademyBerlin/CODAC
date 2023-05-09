@@ -7,6 +7,9 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**", "storybook-static/**"]
     },
+    "storybook": {
+      "outputs": ["storybook-static/**"]
+    },
     "lint": {},
     "check-types": {},
     "dev": {

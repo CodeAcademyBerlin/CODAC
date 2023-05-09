@@ -28,7 +28,7 @@ export default function Document() {
         /> */}
         <link href="public/favicon.ico" rel="shortcut icon" />
       </Head>
-      <body className="overflow-y-scroll bg-gray-1100">
+      <body className="overflow-y-scroll dark:bg-gray-1100">
         <Main />
         <NextScript />
       </body>

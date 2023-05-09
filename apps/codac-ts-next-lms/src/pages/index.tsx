@@ -1,13 +1,13 @@
 import Head from "next/head";
-import { Button } from "codac-ui";
+import { ThemeSwitch } from "codac-ui";
 import Link from "next/link";
 import { navigation } from "../lib/navigation";
 
 export default function Home() {
   return (
-  <div className="space-y-8">
+    <div className="space-y-8">
+      <ThemeSwitch />
       <h1 className="text-xl font-medium text-gray-300">Examples</h1>
-
       <div className="space-y-10 text-white">
         {navigation.map((section) => {
           return (
@@ -29,7 +29,7 @@ export default function Home() {
                       </div>
 
                       {item.description ? (
-                        <div className="text-sm text-gray-400 line-clamp-3 group-hover:text-gray-300">
+                        <div className="line-clamp-3 text-sm text-gray-400 group-hover:text-gray-300">
                           {item.description}
                         </div>
                       ) : null}

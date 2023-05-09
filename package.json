@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
+    "storybook": "turbo run storybook",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "clean": "turbo run clean",

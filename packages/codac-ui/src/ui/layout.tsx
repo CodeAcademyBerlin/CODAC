@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { AddressBar } from "./address-bar";
 import { GlobalNav, Item } from "./global-nav";
 
@@ -10,6 +11,15 @@ export function Layout({
 }) {
   return (
     <>
+      <Head>
+        <title>CODAC</title>
+        <meta
+          name="Code Academy Berlin Community App"
+          content={`CODAC – Code Academy Berlin Community App`}
+        />
+        <link rel="shortcut icon" href="public/favicon.ico" />
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </Head>
       {navigation}
 
       <div className="lg:pl-72">
@@ -20,8 +30,10 @@ export function Layout({
             </div>
           </div> */}
 
-          <div className="rounded-lg bg-vc-border-gradient p-px shadow-lg shadow-black/20">
-            <div className="rounded-lg bg-black p-3.5 lg:p-6">{children}</div>
+          <div className="rounded-lg p-px dark:bg-vc-border-gradient dark:shadow-lg dark:shadow-black/20">
+            <div className="rounded-lg p-3.5 dark:bg-black lg:p-6">
+              {children}
+            </div>
           </div>
           {/* <Byline className="fixed sm:hidden" /> */}
         </div>

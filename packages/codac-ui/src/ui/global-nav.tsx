@@ -7,6 +7,7 @@ import clsx from "clsx";
 import { useState } from "react";
 import { Byline } from "./byline";
 import { CodacLogo } from "./codac-logo";
+import ThemeSwitch from "./theme-provider/theme-switch";
 export type Item = {
   name: string;
   slug: string;
@@ -24,7 +25,7 @@ export function GlobalNav({
 
   return (
     <div
-      className="fixed top-0 z-10 flex w-full flex-col border-b border-gray-800 bg-black 
+      className="fixed top-0 z-10 flex w-full flex-col border-b border-gray-800 dark:bg-black 
     lg:bottom-0
     lg:z-auto
     lg:w-72
@@ -48,21 +49,18 @@ export function GlobalNav({
           </h3>
         </Link>
       </div>
-      <button
-        type="button"
-        className="group absolute right-0 top-0 flex h-14 items-center gap-x-2 px-4 lg:hidden"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <div className="font-medium text-gray-100 group-hover:text-gray-400">
-          Menu
-        </div>
-        {isOpen ? (
-          <XIcon className="block w-6 text-gray-400" />
-        ) : (
-          <MenuAlt2Icon className="block w-6 text-gray-400" />
-        )}
-      </button>
-
+      <div className="group absolute right-0 top-0 flex h-14 items-center gap-x-2 px-4 lg:hidden">
+        <button type="button" onClick={() => setIsOpen(!isOpen)}>
+          <div className="font-medium text-gray-100 group-hover:text-gray-400">
+            Menu
+          </div>
+          {isOpen ? (
+            <XIcon className="block w-6 text-gray-400" />
+          ) : (
+            <MenuAlt2Icon className="block w-6 text-gray-400" />
+          )}
+        </button>
+      </div>
       <div
         className={clsx("overflow-y-auto lg:static lg:block", {
           "fixed inset-x-0 bottom-0 top-14 mt-px bg-black": isOpen,
@@ -86,6 +84,7 @@ export function GlobalNav({
             );
           })}
         </nav>
+
         {/* <Byline className="absolute hidden sm:block" /> */}
       </div>
     </div>
