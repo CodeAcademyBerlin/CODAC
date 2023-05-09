@@ -259,7 +259,6 @@ importers:
       react-particles: ^2.9.3
       tailwind-config: workspace:*
       tailwindcss: ^3.2.4
-      toxic-ui: workspace:*
       tsconfig: workspace:*
       tsparticles: ^2.9.3
       tsparticles-engine: ^2.9.3
@@ -277,7 +276,6 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-particles: 2.9.3_react@18.2.0
-      toxic-ui: link:../../packages/toxic-ui
       tsparticles: 2.9.3
       tsparticles-engine: 2.9.3
     devDependencies:
@@ -5217,7 +5215,7 @@ packages:
       react-refresh: 0.11.0
       schema-utils: 3.1.2
       source-map: 0.7.4
-      webpack: 5.82.0_esbuild@0.17.18
+      webpack: 5.82.0_esbuild@0.16.17
     dev: true
 
   /@pmmmwh/react-refresh-webpack-plugin/0.5.10_rpgxa4ujif6f7ii2kur4nrydpu:
@@ -24649,7 +24647,7 @@ packages:
     dependencies:
       klona: 2.0.6
       neo-async: 2.6.2
-      webpack: 5.82.0_esbuild@0.17.18
+      webpack: 5.82.0_esbuild@0.16.17
 
   /sass-loader/13.2.2_webpack@5.82.0:
     resolution: {integrity: sha512-nrIdVAAte3B9icfBiGWvmMhT/D+eCDwnk+yA7VE/76dp/WkHX+i44Q/pfo71NYbwj0Ap+PGsn0ekOuU1WFJ2AA==}
@@ -27860,7 +27858,7 @@ packages:
       mime-types: 2.1.35
       range-parser: 1.2.1
       schema-utils: 4.0.1
-      webpack: 5.82.0_esbuild@0.17.18
+      webpack: 5.82.0_esbuild@0.16.17
 
   /webpack-dev-server/4.13.3_webpack@5.82.0:
     resolution: {integrity: sha512-KqqzrzMRSRy5ePz10VhjyL27K2dxqwXQLP5rAKwRJBPUahe7Z2bBWzHw37jeb8GCPKxZRO79ZdQUAPesMh/Nug==}
