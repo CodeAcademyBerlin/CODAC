@@ -1,11 +1,11 @@
-import colors from 'tailwindcss/colors';
+const colors = require('tailwindcss/colors');
 
-const config = {
+module.exports = {
   content: ["./src/**/*.{ts,tsx}"],
   future: {
     hoverOnlyWhenSupported: true,
   },
-  darkMode: 'class',
+  darkMode: ['class', '[data-mode="dark"]'],
   theme: {
     extend: {
       // https://vercel.com/design/color
@@ -84,4 +84,3 @@ const config = {
   plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
 
 }
-export default config;

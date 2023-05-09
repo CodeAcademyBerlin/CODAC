@@ -1,16 +1,27 @@
 {
   "name": "codac-ui",
   "devDependencies": {
+    "@storybook/addon-essentials": "7.0.9",
+    "@storybook/addon-interactions": "7.0.9",
+    "@storybook/addon-links": "7.0.9",
+    "@storybook/addon-styling": "^1.0.3",
+    "@storybook/blocks": "7.0.9",
+    "@storybook/nextjs": "7.0.9",
+    "@storybook/react": "7.0.9",
+    "@storybook/testing-library": "0.0.14-next.2",
     "@tailwindcss/forms": "^0.5.0",
     "@types/react": "^18.0.3",
     "@types/react-dom": "^18.0.0",
+    "autoprefixer": "^10.4.14",
     "concurrently": "^7.1.0",
     "next": "12.1.5",
+    "postcss": "^8.4.23",
     "react": "18.0.0",
     "react-dom": "18.0.0",
+    "storybook": "7.0.9",
+    "tailwind-config": "workspace:*",
     "tailwindcss": "^3.0.24",
-    "tsconfig": "workspace:*",
-    "tailwind-config": "workspace:*"
+    "tsconfig": "workspace:*"
   },
   "scripts": {
     "build": "pnpm build:css && pnpm run build:js",
@@ -18,7 +29,9 @@
     "dev:js": "tsup src/index.ts --format esm,cjs --external react,next --watch --onSuccess \"tsc --emitDeclarationOnly --declaration\"",
     "dev:css": "pnpm tailwindcss -i ./src/input.css -o ./dist/styles/main.css --watch",
     "build:css": "pnpm tailwindcss -i ./src/input.css -o ./dist/styles/main.css",
-    "build:js": "tsup src/index.ts --format esm,cjs --external react,next --dts"
+    "build:js": "tsup src/index.ts --format esm,cjs --external react,next --dts",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "types": "./dist/index.d.ts",
   "exports": {
@@ -43,8 +56,10 @@
     "next": "13.3.1-canary.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-particles": "^2.9.3",
     "server-only": "0.0.1",
     "styled-components": "6.0.0-beta.2",
+    "tsparticles": "^2.9.3",
     "use-count-up": "3.0.1"
   },
   "peerDependencies": {

@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <link
+        {/* <link
           href="/favicon/apple-touch-icon.png"
           rel="apple-touch-icon"
           sizes="180x180"
@@ -25,10 +25,10 @@ export default function Document() {
           color="#000000"
           href="/favicon/safari-pinned-tab.svg"
           rel="mask-icon"
-        />
-        <link href="/favicon/favicon.ico" rel="shortcut icon" />
+        /> */}
+        <link href="public/favicon.ico" rel="shortcut icon" />
       </Head>
-      <body className="bg-gray-1100 overflow-y-scroll bg-[url('/grid.svg')]">
+      <body className="overflow-y-scroll bg-gray-1100">
         <Main />
         <NextScript />
       </body>

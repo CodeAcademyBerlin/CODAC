@@ -1,26 +1,26 @@
-import { useCallback } from 'react';
-import Particles from 'react-particles';
-import { loadFull } from 'tsparticles';
+import { useCallback } from "react";
+import Particles from "react-particles";
+import { loadFull } from "tsparticles";
 import {
   IOptions,
   ISourceOptions,
   MoveDirection,
   OutMode,
-} from 'tsparticles-engine';
+} from "tsparticles-engine";
 
-import { confetti } from './options/confetti';
-import { snow } from './options/snow';
-import { triangles } from './options/tiangles';
+import { confetti } from "./options/confetti";
+import { snow } from "./options/snow";
+import { triangles } from "./options/tiangles";
 
-type ParticulesOptions = ['snow', 'confetti', 'triangles'];
+type ParticulesOptions = ["snow", "confetti", "triangles"];
 
 const getOptions = (type: string): ISourceOptions => {
   switch (type) {
-    case 'snow':
+    case "snow":
       return snow;
-    case 'confetti':
+    case "confetti":
       return confetti;
-    case 'triangles':
+    case "triangles":
       return triangles;
     default:
       return triangles;

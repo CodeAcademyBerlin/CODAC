@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import Layout from "../../components/Layout";
 
 import {
   CourseEntity,
@@ -11,6 +10,7 @@ import {
 } from "codac-administration";
 import { initializeApollo } from "../../lib/apolloClient";
 import { GET_COURSE_QUERY } from "../../graphql/getCourse";
+import { AddressBar } from "codac-ui";
 
 interface CourseProps {
   course: CourseType;
@@ -22,25 +22,19 @@ export default function Course({ course, id }: CourseProps) {
   const { name, description, length, createdAt, projects, mentors } = course;
   return (
     <>
-      <div className="mb-2 mt-6 flex justify-start p-5 font-semibold">
-        <a
-          className="underline hover:decoration-double"
-          href="#"
-          onClick={() => router.back()}
-        >
-          {"<<"} Back
-        </a>
-      </div>
-      <div className=" mx-5">
-        <p>
-          <b>Course id:</b> {id}
-        </p>
+      <div className="space-y-8 lg:space-y-14">
+        <div className="grid grid-cols-4 gap-6">
+          <div className="col-span-full space-y-4 lg:col-span-2">
+            <h1 className="truncate text-xl font-medium text-white lg:text-3xl">
+              {name}
+            </h1>
+
+            <div className="space-y-4 text-gray-200">{description}</div>
+          </div>
+        </div>
       </div>
 
-      <br />
-      <br />
-
-      <div className="mx-5 flex flex-col gap-2">
+      {/* <div className="mx-5 flex flex-col gap-2">
         <h1 className="py-2">
           <b>{name}</b>
         </h1>
@@ -81,8 +75,8 @@ export default function Course({ course, id }: CourseProps) {
               </p>
             </li>
           ))}
-        </ul>
-      </div>
+        </ul> 
+      </div>*/}
     </>
   );
 }

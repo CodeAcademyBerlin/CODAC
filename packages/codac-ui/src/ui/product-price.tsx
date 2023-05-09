@@ -1,5 +1,5 @@
 import { multiply, toUnit, type Dinero } from "dinero.js";
-import { Product } from "../../lib/types";
+import { Product } from "../../demo/types";
 import { ProductCurrencySymbol } from "./product-currency-symbol";
 import { ProductDeal } from "./product-deal";
 import { ProductLighteningDeal } from "./product-lightening-deal";

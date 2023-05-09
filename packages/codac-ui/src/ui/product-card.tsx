@@ -6,7 +6,7 @@ import { ProductEstimatedArrival } from "./product-estimated-arrival";
 import { ProductLowStockWarning } from "./product-low-stock-warning";
 import { ProductPrice } from "./product-price";
 import { ProductRating } from "./product-rating";
-import { Product } from "../../lib/types";
+import { Product } from "../../demo/types";
 
 export const ProductCard = ({
   product,
@@ -37,7 +37,7 @@ export const ProductCard = ({
           />
         </div>
 
-        <div className="group-hover:text-vercel-cyan truncate text-sm font-medium text-white">
+        <div className="truncate text-sm font-medium text-white group-hover:text-vercel-cyan">
           {product.name}
         </div>
 

@@ -22,8 +22,9 @@ import { AuthProvider } from "../contexts/authContext";
 import { useApollo } from "../lib/apolloClient";
 // import Layout from "../components/Layout";
 // import Layout from "../components/Layout";
-import { Layout } from "codac-ui";
+import { Layout, GlobalNav } from "codac-ui";
 import { navigation } from "../lib/navigation";
+// import { Layout } from "../components/Layout";
 
 // import ThemeComponent from '../theme/ThemeComponent';
 
@@ -79,7 +80,10 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({
   const getLayout =
     Component.getLayout ??
     ((page) => (
-      <Layout header="CODAC LMS" navigation={navigation}>
+      <Layout
+        header="CODAC LMS"
+        navigation={<GlobalNav navigation={navigation} header="CODAC LMS" />}
+      >
         {page}
       </Layout>
     ));
