@@ -7,10 +7,10 @@ coverage/
 dist/
 e2e-report/
 e2e-results/
-node_modules/
 out/
 storybook-static/
-.env
-.env.*
-!.env.example
 .eslintcache
+CHANGELOG.md
+package-lock.json
+pnpm-lock.yaml
+yarn.lock

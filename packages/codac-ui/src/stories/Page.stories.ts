@@ -1,27 +1,39 @@
-import { within, userEvent } from '@storybook/testing-library';
-import { Page } from './Page';
+import type { Meta, StoryObj } from "@storybook/react";
 
-const PageStory = {
-  title: 'Layout/Page',
+import { Default } from "./Button.stories";
+import { Page } from "./Page";
+
+const meta = {
   component: Page,
+} satisfies Meta<typeof Page>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const SmallMobile: Story = {
+  ...Default,
   parameters: {
-    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
-    layout: 'fullscreen',
+    viewport: {
+      defaultViewport: "mobile1",
+    },
   },
 };
 
-export const Default = {};
-// export const LoggedOut = {};
+export const LargeMobile: Story = {
+  ...Default,
+  parameters: {
+    viewport: {
+      defaultViewport: "mobile2",
+    },
+  },
+};
 
-// // More on interaction testing: https://storybook.js.org/docs/react/writing-tests/interaction-testing
-// export const LoggedIn = {
-//   play: async ({ canvasElement }) => {
-//     const canvas = within(canvasElement);
-//     const loginButton = await canvas.getByRole('button', {
-//       name: /Log in/i,
-//     });
-//     await userEvent.click(loginButton);
-//   },
-// };
-
-export default PageStory;
+export const Tablet: Story = {
+  ...Default,
+  parameters: {
+    viewport: {
+      defaultViewport: "tablet",
+    },
+  },
+};

@@ -7,8 +7,6 @@
   "exports": {
     ".": "./src/index.ts",
     "./*": [
-      "./src/*.ts",
-      "./src/*.tsx",
       "./src/*/index.ts",
       "./src/input.css"
     ]
@@ -22,26 +20,30 @@
     }
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "7.0.9",
-    "@storybook/addon-interactions": "7.0.9",
-    "@storybook/addon-links": "7.0.9",
-    "@storybook/addon-styling": "^1.0.3",
-    "@storybook/blocks": "7.0.9",
-    "@storybook/manager-api": "^7.0.7",
-    "@storybook/nextjs": "7.0.9",
-    "@storybook/react": "7.0.9",
-    "@storybook/testing-library": "0.0.14-next.2",
-    "@storybook/theming": "^7.0.9",
+    "@storybook/addon-a11y": "^7.0.10",
+    "@storybook/addon-essentials": "7.0.10",
+    "@storybook/addon-interactions": "7.0.10",
+    "@storybook/addon-links": "7.0.10",
+    "@storybook/addon-mdx-gfm": "7.0.10",
+    "@storybook/addon-styling": "^1.0.6",
+    "@storybook/addon-viewport": "^7.0.10",
+    "@storybook/blocks": "7.0.10",
+    "@storybook/manager-api": "^7.0.10",
+    "@storybook/nextjs": "7.0.10",
+    "@storybook/react": "7.0.10",
+    "@storybook/testing-library": "0.1.0",
+    "@storybook/theming": "^7.0.10",
     "@tailwindcss/forms": "^0.5.0",
     "@types/react": "^18.0.3",
     "@types/react-dom": "^18.0.0",
     "autoprefixer": "^10.4.14",
     "concurrently": "^7.1.0",
+    "jest-config": "workspace:*",
     "next": "12.1.5",
     "postcss": "^8.4.23",
     "react": "18.0.0",
     "react-dom": "18.0.0",
-    "storybook": "7.0.9",
+    "storybook": "7.0.10",
     "tailwind-config": "workspace:*",
     "tailwindcss": "^3.0.24",
     "tsconfig": "workspace:*"
@@ -49,14 +51,10 @@
   "scripts": {
     "dev": "pnpm build --watch",
     "build": "tsc --noEmit",
-    "build2": "pnpm build:css && pnpm run build:js",
-    "dev2": "concurrently --names css,js --kill-others \"pnpm dev:css\" \"pnpm dev:js\"",
-    "dev:js": "tsup src/index.ts --format esm,cjs --external react,next --watch --onSuccess \"tsc --emitDeclarationOnly --declaration\"",
-    "dev:css": "pnpm tailwindcss -i ./src/input.css -o ./dist/styles/main.css --watch",
-    "build2:css": "pnpm tailwindcss -i ./src/input.css -o ./dist/styles/main.css",
-    "build2:js": "tsup src/index.ts --format esm,cjs --external react,next --dts",
     "storybook": "storybook dev -p 6006",
-    "storybook-build": "storybook build -o ./storybook-static"
+    "storybook-build": "storybook build -o ./storybook-static",
+    "test:unit": "jest --ci --coverage",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@headlessui/react": "^1.5.0",

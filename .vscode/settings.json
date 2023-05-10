@@ -2,9 +2,11 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "eslint.alwaysShowStatus": true,
-  "files.eol": "\n",
-  "cSpell.enableFiletypes": ["mdx"],
-  "cSpell.words": ["codac"],
-  "conventionalCommits.scopes": ["codac-ts-next-lms", "toxic-ui"]
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.rulers": [{ "column": 100 }],
+  "editor.tabSize": 2,
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
 }

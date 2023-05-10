@@ -1,8 +1,6 @@
-import React from "react";
-
-import { Layout } from "../ui/layout";
-import { GlobalNav } from "../ui/global-nav";
 import { demos } from "../../demo/demos";
+import { GlobalNav } from "../ui/global-nav";
+import { Layout } from "../ui/layout";
 
 export const Page = () => {
   return (
@@ -29,7 +27,7 @@ export const Page = () => {
                           {item.name}
                         </div>
 
-                        {item.description ? (
+                        {item.description != null ? (
                           <div className="line-clamp-3 text-sm text-gray-400 group-hover:text-gray-300">
                             {item.description}
                           </div>
