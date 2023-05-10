@@ -2,13 +2,13 @@
   "name": "codac-administration",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index",
-  "types": "./dist/global/__generated__/types.d.ts",
+  "main": "./dist/graphql.mjs",
+  "types": "./dist/graphql.d.ts",
   "exports": {
-    ".": "./dist/global/__generated__/types.mjs"
+    ".": "./dist/graphql.mjs"
   },
   "scripts": {
-    "build": "tsup",
+    "build": "graphql-codegen && tsup",
     "dev": "tsup --watch",
     "codegen": "graphql-codegen",
     "type-check": "tsc --noEmit"

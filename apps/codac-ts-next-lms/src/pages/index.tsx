@@ -1,9 +1,16 @@
 import Link from "next/link";
 import { navigation } from "../lib/navigation";
+import { useTheme } from "codac-ui";
+import { use, useEffect } from "react";
+import ThemeSwitch from "../components/theme-switch";
 
 export default function Home() {
+  const { theme, setTheme } = useTheme();
+  console.log("first", theme);
+
   return (
     <div className="space-y-8">
+      <ThemeSwitch />
       <h1 className="text-xl font-medium text-gray-300">CODAC LMS</h1>
       <div className="space-y-10 text-white">
         {navigation.map((section) => {
@@ -13,7 +20,7 @@ export default function Home() {
                 {section.name}
               </div>
 
-              <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+              <div className="grid grid-cols-1 gap-5  lg:grid-cols-2">
                 {section.items.map((item) => {
                   return (
                     <Link

@@ -393,9 +393,11 @@ importers:
       '@storybook/addon-links': 7.0.9
       '@storybook/addon-styling': ^1.0.3
       '@storybook/blocks': 7.0.9
+      '@storybook/manager-api': ^7.0.7
       '@storybook/nextjs': 7.0.9
       '@storybook/react': 7.0.9
       '@storybook/testing-library': 0.0.14-next.2
+      '@storybook/theming': ^7.0.9
       '@tailwindcss/forms': ^0.5.0
       '@tailwindcss/typography': ^0.5.9
       '@tanstack/react-table': ^8.0.0-alpha.26
@@ -443,9 +445,11 @@ importers:
       '@storybook/addon-links': 7.0.9_biqbaboplfbrettd7655fr4n2y
       '@storybook/addon-styling': 1.0.6_c7qmo5wroyhugdbkhw3fynlpqa
       '@storybook/blocks': 7.0.9_biqbaboplfbrettd7655fr4n2y
+      '@storybook/manager-api': 7.0.9_biqbaboplfbrettd7655fr4n2y
       '@storybook/nextjs': 7.0.9_6jkqk4cmotzpym4x7vharwrzpy
       '@storybook/react': 7.0.9_tvrvbu6r5w7oyqiu4bvze3slou
       '@storybook/testing-library': 0.0.14-next.2
+      '@storybook/theming': 7.0.9_biqbaboplfbrettd7655fr4n2y
       '@tailwindcss/forms': 0.5.3_tailwindcss@3.3.2
       '@types/react': 18.2.5
       '@types/react-dom': 18.2.3
@@ -5215,7 +5219,7 @@ packages:
       react-refresh: 0.11.0
       schema-utils: 3.1.2
       source-map: 0.7.4
-      webpack: 5.82.0_esbuild@0.16.17
+      webpack: 5.82.0_esbuild@0.17.18
     dev: true
 
   /@pmmmwh/react-refresh-webpack-plugin/0.5.10_rpgxa4ujif6f7ii2kur4nrydpu:
@@ -24647,7 +24651,7 @@ packages:
     dependencies:
       klona: 2.0.6
       neo-async: 2.6.2
-      webpack: 5.82.0_esbuild@0.16.17
+      webpack: 5.82.0_esbuild@0.17.18
 
   /sass-loader/13.2.2_webpack@5.82.0:
     resolution: {integrity: sha512-nrIdVAAte3B9icfBiGWvmMhT/D+eCDwnk+yA7VE/76dp/WkHX+i44Q/pfo71NYbwj0Ap+PGsn0ekOuU1WFJ2AA==}
@@ -27858,7 +27862,7 @@ packages:
       mime-types: 2.1.35
       range-parser: 1.2.1
       schema-utils: 4.0.1
-      webpack: 5.82.0_esbuild@0.16.17
+      webpack: 5.82.0_esbuild@0.17.18
 
   /webpack-dev-server/4.13.3_webpack@5.82.0:
     resolution: {integrity: sha512-KqqzrzMRSRy5ePz10VhjyL27K2dxqwXQLP5rAKwRJBPUahe7Z2bBWzHw37jeb8GCPKxZRO79ZdQUAPesMh/Nug==}

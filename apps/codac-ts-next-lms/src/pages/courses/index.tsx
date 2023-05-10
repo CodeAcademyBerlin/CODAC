@@ -1,7 +1,7 @@
 import { CourseEntity, GetAllCoursesDocument } from "codac-administration";
 import { initializeApollo } from "../../lib/apolloClient";
 import { Card } from "codac-ui";
-
+Courses.theme = "light";
 export default function Courses({ courses }: { courses: CourseEntity[] }) {
   return (
     <div className="space-y-7">

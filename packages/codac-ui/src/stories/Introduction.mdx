@@ -1,14 +1,14 @@
-import { Meta } from '@storybook/blocks';
-import Image from 'next/image';
+import { Meta } from "@storybook/blocks";
+import Image from "next/image";
 
-import Code from './assets/code-brackets.svg';
-import Colors from './assets/colors.svg';
-import Comments from './assets/comments.svg';
-import Direction from './assets/direction.svg';
-import Flow from './assets/flow.svg';
-import Plugin from './assets/plugin.svg';
-import Repo from './assets/repo.svg';
-import StackAlt from './assets/stackalt.svg';
+import Code from "../assets/code-brackets.svg";
+import Colors from "../assets/colors.svg";
+import Comments from "../assets/comments.svg";
+import Direction from "../assets/direction.svg";
+import Flow from "../assets/flow.svg";
+import Plugin from "../assets/plugin.svg";
+import Repo from "../assets/repo.svg";
+import StackAlt from "../assets/stackalt.svg";
 
 <Meta title="Example/Introduction" />
 
@@ -118,14 +118,15 @@ import StackAlt from './assets/stackalt.svg';
   `}
 </style>
 
-# Welcome to Storybook
+# CODAC-ui: A Custom Design System for Storybooks
 
-Storybook helps you build UI components in isolation from your app's business logic, data, and context.
-That makes it easy to develop hard-to-reach states. Save these UI states as **stories** to revisit during development, testing, or QA.
+CODAC-ui is a custom design system built for storybooks, providing a consistent and cohesive user interface for storytelling. It is designed to make the process of creating and sharing stories more streamlined and visually appealing.
 
-Browse example stories now by navigating to them in the sidebar.
-View their code in the `stories` directory to learn how they work.
-We recommend building UIs with a [**component-driven**](https://componentdriven.org) process starting with atomic components and ending with pages.
+With CODAC-ui, storytellers can choose from a wide range of pre-built components and styles to create their own unique storybook designs. The system includes everything from text and image components to navigation and layout elements, all designed to work seamlessly together.
+
+CODAC-ui is easy to use and customizable, making it an ideal solution for storytellers of all skill levels. Whether you are an experienced designer or just starting out, CODAC-ui provides the tools and resources you need to create compelling and engaging stories.
+
+So if you are looking for a powerful and flexible design system for your storybook projects, look no further than CODAC-ui. With its intuitive interface and robust feature set, it is the perfect choice for bringing your stories to life.
 
 <div className="subheading">Configure</div>
 
@@ -196,7 +197,11 @@ We recommend building UIs with a [**component-driven**](https://componentdriven.
       Configure, customize, and extend
     </span>
   </a>
-  <a className="link-item" href="https://storybook.js.org/tutorials/" target="_blank">
+  <a
+    className="link-item"
+    href="https://storybook.js.org/tutorials/"
+    target="_blank"
+  >
     <div className="link-item-img-wrapper">
       <Image src={Direction} alt="direction" />
     </div>
@@ -205,7 +210,11 @@ We recommend building UIs with a [**component-driven**](https://componentdriven.
       Best practices from leading teams
     </span>
   </a>
-  <a className="link-item" href="https://github.com/storybookjs/storybook" target="_blank">
+  <a
+    className="link-item"
+    href="https://github.com/storybookjs/storybook"
+    target="_blank"
+  >
     <div className="link-item-img-wrapper">
       <Image src={Code} alt="code" />
     </div>
@@ -226,5 +235,6 @@ We recommend building UIs with a [**component-driven**](https://componentdriven.
 </div>
 
 <div className="tip-wrapper">
-  <span className="tip">Tip</span>Edit the Markdown in <code>stories/Introduction.mdx</code>
+  <span className="tip">Tip</span>Edit the Markdown in{" "}
+  <code>stories/Introduction.mdx</code>
 </div>

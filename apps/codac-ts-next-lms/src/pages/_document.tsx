@@ -25,10 +25,11 @@ export default function Document() {
           color="#000000"
           href="/favicon/safari-pinned-tab.svg"
           rel="mask-icon"
-        /> */}
-        <link href="public/favicon.ico" rel="shortcut icon" />
+        /> 
+        <link href="public/favicon.ico" rel="shortcut icon" />*/}
       </Head>
-      <body className="overflow-y-scroll dark:bg-gray-1100">
+      <body className="overflow-y-scroll bg-gray-300 bg-[url('/grid.svg')] dark:bg-gray-1100">
+        {/* <body className="overflow-y-scroll bg-[url('/grid.svg')] "> */}
         <Main />
         <NextScript />
       </body>

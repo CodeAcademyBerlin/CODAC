@@ -1,6 +1,6 @@
 import { ApolloProvider } from "@apollo/client";
-import "codac-ui/styles/main.css";
-// import "styles/globals.css";
+// import "codac-ui/input.css";
+import "../styles.css";
 
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
@@ -15,7 +15,6 @@ import { useApollo } from "../lib/apolloClient";
 
 import { Layout, GlobalNav, ThemeProvider } from "codac-ui";
 import { navigation } from "../lib/navigation";
-import { Theme } from "tsparticles-engine";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -77,7 +76,7 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({
     <>
       <ApolloProvider client={apolloClient}>
         <AuthProvider>
-          <ThemeProvider>
+          <ThemeProvider enableColorScheme={false}>
             {/* <Component {...pageProps} /> */}
             {/*  <SocketProvider> */}
             {getLayout(<Component {...pageProps} />)}

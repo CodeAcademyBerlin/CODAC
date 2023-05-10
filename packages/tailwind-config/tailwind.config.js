@@ -1,19 +1,21 @@
 const colors = require('tailwindcss/colors');
 
 module.exports = {
-  content: ["./src/**/*.{ts,tsx}"],
+  content: ["src/**/*.{ts,tsx}", "../../packages/codac-ui/src/**/*.{ts,tsx}"],
   future: {
     hoverOnlyWhenSupported: true,
   },
-  darkMode: ['class', '[data-mode="dark"]'],
+  darkMode: "class",
+  // darkMode: ['class', '[data-mode="dark"]'],
   theme: {
     extend: {
-      // https://vercel.com/design/color
       colors: {
         gray: colors.zinc,
         'gray-1000': 'rgb(17,17,19)',
         'gray-1100': 'rgb(10,10,11)',
-        vercel: {
+        primary: "#00897B",
+        secondary: "#FF0080",
+        codac: {
           pink: '#FF0080',
           blue: '#0070F3',
           cyan: '#50E3C2',
@@ -29,19 +31,19 @@ module.exports = {
       keyframes: ({ theme }) => ({
         rerender: {
           '0%': {
-            ['border-color']: theme('colors.vercel.pink'),
+            ['border-color']: theme('colors.codac.pink'),
           },
           '40%': {
-            ['border-color']: theme('colors.vercel.pink'),
+            ['border-color']: theme('colors.codac.pink'),
           },
         },
         highlight: {
           '0%': {
-            background: theme('colors.vercel.pink'),
+            background: theme('colors.codac.pink'),
             color: theme('colors.white'),
           },
           '40%': {
-            background: theme('colors.vercel.pink'),
+            background: theme('colors.codac.pink'),
             color: theme('colors.white'),
           },
         },

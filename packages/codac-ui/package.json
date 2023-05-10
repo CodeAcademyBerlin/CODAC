@@ -1,14 +1,37 @@
 {
   "name": "codac-ui",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": [
+      "./src/*.ts",
+      "./src/*.tsx",
+      "./src/*/index.ts",
+      "./src/input.css"
+    ]
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./src/*",
+        "./src/*/index"
+      ]
+    }
+  },
   "devDependencies": {
     "@storybook/addon-essentials": "7.0.9",
     "@storybook/addon-interactions": "7.0.9",
     "@storybook/addon-links": "7.0.9",
     "@storybook/addon-styling": "^1.0.3",
     "@storybook/blocks": "7.0.9",
+    "@storybook/manager-api": "^7.0.7",
     "@storybook/nextjs": "7.0.9",
     "@storybook/react": "7.0.9",
     "@storybook/testing-library": "0.0.14-next.2",
+    "@storybook/theming": "^7.0.9",
     "@tailwindcss/forms": "^0.5.0",
     "@types/react": "^18.0.3",
     "@types/react-dom": "^18.0.0",
@@ -24,26 +47,16 @@
     "tsconfig": "workspace:*"
   },
   "scripts": {
-    "build": "pnpm build:css && pnpm run build:js",
-    "dev": "concurrently --names css,js --kill-others \"pnpm dev:css\" \"pnpm dev:js\"",
+    "dev": "pnpm build --watch",
+    "build": "tsc --noEmit",
+    "build2": "pnpm build:css && pnpm run build:js",
+    "dev2": "concurrently --names css,js --kill-others \"pnpm dev:css\" \"pnpm dev:js\"",
     "dev:js": "tsup src/index.ts --format esm,cjs --external react,next --watch --onSuccess \"tsc --emitDeclarationOnly --declaration\"",
     "dev:css": "pnpm tailwindcss -i ./src/input.css -o ./dist/styles/main.css --watch",
-    "build:css": "pnpm tailwindcss -i ./src/input.css -o ./dist/styles/main.css",
-    "build:js": "tsup src/index.ts --format esm,cjs --external react,next --dts",
+    "build2:css": "pnpm tailwindcss -i ./src/input.css -o ./dist/styles/main.css",
+    "build2:js": "tsup src/index.ts --format esm,cjs --external react,next --dts",
     "storybook": "storybook dev -p 6006",
     "storybook-build": "storybook build -o ./storybook-static"
-  },
-  "types": "./dist/index.d.ts",
-  "exports": {
-    "./styles.css": "./src/input.css",
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
-    },
-    "./styles/main.css": {
-      "import": "./dist/styles/main.css",
-      "require": "./dist/styles/main.css"
-    }
   },
   "dependencies": {
     "@headlessui/react": "^1.5.0",
