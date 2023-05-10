@@ -1,6 +1,7 @@
-import { CourseEntity, GetAllCoursesDocument } from "codac-administration";
-import { initializeApollo } from "../../lib/apolloClient";
+import type { CourseEntity } from "codac-server-graphql";
 import { Card } from "codac-ui";
+
+import { initializeApollo } from "../../lib/apolloClient";
 Courses.theme = "light";
 export default function Courses({ courses }: { courses: CourseEntity[] }) {
   return (
@@ -14,9 +15,9 @@ export default function Courses({ courses }: { courses: CourseEntity[] }) {
               course && (
                 <Card
                   key={course.id}
-                  name={course?.attributes?.name || ""}
-                  description={course?.attributes?.description || ""}
-                  href={`/courses/${course?.id}`}
+                  name={course.attributes?.name || ""}
+                  description={course.attributes?.description || ""}
+                  href={`/courses/${course.id}`}
                 />
                 // <div
                 //   className="col-span-4 lg:col-span-1"

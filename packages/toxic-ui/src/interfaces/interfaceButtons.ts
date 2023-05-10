@@ -1,10 +1,11 @@
 import { ReactNode } from 'react'
-import {
-  validPadding,
+
+import type {
   validBg,
-  validText,
   validBorder,
+  validPadding,
   validShape,
+  validText,
 } from '../types/types'
 
 export interface ButtonProps {

@@ -1,5 +1,6 @@
-import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
+import { useRouter } from "next/router";
+
 import { GET_SPIKE_QUERY } from "../../graphql/getSpike";
 
 const Spike = () => {
@@ -35,7 +36,7 @@ const Spike = () => {
         <a
           className="underline hover:decoration-double"
           href="#"
-          onClick={() => router.back()}
+          onClick={() => { router.back(); }}
         >
           {"<<"} Back
         </a>

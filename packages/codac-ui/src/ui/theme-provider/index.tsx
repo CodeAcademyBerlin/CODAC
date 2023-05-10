@@ -1,15 +1,16 @@
 /* eslint-disable react/display-name */
 import React, {
-  Fragment,
   createContext,
+  Fragment,
+  memo,
   useCallback,
   useContext,
   useEffect,
-  useState,
   useMemo,
-  memo,
+  useState,
 } from "react";
-import type { UseThemeProps, ThemeProviderProps } from "./types";
+
+import type { ThemeProviderProps,UseThemeProps } from "./types";
 
 const colorSchemes = ["light", "dark"];
 const MEDIA = "(prefers-color-scheme: dark)";
@@ -80,7 +81,7 @@ const Theme: React.FC<ThemeProviderProps> = ({
         ? defaultTheme
         : null;
       const colorScheme = colorSchemes.includes(resolved) ? resolved : fallback;
-      // @ts-ignore
+      // @ts-expect-error
       d.style.colorScheme = colorScheme;
     }
 
@@ -121,7 +122,7 @@ const Theme: React.FC<ThemeProviderProps> = ({
     media.addListener(handleMediaQuery);
     handleMediaQuery(media);
 
-    return () => media.removeListener(handleMediaQuery);
+    return () => { media.removeListener(handleMediaQuery); };
   }, [handleMediaQuery]);
 
   // localStorage event handling
@@ -137,7 +138,7 @@ const Theme: React.FC<ThemeProviderProps> = ({
     };
 
     window.addEventListener("storage", handleStorage);
-    return () => window.removeEventListener("storage", handleStorage);
+    return () => { window.removeEventListener("storage", handleStorage); };
   }, [setTheme]);
 
   // Whenever theme or forcedTheme changes, apply it
@@ -228,7 +229,7 @@ const ThemeScript = memo(
 
     const updateDOM = (
       name: string,
-      literal: boolean = false,
+      literal = false,
       setColorScheme = true
     ) => {
       const resolvedName = value ? value[name] : name;

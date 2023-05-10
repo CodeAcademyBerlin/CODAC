@@ -1,13 +1,14 @@
 import clsx from "clsx";
+
 import { Boundary } from "./boundary";
 import CountUp from "./count-up";
 
-type Item = {
+interface Item {
   name: string;
   type: "server" | "client";
   size: number;
   children?: Item[];
-};
+}
 
 const List = ({ items, depth }: { items: Item[]; depth: number }) => {
   return (
@@ -92,7 +93,7 @@ const sum = (items: Item[], componentType: Item["type"]): number =>
       // add the current component size if it's type is componentType
       ((item.type === componentType ? item.size : 0) || 0) +
       // add the total size of children components recursively
-      (item?.children ? sum(item.children, componentType) : 0),
+      (item.children ? sum(item.children, componentType) : 0),
     0
   );
 

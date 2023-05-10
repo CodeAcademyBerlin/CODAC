@@ -1,11 +1,11 @@
-import { ComponentSectionsHeader } from 'cabServer/global/__generated__/types';
+import { ComponentSectionsHeader } from "codac-server-graphql";
 
 type Props = {
   data: ComponentSectionsHeader;
 };
 
 const Header = ({ data }: Props) => {
-  console.log('data', data);
+  console.log("data", data);
   return (
     <>
       <h1>Title: {data.title}</h1>

@@ -1,8 +1,8 @@
-import { ComponentSectionsHeader } from "codac-administration";
+import type { ComponentSectionsHeader } from "codac-server-graphql";
 
-type Props = {
+interface Props {
   data: ComponentSectionsHeader;
-};
+}
 
 const Header = ({ data }: Props) => {
   console.log("data", data);

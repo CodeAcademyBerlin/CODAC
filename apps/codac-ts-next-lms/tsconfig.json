@@ -1,10 +1,8 @@
 {
   "extends": "tsconfig/nextjs.json",
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "../../packages/codac-ui/src/ui/theme-provider/theme-switch.tsx"
-  ],
+  "compilerOptions": {
+    "baseUrl": "./src"
+  },
+  "include": ["next-env.d.ts", "src", "e2e"],
   "exclude": ["node_modules"]
 }

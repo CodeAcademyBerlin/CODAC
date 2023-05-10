@@ -1,7 +1,8 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { MainContainer } from "./MainContainer";
-import { Navbar } from "../Navbars/Navbar";
+import type { Meta, StoryObj } from "@storybook/react";
+
 import { Button } from "../buttons/Button";
+import { Navbar } from "../Navbars/Navbar";
+import { MainContainer } from "./MainContainer";
 
 const ContainerWithNav = () => {
   return (

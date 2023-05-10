@@ -1,26 +1,20 @@
-import {
-  Page,
-  PageEntity,
-  GetPagesDocument,
-  GetPagesQuery,
-} from "codac-administration";
-import {
+import type { PageEntity } from "codac-server-graphql";
+import type {
   GetStaticProps,
   GetStaticPropsContext,
   InferGetStaticPropsType,
   NextPage,
 } from "next/types";
+
 import DynamicZoneSections from "../../components/DynamicZoneSections";
-import { initializeApollo } from "../../lib/apolloClient";
 import { getPageData } from "../../lib/api";
+import { initializeApollo } from "../../lib/apolloClient";
 
 // The file is called [[...slug]].js because we're using Next's
 // optional catch all routes feature. See the related docs:
 // https://nextjs.org/docs/routing/dynamic-routes#optional-catch-all-routes
 
-const DynamicPage: NextPage = ({
-  pageContext,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+const DynamicPage: NextPage = ({ pageContext }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       {pageContext?.contentSections ? (
@@ -51,7 +45,7 @@ export const getStaticPaths = async (context: GetStaticPropsContext) => {
   console.log("pages", pages);
   const paths = pages.map(({ attributes }) => {
     // Decompose the slug that was saved in Strapi
-    const { slug, locale } = attributes as Page;
+    const { slug, locale } = attributes;
     const slugArray = !slug ? false : slug.split("/");
     console.log("slug", slug);
     return {
@@ -64,10 +58,8 @@ export const getStaticPaths = async (context: GetStaticPropsContext) => {
   return { paths, fallback: "blocking" };
 };
 
-export const getStaticProps: GetStaticProps = async (
-  context: GetStaticPropsContext
-) => {
-  const { params, locale, locales, defaultLocale } = context;
+export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
+  const { params, locale } = context;
 
   // Fetch pages. Include drafts if preview mode is on
   console.log("params", params);
@@ -84,7 +76,7 @@ export const getStaticProps: GetStaticProps = async (
   }
 
   // We have the required page data, pass it to the page component
-  const { slug, shortName, contentSections } = pageData.attributes as Page;
+  const { slug, shortName, contentSections } = pageData.attributes!;
 
   const pageContext = {
     // locale,

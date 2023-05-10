@@ -1,5 +1,5 @@
-import { PageContentSectionsDynamicZone } from "codac-administration";
-import { FC } from "react";
+import type { PageContentSectionsDynamicZone } from "codac-server-graphql";
+import type { FC } from "react";
 
 import Header from "./dynamic-components/header";
 import Markdown from "./dynamic-components/markdown";

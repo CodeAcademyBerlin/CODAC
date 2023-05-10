@@ -1,4 +1,4 @@
-import { CardProps } from "../../interfaces/interfaceCard";
+import type { CardProps } from "../../interfaces/interfaceCard";
 import { Button } from "../buttons/Button";
 
 export const Card = ({ title, subtitle, img, text, cta }: CardProps) => {

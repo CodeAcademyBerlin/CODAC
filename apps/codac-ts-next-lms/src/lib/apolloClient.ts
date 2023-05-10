@@ -1,26 +1,27 @@
 import {
   ApolloClient,
   ApolloLink,
+  ApolloProvider,
   InMemoryCache,
-  NormalizedCacheObject,
-} from '@apollo/client';
-import { onError } from '@apollo/link-error';
-import { createUploadLink } from 'apollo-upload-client';
-import merge from 'deepmerge';
-import { IncomingMessage } from 'http';
-import fetch from 'isomorphic-unfetch';
-import isEqual from 'lodash.isequal';
-import type { AppProps } from 'next/app';
-import { NextApiRequest } from 'next/types';
-import { parseCookies } from 'nookies';
-import { useMemo } from 'react';
+  type NormalizedCacheObject,
+} from "@apollo/client";
+import { onError } from "@apollo/link-error";
+import { createUploadLink } from "apollo-upload-client";
+import merge from "deepmerge";
+import type { IncomingMessage } from "http";
+import fetch from "isomorphic-unfetch";
+import isEqual from "lodash.isequal";
+import type { AppProps } from "next/app";
+import type { NextApiRequest, NextPage } from "next/types";
+import { parseCookies } from "nookies";
+import { useMemo } from "react";
 
 type PageProps = any;
-const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
-export const COOKIES_TOKEN_NAME = 'token';
+const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
+export const COOKIES_TOKEN_NAME = "token";
 
 export const getToken = (req?: NextApiRequest | IncomingMessage | null) => {
-  if (!req ) return 
+  if (!req) return;
   const parsedCookies = parseCookies({ req });
   // return localStorage.getItem("token")
   return parsedCookies[COOKIES_TOKEN_NAME];
@@ -37,7 +38,7 @@ const createApolloClient = (req?: NextApiRequest | IncomingMessage | null) => {
       headers: {
         ...init.headers,
         // here we pass the cookie along for each request
-        authorization: token ? `Bearer ${token}` : '',
+        authorization: token ? `Bearer ${token}` : "",
       },
     });
     return response;
@@ -45,19 +46,17 @@ const createApolloClient = (req?: NextApiRequest | IncomingMessage | null) => {
 
   return new ApolloClient({
     // SSR only for Node.js
-    ssrMode: typeof window === 'undefined',
+    ssrMode: typeof window === "undefined",
     link: ApolloLink.from([
       onError(({ graphQLErrors, networkError }) => {
         if (graphQLErrors)
-          graphQLErrors.forEach(({ message, locations, path }) =>
+          graphQLErrors.forEach(({ message, locations, path }) => {
             console.log(
-              `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
-            ),
-          );
+              `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+            );
+          });
         if (networkError)
-          console.log(
-            `[Network error]: ${networkError}. Backend is unreachable. Is it running?`,
-          );
+          console.log(`[Network error]: ${networkError}. Backend is unreachable. Is it running?`);
       }),
       // this uses apollo-link-http under the hood, so all the options here come from that package
       createUploadLink({
@@ -65,9 +64,9 @@ const createApolloClient = (req?: NextApiRequest | IncomingMessage | null) => {
         // uri: `${process.env.NEXT_PUBLIC_CODAC_ADMINISTRATION_URL}/graphql`,
         // Make sure that CORS and cookies work
         fetchOptions: {
-          mode: 'cors',
+          mode: "cors",
         },
-        credentials: 'include',
+        credentials: "include",
         fetch: enhancedFetch,
       }),
     ]),
@@ -75,7 +74,7 @@ const createApolloClient = (req?: NextApiRequest | IncomingMessage | null) => {
     // SSG ISR bugfix apollo
     defaultOptions: {
       query: {
-        fetchPolicy: 'no-cache',
+        fetchPolicy: "no-cache",
       },
     },
   });
@@ -83,7 +82,7 @@ const createApolloClient = (req?: NextApiRequest | IncomingMessage | null) => {
 
 export const initializeApollo = (
   initialState: any | null,
-  req: NextApiRequest | IncomingMessage | null,
+  req: NextApiRequest | IncomingMessage | null
 ) => {
   const _apolloClient = apolloClient ?? createApolloClient(req);
 
@@ -98,9 +97,7 @@ export const initializeApollo = (
       // combine arrays using object equality (like in sets)
       arrayMerge: (destinationArray, sourceArray) => [
         ...sourceArray,
-        ...destinationArray.filter((d) =>
-          sourceArray.every((s) => !isEqual(d, s)),
-        ),
+        ...destinationArray.filter((d) => sourceArray.every((s) => !isEqual(d, s))),
       ],
     });
 
@@ -109,7 +106,7 @@ export const initializeApollo = (
   }
 
   // For SSG and SSR always create a new Apollo Client
-  if (typeof window === 'undefined') return _apolloClient;
+  if (typeof window === "undefined") return _apolloClient;
   // Create the Apollo Client once in the client
   if (!apolloClient) apolloClient = _apolloClient;
 
@@ -118,7 +115,7 @@ export const initializeApollo = (
 
 export const addApolloState = (
   client: ApolloClient<NormalizedCacheObject>,
-  pageProps: AppProps['pageProps'],
+  pageProps: AppProps["pageProps"]
 ) => {
   if (pageProps?.props) {
     pageProps.props[APOLLO_STATE_PROP_NAME] = client.cache.extract();

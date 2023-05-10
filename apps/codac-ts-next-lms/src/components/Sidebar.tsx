@@ -19,7 +19,7 @@ const Sidebar = ({
       <div className="h-full bg-gray-50 px-3 py-4 dark:bg-gray-800">
         <h3 className="my-4 p-1 text-lg font-bold">{COURSE_NAME}</h3>
         <ul className="font-medium">
-          {links?.map(({ name, id }) => (
+          {links.map(({ name, id }) => (
             <li key={id}>
               <button
                 className="flex items-center rounded-lg p-1 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"

@@ -1,10 +1,10 @@
 import { Tab } from "./tab";
 
-export type Item = {
+export interface Item {
   text: string;
   slug?: string;
   segment?: string;
-};
+}
 
 export const TabGroup = ({ path, items }: { path: string; items: Item[] }) => {
   return (

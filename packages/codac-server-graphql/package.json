@@ -1,0 +1,44 @@
+{
+  "name": "codac-server-graphql",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".dist/types.mjs",
+  "types": "./dist/types.d.ts",
+  "exports": {
+    "./*": [
+      "./dist/types.mjs",
+      "./dist/types.d.ts"
+    ]
+  },
+  "scripts": {
+    "build": "pnpm codegen:types && tsup",
+    "retype": "node src/utils/retype.mjs",
+    "dev": "tsc --watch",
+    "codegen": "pnpm codegen:types && pnpm codegen:op",
+    "codegen:types": "graphql-codegen --config codegen-types.ts && pnpm retype",
+    "codegen:op": "graphql-codegen --config codegen-op.ts",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@apollo/client": "^3.7.1",
+    "@graphql-codegen/add": "^3.2.1",
+    "@graphql-codegen/cli": "3.0.0",
+    "@graphql-codegen/import-types-preset": "^2.2.6",
+    "@graphql-codegen/near-operation-file-preset": "^2.4.4",
+    "@graphql-codegen/typescript": "3.0.0",
+    "@graphql-codegen/typescript-operations": "^2.5.6",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.6",
+    "@types/node": "16.18.11",
+    "eslint-config-custom": "workspace:*",
+    "graphql": "16.6.0",
+    "graphql-codegen-apollo-next-ssr": "^1.7.4",
+    "graphql-codegen-typescript-validation-schema": "^0.7.1",
+    "replace-in-file": "^6.3.5",
+    "tsconfig": "workspace:*",
+    "typescript": "4.9.5",
+    "tsup": "^6.1.3"
+  }
+}

@@ -1,4 +1,4 @@
-import { validBg, validColor } from "../types/types";
+import type { validBg, validColor } from "../types/types";
 
 export interface checkBoxI{
     background?: validBg;

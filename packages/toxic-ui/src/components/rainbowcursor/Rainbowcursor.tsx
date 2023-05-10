@@ -1,5 +1,6 @@
-import { FC, useEffect, useRef, useState } from "react";
 import "./Rainbowcursor.css";
+
+import { type FC, useEffect, useRef, useState } from "react";
 
 export const RainbowCursor: FC = () => {
   const [rainbow, setRainbow] = useState(false);

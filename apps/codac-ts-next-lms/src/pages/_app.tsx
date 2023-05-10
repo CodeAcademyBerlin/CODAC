@@ -1,19 +1,17 @@
-import { ApolloProvider } from "@apollo/client";
 // import "codac-ui/input.css";
 import "../styles.css";
 
+import { ApolloProvider } from "@apollo/client";
+import { GlobalNav, Layout, ThemeProvider } from "codac-ui";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Router from "next/router";
 // // ** Loader Import
 import NProgress from "nprogress";
-import React, { ReactElement, ReactNode, useEffect, useState } from "react";
+import React, { type ReactElement, type ReactNode, useEffect, useState } from "react";
 
 import { AuthProvider } from "../contexts/authContext";
-
 import { useApollo } from "../lib/apolloClient";
-
-import { Layout, GlobalNav, ThemeProvider } from "codac-ui";
 import { navigation } from "../lib/navigation";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {

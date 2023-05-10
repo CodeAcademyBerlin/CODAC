@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { checkBoxI } from "../../interfaces/interfaceCheckboxes";
+
+import type { checkBoxI } from "../../interfaces/interfaceCheckboxes";
 
 /**
  * This is the documentation of the checkbox

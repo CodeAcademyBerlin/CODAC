@@ -1,5 +1,6 @@
-import { ButtonProps } from "../../interfaces/interfaceButtons";
 import React from "react";
+
+import type { ButtonProps } from "../../interfaces/interfaceButtons";
 /**
  * This is the documentation of the button
  */

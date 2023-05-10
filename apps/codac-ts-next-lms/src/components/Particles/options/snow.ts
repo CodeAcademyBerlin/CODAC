@@ -1,4 +1,4 @@
-import { IOptions, ISourceOptions, MoveDirection } from 'tsparticles-engine';
+import { IOptions, type ISourceOptions, MoveDirection } from 'tsparticles-engine';
 
 export const snow: ISourceOptions = {
   background: {

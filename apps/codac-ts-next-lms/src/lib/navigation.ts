@@ -1,8 +1,8 @@
-export type Item = {
+export interface Item {
   name: string;
   slug: string;
   description?: string;
-};
+}
 
 export const navigation: { name: string; items: Item[] }[] = [
   {

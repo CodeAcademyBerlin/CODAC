@@ -1,15 +1,16 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
 import { MenuAlt2Icon, XIcon } from "@heroicons/react/solid";
 import clsx from "clsx";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
+
 import { CodacLogo } from "./codac-logo";
 import ThemeSwitch from "./theme-provider/theme-switch";
-export type Item = {
+export interface Item {
   name: string;
   slug: string;
   description?: string;
-};
+}
 export function GlobalNav({
   navigation,
   header,
@@ -18,7 +19,7 @@ export function GlobalNav({
   header: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  const close = () => setIsOpen(false);
+  const close = () => { setIsOpen(false); };
 
   return (
     <div className="fixed top-0 z-10 flex w-full flex-col border-b border-gray-800 bg-gray-200 dark:bg-black  lg:bottom-0 lg:z-auto lg:w-72 lg:border-b-0 lg:border-r lg:border-gray-800">
@@ -41,7 +42,7 @@ export function GlobalNav({
       <button
         type="button"
         className="group absolute right-0 top-0 flex h-14 items-center gap-x-2 px-4 lg:hidden"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => { setIsOpen(!isOpen); }}
       >
         <div className="font-medium text-gray-100 group-hover:text-gray-400">
           Menu

@@ -1,8 +1,8 @@
-import { PageContentSectionsDynamicZone } from 'cabServer/global/__generated__/types';
-import { FC } from 'react';
+import { PageContentSectionsDynamicZone } from "codac-server-graphql";
+import { FC } from "react";
 
-import Header from './dynamic-components/header';
-import Markdown from './dynamic-components/markdown';
+import Header from "./dynamic-components/header";
+import Markdown from "./dynamic-components/markdown";
 
 // Map Strapi sections to dynamicZone components
 const contentSectionsList = {
@@ -14,7 +14,7 @@ type contentSectionsType = typeof contentSectionsList;
 
 // Display a dynamicZone individually
 const Zone = ({ data }: { data: PageContentSectionsDynamicZone }) => {
-  console.log('data', data);
+  console.log("data", data);
   // Prepare the component
   const DynamicComponent: FC<{ data: any }> =
     contentSectionsList[data.__typename as keyof contentSectionsType];

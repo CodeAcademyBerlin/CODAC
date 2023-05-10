@@ -1,4 +1,4 @@
-import { validBg } from '../types/types'
+import type { validBg } from '../types/types'
 
 export interface CardProps {
   key: number

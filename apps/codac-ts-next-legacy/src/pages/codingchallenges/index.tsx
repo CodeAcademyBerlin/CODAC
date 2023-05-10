@@ -1,35 +1,21 @@
-import { Box, Button, Paper, styled } from '@mui/material';
-import { Stack } from '@mui/system';
-import {
-  CodingChallengeEntity,
-  CodingChallengeEntityResponseCollection,
-} from 'cabServer/global/__generated__/types';
-import {
-  GetChallengesExtendedDocument,
-  GetChallengesQuery,
-} from 'cabServer/queries/__generated__/challenges';
-import {
-  GetStaticProps,
-  GetStaticPropsContext,
-  InferGetStaticPropsType,
-} from 'next/types';
-import React, { useEffect, useState } from 'react';
-import ChallengesLanding from 'src/components/coding-challenges-page/ChallengesLanding';
-import StyledLink from 'src/components/common/StyledLink';
-import { initializeApollo } from 'src/lib/apolloClient';
+import { Box, Paper, styled } from "@mui/material";
+import { Stack } from "@mui/system";
+import type { CodingChallengeEntity, GetChallengesQuery } from "codac-server-graphql";
+import type { GetStaticPropsContext, InferGetStaticPropsType } from "next/types";
+import React from "react";
+import ChallengesLanding from "src/components/coding-challenges-page/ChallengesLanding";
+import { initializeApollo } from "src/lib/apolloClient";
 
-import ChallengeCard from '../../components/coding-challenges-page/ChallengeCard';
+import ChallengeCard from "../../components/coding-challenges-page/ChallengeCard";
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
-  textAlign: 'center',
+  textAlign: "center",
   color: theme.palette.text.secondary,
 }));
 
-const Codingchallenges = ({
-  codingChallenges,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Codingchallenges = ({ codingChallenges }: InferGetStaticPropsType<typeof getStaticProps>) => {
   // const [challenges, setChallenges] = useState(codingChallenges);
   // useEffect(() => {
   //   setChallenges(codingChallenges);
@@ -39,13 +25,13 @@ const Codingchallenges = ({
     <>
       <Box
         sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          flexDirection: 'column',
-          alignItems: 'center',
-          '& > :not(style)': {
-            width: '100%',
-            height: 'auto',
+          display: "flex",
+          flexWrap: "wrap",
+          flexDirection: "column",
+          alignItems: "center",
+          "& > :not(style)": {
+            width: "100%",
+            height: "auto",
             mb: 10,
           },
         }}
@@ -84,7 +70,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
     });
 
     const codingChallenges = data?.codingChallenges?.data;
-    console.log('codingChallenges', codingChallenges);
+    console.log("codingChallenges", codingChallenges);
     if (codingChallenges) {
       return {
         props: { codingChallenges },

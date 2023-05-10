@@ -1,4 +1,5 @@
-import { allocate, toUnit, up, type Dinero } from "dinero.js";
+import { allocate, type Dinero,toUnit, up } from "dinero.js";
+
 import { ProductCurrencySymbol } from "./product-currency-symbol";
 
 export const ProductSplitPayments = ({ price }: { price: Dinero<number> }) => {

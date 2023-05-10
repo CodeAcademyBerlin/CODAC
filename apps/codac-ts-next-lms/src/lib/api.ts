@@ -1,8 +1,4 @@
-import {
-  GetPageDocument,
-  GetPageQuery,
-  PageEntity,
-} from "codac-administration";
+import { GetPageDocument, type GetPageQuery, type PageEntity } from "codac-server-graphql";
 
 import { initializeApollo } from "./apolloClient";
 
@@ -29,5 +25,5 @@ export const getPageData = async (
   }
 
   // Return the first item since there should only be one result per slug
-  return pages?.data[0] as PageEntity;
+  return pages.data[0] as PageEntity;
 };

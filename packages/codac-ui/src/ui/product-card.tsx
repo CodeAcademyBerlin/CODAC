@@ -1,20 +1,15 @@
 import { dinero, type DineroSnapshot } from "dinero.js";
 import Image from "next/image";
 import Link from "next/link";
+
+import type { Product } from "../types";
 import { ProductBestSeller } from "./product-best-seller";
 import { ProductEstimatedArrival } from "./product-estimated-arrival";
 import { ProductLowStockWarning } from "./product-low-stock-warning";
 import { ProductPrice } from "./product-price";
 import { ProductRating } from "./product-rating";
-import { Product } from "../../demo/types";
 
-export const ProductCard = ({
-  product,
-  href,
-}: {
-  product: Product;
-  href: string;
-}) => {
+export const ProductCard = ({ product, href }: { product: Product; href: string }) => {
   const price = dinero(product.price as DineroSnapshot<number>);
 
   return (
@@ -37,7 +32,7 @@ export const ProductCard = ({
           />
         </div>
 
-        <div className="truncate text-sm font-medium text-white group-hover:text-vercel-cyan">
+        <div className="group-hover:text-vercel-cyan truncate text-sm font-medium text-white">
           {product.name}
         </div>
 
@@ -49,9 +44,7 @@ export const ProductCard = ({
 
         <ProductEstimatedArrival leadTime={product.leadTime} />
 
-        {product.stock <= 1 ? (
-          <ProductLowStockWarning stock={product.stock} />
-        ) : null}
+        {product.stock <= 1 ? <ProductLowStockWarning stock={product.stock} /> : null}
       </div>
     </Link>
   );

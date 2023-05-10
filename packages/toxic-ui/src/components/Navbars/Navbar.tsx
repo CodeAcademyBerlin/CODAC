@@ -1,7 +1,8 @@
-import { navbarI } from "../../interfaces/interfaceNavbar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+
+import type { navbarI } from "../../interfaces/interfaceNavbar";
 export const Navbar = ({
   brand,
   urls,

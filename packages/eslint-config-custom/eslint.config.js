@@ -1,6 +1,24 @@
+
 const { resolve } = require("node:path");
 
 module.exports = {
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    tsconfigRootDir: resolve(__dirname, "../.."),
+    project: ["./apps/codac-ts-next-lms/tsconfig.json",
+      "./packages/codac-ui/tsconfig.json",
+      "./packages/codac-server-graphql/tsconfig.json"
+    ],
+    sourceType: "module",
+    ecmaVersion: 2020,
+  },
+  // parserOptions: {
+  //   babelOptions: {
+  //     presets: [require.resolve("next/babel")],
+  //   },
+  //   project: ["./apps/codac-ts-next-lms/tsconfig.json", "./packages/*/tsconfig.json"],
+  //   tsconfigRootDir: resolve(__dirname, "../.."),
+  // },
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -57,19 +75,9 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["**/*.e2e.{ts,tsx}"],
-      extends: ["plugin:playwright/playwright-test"],
-    },
-    {
       files: ["**/*.{spec,test}.{ts,tsx}"],
       extends: ["plugin:testing-library/react", "plugin:jest-dom/recommended"],
     },
   ],
-  parserOptions: {
-    babelOptions: {
-      presets: [require.resolve("next/babel")],
-    },
-    project: ["./apps/*/tsconfig.json", "./packages/*/tsconfig.json"],
-    tsconfigRootDir: resolve(__dirname, "../.."),
-  },
+
 };

@@ -9,11 +9,11 @@ import {
   ListItemText,
   Typography,
   useTheme,
-} from '@mui/material';
-import { VsBattleEntity } from 'cabServer/global/__generated__/types';
-import React, { ReactElement } from 'react';
+} from "@mui/material";
+import { VsBattleEntity } from "codac-server-graphql";
+import React, { ReactElement } from "react";
 
-import ExpandButton from '../common/ExpandButton';
+import ExpandButton from "../common/ExpandButton";
 
 type ExpandComponentProps = {
   vsBattle: VsBattleEntity;
@@ -40,9 +40,9 @@ function VotersList(props: ExpandComponentProps) {
           <Divider>
             <Typography
               sx={{
-                fontVariant: 'all-small-caps',
+                fontVariant: "all-small-caps",
                 fontWeight: theme.typography.fontWeightBold,
-                fontSize: '1.15rem',
+                fontSize: "1.15rem",
               }}
             >
               Voters
@@ -50,12 +50,12 @@ function VotersList(props: ExpandComponentProps) {
           </Divider>
           <Box
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
             }}
           >
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
               <List dense={true} disablePadding={true}>
                 {option1Voters?.slice(0, 5).map((voter) => {
                   if (option1Voters) {
@@ -63,10 +63,7 @@ function VotersList(props: ExpandComponentProps) {
                       <>
                         <ListItem sx={{ lineHeight: 1 }}>
                           <Avatar
-                            src={
-                              voter.attributes?.avatar?.data?.attributes?.url ||
-                              ''
-                            }
+                            src={voter.attributes?.avatar?.data?.attributes?.url || ""}
                             sx={{
                               fontWeight: theme.typography.fontWeightBold,
                               fontSize: 15,
@@ -79,7 +76,7 @@ function VotersList(props: ExpandComponentProps) {
                           ></Avatar>
                           <ListItemText>
                             {voter.attributes?.firstname}
-                            {''} {voter.attributes?.lastname}
+                            {""} {voter.attributes?.lastname}
                           </ListItemText>
                         </ListItem>
                         <Divider sx={{ margin: 0 }} />
@@ -95,10 +92,7 @@ function VotersList(props: ExpandComponentProps) {
                       <>
                         <ListItem>
                           <Avatar
-                            src={
-                              voter.attributes?.avatar?.data?.attributes?.url ||
-                              ''
-                            }
+                            src={voter.attributes?.avatar?.data?.attributes?.url || ""}
                             sx={{
                               fontWeight: theme.typography.fontWeightBold,
                               color: theme.palette.common.white,
@@ -110,7 +104,7 @@ function VotersList(props: ExpandComponentProps) {
                           ></Avatar>
                           <ListItemText>
                             {voter.attributes?.firstname}
-                            {''} {voter.attributes?.lastname}
+                            {""} {voter.attributes?.lastname}
                           </ListItemText>
                         </ListItem>
                         <Divider sx={{ margin: 0 }} />

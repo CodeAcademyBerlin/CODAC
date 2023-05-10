@@ -1,6 +1,6 @@
 import React from 'react'
 
-type Props = {}
+interface Props {}
 
 const HomePage = (props: Props) => {
   return <div>HomePage</div>

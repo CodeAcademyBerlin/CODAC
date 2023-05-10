@@ -1,22 +1,22 @@
-import { DragDropContext, DropResult } from '@hello-pangea/dnd';
-import { ComponentKanbanBoard } from 'cabServer/global/__generated__/types';
-import * as React from 'react';
-import KanbanColumn from 'src/componentsDemo/kanban-board/KanbanColumn';
-import { useAuth } from 'src/hooks/useAuth';
+import { DragDropContext, DropResult } from "@hello-pangea/dnd";
+import { ComponentKanbanBoard } from "codac-server-graphql";
+import * as React from "react";
+import KanbanColumn from "src/componentsDemo/kanban-board/KanbanColumn";
+import { useAuth } from "src/hooks/useAuth";
 
-import { useGetKanbanByUserQuery } from '../../cabServer/queries/__generated__/kanban';
+import { useGetKanbanByUserQuery } from "../../cabServer/queries/__generated__/kanban";
 
 const Kanban = () => {
   const { user } = useAuth();
   const { data, loading, error } = useGetKanbanByUserQuery({
     variables: { id: user?.id }, //make it for every user
   });
-  console.log('data', data);
-  const kabanBoard: ComponentKanbanBoard = data?.usersPermissionsUser?.data
-    ?.attributes?.kanban as ComponentKanbanBoard;
+  console.log("data", data);
+  const kabanBoard: ComponentKanbanBoard = data?.usersPermissionsUser?.data?.attributes
+    ?.kanban as ComponentKanbanBoard;
 
   const [columns, setColumns] = React.useState(
-    data?.usersPermissionsUser?.data?.attributes?.kanban,
+    data?.usersPermissionsUser?.data?.attributes?.kanban
   );
 
   const onDragEnd = (result: DropResult) => {
@@ -29,10 +29,7 @@ const Kanban = () => {
     }
 
     // If you drop the card on the same index of the same column
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
+    if (destination.droppableId === source.droppableId && destination.index === source.index) {
       return;
     }
 

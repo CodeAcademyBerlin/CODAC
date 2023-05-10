@@ -1,16 +1,9 @@
-import {
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  createTheme,
-  Typography,
-} from '@mui/material';
-import { Box } from '@mui/system';
-import { CodingChallengeEntity } from 'cabServer/global/__generated__/types';
-import React from 'react';
+import { Button, Card, CardContent, CardMedia, createTheme, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import { CodingChallengeEntity } from "codac-server-graphql";
+import React from "react";
 
-import StyledLink from '../common/StyledLink';
+import StyledLink from "../common/StyledLink";
 
 // Type to describe the object I will receive in this component. Want to recive the full CodingChallengeEntity.
 
@@ -21,8 +14,8 @@ type ChallengeProps = {
 
 const ChallengeCard = ({ challenge }: ChallengeProps) => {
   const { id, attributes } = challenge;
-  const title = challenge?.attributes?.title || 'no title';
-  const difficulty = challenge?.attributes?.difficulty || 'no difficulty';
+  const title = challenge?.attributes?.title || "no title";
+  const difficulty = challenge?.attributes?.difficulty || "no difficulty";
 
   const username = challenge?.attributes?.author?.data?.attributes?.username;
 
@@ -31,48 +24,44 @@ const ChallengeCard = ({ challenge }: ChallengeProps) => {
   return (
     <>
       <div>
-        <Card sx={{ position: 'relative' }}>
+        <Card sx={{ position: "relative" }}>
           <CardContent>
             <Box
               sx={{
                 mt: 5.75,
                 mb: 8.75,
-                display: 'flex',
-                direction: 'column',
-                flexWrap: 'wrap',
-                alignItems: 'center',
-                justifyContent: 'space-around',
+                display: "flex",
+                direction: "column",
+                flexWrap: "wrap",
+                alignItems: "center",
+                justifyContent: "space-around",
               }}
             >
               <Box
                 sx={{
                   mb: 1,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  width: '50%',
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "50%",
                 }}
               >
                 <Typography variant="h6">{title}</Typography>
                 <Typography variant="body2">{attributes?.challenge}</Typography>
-                <Typography variant="caption">
-                  Contributor: {username}
-                </Typography>
-                <Typography variant="caption">
-                  Level of Difficulty: {difficulty}
-                </Typography>
+                <Typography variant="caption">Contributor: {username}</Typography>
+                <Typography variant="caption">Level of Difficulty: {difficulty}</Typography>
               </Box>
               <Box
                 sx={{
                   mb: 1,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  width: '50%',
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "50%",
                 }}
               >
                 <StyledLink
                   sx={{
-                    display: 'flex',
-                    justifyContent: 'end',
+                    display: "flex",
+                    justifyContent: "end",
                   }}
                   href={`/codingchallenges/${challenge?.id}`}
                 >
@@ -80,7 +69,7 @@ const ChallengeCard = ({ challenge }: ChallengeProps) => {
                     <Button
                       variant="contained"
                       sx={{
-                        bgcolor: 'green',
+                        bgcolor: "green",
                       }}
                     >
                       See Challenge
@@ -89,7 +78,7 @@ const ChallengeCard = ({ challenge }: ChallengeProps) => {
                     <Button
                       variant="contained"
                       sx={{
-                        bgcolor: 'orange',
+                        bgcolor: "orange",
                       }}
                     >
                       See Challenge
@@ -98,7 +87,7 @@ const ChallengeCard = ({ challenge }: ChallengeProps) => {
                     <Button
                       variant="contained"
                       sx={{
-                        bgcolor: 'red',
+                        bgcolor: "red",
                       }}
                     >
                       See Challenge

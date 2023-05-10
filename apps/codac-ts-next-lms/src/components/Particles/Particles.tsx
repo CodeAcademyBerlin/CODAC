@@ -3,7 +3,7 @@ import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import {
   IOptions,
-  ISourceOptions,
+  type ISourceOptions,
   MoveDirection,
   OutMode,
 } from "tsparticles-engine";

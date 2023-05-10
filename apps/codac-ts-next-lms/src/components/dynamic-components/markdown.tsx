@@ -1,11 +1,11 @@
-import { ComponentSectionsRichText } from "codac-administration";
+import type { ComponentSectionsRichText } from "codac-server-graphql";
 import ReactMarkdown from "react-markdown";
-type Props = {
+interface Props {
   data: ComponentSectionsRichText;
-};
+}
 
 const Header = ({ data }: Props) => {
-  return <ReactMarkdown>{data?.content || ""}</ReactMarkdown>;
+  return <ReactMarkdown>{data.content || ""}</ReactMarkdown>;
 };
 
 export default Header;

@@ -1,4 +1,4 @@
-import { useGetChallengesQuery } from "codac-administration";
+import { useGetChallengesQuery } from "codac-server-graphql";
 
 export default function Challenges() {
   const { data, loading, error } = useGetChallengesQuery();
@@ -11,11 +11,7 @@ export default function Challenges() {
       <p>Challenges</p>
       {data &&
         data.codingChallenges?.data.map((challenge) => {
-          return (
-            <p key={challenge.attributes?.challenge}>
-              {challenge.attributes?.challenge}
-            </p>
-          );
+          return <p key={challenge.attributes?.challenge}>{challenge.attributes?.challenge}</p>;
         })}
     </div>
   );

@@ -1,4 +1,4 @@
-import { Draggable } from '@hello-pangea/dnd';
+import { Draggable } from "@hello-pangea/dnd";
 import {
   Box,
   Button,
@@ -8,18 +8,12 @@ import {
   TextField,
   Typography,
   useTheme,
-} from '@mui/material';
-import { ComponentKanbanCard } from 'cabServer/global/__generated__/types';
-import { Close, Pencil } from 'mdi-material-ui';
-import React from 'react';
+} from "@mui/material";
+import { ComponentKanbanCard } from "codac-server-graphql";
+import { Close, Pencil } from "mdi-material-ui";
+import React from "react";
 
-function KanbanCard({
-  card,
-  index,
-}: {
-  card: ComponentKanbanCard;
-  index: number;
-}) {
+function KanbanCard({ card, index }: { card: ComponentKanbanCard; index: number }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [input, setInput] = React.useState(false);
@@ -47,17 +41,17 @@ function KanbanCard({
           {...provided.dragHandleProps}
           key={card?.id}
           sx={{
-            position: 'relative',
+            position: "relative",
             paddingBottom: 10,
           }}
         >
           <Box
             sx={{
               m: 4,
-              display: 'flex',
-              flexWrap: 'nowrap',
-              alignItems: 'center',
-              justifyContent: 'space-between',
+              display: "flex",
+              flexWrap: "nowrap",
+              alignItems: "center",
+              justifyContent: "space-between",
             }}
           >
             <Typography variant="h6">{card?.task}</Typography>
@@ -66,7 +60,7 @@ function KanbanCard({
           <Button
             sx={{
               backgroundColor: theme.palette.primary.light,
-              position: 'absolute',
+              position: "absolute",
               bottom: 42,
               right: 16,
             }}
@@ -84,25 +78,25 @@ function KanbanCard({
           >
             <Box
               sx={{
-                position: 'absolute' as 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
+                position: "absolute" as "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
                 width: 450,
                 height: 300,
-                bgcolor: 'background.paper',
-                borderRadius: '20px',
+                bgcolor: "background.paper",
+                borderRadius: "20px",
                 borderRadiusBottom: theme.shape.borderRadius,
-                padding: '35px',
+                padding: "35px",
               }}
             >
               {input ? (
                 <>
                   <IconButton
                     sx={{
-                      position: 'absolute',
-                      width: '700px',
-                      height: '25px',
+                      position: "absolute",
+                      width: "700px",
+                      height: "25px",
                     }}
                   >
                     <Pencil onClick={handleEdit} />
@@ -110,8 +104,8 @@ function KanbanCard({
 
                   <Typography
                     sx={{
-                      textTransform: 'uppercase',
-                      paddingBottom: '20px',
+                      textTransform: "uppercase",
+                      paddingBottom: "20px",
                     }}
                     variant="h5"
                   >
@@ -124,7 +118,7 @@ function KanbanCard({
                   <TextField
                     variant="standard"
                     sx={{
-                      width: '300px',
+                      width: "300px",
                       marginTop: 3,
                     }}
                     InputProps={{

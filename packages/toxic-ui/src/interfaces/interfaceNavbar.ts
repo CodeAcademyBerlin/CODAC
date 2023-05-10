@@ -1,4 +1,4 @@
-import { validBg, validPadding, validShape, validText } from '../types/types'
+import type { validBg, validPadding, validShape, validText } from '../types/types'
 
 interface urlI {
   id: number

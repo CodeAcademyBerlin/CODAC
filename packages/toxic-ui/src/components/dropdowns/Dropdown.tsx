@@ -1,4 +1,4 @@
-import { dropdownI } from '../../interfaces/interfaceDropdowns'
+import type { dropdownI } from '../../interfaces/interfaceDropdowns'
 
 const Dropdown = ({ background, textColor }: dropdownI) => {
   return (

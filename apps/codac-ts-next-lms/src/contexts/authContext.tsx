@@ -1,22 +1,19 @@
 // ** React Imports
-import {
+import type {
   Achievement,
   UsersPermissionsLoginPayload,
   UsersPermissionsMe,
-} from "codac-administration";
+} from "codac-server-graphql";
 import { destroyCookie, setCookie } from "nookies";
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, type ReactNode, useEffect, useState } from "react";
 
 type User = UsersPermissionsMe | null;
 
-export type AuthContextValue = {
+export interface AuthContextValue {
   user: User;
-  onLoginSucces: (
-    login: UsersPermissionsLoginPayload,
-    rememberMe: boolean
-  ) => void;
+  onLoginSucces: (login: UsersPermissionsLoginPayload, rememberMe: boolean) => void;
   logout: () => void;
-};
+}
 
 const initialAuth: AuthContextValue = {
   user: null,
@@ -89,10 +86,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const onLoginSucces = async (
-    userPayload: UsersPermissionsLoginPayload,
-    rememberMe: boolean
-  ) => {
+  const onLoginSucces = async (userPayload: UsersPermissionsLoginPayload, rememberMe: boolean) => {
     const { jwt, user } = userPayload;
 
     jwt &&
@@ -109,8 +103,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     });
   };
   return (
-    <AuthContext.Provider value={{ user, onLoginSucces, logout }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={{ user, onLoginSucces, logout }}>{children}</AuthContext.Provider>
   );
 };

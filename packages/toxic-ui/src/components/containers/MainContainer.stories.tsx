@@ -1,6 +1,7 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { MainContainer } from "./MainContainer";
+import type { Meta, StoryObj } from "@storybook/react";
+
 import { Button } from "../buttons/Button";
+import { MainContainer } from "./MainContainer";
 const Container = () => {
   return (
     <MainContainer>

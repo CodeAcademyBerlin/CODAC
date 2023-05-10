@@ -1,5 +1,6 @@
 import { add, formatDistanceToNow } from "date-fns";
-import { type Dinero } from "dinero.js";
+import type { Dinero } from "dinero.js";
+
 import { ProductDeal } from "./product-deal";
 
 export const ProductLighteningDeal = ({

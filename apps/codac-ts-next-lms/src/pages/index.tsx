@@ -1,7 +1,8 @@
-import Link from "next/link";
-import { navigation } from "../lib/navigation";
 import { useTheme } from "codac-ui";
+import Link from "next/link";
 import { use, useEffect } from "react";
+
+import { navigation } from "../lib/navigation";
 
 export default function Home() {
   const { theme, setTheme } = useTheme();

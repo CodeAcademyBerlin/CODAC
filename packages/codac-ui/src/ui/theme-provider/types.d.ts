@@ -1,6 +1,4 @@
-interface ValueObject {
-  [themeName: string]: string;
-}
+type ValueObject = Record<string, string>;
 
 export interface UseThemeProps {
   /** List of all available theme names */

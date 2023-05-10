@@ -1,4 +1,5 @@
-import { toUnit, type Dinero } from "dinero.js";
+import { type Dinero,toUnit } from "dinero.js";
+
 import { ProductCurrencySymbol } from "./product-currency-symbol";
 
 export const ProductDeal = ({

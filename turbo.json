@@ -2,23 +2,36 @@
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
+    "clean": {
+      "cache": false
+    },
+    "lint": {},
+    "dev": {
+      "cache": false,
+      "dependsOn": ["^build"],
+      "persistent": true
+    },
     "build": {
       "env": ["NEXT_PUBLIC_CODAC_ADMINISTRATION_URL"],
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**"]
     },
-    "storybook": {},
-    "storybook-build": {
-      "outputs": ["storybook-static/**"]
-    },
-    "lint": {},
-    "check-types": {},
-    "dev": {
+    "storybook:dev": {
       "cache": false,
+      "dependsOn": ["^build"],
       "persistent": true
     },
-    "clean": {
-      "cache": false
+    "storybook:build": {
+      "dependsOn": ["^build"],
+      "outputs": ["storybook-static/**"]
+    },
+    "test:e2e": {
+      "cache": false,
+      "dependsOn": ["^build"]
+    },
+    "test:unit": {
+      "cache": false,
+      "dependsOn": ["^build"]
     }
   }
 }
