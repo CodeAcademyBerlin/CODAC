@@ -1,15 +1,15 @@
-import { demos } from "../../demo/demos";
 import { GlobalNav } from "../ui/global-nav";
 import { Layout } from "../ui/layout";
+import { navData } from "./navSampleData";
 
 export const Page = () => {
   return (
-    <Layout navigation={<GlobalNav navigation={demos} header="Demo" />}>
+    <Layout navigation={<GlobalNav navigation={navData} header="Demo" />}>
       <div className="space-y-8">
         <h1 className="text-xl font-medium text-gray-300">Examples</h1>
 
         <div className="space-y-10 text-white">
-          {demos.map((section) => {
+          {navData.map((section) => {
             return (
               <div key={section.name} className="space-y-5">
                 <div className="text-xs font-semibold uppercase tracking-wider text-gray-400">

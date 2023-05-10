@@ -3,7 +3,6 @@ import "../src/input.css";
 import * as themes from "./themes";
 import { withThemeByDataAttribute } from "@storybook/addon-styling";
 
-/* snipped for brevity */
 
 export const decorators = [
   withThemeByDataAttribute({

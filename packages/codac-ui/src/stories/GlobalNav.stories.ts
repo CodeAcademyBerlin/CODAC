@@ -1,17 +1,18 @@
-import { demos } from "../../demo/demos";
+import type { Meta, StoryObj } from "@storybook/react";
+
 import { GlobalNav } from "../ui/global-nav";
+import { navData } from "./navSampleData";
 
-const GlobalNavStory = {
+const meta = {
   component: GlobalNav,
-  parameters: {
-    layout: "fullscreen",
-  },
-};
-export const Demo = {
   args: {
-    navigation: demos,
-    header: "Demo",
+    navigation: navData,
+    header: "Demo Header",
   },
-};
+} satisfies Meta<typeof GlobalNav>;
 
-export default GlobalNavStory;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {};

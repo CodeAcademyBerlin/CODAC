@@ -13,12 +13,12 @@ const commonOptions = {
 
 export const light = create({
   base: "light",
-  brandImage: "codac-logo-light.svg",
+  brandImage: "codac-ui.png",
   ...commonOptions,
 });
 
 export const dark = create({
   base: "dark",
-  brandImage: "codac-logo-dark.svg",
+  brandImage: "codac-ui.png",
   ...commonOptions,
 });

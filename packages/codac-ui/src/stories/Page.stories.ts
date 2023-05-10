@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Default } from "./Button.stories";
 import { Page } from "./Page";
 
 const meta = {
@@ -11,29 +10,8 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const SmallMobile: Story = {
-  ...Default,
+export const Default: Story = {
   parameters: {
-    viewport: {
-      defaultViewport: "mobile1",
-    },
-  },
-};
-
-export const LargeMobile: Story = {
-  ...Default,
-  parameters: {
-    viewport: {
-      defaultViewport: "mobile2",
-    },
-  },
-};
-
-export const Tablet: Story = {
-  ...Default,
-  parameters: {
-    viewport: {
-      defaultViewport: "tablet",
-    },
+    layout: "fullscreen",
   },
 };
