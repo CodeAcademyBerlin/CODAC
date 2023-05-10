@@ -2,7 +2,6 @@ import Link from "next/link";
 import { navigation } from "../lib/navigation";
 import { useTheme } from "codac-ui";
 import { use, useEffect } from "react";
-import ThemeSwitch from "../components/theme-switch";
 
 export default function Home() {
   const { theme, setTheme } = useTheme();
@@ -10,7 +9,6 @@ export default function Home() {
 
   return (
     <div className="space-y-8">
-      <ThemeSwitch />
       <h1 className="text-xl font-medium text-gray-300">CODAC LMS</h1>
       <div className="space-y-10 text-white">
         {navigation.map((section) => {

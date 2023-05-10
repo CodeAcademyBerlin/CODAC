@@ -4,6 +4,7 @@ import { MenuAlt2Icon, XIcon } from "@heroicons/react/solid";
 import clsx from "clsx";
 import { useState } from "react";
 import { CodacLogo } from "./codac-logo";
+import ThemeSwitch from "./theme-provider/theme-switch";
 export type Item = {
   name: string;
   slug: string;
@@ -36,6 +37,7 @@ export function GlobalNav({
           </h3>
         </Link>
       </div>
+
       <button
         type="button"
         className="group absolute right-0 top-0 flex h-14 items-center gap-x-2 px-4 lg:hidden"
@@ -73,7 +75,9 @@ export function GlobalNav({
             );
           })}
         </nav>
-
+        <div className="">
+          <ThemeSwitch />
+        </div>
         {/* <Byline className="absolute hidden sm:block" /> */}
       </div>
     </div>

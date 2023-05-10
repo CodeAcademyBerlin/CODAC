@@ -1,5 +1,10 @@
 {
   "extends": "tsconfig/nextjs.json",
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "../../packages/codac-ui/src/ui/theme-provider/theme-switch.tsx"
+  ],
   "exclude": ["node_modules"]
 }

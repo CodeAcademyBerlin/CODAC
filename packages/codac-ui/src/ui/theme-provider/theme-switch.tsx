@@ -1,5 +1,5 @@
-import { useTheme } from "codac-ui";
 import { useState, useEffect } from "react";
+import { useTheme } from ".";
 
 export const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(false);
@@ -26,7 +26,8 @@ export default ThemeSwitch;
 const LightLogo = ({ setTheme }: { setTheme: (theme: string) => void }) => {
   return (
     <svg
-      fill="currentColor"
+      className="fill-primary"
+      // fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 612 792"
       width="30px"
@@ -50,7 +51,7 @@ const LightLogo = ({ setTheme }: { setTheme: (theme: string) => void }) => {
 const DarkLogo = ({ setTheme }: { setTheme: (theme: string) => void }) => {
   return (
     <svg
-      fill="currentColor"
+      className="fill-secondary"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 612 792"
       width="30px"

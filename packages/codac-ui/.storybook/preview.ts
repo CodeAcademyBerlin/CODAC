@@ -1,4 +1,5 @@
 /** @type { import('@storybook/react').Preview } */
+/** @type { import('@storybook/addon-styling') } */
 import "../src/input.css";
 import { withThemeByDataAttribute } from "@storybook/addon-styling";
 
@@ -11,7 +12,7 @@ export const decorators = [
       dark: "dark",
     },
     defaultTheme: "dark",
-    attributeName: "data-mode",
+    attributeName: "class",
   }),
 ];
 export const parameters = {
