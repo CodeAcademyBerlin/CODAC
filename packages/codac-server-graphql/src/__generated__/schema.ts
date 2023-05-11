@@ -34,13 +34,13 @@ export type Achievement = {
 
 export type AchievementEntity = {
   __typename?: 'AchievementEntity';
-  attributes?: Maybe<Achievement>;
+attributes: Achievement
   id: ['ID'];
 };
 
 export type AchievementEntityResponse = {
   __typename?: 'AchievementEntityResponse';
-  data?: Maybe<AchievementEntity>;
+data: AchievementEntity
 };
 
 export type AchievementEntityResponseCollection = {
@@ -94,13 +94,13 @@ export type AttendanceHoursArgs = {
 
 export type AttendanceEntity = {
   __typename?: 'AttendanceEntity';
-  attributes?: Maybe<Attendance>;
+attributes: Attendance
   id: ['ID'];
 };
 
 export type AttendanceEntityResponse = {
   __typename?: 'AttendanceEntityResponse';
-  data?: Maybe<AttendanceEntity>;
+data: AttendanceEntity
 };
 
 export type AttendanceEntityResponseCollection = {
@@ -181,13 +181,13 @@ export type ChatUsersArgs = {
 
 export type ChatEntity = {
   __typename?: 'ChatEntity';
-  attributes?: Maybe<Chat>;
+attributes: Chat
   id: ['ID'];
 };
 
 export type ChatEntityResponse = {
   __typename?: 'ChatEntityResponse';
-  data?: Maybe<ChatEntity>;
+data: ChatEntity
 };
 
 export type ChatEntityResponseCollection = {
@@ -239,13 +239,13 @@ export type CodacOverflowCommentsArgs = {
 
 export type CodacOverflowEntity = {
   __typename?: 'CodacOverflowEntity';
-  attributes?: Maybe<CodacOverflow>;
+attributes: CodacOverflow
   id: ['ID'];
 };
 
 export type CodacOverflowEntityResponse = {
   __typename?: 'CodacOverflowEntityResponse';
-  data?: Maybe<CodacOverflowEntity>;
+data: CodacOverflowEntity
 };
 
 export type CodacOverflowEntityResponseCollection = {
@@ -304,13 +304,13 @@ export type CodingChallengeCommentsArgs = {
 
 export type CodingChallengeEntity = {
   __typename?: 'CodingChallengeEntity';
-  attributes?: Maybe<CodingChallenge>;
+attributes: CodingChallenge
   id: ['ID'];
 };
 
 export type CodingChallengeEntityResponse = {
   __typename?: 'CodingChallengeEntityResponse';
-  data?: Maybe<CodingChallengeEntity>;
+data: CodingChallengeEntity
 };
 
 export type CodingChallengeEntityResponseCollection = {
@@ -364,13 +364,13 @@ export type CohortStudentsArgs = {
 
 export type CohortEntity = {
   __typename?: 'CohortEntity';
-  attributes?: Maybe<Cohort>;
+attributes: Cohort
   id: ['ID'];
 };
 
 export type CohortEntityResponse = {
   __typename?: 'CohortEntityResponse';
-  data?: Maybe<CohortEntity>;
+data: CohortEntity
 };
 
 export type CohortEntityResponseCollection = {
@@ -1095,13 +1095,13 @@ export type CourseProjectsArgs = {
 
 export type CourseEntity = {
   __typename?: 'CourseEntity';
-  attributes?: Maybe<Course>;
+attributes: Course
   id: ['ID'];
 };
 
 export type CourseEntityResponse = {
   __typename?: 'CourseEntityResponse';
-  data?: Maybe<CourseEntity>;
+data: CourseEntity
 };
 
 export type CourseEntityResponseCollection = {
@@ -1313,13 +1313,13 @@ export type EmailDesignerEmailTemplate = {
 
 export type EmailDesignerEmailTemplateEntity = {
   __typename?: 'EmailDesignerEmailTemplateEntity';
-  attributes?: Maybe<EmailDesignerEmailTemplate>;
+attributes: EmailDesignerEmailTemplate
   id: ['ID'];
 };
 
 export type EmailDesignerEmailTemplateEntityResponse = {
   __typename?: 'EmailDesignerEmailTemplateEntityResponse';
-  data?: Maybe<EmailDesignerEmailTemplateEntity>;
+data: EmailDesignerEmailTemplateEntity
 };
 
 export type EmailDesignerEmailTemplateEntityResponseCollection = {
@@ -1412,13 +1412,13 @@ export type I18NLocale = {
 
 export type I18NLocaleEntity = {
   __typename?: 'I18NLocaleEntity';
-  attributes?: Maybe<I18NLocale>;
+attributes: I18NLocale
   id: ['ID'];
 };
 
 export type I18NLocaleEntityResponse = {
   __typename?: 'I18NLocaleEntityResponse';
-  data?: Maybe<I18NLocaleEntity>;
+data: I18NLocaleEntity
 };
 
 export type I18NLocaleEntityResponseCollection = {
@@ -1524,13 +1524,13 @@ export type JobPost = {
 
 export type JobPostEntity = {
   __typename?: 'JobPostEntity';
-  attributes?: Maybe<JobPost>;
+attributes: JobPost
   id: ['ID'];
 };
 
 export type JobPostEntityResponse = {
   __typename?: 'JobPostEntityResponse';
-  data?: Maybe<JobPostEntity>;
+data: JobPostEntity
 };
 
 export type JobPostEntityResponseCollection = {
@@ -1579,13 +1579,13 @@ export type Lead = {
 
 export type LeadEntity = {
   __typename?: 'LeadEntity';
-  attributes?: Maybe<Lead>;
+attributes: Lead
   id: ['ID'];
 };
 
 export type LeadEntityResponse = {
   __typename?: 'LeadEntityResponse';
-  data?: Maybe<LeadEntity>;
+data: LeadEntity
 };
 
 export type LeadEntityResponseCollection = {
@@ -1659,13 +1659,13 @@ export type LmsFeedbackFeedbacksArgs = {
 
 export type LmsFeedbackEntity = {
   __typename?: 'LmsFeedbackEntity';
-  attributes?: Maybe<LmsFeedback>;
+attributes: LmsFeedback
   id: ['ID'];
 };
 
 export type LmsFeedbackEntityResponse = {
   __typename?: 'LmsFeedbackEntityResponse';
-  data?: Maybe<LmsFeedbackEntity>;
+data: LmsFeedbackEntity
 };
 
 export type LmsFeedbackEntityResponseCollection = {
@@ -1705,13 +1705,13 @@ export type Mentor = {
 
 export type MentorEntity = {
   __typename?: 'MentorEntity';
-  attributes?: Maybe<Mentor>;
+attributes: Mentor
   id: ['ID'];
 };
 
 export type MentorEntityResponse = {
   __typename?: 'MentorEntityResponse';
-  data?: Maybe<MentorEntity>;
+data: MentorEntity
 };
 
 export type MentorEntityResponseCollection = {
@@ -2447,13 +2447,13 @@ export type NewsPostLikesArgs = {
 
 export type NewsPostEntity = {
   __typename?: 'NewsPostEntity';
-  attributes?: Maybe<NewsPost>;
+attributes: NewsPost
   id: ['ID'];
 };
 
 export type NewsPostEntityResponse = {
   __typename?: 'NewsPostEntityResponse';
-  data?: Maybe<NewsPostEntity>;
+data: NewsPostEntity
 };
 
 export type NewsPostEntityResponseCollection = {
@@ -2494,7 +2494,7 @@ export type Page = {
   createdAt?: Maybe<Scalars['DateTime']>;
   locale?: Maybe<Scalars['String']>;
   localizations?: Maybe<PageRelationResponseCollection>;
-  metadata?: Maybe<ComponentMetaMetadata>;
+data: ComponentMetaMetadata
   publishedAt?: Maybe<Scalars['DateTime']>;
   shortName?: Maybe<Scalars['String']>;
   slug: Scalars['String'];
@@ -2513,13 +2513,13 @@ export type PageContentSectionsDynamicZone = ComponentSectionsFile | ComponentSe
 
 export type PageEntity = {
   __typename?: 'PageEntity';
-  attributes?: Maybe<Page>;
+attributes: Page
   id: ['ID'];
 };
 
 export type PageEntityResponse = {
   __typename?: 'PageEntityResponse';
-  data?: Maybe<PageEntity>;
+data: PageEntity
 };
 
 export type PageEntityResponseCollection = {
@@ -2603,13 +2603,13 @@ export type ProjectSpikesArgs = {
 
 export type ProjectEntity = {
   __typename?: 'ProjectEntity';
-  attributes?: Maybe<Project>;
+attributes: Project
   id: ['ID'];
 };
 
 export type ProjectEntityResponse = {
   __typename?: 'ProjectEntityResponse';
-  data?: Maybe<ProjectEntity>;
+data: ProjectEntity
 };
 
 export type ProjectEntityResponseCollection = {
@@ -3008,13 +3008,13 @@ export type Spike = {
 
 export type SpikeEntity = {
   __typename?: 'SpikeEntity';
-  attributes?: Maybe<Spike>;
+attributes: Spike
   id: ['ID'];
 };
 
 export type SpikeEntityResponse = {
   __typename?: 'SpikeEntityResponse';
-  data?: Maybe<SpikeEntity>;
+data: SpikeEntity
 };
 
 export type SpikeEntityResponseCollection = {
@@ -3121,13 +3121,13 @@ export type StudentProjectsArgs = {
 
 export type StudentEntity = {
   __typename?: 'StudentEntity';
-  attributes?: Maybe<Student>;
+attributes: Student
   id: ['ID'];
 };
 
 export type StudentEntityResponse = {
   __typename?: 'StudentEntityResponse';
-  data?: Maybe<StudentEntity>;
+data: StudentEntity
 };
 
 export type StudentEntityResponseCollection = {
@@ -3214,7 +3214,7 @@ export type UploadFile = {
   name: Scalars['String'];
   previewUrl?: Maybe<Scalars['String']>;
   provider: Scalars['String'];
-  provider_metadata?: Maybe<Scalars['JSON']>;
+data: Scalars['JSON']
   related?: Maybe<Array<Maybe<GenericMorph>>>;
   size: Scalars['Float'];
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -3224,13 +3224,13 @@ export type UploadFile = {
 
 export type UploadFileEntity = {
   __typename?: 'UploadFileEntity';
-  attributes?: Maybe<UploadFile>;
+attributes: UploadFile
   id: ['ID'];
 };
 
 export type UploadFileEntityResponse = {
   __typename?: 'UploadFileEntityResponse';
-  data?: Maybe<UploadFileEntity>;
+data: UploadFileEntity
 };
 
 export type UploadFileEntityResponseCollection = {
@@ -3316,13 +3316,13 @@ export type UploadFolderFilesArgs = {
 
 export type UploadFolderEntity = {
   __typename?: 'UploadFolderEntity';
-  attributes?: Maybe<UploadFolder>;
+attributes: UploadFolder
   id: ['ID'];
 };
 
 export type UploadFolderEntityResponse = {
   __typename?: 'UploadFolderEntityResponse';
-  data?: Maybe<UploadFolderEntity>;
+data: UploadFolderEntity
 };
 
 export type UploadFolderEntityResponseCollection = {
@@ -3418,7 +3418,7 @@ export type UsersPermissionsPermission = {
 
 export type UsersPermissionsPermissionEntity = {
   __typename?: 'UsersPermissionsPermissionEntity';
-  attributes?: Maybe<UsersPermissionsPermission>;
+attributes: UsersPermissionsPermission
   id: ['ID'];
 };
 
@@ -3471,13 +3471,13 @@ export type UsersPermissionsRoleUsersArgs = {
 
 export type UsersPermissionsRoleEntity = {
   __typename?: 'UsersPermissionsRoleEntity';
-  attributes?: Maybe<UsersPermissionsRole>;
+attributes: UsersPermissionsRole
   id: ['ID'];
 };
 
 export type UsersPermissionsRoleEntityResponse = {
   __typename?: 'UsersPermissionsRoleEntityResponse';
-  data?: Maybe<UsersPermissionsRoleEntity>;
+data: UsersPermissionsRoleEntity
 };
 
 export type UsersPermissionsRoleEntityResponseCollection = {
@@ -3541,13 +3541,13 @@ export type UsersPermissionsUserNotificationsArgs = {
 
 export type UsersPermissionsUserEntity = {
   __typename?: 'UsersPermissionsUserEntity';
-  attributes?: Maybe<UsersPermissionsUser>;
+attributes: UsersPermissionsUser
   id: ['ID'];
 };
 
 export type UsersPermissionsUserEntityResponse = {
   __typename?: 'UsersPermissionsUserEntityResponse';
-  data?: Maybe<UsersPermissionsUserEntity>;
+data: UsersPermissionsUserEntity
 };
 
 export type UsersPermissionsUserEntityResponseCollection = {
@@ -3634,13 +3634,13 @@ export type VsBattleOption_2_VotersArgs = {
 
 export type VsBattleEntity = {
   __typename?: 'VsBattleEntity';
-  attributes?: Maybe<VsBattle>;
+attributes: VsBattle
   id: ['ID'];
 };
 
 export type VsBattleEntityResponse = {
   __typename?: 'VsBattleEntityResponse';
-  data?: Maybe<VsBattleEntity>;
+data: VsBattleEntity
 };
 
 export type VsBattleEntityResponseCollection = {
@@ -3676,3 +3676,47 @@ export type VsBattleInput = {
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   title?: InputMaybe<Scalars['String']>;
 };
+
+export type GetChallengesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetChallengesQuery = { __typename?: 'Query', codingChallenges?: { __typename?: 'CodingChallengeEntityResponseCollection', data: Array<{ __typename?: 'CodingChallengeEntity', attributes?: { __typename?: 'CodingChallenge', challenge?: string | null, difficulty?: number | null } | null }> } | null };
+
+export type GetAllCoursesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllCoursesQuery = { __typename?: 'Query', courses?: { __typename?: 'CourseEntityResponseCollection', data: Array<{ __typename?: 'CourseEntity', id?: string | null, attributes?: { __typename?: 'Course', name?: string | null, description?: string | null, length?: number | null, mentors?: { __typename?: 'MentorRelationResponseCollection', data: Array<{ __typename?: 'MentorEntity', attributes?: { __typename?: 'Mentor', user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', firstname?: string | null, lastname?: string | null, email: string } | null } | null } | null } | null }> } | null, projects?: { __typename?: 'ProjectRelationResponseCollection', data: Array<{ __typename?: 'ProjectEntity', attributes?: { __typename?: 'Project', name?: string | null, description?: string | null, publishedAt?: any | null, spikes?: { __typename?: 'SpikeRelationResponseCollection', data: Array<{ __typename?: 'SpikeEntity', attributes?: { __typename?: 'Spike', title?: string | null, day?: number | null, content?: { __typename?: 'PageEntityResponse', data?: { __typename?: 'PageEntity', attributes?: { __typename?: 'Page', shortName?: string | null } | null } | null } | null } | null }> } | null } | null }> } | null } | null }> } | null };
+
+export type GetPageQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type GetPageQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', id?: string | null, attributes?: { __typename?: 'Page', locale?: string | null, slug: string, shortName?: string | null, contentSections?: Array<{ __typename?: 'ComponentSectionsFile' } | { __typename?: 'ComponentSectionsGoogleSlide' } | { __typename: 'ComponentSectionsHeader', id: string, title?: string | null, subtitle?: string | null } | { __typename?: 'ComponentSectionsHero' } | { __typename?: 'ComponentSectionsLargeVideo' } | { __typename: 'ComponentSectionsRichText', id: string, content?: string | null } | { __typename?: 'Error' } | null> | null } | null }> } | null };
+
+export type GetPagesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetPagesQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', id?: string | null, attributes?: { __typename?: 'Page', locale?: string | null, slug: string, contentSections?: Array<{ __typename?: 'ComponentSectionsFile' } | { __typename?: 'ComponentSectionsGoogleSlide' } | { __typename: 'ComponentSectionsHeader', id: string, title?: string | null, subtitle?: string | null } | { __typename?: 'ComponentSectionsHero' } | { __typename?: 'ComponentSectionsLargeVideo' } | { __typename: 'ComponentSectionsRichText', id: string, content?: string | null } | { __typename?: 'Error' } | null> | null } | null }> } | null };
+
+export type GetProjectsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetProjectsQuery = { __typename?: 'Query', projects?: { __typename?: 'ProjectEntityResponseCollection', data: Array<{ __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', name?: string | null, description?: string | null, spikes?: { __typename?: 'SpikeRelationResponseCollection', data: Array<{ __typename?: 'SpikeEntity', id?: string | null, attributes?: { __typename?: 'Spike', title?: string | null, day?: number | null } | null }> } | null } | null }> } | null };
+
+export type GetSpikeQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type GetSpikeQuery = { __typename?: 'Query', spike?: { __typename?: 'SpikeEntityResponse', data?: { __typename?: 'SpikeEntity', id?: string | null, attributes?: { __typename?: 'Spike', title?: string | null, day?: number | null } | null } | null } | null };
+
+export type GetSpikesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetSpikesQuery = { __typename?: 'Query', spikes?: { __typename?: 'SpikeEntityResponseCollection', data: Array<{ __typename?: 'SpikeEntity', id?: string | null, attributes?: { __typename?: 'Spike', title?: string | null, day?: number | null, recording?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename: 'UploadFile', url: string } | null } | null } | null, content?: { __typename?: 'PageEntityResponse', data?: { __typename?: 'PageEntity', attributes?: { __typename: 'Page' } | null } | null } | null } | null }> } | null };
+
+export type GetMeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetMeQuery = { __typename?: 'Query', me?: { __typename?: 'UsersPermissionsMe', id?: string | null, email?: string | null, username: string, firstname?: string | null, lastname?: string | null, role?: { __typename?: 'UsersPermissionsMeRole', id: string, name: string } | null, avatar?: { __typename?: 'UploadFile', url: string } | null } | null };

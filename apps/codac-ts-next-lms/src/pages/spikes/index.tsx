@@ -1,3 +1,4 @@
+import { GetSpikesDocument, type GetSpikesQuery, type SpikeEntity } from "codac-server-graphql";
 import Link from "next/link";
 
 import { initializeApollo } from "../../lib/apolloClient";
@@ -14,7 +15,7 @@ export default function Spikes({ spikes }: { spikes: SpikeEntity[] }) {
             return (
               <div className="my-2 w-[75vw] bg-zinc-800 p-3 pb-5 text-[#009688] shadow-xl" key={i}>
                 <p>
-                  <strong>Subject of the spike:</strong> &emsp; {spike.attributes?.title}
+                  <strong>Subject of the spike:</strong> &emsp; {spike.attributes}
                 </p>
                 <p>
                   <strong>Day:</strong>
@@ -39,11 +40,11 @@ export default function Spikes({ spikes }: { spikes: SpikeEntity[] }) {
 export async function getStaticProps() {
   const client = initializeApollo(null, null);
 
-  const { data } = await client.query({
-    query: GetSpikesDocoment,
+  const data = await client.query<GetSpikesQuery>({
+    query: GetSpikesDocument,
   });
 
-  const spikes = data?.spikes?.data;
+  const spikes = data.spikes?.data;
   return {
     props: {
       spikes,
