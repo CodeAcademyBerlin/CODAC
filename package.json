@@ -7,21 +7,19 @@
     "url": "https://github.com/CodeAcademyBerlin/CODAC-monorepo.git"
   },
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "storybook:dev": "turbo run storybook:dev",
-    "storybook:build": "turbo run storybook:build",
-    "clean": "turbo run clean",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "test:e2e": "turbo run test:e2e --concurrency=1 --no-daemon",
+    "clean": "turbo run clean --no-daemon",
+    "dev": "turbo run dev --no-daemon",
+    "build": "turbo run build --no-daemon",
+    "check": "turbo run check --no-daemon",
+    "storybook:dev": "turbo run storybook:dev --no-daemon",
+    "storybook:build": "turbo run storybook:build --no-daemon",
     "test:unit": "turbo run test:unit --concurrency=1 --no-daemon",
     "lint:prettier": "prettier --plugin-search-dir=. --check .",
     "lint:eslint": "eslint --cache .",
     "lint": "run-s lint:*",
     "fix:eslint": "eslint --fix .",
     "fix:prettier": "prettier --plugin-search-dir=. --write .",
-    "fix2": "run-s fix:*",
-    "fix": "turbo run lint",
+    "fix": "run-s fix:*",
     "prepare": "husky install"
   },
   "lint-staged": {

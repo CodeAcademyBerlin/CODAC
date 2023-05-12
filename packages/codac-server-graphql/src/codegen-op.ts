@@ -1,7 +1,5 @@
 import type { CodegenConfig } from "@graphql-codegen/cli";
-
 import { loadEnvConfig } from "@next/env";
-type HookFunction = () => void;
 
 loadEnvConfig(process.cwd());
 
@@ -10,15 +8,15 @@ const config: CodegenConfig = {
   // schema: `https://codac-server-graphql.up.railway.app/graphql`,
   schema: `https://codac-admin-dev.up.railway.app/graphql`,
   documents: "./**/*.graphql",
-  // generates: {
-  //   "src/__generated__/op.ts": {
-  //     preset: "import-types",
-  //     plugins: ["typescript-operations"],
-  //     presetConfig: {
-  //       typesPath: "./schema",
-  //       extension: ".ts",
-  //     },
-  //   },
+  generates: {
+    //   "src/__generated__/op.ts": {
+    //     preset: "import-types",
+    //     plugins: ["typescript-operations"],
+    //     presetConfig: {
+    //       typesPath: "./schema",
+    //       extension: ".ts",
+    //     },
+    //   },
     "src/__generated__/apollo.ts": {
       preset: "import-types",
       plugins: ["typescript-react-apollo"],

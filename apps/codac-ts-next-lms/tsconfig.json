@@ -1,8 +1,7 @@
 {
-  "extends": "tsconfig/nextjs.json",
+  "extends": "tsconfig/react-library.json",
   "compilerOptions": {
-    "baseUrl": "./src"
+    "rootDir": "src"
   },
-  "include": ["next-env.d.ts", "src", "e2e"],
-  "exclude": ["node_modules"]
+  "include": ["src"]
 }

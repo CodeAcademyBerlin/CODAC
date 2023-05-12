@@ -78,6 +78,7 @@
     "next-router-mock": "^0.8.0",
     "ts-node": "^10.9.1",
     "codac-server-graphql": "workspace:*",
+    "next-config": "workspace:*",
     "tsconfig": "workspace:*"
   },
   "optionalDependencies": {

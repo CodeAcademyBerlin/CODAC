@@ -35,6 +35,7 @@
     "postcss": "^8.4.20",
     "tailwind-config": "workspace:*",
     "eslint-config-custom": "workspace:*",
+    "next-config": "workspace:*",
     "tailwindcss": "^3.2.4",
     "tsconfig": "workspace:*",
     "typescript": "^4.9.4"

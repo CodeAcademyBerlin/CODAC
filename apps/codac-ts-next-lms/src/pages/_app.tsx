@@ -3,7 +3,6 @@ import "../styles.css";
 
 import { ApolloProvider } from "@apollo/client";
 import { GlobalNav, Layout, ThemeProvider } from "codac-ui";
-import { navigation } from "lib/navigation";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Router from "next/router";
@@ -13,6 +12,7 @@ import React, { type ReactElement, type ReactNode, useEffect, useState } from "r
 
 import { AuthProvider } from "../contexts/authContext";
 import { useApollo } from "../lib/apolloClient";
+import { navigation } from "constants/navigation";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;

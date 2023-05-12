@@ -1,7 +1,5 @@
 import type { CodegenConfig } from "@graphql-codegen/cli";
-
 import { loadEnvConfig } from "@next/env";
-type HookFunction = () => void;
 
 loadEnvConfig(process.cwd());
 

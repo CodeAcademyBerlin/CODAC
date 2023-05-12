@@ -1,7 +1,8 @@
 {
   "extends": "tsconfig/react-library.json",
   "compilerOptions": {
-    "rootDir": "src"
+    "plugins": [{ "name": "next" }]
   },
-  "include": ["src", "src/types/demos.ts"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["dist", "build", "node_modules"]
 }

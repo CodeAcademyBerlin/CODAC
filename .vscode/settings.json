@@ -8,5 +8,6 @@
   "editor.tabSize": 2,
   "files.associations": {
     "*.css": "tailwindcss"
-  }
+  },
+  "eslint.workingDirectories": [{ "pattern": "apps/*/" }, { "pattern": "packages/*/" }]
 }

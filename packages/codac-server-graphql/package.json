@@ -17,8 +17,8 @@
     "retype": "node src/utils/retype.mjs",
     "dev": "tsc --watch",
     "codegen": "pnpm codegen:schema && pnpm codegen:op",
-    "codegen:schema": "graphql-codegen --config codegen-types.ts && pnpm retype",
-    "codegen:op": "graphql-codegen --config codegen-op.ts",
+    "codegen:schema": "graphql-codegen --config src/utils/codegen-types.ts && pnpm retype",
+    "codegen:op": "graphql-codegen --config src/utils/codegen-op.ts",
     "type-check": "tsc --noEmit"
   },
   "keywords": [],

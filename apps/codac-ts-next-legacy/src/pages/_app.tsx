@@ -18,7 +18,7 @@ import Head from "next/head";
 import Router from "next/router";
 // // ** Loader Import
 import NProgress from "nprogress";
-import React, { ReactElement, ReactNode, useEffect, useState } from "react";
+import React, { type ReactElement, type ReactNode, useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 
 import favicon from "../../public/favicon.ico";
@@ -29,7 +29,6 @@ import MainLayout from "../layouts/MainLayout/MainLayout";
 import { useApollo } from "../lib/apolloClient";
 import createEmotionCache from "../lib/createEmotionCache";
 import ThemeComponent from "../theme/ThemeComponent";
-import { RouteGuard } from "src/components/RouteGuard";
 
 const vt323 = VT323({ weight: "400", subsets: ["latin"] });
 

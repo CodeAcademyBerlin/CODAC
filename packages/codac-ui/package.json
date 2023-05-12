@@ -5,8 +5,9 @@
     "**/*.css"
   ],
   "type": "module",
+  "types": "./dist/index.d.ts",
   "main": "./src/index.ts",
-    "exports": {
+  "exports": {
     ".": "./src/index.ts",
     "./*": [
       "./src/*.ts",
@@ -14,17 +15,10 @@
       "./src/*/index.ts"
     ]
   },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./src/*",
-        "./src/*/index"
-      ]
-    }
-  },
+
   "scripts": {
     "dev": "pnpm build --watch",
-    "build": "tsc --noEmit",
+    "build": "tsup",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build -o ./storybook-static",
     "test:unit": "jest --ci --coverage",
@@ -43,11 +37,12 @@
     "@storybook/testing-library": "0.1.0",
     "@storybook/theming": "^7.0.10",
     "autoprefixer": "^10.4.14",
+    "eslint-config-custom": "workspace:*",
     "jest-config": "workspace:*",
     "storybook": "7.0.10",
     "tailwind-config": "workspace:*",
-    "eslint-config-custom": "workspace:*",
-    "tsconfig": "workspace:*"
+    "tsconfig": "workspace:*",
+    "tsup": "^6.7.0"
   },
   "dependencies": {
     "@headlessui/react": "^1.5.0",

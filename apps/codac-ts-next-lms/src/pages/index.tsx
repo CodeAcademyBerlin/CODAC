@@ -1,7 +1,7 @@
 import { useTheme } from "codac-ui";
 import Link from "next/link";
 
-import { navigation } from "../lib/navigation";
+import { navigation } from "../constants/navigation";
 
 export default function Home() {
   const { theme } = useTheme();
