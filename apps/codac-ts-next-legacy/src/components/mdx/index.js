@@ -1,19 +1,18 @@
-import { styled } from '@mui/material/styles';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
+import { styled } from "@mui/material/styles";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
-import { BrandText } from '../common/BrandStyle';
-import AnchorTag from './AnchorTag';
-import IframeEmbedded from './IframeEmbedded';
-import YoutubeEmbed from './YoutubeEmbed';
+import { BrandText } from "../common/BrandStyle";
+import AnchorTag from "./AnchorTag";
+import IframeEmbedded from "./IframeEmbedded";
+import YoutubeEmbed from "./YoutubeEmbed";
 
-const StyledPre = styled('pre')`
+const StyledPre = styled("pre")`
   padding: 16px;
-  max-width: 100%
-    ${'' /* background: ${props => props.theme.palette.preFormattedText}; */};
+  max-width: 100% ${"" /* background: ${props => props.theme.palette.preFormattedText}; */};
 `;
-const StyledImg = styled('img')`
+const StyledImg = styled("img")`
   display: block;
   margin-left: auto;
   margin-right: auto;

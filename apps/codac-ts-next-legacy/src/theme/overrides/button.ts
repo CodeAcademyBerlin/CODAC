@@ -1,5 +1,5 @@
 // ** MUI Imports
-import { Theme } from '@mui/material/styles';
+import { Theme } from "@mui/material/styles";
 
 // ** Theme Config Imports
 
@@ -11,7 +11,7 @@ const Button = (theme: Theme) => {
           fontWeight: 500,
           borderRadius: 5,
           lineHeight: 1.71,
-          letterSpacing: '0.3px',
+          letterSpacing: "0.3px",
           padding: `${theme.spacing(1.875, 3)}`,
         },
         contained: {
@@ -23,19 +23,19 @@ const Button = (theme: Theme) => {
         },
         sizeSmall: {
           padding: `${theme.spacing(1, 2.25)}`,
-          '&.MuiButton-contained': {
+          "&.MuiButton-contained": {
             padding: `${theme.spacing(1, 3.5)}`,
           },
-          '&.MuiButton-outlined': {
+          "&.MuiButton-outlined": {
             padding: `${theme.spacing(0.75, 3.25)}`,
           },
         },
         sizeLarge: {
           padding: `${theme.spacing(2.125, 5.5)}`,
-          '&.MuiButton-contained': {
+          "&.MuiButton-contained": {
             padding: `${theme.spacing(2.125, 6.5)}`,
           },
-          '&.MuiButton-outlined': {
+          "&.MuiButton-outlined": {
             padding: `${theme.spacing(1.875, 6.25)}`,
           },
         },

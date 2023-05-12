@@ -1,4 +1,4 @@
-import { keyframes, styled } from '@mui/material/styles';
+import { keyframes, styled } from "@mui/material/styles";
 
 const planeMove = keyframes`
     from {
@@ -9,7 +9,7 @@ const planeMove = keyframes`
     }
  `;
 
-export const TronGrid = styled('div')`
+export const TronGrid = styled("div")`
   width: 200%;
   height: 130%;
   position: absolute;
@@ -23,7 +23,7 @@ export const TronGrid = styled('div')`
   transform: rotateX(85deg);
   animation: ${planeMove} 3s linear infinite;
 `;
-export const TronGridWrapper = styled('div')`
+export const TronGridWrapper = styled("div")`
   background-color: #1a2035;
   z-index: -1;
   /* background-color: ${({ theme }) => theme.palette.common.black}; */

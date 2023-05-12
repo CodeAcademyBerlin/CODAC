@@ -1,11 +1,11 @@
 // ** React Import
 // ** Emotion Imports
-import createEmotionServer from '@emotion/server/create-instance';
+import createEmotionServer from "@emotion/server/create-instance";
 // ** Next Import
-import Document, { Head, Html, Main, NextScript } from 'next/document';
-import { Children } from 'react';
+import Document, { Head, Html, Main, NextScript } from "next/document";
+import { Children } from "react";
 
-import createEmotionCache from '../lib/createEmotionCache';
+import createEmotionCache from "../lib/createEmotionCache";
 
 class CustomDocument extends Document {
   render() {
@@ -53,7 +53,7 @@ CustomDocument.getInitialProps = async (ctx) => {
       <style
         key={style.key}
         dangerouslySetInnerHTML={{ __html: style.css }}
-        data-emotion={`${style.key} ${style.ids.join(' ')}`}
+        data-emotion={`${style.key} ${style.ids.join(" ")}`}
       />
     );
   });

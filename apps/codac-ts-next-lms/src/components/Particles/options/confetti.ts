@@ -1,4 +1,4 @@
-import type { ISourceOptions } from 'tsparticles-engine';
+import type { ISourceOptions } from "tsparticles-engine";
 
 export const confetti: ISourceOptions = {
   // "background": {
@@ -12,7 +12,7 @@ export const confetti: ISourceOptions = {
   },
   particles: {
     color: {
-      value: ['#1E00FF', '#FF0061', '#E1FF00', '#00FF9E'],
+      value: ["#1E00FF", "#FF0061", "#E1FF00", "#00FF9E"],
       animation: {
         enable: true,
         speed: 30,
@@ -20,7 +20,7 @@ export const confetti: ISourceOptions = {
     },
     move: {
       decay: 0.1,
-      direction: 'top',
+      direction: "top",
       enable: true,
       gravity: {
         acceleration: 9.81,
@@ -28,8 +28,8 @@ export const confetti: ISourceOptions = {
         maxSpeed: 200,
       },
       outModes: {
-        top: 'none',
-        default: 'destroy',
+        top: "none",
+        default: "destroy",
       },
       speed: {
         min: 50,
@@ -44,8 +44,8 @@ export const confetti: ISourceOptions = {
       value: 1,
       animation: {
         enable: false,
-        startValue: 'max',
-        destroy: 'min',
+        startValue: "max",
+        destroy: "min",
         speed: 0.3,
         sync: true,
       },
@@ -55,7 +55,7 @@ export const confetti: ISourceOptions = {
         min: 0,
         max: 360,
       },
-      direction: 'random',
+      direction: "random",
       move: true,
       animation: {
         enable: true,
@@ -63,7 +63,7 @@ export const confetti: ISourceOptions = {
       },
     },
     tilt: {
-      direction: 'random',
+      direction: "random",
       enable: true,
       move: true,
       value: {
@@ -76,7 +76,7 @@ export const confetti: ISourceOptions = {
       },
     },
     shape: {
-      type: ['circle', 'square', 'polygon'],
+      type: ["circle", "square", "polygon"],
       options: {
         polygon: [
           {

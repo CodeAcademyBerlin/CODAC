@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import ms from 'ms';
-import { useEffect, useRef, useState } from 'react';
+import ms from "ms";
+import { useEffect, useRef, useState } from "react";
 
 // https://github.com/streamich/react-use/blob/master/src/useInterval.ts
 const useInterval = (callback: Function, delay?: number | null) => {
@@ -14,7 +14,9 @@ const useInterval = (callback: Function, delay?: number | null) => {
   useEffect(() => {
     if (delay !== null) {
       const interval = setInterval(() => savedCallback.current(), delay || 0);
-      return () => { clearInterval(interval); };
+      return () => {
+        clearInterval(interval);
+      };
     }
 
     return undefined;
@@ -46,8 +48,8 @@ export function RenderedTimeAgo({ timestamp }: { timestamp: number }) {
             suppressHydrationWarning={true}
             className="font-semibold tabular-nums text-gray-900"
           >
-            {msAgo >= 1000 ? ms(msAgo) : '0s'}
-          </span>{' '}
+            {msAgo >= 1000 ? ms(msAgo) : "0s"}
+          </span>{" "}
           <span className="text-gray-600">ago</span>
         </>
       ) : null}

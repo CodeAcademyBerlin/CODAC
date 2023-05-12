@@ -1,23 +1,20 @@
-import { styled } from '@mui/material/styles';
-import fetch from 'isomorphic-unfetch';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import { LMS_CONTENT_PATH } from 'src/definitions/contentFilePaths';
-import { getPaths } from 'src/lib/paths';
-import lms from 'src/navigation/vertical/lms';
+import { styled } from "@mui/material/styles";
+import fetch from "isomorphic-unfetch";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { LMS_CONTENT_PATH } from "src/definitions/contentFilePaths";
+import { getPaths } from "src/lib/paths";
+import lms from "src/navigation/vertical/lms";
 
 // import lmslinks from '../../../public/assets/lmslinks.json';
-import {
-  BrandText,
-  BrandTextWrapper,
-} from '../../components/common/BrandStyle';
-import { isNavLinkActive } from '../../lib/IsLinkActive';
-import navigation from '../../navigation/vertical';
-import { LinkSingle } from '../../pages/lms/lms';
-import CollapsibleLi from './CollapsibleLi';
+import { BrandText, BrandTextWrapper } from "../../components/common/BrandStyle";
+import { isNavLinkActive } from "../../lib/IsLinkActive";
+import navigation from "../../navigation/vertical";
+import { LinkSingle } from "../../pages/lms/lms";
+import CollapsibleLi from "./CollapsibleLi";
 
-export const OuterList = styled('ul')`
+export const OuterList = styled("ul")`
   list-style: none;
   margin: 0;
   padding-right: 0.5em;
@@ -29,7 +26,7 @@ export const OuterList = styled('ul')`
     color: ${({ theme }) => theme.palette.background.default};
   }
 
-  ${'a'} {
+  ${"a"} {
     text-decoration: none;
     display: block;
     padding: 0.5em 1em;
@@ -50,13 +47,13 @@ export const OuterList = styled('ul')`
   }
 `;
 
-export const NavList = styled('ul')`
+export const NavList = styled("ul")`
   list-style: none;
   margin: 0;
   padding: 0;
 `;
 
-export const NavLiItem = styled('li')`
+export const NavLiItem = styled("li")`
   padding-left: 0.5em;
   margin-bottom: 0.5em;
 `;
@@ -67,13 +64,13 @@ function NavContent() {
   const [lmsTree, setLmsTree] = useState<LinkSingle | null>(null);
   useEffect(() => {
     const getTree = async () => {
-      const res = await fetch('/api/lms-links');
+      const res = await fetch("/api/lms-links");
       const tree = await res.json();
 
       const lmsTree: LinkSingle = {
-        page: ['welcome'],
-        path: 'welcome',
-        title: 'LMS',
+        page: ["welcome"],
+        path: "welcome",
+        title: "LMS",
         children: tree,
         index: LMS_CONTENT_PATH,
       };
@@ -84,7 +81,7 @@ function NavContent() {
 
   return (
     <div>
-      <Link href="/" style={{ textDecoration: 'none' }}>
+      <Link href="/" style={{ textDecoration: "none" }}>
         <BrandTextWrapper depth variant="h3" sx={{ fontSize: 60 }}>
           CODAC
         </BrandTextWrapper>
@@ -95,9 +92,7 @@ function NavContent() {
         {navigation.map((navItem) => (
           <NavLiItem key={navItem.title}>
             <Link
-              className={
-                isNavLinkActive(navItem.path, router.asPath) ? 'active' : ''
-              }
+              className={isNavLinkActive(navItem.path, router.asPath) ? "active" : ""}
               href={navItem.path}
             >
               {navItem.title}

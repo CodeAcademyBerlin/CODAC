@@ -1,6 +1,6 @@
 ---
-navTitle: ''
-title: 'Hello World!'
+navTitle: ""
+title: "Hello World!"
 access: public
 order: 10
 ---

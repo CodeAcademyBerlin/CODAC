@@ -1,6 +1,6 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 
-import { useTheme } from ".";
+import { useTheme } from "./context";
 
 export const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(false);
@@ -15,11 +15,7 @@ export const ThemeSwitch = () => {
     return null;
   }
 
-  return theme === "dark" ? (
-    <DarkLogo setTheme={setTheme} />
-  ) : (
-    <LightLogo setTheme={setTheme} />
-  );
+  return theme === "dark" ? <DarkLogo setTheme={setTheme} /> : <LightLogo setTheme={setTheme} />;
 };
 
 export default ThemeSwitch;
@@ -33,7 +29,9 @@ const LightLogo = ({ setTheme }: { setTheme: (theme: string) => void }) => {
       viewBox="0 0 612 792"
       width="30px"
       height="30px"
-      onClick={() => { setTheme("dark"); }}
+      onClick={() => {
+        setTheme("dark");
+      }}
     >
       <path
         d="M562.822,410.125c0,0,11.876-61.122-67.739-140.737c0,0,18.621-69.599-23.884-140.931c0,0,40.834-6.741,49.183-62.6
@@ -57,7 +55,9 @@ const DarkLogo = ({ setTheme }: { setTheme: (theme: string) => void }) => {
       viewBox="0 0 612 792"
       width="30px"
       height="30px"
-      onClick={() => { setTheme("light"); }}
+      onClick={() => {
+        setTheme("light");
+      }}
     >
       <path
         d="M562.822,410.125c0,0,11.876-61.122-67.739-140.737c0,0,18.621-69.599-23.884-140.931c0,0,40.834-6.741,49.183-62.6

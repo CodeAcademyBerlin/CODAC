@@ -1,8 +1,8 @@
 ---
-navTitle: 'Data Science'
-title: 'Data Science'
-metaTitle: 'Data Science'
-metaDescription: 'Welcome to the Data Science Program'
+navTitle: "Data Science"
+title: "Data Science"
+metaTitle: "Data Science"
+metaDescription: "Welcome to the Data Science Program"
 access: data
 ---
 

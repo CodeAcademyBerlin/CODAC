@@ -14,21 +14,21 @@ import {
   Typography,
   useTheme,
   Zoom,
-} from '@mui/material';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Collapse from '@mui/material/Collapse';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import { styled } from '@mui/material/styles';
-import dayjs from 'dayjs';
-import AccountGroup from 'mdi-material-ui/AccountGroup';
-import ChevronDoubleDown from 'mdi-material-ui/ChevronDoubleDown';
-import CodeBraces from 'mdi-material-ui/CodeBraces';
-import DatabaseSearch from 'mdi-material-ui/DatabaseSearch';
-import SpaceInvaders from 'mdi-material-ui/SpaceInvaders';
-import * as React from 'react';
+} from "@mui/material";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Collapse from "@mui/material/Collapse";
+import IconButton, { IconButtonProps } from "@mui/material/IconButton";
+import { styled } from "@mui/material/styles";
+import dayjs from "dayjs";
+import AccountGroup from "mdi-material-ui/AccountGroup";
+import ChevronDoubleDown from "mdi-material-ui/ChevronDoubleDown";
+import CodeBraces from "mdi-material-ui/CodeBraces";
+import DatabaseSearch from "mdi-material-ui/DatabaseSearch";
+import SpaceInvaders from "mdi-material-ui/SpaceInvaders";
+import * as React from "react";
 
-import { Cohort } from '../../../cabServer/global/__generated__/types';
+import { Cohort } from "../../../cabServer/global/__generated__/types";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -38,9 +38,9 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
 })(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
+  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+  marginLeft: "auto",
+  transition: theme.transitions.create("transform", {
     duration: theme.transitions.duration.shortest,
   }),
 }));
@@ -56,9 +56,9 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
   return (
     <Card
       sx={{
-        maxWidth: '18rem',
+        maxWidth: "18rem",
         borderRadius: 3,
-        borderStyle: 'solid',
+        borderStyle: "solid",
         borderWidth: 2,
         borderColor: theme.palette.background.default,
         pt: 1,
@@ -67,9 +67,9 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
     >
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
           mx: 0,
           pb: 2,
         }}
@@ -80,7 +80,7 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
             <Typography
               sx={{
                 fontStyle: theme.typography.subtitle2,
-                fontVariant: 'all-small-caps',
+                fontVariant: "all-small-caps",
               }}
             >
               Your Cohort:
@@ -103,7 +103,7 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
           image="https://cdn.drawception.com/images/panels/2015/3-10/3hPfz2CF7d-8.png"
           sx={{
             borderRadius: 0,
-            borderStyle: 'solid none',
+            borderStyle: "solid none",
             borderWidth: 2,
           }}
         />
@@ -115,12 +115,7 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
           mb: 0,
         }}
       >
-        <Tooltip
-          title="Cohort size"
-          TransitionComponent={Zoom}
-          placement="top"
-          arrow
-        >
+        <Tooltip title="Cohort size" TransitionComponent={Zoom} placement="top" arrow>
           <Chip
             icon={<SpaceInvaders />}
             sx={{ p: 1, fontWeight: theme.typography.fontWeightMedium }}
@@ -136,11 +131,7 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
           arrow
         >
           <Chip
-            label={
-              cohort.start_date
-                ? dayjs(cohort.start_date).format('DD.MM.YYYY')
-                : null
-            }
+            label={cohort.start_date ? dayjs(cohort.start_date).format("DD.MM.YYYY") : null}
             sx={{
               fontWeight: theme.typography.fontWeightMedium,
             }}
@@ -162,9 +153,9 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
           <Divider textAlign="center">
             <Typography
               sx={{
-                fontVariant: 'all-small-caps',
+                fontVariant: "all-small-caps",
                 fontWeight: theme.typography.fontWeightBold,
-                fontSize: '1.15rem',
+                fontSize: "1.15rem",
               }}
             >
               Cohort Members
@@ -185,15 +176,11 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
                           mr: 1.5,
                         }}
                       >
-                        {student.attributes?.user?.data?.attributes?.firstname?.charAt(
-                          0,
-                        )}
-                        {student.attributes?.user?.data?.attributes?.lastname?.charAt(
-                          0,
-                        )}
+                        {student.attributes?.user?.data?.attributes?.firstname?.charAt(0)}
+                        {student.attributes?.user?.data?.attributes?.lastname?.charAt(0)}
                       </Avatar>
                       <ListItemText>
-                        {student.attributes?.user?.data?.attributes?.firstname}{' '}
+                        {student.attributes?.user?.data?.attributes?.firstname}{" "}
                         {student.attributes?.user?.data?.attributes?.lastname}
                       </ListItemText>
                       {/* {student.attributes?.main_course?.data?.attributes

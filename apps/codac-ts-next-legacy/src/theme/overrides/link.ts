@@ -2,7 +2,7 @@ const link = {
   MuiLink: {
     styleOverrides: {
       root: {
-        textDecoration: 'none',
+        textDecoration: "none",
       },
     },
   },

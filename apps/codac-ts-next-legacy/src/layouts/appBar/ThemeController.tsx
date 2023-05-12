@@ -1,20 +1,15 @@
-import { useTheme } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import {
-  Brightness2,
-  Brightness5,
-  SpaceInvaders,
-  ThemeLightDark,
-} from 'mdi-material-ui';
-import React from 'react';
+import { useTheme } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { Brightness2, Brightness5, SpaceInvaders, ThemeLightDark } from "mdi-material-ui";
+import React from "react";
 
-import { useSettings } from '../../hooks/useSettings';
+import { useSettings } from "../../hooks/useSettings";
 
 function ThemeController() {
   const { settings, toggleTheme } = useSettings();
   const activeTheme = useTheme();
 
-  const SingleToggleButton = styled('span')`
+  const SingleToggleButton = styled("span")`
     display: flex;
     align-items: center;
 
@@ -22,22 +17,22 @@ function ThemeController() {
       cursor: pointer;
     }
   `;
-  const MultipleButtons = styled('div')`
+  const MultipleButtons = styled("div")`
     display: flex;
   `;
 
   const handleToggleTheme = () => {
     switch (settings.themeName) {
-      case 'light': {
-        toggleTheme('dark');
+      case "light": {
+        toggleTheme("dark");
         break;
       }
-      case 'dark': {
-        toggleTheme('gag');
+      case "dark": {
+        toggleTheme("gag");
         break;
       }
-      case 'gag': {
-        toggleTheme('light');
+      case "gag": {
+        toggleTheme("light");
         break;
       }
     }
@@ -52,10 +47,11 @@ function ThemeController() {
     //Single icon that changes to indicate active theme
     <div>
       <SingleToggleButton title="Toggle Theme" onClick={handleToggleTheme}>
-        {activeTheme.palette.mode === 'light' && <Brightness5 />}
-        {activeTheme.palette.mode === 'dark' &&
-          activeTheme.palette.primary.main === '#00897B' && <Brightness2 />}
-        {activeTheme.palette.primary.main === '#33FF33' && <SpaceInvaders />}
+        {activeTheme.palette.mode === "light" && <Brightness5 />}
+        {activeTheme.palette.mode === "dark" && activeTheme.palette.primary.main === "#00897B" && (
+          <Brightness2 />
+        )}
+        {activeTheme.palette.primary.main === "#33FF33" && <SpaceInvaders />}
       </SingleToggleButton>
     </div>
 

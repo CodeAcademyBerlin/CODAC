@@ -1,5 +1,5 @@
 // ** Types
-import { NextRouter } from 'next/router';
+import { NextRouter } from "next/router";
 
 /**
  * Check for URL queries as well for matching
@@ -8,17 +8,14 @@ import { NextRouter } from 'next/router';
  * @param item
  * @param activeItem
  */
-export const handleURLQueries = (
-  router: NextRouter,
-  path: string | undefined,
-): boolean => {
+export const handleURLQueries = (router: NextRouter, path: string | undefined): boolean => {
   if (Object.keys(router.query).length && path) {
     const arr = Object.keys(router.query);
 
     return (
       router.asPath.includes(path) &&
       router.asPath.includes(router.query[arr[0]] as string) &&
-      path !== '/'
+      path !== "/"
     );
   }
 

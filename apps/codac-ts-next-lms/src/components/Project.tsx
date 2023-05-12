@@ -19,7 +19,7 @@ const Project = ({ project }: { project: Project }) => {
                 className="font-medium text-blue-600 hover:underline dark:text-blue-500"
                 href={`spikes/${spike.id}`}
               >
-                <span>{spike.attributes?.title}</span>
+                <span>{spike.attributes.title}</span>
               </Link>
             </li>
           ))}

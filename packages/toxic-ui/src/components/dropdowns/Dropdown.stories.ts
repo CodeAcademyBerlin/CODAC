@@ -1,22 +1,22 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from "@storybook/react";
 
-import Dropdown from './Dropdown'
+import Dropdown from "./Dropdown";
 
 const meta = {
-  title: 'Toxic-Dropdown',
+  title: "Toxic-Dropdown",
   component: Dropdown,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-} satisfies Meta<typeof Dropdown>
+} satisfies Meta<typeof Dropdown>;
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    background: 'bg-dark',
-    textColor: 'text-light',
+    background: "bg-dark",
+    textColor: "text-light",
   },
-}
+};

@@ -1,48 +1,48 @@
 // ** React Imports
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 // ** MUI Imports
-import Box from '@mui/material/Box';
-import Button, { ButtonProps } from '@mui/material/Button';
-import CardContent from '@mui/material/CardContent';
-import FormControl from '@mui/material/FormControl';
-import Grid from '@mui/material/Grid';
-import IconButton from '@mui/material/IconButton';
-import InputLabel from '@mui/material/InputLabel';
-import Link from '@mui/material/Link';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
-import { styled } from '@mui/material/styles';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
+import Box from "@mui/material/Box";
+import Button, { ButtonProps } from "@mui/material/Button";
+import CardContent from "@mui/material/CardContent";
+import FormControl from "@mui/material/FormControl";
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
+import InputLabel from "@mui/material/InputLabel";
+import Link from "@mui/material/Link";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import { styled } from "@mui/material/styles";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 // ** Icons Imports
-import Close from 'mdi-material-ui/Close';
-import { ChangeEvent, ElementType, SyntheticEvent, useState } from 'react';
+import Close from "mdi-material-ui/Close";
+import { ChangeEvent, ElementType, SyntheticEvent, useState } from "react";
 
-import { UsersPermissionsMe } from '../../../cabServer/global/__generated__/types';
+import { UsersPermissionsMe } from "../../../cabServer/global/__generated__/types";
 
-const ImgStyled = styled('img')(({ theme }) => ({
+const ImgStyled = styled("img")(({ theme }) => ({
   width: 120,
   height: 120,
   marginRight: theme.spacing(6.25),
   borderRadius: theme.shape.borderRadius,
 }));
 
-const ButtonStyled = styled(Button)<
-  ButtonProps & { component?: ElementType; htmlFor?: string }
->(({ theme }) => ({
-  [theme.breakpoints.down('sm')]: {
-    width: '100%',
-    textAlign: 'center',
-  },
-}));
+const ButtonStyled = styled(Button)<ButtonProps & { component?: ElementType; htmlFor?: string }>(
+  ({ theme }) => ({
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      textAlign: "center",
+    },
+  })
+);
 
 const ResetButtonStyled = styled(Button)<ButtonProps>(({ theme }) => ({
   marginLeft: theme.spacing(4.5),
-  [theme.breakpoints.down('sm')]: {
-    width: '100%',
+  [theme.breakpoints.down("sm")]: {
+    width: "100%",
     marginLeft: 0,
-    textAlign: 'center',
+    textAlign: "center",
     marginTop: theme.spacing(4),
   },
 }));
@@ -50,7 +50,7 @@ const ResetButtonStyled = styled(Button)<ButtonProps>(({ theme }) => ({
 const TabAccount = ({ user }: { user: UsersPermissionsMe }) => {
   // ** State
   const [openAlert, setOpenAlert] = useState<boolean>(true);
-  const [imgSrc, setImgSrc] = useState<string>(user?.avatar?.url || '');
+  const [imgSrc, setImgSrc] = useState<string>(user?.avatar?.url || "");
   const [userState, setUserState] = useState<UsersPermissionsMe>(user);
 
   const onChange = (file: ChangeEvent) => {
@@ -68,7 +68,7 @@ const TabAccount = ({ user }: { user: UsersPermissionsMe }) => {
       <form>
         <Grid container spacing={7}>
           <Grid item xs={12} sx={{ marginTop: 4.8, marginBottom: 3 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
               <ImgStyled src={imgSrc} alt="Profile Pic" />
               <Box>
                 <ButtonStyled
@@ -88,7 +88,7 @@ const TabAccount = ({ user }: { user: UsersPermissionsMe }) => {
                 <ResetButtonStyled
                   color="error"
                   variant="outlined"
-                  onClick={() => setImgSrc('/images/avatars/1.png')}
+                  onClick={() => setImgSrc("/images/avatars/1.png")}
                 >
                   Reset
                 </ResetButtonStyled>
@@ -103,19 +103,10 @@ const TabAccount = ({ user }: { user: UsersPermissionsMe }) => {
             <TextField fullWidth label="Username" value={userState.username} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              type="email"
-              label="Email"
-              value={userState.email}
-            />
+            <TextField fullWidth type="email" label="Email" value={userState.email} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              label="firstname"
-              value={userState.firstname}
-            />
+            <TextField fullWidth label="firstname" value={userState.firstname} />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField fullWidth label="lastname" value={userState.lastname} />

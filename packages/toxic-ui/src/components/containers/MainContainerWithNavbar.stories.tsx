@@ -7,10 +7,7 @@ import { MainContainer } from "./MainContainer";
 const ContainerWithNav = () => {
   return (
     <MainContainer>
-      <Navbar
-        brand={{ id: 1, text: "sdsd" }}
-        urls={[{ id: 1, text: "url-1" }]}
-      />
+      <Navbar brand={{ id: 1, text: "sdsd" }} urls={[{ id: 1, text: "url-1" }]} />
       <Button label="testing button" />
     </MainContainer>
   );

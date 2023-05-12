@@ -20,7 +20,7 @@ export default function Spikes({ spikes }: { spikes: SpikeEntity[] }) {
                 <p>
                   <strong>Day:</strong>
                   &emsp;
-                  {spike.attributes?.day}
+                  {spike.attributes.day}
                 </p>
                 <Link
                   className="float-right inline-block font-bold underline hover:decoration-double"

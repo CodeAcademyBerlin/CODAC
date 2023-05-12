@@ -1,25 +1,24 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
-import useCollapse from 'react-collapsed';
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
+import useCollapse from "react-collapsed";
 
-import { isNavLinkActive } from '../../lib/IsLinkActive';
-import { LinkSingle } from '../../pages/lms/lms';
-import { NavLiItem, NavList } from './NavContent';
+import { isNavLinkActive } from "../../lib/IsLinkActive";
+import { LinkSingle } from "../../pages/lms/lms";
+import { NavLiItem, NavList } from "./NavContent";
 
 function CollapsibleLi({ child }: { child: LinkSingle }) {
-  const { getCollapseProps, getToggleProps, isExpanded, setExpanded } =
-    useCollapse();
+  const { getCollapseProps, getToggleProps, isExpanded, setExpanded } = useCollapse();
   const router = useRouter();
 
   const lmsRoute = (path: string) => {
-    return router.asPath.includes('/lms/') ? path : `lms/${path}`;
+    return router.asPath.includes("/lms/") ? path : `lms/${path}`;
   };
 
   useEffect(() => {
     if (
       router.asPath.includes(child.path) ||
-      (child.path === 'welcome' && router.asPath.includes('/lms'))
+      (child.path === "welcome" && router.asPath.includes("/lms"))
     ) {
       setExpanded(true);
     } else {
@@ -33,7 +32,7 @@ function CollapsibleLi({ child }: { child: LinkSingle }) {
       <NavLiItem {...getToggleProps()}>
         <Link
           href={lmsRoute(child.path)}
-          className={isNavLinkActive(child.path, router.asPath) ? 'active' : ''}
+          className={isNavLinkActive(child.path, router.asPath) ? "active" : ""}
         >
           {/* { isExpanded ? '+' : '' } */}
           {child.title}
@@ -51,7 +50,7 @@ function CollapsibleLi({ child }: { child: LinkSingle }) {
     <NavLiItem>
       <Link
         href={lmsRoute(child.path)}
-        className={isNavLinkActive(child.path, router.asPath) ? 'active' : ''}
+        className={isNavLinkActive(child.path, router.asPath) ? "active" : ""}
       >
         {child.title}
       </Link>

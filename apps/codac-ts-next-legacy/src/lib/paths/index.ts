@@ -1,6 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import { Links, LinkSingle } from 'src/pages/lms/lms';
+import fs from "fs";
+import path from "path";
+import { Links, LinkSingle } from "src/pages/lms/lms";
 interface Paths {
   params: { page: string[] };
 }
@@ -40,17 +40,17 @@ export function getPaths(dir: string, subDirPath?: string) {
       const relativePath = path.join(relativeDir, file);
       if (fs.statSync(absolutePath).isDirectory()) {
         getFilesRecursively(relativePath);
-      } else if (path.extname(file) === '.md') {
-        const dirArray = relativePath.replace('.md', '').split(path.sep);
+      } else if (path.extname(file) === ".md") {
+        const dirArray = relativePath.replace(".md", "").split(path.sep);
         paths.push({
           params: {
             page: dirArray,
           },
         });
         links.push({
-          path: dirArray.join('/'),
+          path: dirArray.join("/"),
           page: dirArray,
-          parent: dirArray[dirArray.length - 2] || '',
+          parent: dirArray[dirArray.length - 2] || "",
           index: dirArray[dirArray.length - 1],
           title: displayNicely(dirArray[dirArray.length - 1]),
           children: [],
@@ -58,8 +58,8 @@ export function getPaths(dir: string, subDirPath?: string) {
       }
     });
   };
-  getFilesRecursively(subDirPath || '');
-  const tree = arrayToTree(links, '');
+  getFilesRecursively(subDirPath || "");
+  const tree = arrayToTree(links, "");
   return { paths, tree, links };
 }
 
@@ -117,10 +117,10 @@ export const arrayToTree = (arr: Links, parent: string): Links =>
 // }
 
 const displayNicely = (string: string) => {
-  let noHyphens = string.replaceAll('-', ' ');
-  let result = '';
+  let noHyphens = string.replaceAll("-", " ");
+  let result = "";
   for (let i = 0; i < noHyphens.length; i++) {
-    if (i === 0 || noHyphens.charAt(i - 1) === ' ') {
+    if (i === 0 || noHyphens.charAt(i - 1) === " ") {
       result += noHyphens.charAt(i).toUpperCase();
     } else {
       result += noHyphens.charAt(i);

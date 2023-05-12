@@ -3,7 +3,6 @@ import "../src/input.css";
 import * as themes from "./themes";
 import { withThemeByDataAttribute } from "@storybook/addon-styling";
 
-
 export const decorators = [
   withThemeByDataAttribute({
     themes: {
@@ -22,7 +21,7 @@ export const parameters = {
   },
   darkMode: {
     // Set the initial theme
-    current: 'dark'
+    current: "dark",
   },
   backgrounds: {
     default: "Theme",
@@ -51,4 +50,3 @@ export const parameters = {
     theme: themes.dark,
   },
 };
-

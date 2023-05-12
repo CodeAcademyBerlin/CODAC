@@ -1,36 +1,34 @@
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography } from "@mui/material";
 import {
   useDeleteCodingChallengeMutation,
   useUpdateCodingChallengeMutation,
-} from 'cabServer/mutations/__generated__/addChallenge';
+} from "cabServer/mutations/__generated__/addChallenge";
 import {
   GetChallengeByIdDocument,
   GetChallengeByIdQuery,
   GetChallengesExtendedDocument,
   GetChallengesQuery,
-} from 'cabServer/queries/__generated__/challenges';
-import { useRouter } from 'next/router';
+} from "cabServer/queries/__generated__/challenges";
+import { useRouter } from "next/router";
 import {
   GetServerSideProps,
   GetStaticPathsContext,
   GetStaticProps,
   GetStaticPropsContext,
   InferGetStaticPropsType,
-} from 'next/types';
-import React, { useState } from 'react';
-import StyledLink from 'src/components/common/StyledLink';
-import { initializeApollo } from 'src/lib/apolloClient';
+} from "next/types";
+import React, { useState } from "react";
+import StyledLink from "src/components/common/StyledLink";
+import { initializeApollo } from "src/lib/apolloClient";
 
 // Added to acccess user
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from "../../hooks/useAuth";
 
 // Get type from staticProps into component thru InferGetStaticPropsType
 type Props = {};
 
 const Challange = ({ challengeData }: any) => {
-  const [challengeBody, setChallengeBody] = useState(
-    challengeData?.attributes?.challenge,
-  );
+  const [challengeBody, setChallengeBody] = useState(challengeData?.attributes?.challenge);
   const [isChallengeFocused, setIsChallengeFocused] = useState(false);
   const [idToDelete, setIdToDelete] = useState(challengeData?.id);
   const router = useRouter();
@@ -43,13 +41,13 @@ const Challange = ({ challengeData }: any) => {
     { data: dataUpdate, loading: loadingUpdate, error: errorUpdate },
   ] = useUpdateCodingChallengeMutation({
     variables: {
-      id: challengeData?.id || '',
+      id: challengeData?.id || "",
       challenge: challengeBody,
     },
   });
 
   const handleUpdate = () => {
-    console.log('handle update challengeBody', challengeBody);
+    console.log("handle update challengeBody", challengeBody);
     setIsChallengeFocused(false);
     updateCodingChallengeMutation();
   };
@@ -59,7 +57,7 @@ const Challange = ({ challengeData }: any) => {
     { data: dataDelete, loading: loadingDelete, error: errorDelete },
   ] = useDeleteCodingChallengeMutation({
     variables: {
-      id: idToDelete || '',
+      id: idToDelete || "",
     },
   });
 
@@ -67,20 +65,19 @@ const Challange = ({ challengeData }: any) => {
     if (idToDelete) {
       try {
         deleteCodingChallengeMutation();
-        window.alert('Deletion successful, redirecting you to the main page');
-        console.log('deleted');
-        router.push('/codingchallenges');
+        window.alert("Deletion successful, redirecting you to the main page");
+        console.log("deleted");
+        router.push("/codingchallenges");
       } catch (error) {
-        console.log('error', error);
+        console.log("error", error);
       }
     } else {
-      window.alert('Deletion failed');
+      window.alert("Deletion failed");
     }
   };
 
   // Added to disable delete button if !user or user && user.id !== author.id
-  const disabled =
-    !user || (user && user?.id !== challengeData?.attributes?.author?.data?.id);
+  const disabled = !user || (user && user?.id !== challengeData?.attributes?.author?.data?.id);
 
   return (
     <>
@@ -89,11 +86,11 @@ const Challange = ({ challengeData }: any) => {
           mt: 0,
           p: 5,
           m: 4,
-          display: 'flex',
-          justifyContent: 'center',
-          flexDirection: 'column',
-          alignItems: 'center',
-          bgcolor: 'white',
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          alignItems: "center",
+          bgcolor: "white",
           boxShadow: 1,
           borderRadius: 1,
         }}
@@ -101,7 +98,7 @@ const Challange = ({ challengeData }: any) => {
         <Typography
           variant="body1"
           sx={{
-            fontWeight: 'bold',
+            fontWeight: "bold",
           }}
         >
           {challengeData?.attributes?.title}
@@ -112,11 +109,11 @@ const Challange = ({ challengeData }: any) => {
           mt: 0,
           p: 5,
           m: 4,
-          display: 'flex',
-          justifyContent: 'space-between',
-          flexDirection: 'column',
-          bgcolor: 'white',
-          minHeight: 'auto',
+          display: "flex",
+          justifyContent: "space-between",
+          flexDirection: "column",
+          bgcolor: "white",
+          minHeight: "auto",
           boxShadow: 1,
           borderRadius: 1,
         }}
@@ -147,8 +144,8 @@ const Challange = ({ challengeData }: any) => {
       </Box>
       <Box
         sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
+          display: "flex",
+          justifyContent: "space-between",
         }}
       >
         {/* <StyledLink href={`/codingchallenges`}> */}
@@ -179,11 +176,11 @@ const Challange = ({ challengeData }: any) => {
           mt: 0,
           p: 5,
           m: 4,
-          display: 'flex',
-          justifyContent: 'center',
-          flexDirection: 'column',
-          alignItems: 'center',
-          bgcolor: 'white',
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          alignItems: "center",
+          bgcolor: "white",
           boxShadow: 1,
           borderRadius: 1,
         }}
@@ -191,7 +188,7 @@ const Challange = ({ challengeData }: any) => {
         <Typography
           variant="body1"
           sx={{
-            fontWeight: 'bold',
+            fontWeight: "bold",
           }}
         >
           Test writing your own solution (To be implemented by... you?)
@@ -202,23 +199,23 @@ const Challange = ({ challengeData }: any) => {
           mt: 0,
           p: 5,
           m: 4,
-          display: 'flex',
-          justifyContent: 'space-between',
-          flexDirection: 'column',
+          display: "flex",
+          justifyContent: "space-between",
+          flexDirection: "column",
 
-          bgcolor: 'white',
+          bgcolor: "white",
 
           boxShadow: 1,
           borderRadius: 1,
-          minHeight: 'auto',
+          minHeight: "auto",
         }}
       >
         <Box>
           <TextField
             placeholder="Write your own solution"
             sx={{
-              display: 'flex',
-              multiline: 'true',
+              display: "flex",
+              multiline: "true",
             }}
           ></TextField>
         </Box>
@@ -264,7 +261,7 @@ export const getServerSideProps = async (ctx: { params: { id: any } }) => {
     }
   } catch (error) {
     console.log(error);
-    console.log('error from getStaticProps', error);
+    console.log("error from getStaticProps", error);
     return {
       notFound: true,
     };

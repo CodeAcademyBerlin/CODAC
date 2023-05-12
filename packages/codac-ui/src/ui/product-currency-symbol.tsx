@@ -1,24 +1,20 @@
-import { type Dinero,toFormat } from 'dinero.js';
+import { type Dinero, toFormat } from "dinero.js";
 
-export const ProductCurrencySymbol = ({
-  dinero,
-}: {
-  dinero: Dinero<number>;
-}) => {
-  let symbol = '';
+export const ProductCurrencySymbol = ({ dinero }: { dinero: Dinero<number> }) => {
+  let symbol = "";
   switch (toFormat(dinero, ({ currency }) => currency.code)) {
-    case 'GBP': {
-      symbol = '£';
+    case "GBP": {
+      symbol = "£";
       break;
     }
 
-    case 'EUR': {
-      symbol = '€';
+    case "EUR": {
+      symbol = "€";
       break;
     }
 
     default: {
-      symbol = '$';
+      symbol = "$";
       break;
     }
   }

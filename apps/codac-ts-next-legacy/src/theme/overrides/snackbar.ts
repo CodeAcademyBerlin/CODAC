@@ -1,5 +1,5 @@
 // ** MUI Imports
-import { Theme } from '@mui/material/styles';
+import { Theme } from "@mui/material/styles";
 
 const Snackbar = (theme: Theme) => {
   return {
@@ -7,9 +7,7 @@ const Snackbar = (theme: Theme) => {
       styleOverrides: {
         root: {
           backgroundColor:
-            theme.palette.mode === 'light'
-              ? theme.palette.grey[900]
-              : theme.palette.grey[100],
+            theme.palette.mode === "light" ? theme.palette.grey[900] : theme.palette.grey[100],
         },
       },
     },

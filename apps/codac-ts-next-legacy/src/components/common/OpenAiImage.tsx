@@ -8,26 +8,26 @@ import {
   OutlinedInput,
   Stack,
   Typography,
-} from '@mui/material';
-import CircularProgress from '@mui/material/CircularProgress';
-import FormControl from '@mui/material/FormControl';
-import RobotExcited from 'mdi-material-ui/RobotExcited';
-import React, { useState } from 'react';
+} from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
+import FormControl from "@mui/material/FormControl";
+import RobotExcited from "mdi-material-ui/RobotExcited";
+import React, { useState } from "react";
 
 const OpenAiImage = () => {
-  const [prompt, setPrompt] = useState('');
-  const [size, setSize] = useState('small');
+  const [prompt, setPrompt] = useState("");
+  const [size, setSize] = useState("small");
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const handleGenerate = async (e: any) => {
     e.preventDefault();
     setLoading(true);
-    console.log('promt', prompt);
-    const response = await fetch('api/open-ai', {
-      method: 'POST',
+    console.log("promt", prompt);
+    const response = await fetch("api/open-ai", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         prompt,
@@ -35,7 +35,7 @@ const OpenAiImage = () => {
       }),
     });
     if (!response.ok) {
-      throw new Error('That image could not be generated');
+      throw new Error("That image could not be generated");
     }
 
     const data = await response.json();
@@ -46,9 +46,9 @@ const OpenAiImage = () => {
   return (
     <Card
       sx={{
-        maxWidth: '18rem',
+        maxWidth: "18rem",
         borderRadius: 3,
-        borderStyle: 'solid',
+        borderStyle: "solid",
         borderWidth: 2,
         // borderColor: "primary",
         pt: 1,
@@ -57,9 +57,9 @@ const OpenAiImage = () => {
     >
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
           mx: 0,
           pb: 2,
         }}
@@ -69,7 +69,7 @@ const OpenAiImage = () => {
             <RobotExcited />
             <Typography
               sx={{
-                fontVariant: 'all-small-caps',
+                fontVariant: "all-small-caps",
               }}
             >
               Open AI
@@ -81,10 +81,10 @@ const OpenAiImage = () => {
 
         <CardMedia
           component="img"
-          src={image || ''}
+          src={image || ""}
           sx={{
             borderRadius: 0,
-            borderStyle: 'solid none',
+            borderStyle: "solid none",
             borderWidth: 2,
           }}
         />
@@ -98,11 +98,7 @@ const OpenAiImage = () => {
         }}
       >
         <FormControl sx={{ px: 2 }} fullWidth>
-          <OutlinedInput
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            type={'text'}
-          />
+          <OutlinedInput value={prompt} onChange={(e) => setPrompt(e.target.value)} type={"text"} />
         </FormControl>
         {loading ? (
           <CircularProgress />

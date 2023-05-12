@@ -12,22 +12,13 @@ export interface CardProps {
   href: string;
 }
 
-export const Card = ({
-  image,
-  imageBlur,
-  rating,
-  name,
-  description,
-  href,
-}: CardProps) => {
+export const Card = ({ image, imageBlur, rating, name, description, href }: CardProps) => {
   return (
     <Link
       href={href}
       className="group block space-y-1.5 rounded-lg bg-gray-900 px-5 py-3 hover:bg-gray-800"
     >
-      <div className="font-medium text-gray-200 group-hover:text-gray-50">
-        {name}
-      </div>
+      <div className="font-medium text-gray-200 group-hover:text-gray-50">{name}</div>
 
       {description ? (
         <div className="line-clamp-3 text-sm text-gray-400 group-hover:text-gray-300">

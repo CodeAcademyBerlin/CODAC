@@ -15,8 +15,8 @@ export default function Courses({ courses }: { courses: CourseEntity[] }) {
               course && (
                 <Card
                   key={course.id}
-                  name={course.attributes?.name || ""}
-                  description={course.attributes?.description || ""}
+                  name={course.attributes.name || ""}
+                  description={course.attributes.description || ""}
                   href={`/courses/${course.id}`}
                 />
                 // <div

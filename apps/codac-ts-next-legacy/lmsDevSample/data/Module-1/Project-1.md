@@ -1,8 +1,8 @@
 ---
-navTitle: 'Project 1'
-title: 'Data Analysis: Python and Statistics'
-metaTitle: 'Welcome to the Project 1 of the Data Analysis course'
-metaDescription: 'Data Analysis course'
+navTitle: "Project 1"
+title: "Data Analysis: Python and Statistics"
+metaTitle: "Welcome to the Project 1 of the Data Analysis course"
+metaDescription: "Data Analysis course"
 access: data
 # prev: 'web/Module-1'
 # next: 'web/Module-1/Project-1/Sprint-1'

@@ -23,12 +23,12 @@ export default function Course({ course }: CourseProps) {
         <ul>
           {projects?.data.map((project: ProjectEntity, i: number) => (
             <li key={i}>
-              <h2>{project.attributes?.name}</h2>
-              <p>{project.attributes?.description}</p>
+              <h2>{project.attributes.name}</h2>
+              <p>{project.attributes.description}</p>
               <ul>
                 {" "}
-                {project.attributes?.spikes?.data.map((spike: SpikeEntity, index: number) => (
-                  <li key={index}>{spike.attributes?.title}</li>
+                {project.attributes.spikes?.data.map((spike: SpikeEntity, index: number) => (
+                  <li key={index}>{spike.attributes.title}</li>
                 ))}
               </ul>
             </li>
@@ -39,10 +39,10 @@ export default function Course({ course }: CourseProps) {
           {mentors?.data.map((mentor: MentorEntity, ind: number) => (
             <li key={ind} className="flex gap-1">
               <h2>
-                {mentor.attributes?.user?.data?.attributes?.firstname}{" "}
-                {mentor.attributes?.user?.data?.attributes?.lastname}{" "}
+                {mentor.attributes.user?.data.attributes.firstname}{" "}
+                {mentor.attributes.user?.data.attributes.lastname}{" "}
               </h2>
-              <p>(Email: {mentor.attributes?.user?.data?.attributes?.email})</p>
+              <p>(Email: {mentor.attributes.user?.data.attributes.email})</p>
             </li>
           ))}
         </ul>
@@ -61,7 +61,7 @@ export async function getStaticPaths() {
   const courses = data?.courses?.data;
 
   const paths = courses.map((course: CourseEntity) => ({
-    params: { id: course.id?.toString() },
+    params: { id: course.id.toString() },
   }));
 
   return {

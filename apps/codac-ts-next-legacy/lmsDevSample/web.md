@@ -1,10 +1,10 @@
 ---
-navTitle: 'Web Development'
-title: 'Welcome to the Web Development Program'
-metaTitle: 'Web Development'
+navTitle: "Web Development"
+title: "Welcome to the Web Development Program"
+metaTitle: "Web Development"
 access: web
 order: 20
-next: 'web/Module-1'
+next: "web/Module-1"
 ---
 
 **👋 Welcome to the Web Development Program at Code Academy Berlin!**

@@ -6,13 +6,13 @@ import {
   Theme,
   Typography,
   TypographyPropsVariantOverrides,
-} from '@mui/material';
-import { keyframes, styled } from '@mui/material/styles';
-import { Variant } from '@mui/material/styles/createTypography';
-import localFont from '@next/font/local';
-import { FC, ReactNode } from 'react';
+} from "@mui/material";
+import { keyframes, styled } from "@mui/material/styles";
+import { Variant } from "@mui/material/styles/createTypography";
+import localFont from "@next/font/local";
+import { FC, ReactNode } from "react";
 // Font files can be colocated inside of `pages`
-const codacFont = localFont({ src: '../../../public/fonts/codacA2.woff2' });
+const codacFont = localFont({ src: "../../../public/fonts/codacA2.woff2" });
 
 const neonLight = keyframes`
        0% {
@@ -53,15 +53,14 @@ export const BrandText = styled(Typography)`
 interface Props {
   children: ReactNode;
   sx: SxProps<Theme>;
-  variant?: Variant | 'inherit';
+  variant?: Variant | "inherit";
   depth?: boolean;
   neon?: boolean;
 }
 
 export const BrandTextWrapper = (props: Props) => {
   const { children, depth, neon, sx, variant } = props;
-  const animation =
-    (neon && `${neonLight} 2s linear infinite alternate-reverse;`) || ``;
+  const animation = (neon && `${neonLight} 2s linear infinite alternate-reverse;`) || ``;
   const textShadow =
     (depth &&
       !neon &&

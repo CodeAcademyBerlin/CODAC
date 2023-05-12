@@ -1,15 +1,15 @@
 // ** MUI Imports
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import { GetStaticProps } from 'next/types';
-import NextBreadcrumbs from 'src/components/breadcrumb/NextBreadcrumbs';
-import SkillsQuestCard from 'src/components/Quests/SkillsQuestCard';
-import { SOFTSKILLS_PATH } from 'src/definitions/contentFilePaths';
-import { getFrontmatters } from 'src/lib/markdown';
-import { Contributor, Quests } from 'src/types';
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import { GetStaticProps } from "next/types";
+import NextBreadcrumbs from "src/components/breadcrumb/NextBreadcrumbs";
+import SkillsQuestCard from "src/components/Quests/SkillsQuestCard";
+import { SOFTSKILLS_PATH } from "src/definitions/contentFilePaths";
+import { getFrontmatters } from "src/lib/markdown";
+import { Contributor, Quests } from "src/types";
 
 const Softskills = ({ softskills }: { softskills: Quests[] }) => {
-  console.log('softskills', softskills);
+  console.log("softskills", softskills);
   return (
     <>
       <NextBreadcrumbs />
@@ -24,7 +24,7 @@ export default Softskills;
 
 export const getStaticProps: GetStaticProps = async () => {
   const softskills = await getFrontmatters(SOFTSKILLS_PATH);
-  console.log('softskills path', softskills);
+  console.log("softskills path", softskills);
   // const projects = [
   //   {
   //     name: 'CODAC',

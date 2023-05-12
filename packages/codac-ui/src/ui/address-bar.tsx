@@ -14,17 +14,11 @@ function Params() {
           <React.Fragment key={key}>
             {index !== 0 ? <span>&</span> : null}
             <span className="px-1">
-              <span
-                key={key}
-                className="animate-[highlight_1s_ease-in-out_1] text-gray-100"
-              >
+              <span key={key} className="animate-[highlight_1s_ease-in-out_1] text-gray-100">
                 {key}
               </span>
               <span>=</span>
-              <span
-                key={value}
-                className="animate-[highlight_1s_ease-in-out_1] text-gray-100"
-              >
+              <span key={value} className="animate-[highlight_1s_ease-in-out_1] text-gray-100">
                 {value}
               </span>
             </span>

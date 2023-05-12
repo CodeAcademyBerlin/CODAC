@@ -360,15 +360,7 @@
     "metaTitle": "Free APIs list",
     "metaDescription": "Web Development course",
     "access": "web",
-    "tags": [
-      "webdev",
-      "web-dev",
-      "web-development",
-      "web",
-      "api",
-      "free-api",
-      "free-apis"
-    ]
+    "tags": ["webdev", "web-dev", "web-development", "web", "api", "free-api", "free-apis"]
   },
   {
     "path": "web/Module-1/Project-1/Resources",
@@ -803,15 +795,7 @@
     "metaTitle": "Welcome to the Web Development course",
     "metaDescription": "Web Development course",
     "access": "web",
-    "tags": [
-      "webdev",
-      "web-dev",
-      "web-development",
-      "web",
-      "module-2",
-      "project-1",
-      "sprint-3"
-    ]
+    "tags": ["webdev", "web-dev", "web-development", "web", "module-2", "project-1", "sprint-3"]
   },
   {
     "path": "web/Module-2/Project-1/Sprint-4",
@@ -858,15 +842,7 @@
     "metaTitle": "GraphQl Client",
     "metaDescription": "GraphQl Client",
     "access": "web",
-    "tags": [
-      "webdev",
-      "web-dev",
-      "web-development",
-      "web",
-      "module-3",
-      "graphql",
-      "apollo"
-    ]
+    "tags": ["webdev", "web-dev", "web-development", "web", "module-3", "graphql", "apollo"]
   },
   {
     "path": "web/Module-3/GraphQL",
@@ -883,14 +859,7 @@
     "metaTitle": "TypeScript Basics",
     "metaDescription": "TypeScript Basics",
     "access": "web",
-    "tags": [
-      "webdev",
-      "web-dev",
-      "web-development",
-      "web",
-      "module-3",
-      "typescript"
-    ]
+    "tags": ["webdev", "web-dev", "web-development", "web", "module-3", "typescript"]
   },
   {
     "path": "web/Module-3/TypeScript/React",

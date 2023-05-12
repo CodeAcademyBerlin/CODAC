@@ -13,7 +13,7 @@ const Sidebar = ({
   return (
     <aside
       id="default-sidebar"
-      className="w-64 h-screen -translate-x-full transition-transform sm:translate-x-0"
+      className="h-screen w-64 -translate-x-full transition-transform sm:translate-x-0"
       aria-label="Sidebar"
     >
       <div className="h-full bg-gray-50 px-3 py-4 dark:bg-gray-800">

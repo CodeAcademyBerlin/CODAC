@@ -1,23 +1,23 @@
 // ** MUI Imports
-import Avatar from '@mui/material/Avatar';
-import Badge from '@mui/material/Badge';
-import Box from '@mui/material/Box';
-import MenuItem from '@mui/material/MenuItem';
-import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
-import { styled } from '@mui/material/styles';
-import PencilOutline from 'mdi-material-ui/PencilOutline';
+import Avatar from "@mui/material/Avatar";
+import Badge from "@mui/material/Badge";
+import Box from "@mui/material/Box";
+import MenuItem from "@mui/material/MenuItem";
+import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
+import { styled } from "@mui/material/styles";
+import PencilOutline from "mdi-material-ui/PencilOutline";
 //import useRouter
-import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 
 //import types
-import { CodacOverflowEntity } from '../../../cabServer/global/__generated__/types';
+import { CodacOverflowEntity } from "../../../cabServer/global/__generated__/types";
 //import the mutation update comment
-import { useUpdateCodacOverflowCommentMutation } from '../../../cabServer/mutations/__generated__/updateOverflowComment';
+import { useUpdateCodacOverflowCommentMutation } from "../../../cabServer/mutations/__generated__/updateOverflowComment";
 //import auth to get the actual user information
-import { useAuth } from '../../hooks/useAuth';
-import EditOverflow from './EditOverflow';
+import { useAuth } from "../../hooks/useAuth";
+import EditOverflow from "./EditOverflow";
 
 type CommentsProps = {
   result?: CodacOverflowEntity;
@@ -25,24 +25,24 @@ type CommentsProps = {
 
 //Paper Styling from MUI
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
-  textAlign: 'center',
+  textAlign: "center",
   color: theme.palette.text.secondary,
 }));
 
 const OverflowAnswers = ({ result }: CommentsProps) => {
   const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState('');
-  const [commentId, setCommentId] = useState('');
-  const [newComment, setNewComment] = useState('');
+  const [message, setMessage] = useState("");
+  const [commentId, setCommentId] = useState("");
+  const [newComment, setNewComment] = useState("");
   /* console.log('result', result); */
   const { user } = useAuth();
   const router = useRouter();
   /* console.log('user on ShowAnswers', user); */
 
-  console.log('newComment is updating >>>>>>', newComment);
+  console.log("newComment is updating >>>>>>", newComment);
 
   const handleClose = () => {
     setOpen(false);
@@ -66,13 +66,13 @@ const OverflowAnswers = ({ result }: CommentsProps) => {
       const { data } = await updateOverflowCommentMutation();
 
       if (data) {
-        console.log('data', data);
+        console.log("data", data);
         refreshData();
       }
 
-      setNewComment('');
+      setNewComment("");
     } catch (e) {
-      ({ error: 'e.message' });
+      ({ error: "e.message" });
     }
 
     setOpen(false);
@@ -81,13 +81,13 @@ const OverflowAnswers = ({ result }: CommentsProps) => {
   const styles = {
     py: 2,
     px: 4,
-    display: 'flex',
-    alignItems: 'center',
-    color: 'text.primary',
-    textDecoration: 'none',
-    '& svg': {
-      fontSize: '1.375rem',
-      color: 'text.secondary',
+    display: "flex",
+    alignItems: "center",
+    color: "text.primary",
+    textDecoration: "none",
+    "& svg": {
+      fontSize: "1.375rem",
+      color: "text.secondary",
     },
   };
 
@@ -102,61 +102,58 @@ const OverflowAnswers = ({ result }: CommentsProps) => {
           <div
             key={eachComment?.id}
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexDirection: 'column',
-              width: '100%',
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+              width: "100%",
             }}
           >
             <Box
               component="span"
               sx={{
-                width: '60%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
+                width: "60%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-start",
               }}
             >
               <Stack
                 style={{
-                  margin: '10px 0px 10px 0px',
+                  margin: "10px 0px 10px 0px",
                 }}
               >
                 <Item
                   style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    gap: '10px',
-                    padding: '5px',
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: "10px",
+                    padding: "5px",
                   }}
                 >
                   <Badge
                     overlap="circular"
-                    sx={{ ml: 2, cursor: 'pointer' }}
+                    sx={{ ml: 2, cursor: "pointer" }}
                     anchorOrigin={{
-                      vertical: 'bottom',
-                      horizontal: 'right',
+                      vertical: "bottom",
+                      horizontal: "right",
                     }}
                   >
                     <Avatar
-                      alt={
-                        eachComment?.author?.data?.attributes?.firstname || ''
-                      }
+                      alt={eachComment?.author?.data?.attributes?.firstname || ""}
                       sx={{ width: 40, height: 40 }}
                       src={
-                        eachComment?.author?.data?.attributes?.avatar?.data
-                          ?.attributes?.url || ''
+                        eachComment?.author?.data?.attributes?.avatar?.data?.attributes?.url || ""
                       }
                     />
                   </Badge>
-                  <h3 style={{ color: '#26a69a' }}>
+                  <h3 style={{ color: "#26a69a" }}>
                     {
                       // eslint-disable-next-line prettier/prettier
                       eachComment?.author?.data?.attributes?.firstname
-                    }{' '}
+                    }{" "}
                     {
                       // eslint-disable-next-line prettier/prettier
                       eachComment?.author?.data?.attributes?.lastname
@@ -170,26 +167,26 @@ const OverflowAnswers = ({ result }: CommentsProps) => {
               component="span"
               sx={{
                 borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
-                width: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
+                width: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-start",
               }}
             >
               <Stack
                 style={{
-                  margin: '10px 0px 10px 0px',
-                  marginLeft: '20%',
-                  width: '60%',
+                  margin: "10px 0px 10px 0px",
+                  marginLeft: "20%",
+                  width: "60%",
                 }}
               >
                 <Item>
                   <p
                     style={{
-                      textAlign: 'left',
-                      padding: '0',
-                      margin: '0px 0px 0px 5px',
-                      width: '95%',
+                      textAlign: "left",
+                      padding: "0",
+                      margin: "0px 0px 0px 5px",
+                      width: "95%",
                     }}
                     id="overflow-text-style"
                   >
@@ -228,7 +225,7 @@ const OverflowAnswers = ({ result }: CommentsProps) => {
           </div>
         ))
       ) : (
-        <p style={{ marginLeft: '20%' }}>No Answers have been given so far.</p>
+        <p style={{ marginLeft: "20%" }}>No Answers have been given so far.</p>
       )}
     </>
   );

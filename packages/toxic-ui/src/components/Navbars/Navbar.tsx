@@ -3,14 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
 import type { navbarI } from "../../interfaces/interfaceNavbar";
-export const Navbar = ({
-  brand,
-  urls,
-  padding,
-  textColor,
-  rounded,
-  background,
-}: navbarI) => {
+export const Navbar = ({ brand, urls, padding, textColor, rounded, background }: navbarI) => {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {

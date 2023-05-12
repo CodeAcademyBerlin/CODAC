@@ -54,10 +54,7 @@ export const RainbowCursor: FC = () => {
       onMouseEnter={handleCursorEnter}
       onMouseLeave={handleCursorLeave}
     >
-      <div
-        className={`rainbow ${rainbow ? "animate-rainbow" : ""}`}
-        ref={cursorRef}
-      >
+      <div className={`rainbow ${rainbow ? "animate-rainbow" : ""}`} ref={cursorRef}>
         <div className="trail" ref={trailRef}></div>
       </div>
     </div>

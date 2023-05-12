@@ -1,6 +1,5 @@
 import { create } from "@storybook/theming/create";
 
-
 const commonOptions = {
   brandTitle: "CODAC UI",
   brandUrl: "https://codac-ui.vercel.app/",

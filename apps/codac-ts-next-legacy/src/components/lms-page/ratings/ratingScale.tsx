@@ -1,11 +1,11 @@
-import StarIcon from '@mui/icons-material/Star';
-import Box from '@mui/material/Box';
-import Rating from '@mui/material/Rating';
-import Typography from '@mui/material/Typography';
-import * as React from 'react';
-import { useState } from 'react';
+import StarIcon from "@mui/icons-material/Star";
+import Box from "@mui/material/Box";
+import Rating from "@mui/material/Rating";
+import Typography from "@mui/material/Typography";
+import * as React from "react";
+import { useState } from "react";
 
-import TextFeedback from './textFeedback';
+import TextFeedback from "./textFeedback";
 
 type LMSfeedbackProps = {
   slug: string;
@@ -13,15 +13,15 @@ type LMSfeedbackProps = {
 };
 
 const labels: { [index: string]: string } = {
-  1: 'Useless',
-  2: 'Poor',
-  3: 'Ok',
-  4: 'Good',
-  5: 'Excellent',
+  1: "Useless",
+  2: "Poor",
+  3: "Ok",
+  4: "Good",
+  5: "Excellent",
 };
 
 function getLabelText(rating: number) {
-  return `${rating} Star${rating !== 1 ? 's' : ''}, ${labels[rating]}`;
+  return `${rating} Star${rating !== 1 ? "s" : ""}, ${labels[rating]}`;
 }
 
 export default function HoverRating({ slug, message }: LMSfeedbackProps) {
@@ -41,12 +41,12 @@ export default function HoverRating({ slug, message }: LMSfeedbackProps) {
     <>
       <Box
         sx={{
-          p: '50px',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          '& button': { m: 6 },
-          width: '75%',
+          p: "50px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          "& button": { m: 6 },
+          width: "75%",
         }}
       >
         <Typography fontSize={18} mt={2} gutterBottom>
@@ -59,23 +59,15 @@ export default function HoverRating({ slug, message }: LMSfeedbackProps) {
           precision={1}
           getLabelText={getLabelText}
           onClick={handleClickOpen}
-          onChange={(
-            event: any,
-            newRating: React.SetStateAction<number | null>,
-          ) => {
+          onChange={(event: any, newRating: React.SetStateAction<number | null>) => {
             setRating(newRating);
           }}
-          onChangeActive={(
-            event: any,
-            newHover: React.SetStateAction<number>,
-          ) => {
+          onChangeActive={(event: any, newHover: React.SetStateAction<number>) => {
             setHover(newHover);
           }}
           emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
         />
-        {rating !== null && (
-          <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : rating]}</Box>
-        )}
+        {rating !== null && <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : rating]}</Box>}
 
         {rating !== null && (
           <TextFeedback

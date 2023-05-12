@@ -1,8 +1,8 @@
 ---
-navTitle: 'Sprint 1'
-title: 'Sprint 1'
-metaTitle: 'Welcome to Sprint 1'
-metaDescription: 'Data Science Course'
+navTitle: "Sprint 1"
+title: "Sprint 1"
+metaTitle: "Welcome to Sprint 1"
+metaDescription: "Data Science Course"
 access: data
 # prev: 'data/Module-1/Project-1'
 # next: 'data/Module-1/Project-1/Sprint-2'

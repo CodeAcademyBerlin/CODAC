@@ -28,7 +28,7 @@ export function Layout({
             </div>
           </div> */}
 
-          <div className="bg-gray-300-border-gradient rounded-lg p-px shadow-lg shadow-black dark:bg-vc-border-gradient">
+          <div className="bg-gray-300-border-gradient dark:bg-vc-border-gradient rounded-lg p-px shadow-lg shadow-black">
             <div className="rounded-lg p-3.5 lg:p-6">{children}</div>
           </div>
           {/* <Byline className="fixed sm:hidden" /> */}

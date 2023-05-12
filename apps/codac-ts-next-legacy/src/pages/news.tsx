@@ -1,21 +1,14 @@
-import {
-  Button,
-  FormControl,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-} from '@mui/material';
-import Grid from '@mui/material/Grid';
-import { GetServerSideProps } from 'next/types';
-import React, { ChangeEvent, useState } from 'react';
+import { Button, FormControl, FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import { GetServerSideProps } from "next/types";
+import React, { ChangeEvent, useState } from "react";
 
-import { NewsPostEntity } from '../../cabServer/global/__generated__/types';
-import { GetNewsDocument } from '../../cabServer/queries/__generated__/news';
-import StyledLink from '../components/common/StyledLink';
-import NewsCard from '../components/news-page/NewsCard';
-import SearchBar from '../components/news-page/SearchBar';
-import { useAuth } from '../hooks/useAuth';
-import { initializeApollo } from '../lib/apolloClient';
+import { GetNewsDocument, NewsPostEntity } from "codac-server-graphql";
+import StyledLink from "../components/common/StyledLink";
+import NewsCard from "../components/news-page/NewsCard";
+import SearchBar from "../components/news-page/SearchBar";
+import { useAuth } from "../hooks/useAuth";
+import { initializeApollo } from "../lib/apolloClient";
 
 interface Data {
   map(arg0: (newsPostTag: any, i: number) => JSX.Element): any;
@@ -27,25 +20,21 @@ interface Data {
 //radio button filter
 const isInRadioFilter = (newsPost: NewsPostEntity, tagValue: string) => {
   // console.log('tagvalue', tagValue);
-  if (tagValue === 'All') return newsPost;
+  if (tagValue === "All") return newsPost;
   else return newsPost.attributes?.tags === tagValue;
 };
 //search filter
 const isInSearch = (newsPost: NewsPostEntity, inputValue: string) => {
   return (
-    newsPost?.attributes
-      ?.title!.toLowerCase()
-      .includes(inputValue.toLowerCase()) ||
-    newsPost?.attributes
-      ?.post!.toLowerCase()
-      .includes(inputValue.toLowerCase()) ||
+    newsPost?.attributes?.title!.toLowerCase().includes(inputValue.toLowerCase()) ||
+    newsPost?.attributes?.post!.toLowerCase().includes(inputValue.toLowerCase()) ||
     newsPost?.attributes?.tags!.toLowerCase().includes(inputValue.toLowerCase())
   );
 };
 
 const News = ({ newsPosts }: { newsPosts: NewsPostEntity[] }) => {
-  const [inputValue, setInputValue] = useState('');
-  const [tagValue, setTagValue] = useState('All');
+  const [inputValue, setInputValue] = useState("");
+  const [tagValue, setTagValue] = useState("All");
   const { user } = useAuth();
   const uniqueFields: Data = [];
 
@@ -56,9 +45,7 @@ const News = ({ newsPosts }: { newsPosts: NewsPostEntity[] }) => {
   //combining filters
   let searchedResult = newsPosts?.filter((newsPost) => {
     // console.log('tagvalue', tagValue);
-    return (
-      isInSearch(newsPost, inputValue) && isInRadioFilter(newsPost, tagValue)
-    );
+    return isInSearch(newsPost, inputValue) && isInRadioFilter(newsPost, tagValue);
   });
 
   return (
@@ -66,14 +53,14 @@ const News = ({ newsPosts }: { newsPosts: NewsPostEntity[] }) => {
       {user ? (
         <>
           <Grid item xs={4} maxWidth={300}>
-            <StyledLink href={'/addnewspost'}>
+            <StyledLink href={"/addnewspost"}>
               <Button
                 sx={{
                   mt: 16,
                   ml: 1,
-                  position: 'absolute',
-                  top: '0',
-                  right: '20px',
+                  position: "absolute",
+                  top: "0",
+                  right: "20px",
                 }}
                 type="submit"
                 variant="contained"
@@ -86,7 +73,7 @@ const News = ({ newsPosts }: { newsPosts: NewsPostEntity[] }) => {
           <br />
         </>
       ) : (
-        ' '
+        " "
       )}
       <Grid item xs={12}>
         <SearchBar handleChange={handleChange} />
@@ -102,12 +89,7 @@ const News = ({ newsPosts }: { newsPosts: NewsPostEntity[] }) => {
               setTagValue(e.target.value);
             }}
           >
-            <FormControlLabel
-              control={<Radio id="All" />}
-              label="All"
-              value="All"
-              id="AllForm"
-            />
+            <FormControlLabel control={<Radio id="All" />} label="All" value="All" id="AllForm" />
 
             {newsPosts &&
               newsPosts.map((newsPost) => {
@@ -118,14 +100,7 @@ const News = ({ newsPosts }: { newsPosts: NewsPostEntity[] }) => {
 
             {uniqueFields &&
               uniqueFields.map((tags, i) => {
-                return (
-                  <FormControlLabel
-                    key={i}
-                    value={tags}
-                    control={<Radio />}
-                    label={tags}
-                  />
-                );
+                return <FormControlLabel key={i} value={tags} control={<Radio />} label={tags} />;
               })}
           </RadioGroup>
         </FormControl>
@@ -150,7 +125,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const { data, error } = await client.query({
       query: GetNewsDocument,
     });
-    console.log('newsPostsServer', data);
+    console.log("newsPostsServer", data);
     return {
       //for cleaner client side
       props: { newsPosts: data.newsPosts.data },

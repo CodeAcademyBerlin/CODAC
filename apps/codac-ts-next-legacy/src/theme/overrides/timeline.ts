@@ -1,7 +1,7 @@
 // ** MUI Imports
-import { Theme } from '@mui/material/styles';
+import { Theme } from "@mui/material/styles";
 
-import { hexToRGBA } from '../../lib/hex-to-rgba';
+import { hexToRGBA } from "../../lib/hex-to-rgba";
 
 // ** Util Import
 
@@ -10,8 +10,8 @@ const Timeline = (theme: Theme) => {
     MuiTimelineItem: {
       styleOverrides: {
         root: {
-          '&:not(:last-of-type)': {
-            '& .MuiTimelineContent-root': {
+          "&:not(:last-of-type)": {
+            "& .MuiTimelineContent-root": {
               marginBottom: theme.spacing(4),
             },
           },
@@ -38,10 +38,7 @@ const Timeline = (theme: Theme) => {
           boxShadow: `0 0 0 3px ${hexToRGBA(theme.palette.primary.main, 0.12)}`,
         },
         filledSecondary: {
-          boxShadow: `0 0 0 3px ${hexToRGBA(
-            theme.palette.secondary.main,
-            0.12,
-          )}`,
+          boxShadow: `0 0 0 3px ${hexToRGBA(theme.palette.secondary.main, 0.12)}`,
         },
         filledSuccess: {
           boxShadow: `0 0 0 3px ${hexToRGBA(theme.palette.success.main, 0.12)}`,
@@ -59,25 +56,25 @@ const Timeline = (theme: Theme) => {
           boxShadow: `0 0 0 3px ${hexToRGBA(theme.palette.grey[400], 0.12)}`,
         },
         outlinedPrimary: {
-          '& svg': { color: theme.palette.primary.main },
+          "& svg": { color: theme.palette.primary.main },
         },
         outlinedSecondary: {
-          '& svg': { color: theme.palette.secondary.main },
+          "& svg": { color: theme.palette.secondary.main },
         },
         outlinedSuccess: {
-          '& svg': { color: theme.palette.success.main },
+          "& svg": { color: theme.palette.success.main },
         },
         outlinedError: {
-          '& svg': { color: theme.palette.error.main },
+          "& svg": { color: theme.palette.error.main },
         },
         outlinedWarning: {
-          '& svg': { color: theme.palette.warning.main },
+          "& svg": { color: theme.palette.warning.main },
         },
         outlinedInfo: {
-          '& svg': { color: theme.palette.info.main },
+          "& svg": { color: theme.palette.info.main },
         },
         outlinedGrey: {
-          '& svg': { color: theme.palette.grey[500] },
+          "& svg": { color: theme.palette.grey[500] },
         },
       },
     },

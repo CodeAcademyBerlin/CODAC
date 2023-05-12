@@ -1,12 +1,6 @@
-import { ArrowRightIcon } from '@heroicons/react/outline';
+import { ArrowRightIcon } from "@heroicons/react/outline";
 
-export const ExternalLink = ({
-  children,
-  href,
-}: {
-  children: React.ReactNode;
-  href: string;
-}) => {
+export const ExternalLink = ({ children, href }: { children: React.ReactNode; href: string }) => {
   return (
     <a
       href={href}

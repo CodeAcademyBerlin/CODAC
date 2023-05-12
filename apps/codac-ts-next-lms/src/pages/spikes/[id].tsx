@@ -36,7 +36,9 @@ const Spike = () => {
         <a
           className="underline hover:decoration-double"
           href="#"
-          onClick={() => { router.back(); }}
+          onClick={() => {
+            router.back();
+          }}
         >
           {"<<"} Back
         </a>

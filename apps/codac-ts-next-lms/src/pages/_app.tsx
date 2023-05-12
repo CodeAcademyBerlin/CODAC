@@ -3,6 +3,7 @@ import "../styles.css";
 
 import { ApolloProvider } from "@apollo/client";
 import { GlobalNav, Layout, ThemeProvider } from "codac-ui";
+import { navigation } from "lib/navigation";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Router from "next/router";
@@ -12,9 +13,8 @@ import React, { type ReactElement, type ReactNode, useEffect, useState } from "r
 
 import { AuthProvider } from "../contexts/authContext";
 import { useApollo } from "../lib/apolloClient";
-import { navigation } from "../lib/navigation";
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
 
@@ -60,21 +60,18 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({
       Router.events.off("routeChangeError", end);
     };
   }, []);
+
   const getLayout =
     Component.getLayout ??
     ((page) => (
-      <Layout
-        navigation={<GlobalNav navigation={navigation} header="CODAC LMS" />}
-      >
-        {page}
-      </Layout>
+      <Layout navigation={<GlobalNav navigation={navigation} header="CODAC LMS" />}>{page}</Layout>
     ));
 
   return (
     <>
       <ApolloProvider client={apolloClient}>
         <AuthProvider>
-          <ThemeProvider enableColorScheme={false}>
+          <ThemeProvider>
             {/* <Component {...pageProps} /> */}
             {/*  <SocketProvider> */}
             {getLayout(<Component {...pageProps} />)}

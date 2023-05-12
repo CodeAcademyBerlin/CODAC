@@ -1,4 +1,4 @@
-import { IOptions, type ISourceOptions, MoveDirection } from 'tsparticles-engine';
+import { IOptions, type ISourceOptions, MoveDirection } from "tsparticles-engine";
 
 export const snow: ISourceOptions = {
   background: {
@@ -6,7 +6,7 @@ export const snow: ISourceOptions = {
   },
   particles: {
     move: {
-      direction: 'bottom',
+      direction: "bottom",
       enable: true,
       random: false,
       straight: false,

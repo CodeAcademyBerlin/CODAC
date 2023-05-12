@@ -1,13 +1,14 @@
-
 const { resolve } = require("node:path");
 
 module.exports = {
   parser: "@typescript-eslint/parser",
   parserOptions: {
     tsconfigRootDir: resolve(__dirname, "../.."),
-    project: ["./apps/codac-ts-next-lms/tsconfig.json",
+    project: [
+      "./apps/codac-ts-next-lms/tsconfig.json",
       "./packages/codac-ui/tsconfig.json",
-      "./packages/codac-server-graphql/tsconfig.json"
+      "./packages/toxic-ui/tsconfig.json",
+      "./packages/codac-server-graphql/tsconfig.json",
     ],
     sourceType: "module",
     ecmaVersion: 2020,
@@ -79,5 +80,4 @@ module.exports = {
       extends: ["plugin:testing-library/react", "plugin:jest-dom/recommended"],
     },
   ],
-
 };

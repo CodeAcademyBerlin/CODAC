@@ -1,11 +1,10 @@
 import { useTheme } from "codac-ui";
 import Link from "next/link";
-import { use, useEffect } from "react";
 
 import { navigation } from "../lib/navigation";
 
 export default function Home() {
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
   console.log("first", theme);
 
   return (
@@ -31,7 +30,7 @@ export default function Home() {
                         {item.name}
                       </div>
 
-                      {item.description ? (
+                      {item.description != null ? (
                         <div className="line-clamp-3 text-sm text-gray-400 group-hover:text-gray-300">
                           {item.description}
                         </div>

@@ -1,35 +1,33 @@
 // ** React Imports
 // ** MUI Components
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import MuiCard, { CardProps } from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Checkbox from '@mui/material/Checkbox';
-import Divider from '@mui/material/Divider';
-import FormControl from '@mui/material/FormControl';
-import MuiFormControlLabel, {
-  FormControlLabelProps,
-} from '@mui/material/FormControlLabel';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
-import InputLabel from '@mui/material/InputLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import { styled, useTheme } from '@mui/material/styles';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import EyeOffOutline from 'mdi-material-ui/EyeOffOutline';
-import EyeOutline from 'mdi-material-ui/EyeOutline';
-import Facebook from 'mdi-material-ui/Facebook';
-import Github from 'mdi-material-ui/Github';
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import MuiCard, { CardProps } from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Checkbox from "@mui/material/Checkbox";
+import Divider from "@mui/material/Divider";
+import FormControl from "@mui/material/FormControl";
+import MuiFormControlLabel, { FormControlLabelProps } from "@mui/material/FormControlLabel";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import InputLabel from "@mui/material/InputLabel";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import { styled, useTheme } from "@mui/material/styles";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import EyeOffOutline from "mdi-material-ui/EyeOffOutline";
+import EyeOutline from "mdi-material-ui/EyeOutline";
+import Facebook from "mdi-material-ui/Facebook";
+import Github from "mdi-material-ui/Github";
 // ** Icons Imports
-import Google from 'mdi-material-ui/Google';
-import Twitter from 'mdi-material-ui/Twitter';
+import Google from "mdi-material-ui/Google";
+import Twitter from "mdi-material-ui/Twitter";
 // ** Next Imports
-import Link from 'next/link';
-import { ChangeEvent, Fragment, MouseEvent, ReactNode, useState } from 'react';
+import Link from "next/link";
+import { ChangeEvent, Fragment, MouseEvent, ReactNode, useState } from "react";
 
-import FooterIllustrationsV1 from '../../../componentsDemo/pages/auth/FooterIllustration';
-import BlankLayout from '../../../layouts/BlankLayout';
+import FooterIllustrationsV1 from "../../../componentsDemo/pages/auth/FooterIllustration";
+import BlankLayout from "../../../layouts/BlankLayout";
 
 interface State {
   password: string;
@@ -38,40 +36,37 @@ interface State {
 
 // ** Styled Components
 const Card = styled(MuiCard)<CardProps>(({ theme }) => ({
-  [theme.breakpoints.up('sm')]: { width: '28rem' },
+  [theme.breakpoints.up("sm")]: { width: "28rem" },
 }));
 
-const LinkStyled = styled('a')(({ theme }) => ({
-  fontSize: '0.875rem',
-  textDecoration: 'none',
+const LinkStyled = styled("a")(({ theme }) => ({
+  fontSize: "0.875rem",
+  textDecoration: "none",
   color: theme.palette.primary.main,
 }));
 
-const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(
-  ({ theme }) => ({
-    marginTop: theme.spacing(1.5),
-    marginBottom: theme.spacing(4),
-    '& .MuiFormControlLabel-label': {
-      fontSize: '0.875rem',
-      color: theme.palette.text.secondary,
-    },
-  }),
-);
+const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(({ theme }) => ({
+  marginTop: theme.spacing(1.5),
+  marginBottom: theme.spacing(4),
+  "& .MuiFormControlLabel-label": {
+    fontSize: "0.875rem",
+    color: theme.palette.text.secondary,
+  },
+}));
 
 const RegisterPage = () => {
   // ** States
   const [values, setValues] = useState<State>({
-    password: '',
+    password: "",
     showPassword: false,
   });
 
   // ** Hook
   const theme = useTheme();
 
-  const handleChange =
-    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
-      setValues({ ...values, [prop]: event.target.value });
-    };
+  const handleChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
@@ -82,15 +77,13 @@ const RegisterPage = () => {
   return (
     <Box className="content-center">
       <Card sx={{ zIndex: 1 }}>
-        <CardContent
-          sx={{ padding: (theme) => `${theme.spacing(12, 9, 7)} !important` }}
-        >
+        <CardContent sx={{ padding: (theme) => `${theme.spacing(12, 9, 7)} !important` }}>
           <Box
             sx={{
               mb: 8,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             <svg
@@ -154,21 +147,12 @@ const RegisterPage = () => {
             </svg>
           </Box>
           <Box sx={{ mb: 6 }}>
-            <Typography
-              variant="h5"
-              sx={{ fontWeight: 600, marginBottom: 1.5 }}
-            >
+            <Typography variant="h5" sx={{ fontWeight: 600, marginBottom: 1.5 }}>
               Adventure starts here 🚀
             </Typography>
-            <Typography variant="body2">
-              Make your app management easy and fun!
-            </Typography>
+            <Typography variant="body2">Make your app management easy and fun!</Typography>
           </Box>
-          <form
-            noValidate
-            autoComplete="off"
-            onSubmit={(e) => e.preventDefault()}
-          >
+          <form noValidate autoComplete="off" onSubmit={(e) => e.preventDefault()}>
             <TextField
               autoFocus
               fullWidth
@@ -176,20 +160,15 @@ const RegisterPage = () => {
               label="Username"
               sx={{ marginBottom: 4 }}
             />
-            <TextField
-              fullWidth
-              type="email"
-              label="Email"
-              sx={{ marginBottom: 4 }}
-            />
+            <TextField fullWidth type="email" label="Email" sx={{ marginBottom: 4 }} />
             <FormControl fullWidth>
               <InputLabel htmlFor="auth-register-password">Password</InputLabel>
               <OutlinedInput
                 label="Password"
                 value={values.password}
                 id="auth-register-password"
-                onChange={handleChange('password')}
-                type={values.showPassword ? 'text' : 'password'}
+                onChange={handleChange("password")}
+                type={values.showPassword ? "text" : "password"}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -214,11 +193,7 @@ const RegisterPage = () => {
                 <Fragment>
                   <span>I agree to </span>
                   <Link href="/" passHref>
-                    <LinkStyled
-                      onClick={(e: MouseEvent<HTMLElement>) =>
-                        e.preventDefault()
-                      }
-                    >
+                    <LinkStyled onClick={(e: MouseEvent<HTMLElement>) => e.preventDefault()}>
                       privacy policy & terms
                     </LinkStyled>
                   </Link>
@@ -236,10 +211,10 @@ const RegisterPage = () => {
             </Button>
             <Box
               sx={{
-                display: 'flex',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-                justifyContent: 'center',
+                display: "flex",
+                alignItems: "center",
+                flexWrap: "wrap",
+                justifyContent: "center",
               }}
             >
               <Typography variant="body2" sx={{ marginRight: 2 }}>
@@ -254,9 +229,9 @@ const RegisterPage = () => {
             <Divider sx={{ my: 5 }}>or</Divider>
             <Box
               sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
               <Link href="/" passHref>
@@ -264,7 +239,7 @@ const RegisterPage = () => {
                   component="a"
                   onClick={(e: MouseEvent<HTMLElement>) => e.preventDefault()}
                 >
-                  <Facebook sx={{ color: '#497ce2' }} />
+                  <Facebook sx={{ color: "#497ce2" }} />
                 </IconButton>
               </Link>
               <Link href="/" passHref>
@@ -272,7 +247,7 @@ const RegisterPage = () => {
                   component="a"
                   onClick={(e: MouseEvent<HTMLElement>) => e.preventDefault()}
                 >
-                  <Twitter sx={{ color: '#1da1f2' }} />
+                  <Twitter sx={{ color: "#1da1f2" }} />
                 </IconButton>
               </Link>
               <Link href="/" passHref>
@@ -283,9 +258,7 @@ const RegisterPage = () => {
                   <Github
                     sx={{
                       color: (theme) =>
-                        theme.palette.mode === 'light'
-                          ? '#272727'
-                          : theme.palette.grey[300],
+                        theme.palette.mode === "light" ? "#272727" : theme.palette.grey[300],
                     }}
                   />
                 </IconButton>
@@ -295,7 +268,7 @@ const RegisterPage = () => {
                   component="a"
                   onClick={(e: MouseEvent<HTMLElement>) => e.preventDefault()}
                 >
-                  <Google sx={{ color: '#db4437' }} />
+                  <Google sx={{ color: "#db4437" }} />
                 </IconButton>
               </Link>
             </Box>

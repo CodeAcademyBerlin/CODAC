@@ -1,24 +1,21 @@
 // ** MUI Imports
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import Grid from '@mui/material/Grid';
-import InputAdornment from '@mui/material/InputAdornment';
-import TextField from '@mui/material/TextField';
-import AccountOutline from 'mdi-material-ui/AccountOutline';
-import EmailOutline from 'mdi-material-ui/EmailOutline';
-import MessageOutline from 'mdi-material-ui/MessageOutline';
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import Grid from "@mui/material/Grid";
+import InputAdornment from "@mui/material/InputAdornment";
+import TextField from "@mui/material/TextField";
+import AccountOutline from "mdi-material-ui/AccountOutline";
+import EmailOutline from "mdi-material-ui/EmailOutline";
+import MessageOutline from "mdi-material-ui/MessageOutline";
 // ** Icons Imports
-import Phone from 'mdi-material-ui/Phone';
+import Phone from "mdi-material-ui/Phone";
 
 const FormLayoutsIcons = () => {
   return (
     <Card>
-      <CardHeader
-        title="Basic with Icons"
-        titleTypographyProps={{ variant: 'h6' }}
-      />
+      <CardHeader title="Basic with Icons" titleTypographyProps={{ variant: "h6" }} />
       <CardContent>
         <form onSubmit={(e) => e.preventDefault()}>
           <Grid container spacing={5}>
@@ -74,7 +71,7 @@ const FormLayoutsIcons = () => {
                 minRows={3}
                 label="Message"
                 placeholder="Bio..."
-                sx={{ '& .MuiOutlinedInput-root': { alignItems: 'baseline' } }}
+                sx={{ "& .MuiOutlinedInput-root": { alignItems: "baseline" } }}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">

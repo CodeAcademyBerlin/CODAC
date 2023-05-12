@@ -1,11 +1,11 @@
 ---
-navTitle: 'Project 2'
-title: 'JavaScript'
-metaTitle: 'JavaScript'
-metaDescription: 'Web Development course'
+navTitle: "Project 2"
+title: "JavaScript"
+metaTitle: "JavaScript"
+metaDescription: "Web Development course"
 access: web
-next: 'web/Module-1/Project-2/Sprint-1'
-tags: ['js', 'javascript', 'project-2', 'module-1']
+next: "web/Module-1/Project-2/Sprint-1"
+tags: ["js", "javascript", "project-2", "module-1"]
 ---
 
 Welcome to Project 2 which focuses on learning JavaScript and how it can be used together with HTML and CSS to create dynamic websites.

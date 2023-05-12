@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": ".dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/index.ts",
   "exports": {
+    ".": "./dist/index.d.ts",
     "./*": [
-      "./dist/index.mjs",
-      "./dist/index.d.ts"
+      "./dist/*.ts",
+      "./dist/*.mjs",
+      "./dist/*/index.d.ts"
     ]
   },
   "scripts": {

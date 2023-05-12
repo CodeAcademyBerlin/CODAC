@@ -1,12 +1,12 @@
 // ** MUI Imports
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import MuiDivider, { DividerProps } from '@mui/material/Divider';
-import { styled } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
-import Image from 'next/image';
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import MuiDivider, { DividerProps } from "@mui/material/Divider";
+import { styled } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
+import Image from "next/image";
 
 interface DataType {
   logo: string;
@@ -21,42 +21,42 @@ const depositData = [
   {
     logoWidth: 28,
     logoHeight: 29,
-    amount: '+$4,650',
-    subtitle: 'Sell UI Kit',
-    title: 'Gumroad Account',
-    logo: '/images/logos/gumroad.png',
+    amount: "+$4,650",
+    subtitle: "Sell UI Kit",
+    title: "Gumroad Account",
+    logo: "/images/logos/gumroad.png",
   },
   {
     logoWidth: 38,
     logoHeight: 38,
-    amount: '+$92,705',
-    title: 'Mastercard',
-    subtitle: 'Wallet deposit',
-    logo: '/images/logos/mastercard-label.png',
+    amount: "+$92,705",
+    title: "Mastercard",
+    subtitle: "Wallet deposit",
+    logo: "/images/logos/mastercard-label.png",
   },
   {
     logoWidth: 20,
     logoHeight: 28,
-    amount: '+$957',
-    title: 'Stripe Account',
-    subtitle: 'iOS Application',
-    logo: '/images/logos/stripe.png',
+    amount: "+$957",
+    title: "Stripe Account",
+    subtitle: "iOS Application",
+    logo: "/images/logos/stripe.png",
   },
   {
     logoWidth: 34,
     logoHeight: 32,
-    amount: '+$6,837',
-    title: 'American Bank',
-    subtitle: 'Bank Transfer',
-    logo: '/images/logos/american-bank.png',
+    amount: "+$6,837",
+    title: "American Bank",
+    subtitle: "Bank Transfer",
+    logo: "/images/logos/american-bank.png",
   },
   {
     logoWidth: 33,
     logoHeight: 22,
-    amount: '+$446',
-    title: 'Bank Account',
-    subtitle: 'Wallet deposit',
-    logo: '/images/logos/citi-bank.png',
+    amount: "+$446",
+    title: "Bank Account",
+    subtitle: "Wallet deposit",
+    logo: "/images/logos/citi-bank.png",
   },
 ];
 
@@ -64,42 +64,42 @@ const withdrawData = [
   {
     logoWidth: 29,
     logoHeight: 30,
-    amount: '-$145',
-    title: 'Google Adsense',
-    subtitle: 'Paypal deposit',
-    logo: '/images/logos/google.png',
+    amount: "-$145",
+    title: "Google Adsense",
+    subtitle: "Paypal deposit",
+    logo: "/images/logos/google.png",
   },
   {
     logoWidth: 34,
     logoHeight: 34,
-    amount: '-$1870',
-    title: 'Github Enterprise',
-    logo: '/images/logos/github.png',
-    subtitle: 'Security & compliance',
+    amount: "-$1870",
+    title: "Github Enterprise",
+    logo: "/images/logos/github.png",
+    subtitle: "Security & compliance",
   },
   {
     logoWidth: 30,
     logoHeight: 30,
-    amount: '-$450',
-    title: 'Upgrade Slack Plan',
-    subtitle: 'Debit card deposit',
-    logo: '/images/logos/slack.png',
+    amount: "-$450",
+    title: "Upgrade Slack Plan",
+    subtitle: "Debit card deposit",
+    logo: "/images/logos/slack.png",
   },
   {
     logoWidth: 30,
     logoHeight: 30,
-    amount: '-$540',
-    title: 'Digital Ocean',
-    subtitle: 'Cloud Hosting',
-    logo: '/images/logos/digital-ocean.png',
+    amount: "-$540",
+    title: "Digital Ocean",
+    subtitle: "Cloud Hosting",
+    logo: "/images/logos/digital-ocean.png",
   },
   {
     logoWidth: 36,
     logoHeight: 21,
-    amount: '-$21',
-    title: 'AWS Account',
-    logo: '/images/logos/aws.png',
-    subtitle: 'Choosing a Cloud Platform',
+    amount: "-$21",
+    title: "AWS Account",
+    logo: "/images/logos/aws.png",
+    subtitle: "Choosing a Cloud Platform",
   },
 ];
 
@@ -107,8 +107,8 @@ const withdrawData = [
 const Divider = styled(MuiDivider)<DividerProps>(({ theme }) => ({
   margin: theme.spacing(5, 0),
   borderRight: `1px solid ${theme.palette.divider}`,
-  [theme.breakpoints.down('md')]: {
-    borderRight: 'none',
+  [theme.breakpoints.down("md")]: {
+    borderRight: "none",
     margin: theme.spacing(0, 5),
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
@@ -118,25 +118,25 @@ const DepositWithdraw = () => {
   return (
     <Card
       sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        flexDirection: ['column', 'column', 'row'],
+        display: "flex",
+        justifyContent: "space-between",
+        flexDirection: ["column", "column", "row"],
       }}
     >
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: "100%" }}>
         <CardHeader
           title="Deposit"
           sx={{
             pt: 5.5,
-            alignItems: 'center',
-            '& .MuiCardHeader-action': { mt: 0.6 },
+            alignItems: "center",
+            "& .MuiCardHeader-action": { mt: 0.6 },
           }}
           action={<Typography variant="caption">View All</Typography>}
           titleTypographyProps={{
-            variant: 'h6',
+            variant: "h6",
             sx: {
-              lineHeight: '1.6 !important',
-              letterSpacing: '0.15px !important',
+              lineHeight: "1.6 !important",
+              letterSpacing: "0.15px !important",
             },
           }}
         />
@@ -146,16 +146,16 @@ const DepositWithdraw = () => {
               <Box
                 key={item.title}
                 sx={{
-                  display: 'flex',
-                  alignItems: 'center',
+                  display: "flex",
+                  alignItems: "center",
                   mb: index !== depositData.length - 1 ? 6 : 0,
                 }}
               >
                 <Box
                   sx={{
                     minWidth: 38,
-                    display: 'flex',
-                    justifyContent: 'center',
+                    display: "flex",
+                    justifyContent: "center",
                   }}
                 >
                   <Image
@@ -168,29 +168,26 @@ const DepositWithdraw = () => {
                 <Box
                   sx={{
                     ml: 4,
-                    width: '100%',
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
+                    width: "100%",
+                    display: "flex",
+                    flexWrap: "wrap",
+                    alignItems: "center",
+                    justifyContent: "space-between",
                   }}
                 >
                   <Box
                     sx={{
                       marginRight: 2,
-                      display: 'flex',
-                      flexDirection: 'column',
+                      display: "flex",
+                      flexDirection: "column",
                     }}
                   >
-                    <Typography sx={{ fontWeight: 600, fontSize: '0.875rem' }}>
+                    <Typography sx={{ fontWeight: 600, fontSize: "0.875rem" }}>
                       {item.title}
                     </Typography>
                     <Typography variant="caption">{item.subtitle}</Typography>
                   </Box>
-                  <Typography
-                    variant="subtitle2"
-                    sx={{ fontWeight: 600, color: 'success.main' }}
-                  >
+                  <Typography variant="subtitle2" sx={{ fontWeight: 600, color: "success.main" }}>
                     {item.amount}
                   </Typography>
                 </Box>
@@ -202,20 +199,20 @@ const DepositWithdraw = () => {
 
       <Divider flexItem />
 
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: "100%" }}>
         <CardHeader
           title="Withdraw"
           sx={{
             pt: 5.5,
-            alignItems: 'center',
-            '& .MuiCardHeader-action': { mt: 0.6 },
+            alignItems: "center",
+            "& .MuiCardHeader-action": { mt: 0.6 },
           }}
           action={<Typography variant="caption">View All</Typography>}
           titleTypographyProps={{
-            variant: 'h6',
+            variant: "h6",
             sx: {
-              lineHeight: '1.6 !important',
-              letterSpacing: '0.15px !important',
+              lineHeight: "1.6 !important",
+              letterSpacing: "0.15px !important",
             },
           }}
         />
@@ -225,16 +222,16 @@ const DepositWithdraw = () => {
               <Box
                 key={item.title}
                 sx={{
-                  display: 'flex',
-                  alignItems: 'center',
+                  display: "flex",
+                  alignItems: "center",
                   mb: index !== depositData.length - 1 ? 6 : 0,
                 }}
               >
                 <Box
                   sx={{
                     minWidth: 36,
-                    display: 'flex',
-                    justifyContent: 'center',
+                    display: "flex",
+                    justifyContent: "center",
                   }}
                 >
                   <Image
@@ -247,29 +244,26 @@ const DepositWithdraw = () => {
                 <Box
                   sx={{
                     ml: 4,
-                    width: '100%',
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
+                    width: "100%",
+                    display: "flex",
+                    flexWrap: "wrap",
+                    alignItems: "center",
+                    justifyContent: "space-between",
                   }}
                 >
                   <Box
                     sx={{
                       marginRight: 2,
-                      display: 'flex',
-                      flexDirection: 'column',
+                      display: "flex",
+                      flexDirection: "column",
                     }}
                   >
-                    <Typography sx={{ fontWeight: 600, fontSize: '0.875rem' }}>
+                    <Typography sx={{ fontWeight: 600, fontSize: "0.875rem" }}>
                       {item.title}
                     </Typography>
                     <Typography variant="caption">{item.subtitle}</Typography>
                   </Box>
-                  <Typography
-                    variant="subtitle2"
-                    sx={{ fontWeight: 600, color: 'error.main' }}
-                  >
+                  <Typography variant="subtitle2" sx={{ fontWeight: 600, color: "error.main" }}>
                     {item.amount}
                   </Typography>
                 </Box>

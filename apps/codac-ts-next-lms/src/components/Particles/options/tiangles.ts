@@ -1,4 +1,4 @@
-import type { ISourceOptions } from 'tsparticles-engine';
+import type { ISourceOptions } from "tsparticles-engine";
 
 export const triangles: ISourceOptions = {
   background: {
@@ -10,7 +10,7 @@ export const triangles: ISourceOptions = {
   },
   particles: {
     color: {
-      value: '#00897D',
+      value: "#00897D",
     },
 
     links: {
@@ -30,7 +30,7 @@ export const triangles: ISourceOptions = {
       value: 1,
     },
     shape: {
-      type: 'triangles',
+      type: "triangles",
     },
   },
 };

@@ -1,12 +1,12 @@
 //MUI imports
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import TextField from '@mui/material/TextField';
-import React, { useState } from 'react';
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import TextField from "@mui/material/TextField";
+import React, { useState } from "react";
 
 export interface Props {
   handleClose: () => void;
@@ -25,9 +25,7 @@ const EditOverflow = (props: Props) => {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Edit</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Please adjust your answer / comment:
-          </DialogContentText>
+          <DialogContentText>Please adjust your answer / comment:</DialogContentText>
           <TextField
             autoFocus
             multiline
@@ -38,7 +36,7 @@ const EditOverflow = (props: Props) => {
             type="text"
             value={comment}
             variant="standard"
-            style={{ width: '500px' }}
+            style={{ width: "500px" }}
             onChange={(e) => {
               setComment(e.target.value);
               setNewComment(e.target.value);

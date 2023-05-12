@@ -5,10 +5,13 @@
     "**/*.css"
   ],
   "type": "module",
-  "exports": {
+  "main": "./src/index.ts",
+    "exports": {
+    ".": "./src/index.ts",
     "./*": [
-      "./src/*/index.ts",
-      "./src/input.css"
+      "./src/*.ts",
+      "./src/*.tsx",
+      "./src/*/index.ts"
     ]
   },
   "typesVersions": {

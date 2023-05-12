@@ -1,20 +1,20 @@
 ---
-navTitle: 'Sprint 1'
-title: 'Sprint 1'
-metaTitle: 'Welcome to the Web Development course'
-metaDescription: 'Web Development course'
+navTitle: "Sprint 1"
+title: "Sprint 1"
+metaTitle: "Welcome to the Web Development course"
+metaDescription: "Web Development course"
 access: web
-prev: 'web/Module-1/Project-2'
-next: 'web/Module-1/Project-2/Sprint-2'
+prev: "web/Module-1/Project-2"
+next: "web/Module-1/Project-2/Sprint-2"
 tags:
   [
-    'js-excercise',
-    'js-excercises',
-    'javascript-exercise',
-    'javascript-exercises',
-    'project-2',
-    'module-1',
-    'sprint-1',
+    "js-excercise",
+    "js-excercises",
+    "javascript-exercise",
+    "javascript-exercises",
+    "project-2",
+    "module-1",
+    "sprint-1",
   ]
 ---
 

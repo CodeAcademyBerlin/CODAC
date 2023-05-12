@@ -64,8 +64,8 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
   // Fetch pages. Include drafts if preview mode is on
   console.log("params", params);
   const pageData = await getPageData(
-    { slug: !params?.slug ? [""] : (params.slug as string[]) },
-    locale || ""
+    { slug: params?.slug ? [""] : (params.slug as string[]) },
+    locale ?? ""
   );
   console.log("pageData", pageData);
   if (pageData == null) {
@@ -76,7 +76,7 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
   }
 
   // We have the required page data, pass it to the page component
-  const { slug, shortName, contentSections } = pageData.attributes!;
+  const { slug, shortName, contentSections } = pageData.attributes;
 
   const pageContext = {
     // locale,

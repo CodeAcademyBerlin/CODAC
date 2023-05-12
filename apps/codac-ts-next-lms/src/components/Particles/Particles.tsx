@@ -1,12 +1,7 @@
 import { useCallback } from "react";
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
-import {
-  IOptions,
-  type ISourceOptions,
-  MoveDirection,
-  OutMode,
-} from "tsparticles-engine";
+import { IOptions, type ISourceOptions, MoveDirection, OutMode } from "tsparticles-engine";
 
 import { confetti } from "./options/confetti";
 import { snow } from "./options/snow";
@@ -40,12 +35,6 @@ const ParticlesComp = ({ type }: { type: string }) => {
     // await console.log(container);
   }, []);
 
-  return (
-    <Particles
-      init={particlesInit}
-      loaded={particlesLoaded}
-      options={getOptions(type)}
-    />
-  );
+  return <Particles init={particlesInit} loaded={particlesLoaded} options={getOptions(type)} />;
 };
 export default ParticlesComp;
