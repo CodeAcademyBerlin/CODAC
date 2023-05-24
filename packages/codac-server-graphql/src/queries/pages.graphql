@@ -5,7 +5,7 @@ query getPage($slug: String) {
       attributes {
         locale
         slug
-        shortName
+        title
         contentSections {
           ... on ComponentSectionsHeader {
             __typename

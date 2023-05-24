@@ -9,5 +9,15 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "eslint.workingDirectories": [{ "pattern": "apps/*/" }, { "pattern": "packages/*/" }]
+  "eslint.workingDirectories": [
+    {
+      "pattern": "apps/*/"
+    },
+    {
+      "pattern": "packages/*/"
+    }
+  ],
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  }
 }

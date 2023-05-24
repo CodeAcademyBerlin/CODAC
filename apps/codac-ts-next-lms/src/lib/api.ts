@@ -9,7 +9,7 @@ export const getPageData = async (
   locale: string
 ): Promise<PageEntity | null> => {
   const slug = params.slug.join("/");
-
+  console.log("slug", slug);
   // Find the pages that match this slug
   // const pagesData = await fetchAPI(`/pages?slug=${slug}&locale=${locale}&status=published&populate=*${preview ? '&status=draft' : ''}`)
   const {
@@ -18,7 +18,7 @@ export const getPageData = async (
     query: GetPageDocument,
     variables: { locale, slug },
   });
-
+  console.log("pages", pages);
   // Make sure we found something, otherwise return null
   if (!pages) {
     return null;

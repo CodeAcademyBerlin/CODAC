@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { GlobalNav } from "../ui/global-nav";
+import { GlobalNav } from "../layouts/global-nav";
 import { navData } from "./navSampleData";
 
 const meta = {

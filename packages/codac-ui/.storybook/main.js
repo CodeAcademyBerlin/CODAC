@@ -9,11 +9,26 @@ const config = {
     "@storybook/addon-styling",
   ],
   framework: path.resolve(require.resolve("@storybook/nextjs/preset"), ".."),
+  // framework: {
+  //   name: "@storybook/nextjs",
+  //   options: {},
+  // },
   core: {
     // disableTelemetry: true,
     enableCrashReports: true,
   },
 
   staticDirs: [resolve(__dirname, "..", "assets")],
+  webpackFinal: async (config) => {
+    if (config.resolve?.fallback)
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        zlib: false,
+        stream: false,
+
+      };
+    return config;
+  },
 };
 export default config;

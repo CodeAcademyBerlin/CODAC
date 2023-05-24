@@ -1,4 +1,9 @@
-import type { PageEntity } from "codac-server-graphql";
+import {
+  GetPageDocument,
+  GetPagesDocument,
+  PageContentSectionsDynamicZone,
+  type PageEntity,
+} from "codac-server-graphql";
 import type {
   GetStaticProps,
   GetStaticPropsContext,
@@ -14,34 +19,34 @@ import { initializeApollo } from "../../lib/apolloClient";
 // optional catch all routes feature. See the related docs:
 // https://nextjs.org/docs/routing/dynamic-routes#optional-catch-all-routes
 
-const DynamicPage: NextPage = ({ pageContext }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  return (
-    <>
-      {pageContext?.contentSections ? (
-        <DynamicZoneSections contentSections={pageContext.contentSections} />
-      ) : null}
-    </>
-  );
+const DynamicPage = ({ pageContext }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const { contentSections } = pageContext;
+  return <>{contentSections ? <DynamicZoneSections contentSections={contentSections} /> : null}</>;
 };
 
 export default DynamicPage;
-
+type ApolloListQueryGen<Type> = Record<
+  string,
+  {
+    data: Type[];
+  }
+>;
 const client = initializeApollo(null, null);
 export const getStaticPaths = async (context: GetStaticPropsContext) => {
   // Get all pages from Strapi
   const allPages = context.locales
-    ? (context.locales.map(async (locale: string) => {
+    ? context.locales.map(async (locale: string) => {
         const {
           data: { pages },
-        } = await client.query<GetPagesQuery>({
+        } = await client.query<ApolloListQueryGen<PageEntity>>({
           query: GetPagesDocument,
           variables: { locale },
         });
-        return pages?.data;
-      }) as PageEntity[])
+        return pages.data;
+      })
     : [];
 
-  const pages = await (await Promise.all(allPages)).flat();
+  const pages = (await Promise.all(allPages)).flat();
   console.log("pages", pages);
   const paths = pages.map(({ attributes }) => {
     // Decompose the slug that was saved in Strapi
@@ -58,41 +63,45 @@ export const getStaticPaths = async (context: GetStaticPropsContext) => {
   return { paths, fallback: "blocking" };
 };
 
-export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
+export const getStaticProps = async (context: GetStaticPropsContext) => {
   const { params, locale } = context;
 
-  // Fetch pages. Include drafts if preview mode is on
-  console.log("params", params);
-  const pageData = await getPageData(
-    { slug: params?.slug ? [""] : (params.slug as string[]) },
-    locale ?? ""
-  );
-  console.log("pageData", pageData);
-  if (pageData == null) {
+  const slugArr = params?.slug as string[];
+  const slug: string = slugArr.join("/");
+
+  const {
+    data: { pages },
+  } = await client.query<ApolloListQueryGen<PageEntity>>({
+    query: GetPageDocument,
+    variables: { locale, slug },
+  });
+
+  if (!pages.data.length) {
     // Giving the page no props will trigger a 404 page
     return {
       notFound: true,
     };
-  }
+  } else {
+    const pageData = pages.data[0];
 
-  // We have the required page data, pass it to the page component
-  const { slug, shortName, contentSections } = pageData.attributes;
+    const { slug, contentSections } = pageData.attributes;
 
-  const pageContext = {
-    // locale,
-    // locales,
-    // defaultLocale,
-    slug,
-    shortName,
-    contentSections,
-  };
-  console.log("pageContext", pageContext);
-  return {
-    props: {
-      pageContext: {
-        ...pageContext,
+    const pageContext = {
+      // locale,
+      // locales,
+      // defaultLocale,
+      slug,
+
+      contentSections,
+    };
+    console.log("pageContext", pageContext);
+    return {
+      props: {
+        pageContext: {
+          ...pageContext,
+        },
       },
-    },
-    revalidate: 10,
-  };
+      revalidate: 10,
+    };
+  }
 };

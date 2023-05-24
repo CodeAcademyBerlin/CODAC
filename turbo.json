@@ -1,6 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
+  "globalDependencies": ["**/.env"],
   "pipeline": {
     "clean": {
       "cache": false
@@ -9,10 +9,11 @@
     "dev": {
       "cache": false,
       "dependsOn": ["^build"],
-      "persistent": true
+      "persistent": true,
+      "env": ["NEXT_PUBLIC_CODAC_SERVER_URL"]
     },
     "build": {
-      "env": ["NEXT_PUBLIC_CODAC_ADMINISTRATION_URL"],
+      "env": ["NEXT_PUBLIC_CODAC_SERVER_URL"],
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**"]
     },

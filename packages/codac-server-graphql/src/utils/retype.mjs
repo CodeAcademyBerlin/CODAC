@@ -7,13 +7,19 @@ const regexPatternsGeneric = (property) => {
   const template = ".*(property)\\?: Maybe<(.*)>;(.*)";
   return {
     from: template.replace(/property/, property),
-    to: "$1: $2",
+    to: "$1: $2;",
   };
 };
 
 const regexPatternId = {
   from: "id\\?: Maybe<Scalars\\['ID'\\]>",
-  to: "id: ['ID']",
+  to: "id: string",
+  // to: "id: ['ID']",
+};
+const regexPatternIdop = {
+  from: "id\\?: Maybe<Scalars\\['ID'\\]>",
+  to: "id: string;",
+  // to: "id: ['ID']",
 };
 
 // const editTypes = () => {
@@ -46,6 +52,7 @@ const main = () => {
   const path = resolve("src", "__generated__", "schema.ts");
   const properties = ["attributes", "data"];
   const propertyPaterns = properties.map((property) => regexPatternsGeneric(property));
+  // const patterns = [...propertyPaterns];
   const patterns = [...propertyPaterns, regexPatternId];
   const file = fs.readFileSync(path, "utf8");
   const replaceMatched = patterns.reduce((acc, pattern) => {

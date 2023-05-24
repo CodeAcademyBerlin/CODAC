@@ -2,7 +2,7 @@
 import "../styles.css";
 
 import { ApolloProvider } from "@apollo/client";
-import { GlobalNav, Layout, ThemeProvider } from "codac-ui";
+import { DashboardLayout, GlobalNav, ThemeProvider } from "codac-ui";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Router from "next/router";
@@ -10,9 +10,9 @@ import Router from "next/router";
 import NProgress from "nprogress";
 import React, { type ReactElement, type ReactNode, useEffect, useState } from "react";
 
+import { navigation } from "../constants/navigation";
 import { AuthProvider } from "../contexts/authContext";
 import { useApollo } from "../lib/apolloClient";
-import { navigation } from "constants/navigation";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -64,7 +64,9 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({
   const getLayout =
     Component.getLayout ??
     ((page) => (
-      <Layout navigation={<GlobalNav navigation={navigation} header="CODAC LMS" />}>{page}</Layout>
+      <DashboardLayout navigation={<GlobalNav navigation={navigation} header="CODAC LMS" />}>
+        {page}
+      </DashboardLayout>
     ));
 
   return (

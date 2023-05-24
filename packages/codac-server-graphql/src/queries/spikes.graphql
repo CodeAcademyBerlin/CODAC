@@ -24,3 +24,20 @@ query getSpikes {
     }
   }
 }
+query getSpike($id: ID!) {
+  spike(id: $id) {
+    data {
+      attributes {
+        title
+        day
+        recording {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}

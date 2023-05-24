@@ -15,7 +15,6 @@
       "./src/*/index.ts"
     ]
   },
-
   "scripts": {
     "dev": "pnpm build --watch",
     "build": "tsup",
@@ -25,6 +24,11 @@
     "test:watch": "jest --watch"
   },
   "devDependencies": {
+    "@react-spring/three": "^9.7.2",
+    "@react-spring/web": "^9.7.2",
+    "@react-three/drei": "^9.68.6",
+    "@react-three/fiber": "^8.13.0",
+    "@react-three/postprocessing": "^2.12.1",
     "@storybook/addon-essentials": "7.0.10",
     "@storybook/addon-interactions": "7.0.10",
     "@storybook/addon-links": "7.0.10",
@@ -36,6 +40,7 @@
     "@storybook/react": "7.0.10",
     "@storybook/testing-library": "0.1.0",
     "@storybook/theming": "^7.0.10",
+    "@types/three": "^0.152.0",
     "autoprefixer": "^10.4.14",
     "eslint-config-custom": "workspace:*",
     "jest-config": "workspace:*",
@@ -52,6 +57,7 @@
     "react-particles": "^2.9.3",
     "server-only": "0.0.1",
     "styled-components": "6.0.0-beta.2",
+    "three": "^0.152.2",
     "tsparticles": "^2.9.3",
     "use-count-up": "3.0.1"
   },

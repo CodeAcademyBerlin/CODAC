@@ -1,6 +1,6 @@
-import { Page, PageEntity } from "codac-server-graphql";
-import { GetPagesDocument, GetPagesQuery } from "cabServer/queries/__generated__/pages";
-import {
+import { GetPagesDocument, type GetPagesQuery } from "cabServer/queries/__generated__/pages";
+import type { Page, PageEntity } from "codac-server-graphql";
+import type {
   GetStaticProps,
   GetStaticPropsContext,
   InferGetStaticPropsType,
@@ -45,7 +45,7 @@ export const getStaticPaths = async (context: GetStaticPropsContext) => {
   console.log("pages", pages);
   const paths = pages.map(({ attributes }) => {
     // Decompose the slug that was saved in Strapi
-    const { slug, locale } = attributes as Page;
+    const { slug, locale } = attributes;
     const slugArray = !slug ? false : slug.split("/");
     console.log("slug", slug);
     return {
@@ -76,14 +76,14 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
   }
 
   // We have the required page data, pass it to the page component
-  const { slug, shortName, contentSections } = pageData.attributes as Page;
+  const { slug, title, contentSections } = pageData.attributes as Page;
 
   const pageContext = {
     // locale,
     // locales,
     // defaultLocale,
     slug,
-    shortName,
+    title,
     contentSections,
   };
   console.log("pageContext", pageContext);

@@ -1,10 +1,10 @@
-import { GlobalNav } from "../ui/global-nav";
-import { Layout } from "../ui/layout";
+import { DashboardLayout } from "../layouts/dashboard-layout";
+import { GlobalNav } from "../layouts/global-nav";
 import { navData } from "./navSampleData";
 
 export const Page = () => {
   return (
-    <Layout navigation={<GlobalNav navigation={navData} header="Demo" />}>
+    <DashboardLayout navigation={<GlobalNav navigation={navData} header="Demo" />}>
       <div className="space-y-8">
         <h1 className="text-xl font-medium text-gray-300">Examples</h1>
 
@@ -41,6 +41,6 @@ export const Page = () => {
           })}
         </div>
       </div>
-    </Layout>
+    </DashboardLayout>
   );
 };

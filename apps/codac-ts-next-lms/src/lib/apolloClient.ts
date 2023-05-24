@@ -15,7 +15,8 @@ import type { AppProps } from "next/app";
 import type { NextApiRequest, NextPage } from "next/types";
 import { parseCookies } from "nookies";
 import { useMemo } from "react";
-
+const devUrl = `https://codac-admin-dev.up.railway.app`;
+console.log("process.env.NEXT_PUBLIC_CODAC_SERVER_URL", process.env.NEXT_PUBLIC_CODAC_SERVER_URL);
 type PageProps = any;
 const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
 export const COOKIES_TOKEN_NAME = "token";
@@ -50,18 +51,17 @@ const createApolloClient = (req?: NextApiRequest | IncomingMessage | null) => {
     link: ApolloLink.from([
       onError(({ graphQLErrors, networkError }) => {
         if (graphQLErrors)
-          graphQLErrors.forEach(({ message, locations, path }) => {
-            console.log(
-              `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-            );
+          graphQLErrors.forEach(({ message }) => {
+            console.log(`[GraphQL error]: Message: ${message}`);
           });
         if (networkError)
-          console.log(`[Network error]: ${networkError}. Backend is unreachable. Is it running?`);
+          console.log(
+            `[Network error]: ${networkError.message}. Backend is unreachable. Is it running?`
+          );
       }),
       // this uses apollo-link-http under the hood, so all the options here come from that package
       createUploadLink({
-        uri: `https://codac-admin-dev.up.railway.app/graphql`,
-        // uri: `${process.env.NEXT_PUBLIC_CODAC_ADMINISTRATION_URL}/graphql`,
+        uri: `${process.env.NEXT_PUBLIC_CODAC_SERVER_URL ?? devUrl}/graphql`,
         // Make sure that CORS and cookies work
         fetchOptions: {
           mode: "cors",

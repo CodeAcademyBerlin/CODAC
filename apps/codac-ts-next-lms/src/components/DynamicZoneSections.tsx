@@ -36,6 +36,7 @@ const DynamicZoneSections = ({
   return (
     <>
       {contentSections.map((component, index) => (
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         <Zone data={component} key={`${component.__typename}_${index}`} />
       ))}
     </>

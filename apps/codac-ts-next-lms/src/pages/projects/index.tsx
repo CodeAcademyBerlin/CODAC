@@ -20,7 +20,7 @@ export default function Page() {
     <div className="container">
       <div className="flex justify-between">
         <nav className="h-screen w-64 bg-gray-200 py-16 pt-6 shadow">
-          {projectItems && <Sidebar onClick={setProjectId} links={projectItems} />}
+          <Sidebar onClick={setProjectId} links={projectItems} />
         </nav>
         <main className="h-screen w-screen pl-[74px] pt-8">
           {project?.attributes && <Project project={project.attributes} />}

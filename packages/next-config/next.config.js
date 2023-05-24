@@ -9,6 +9,8 @@ module.exports = ({ basePath }) => {
     images: { unoptimized: true },
     reactStrictMode: true,
     transpilePackages: ["codac-ui", "codac-server-graphql", "toxic-ui"],
+
+
   };
 
   return withBundleAnalyzer(config);

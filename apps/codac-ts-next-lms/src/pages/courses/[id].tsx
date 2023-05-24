@@ -1,15 +1,21 @@
-import type { CourseEntity, MentorEntity, ProjectEntity, SpikeEntity } from "codac-server-graphql";
+import {
+  type CourseEntity,
+  GetAllCoursesDocument,
+  GetCourseDocument,
+  type GetCourseQuery,
+  type MentorEntity,
+  type ProjectEntity,
+  type SpikeEntity,
+} from "codac-server-graphql";
 
-import { GET_COURSE_QUERY } from "../../graphql/getCourse";
 import { initializeApollo } from "../../lib/apolloClient";
 
 interface CourseProps {
-  course: CourseType;
-  id: string;
+  course: CourseEntity;
 }
 
 export default function Course({ course }: CourseProps) {
-  const { name, description, projects, mentors } = course;
+  const { name, description, projects, mentors } = course.attributes;
   return (
     <>
       <div className="space-y-8 lg:space-y-14">
@@ -51,23 +57,36 @@ export default function Course({ course }: CourseProps) {
   );
 }
 
+type ApolloListQueryGen<Type> = Record<
+  string,
+  {
+    data: Type[];
+  }
+>;
+
 export async function getStaticPaths() {
-  const client = initializeApollo(null, null);
+  try {
+    const client = initializeApollo(null, null);
 
-  const { data } = await client.query({
-    query: GetAllCoursesDocument,
-  });
+    const { data } = await client.query<ApolloListQueryGen<CourseEntity>>({
+      query: GetAllCoursesDocument,
+    });
 
-  const courses = data?.courses?.data;
+    const courses = data.courses.data;
 
-  const paths = courses.map((course: CourseEntity) => ({
-    params: { id: course.id.toString() },
-  }));
+    const paths = courses.map((course) => ({
+      params: { id: course.id.toString() },
+    }));
 
-  return {
-    paths,
-    fallback: false,
-  };
+    return {
+      paths,
+      fallback: false,
+    };
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  }
 }
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
@@ -75,8 +94,8 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
 
   const client = initializeApollo(null, null);
 
-  const { data } = await client.query({
-    query: GET_COURSE_QUERY,
+  const { data } = await client.query<GetCourseQuery>({
+    query: GetCourseDocument,
     variables: { id },
   });
 
@@ -84,7 +103,7 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
   //   variables: { id },
   // });
 
-  const course = data?.course?.data?.attributes;
+  const course = data.course?.data;
 
   if (!course) {
     return {
@@ -93,6 +112,6 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
   }
 
   return {
-    props: { course, id },
+    props: { course },
   };
 }

@@ -81,7 +81,7 @@ export const GetAllCoursesDocument = gql`
                     content {
                       data {
                         attributes {
-                          shortName
+                          title
                         }
                       }
                     }
@@ -123,6 +123,77 @@ export function useGetAllCoursesLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type GetAllCoursesQueryHookResult = ReturnType<typeof useGetAllCoursesQuery>;
 export type GetAllCoursesLazyQueryHookResult = ReturnType<typeof useGetAllCoursesLazyQuery>;
 export type GetAllCoursesQueryResult = Apollo.QueryResult<Types.GetAllCoursesQuery, Types.GetAllCoursesQueryVariables>;
+export const GetCourseDocument = gql`
+    query getCourse($id: ID!) {
+  course(id: $id) {
+    data {
+      attributes {
+        name
+        description
+        length
+        createdAt
+        projects {
+          data {
+            attributes {
+              description
+              spikes {
+                data {
+                  attributes {
+                    title
+                  }
+                }
+              }
+            }
+          }
+        }
+        mentors {
+          data {
+            attributes {
+              user {
+                data {
+                  attributes {
+                    firstname
+                    lastname
+                    email
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetCourseQuery__
+ *
+ * To run a query within a React component, call `useGetCourseQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCourseQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCourseQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetCourseQuery(baseOptions: Apollo.QueryHookOptions<Types.GetCourseQuery, Types.GetCourseQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<Types.GetCourseQuery, Types.GetCourseQueryVariables>(GetCourseDocument, options);
+      }
+export function useGetCourseLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Types.GetCourseQuery, Types.GetCourseQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<Types.GetCourseQuery, Types.GetCourseQueryVariables>(GetCourseDocument, options);
+        }
+export type GetCourseQueryHookResult = ReturnType<typeof useGetCourseQuery>;
+export type GetCourseLazyQueryHookResult = ReturnType<typeof useGetCourseLazyQuery>;
+export type GetCourseQueryResult = Apollo.QueryResult<Types.GetCourseQuery, Types.GetCourseQueryVariables>;
 export const GetPageDocument = gql`
     query getPage($slug: String) {
   pages(filters: {slug: {eq: $slug}}) {
@@ -131,7 +202,7 @@ export const GetPageDocument = gql`
       attributes {
         locale
         slug
-        shortName
+        title
         contentSections {
           ... on ComponentSectionsHeader {
             __typename
@@ -280,47 +351,6 @@ export function useGetProjectsLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type GetProjectsQueryHookResult = ReturnType<typeof useGetProjectsQuery>;
 export type GetProjectsLazyQueryHookResult = ReturnType<typeof useGetProjectsLazyQuery>;
 export type GetProjectsQueryResult = Apollo.QueryResult<Types.GetProjectsQuery, Types.GetProjectsQueryVariables>;
-export const GetSpikeDocument = gql`
-    query getSpike($id: ID!) {
-  spike(id: $id) {
-    data {
-      id
-      attributes {
-        title
-        day
-      }
-    }
-  }
-}
-    `;
-
-/**
- * __useGetSpikeQuery__
- *
- * To run a query within a React component, call `useGetSpikeQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetSpikeQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetSpikeQuery({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useGetSpikeQuery(baseOptions: Apollo.QueryHookOptions<Types.GetSpikeQuery, Types.GetSpikeQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<Types.GetSpikeQuery, Types.GetSpikeQueryVariables>(GetSpikeDocument, options);
-      }
-export function useGetSpikeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Types.GetSpikeQuery, Types.GetSpikeQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<Types.GetSpikeQuery, Types.GetSpikeQueryVariables>(GetSpikeDocument, options);
-        }
-export type GetSpikeQueryHookResult = ReturnType<typeof useGetSpikeQuery>;
-export type GetSpikeLazyQueryHookResult = ReturnType<typeof useGetSpikeLazyQuery>;
-export type GetSpikeQueryResult = Apollo.QueryResult<Types.GetSpikeQuery, Types.GetSpikeQueryVariables>;
 export const GetSpikesDocument = gql`
     query getSpikes {
   spikes {
@@ -376,6 +406,53 @@ export function useGetSpikesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type GetSpikesQueryHookResult = ReturnType<typeof useGetSpikesQuery>;
 export type GetSpikesLazyQueryHookResult = ReturnType<typeof useGetSpikesLazyQuery>;
 export type GetSpikesQueryResult = Apollo.QueryResult<Types.GetSpikesQuery, Types.GetSpikesQueryVariables>;
+export const GetSpikeDocument = gql`
+    query getSpike($id: ID!) {
+  spike(id: $id) {
+    data {
+      attributes {
+        title
+        day
+        recording {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetSpikeQuery__
+ *
+ * To run a query within a React component, call `useGetSpikeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSpikeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSpikeQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetSpikeQuery(baseOptions: Apollo.QueryHookOptions<Types.GetSpikeQuery, Types.GetSpikeQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<Types.GetSpikeQuery, Types.GetSpikeQueryVariables>(GetSpikeDocument, options);
+      }
+export function useGetSpikeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Types.GetSpikeQuery, Types.GetSpikeQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<Types.GetSpikeQuery, Types.GetSpikeQueryVariables>(GetSpikeDocument, options);
+        }
+export type GetSpikeQueryHookResult = ReturnType<typeof useGetSpikeQuery>;
+export type GetSpikeLazyQueryHookResult = ReturnType<typeof useGetSpikeLazyQuery>;
+export type GetSpikeQueryResult = Apollo.QueryResult<Types.GetSpikeQuery, Types.GetSpikeQueryVariables>;
 export const GetMeDocument = gql`
     query getMe {
   me {
