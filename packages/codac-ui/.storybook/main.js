@@ -8,11 +8,10 @@ const config = {
     "@storybook/addon-interactions",
     "@storybook/addon-styling",
   ],
-  framework: path.resolve(require.resolve("@storybook/nextjs/preset"), ".."),
-  // framework: {
-  //   name: "@storybook/nextjs",
-  //   options: {},
-  // },
+  framework: {
+    name: "@storybook/nextjs",
+    options: {},
+  },
   core: {
     // disableTelemetry: true,
     enableCrashReports: true,
