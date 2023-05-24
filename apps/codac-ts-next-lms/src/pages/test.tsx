@@ -15,9 +15,9 @@ export default function Pages({ pages }: InferGetStaticPropsType<typeof getStati
             page.attributes && (
               <Card
                 key={page.id}
-                name={page.attributes.slug || ""}
+                name={page.attributes.slug ?? ""}
                 // description={course?.attributes?.description || ""}
-                href={`/pages/${page.attributes.slug}`}
+                href={`/pages/${page.attributes.slug ?? ""}`}
               />
               // <div
               //   className="col-span-4 lg:col-span-1"

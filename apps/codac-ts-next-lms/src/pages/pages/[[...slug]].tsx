@@ -1,36 +1,31 @@
 import {
   GetPageDocument,
   GetPagesDocument,
-  PageContentSectionsDynamicZone,
+  type PageContentSectionsDynamicZone,
   type PageEntity,
 } from "codac-server-graphql";
-import type {
-  GetStaticProps,
-  GetStaticPropsContext,
-  InferGetStaticPropsType,
-  NextPage,
-} from "next/types";
+import type { GetStaticPropsContext } from "next/types";
 
 import DynamicZoneSections from "../../components/DynamicZoneSections";
-import { getPageData } from "../../lib/api";
 import { initializeApollo } from "../../lib/apolloClient";
+import type { ApolloGenericQuery } from "../../types/apollo";
 
 // The file is called [[...slug]].js because we're using Next's
 // optional catch all routes feature. See the related docs:
 // https://nextjs.org/docs/routing/dynamic-routes#optional-catch-all-routes
 
-const DynamicPage = ({ pageContext }: InferGetStaticPropsType<typeof getStaticProps>) => {
+interface PageContext {
+  slug: string;
+  contentSections: PageContentSectionsDynamicZone[];
+}
+// const DynamicPage = ({ pageContext }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const DynamicPage = ({ pageContext }: { pageContext: PageContext }) => {
   const { contentSections } = pageContext;
-  return <>{contentSections ? <DynamicZoneSections contentSections={contentSections} /> : null}</>;
+  return <DynamicZoneSections contentSections={contentSections} />;
 };
 
 export default DynamicPage;
-type ApolloListQueryGen<Type> = Record<
-  string,
-  {
-    data: Type[];
-  }
->;
+
 const client = initializeApollo(null, null);
 export const getStaticPaths = async (context: GetStaticPropsContext) => {
   // Get all pages from Strapi
@@ -38,7 +33,7 @@ export const getStaticPaths = async (context: GetStaticPropsContext) => {
     ? context.locales.map(async (locale: string) => {
         const {
           data: { pages },
-        } = await client.query<ApolloListQueryGen<PageEntity>>({
+        } = await client.query<ApolloGenericQuery<PageEntity[]>>({
           query: GetPagesDocument,
           variables: { locale },
         });
@@ -49,13 +44,12 @@ export const getStaticPaths = async (context: GetStaticPropsContext) => {
   const pages = (await Promise.all(allPages)).flat();
   console.log("pages", pages);
   const paths = pages.map(({ attributes }) => {
-    // Decompose the slug that was saved in Strapi
     const { slug, locale } = attributes;
-    const slugArray = !slug ? false : slug.split("/");
+    const slugArray = slug?.split("/");
+
     console.log("slug", slug);
     return {
       params: { slug: slugArray },
-      // Specify the locale to render
       locale,
     };
   });
@@ -64,44 +58,51 @@ export const getStaticPaths = async (context: GetStaticPropsContext) => {
 };
 
 export const getStaticProps = async (context: GetStaticPropsContext) => {
-  const { params, locale } = context;
+  try {
+    const { params, locale } = context;
 
-  const slugArr = params?.slug as string[];
-  const slug: string = slugArr.join("/");
+    const slugArr = params?.slug as string[];
+    const slug: string = slugArr.join("/");
 
-  const {
-    data: { pages },
-  } = await client.query<ApolloListQueryGen<PageEntity>>({
-    query: GetPageDocument,
-    variables: { locale, slug },
-  });
+    const {
+      data: { pages },
+    } = await client.query<ApolloGenericQuery<PageEntity[]>>({
+      query: GetPageDocument,
+      variables: { locale, slug },
+    });
 
-  if (!pages.data.length) {
-    // Giving the page no props will trigger a 404 page
+    if (!pages.data) {
+      // Giving the page no props will trigger a 404 page
+      return {
+        notFound: true,
+      };
+    } else {
+      const pageData = pages.data[0];
+
+      const { slug, contentSections } = pageData.attributes;
+
+      const pageContext = {
+        // locale,
+        // locales,
+        // defaultLocale,
+        slug,
+
+        contentSections,
+      };
+      console.log("pageContext", pageContext);
+      return {
+        props: {
+          pageContext: {
+            ...pageContext,
+          },
+        },
+        revalidate: 10,
+      };
+    }
+  } catch (error) {
+    console.log("error", error);
     return {
       notFound: true,
-    };
-  } else {
-    const pageData = pages.data[0];
-
-    const { slug, contentSections } = pageData.attributes;
-
-    const pageContext = {
-      // locale,
-      // locales,
-      // defaultLocale,
-      slug,
-
-      contentSections,
-    };
-    console.log("pageContext", pageContext);
-    return {
-      props: {
-        pageContext: {
-          ...pageContext,
-        },
-      },
-      revalidate: 10,
     };
   }
 };

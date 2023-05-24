@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import {
   ApolloClient,
   ApolloLink,
@@ -33,7 +37,7 @@ let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;
 const createApolloClient = (req?: NextApiRequest | IncomingMessage | null) => {
   // isomorphic fetch for passing the cookies along with each GraphQL request
   const enhancedFetch = async (url: RequestInfo, init: RequestInit) => {
-    const token = getToken(req) || null;
+    const token = getToken(req) ?? "";
     const response = await fetch(url, {
       ...init,
       headers: {
@@ -117,9 +121,7 @@ export const addApolloState = (
   client: ApolloClient<NormalizedCacheObject>,
   pageProps: AppProps["pageProps"]
 ) => {
-  if (pageProps?.props) {
-    pageProps.props[APOLLO_STATE_PROP_NAME] = client.cache.extract();
-  }
+  pageProps.props[APOLLO_STATE_PROP_NAME] = client.cache.extract();
 
   return pageProps;
 };

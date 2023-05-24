@@ -1,11 +1,8 @@
-import {
-  type CourseEntity,
-  GetAllCoursesDocument,
-  type GetAllCoursesQuery,
-} from "codac-server-graphql";
+import { type CourseEntity, GetAllCoursesDocument } from "codac-server-graphql";
 import { Card } from "codac-ui";
 
 import { initializeApollo } from "../../lib/apolloClient";
+import type { ApolloGenericQuery } from "../../types/apollo";
 Courses.theme = "light";
 export default function Courses({ courses }: { courses: CourseEntity[] }) {
   return (
@@ -92,27 +89,29 @@ export default function Courses({ courses }: { courses: CourseEntity[] }) {
     </div>
   );
 }
-type ApolloListQueryGen<Type> = Record<
-  string,
-  {
-    data: Type[];
-  }
->;
+
 export async function getStaticProps() {
   // const { data, loading, error } = useGetAllCoursesQuery();
   // console.log("🚀 ~ ~ error:", error);
   // console.log("🚀 ~ data ~ data:", data);
-  const client = initializeApollo(null, null);
+  try {
+    const client = initializeApollo(null, null);
 
-  const { data, loading, error } = await client.query<ApolloListQueryGen<CourseEntity>>({
-    query: GetAllCoursesDocument,
-  });
+    const { data, loading, error } = await client.query<ApolloGenericQuery<CourseEntity[]>>({
+      query: GetAllCoursesDocument,
+    });
 
-  const courses = data.courses.data;
-  console.log("🚀 ~ Courses ~ data:", courses);
-  return {
-    props: {
-      courses,
-    },
-  };
+    const courses = data.courses.data;
+    console.log("🚀 ~ Courses ~ data:", courses);
+    return {
+      props: {
+        courses,
+      },
+    };
+  } catch (error) {
+    console.log("🚀 ~ error:", error);
+    return {
+      props: {},
+    };
+  }
 }

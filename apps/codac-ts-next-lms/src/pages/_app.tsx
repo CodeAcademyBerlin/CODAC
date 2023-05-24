@@ -11,7 +11,6 @@ import NProgress from "nprogress";
 import React, { type ReactElement, type ReactNode, useEffect, useState } from "react";
 
 import { navigation } from "../constants/navigation";
-import { AuthProvider } from "../contexts/authContext";
 import { useApollo } from "../lib/apolloClient";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
@@ -72,14 +71,13 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({
   return (
     <>
       <ApolloProvider client={apolloClient}>
-        <AuthProvider>
-          <ThemeProvider>
-            {/* <Component {...pageProps} /> */}
-            {/*  <SocketProvider> */}
-            {getLayout(<Component {...pageProps} />)}
-            {/* <Layout>
+        <ThemeProvider>
+          {/* <Component {...pageProps} /> */}
+          {/*  <SocketProvider> */}
+          {getLayout(<Component {...pageProps} />)}
+          {/* <Layout>
           </Layout> */}
-            {/* <SettingsProvider>
+          {/* <SettingsProvider>
                 <SettingsConsumer>
                   {({ settings }) => {
                     return (
@@ -91,8 +89,7 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({
                 </SettingsConsumer>
               </SettingsProvider> 
           </SocketProvider>*/}
-          </ThemeProvider>
-        </AuthProvider>
+        </ThemeProvider>
       </ApolloProvider>
     </>
   );

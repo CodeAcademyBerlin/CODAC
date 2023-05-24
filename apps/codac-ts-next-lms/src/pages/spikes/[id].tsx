@@ -1,13 +1,12 @@
-import { useQuery } from "@apollo/client";
+import { useGetSpikeQuery } from "codac-server-graphql";
 import { useRouter } from "next/router";
-
-import { GET_SPIKE_QUERY } from "../../graphql/getSpike";
 
 const Spike = () => {
   const router = useRouter();
   const { id } = router.query;
-  const { loading, error, data } = useQuery(GET_SPIKE_QUERY, {
-    variables: { id },
+  const stringId = id as string;
+  const { loading, error, data } = useGetSpikeQuery({
+    variables: { id: stringId },
   });
 
   console.log("data :>> ", data);
@@ -26,7 +25,7 @@ const Spike = () => {
     return <p>No spike found for ID {id}</p>;
   }
 
-  const { title, day, url } = spike;
+  const { title, day } = spike;
 
   console.log("spike :>> ", spike);
 
@@ -55,9 +54,11 @@ const Spike = () => {
           <b>{title}</b>
         </p>
 
-        <video controls>
-          <source src={spike.recording.data.attributes.url} type="video/mp4" />
-        </video>
+        {spike.recording?.data?.attributes && (
+          <video controls>
+            <source src={spike.recording.data.attributes.url} type="video/mp4" />
+          </video>
+        )}
       </div>
     </>
   );

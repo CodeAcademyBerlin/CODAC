@@ -32,7 +32,7 @@ import ThemeComponent from "../theme/ThemeComponent";
 
 const vt323 = VT323({ weight: "400", subsets: ["latin"] });
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
 
