@@ -21,24 +21,35 @@ query getAllCourses {
           }
         }
         length
-        projects {
+      }
+    }
+  }
+}
+query getCourseProject($name: String, $projectIds: ID) {
+  courses(filters: { name: { eq: $name } }) {
+    data {
+      attributes {
+        name
+        length
+        projects(filters: { id: { eq: $projectIds } }) {
           data {
+            id
             attributes {
               name
               description
-              publishedAt
               spikes {
                 data {
                   attributes {
                     title
-                    day
-                    content {
-                      data {
-                        attributes {
-                          title
-                        }
-                      }
-                    }
+                  }
+                }
+              }
+              pages {
+                data {
+                  attributes {
+                    title
+                    slug
+                    locale
                   }
                 }
               }
@@ -49,8 +60,21 @@ query getAllCourses {
     }
   }
 }
-query getCourse($id: ID!) {
-  course(id: $id) {
+query getCourseProjects($name: String) {
+  courses(filters: { name: { eq: $name } }) {
+    data {
+      attributes {
+        projects {
+          data {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+query getCourseByName($name: String!) {
+  courses(filters: { name: { eq: $name } }) {
     data {
       attributes {
         name
@@ -59,7 +83,9 @@ query getCourse($id: ID!) {
         createdAt
         projects {
           data {
+            id
             attributes {
+              name
               description
               spikes {
                 data {

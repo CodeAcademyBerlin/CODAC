@@ -2,7 +2,15 @@ import { resolve } from "node:path";
 
 import fs from "fs";
 
-const regexPatternsGeneric = (property) => {
+const regexPatternsGenericArray = (property) => {
+  // replace property by key and tranform to "$1 :$2"
+  const template = ".*(property): Array<(.*)>;(.*)";
+  return {
+    from: template.replace(/property/, property),
+    to: "$1: $2;",
+  };
+};
+const regexPatternsGenericMaybe = (property) => {
   // replace property by key and tranform to "$1 :$2"
   const template = ".*(property)\\?: Maybe<(.*)>;(.*)";
   return {
@@ -50,10 +58,16 @@ const regexPatternIdop = {
 
 const main = () => {
   const path = resolve("src", "__generated__", "schema.ts");
-  const properties = ["attributes", "data"];
-  const propertyPaterns = properties.map((property) => regexPatternsGeneric(property));
+  const propertiesMaybe = ["attributes", "data"];
+  const propertyPaternsMaybe = propertiesMaybe.map((property) =>
+    regexPatternsGenericMaybe(property)
+  );
+  // const propertiesArray = ["data"];
+  // const propertyPaternsArray = propertiesArray.map((property) =>
+  //   regexPatternsGenericArray(property)
+  // );
   // const patterns = [...propertyPaterns];
-  const patterns = [...propertyPaterns, regexPatternId];
+  const patterns = [...propertyPaternsMaybe, regexPatternId];
   const file = fs.readFileSync(path, "utf8");
   const replaceMatched = patterns.reduce((acc, pattern) => {
     const regex = new RegExp(pattern.from, "g");

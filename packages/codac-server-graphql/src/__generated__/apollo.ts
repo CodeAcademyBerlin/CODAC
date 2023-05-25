@@ -67,30 +67,6 @@ export const GetAllCoursesDocument = gql`
           }
         }
         length
-        projects {
-          data {
-            attributes {
-              name
-              description
-              publishedAt
-              spikes {
-                data {
-                  attributes {
-                    title
-                    day
-                    content {
-                      data {
-                        attributes {
-                          title
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -123,9 +99,118 @@ export function useGetAllCoursesLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type GetAllCoursesQueryHookResult = ReturnType<typeof useGetAllCoursesQuery>;
 export type GetAllCoursesLazyQueryHookResult = ReturnType<typeof useGetAllCoursesLazyQuery>;
 export type GetAllCoursesQueryResult = Apollo.QueryResult<Types.GetAllCoursesQuery, Types.GetAllCoursesQueryVariables>;
-export const GetCourseDocument = gql`
-    query getCourse($id: ID!) {
-  course(id: $id) {
+export const GetCourseProjectDocument = gql`
+    query getCourseProject($name: String, $projectIds: ID) {
+  courses(filters: {name: {eq: $name}}) {
+    data {
+      attributes {
+        name
+        length
+        projects(filters: {id: {eq: $projectIds}}) {
+          data {
+            id
+            attributes {
+              name
+              description
+              spikes {
+                data {
+                  attributes {
+                    title
+                  }
+                }
+              }
+              pages {
+                data {
+                  attributes {
+                    title
+                    slug
+                    locale
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetCourseProjectQuery__
+ *
+ * To run a query within a React component, call `useGetCourseProjectQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCourseProjectQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCourseProjectQuery({
+ *   variables: {
+ *      name: // value for 'name'
+ *      projectIds: // value for 'projectIds'
+ *   },
+ * });
+ */
+export function useGetCourseProjectQuery(baseOptions?: Apollo.QueryHookOptions<Types.GetCourseProjectQuery, Types.GetCourseProjectQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<Types.GetCourseProjectQuery, Types.GetCourseProjectQueryVariables>(GetCourseProjectDocument, options);
+      }
+export function useGetCourseProjectLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Types.GetCourseProjectQuery, Types.GetCourseProjectQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<Types.GetCourseProjectQuery, Types.GetCourseProjectQueryVariables>(GetCourseProjectDocument, options);
+        }
+export type GetCourseProjectQueryHookResult = ReturnType<typeof useGetCourseProjectQuery>;
+export type GetCourseProjectLazyQueryHookResult = ReturnType<typeof useGetCourseProjectLazyQuery>;
+export type GetCourseProjectQueryResult = Apollo.QueryResult<Types.GetCourseProjectQuery, Types.GetCourseProjectQueryVariables>;
+export const GetCourseProjectsDocument = gql`
+    query getCourseProjects($name: String) {
+  courses(filters: {name: {eq: $name}}) {
+    data {
+      attributes {
+        projects {
+          data {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetCourseProjectsQuery__
+ *
+ * To run a query within a React component, call `useGetCourseProjectsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCourseProjectsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCourseProjectsQuery({
+ *   variables: {
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useGetCourseProjectsQuery(baseOptions?: Apollo.QueryHookOptions<Types.GetCourseProjectsQuery, Types.GetCourseProjectsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<Types.GetCourseProjectsQuery, Types.GetCourseProjectsQueryVariables>(GetCourseProjectsDocument, options);
+      }
+export function useGetCourseProjectsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Types.GetCourseProjectsQuery, Types.GetCourseProjectsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<Types.GetCourseProjectsQuery, Types.GetCourseProjectsQueryVariables>(GetCourseProjectsDocument, options);
+        }
+export type GetCourseProjectsQueryHookResult = ReturnType<typeof useGetCourseProjectsQuery>;
+export type GetCourseProjectsLazyQueryHookResult = ReturnType<typeof useGetCourseProjectsLazyQuery>;
+export type GetCourseProjectsQueryResult = Apollo.QueryResult<Types.GetCourseProjectsQuery, Types.GetCourseProjectsQueryVariables>;
+export const GetCourseByNameDocument = gql`
+    query getCourseByName($name: String!) {
+  courses(filters: {name: {eq: $name}}) {
     data {
       attributes {
         name
@@ -134,7 +219,9 @@ export const GetCourseDocument = gql`
         createdAt
         projects {
           data {
+            id
             attributes {
+              name
               description
               spikes {
                 data {
@@ -168,32 +255,32 @@ export const GetCourseDocument = gql`
     `;
 
 /**
- * __useGetCourseQuery__
+ * __useGetCourseByNameQuery__
  *
- * To run a query within a React component, call `useGetCourseQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetCourseQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetCourseByNameQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCourseByNameQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetCourseQuery({
+ * const { data, loading, error } = useGetCourseByNameQuery({
  *   variables: {
- *      id: // value for 'id'
+ *      name: // value for 'name'
  *   },
  * });
  */
-export function useGetCourseQuery(baseOptions: Apollo.QueryHookOptions<Types.GetCourseQuery, Types.GetCourseQueryVariables>) {
+export function useGetCourseByNameQuery(baseOptions: Apollo.QueryHookOptions<Types.GetCourseByNameQuery, Types.GetCourseByNameQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<Types.GetCourseQuery, Types.GetCourseQueryVariables>(GetCourseDocument, options);
+        return Apollo.useQuery<Types.GetCourseByNameQuery, Types.GetCourseByNameQueryVariables>(GetCourseByNameDocument, options);
       }
-export function useGetCourseLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Types.GetCourseQuery, Types.GetCourseQueryVariables>) {
+export function useGetCourseByNameLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Types.GetCourseByNameQuery, Types.GetCourseByNameQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<Types.GetCourseQuery, Types.GetCourseQueryVariables>(GetCourseDocument, options);
+          return Apollo.useLazyQuery<Types.GetCourseByNameQuery, Types.GetCourseByNameQueryVariables>(GetCourseByNameDocument, options);
         }
-export type GetCourseQueryHookResult = ReturnType<typeof useGetCourseQuery>;
-export type GetCourseLazyQueryHookResult = ReturnType<typeof useGetCourseLazyQuery>;
-export type GetCourseQueryResult = Apollo.QueryResult<Types.GetCourseQuery, Types.GetCourseQueryVariables>;
+export type GetCourseByNameQueryHookResult = ReturnType<typeof useGetCourseByNameQuery>;
+export type GetCourseByNameLazyQueryHookResult = ReturnType<typeof useGetCourseByNameLazyQuery>;
+export type GetCourseByNameQueryResult = Apollo.QueryResult<Types.GetCourseByNameQuery, Types.GetCourseByNameQueryVariables>;
 export const GetPageDocument = gql`
     query getPage($slug: String) {
   pages(filters: {slug: {eq: $slug}}) {
@@ -351,6 +438,56 @@ export function useGetProjectsLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type GetProjectsQueryHookResult = ReturnType<typeof useGetProjectsQuery>;
 export type GetProjectsLazyQueryHookResult = ReturnType<typeof useGetProjectsLazyQuery>;
 export type GetProjectsQueryResult = Apollo.QueryResult<Types.GetProjectsQuery, Types.GetProjectsQueryVariables>;
+export const GetProjectDocument = gql`
+    query getProject($id: ID!) {
+  project(id: $id) {
+    data {
+      attributes {
+        name
+        description
+        length
+        spikes {
+          data {
+            id
+            attributes {
+              title
+              day
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetProjectQuery__
+ *
+ * To run a query within a React component, call `useGetProjectQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetProjectQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetProjectQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetProjectQuery(baseOptions: Apollo.QueryHookOptions<Types.GetProjectQuery, Types.GetProjectQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<Types.GetProjectQuery, Types.GetProjectQueryVariables>(GetProjectDocument, options);
+      }
+export function useGetProjectLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Types.GetProjectQuery, Types.GetProjectQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<Types.GetProjectQuery, Types.GetProjectQueryVariables>(GetProjectDocument, options);
+        }
+export type GetProjectQueryHookResult = ReturnType<typeof useGetProjectQuery>;
+export type GetProjectLazyQueryHookResult = ReturnType<typeof useGetProjectLazyQuery>;
+export type GetProjectQueryResult = Apollo.QueryResult<Types.GetProjectQuery, Types.GetProjectQueryVariables>;
 export const GetSpikesDocument = gql`
     query getSpikes {
   spikes {

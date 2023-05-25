@@ -1,8 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import React, { Suspense } from "react";
-
 function Params() {
   const searchParams = useSearchParams()!;
 
@@ -31,7 +31,10 @@ function Params() {
 
 export function AddressBar() {
   const pathname = usePathname();
+  console.log("pathname", pathname);
+  const segments = pathname.split("/").slice(1) ?? [];
 
+  console.log("segments", segments);
   return (
     <div className="flex items-center gap-x-2 p-3.5 lg:px-5 lg:py-3">
       {/* <div className="text-gray-600">
@@ -55,31 +58,31 @@ export function AddressBar() {
         {pathname ? (
           <>
             <span className="text-gray-600">/</span>
-            {pathname
-              .split("/")
-              .slice(2)
-              .map((segment) => {
-                return (
-                  <React.Fragment key={segment}>
-                    <span>
-                      <span
-                        key={segment}
-                        className="animate-[highlight_1s_ease-in-out_1] rounded-full px-1.5 py-0.5 text-gray-100"
-                      >
-                        {segment}
-                      </span>
+            {segments.map((segment) => {
+              return (
+                <Link
+                  href={`/${segments.slice(0, segments.indexOf(segment) + 1).join("/")}`}
+                  key={segment}
+                >
+                  <span>
+                    <span
+                      key={segment}
+                      className="animate-[highlight_1s_ease-in-out_1] rounded-full px-1.5 py-0.5 text-gray-100"
+                    >
+                      {segment}
                     </span>
+                  </span>
 
-                    <span className="text-gray-600">/</span>
-                  </React.Fragment>
-                );
-              })}
+                  <span className="text-gray-600">/</span>
+                </Link>
+              );
+            })}
           </>
         ) : null}
 
-        <Suspense>
+        {/* <Suspense>
           <Params />
-        </Suspense>
+        </Suspense> */}
       </div>
     </div>
   );

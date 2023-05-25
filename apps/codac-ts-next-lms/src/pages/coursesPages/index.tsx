@@ -3,7 +3,7 @@ import { Card } from "codac-ui";
 
 import { initializeApollo } from "../../lib/apolloClient";
 import type { ApolloGenericQuery } from "../../types/apollo";
-Courses.theme = "light";
+
 export default function Courses({ courses }: { courses: CourseEntity[] }) {
   return (
     <div className="space-y-7">
@@ -11,12 +11,13 @@ export default function Courses({ courses }: { courses: CourseEntity[] }) {
       {/* <Particles type="confetti" /> */}
       <div className="xs:grid-cols-1 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {courses.map((course) => {
+          const name = course.attributes.name ?? "";
           return (
             <Card
               key={course.id}
-              name={course.attributes.name ?? ""}
+              name={name}
               description={course.attributes.description ?? ""}
-              href={`/courses/${course.id}`}
+              href={`/courses/${name}`}
             />
             // <div
             //   className="col-span-4 lg:col-span-1"

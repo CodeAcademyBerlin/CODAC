@@ -62,43 +62,36 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
     const { params, locale } = context;
 
     const slugArr = params?.slug as string[];
-    const slug: string = slugArr.join("/");
+    const slugStr: string = slugArr.join("/");
 
     const {
       data: { pages },
     } = await client.query<ApolloGenericQuery<PageEntity[]>>({
       query: GetPageDocument,
-      variables: { locale, slug },
+      variables: { locale, slug: slugStr },
     });
 
-    if (!pages.data) {
-      // Giving the page no props will trigger a 404 page
-      return {
-        notFound: true,
-      };
-    } else {
-      const pageData = pages.data[0];
+    const pageData = pages.data[0];
 
-      const { slug, contentSections } = pageData.attributes;
+    const { slug, contentSections } = pageData.attributes;
 
-      const pageContext = {
-        // locale,
-        // locales,
-        // defaultLocale,
-        slug,
+    const pageContext = {
+      // locale,
+      // locales,
+      // defaultLocale,
+      slug,
 
-        contentSections,
-      };
-      console.log("pageContext", pageContext);
-      return {
-        props: {
-          pageContext: {
-            ...pageContext,
-          },
+      contentSections,
+    };
+    console.log("pageContext", pageContext);
+    return {
+      props: {
+        pageContext: {
+          ...pageContext,
         },
-        revalidate: 10,
-      };
-    }
+      },
+      revalidate: 10,
+    };
   } catch (error) {
     console.log("error", error);
     return {

@@ -30,18 +30,8 @@ export const navigation: { name: string; items: Item[] }[] = [
     items: [
       {
         name: "Pages",
-        slug: "test",
+        slug: "pages",
         description: "Pages",
-      },
-    ],
-  },
-  {
-    name: "Challenges",
-    items: [
-      {
-        name: "Challenges",
-        slug: "challenges",
-        description: "Challenges",
       },
     ],
   },

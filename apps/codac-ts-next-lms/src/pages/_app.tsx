@@ -63,7 +63,9 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({
   const getLayout =
     Component.getLayout ??
     ((page) => (
-      <DashboardLayout navigation={<GlobalNav navigation={navigation} header="CODAC LMS" />}>
+      <DashboardLayout
+        navigation={<GlobalNav appDir={false} navigation={navigation} header="CODAC LMS" />}
+      >
         {page}
       </DashboardLayout>
     ));

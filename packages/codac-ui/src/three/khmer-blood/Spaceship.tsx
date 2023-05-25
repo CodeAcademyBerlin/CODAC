@@ -1,3 +1,4 @@
+"use client";
 import { Html, useGLTF } from "@react-three/drei";
 import { Suspense, useRef } from "react";
 import type { Mesh } from "three";
