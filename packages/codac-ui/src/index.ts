@@ -9,6 +9,7 @@ export { Button } from "./ui/button";
 export { Card } from "./ui/card";
 export { ExternalLink } from "./ui/external-link";
 export { RenderingPageSkeleton } from "./ui/rendering-page-skeleton";
+export { SignIn } from "./ui/sign-in";
 export { SkeletonCard } from "./ui/skeleton-card";
 export { Tab } from "./ui/tab";
 export { TabGroup } from "./ui/tab-group";

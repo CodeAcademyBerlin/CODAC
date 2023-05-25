@@ -13,26 +13,26 @@ export const navigation: { name: string; items: Item[] }[] = [
         slug: "courses",
         description: "Courses",
       },
-      {
-        name: "Projects",
-        slug: "projects",
-        description: "Projects",
-      },
-      {
-        name: "Spikes",
-        slug: "spikes",
-        description: "Spikes",
-      },
+      // {
+      //   name: "Projects",
+      //   slug: "projects",
+      //   description: "Projects",
+      // },
+      // {
+      //   name: "Spikes",
+      //   slug: "spikes",
+      //   description: "Spikes",
+      // },
     ],
   },
-  {
-    name: "Pages",
-    items: [
-      {
-        name: "Pages",
-        slug: "pages",
-        description: "Pages",
-      },
-    ],
-  },
+  // {
+  //   name: "Pages",
+  //   items: [
+  //     {
+  //       name: "Pages",
+  //       slug: "pages",
+  //       description: "Pages",
+  //     },
+  //   ],
+  // },
 ];

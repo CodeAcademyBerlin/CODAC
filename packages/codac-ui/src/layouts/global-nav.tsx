@@ -8,6 +8,7 @@ import { useState } from "react";
 
 import { CodacLogoIcon } from "../icons/codac-logo";
 import { ThemeSwitch } from "../theme/theme-switch";
+import { SideAuth } from "../ui/side-auth";
 export interface Item {
   name: string;
   slug: string;
@@ -16,9 +17,9 @@ export interface Item {
 export function GlobalNav({
   navigation,
   header,
-  appDir,
+  authentication,
 }: {
-  appDir: boolean;
+  authentication: React.ReactNode | null;
   navigation: { name: string; items: Item[] }[];
   header: string;
 }) {
@@ -71,43 +72,20 @@ export function GlobalNav({
                 </div>
 
                 <div className="space-y-1">
-                  {section.items.map((item) => {
-                    return appDir ? (
-                      <GlobalNavItemApp key={item.slug} item={item} close={close} />
-                    ) : (
-                      <GlobalNavItem key={item.slug} item={item} close={close} />
-                    );
-                  })}
+                  {section.items.map((item) => (
+                    <GlobalNavItemApp key={item.slug} item={item} close={close} />
+                  ))}
                 </div>
               </div>
             );
           })}
         </nav>
-
-        {/* <Byline className="absolute hidden sm:block" /> */}
+        <SideAuth className="absolute hidden sm:block">{authentication}</SideAuth>
       </div>
     </div>
   );
 }
 
-function GlobalNavItem({ item, close }: { item: Item; close: () => false | void }) {
-  const router = useRouter();
-  const currentRoute = router.pathname.split("/");
-  const isActive = currentRoute.includes(item.slug);
-
-  return (
-    <Link
-      onClick={close}
-      href={`/${item.slug}`}
-      className={clsx("block rounded-md px-3 py-2 text-sm font-medium hover:text-gray-300", {
-        "text-gray-400 hover:bg-gray-800": !isActive,
-        "text-white": isActive,
-      })}
-    >
-      {item.name}
-    </Link>
-  );
-}
 function GlobalNavItemApp({ item, close }: { item: Item; close: () => false | void }) {
   const segment = useSelectedLayoutSegment();
   const isActive = item.slug === segment;

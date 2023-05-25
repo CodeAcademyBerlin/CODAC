@@ -1,12 +1,16 @@
 import Link from "next/link";
 
-import { navigation } from "../constants/navigation";
+// import { getServerSession } from "next-auth/next";
+// import { authOptions } from "#/app/api/auth/[...nextauth]/route";
+import SignIn from "#/components/SignIn";
 
+import { navigation } from "../constants/navigation";
 export default function Page() {
+  // const session = await getServerSession(authOptions);
+  // console.log(session);
   return (
     <div className="space-y-8">
-      <h1 className="text-xl font-medium text-gray-300">Examples</h1>
-
+      <h1 className="text-xl font-medium text-gray-300">CODAC LMS</h1>
       <div className="space-y-10 text-white">
         {navigation.map((section) => {
           return (

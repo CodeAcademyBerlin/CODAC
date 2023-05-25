@@ -5,7 +5,7 @@ export function DashboardLayout({
   navigation,
 }: {
   children: React.ReactNode;
-  navigation: React.ReactNode;
+  navigation: React.ReactNode | null;
 }) {
   return (
     <>
@@ -31,6 +31,7 @@ export function DashboardLayout({
           <div className="bg-gray-300-border-gradient dark:bg-vc-border-gradient rounded-lg p-px shadow-lg shadow-black">
             <div className="rounded-lg p-3.5 lg:p-6">{children}</div>
           </div>
+
           {/* <Byline className="fixed sm:hidden" /> */}
         </div>
       </div>

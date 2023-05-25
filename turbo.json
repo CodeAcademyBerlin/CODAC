@@ -1,7 +1,7 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env"],
-  "globalEnv": ["NEXT_PUBLIC_CODAC_SERVER_URL", "NEXT_PUBLIC_CODAC_SERVER_TOKEN"],
+  "globalEnv": ["NEXT_PUBLIC_CODAC_SERVER_URL", "CODAC_SSG_TOKEN"],
   "pipeline": {
     "clean": {
       "cache": false
@@ -11,10 +11,10 @@
       "cache": false,
       "dependsOn": ["^build"],
       "persistent": true,
-      "env": ["NEXT_PUBLIC_CODAC_SERVER_URL", "NEXT_PUBLIC_CODAC_SERVER_TOKEN"]
+      "env": ["NEXT_PUBLIC_CODAC_SERVER_URL", "CODAC_SSG_TOKEN"]
     },
     "build": {
-      "env": ["NEXT_PUBLIC_CODAC_SERVER_URL", "NEXT_PUBLIC_CODAC_SERVER_TOKEN"],
+      "env": ["NEXT_PUBLIC_CODAC_SERVER_URL", "CODAC_SSG_TOKEN"],
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**"]
     },
