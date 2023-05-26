@@ -34,11 +34,11 @@ export async function getPagesByProjectName({ name }: { name: string }) {
 
   return { pages: pages.data, spikes: spikes?.data ?? [] };
 }
-export async function getPageBySlug({ name }: { name: string }) {
+export async function getPageBySlug({ slug }: { slug: string }) {
   const token = process.env.CODAC_SSG_TOKEN ?? "";
   const path = `/projects`;
   const urlParamsObject = {
-    filters: { name },
+    filters: { slug },
     populate: "*",
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };

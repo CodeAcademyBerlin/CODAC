@@ -11,7 +11,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'codac': ['CODAC', ...defaultTheme.fontFamily.sans],
+        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+        mono: ["JetBrains Mono", ...defaultTheme.fontFamily.mono],
+        'display': ['Oswald'],
+        'body': ['"Open Sans"'],
+        'CODAC': ['var(----codac-font)'],
       },
       colors: {
         gray: colors.zinc,
