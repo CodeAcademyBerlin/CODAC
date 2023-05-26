@@ -14,7 +14,10 @@ export function SignIn() {
 
   const handleSignIn = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    await signIn("credentials", { email, password, redirect: false });
+    const data = await signIn("credentials", { email, password });
+    if (data) {
+      console.error(data.error);
+    }
   };
 
   return (
