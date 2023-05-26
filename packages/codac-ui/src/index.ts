@@ -5,5 +5,5 @@ export * from "./components";
 export * from "./hooks";
 export * from "./icons";
 export * from "./layouts";
-export * from "./markdown";
+// export * from "./markdown";
 export * from "./theme";

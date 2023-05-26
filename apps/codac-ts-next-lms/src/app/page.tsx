@@ -1,3 +1,4 @@
+import { codacFontClass } from "codac-ui";
 import Link from "next/link";
 
 // import { getServerSession } from "next-auth/next";
@@ -10,7 +11,7 @@ export default function Page() {
   // console.log(session);
   return (
     <div className="space-y-8">
-      <h1 className="font-[CODAC] text-xl font-medium text-gray-300">CODAC LMS</h1>
+      <h1 className={`${codacFontClass} text-xl font-medium text-gray-300`}>CODAC LMS</h1>
       <div className="space-y-10 text-white">
         {navigation.map((section) => {
           return (
