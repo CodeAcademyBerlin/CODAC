@@ -21,11 +21,10 @@ export async function getPagesByProjectName({ name }: { name: string }) {
   const options = { headers: { Authorization: `Bearer ${token}` } };
   const projects = await fetchAPI<ProjectEntity[]>(path, urlParamsObject, options);
   const project = projects[0];
-  if (!project.attributes.pages) {
+  if (!project || !project.attributes.pages) {
     // Render the closest `not-found.js` Error Boundary
     notFound();
   }
-  const pages = project.attributes.pages;
   const spikes = project.attributes.spikes;
 
   if (!pages.data.length) {

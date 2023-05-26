@@ -11,11 +11,11 @@ export default async function Layout({
   params: { courseSlug: string };
 }) {
   const courseSlug = params.courseSlug;
-  const projects = await getProjectsByCoursesName({ name: courseSlug });
+  const projects = await getProjectsByCoursesName({ slug: courseSlug });
 
   const projectsLinks = projects.map((x) => ({
-    text: x.attributes.description ?? "",
-    slug: x.attributes.name ?? "",
+    text: x.attributes.name,
+    slug: x.attributes.slug ?? "",
   }));
 
   return (

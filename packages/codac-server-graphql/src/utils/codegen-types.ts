@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import type { CodegenConfig } from "@graphql-codegen/cli";
 import { loadEnvConfig } from "@next/env";
 
@@ -5,7 +6,7 @@ loadEnvConfig(process.cwd());
 
 const config: CodegenConfig = {
   overwrite: true,
-  // schema: `https://codac-server-graphql.up.railway.app/graphql`,
+  // schema: `${process.env.NEXT_PUBLIC_CODAC_SERVER_URL}/graphql`,
   schema: `https://codac-admin-dev.up.railway.app/graphql`,
   documents: "./**/*.graphql",
   generates: {
@@ -34,27 +35,27 @@ const config: CodegenConfig = {
   },
 };
 
-const config2: CodegenConfig = {
-  overwrite: true,
-  // schema: `https://codac-server-graphql.up.railway.app/graphql`,
-  schema: `https://codac-admin-dev.up.railway.app/graphql`,
-  documents: "./**/*.graphql",
-  generates: {
-    "src/global/__generated__/types.ts": {
-      plugins: [
-        "typescript",
-        "typescript-resolvers",
-        "typescript-operations",
-        // "typescript-react-apollo",
-      ],
-      config: {
-        reactApolloVersion: 3,
-        withHooks: true,
-        withHOC: false,
-        withComponent: false,
-        // hooks: { afterOneFileWrite: ['eslint --fix'] },
-      },
-    },
-  },
-};
+// const config2: CodegenConfig = {
+//   overwrite: true,
+//   // schema: `https://codac-server-graphql.up.railway.app/graphql`,
+//   schema: `https://codac-admin-dev.up.railway.app/graphql`,
+//   documents: "./**/*.graphql",
+//   generates: {
+//     "src/global/__generated__/types.ts": {
+//       plugins: [
+//         "typescript",
+//         "typescript-resolvers",
+//         "typescript-operations",
+//         // "typescript-react-apollo",
+//       ],
+//       config: {
+//         reactApolloVersion: 3,
+//         withHooks: true,
+//         withHOC: false,
+//         withComponent: false,
+//         // hooks: { afterOneFileWrite: ['eslint --fix'] },
+//       },
+//     },
+//   },
+// };
 export default config;

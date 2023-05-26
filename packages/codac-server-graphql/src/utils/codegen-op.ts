@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import type { CodegenConfig } from "@graphql-codegen/cli";
 import { loadEnvConfig } from "@next/env";
 
@@ -5,7 +6,7 @@ loadEnvConfig(process.cwd());
 
 const config: CodegenConfig = {
   overwrite: true,
-  // schema: `https://codac-server-graphql.up.railway.app/graphql`,
+  // schema: `${process.env.NEXT_PUBLIC_CODAC_SERVER_URL}/graphql`,
   schema: `https://codac-admin-dev.up.railway.app/graphql`,
   documents: "./**/*.graphql",
   generates: {

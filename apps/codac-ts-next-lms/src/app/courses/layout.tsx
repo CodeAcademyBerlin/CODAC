@@ -24,8 +24,8 @@ export default async function Layout({ children }: { children: React.ReactNode }
               path={`/courses`}
               items={[
                 ...courses.map((x) => ({
-                  text: x.attributes.description ?? "",
-                  slug: x.attributes.name ?? "",
+                  text: x.attributes.name,
+                  slug: x.attributes.slug ?? "",
                 })),
               ]}
             />

@@ -5,16 +5,17 @@
 // good practise to add `server-only` preemptively.
 import "server-only";
 
-import type { ProjectEntity, ProjectEntityResponseCollection } from "codac-server-graphql";
+import type { ProjectEntity } from "codac-server-graphql";
 import { notFound } from "next/navigation";
 
 import { getCourseByName } from "#/app/courses/[courseSlug]/getCourses";
+import { fetchAPI } from "#/utils/fetch-api";
 
-export async function getProjectsByCoursesName({ name }: { name: string }) {
-  const course = await getCourseByName({ name });
+export async function getProjectsByCoursesName({ slug }: { slug: string }) {
+  const course = await getCourseByName({ slug });
 
   const { projects } = course.attributes;
-
+  console.log("projects", projects);
   if (!projects || projects.data.length === 0) {
     // Render the closest `not-found.js` Error Boundary
     notFound();
@@ -22,11 +23,11 @@ export async function getProjectsByCoursesName({ name }: { name: string }) {
 
   return projects.data;
 }
-export async function getProjectByName({ name }: { name: string }) {
+export async function getProjectByName({ slug }: { slug: string }) {
   const token = process.env.CODAC_SSG_TOKEN ?? "";
   const path = `/projects`;
   const urlParamsObject = {
-    filters: { name },
+    filters: { slug },
     populate: "*",
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
