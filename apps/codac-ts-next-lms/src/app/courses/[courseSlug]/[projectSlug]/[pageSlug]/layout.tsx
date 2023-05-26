@@ -7,8 +7,8 @@ export default function Layout({
 }: {
   children: React.ReactNode;
   params: {
-    projectName: string;
-    courseName: string;
+    projectSlug: string;
+    courseSlug: string;
     pageSlug: string;
   };
 }) {

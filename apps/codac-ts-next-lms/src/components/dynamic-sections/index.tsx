@@ -2,8 +2,7 @@
 // TO DO inverstivate why this its not working from codac-ui
 import { SectionHeader } from "#/components/dynamic-sections/header";
 import { SectionMarkdown } from "#/components/dynamic-sections/markdown";
-
-import type { PageContentSectionsDynamicZone } from "../../app/api/pages/page";
+import type { PageContentSectionsDynamicZone } from "#/types/page";
 
 export function dynamicSections({ section }: { section: PageContentSectionsDynamicZone }) {
   console.log("section.__components", section.__component);

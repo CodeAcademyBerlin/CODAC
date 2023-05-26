@@ -1,20 +1,20 @@
 // import { ClickCounter } from '#/ui/click-counter';
 import { Boundary, TabGroup } from "codac-ui";
 
-import { getProjectsByCoursesName } from "../../api/projects/getProjects";
+import { getProjectsByCoursesName } from "./[projectSlug]/getProjects";
 
 export default async function Layout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { courseName: string };
+  params: { courseSlug: string };
 }) {
-  const courseName = params.courseName;
-  const projects = await getProjectsByCoursesName({ name: courseName });
+  const courseSlug = params.courseSlug;
+  const projects = await getProjectsByCoursesName({ name: courseSlug });
 
   const projectsLinks = projects.map((x) => ({
-    text: x.attributes.name ?? "",
+    text: x.attributes.description ?? "",
     slug: x.attributes.name ?? "",
   }));
 
@@ -22,7 +22,7 @@ export default async function Layout({
     <div className="space-y-9">
       <Boundary labels={["projects"]} color="violet">
         <div className="flex justify-between">
-          <TabGroup path={`/courses/${courseName}`} items={[...projectsLinks]} />
+          <TabGroup path={`/courses/${courseSlug}`} items={[...projectsLinks]} />
           <div className="self-start">{/* <ClickCounter /> */}</div>
         </div>
       </Boundary>

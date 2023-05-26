@@ -3,7 +3,7 @@ import React from "react";
 
 import { navigation } from "#/constants/navigation";
 
-import { getCourses } from "../api/courses/getCourses";
+import { getCourses } from "./[courseSlug]/getCourses";
 
 export const metadata = {
   title: "Courses",
@@ -24,7 +24,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
               path={`/courses`}
               items={[
                 ...courses.map((x) => ({
-                  text: x.attributes.name ?? "",
+                  text: x.attributes.description ?? "",
                   slug: x.attributes.name ?? "",
                 })),
               ]}

@@ -5,11 +5,10 @@
 // good practise to add `server-only` preemptively.
 import "server-only";
 
-import type { ProjectEntity } from "codac-server-graphql";
+import type { PageEntity, ProjectEntity } from "codac-server-graphql";
 import { notFound } from "next/navigation";
 
-import { fetchAPI } from "../fetch-api";
-import type { PageEntity } from "./page";
+import { fetchAPI } from "#/utils/fetch-api";
 
 export async function getPagesByProjectName({ name }: { name: string }) {
   const token = process.env.CODAC_SSG_TOKEN ?? "";

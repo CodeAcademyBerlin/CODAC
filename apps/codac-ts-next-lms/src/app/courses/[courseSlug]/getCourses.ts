@@ -9,7 +9,7 @@ import "server-only";
 import type { CourseEntity, CourseEntityResponseCollection } from "codac-server-graphql";
 import { notFound } from "next/navigation";
 
-import { fetchAPI } from "../fetch-api";
+import { fetchAPI } from "#/utils/fetch-api";
 
 export async function getCourses() {
   const token = process.env.CODAC_SSG_TOKEN ?? "";
@@ -23,12 +23,12 @@ export async function getCourses() {
 
   return courses;
 }
-export async function getCourseByName({ name }: { name: string }) {
+export async function getCourseByName({ slug }: { slug: string }) {
   const token = process.env.CODAC_SSG_TOKEN ?? "";
   console.log("token", token);
   const path = `/courses`;
   const urlParamsObject = {
-    filters: { name },
+    filters: { slug },
     populate: "*",
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };

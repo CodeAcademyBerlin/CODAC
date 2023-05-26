@@ -2,10 +2,10 @@ import { ProjectEntity } from "codac-server-graphql";
 import { SkeletonCard } from "codac-ui";
 import Link from "next/link";
 
-import { getCourseByName } from "../../api/courses/getCourses";
+import { getCourseByName } from "./getCourses";
 
-export default async function Page({ params }: { params: { courseName: string } }) {
-  const course = await getCourseByName({ name: params.courseName });
+export default async function Page({ params }: { params: { courseSlug: string } }) {
+  const course = await getCourseByName({ name: params.courseSlug });
   const { projects } = course.attributes;
   return (
     <div className="space-y-4">

@@ -9,12 +9,12 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
   params: {
-    projectName: string;
-    courseName: string;
+    projectSlug: string;
+    courseSlug: string;
   };
 }) {
-  const { projectName, courseName } = params;
-  const { pages, spikes } = await getPagesByProjectName({ name: projectName });
+  const { projectSlug, courseSlug } = params;
+  const { pages, spikes } = await getPagesByProjectName({ name: projectSlug });
 
   const pagesLinks = pages.map((x) => ({
     text: x.attributes.title,
@@ -29,13 +29,13 @@ export default async function Layout({
       <div className="flex gap-2">
         <div className="flex-auto">
           <Boundary labels={["pages"]} color="orange">
-            <TabGroup path={`/courses/${courseName}/${projectName}`} items={[...pagesLinks]} />
+            <TabGroup path={`/courses/${courseSlug}/${projectSlug}`} items={[...pagesLinks]} />
             <div className="self-start">{/* <ClickCounter /> */}</div>
           </Boundary>
         </div>
         <div className="flex-auto">
           <Boundary labels={["spikes"]} color="cyan">
-            <TabGroup path={`/courses/${courseName}/${projectName}`} items={[...spikesLinks]} />
+            <TabGroup path={`/courses/${courseSlug}/${projectSlug}`} items={[...spikesLinks]} />
             <div className="self-start">{/* <ClickCounter /> */}</div>
           </Boundary>
         </div>

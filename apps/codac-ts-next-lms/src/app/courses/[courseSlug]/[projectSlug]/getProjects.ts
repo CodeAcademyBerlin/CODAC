@@ -8,8 +8,8 @@ import "server-only";
 import type { ProjectEntity, ProjectEntityResponseCollection } from "codac-server-graphql";
 import { notFound } from "next/navigation";
 
-import { getCourseByName } from "../courses/getCourses";
-import { fetchAPI } from "../fetch-api";
+import { getCourseByName } from "#/app/courses/[courseSlug]/getCourses";
+
 export async function getProjectsByCoursesName({ name }: { name: string }) {
   const course = await getCourseByName({ name });
 
