@@ -8,11 +8,11 @@ import "server-only";
 import type { ProjectEntity } from "codac-server-graphql";
 import { notFound } from "next/navigation";
 
-import { getCourseByName } from "#/app/courses/[courseSlug]/getCourses";
+import { getCourseBySlug } from "#/app/courses/[courseSlug]/getCourses";
 import { fetchAPI } from "#/utils/fetch-api";
 
 export async function getProjectsByCoursesName({ slug }: { slug: string }) {
-  const course = await getCourseByName({ slug });
+  const course = await getCourseBySlug({ slug });
 
   const { projects } = course.attributes;
   console.log("projects", projects);

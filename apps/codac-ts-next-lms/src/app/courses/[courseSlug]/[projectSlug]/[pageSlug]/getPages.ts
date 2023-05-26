@@ -11,28 +11,35 @@ import { notFound } from "next/navigation";
 import type { PageEntity } from "#/types/page";
 import { fetchAPI } from "#/utils/fetch-api";
 
-export async function getPagesByProjectName({ name }: { name: string }) {
+export async function getPagesByProjectSlug({ slug }: { slug: string }) {
   const token = process.env.CODAC_SSG_TOKEN ?? "";
   const path = `/projects`;
   const urlParamsObject = {
-    filters: { name },
+    filters: { slug },
     populate: "*",
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
   const projects = await fetchAPI<ProjectEntity[]>(path, urlParamsObject, options);
   const project = projects[0];
-  if (!project || !project.attributes.pages) {
+
+  if (!project.attributes.pages) {
     // Render the closest `not-found.js` Error Boundary
     notFound();
   }
-  const spikes = project.attributes.spikes;
+  const pages = project.attributes.pages;
+
+  // const spikes = project?.attributes?.spikes ?? [];
 
   if (!pages.data.length) {
     // Render the closest `not-found.js` Error Boundary
     notFound();
   }
 
-  return { pages: pages.data, spikes: spikes?.data ?? [] };
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  return {
+    pages: pages.data,
+    // spikes: spikes.data
+  };
 }
 export async function getPageBySlug({ slug }: { slug: string }) {
   const token = process.env.CODAC_SSG_TOKEN ?? "";

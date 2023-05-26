@@ -1,7 +1,7 @@
 // import { ClickCounter } from '#/ui/click-counter';
 import { Boundary, TabGroup } from "codac-ui";
 
-import { getPagesByProjectName } from "./[pageSlug]/getPages";
+import { getPagesByProjectSlug } from "./[pageSlug]/getPages";
 
 export default async function Layout({
   children,
@@ -14,16 +14,20 @@ export default async function Layout({
   };
 }) {
   const { projectSlug, courseSlug } = params;
-  const { pages, spikes } = await getPagesByProjectName({ name: projectSlug });
+  const {
+    pages,
+    // spikes
+  } = await getPagesByProjectSlug({ slug: projectSlug });
 
   const pagesLinks = pages.map((x) => ({
     text: x.attributes.title,
     slug: x.attributes.slug ?? "",
   }));
-  const spikesLinks = spikes.map((x) => ({
-    text: x.attributes.title ?? "",
-    slug: x.attributes.title ?? "",
-  }));
+  // const spikesLinks =
+  //   spikes.map((x) => ({
+  //     text: x.attributes.title ?? "",
+  //     slug: x.attributes.title ?? "",
+  //   })) ?? [];
   return (
     <div className="space-y-9">
       <div className="flex gap-2">
@@ -33,12 +37,11 @@ export default async function Layout({
             <div className="self-start">{/* <ClickCounter /> */}</div>
           </Boundary>
         </div>
-        <div className="flex-auto">
+        {/* <div className="flex-auto">
           <Boundary labels={["spikes"]} color="cyan">
             <TabGroup path={`/courses/${courseSlug}/${projectSlug}`} items={[...spikesLinks]} />
-            <div className="self-start">{/* <ClickCounter /> */}</div>
           </Boundary>
-        </div>
+        </div> */}
       </div>
 
       <div>{children}</div>
