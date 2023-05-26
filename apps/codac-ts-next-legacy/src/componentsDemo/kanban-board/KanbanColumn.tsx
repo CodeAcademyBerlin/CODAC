@@ -1,4 +1,4 @@
-import { Droppable } from '@hello-pangea/dnd';
+import { Droppable } from "@hello-pangea/dnd";
 import {
   Box,
   Button,
@@ -8,17 +8,17 @@ import {
   TextField,
   Typography,
   useTheme,
-} from '@mui/material';
+} from "@mui/material";
 import {
   ComponentKanbanBoard,
   ComponentKanbanCard,
   ComponentKanbanColumn,
-} from 'cabServer/global/__generated__/types';
-import { Close, Plus } from 'mdi-material-ui';
-import * as React from 'react';
+} from "codac-server-graphql";
+import { Close, Plus } from "mdi-material-ui";
+import * as React from "react";
 
-import KanbanCard from './KanbanCard';
-import KanbanFooter from './KanbanFooter';
+import KanbanCard from "./KanbanCard";
+import KanbanFooter from "./KanbanFooter";
 
 type KanbanProps = {
   kabanBoard: ComponentKanbanBoard;
@@ -27,9 +27,8 @@ type KanbanProps = {
 function KanbanColumn({ kabanBoard }: KanbanProps) {
   const theme = useTheme();
   const [inputColumn, setInputColumn] = React.useState(false);
-  const kabanColumns: ComponentKanbanColumn[] =
-    kabanBoard?.columns as ComponentKanbanColumn[];
-  console.log('kabanColumns', kabanColumns);
+  const kabanColumns: ComponentKanbanColumn[] = kabanBoard?.columns as ComponentKanbanColumn[];
+  console.log("kabanColumns", kabanColumns);
 
   const handleAddColumn = () => {
     setInputColumn(true);
@@ -39,13 +38,7 @@ function KanbanColumn({ kabanBoard }: KanbanProps) {
   };
 
   return (
-    <Grid
-      container
-      spacing={1}
-      direction="row"
-      justifyContent="flex-start"
-      alignItems="flex-start"
-    >
+    <Grid container spacing={1} direction="row" justifyContent="flex-start" alignItems="flex-start">
       {kabanColumns?.map((column: ComponentKanbanColumn) => {
         return (
           <>
@@ -58,22 +51,22 @@ function KanbanColumn({ kabanBoard }: KanbanProps) {
                   key={column?.id}
                   elevation={0}
                   sx={{
-                    width: '350px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    maxHeight: '100%',
-                    overflowX: 'hidden',
-                    overflowY: 'hidden',
-                    margin: '4px',
+                    width: "350px",
+                    display: "flex",
+                    flexDirection: "column",
+                    maxHeight: "100%",
+                    overflowX: "hidden",
+                    overflowY: "hidden",
+                    margin: "4px",
                     borderRadius: theme.shape.borderRadius,
                   }}
                 >
                   <Box
                     sx={{
-                      display: 'flex',
-                      flexWrap: 'nowrap',
-                      justifyContent: 'center',
-                      padding: '20px',
+                      display: "flex",
+                      flexWrap: "nowrap",
+                      justifyContent: "center",
+                      padding: "20px",
                       backgroundColor: theme.palette.primary.light,
                     }}
                   >
@@ -83,11 +76,7 @@ function KanbanColumn({ kabanBoard }: KanbanProps) {
                   </Box>
 
                   {column?.cards?.map((card, index) => {
-                    return (
-                      card && (
-                        <KanbanCard card={card} index={index} key={index} />
-                      )
-                    );
+                    return card && <KanbanCard card={card} index={index} key={index} />;
                   })}
                   {provided.placeholder}
                   <KanbanFooter />
@@ -102,28 +91,28 @@ function KanbanColumn({ kabanBoard }: KanbanProps) {
         <Card
           elevation={0}
           sx={{
-            width: '350px',
-            display: 'flex',
-            flexDirection: 'column',
-            maxHeight: '100%',
-            overflowX: 'hidden',
-            overflowY: 'hidden',
-            margin: '4px',
+            width: "350px",
+            display: "flex",
+            flexDirection: "column",
+            maxHeight: "100%",
+            overflowX: "hidden",
+            overflowY: "hidden",
+            margin: "4px",
             borderRadius: theme.shape.borderRadius,
           }}
         >
           <form>
             <Box
               sx={{
-                display: 'flex',
-                flexWrap: 'nowrap',
-                justifyContent: 'center',
+                display: "flex",
+                flexWrap: "nowrap",
+                justifyContent: "center",
               }}
             >
               <TextField
                 variant="standard"
                 sx={{
-                  width: '300px',
+                  width: "300px",
                   marginTop: 3,
                 }}
                 InputProps={{
@@ -153,37 +142,37 @@ function KanbanColumn({ kabanBoard }: KanbanProps) {
           <Card
             elevation={0}
             sx={{
-              width: '350px',
-              display: 'flex',
-              flexDirection: 'column',
-              maxHeight: '100%',
-              overflowX: 'hidden',
-              overflowY: 'hidden',
-              margin: '4px',
+              width: "350px",
+              display: "flex",
+              flexDirection: "column",
+              maxHeight: "100%",
+              overflowX: "hidden",
+              overflowY: "hidden",
+              margin: "4px",
               borderRadius: theme.shape.borderRadius,
             }}
           >
             <Box
               sx={{
-                display: 'flex',
-                flexWrap: 'nowrap',
-                justifyContent: 'center',
-                padding: '20px',
+                display: "flex",
+                flexWrap: "nowrap",
+                justifyContent: "center",
+                padding: "20px",
                 backgroundColor: theme.palette.secondary.main,
               }}
             >
               <Button
                 variant="text"
                 sx={{
-                  color: 'white',
+                  color: "white",
                 }}
                 onClick={handleAddColumn}
               >
-                {' '}
+                {" "}
                 <IconButton>
                   <Plus
                     sx={{
-                      color: 'white',
+                      color: "white",
                     }}
                   />
                 </IconButton>

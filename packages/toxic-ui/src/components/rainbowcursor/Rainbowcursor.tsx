@@ -1,5 +1,6 @@
-import { FC, useEffect, useRef, useState } from "react";
 import "./Rainbowcursor.css";
+
+import { type FC, useEffect, useRef, useState } from "react";
 
 export const RainbowCursor: FC = () => {
   const [rainbow, setRainbow] = useState(false);
@@ -53,10 +54,7 @@ export const RainbowCursor: FC = () => {
       onMouseEnter={handleCursorEnter}
       onMouseLeave={handleCursorLeave}
     >
-      <div
-        className={`rainbow ${rainbow ? "animate-rainbow" : ""}`}
-        ref={cursorRef}
-      >
+      <div className={`rainbow ${rainbow ? "animate-rainbow" : ""}`} ref={cursorRef}>
         <div className="trail" ref={trailRef}></div>
       </div>
     </div>

@@ -1,25 +1,25 @@
 // ** MUI Imports
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Grid, { GridProps } from '@mui/material/Grid';
-import Rating from '@mui/material/Rating';
-import { styled } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Grid, { GridProps } from "@mui/material/Grid";
+import Rating from "@mui/material/Rating";
+import { styled } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
 
 // Styled Grid component
 const StyledGrid1 = styled(Grid)<GridProps>(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-start',
-  [theme.breakpoints.down('md')]: {
-    paddingTop: '0 !important',
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  [theme.breakpoints.down("md")]: {
+    paddingTop: "0 !important",
   },
-  '& .MuiCardContent-root': {
+  "& .MuiCardContent-root": {
     padding: theme.spacing(3, 4.75),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down("md")]: {
       paddingTop: 0,
     },
   },
@@ -27,20 +27,20 @@ const StyledGrid1 = styled(Grid)<GridProps>(({ theme }) => ({
 
 // Styled Grid component
 const StyledGrid2 = styled(Grid)<GridProps>(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  [theme.breakpoints.up('md')]: {
-    paddingLeft: '0 !important',
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  [theme.breakpoints.up("md")]: {
+    paddingLeft: "0 !important",
   },
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down("md")]: {
     order: -1,
   },
 }));
 
 // Styled component for the image
-const Img = styled('img')(({ theme }) => ({
-  height: '11rem',
+const Img = styled("img")(({ theme }) => ({
+  height: "11rem",
   borderRadius: theme.shape.borderRadius,
 }));
 
@@ -56,25 +56,20 @@ const CardHorizontalRatings = () => {
             <Box
               sx={{
                 mb: 4.75,
-                display: 'flex',
-                flexWrap: 'wrap',
-                alignItems: 'center',
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
               }}
             >
-              <Rating
-                readOnly
-                value={5}
-                name="read-only"
-                sx={{ marginRight: 2 }}
-              />
+              <Rating readOnly value={5} name="read-only" sx={{ marginRight: 2 }} />
               <Typography variant="body2">5 Star | 98 reviews</Typography>
             </Box>
             <Typography variant="body2" sx={{ marginBottom: 4 }}>
-              Before there was a United States of America, there were coffee
-              houses, because how are you supposed to build.
+              Before there was a United States of America, there were coffee houses, because how are
+              you supposed to build.
             </Typography>
           </CardContent>
-          <CardActions className="card-action-dense" sx={{ width: '100%' }}>
+          <CardActions className="card-action-dense" sx={{ width: "100%" }}>
             <Button>Location</Button>
             <Button>Reviews</Button>
           </CardActions>
@@ -82,15 +77,12 @@ const CardHorizontalRatings = () => {
         <StyledGrid2 item xs={12} md={6} lg={5}>
           <CardContent
             sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-            <Img
-              alt="Stumptown Roasters"
-              src="/images/cards/analog-clock.jpg"
-            />
+            <Img alt="Stumptown Roasters" src="/images/cards/analog-clock.jpg" />
           </CardContent>
         </StyledGrid2>
       </Grid>

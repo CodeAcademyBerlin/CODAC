@@ -1,0 +1,40 @@
+query getProjects {
+  projects {
+    data {
+      id
+      attributes {
+        name
+        description
+        spikes {
+          data {
+            id
+            attributes {
+              title
+              day
+            }
+          }
+        }
+      }
+    }
+  }
+}
+query getProject($id: ID!) {
+  project(id: $id) {
+    data {
+      attributes {
+        name
+        description
+        length
+        spikes {
+          data {
+            id
+            attributes {
+              title
+              day
+            }
+          }
+        }
+      }
+    }
+  }
+}

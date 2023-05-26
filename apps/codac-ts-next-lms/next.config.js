@@ -1,4 +1,8 @@
 module.exports = {
   reactStrictMode: true,
-  transpilePackages: ["toxic-ui"],
+  // experimental: {
+  //   appDir: true,
+  // },
+  transpilePackages: ["codac-ui", "codac-server-graphql", "toxic-ui"],
+
 };

@@ -1,20 +1,39 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
+  "globalDependencies": ["**/.env"],
+  "globalEnv": ["NEXT_PUBLIC_CODAC_SERVER_URL", "CODAC_SSG_TOKEN"],
   "pipeline": {
-    "build": {
-      "env": ["NEXT_PUBLIC_CODAC_ADMINISTRATION_URL"],
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**", "storybook-static/**"]
-    },
-    "lint": {},
-    "check-types": {},
-    "dev": {
-      "cache": false,
-      "persistent": true
-    },
     "clean": {
       "cache": false
+    },
+    "lint": {},
+    "dev": {
+      "cache": false,
+      "dependsOn": ["^build"],
+      "persistent": true,
+      "env": ["NEXT_PUBLIC_CODAC_SERVER_URL", "CODAC_SSG_TOKEN"]
+    },
+    "build": {
+      "env": ["NEXT_PUBLIC_CODAC_SERVER_URL", "CODAC_SSG_TOKEN"],
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**"]
+    },
+    "storybook:dev": {
+      "cache": false,
+      "dependsOn": ["^build"],
+      "persistent": true
+    },
+    "storybook:build": {
+      "dependsOn": ["^build"],
+      "outputs": ["storybook-static/**"]
+    },
+    "test:e2e": {
+      "cache": false,
+      "dependsOn": ["^build"]
+    },
+    "test:unit": {
+      "cache": false,
+      "dependsOn": ["^build"]
     }
   }
 }

@@ -7,23 +7,22 @@ import {
   Stack,
   TextField,
   useTheme,
-} from '@mui/material';
-import Box from '@mui/material/Box';
-import { useCreateVsBattleMutation } from 'cabServer/mutations/__generated__/addbattle';
-import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+} from "@mui/material";
+import Box from "@mui/material/Box";
+import { useCreateVsBattleMutation } from "cabServer/mutations/__generated__/addbattle";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 
 function AddNewBattle() {
   const theme = useTheme();
-  const [option1, setOption1] = useState<string>('');
-  const [option2, setOption2] = useState<string>('');
-  const [title, setTitle] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
+  const [option1, setOption1] = useState<string>("");
+  const [option2, setOption2] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
   const currentDate = new Date();
   const router = useRouter();
 
-  const [createVsBattleMutation, { data, loading, error }] =
-    useCreateVsBattleMutation();
+  const [createVsBattleMutation, { data, loading, error }] = useCreateVsBattleMutation();
 
   const handleAddBattle = () => {
     createVsBattleMutation({
@@ -42,22 +41,22 @@ function AddNewBattle() {
     <form onSubmit={handleAddBattle}>
       <Box
         sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          flexDirection: 'column',
-          alignItems: 'center',
-          '& > :not(style)': {
+          display: "flex",
+          flexWrap: "wrap",
+          flexDirection: "column",
+          alignItems: "center",
+          "& > :not(style)": {
             m: 1,
 
-            height: 'auto',
+            height: "auto",
           },
         }}
       >
         <Box
           sx={{
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
             padding: (theme) => theme.spacing(1.75, 5.5),
             rowGap: 5,
           }}

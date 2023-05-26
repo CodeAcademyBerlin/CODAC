@@ -1,12 +1,12 @@
 // ** MUI Imports
-import { Theme } from '@mui/material/styles';
+import { Theme } from "@mui/material/styles";
 
 const Switch = (theme: Theme) => {
   return {
     MuiSwitch: {
       styleOverrides: {
         root: {
-          '& .MuiSwitch-track': {
+          "& .MuiSwitch-track": {
             backgroundColor: `rgb(${theme.palette.primary.main})`,
           },
         },

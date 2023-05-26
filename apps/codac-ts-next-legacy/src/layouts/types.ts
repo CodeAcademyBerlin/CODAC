@@ -1,12 +1,12 @@
-import { SvgIconTypeMap } from '@mui/material';
-import { OverridableComponent } from '@mui/material/OverridableComponent';
-import { ReactElement, ReactNode } from 'react';
+import { SvgIconTypeMap } from "@mui/material";
+import { OverridableComponent } from "@mui/material/OverridableComponent";
+import { ReactElement, ReactNode } from "react";
 
-import { Settings } from '../contexts/settingsContext';
+import { Settings } from "../contexts/settingsContext";
 
-export type ContentWidth = 'full' | 'boxed';
+export type ContentWidth = "full" | "boxed";
 
-export type ThemeName = 'light' | 'dark' | 'gag' | string;
+export type ThemeName = "light" | "dark" | "gag" | string;
 
 export type NavLink = {
   path: string;
@@ -21,15 +21,8 @@ export type NavLink = {
     | string
     | string[]
     | ReactNode
-    | (OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & { muiName: string });
-  badgeColor?:
-    | 'default'
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'error'
-    | 'warning'
-    | 'info';
+    | (OverridableComponent<SvgIconTypeMap<{}, "svg">> & { muiName: string });
+  badgeColor?: "default" | "primary" | "secondary" | "success" | "error" | "warning" | "info";
 };
 
 export type NavSectionTitle = {

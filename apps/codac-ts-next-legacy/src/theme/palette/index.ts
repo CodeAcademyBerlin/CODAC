@@ -1,27 +1,27 @@
 // ** Type Imports
 
-import { PaletteOptions } from '@mui/material/styles/createPalette';
+import { PaletteOptions } from "@mui/material/styles/createPalette";
 
-import { ThemeName } from '../../layouts/types';
+import { ThemeName } from "../../layouts/types";
 
 const DefaultPalette = (themeName: ThemeName): PaletteOptions => {
   const primary = {
-    main: '#00897B',
-    light: '#26a69a',
-    dark: '#00695c',
+    main: "#00897B",
+    light: "#26a69a",
+    dark: "#00695c",
   };
 
   const secondary = {
-    main: '#FF8A80',
-    light: '#ffc4c5',
-    dark: '#f53725',
+    main: "#FF8A80",
+    light: "#ffc4c5",
+    dark: "#f53725",
   };
 
-  const lightModeText = '58, 53, 65';
-  const darkModeText = '231, 227, 252';
+  const lightModeText = "58, 53, 65";
+  const darkModeText = "231, 227, 252";
 
   const light: PaletteOptions = {
-    mode: 'light',
+    mode: "light",
     primary: primary,
     secondary: secondary,
     text: {
@@ -31,7 +31,7 @@ const DefaultPalette = (themeName: ThemeName): PaletteOptions => {
     },
     divider: `rgba(${lightModeText}, 0.12)`,
     background: {
-      default: '#F4F5FA',
+      default: "#F4F5FA",
     },
     action: {
       active: `rgba(${lightModeText}, 0.54)`,
@@ -44,22 +44,22 @@ const DefaultPalette = (themeName: ThemeName): PaletteOptions => {
   };
 
   const gag: PaletteOptions = {
-    mode: 'dark',
+    mode: "dark",
     primary: {
-      main: '#33FF33',
-      light: '#00FF33',
-      dark: '#33FF00',
+      main: "#33FF33",
+      light: "#00FF33",
+      dark: "#33FF00",
     },
     secondary: secondary,
     text: {
-      primary: '#33FF33',
-      secondary: '#FFB000',
-      disabled: '#66FF66',
+      primary: "#33FF33",
+      secondary: "#FFB000",
+      disabled: "#66FF66",
     },
     divider: `rgba(51, 255, 0, 0.12)`,
     background: {
-      paper: '#282828',
-      default: '#282828',
+      paper: "#282828",
+      default: "#282828",
     },
     action: {
       active: `rgba(${darkModeText}, 0.54)`,
@@ -72,7 +72,7 @@ const DefaultPalette = (themeName: ThemeName): PaletteOptions => {
   };
 
   const dark: PaletteOptions = {
-    mode: 'dark',
+    mode: "dark",
     primary: primary,
     secondary: secondary,
     text: {
@@ -82,8 +82,8 @@ const DefaultPalette = (themeName: ThemeName): PaletteOptions => {
     },
     divider: `rgba(${darkModeText}, 0.12)`,
     background: {
-      paper: '#312D4B',
-      default: '#28243D',
+      paper: "#312D4B",
+      default: "#28243D",
     },
     action: {
       active: `rgba(${darkModeText}, 0.54)`,
@@ -95,13 +95,13 @@ const DefaultPalette = (themeName: ThemeName): PaletteOptions => {
     },
   };
   switch (themeName) {
-    case 'light': {
+    case "light": {
       return light;
     }
-    case 'gag': {
+    case "gag": {
       return gag;
     }
-    case 'dark': {
+    case "dark": {
       return dark;
     }
     default:

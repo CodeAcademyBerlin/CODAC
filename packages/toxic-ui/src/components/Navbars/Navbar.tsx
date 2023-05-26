@@ -1,15 +1,9 @@
-import { navbarI } from "../../interfaces/interfaceNavbar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-export const Navbar = ({
-  brand,
-  urls,
-  padding,
-  textColor,
-  rounded,
-  background,
-}: navbarI) => {
+
+import type { navbarI } from "../../interfaces/interfaceNavbar";
+export const Navbar = ({ brand, urls, padding, textColor, rounded, background }: navbarI) => {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {

@@ -1,8 +1,8 @@
-import { useProgressBarQuery } from 'cabServer/queries/__generated__/dashboard';
-import React, { Suspense } from 'react';
-import { useAuth } from 'src/hooks/useAuth';
+import { useProgressBarQuery } from "cabServer/queries/__generated__/dashboard";
+import React, { Suspense } from "react";
+import { useAuth } from "src/hooks/useAuth";
 
-import ProgressBar from './ProgressBar';
+import ProgressBar from "./ProgressBar";
 
 export default function ProgressBarSuspense() {
   const { user } = useAuth();

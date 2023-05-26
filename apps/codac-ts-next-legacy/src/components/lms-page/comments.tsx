@@ -1,19 +1,10 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Container,
-  Grid,
-  Paper,
-  TextField,
-  Typography,
-} from '@mui/material';
-import { useAddCommentMutation } from 'cabServer/mutations/__generated__/addCommentLMSPages';
-import { useCreateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/createLMSFeedback';
+import { Avatar, Box, Button, Container, Grid, Paper, TextField, Typography } from "@mui/material";
+import { useAddCommentMutation } from "cabServer/mutations/__generated__/addCommentLMSPages";
+import { useCreateLmsFeedbackMutation } from "cabServer/mutations/__generated__/createLMSFeedback";
 // import { useUpdateLmsFeedbackCommentMutation } from 'cabServer/mutations/__generated__/updateCommentLMSPages';
-import { useGetLmsFeedbacksQuery } from 'cabServer/queries/__generated__/lmsComments';
-import React, { MouseEvent, useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
+import { useGetLmsFeedbacksQuery } from "cabServer/queries/__generated__/lmsComments";
+import React, { MouseEvent, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 type LMSfeedbackProps = {
   slug: string;
@@ -30,24 +21,22 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
   // console.log('comments', lmsFeedback);
 
   // create first comment for a page
-  const [createComment, { data: creatData, error: createError }] =
-    useCreateLmsFeedbackMutation();
+  const [createComment, { data: creatData, error: createError }] = useCreateLmsFeedbackMutation();
 
   // create comment for a page with existing ID for slug
-  const [addComment, { data: mutationData, error: mutationError }] =
-    useAddCommentMutation();
+  const [addComment, { data: mutationData, error: mutationError }] = useAddCommentMutation();
 
   // update a comment:
   //   const [updateComments, { data: updateData, error: updateError }] =
   //     useUpdateLmsFeedbackCommentMutation();
 
-  const [message, setMessage] = useState<string>('');
+  const [message, setMessage] = useState<string>("");
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void =>
     setMessage(event.target.value);
 
   const handleCancel = () => {
-    setMessage('');
+    setMessage("");
   };
 
   const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
@@ -63,11 +52,11 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
           },
         });
 
-        console.log('data', data);
+        console.log("data", data);
         if (data) {
           const response = data.addLMSfeedbackComment;
           if (response?.success) {
-            console.log('response', response);
+            console.log("response", response);
 
             toast.success(response?.message, {
               position: toast.POSITION.BOTTOM_RIGHT,
@@ -89,13 +78,13 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
             slug: slug,
           },
         });
-        setMessage('');
-        toast.success('Your comment has  been submitted', {
+        setMessage("");
+        toast.success("Your comment has  been submitted", {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
         refetch();
       } catch (e) {
-        ({ error: 'e.message' });
+        ({ error: "e.message" });
       }
     }
   };
@@ -106,7 +95,7 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
         sx={{
           p: 5,
           // display: 'flex',
-          width: '50%',
+          width: "50%",
         }}
       >
         <Typography variant="h5">Comments</Typography>
@@ -115,7 +104,7 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
         sx={{
           p: 5,
           // display: 'flex',
-          width: '50%',
+          width: "50%",
         }}
         component="form"
       >
@@ -133,7 +122,7 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
           value={message}
           onChange={handleChange}
         />
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
           <Button sx={{ mt: 3, ml: 1 }} onClick={handleCancel} type="submit">
             Cancel
           </Button>
@@ -155,20 +144,17 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
               sx={{
                 p: 5,
                 // display: 'flex',
-                width: '50%',
+                width: "50%",
               }}
               key={comment?.id}
             >
-              <Paper style={{ padding: '40px 20px' }}>
+              <Paper style={{ padding: "40px 20px" }}>
                 <Grid container wrap="nowrap" spacing={2}>
                   <Grid item>
                     {comment?.author?.data ? (
                       <Avatar
                         alt={comment?.author?.data?.attributes?.username}
-                        src={
-                          comment?.author?.data?.attributes?.avatar?.data
-                            ?.attributes?.url
-                        }
+                        src={comment?.author?.data?.attributes?.avatar?.data?.attributes?.url}
                       />
                     ) : (
                       <Avatar></Avatar>
@@ -176,22 +162,20 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
                   </Grid>
                   <Grid justifyContent="left" item xs zeroMinWidth>
                     {comment?.author?.data ? (
-                      <h4 style={{ margin: 0, textAlign: 'left' }}>
+                      <h4 style={{ margin: 0, textAlign: "left" }}>
                         {comment?.author?.data?.attributes?.username}
                       </h4>
                     ) : (
-                      <h4 style={{ margin: 0, textAlign: 'left' }}>
-                        {'anonymous user'}
-                      </h4>
+                      <h4 style={{ margin: 0, textAlign: "left" }}>{"anonymous user"}</h4>
                     )}
 
-                    <p style={{ textAlign: 'left' }}>
+                    <p style={{ textAlign: "left" }}>
                       {comment?.message}
                       {/* {lmsFeedback.attributes?.comments?.map(
                         (comment) => comment?.message,
                       )} */}
                     </p>
-                    <p style={{ textAlign: 'left', color: 'gray' }}>
+                    <p style={{ textAlign: "left", color: "gray" }}>
                       {new Date(comment?.timestamp).toDateString()}
                       {/* {lmsFeedback.attributes?.comments?.map((comment) =>
                         new Date(comment?.timestamp).toDateString(),

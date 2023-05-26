@@ -1,24 +1,24 @@
 // ** React Imports
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 // ** MUI Imports
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import Checkbox from '@mui/material/Checkbox';
-import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Grid from '@mui/material/Grid';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
-import InputLabel from '@mui/material/InputLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import { styled } from '@mui/material/styles';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import EyeOffOutline from 'mdi-material-ui/EyeOffOutline';
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import Checkbox from "@mui/material/Checkbox";
+import FormControl from "@mui/material/FormControl";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import InputLabel from "@mui/material/InputLabel";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import { styled } from "@mui/material/styles";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import EyeOffOutline from "mdi-material-ui/EyeOffOutline";
 // ** Icons Imports
-import EyeOutline from 'mdi-material-ui/EyeOutline';
-import { ChangeEvent, MouseEvent, useState } from 'react';
+import EyeOutline from "mdi-material-ui/EyeOutline";
+import { ChangeEvent, MouseEvent, useState } from "react";
 
 interface State {
   password: string;
@@ -26,7 +26,7 @@ interface State {
 }
 
 // Styled component for the form
-const Form = styled('form')(({ theme }) => ({
+const Form = styled("form")(({ theme }) => ({
   maxWidth: 400,
   padding: theme.spacing(12),
   borderRadius: theme.shape.borderRadius,
@@ -36,15 +36,14 @@ const Form = styled('form')(({ theme }) => ({
 const FormLayoutsAlignment = () => {
   // ** State
   const [values, setValues] = useState<State>({
-    password: '',
+    password: "",
     showPassword: false,
   });
 
   // Handle Password
-  const handleChange =
-    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
-      setValues({ ...values, [prop]: event.target.value });
-    };
+  const handleChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
@@ -54,16 +53,13 @@ const FormLayoutsAlignment = () => {
 
   return (
     <Card>
-      <CardHeader
-        title="Form Alignment"
-        titleTypographyProps={{ variant: 'h6' }}
-      />
+      <CardHeader title="Form Alignment" titleTypographyProps={{ variant: "h6" }} />
       <CardContent
         sx={{
           minHeight: 500,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <Form onSubmit={(e) => e.preventDefault()}>
@@ -72,23 +68,17 @@ const FormLayoutsAlignment = () => {
               <Typography variant="h5">Sign In</Typography>
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Username"
-                placeholder="carterLeonard"
-              />
+              <TextField fullWidth label="Username" placeholder="carterLeonard" />
             </Grid>
             <Grid item xs={12}>
               <FormControl fullWidth>
-                <InputLabel htmlFor="form-layouts-alignment-password">
-                  Password
-                </InputLabel>
+                <InputLabel htmlFor="form-layouts-alignment-password">Password</InputLabel>
                 <OutlinedInput
                   label="Password"
                   value={values.password}
-                  onChange={handleChange('password')}
+                  onChange={handleChange("password")}
                   id="form-layouts-alignment-password"
-                  type={values.showPassword ? 'text' : 'password'}
+                  type={values.showPassword ? "text" : "password"}
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton
@@ -97,11 +87,7 @@ const FormLayoutsAlignment = () => {
                         onMouseDown={handleMouseDownPassword}
                         aria-label="toggle password visibility"
                       >
-                        {values.showPassword ? (
-                          <EyeOutline />
-                        ) : (
-                          <EyeOffOutline />
-                        )}
+                        {values.showPassword ? <EyeOutline /> : <EyeOffOutline />}
                       </IconButton>
                     </InputAdornment>
                   }
@@ -113,17 +99,12 @@ const FormLayoutsAlignment = () => {
                 label="Remember me"
                 control={<Checkbox name="form-layouts-alignment-checkbox" />}
                 sx={{
-                  '& .MuiButtonBase-root': { paddingTop: 0, paddingBottom: 0 },
+                  "& .MuiButtonBase-root": { paddingTop: 0, paddingBottom: 0 },
                 }}
               />
             </Grid>
             <Grid item xs={12}>
-              <Button
-                size="large"
-                type="submit"
-                variant="contained"
-                sx={{ width: '100%' }}
-              >
+              <Button size="large" type="submit" variant="contained" sx={{ width: "100%" }}>
                 Login
               </Button>
             </Grid>

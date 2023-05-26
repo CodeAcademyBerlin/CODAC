@@ -3,31 +3,16 @@ import {
   AvatarGroup,
   Box,
   Card,
-  CardActionArea,
   CardMedia,
   Stack,
   Typography,
   useTheme,
-} from '@mui/material';
-import Collapse from '@mui/material/Collapse';
-import Icon, { IconProps } from '@mui/material/Icon';
-import { styled } from '@mui/material/styles';
-import {
-  AchievementEntity,
-  Course,
-  CourseEntity,
-  CourseEntityResponse,
-} from 'cabServer/global/__generated__/types';
-import ChevronDoubleDown from 'mdi-material-ui/ChevronDoubleDown';
-import DotsHorizontalCircleOutline from 'mdi-material-ui/DotsHorizontalCircleOutline';
-import React, { useEffect } from 'react';
-
-import { Student } from '../../../cabServer/global/__generated__/types';
-
-type Props = {};
+} from "@mui/material";
+import type { AchievementEntity, Student } from "codac-server-graphql";
+import DotsHorizontalCircleOutline from "mdi-material-ui/DotsHorizontalCircleOutline";
+import React from "react";
 
 const Achievements = ({
-  student,
   achievements,
 }: {
   student: Student;
@@ -35,8 +20,6 @@ const Achievements = ({
 }) => {
   const theme = useTheme();
   const [collapse, setCollapse] = React.useState<boolean>(true);
-  const [filteredAchievements, setFilteredAchievements] =
-    React.useState<boolean>(true);
 
   const handleClick = () => {
     setCollapse((current) => !current);
@@ -46,9 +29,9 @@ const Achievements = ({
     <Box mt={4} flexWrap="wrap">
       <Card
         sx={{
-          maxWidth: '18rem',
+          maxWidth: "18rem",
           borderRadius: 3,
-          borderStyle: 'none',
+          borderStyle: "none",
           borderWidth: 2,
           borderColor: theme.palette.background.default,
           pt: 1,
@@ -57,31 +40,26 @@ const Achievements = ({
       >
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            flexWrap: 'wrap',
-            alignItems: 'flex-start',
+            display: "flex",
+            flexDirection: "column",
+            flexWrap: "wrap",
+            alignItems: "flex-start",
             mx: 0,
             pb: 2,
           }}
         >
           <Box px={3} py={2} width="100%">
-            <Stack
-              direction="row"
-              alignItems="center"
-              justifyContent="space-around"
-              spacing={2}
-            >
+            <Stack direction="row" alignItems="center" justifyContent="space-around" spacing={2}>
               <Typography
                 sx={{
                   fontStyle: theme.typography.subtitle1,
-                  fontVariant: 'all-small-caps',
+                  fontVariant: "all-small-caps",
                 }}
               >
                 Your Achievements:
               </Typography>
               <DotsHorizontalCircleOutline
-                onClick={(e) => {
+                onClick={() => {
                   handleClick();
                 }}
               />
@@ -90,12 +68,12 @@ const Achievements = ({
           <CardMedia
             sx={{
               borderRadius: 0,
-              borderStyle: 'solid none',
+              borderStyle: "solid none",
               borderWidth: 1.5,
-              display: 'flex',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-              height: 'auto',
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+              height: "auto",
               width: 1,
               padding: 1,
             }}
@@ -103,18 +81,13 @@ const Achievements = ({
             {collapse ? (
               <AvatarGroup max={5}>
                 {achievements &&
-                  achievements.map(
-                    (achievementEntity: AchievementEntity, i: number) => (
-                      <Avatar
-                        key={achievementEntity.id}
-                        alt="AchievementBadge"
-                        src={
-                          achievementEntity.attributes?.badge?.data?.attributes
-                            ?.url || ''
-                        }
-                      ></Avatar>
-                    ),
-                  )}
+                  achievements.map((achievementEntity: AchievementEntity) => (
+                    <Avatar
+                      key={achievementEntity.id}
+                      alt="AchievementBadge"
+                      src={achievementEntity.attributes?.badge?.data?.attributes?.url || ""}
+                    ></Avatar>
+                  ))}
                 {/* <Avatar
                   alt="AchievementBadge"
                   src={
@@ -127,25 +100,20 @@ const Achievements = ({
               <AvatarGroup
                 max={20}
                 sx={{
-                  flexWrap: 'wrap',
+                  flexWrap: "wrap",
                   padding: 1,
-                  justifyContent: 'center',
+                  justifyContent: "center",
                   ml: 2,
                 }}
               >
                 {achievements &&
-                  achievements.map(
-                    (achievementEntity: AchievementEntity, i: number) => (
-                      <Avatar
-                        key={achievementEntity.id}
-                        alt="AchievementBadge"
-                        src={
-                          achievementEntity.attributes?.badge?.data?.attributes
-                            ?.url || ''
-                        }
-                      ></Avatar>
-                    ),
-                  )}
+                  achievements.map((achievementEntity: AchievementEntity) => (
+                    <Avatar
+                      key={achievementEntity.id}
+                      alt="AchievementBadge"
+                      src={achievementEntity.attributes?.badge?.data?.attributes?.url || ""}
+                    ></Avatar>
+                  ))}
                 {/* <Avatar
                   alt="AchievementBadge"
                   src={

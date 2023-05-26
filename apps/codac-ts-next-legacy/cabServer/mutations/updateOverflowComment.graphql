@@ -1,6 +1,0 @@
-mutation updateCODACOverflowComment($codacOverflowId: ID!, $commentId: ID!, $comment: String!){
-  updateCODACOverflowComment(codacOverflowId: $codacOverflowId, commentId: $commentId, comment: $comment){
-		success
-    message
-  }
-}

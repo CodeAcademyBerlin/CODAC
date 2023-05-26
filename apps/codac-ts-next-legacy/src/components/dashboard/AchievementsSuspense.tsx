@@ -1,9 +1,9 @@
-import { useStudentAchievementsQuery } from 'cabServer/queries/__generated__/achievements';
-import React, { Suspense } from 'react';
-import { useAuth } from 'src/hooks/useAuth';
+import { useStudentAchievementsQuery } from "cabServer/queries/__generated__/achievements";
+import React, { Suspense } from "react";
+import { useAuth } from "src/hooks/useAuth";
 
-import AchievementsComponent from '../achievements-page/AchievementsComponent';
-import ProgressBar from './ProgressBar';
+import AchievementsComponent from "../achievements-page/AchievementsComponent";
+import ProgressBar from "./ProgressBar";
 
 export default function AchievementsSuspense() {
   const { user } = useAuth();

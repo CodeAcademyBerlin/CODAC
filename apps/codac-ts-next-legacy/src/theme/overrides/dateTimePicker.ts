@@ -1,5 +1,5 @@
 // ** MUI Imports
-import { Theme } from '@mui/material/styles';
+import { Theme } from "@mui/material/styles";
 
 const DateTimePicker = (theme: Theme) => {
   return {
@@ -8,18 +8,18 @@ const DateTimePicker = (theme: Theme) => {
         root: {
           '& [role="presentation"]': {
             fontWeight: 400,
-            '& .PrivatePickersFadeTransitionGroup-root + .PrivatePickersFadeTransitionGroup-root > div':
+            "& .PrivatePickersFadeTransitionGroup-root + .PrivatePickersFadeTransitionGroup-root > div":
               {
                 marginRight: 0,
               },
-            '& .MuiIconButton-sizeSmall': {
+            "& .MuiIconButton-sizeSmall": {
               padding: theme.spacing(0.5),
             },
-            '& + div .MuiIconButton-root:not(.Mui-disabled)': {
+            "& + div .MuiIconButton-root:not(.Mui-disabled)": {
               color: theme.palette.text.secondary,
             },
           },
-          '& .PrivatePickersSlideTransition-root': {
+          "& .PrivatePickersSlideTransition-root": {
             minHeight: 240,
           },
         },
@@ -28,24 +28,24 @@ const DateTimePicker = (theme: Theme) => {
     MuiPickersDay: {
       styleOverrides: {
         root: {
-          fontSize: '0.875rem',
+          fontSize: "0.875rem",
         },
       },
     },
     MuiClockPicker: {
       styleOverrides: {
         arrowSwitcher: {
-          '& .MuiIconButton-root:not(.Mui-disabled)': {
+          "& .MuiIconButton-root:not(.Mui-disabled)": {
             color: theme.palette.text.secondary,
           },
-          '& + div': {
-            '& > div': {
+          "& + div": {
+            "& > div": {
               backgroundColor:
-                theme.palette.mode === 'light'
+                theme.palette.mode === "light"
                   ? theme.palette.grey[50]
                   : theme.palette.background.default,
-              '& ~ .MuiIconButton-root span.MuiTypography-caption': {
-                color: 'inherit',
+              "& ~ .MuiIconButton-root span.MuiTypography-caption": {
+                color: "inherit",
               },
             },
           },
@@ -55,8 +55,8 @@ const DateTimePicker = (theme: Theme) => {
     MuiMonthPicker: {
       styleOverrides: {
         root: {
-          '& > .MuiTypography-root.Mui-selected': {
-            fontSize: '1rem',
+          "& > .MuiTypography-root.Mui-selected": {
+            fontSize: "1rem",
           },
         },
       },

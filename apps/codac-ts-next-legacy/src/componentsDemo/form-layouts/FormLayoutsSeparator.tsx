@@ -1,28 +1,28 @@
 /* eslint-disable react/display-name */
 // ** React Imports
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 // ** MUI Imports
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import Divider from '@mui/material/Divider';
-import FormControl from '@mui/material/FormControl';
-import Grid from '@mui/material/Grid';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import EyeOffOutline from 'mdi-material-ui/EyeOffOutline';
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import Divider from "@mui/material/Divider";
+import FormControl from "@mui/material/FormControl";
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import EyeOffOutline from "mdi-material-ui/EyeOffOutline";
 // ** Icons Imports
-import EyeOutline from 'mdi-material-ui/EyeOutline';
-import { ChangeEvent, forwardRef, MouseEvent, useState } from 'react';
+import EyeOutline from "mdi-material-ui/EyeOutline";
+import { ChangeEvent, forwardRef, MouseEvent, useState } from "react";
 // ** Third Party Imports
-import DatePicker from 'react-datepicker';
+import DatePicker from "react-datepicker";
 
 interface State {
   password: string;
@@ -32,15 +32,7 @@ interface State {
 }
 
 const CustomInput = forwardRef((props, ref) => {
-  return (
-    <TextField
-      fullWidth
-      {...props}
-      inputRef={ref}
-      label="Birth Date"
-      autoComplete="off"
-    />
-  );
+  return <TextField fullWidth {...props} inputRef={ref} label="Birth Date" autoComplete="off" />;
 });
 
 const FormLayoutsSeparator = () => {
@@ -48,17 +40,16 @@ const FormLayoutsSeparator = () => {
   const [language, setLanguage] = useState<string[]>([]);
   const [date, setDate] = useState<Date | null | undefined>(null);
   const [values, setValues] = useState<State>({
-    password: '',
-    password2: '',
+    password: "",
+    password2: "",
     showPassword: false,
     showPassword2: false,
   });
 
   // Handle Password
-  const handlePasswordChange =
-    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
-      setValues({ ...values, [prop]: event.target.value });
-    };
+  const handlePasswordChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
@@ -67,16 +58,13 @@ const FormLayoutsSeparator = () => {
   };
 
   // Handle Confirm Password
-  const handleConfirmChange =
-    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
-      setValues({ ...values, [prop]: event.target.value });
-    };
+  const handleConfirmChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
   const handleClickShowConfirmPassword = () => {
     setValues({ ...values, showPassword2: !values.showPassword2 });
   };
-  const handleMouseDownConfirmPassword = (
-    event: MouseEvent<HTMLButtonElement>,
-  ) => {
+  const handleMouseDownConfirmPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
 
@@ -89,7 +77,7 @@ const FormLayoutsSeparator = () => {
     <Card>
       <CardHeader
         title="Multi Column with Form Separator"
-        titleTypographyProps={{ variant: 'h6' }}
+        titleTypographyProps={{ variant: "h6" }}
       />
       <Divider sx={{ margin: 0 }} />
       <form onSubmit={(e) => e.preventDefault()}>
@@ -101,11 +89,7 @@ const FormLayoutsSeparator = () => {
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                label="Username"
-                placeholder="carterLeonard"
-              />
+              <TextField fullWidth label="Username" placeholder="carterLeonard" />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -117,15 +101,13 @@ const FormLayoutsSeparator = () => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth>
-                <InputLabel htmlFor="form-layouts-separator-password">
-                  Password
-                </InputLabel>
+                <InputLabel htmlFor="form-layouts-separator-password">Password</InputLabel>
                 <OutlinedInput
                   label="Password"
                   value={values.password}
                   id="form-layouts-separator-password"
-                  onChange={handlePasswordChange('password')}
-                  type={values.showPassword ? 'text' : 'password'}
+                  onChange={handlePasswordChange("password")}
+                  type={values.showPassword ? "text" : "password"}
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton
@@ -134,11 +116,7 @@ const FormLayoutsSeparator = () => {
                         onMouseDown={handleMouseDownPassword}
                         aria-label="toggle password visibility"
                       >
-                        {values.showPassword ? (
-                          <EyeOutline />
-                        ) : (
-                          <EyeOffOutline />
-                        )}
+                        {values.showPassword ? <EyeOutline /> : <EyeOffOutline />}
                       </IconButton>
                     </InputAdornment>
                   }
@@ -154,8 +132,8 @@ const FormLayoutsSeparator = () => {
                   value={values.password2}
                   label="Confirm Password"
                   id="form-layouts-separator-password-2"
-                  onChange={handleConfirmChange('password2')}
-                  type={values.showPassword2 ? 'text' : 'password'}
+                  onChange={handleConfirmChange("password2")}
+                  type={values.showPassword2 ? "text" : "password"}
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton
@@ -164,11 +142,7 @@ const FormLayoutsSeparator = () => {
                         onClick={handleClickShowConfirmPassword}
                         onMouseDown={handleMouseDownConfirmPassword}
                       >
-                        {values.showPassword2 ? (
-                          <EyeOutline />
-                        ) : (
-                          <EyeOffOutline />
-                        )}
+                        {values.showPassword2 ? <EyeOutline /> : <EyeOffOutline />}
                       </IconButton>
                     </InputAdornment>
                   }
@@ -191,9 +165,7 @@ const FormLayoutsSeparator = () => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth>
-                <InputLabel id="form-layouts-separator-select-label">
-                  Country
-                </InputLabel>
+                <InputLabel id="form-layouts-separator-select-label">Country</InputLabel>
                 <Select
                   label="Country"
                   defaultValue=""
@@ -209,21 +181,14 @@ const FormLayoutsSeparator = () => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth>
-                <InputLabel id="form-layouts-separator-multiple-select-label">
-                  Language
-                </InputLabel>
+                <InputLabel id="form-layouts-separator-multiple-select-label">Language</InputLabel>
                 <Select
                   multiple
                   value={language}
                   onChange={handleSelectChange}
                   id="form-layouts-separator-multiple-select"
                   labelId="form-layouts-separator-multiple-select-label"
-                  input={
-                    <OutlinedInput
-                      label="Language"
-                      id="select-multiple-language"
-                    />
-                  }
+                  input={<OutlinedInput label="Language" id="select-multiple-language" />}
                 >
                   <MenuItem value="English">English</MenuItem>
                   <MenuItem value="French">French</MenuItem>
@@ -247,11 +212,7 @@ const FormLayoutsSeparator = () => {
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                label="Phone No."
-                placeholder="+1-123-456-8790"
-              />
+              <TextField fullWidth label="Phone No." placeholder="+1-123-456-8790" />
             </Grid>
           </Grid>
         </CardContent>

@@ -1,6 +1,6 @@
-import { Box, Button, IconButton, TextField, useTheme } from '@mui/material';
-import { Close, Plus } from 'mdi-material-ui';
-import * as React from 'react';
+import { Box, Button, IconButton, TextField, useTheme } from "@mui/material";
+import { Close, Plus } from "mdi-material-ui";
+import * as React from "react";
 
 const KanbanFooter = () => {
   const [inputCard, setInputCard] = React.useState(false);
@@ -19,17 +19,17 @@ const KanbanFooter = () => {
         <form>
           <Box
             sx={{
-              display: 'flex',
-              flexWrap: 'nowrap',
-              alignItems: 'center',
-              justifyContent: 'center',
+              display: "flex",
+              flexWrap: "nowrap",
+              alignItems: "center",
+              justifyContent: "center",
               backgroundColor: theme.palette.secondary.main,
             }}
           >
             <TextField
               variant="standard"
               sx={{
-                width: '300px',
+                width: "300px",
                 marginTop: 3,
               }}
               InputProps={{
@@ -57,24 +57,24 @@ const KanbanFooter = () => {
         <>
           <Box
             sx={{
-              display: 'flex',
-              flexWrap: 'nowrap',
-              justifyContent: 'center',
+              display: "flex",
+              flexWrap: "nowrap",
+              justifyContent: "center",
               backgroundColor: theme.palette.secondary.main,
             }}
           >
             <Button
               variant="text"
               sx={{
-                color: 'white',
+                color: "white",
               }}
               onClick={handleAddCard}
             >
-              {' '}
+              {" "}
               <IconButton>
                 <Plus
                   sx={{
-                    color: 'white',
+                    color: "white",
                   }}
                 />
               </IconButton>

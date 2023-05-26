@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 type Props = {
   option1: number;
@@ -9,11 +9,11 @@ function BattleTable({ option1, option2 }: Props) {
   return (
     <table
       style={{
-        width: '50%',
-        border: '2px solid',
-        borderRadius: '10px',
-        margin: 'auto',
-        marginBottom: '1em',
+        width: "50%",
+        border: "2px solid",
+        borderRadius: "10px",
+        margin: "auto",
+        marginBottom: "1em",
       }}
     >
       <tbody>

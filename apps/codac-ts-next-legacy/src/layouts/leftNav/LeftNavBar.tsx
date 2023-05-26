@@ -1,10 +1,10 @@
-import Drawer from '@mui/material/Drawer';
-import { styled } from '@mui/material/styles';
-import { ArrowLeftThick } from 'mdi-material-ui';
-import React from 'react';
+import Drawer from "@mui/material/Drawer";
+import { styled } from "@mui/material/styles";
+import { ArrowLeftThick } from "mdi-material-ui";
+import React from "react";
 
-import { LinkSingle } from '../../pages/lms/lms';
-import NavContent from './NavContent';
+import { LinkSingle } from "../../pages/lms/lms";
+import NavContent from "./NavContent";
 
 type Props = {
   handleDrawerToggle: () => void;
@@ -14,7 +14,7 @@ type Props = {
 function LeftNavBar({ handleDrawerToggle, open }: Props) {
   const drawerWidth = 240;
 
-  const CloseDrawer = styled('span')`
+  const CloseDrawer = styled("span")`
     position: absolute;
     right: 0;
     margin: 0.5em;
@@ -31,8 +31,8 @@ function LeftNavBar({ handleDrawerToggle, open }: Props) {
           keepMounted: true,
         }}
         sx={{
-          display: { xs: 'block', sm: 'none' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          display: { xs: "block", sm: "none" },
+          "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
         }}
       >
         <CloseDrawer onClick={handleDrawerToggle}>
@@ -44,8 +44,8 @@ function LeftNavBar({ handleDrawerToggle, open }: Props) {
       <Drawer
         variant="permanent"
         sx={{
-          display: { xs: 'none', sm: 'block' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          display: { xs: "none", sm: "block" },
+          "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
         }}
         open
       >

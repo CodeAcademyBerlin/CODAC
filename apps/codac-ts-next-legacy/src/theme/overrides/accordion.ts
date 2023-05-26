@@ -1,15 +1,15 @@
 // ** MUI Imports
-import { Theme } from '@mui/material/styles';
+import { Theme } from "@mui/material/styles";
 
 const Accordion = (theme: Theme) => {
   return {
     MuiAccordion: {
       styleOverrides: {
         root: {
-          '&.Mui-disabled': {
+          "&.Mui-disabled": {
             backgroundColor: `rgba(${theme.palette.primary.main}, 0.12)`,
           },
-          '&.Mui-expanded': {
+          "&.Mui-expanded": {
             boxShadow: theme.shadows[3],
           },
         },
@@ -19,8 +19,8 @@ const Accordion = (theme: Theme) => {
       styleOverrides: {
         root: {
           padding: `0 ${theme.spacing(5)}`,
-          '& + .MuiCollapse-root': {
-            '& .MuiAccordionDetails-root:first-child': {
+          "& + .MuiCollapse-root": {
+            "& .MuiAccordionDetails-root:first-child": {
               paddingTop: 0,
             },
           },
@@ -37,7 +37,7 @@ const Accordion = (theme: Theme) => {
       styleOverrides: {
         root: {
           padding: theme.spacing(5),
-          '& + .MuiAccordionDetails-root': {
+          "& + .MuiAccordionDetails-root": {
             paddingTop: 0,
           },
         },

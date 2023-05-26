@@ -1,38 +1,33 @@
-import { Avatar, Box, Container, Typography, useTheme } from '@mui/material';
-import Card from '@mui/material/Card';
-import { Mentor } from 'cabServer/global/__generated__/types';
-import {
-  MentorsDocument,
-  useMentorsQuery,
-} from 'cabServer/queries/__generated__/mentors';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
+import { Avatar, Box, Container, Typography, useTheme } from "@mui/material";
+import Card from "@mui/material/Card";
+import { Mentor } from "codac-server-graphql";
+import { MentorsDocument, useMentorsQuery } from "cabServer/queries/__generated__/mentors";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
 
-import logo from '../../public/assets/logo.png';
-import { initializeApollo } from '../lib/apolloClient';
+import logo from "../../public/assets/logo.png";
+import { initializeApollo } from "../lib/apolloClient";
 
-const Mentorprofile = ({
-  data,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const Mentorprofile = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const theme = useTheme();
   const mentorProfile: Mentor = data && data.mentors.data[0].attributes;
-  console.log('mentorProfile', data);
+  console.log("mentorProfile", data);
 
   return (
     <Container>
       <Card
         sx={{
-          height: '100vh',
-          width: 'auto',
+          height: "100vh",
+          width: "auto",
           backgroundColor: theme.palette.background.default,
         }}
       >
         <Box
           sx={{
-            display: 'flex',
-            flexDirections: 'row',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-            height: '28%',
+            display: "flex",
+            flexDirections: "row",
+            justifyContent: "space-around",
+            alignItems: "center",
+            height: "28%",
           }}
         >
           {/* <Avatar
@@ -85,13 +80,13 @@ const Mentorprofile = ({
 
         <Box
           sx={{
-            display: 'flex',
-            flexDirections: 'row',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-            height: '48%',
-            padding: '0.5em',
-            margin: '0',
+            display: "flex",
+            flexDirections: "row",
+            justifyContent: "space-around",
+            alignItems: "center",
+            height: "48%",
+            padding: "0.5em",
+            margin: "0",
           }}
         >
           {/* <Box
@@ -110,15 +105,15 @@ const Mentorprofile = ({
           </Box> */}
           <Box
             sx={{
-              height: '24%',
+              height: "24%",
             }}
           >
             <Typography variant="h4" fontFamily="helvetica">
               Contact Details
             </Typography>
             <p>Email: </p>
-            <p>Github: {mentorProfile?.github || 'https://github.com'}</p>
-            <p>Linkedin: {mentorProfile?.linkedin || 'https://linkedin.com'}</p>
+            <p>Github: {mentorProfile?.github || "https://github.com"}</p>
+            <p>Linkedin: {mentorProfile?.linkedin || "https://linkedin.com"}</p>
           </Box>
         </Box>
       </Card>

@@ -1,5 +1,5 @@
 // ** MUI Imports
-import { Theme } from '@mui/material/styles';
+import { Theme } from "@mui/material/styles";
 
 const Table = (theme: Theme) => {
   return {
@@ -14,11 +14,11 @@ const Table = (theme: Theme) => {
     MuiTableHead: {
       styleOverrides: {
         root: {
-          textTransform: 'uppercase',
-          '& .MuiTableCell-head': {
-            fontSize: '0.75rem',
+          textTransform: "uppercase",
+          "& .MuiTableCell-head": {
+            fontSize: "0.75rem",
             fontWeight: 600,
-            letterSpacing: '0.13px',
+            letterSpacing: "0.13px",
           },
         },
       },
@@ -26,10 +26,10 @@ const Table = (theme: Theme) => {
     MuiTableBody: {
       styleOverrides: {
         root: {
-          '& .MuiTableCell-body': {
-            letterSpacing: '0.25px',
+          "& .MuiTableCell-body": {
+            letterSpacing: "0.25px",
             color: theme.palette.text.secondary,
-            '&:not(.MuiTableCell-sizeSmall):not(.MuiTableCell-paddingCheckbox):not(.MuiTableCell-paddingNone)':
+            "&:not(.MuiTableCell-sizeSmall):not(.MuiTableCell-paddingCheckbox):not(.MuiTableCell-paddingNone)":
               {
                 paddingTop: theme.spacing(3.5),
                 paddingBottom: theme.spacing(3.5),
@@ -41,11 +41,10 @@ const Table = (theme: Theme) => {
     MuiTableRow: {
       styleOverrides: {
         root: {
-          '& .MuiTableCell-head:first-child, & .MuiTableCell-root:first-child ':
-            {
-              paddingLeft: theme.spacing(5),
-            },
-          '& .MuiTableCell-head:last-child, & .MuiTableCell-root:last-child': {
+          "& .MuiTableCell-head:first-child, & .MuiTableCell-root:first-child ": {
+            paddingLeft: theme.spacing(5),
+          },
+          "& .MuiTableCell-head:last-child, & .MuiTableCell-root:last-child": {
             paddingRight: theme.spacing(5),
           },
         },
@@ -55,8 +54,8 @@ const Table = (theme: Theme) => {
       styleOverrides: {
         root: {
           borderBottom: `1px solid ${theme.palette.divider}`,
-          '& .MuiButton-root': {
-            textTransform: 'uppercase',
+          "& .MuiButton-root": {
+            textTransform: "uppercase",
             color: theme.palette.text.secondary,
           },
         },

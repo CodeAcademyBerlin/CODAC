@@ -1,0 +1,43 @@
+query getSpikes {
+  spikes {
+    data {
+      id
+      attributes {
+        title
+        day
+        recording {
+          data {
+            attributes {
+              __typename
+              url
+            }
+          }
+        }
+        content {
+          data {
+            attributes {
+              __typename
+            }
+          }
+        }
+      }
+    }
+  }
+}
+query getSpike($id: ID!) {
+  spike(id: $id) {
+    data {
+      attributes {
+        title
+        day
+        recording {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}

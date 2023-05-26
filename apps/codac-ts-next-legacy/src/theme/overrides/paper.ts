@@ -2,7 +2,7 @@ const paper = {
   MuiPaper: {
     styleOverrides: {
       root: {
-        backgroundImage: 'none',
+        backgroundImage: "none",
       },
     },
   },

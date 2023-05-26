@@ -1,5 +1,5 @@
 // ** MUI Imports
-import { Theme } from '@mui/material/styles';
+import { Theme } from "@mui/material/styles";
 
 const input = (theme: Theme) => {
   return {
@@ -13,13 +13,13 @@ const input = (theme: Theme) => {
     MuiInput: {
       styleOverrides: {
         root: {
-          '&:before': {
+          "&:before": {
             borderBottom: `1px solid rgba(${theme.palette.primary.main}, 0.22)`,
           },
-          '&:hover:not(.Mui-disabled):before': {
+          "&:hover:not(.Mui-disabled):before": {
             borderBottom: `1px solid rgba(${theme.palette.primary.main}, 0.32)`,
           },
-          '&.Mui-disabled:before': {
+          "&.Mui-disabled:before": {
             borderBottom: `1px solid ${theme.palette.text.disabled}`,
           },
         },
@@ -29,13 +29,13 @@ const input = (theme: Theme) => {
       styleOverrides: {
         root: {
           backgroundColor: `rgba(${theme.palette.primary.main}, 0.04)`,
-          '&:hover:not(.Mui-disabled)': {
+          "&:hover:not(.Mui-disabled)": {
             backgroundColor: `rgba(${theme.palette.primary.main}, 0.08)`,
           },
-          '&:before': {
+          "&:before": {
             borderBottom: `1px solid rgba(${theme.palette.primary.main}, 0.22)`,
           },
-          '&:hover:not(.Mui-disabled):before': {
+          "&:hover:not(.Mui-disabled):before": {
             borderBottom: `1px solid rgba(${theme.palette.primary.main}, 0.32)`,
           },
         },
@@ -44,16 +44,16 @@ const input = (theme: Theme) => {
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          '&:hover:not(.Mui-focused) .MuiOutlinedInput-notchedOutline': {
+          "&:hover:not(.Mui-focused) .MuiOutlinedInput-notchedOutline": {
             borderColor: `rgba(${theme.palette.primary.main}, 0.32)`,
           },
-          '&:hover.Mui-error .MuiOutlinedInput-notchedOutline': {
+          "&:hover.Mui-error .MuiOutlinedInput-notchedOutline": {
             borderColor: theme.palette.error.main,
           },
-          '& .MuiOutlinedInput-notchedOutline': {
+          "& .MuiOutlinedInput-notchedOutline": {
             borderColor: `rgba(${theme.palette.primary.main}, 0.22)`,
           },
-          '&.Mui-disabled .MuiOutlinedInput-notchedOutline': {
+          "&.Mui-disabled .MuiOutlinedInput-notchedOutline": {
             borderColor: theme.palette.text.disabled,
           },
         },

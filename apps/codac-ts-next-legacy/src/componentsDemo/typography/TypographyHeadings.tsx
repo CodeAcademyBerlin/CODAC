@@ -1,13 +1,13 @@
 // ** MUI Imports
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import Grid, { GridProps } from '@mui/material/Grid';
-import { styled } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import Grid, { GridProps } from "@mui/material/Grid";
+import { styled } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
 
 const DemoGrid = styled(Grid)<GridProps>(({ theme }) => ({
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.down("sm")]: {
     paddingTop: `${theme.spacing(1)} !important`,
   },
 }));
@@ -15,15 +15,10 @@ const DemoGrid = styled(Grid)<GridProps>(({ theme }) => ({
 const TypographyHeadings = () => {
   return (
     <Card>
-      <CardHeader title="Headings" titleTypographyProps={{ variant: 'h6' }} />
+      <CardHeader title="Headings" titleTypographyProps={{ variant: "h6" }} />
       <CardContent>
         <Grid container spacing={6}>
-          <Grid
-            item
-            xs={12}
-            sm={2}
-            sx={{ display: 'flex', alignItems: 'center' }}
-          >
+          <Grid item xs={12} sm={2} sx={{ display: "flex", alignItems: "center" }}>
             <Typography>H1</Typography>
           </Grid>
           <DemoGrid item xs={12} sm={10}>
@@ -35,12 +30,7 @@ const TypographyHeadings = () => {
             </Typography>
           </DemoGrid>
 
-          <Grid
-            item
-            xs={12}
-            sm={2}
-            sx={{ display: 'flex', alignItems: 'center' }}
-          >
+          <Grid item xs={12} sm={2} sx={{ display: "flex", alignItems: "center" }}>
             <Typography>H2</Typography>
           </Grid>
           <DemoGrid item xs={12} sm={10}>
@@ -52,12 +42,7 @@ const TypographyHeadings = () => {
             </Typography>
           </DemoGrid>
 
-          <Grid
-            item
-            xs={12}
-            sm={2}
-            sx={{ display: 'flex', alignItems: 'center' }}
-          >
+          <Grid item xs={12} sm={2} sx={{ display: "flex", alignItems: "center" }}>
             <Typography>H3</Typography>
           </Grid>
           <DemoGrid item xs={12} sm={10}>
@@ -69,12 +54,7 @@ const TypographyHeadings = () => {
             </Typography>
           </DemoGrid>
 
-          <Grid
-            item
-            xs={12}
-            sm={2}
-            sx={{ display: 'flex', alignItems: 'center' }}
-          >
+          <Grid item xs={12} sm={2} sx={{ display: "flex", alignItems: "center" }}>
             <Typography>H4</Typography>
           </Grid>
           <DemoGrid item xs={12} sm={10}>
@@ -86,12 +66,7 @@ const TypographyHeadings = () => {
             </Typography>
           </DemoGrid>
 
-          <Grid
-            item
-            xs={12}
-            sm={2}
-            sx={{ display: 'flex', alignItems: 'center' }}
-          >
+          <Grid item xs={12} sm={2} sx={{ display: "flex", alignItems: "center" }}>
             <Typography>H5</Typography>
           </Grid>
           <DemoGrid item xs={12} sm={10}>
@@ -103,12 +78,7 @@ const TypographyHeadings = () => {
             </Typography>
           </DemoGrid>
 
-          <Grid
-            item
-            xs={12}
-            sm={2}
-            sx={{ display: 'flex', alignItems: 'center' }}
-          >
+          <Grid item xs={12} sm={2} sx={{ display: "flex", alignItems: "center" }}>
             <Typography>H6</Typography>
           </Grid>
           <DemoGrid item xs={12} sm={10}>

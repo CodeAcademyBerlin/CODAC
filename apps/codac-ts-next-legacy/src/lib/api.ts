@@ -1,18 +1,15 @@
-import { PageEntity } from 'cabServer/global/__generated__/types';
-import {
-  GetPageDocument,
-  GetPageQuery,
-} from 'cabServer/queries/__generated__/pages';
+import { PageEntity } from "codac-server-graphql";
+import { GetPageDocument, GetPageQuery } from "cabServer/queries/__generated__/pages";
 
-import { initializeApollo } from './apolloClient';
+import { initializeApollo } from "./apolloClient";
 
 const client = initializeApollo(null, null);
 
 export const getPageData = async (
   params: { slug: string[] },
-  locale: string,
+  locale: string
 ): Promise<PageEntity | null> => {
-  const slug = params.slug.join('/');
+  const slug = params.slug.join("/");
 
   // Find the pages that match this slug
   // const pagesData = await fetchAPI(`/pages?slug=${slug}&locale=${locale}&status=published&populate=*${preview ? '&status=draft' : ''}`)

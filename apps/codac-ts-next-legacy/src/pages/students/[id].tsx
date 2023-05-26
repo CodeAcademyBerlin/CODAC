@@ -1,44 +1,41 @@
-import { Avatar, Box, Container, Typography, useTheme } from '@mui/material';
-import Card from '@mui/material/Card';
-import { Student } from 'cabServer/global/__generated__/types';
-import { FilterStudentByUserIdDocument } from 'cabServer/queries/__generated__/students';
-import { GetServerSideProps } from 'next/types';
-import { initializeApollo } from 'src/lib/apolloClient';
+import { Avatar, Box, Container, Typography, useTheme } from "@mui/material";
+import Card from "@mui/material/Card";
+import { Student } from "codac-server-graphql";
+import { FilterStudentByUserIdDocument } from "cabServer/queries/__generated__/students";
+import { GetServerSideProps } from "next/types";
+import { initializeApollo } from "src/lib/apolloClient";
 
 const Students = (data: any) => {
   const theme = useTheme();
 
   const studentProfile: Student = data && data.student.attributes;
-  console.log('studentProfile', studentProfile);
+  console.log("studentProfile", studentProfile);
   return (
     <Container
       sx={{
-        height: { xs: '260px', sm: 'auto' },
+        height: { xs: "260px", sm: "auto" },
       }}
     >
       <Card
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-around',
-          height: '100vh',
-          backgroundColor: 'white',
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-around",
+          height: "100vh",
+          backgroundColor: "white",
         }}
       >
         <Box
           sx={{
-            display: 'flex',
-            flexDirections: 'row',
-            justifyContent: 'space-evenly',
-            alignItems: 'center',
+            display: "flex",
+            flexDirections: "row",
+            justifyContent: "space-evenly",
+            alignItems: "center",
           }}
         >
           <Avatar
-            sx={{ width: '160px', height: '160px' }}
-            src={
-              studentProfile?.user?.data?.attributes?.avatar?.data?.attributes
-                ?.url
-            }
+            sx={{ width: "160px", height: "160px" }}
+            src={studentProfile?.user?.data?.attributes?.avatar?.data?.attributes?.url}
           />
 
           <Box>
@@ -62,9 +59,9 @@ const Students = (data: any) => {
         </Box>
         <Box
           sx={{
-            display: 'flex',
-            flexDirections: 'row',
-            justifyContent: 'space-evenly',
+            display: "flex",
+            flexDirections: "row",
+            justifyContent: "space-evenly",
           }}
         >
           <Box>
@@ -91,11 +88,9 @@ const Students = (data: any) => {
               Contact Details
             </Typography>
             <p>Email: {studentProfile?.user?.data?.attributes?.email}</p>
-            <p>Github: {studentProfile?.github || 'https://github.com'} </p>
+            <p>Github: {studentProfile?.github || "https://github.com"} </p>
 
-            <p>
-              Linkedin: {studentProfile?.linkedin || 'https://linkedin.com'}
-            </p>
+            <p>Linkedin: {studentProfile?.linkedin || "https://linkedin.com"}</p>
           </Box>
         </Box>
       </Card>
@@ -108,7 +103,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
     const client = initializeApollo(null, ctx.req);
     const id = ctx.params?.id;
-    console.log('ctxparams', ctx.params);
+    console.log("ctxparams", ctx.params);
     const { data } = await client.query({
       query: FilterStudentByUserIdDocument,
       variables: { userId: id },

@@ -1,7 +1,7 @@
 // <<<<<<< HEAD:src/pages/dashboard.tsx
 // import { Divider, Typography, useTheme } from '@mui/material';
 // import Grid from '@mui/material/Grid';
-// import { Student } from 'cabServer/global/__generated__/types';
+// import { Student } from 'codac-server-graphql';
 // import { FilterStudentByUserIdDocument } from 'cabServer/queries/__generated__/students';
 // import jwt_decode, { JwtPayload } from 'jwt-decode';
 // import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
@@ -88,28 +88,28 @@
 //   }
 // };
 // =======
-import { Divider, Typography, useTheme } from '@mui/material';
-import Grid from '@mui/material/Grid';
+import { Divider, Typography, useTheme } from "@mui/material";
+import Grid from "@mui/material/Grid";
 import {
   Achievement,
   AchievementEntity,
   ComponentAchievementAchievement,
   Student,
-} from 'cabServer/global/__generated__/types';
-import { FilterStudentByUserIdDocument } from 'cabServer/queries/__generated__/students';
-import jwt_decode, { JwtPayload } from 'jwt-decode';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
-import AchievementsSuspense from 'src/components/dashboard/AchievementsSuspense';
-import ProgressBarSuspense from 'src/components/dashboard/ProgressBarSuspense';
+} from "codac-server-graphql";
+import { FilterStudentByUserIdDocument } from "cabServer/queries/__generated__/students";
+import jwt_decode, { JwtPayload } from "jwt-decode";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
+import AchievementsSuspense from "src/components/dashboard/AchievementsSuspense";
+import ProgressBarSuspense from "src/components/dashboard/ProgressBarSuspense";
 
-import Achievements from '../components/achievements-page/Achievements';
-import AchievementsComponent from '../components/achievements-page/AchievementsComponent';
-import CohortCard from '../components/cohort/CohortCard';
-import OpenAiImage from '../components/common/OpenAiImage';
-import ProgressBar from '../components/dashboard/ProgressBar';
-import ApexChartWrapper from '../components/libs/react-apexcharts/wrapper';
-import { getToken, initializeApollo } from '../lib/apolloClient';
-import { JwtPayloadWithID } from '../types';
+import Achievements from "../components/achievements-page/Achievements";
+import AchievementsComponent from "../components/achievements-page/AchievementsComponent";
+import CohortCard from "../components/cohort/CohortCard";
+import OpenAiImage from "../components/common/OpenAiImage";
+import ProgressBar from "../components/dashboard/ProgressBar";
+import ApexChartWrapper from "../components/libs/react-apexcharts/wrapper";
+import { getToken, initializeApollo } from "../lib/apolloClient";
+import { JwtPayloadWithID } from "../types";
 
 const Dashboard = () =>
   // {

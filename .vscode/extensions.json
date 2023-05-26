@@ -1,11 +1,7 @@
 {
   "recommendations": [
-    "github.vscode-pull-request-github",
+    "bradlc.vscode-tailwindcss",
     "dbaeumer.vscode-eslint",
-    "graphql.vscode-graphql",
-    "ms-vscode.vscode-typescript-next",
-    "esbenp.prettier-vscode",
-    "vivaxy.vscode-conventional-commits",
-    "eamodio.gitlens"
+    "esbenp.prettier-vscode"
   ]
 }

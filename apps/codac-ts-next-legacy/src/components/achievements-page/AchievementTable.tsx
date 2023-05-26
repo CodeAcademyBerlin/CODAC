@@ -1,19 +1,16 @@
-import Avatar, { AvatarProps } from '@mui/material/Avatar';
-import Badge from '@mui/material/Badge';
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
+import Avatar, { AvatarProps } from "@mui/material/Avatar";
+import Badge from "@mui/material/Badge";
+import Paper from "@mui/material/Paper";
+import { styled } from "@mui/material/styles";
 // ** MUI Imports
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, {
-  tableCellClasses,
-  TableCellProps,
-} from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow, { TableRowProps } from '@mui/material/TableRow';
-import { AchievementEntity } from 'cabServer/global/__generated__/types';
-import React from 'react';
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses, TableCellProps } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow, { TableRowProps } from "@mui/material/TableRow";
+import { AchievementEntity } from "codac-server-graphql";
+import React from "react";
 
 const StyledTableCell = styled(TableCell)<TableCellProps>(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -26,20 +23,20 @@ const StyledTableCell = styled(TableCell)<TableCellProps>(({ theme }) => ({
 }));
 
 const StyledTableRow = styled(TableRow)<TableRowProps>(({ theme }) => ({
-  '&:nth-of-type(odd)': {
+  "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
 
   // hide last border
-  '&:last-of-type td, &:last-of-type th': {
+  "&:last-of-type td, &:last-of-type th": {
     border: 0,
   },
 }));
 
 const StyledAvatar = styled(Avatar)<AvatarProps>(({ theme }) => ({
   color: theme.palette.success.main,
-  '&:hover, &.Mui-focusVisible': {
-    position: 'center',
+  "&:hover, &.Mui-focusVisible": {
+    position: "center",
     width: 56,
     height: 56,
   },
@@ -54,11 +51,7 @@ const StyledAvatar = styled(Avatar)<AvatarProps>(({ theme }) => ({
 //     };
 // }
 
-const AchievementTable = ({
-  allAchievements,
-}: {
-  allAchievements: AchievementEntity[];
-}) => {
+const AchievementTable = ({ allAchievements }: { allAchievements: AchievementEntity[] }) => {
   return (
     allAchievements && (
       <TableContainer component={Paper}>
@@ -82,22 +75,19 @@ const AchievementTable = ({
                       <StyledAvatar
                         sx={{ width: 24, height: 24 }}
                         alt="AchievementBadge"
-                        src={
-                          achievementEntity.attributes?.badge?.data?.attributes
-                            ?.url || ''
-                        }
+                        src={achievementEntity.attributes?.badge?.data?.attributes?.url || ""}
                       />
                     </StyledTableCell>
                     {/* <StyledTableCell><img src={achievementEntity.attributes?.badge?.data?.attributes?.url || ""}></img></StyledTableCell> */}
                     {/* <StyledTableCell component='th' scope='row'>{achievementEntity.attributes.badge.data.attributes.url || ""}</StyledTableCell> */}
                     <StyledTableCell align="left">
-                      {achievementEntity.attributes.name || ''}
+                      {achievementEntity.attributes.name || ""}
                     </StyledTableCell>
                     <StyledTableCell align="left">
-                      {achievementEntity.attributes.description || ''}
+                      {achievementEntity.attributes.description || ""}
                     </StyledTableCell>
                     <StyledTableCell align="center">
-                      {achievementEntity.attributes.points || ''}
+                      {achievementEntity.attributes.points || ""}
                     </StyledTableCell>
                     {/* {achievementEntity.attributes.type === 'student' ? (
                       <StyledTableCell align="center">🏅</StyledTableCell>
@@ -107,7 +97,7 @@ const AchievementTable = ({
                     {/* <StyledTableCell align='center'>{achievementEntity.attributes.course || ""}</StyledTableCell> */}
                   </StyledTableRow>
                 </TableBody>
-              ),
+              )
           )}
         </Table>
       </TableContainer>

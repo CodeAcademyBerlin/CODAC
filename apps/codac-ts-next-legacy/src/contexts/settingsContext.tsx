@@ -1,12 +1,12 @@
 // ** React Imports
 // ** MUI Imports
-import { PaletteMode } from '@mui/material';
-import { createContext, ReactNode, useEffect, useState } from 'react';
+import { PaletteMode } from "@mui/material";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
 // ** ThemeConfig Import
 // import themeConfig from '../theme/themeConfig'
 // ** Types Import
-import { ContentWidth, ThemeName } from '../layouts/types';
+import { ContentWidth, ThemeName } from "../layouts/types";
 
 export type Settings = {
   mode: PaletteMode;
@@ -27,18 +27,18 @@ export type SettingsContextValue = {
 };
 
 export const initialSettings = (): Settings => {
-  if (typeof window !== 'undefined')
+  if (typeof window !== "undefined")
     return {
-      themeName: localStorage?.getItem('theme') || 'light',
-      mode: 'light',
-      contentWidth: 'boxed',
+      themeName: localStorage?.getItem("theme") || "light",
+      mode: "light",
+      contentWidth: "boxed",
     };
   // for SSR
   else
     return {
-      themeName: 'light',
-      mode: 'light',
-      contentWidth: 'boxed',
+      themeName: "light",
+      mode: "light",
+      contentWidth: "boxed",
     };
 };
 
@@ -51,21 +51,21 @@ export const SettingsContext = createContext<SettingsContextValue>({
   setFestive: () => null,
   keywordArray: [],
   setKeywordArray: () => null,
-  filter: '',
+  filter: "",
   setFilter: () => null,
 });
 
 export const SettingsProvider = ({ children }: { children: ReactNode }) => {
   // ** State
   const [settings, setSettings] = useState<Settings>({
-    themeName: 'light',
-    mode: 'light',
-    contentWidth: 'boxed',
+    themeName: "light",
+    mode: "light",
+    contentWidth: "boxed",
   });
   const [festive, setFestive] = useState<boolean>(false);
   // SearchBar //
   const [keywordArray, setKeywordArray] = useState<Array<string>>([]);
-  const [filter, setFilter] = useState<string>('');
+  const [filter, setFilter] = useState<string>("");
 
   useEffect(() => {
     setSettings(initialSettings());
@@ -76,7 +76,7 @@ export const SettingsProvider = ({ children }: { children: ReactNode }) => {
   };
   const toggleTheme = (themeName: ThemeName) => {
     setSettings({ ...settings, themeName });
-    localStorage.setItem('theme', themeName);
+    localStorage.setItem("theme", themeName);
   };
 
   return (

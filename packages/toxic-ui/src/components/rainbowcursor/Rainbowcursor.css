@@ -8,15 +8,7 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: linear-gradient(
-    to right,
-    red,
-    orange,
-    yellow,
-    green,
-    blue,
-    violet
-  );
+  background: linear-gradient(to right, red, orange, yellow, green, blue, violet);
   transition: transform 0.3s ease-out;
   animation-name: rainbow-animation;
   animation-duration: 2s;
@@ -32,15 +24,7 @@
   transform: translate(-50%, -50%);
   width: 0;
   height: 1px;
-  background: linear-gradient(
-    to right,
-    red,
-    orange,
-    yellow,
-    green,
-    blue,
-    violet
-  );
+  background: linear-gradient(to right, red, orange, yellow, green, blue, violet);
   opacity: 0;
   transition: opacity 0.5s ease;
 }

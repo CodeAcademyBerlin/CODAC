@@ -1,21 +1,21 @@
-import DonutLargeIcon from '@mui/icons-material/DonutLarge';
-import { Box, Button, Divider, Tooltip, Zoom } from '@mui/material';
-import Collapse from '@mui/material/Collapse';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import React, { useContext, useEffect, useState } from 'react';
-import ExpandButton from 'src/components/common/ExpandButton';
-import StyledLink from 'src/components/common/StyledLink';
-import { AuthContext } from 'src/contexts/authContext';
+import DonutLargeIcon from "@mui/icons-material/DonutLarge";
+import { Box, Button, Divider, Tooltip, Zoom } from "@mui/material";
+import Collapse from "@mui/material/Collapse";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import React, { useContext, useEffect, useState } from "react";
+import ExpandButton from "src/components/common/ExpandButton";
+import StyledLink from "src/components/common/StyledLink";
+import { AuthContext } from "src/contexts/authContext";
 
 import {
   UsersPermissionsMe,
   VsBattle,
   VsBattleEntity,
-} from '../../cabServer/global/__generated__/types';
-import { useVoteVsBattleMutation } from '../../cabServer/mutations/__generated__/battles';
-import { useGetVsBattlesQuery } from '../../cabServer/queries/__generated__/battles';
-import BattleCard from '../components/battles-page/BattleCard';
+} from "../../cabServer/global/__generated__/types";
+import { useVoteVsBattleMutation } from "../../cabServer/mutations/__generated__/battles";
+import { useGetVsBattlesQuery } from "../../cabServer/queries/__generated__/battles";
+import BattleCard from "../components/battles-page/BattleCard";
 
 function Battle() {
   // user: UsersPermissionsMe
@@ -43,12 +43,9 @@ function Battle() {
     });
   };
 
-  const [alignment, setAlignment] = React.useState<string | null>('left');
+  const [alignment, setAlignment] = React.useState<string | null>("left");
 
-  const handleAlignment = (
-    event: React.MouseEvent<HTMLElement>,
-    newAlignment: string | null,
-  ) => {
+  const handleAlignment = (event: React.MouseEvent<HTMLElement>, newAlignment: string | null) => {
     setAlignment(newAlignment);
   };
 
@@ -63,13 +60,13 @@ function Battle() {
     <div>
       <Box
         sx={{
-          marginBottom: '10px',
-          display: 'flex',
-          justifyContent: 'space-between',
+          marginBottom: "10px",
+          display: "flex",
+          justifyContent: "space-between",
         }}
       >
         <Tooltip
-          title={showChart ? 'Show pie chart' : 'Show numbers'}
+          title={showChart ? "Show pie chart" : "Show numbers"}
           TransitionComponent={Zoom}
           placement="top"
           arrow
@@ -81,23 +78,19 @@ function Battle() {
             aria-label="text alignment"
             size="small"
           >
-            <ToggleButton
-              value="left"
-              aria-label="left aligned"
-              onClick={handleShowChart}
-            >
+            <ToggleButton value="left" aria-label="left aligned" onClick={handleShowChart}>
               <DonutLargeIcon fontSize="small" />
             </ToggleButton>
           </ToggleButtonGroup>
         </Tooltip>
-        <StyledLink href={'/addnewbattle'}>
+        <StyledLink href={"/addnewbattle"}>
           <Button variant="contained">Add Battle</Button>
         </StyledLink>
       </Box>
       {vsBattles &&
         vsBattles.map((battle, index) => {
           if (battle?.attributes?.archived === false) {
-            console.log('battle', battle);
+            console.log("battle", battle);
             return (
               <div key={index}>
                 <BattleCard
@@ -112,11 +105,7 @@ function Battle() {
         })}
       <Box>
         <Divider>
-          Archive{' '}
-          <ExpandButton
-            onClick={handleExpandClick}
-            expand={expanded}
-          ></ExpandButton>
+          Archive <ExpandButton onClick={handleExpandClick} expand={expanded}></ExpandButton>
         </Divider>
       </Box>
       <Collapse in={expanded} timeout="auto" unmountOnExit>

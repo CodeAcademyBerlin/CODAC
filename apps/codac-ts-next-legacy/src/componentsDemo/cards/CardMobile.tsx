@@ -1,35 +1,35 @@
 // ** React Imports
 // ** MUI Imports
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Grid, { GridProps } from '@mui/material/Grid';
-import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import { styled } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
-import CartPlus from 'mdi-material-ui/CartPlus';
-import Facebook from 'mdi-material-ui/Facebook';
-import GooglePlus from 'mdi-material-ui/GooglePlus';
-import Linkedin from 'mdi-material-ui/Linkedin';
-import ShareVariant from 'mdi-material-ui/ShareVariant';
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Grid, { GridProps } from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { styled } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
+import CartPlus from "mdi-material-ui/CartPlus";
+import Facebook from "mdi-material-ui/Facebook";
+import GooglePlus from "mdi-material-ui/GooglePlus";
+import Linkedin from "mdi-material-ui/Linkedin";
+import ShareVariant from "mdi-material-ui/ShareVariant";
 // ** Icons Imports
-import Twitter from 'mdi-material-ui/Twitter';
-import Image from 'next/image';
-import { MouseEvent, useState } from 'react';
+import Twitter from "mdi-material-ui/Twitter";
+import Image from "next/image";
+import { MouseEvent, useState } from "react";
 
 // Styled Grid component
 const StyledGrid = styled(Grid)<GridProps>(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  [theme.breakpoints.down('md')]: {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  [theme.breakpoints.down("md")]: {
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up("md")]: {
     borderRight: `1px solid ${theme.palette.divider}`,
   },
 }));
@@ -53,9 +53,9 @@ const CardMobile = () => {
         <StyledGrid item md={5} xs={12}>
           <CardContent
             sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             <Image
@@ -71,12 +71,8 @@ const CardMobile = () => {
           xs={12}
           md={7}
           sx={{
-            paddingTop: ['0 !important', '0 !important', '1.5rem !important'],
-            paddingLeft: [
-              '1.5rem !important',
-              '1.5rem !important',
-              '0 !important',
-            ],
+            paddingTop: ["0 !important", "0 !important", "1.5rem !important"],
+            paddingLeft: ["1.5rem !important", "1.5rem !important", "0 !important"],
           }}
         >
           <CardContent>
@@ -84,12 +80,12 @@ const CardMobile = () => {
               Apple iPhone 11 Pro
             </Typography>
             <Typography variant="body2" sx={{ marginBottom: 3.5 }}>
-              Apple iPhone 11 Pro smartphone. Announced Sep 2019. Features 5.8″
-              display Apple A13 Bionic
+              Apple iPhone 11 Pro smartphone. Announced Sep 2019. Features 5.8″ display Apple A13
+              Bionic
             </Typography>
             <Typography sx={{ fontWeight: 500, marginBottom: 3 }}>
-              Price:{' '}
-              <Box component="span" sx={{ fontWeight: 'bold' }}>
+              Price:{" "}
+              <Box component="span" sx={{ fontWeight: "bold" }}>
                 $899
               </Box>
             </Typography>
@@ -97,9 +93,9 @@ const CardMobile = () => {
           <CardActions className="card-action-dense">
             <Box
               sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                width: '100%',
+                display: "flex",
+                justifyContent: "space-between",
+                width: "100%",
               }}
             >
               <Button>
@@ -112,7 +108,7 @@ const CardMobile = () => {
                 aria-haspopup="true"
                 onClick={handleClick}
                 aria-controls="long-menu"
-                aria-expanded={open ? 'true' : undefined}
+                aria-expanded={open ? "true" : undefined}
               >
                 <ShareVariant fontSize="small" />
               </IconButton>
@@ -122,7 +118,7 @@ const CardMobile = () => {
                 anchorEl={anchorEl}
                 onClose={handleClose}
                 MenuListProps={{
-                  'aria-labelledby': 'long-button',
+                  "aria-labelledby": "long-button",
                 }}
               >
                 <MenuItem onClick={handleClose}>

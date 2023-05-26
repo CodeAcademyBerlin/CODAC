@@ -1,21 +1,21 @@
-import { UnlockAchievementsDocument } from 'cabServer/mutations/__generated__/achievements';
+import { UnlockAchievementsDocument } from "cabServer/mutations/__generated__/achievements";
 import {
   GetAchievementsDocument,
   StudentAchievementsDocument,
-} from 'cabServer/queries/__generated__/achievements';
-import { FilterStudentByUserIdDocument } from 'cabServer/queries/__generated__/students';
-import { request } from 'http';
-import { NextApiHandler } from 'next/types';
-import Achievements from 'src/components/achievements-page/Achievements';
-import { calculateDaysPassed } from 'src/lib/courseDate';
-import { JwtPayloadWithID } from 'src/types';
+} from "cabServer/queries/__generated__/achievements";
+import { FilterStudentByUserIdDocument } from "cabServer/queries/__generated__/students";
+import { request } from "http";
+import { NextApiHandler } from "next/types";
+import Achievements from "src/components/achievements-page/Achievements";
+import { calculateDaysPassed } from "src/lib/courseDate";
+import { JwtPayloadWithID } from "src/types";
 
-import { getToken, initializeApollo } from '../../lib/apolloClient';
+import { getToken, initializeApollo } from "../../lib/apolloClient";
 
 // check user is a student
 
 const unlockAchievements: NextApiHandler = async (req, res) => {
-  console.log('hello');
+  console.log("hello");
   try {
     const client = initializeApollo(null, req);
     const { data } = await client.query({
@@ -29,16 +29,12 @@ const unlockAchievements: NextApiHandler = async (req, res) => {
       const daysPassed = calculateDaysPassed(student.attributes.start_date);
       console.log(daysPassed);
       const achievementToUnlock = student.attributes.achievements
-        .filter(
-          (e: {
-            achievement: { data: { attributes: { course_date: number } } };
-          }) => {
-            return (
-              e.achievement.data.attributes.course_date > 0 &&
-              e.achievement.data.attributes.course_date <= daysPassed
-            );
-          },
-        )
+        .filter((e: { achievement: { data: { attributes: { course_date: number } } } }) => {
+          return (
+            e.achievement.data.attributes.course_date > 0 &&
+            e.achievement.data.attributes.course_date <= daysPassed
+          );
+        })
         .map((e: { achievement: { data: { id: any } } }) => {
           return e.achievement.data.id;
         });
@@ -53,12 +49,12 @@ const unlockAchievements: NextApiHandler = async (req, res) => {
         res.send(response);
       } else {
         res.send({
-          message: 'No achievements to unlock',
+          message: "No achievements to unlock",
         });
       }
     } else {
       res.send({
-        message: 'No student matching this Id',
+        message: "No student matching this Id",
       });
     }
   } catch (error) {

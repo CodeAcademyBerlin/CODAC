@@ -146,12 +146,7 @@
               "children": [
                 {
                   "path": "data/Module-1/Project-2/Machine-Learning-Fundamentals",
-                  "page": [
-                    "data",
-                    "Module-1",
-                    "Project-2",
-                    "Machine-Learning-Fundamentals"
-                  ],
+                  "page": ["data", "Module-1", "Project-2", "Machine-Learning-Fundamentals"],
                   "parent": "Project-2",
                   "index": "Machine-Learning-Fundamentals",
                   "title": "Machine Learning Fundamentals",
@@ -427,12 +422,7 @@
               "children": [
                 {
                   "path": "data/Module-1/Project-2/Machine-Learning-Fundamentals",
-                  "page": [
-                    "data",
-                    "Module-1",
-                    "Project-2",
-                    "Machine-Learning-Fundamentals"
-                  ],
+                  "page": ["data", "Module-1", "Project-2", "Machine-Learning-Fundamentals"],
                   "parent": "Project-2",
                   "index": "Machine-Learning-Fundamentals",
                   "title": "Machine Learning Fundamentals",
@@ -701,12 +691,7 @@
               "children": [
                 {
                   "path": "data/Module-1/Project-2/Machine-Learning-Fundamentals",
-                  "page": [
-                    "data",
-                    "Module-1",
-                    "Project-2",
-                    "Machine-Learning-Fundamentals"
-                  ],
+                  "page": ["data", "Module-1", "Project-2", "Machine-Learning-Fundamentals"],
                   "parent": "Project-2",
                   "index": "Machine-Learning-Fundamentals",
                   "title": "Machine Learning Fundamentals",
@@ -982,12 +967,7 @@
               "children": [
                 {
                   "path": "data/Module-1/Project-2/Machine-Learning-Fundamentals",
-                  "page": [
-                    "data",
-                    "Module-1",
-                    "Project-2",
-                    "Machine-Learning-Fundamentals"
-                  ],
+                  "page": ["data", "Module-1", "Project-2", "Machine-Learning-Fundamentals"],
                   "parent": "Project-2",
                   "index": "Machine-Learning-Fundamentals",
                   "title": "Machine Learning Fundamentals",
@@ -1268,12 +1248,7 @@
     },
     {
       "path": "data/Module-1/Project-2/Machine-Learning-Fundamentals",
-      "page": [
-        "data",
-        "Module-1",
-        "Project-2",
-        "Machine-Learning-Fundamentals"
-      ],
+      "page": ["data", "Module-1", "Project-2", "Machine-Learning-Fundamentals"],
       "parent": "Project-2",
       "index": "Machine-Learning-Fundamentals",
       "title": "Machine Learning Fundamentals",
@@ -1623,12 +1598,7 @@
     },
     {
       "params": {
-        "page": [
-          "data",
-          "Module-1",
-          "Project-2",
-          "Machine-Learning-Fundamentals"
-        ]
+        "page": ["data", "Module-1", "Project-2", "Machine-Learning-Fundamentals"]
       }
     },
     {

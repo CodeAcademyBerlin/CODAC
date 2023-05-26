@@ -1,22 +1,17 @@
-import { keyframes, styled } from '@mui/material/styles';
+import { keyframes, styled } from "@mui/material/styles";
 
 const style = {
-  overflowY: 'hidden',
-  position: 'absolute',
-  bottom: '42%',
-  right: '25%',
-  left: '25%',
+  overflowY: "hidden",
+  position: "absolute",
+  bottom: "42%",
+  right: "25%",
+  left: "25%",
 };
 
 const BerlinSkyline = () => {
   return (
     <svg style={style} viewBox="0 0 667.7 259.9">
-      <g
-        stroke="#24bfc45e"
-        fill="none"
-        id="layer1"
-        transform="translate(529.3378,-883.68646)"
-      >
+      <g stroke="#24bfc45e" fill="none" id="layer1" transform="translate(529.3378,-883.68646)">
         {/* <rect id="Himmel" x="-529.3" y="883.7" width="667.7" height="259.9" /> */}
         <path
           id="Fernsehturm"

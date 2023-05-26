@@ -1,24 +1,21 @@
-import { Box, Tooltip, useTheme, Zoom } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
+import { Box, Tooltip, useTheme, Zoom } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
 // ** MUI Imports
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import { ApexOptions } from 'apexcharts';
-import VoteOutline from 'mdi-material-ui/VoteOutline';
-import * as React from 'react';
-import { useEffect } from 'react';
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import { ApexOptions } from "apexcharts";
+import VoteOutline from "mdi-material-ui/VoteOutline";
+import * as React from "react";
+import { useEffect } from "react";
 
 // ** Icons Imports
-import {
-  UsersPermissionsMe,
-  VsBattleEntity,
-} from '../../../cabServer/global/__generated__/types';
-import ReactApexcharts from '../libs/react-apexcharts/dynamicimport';
-import ApexChartWrapper from '../libs/react-apexcharts/wrapper';
-import DenseTable from './BattleTable';
-import VotersList from './VotersList';
+import { UsersPermissionsMe, VsBattleEntity } from "../../../cabServer/global/__generated__/types";
+import ReactApexcharts from "../libs/react-apexcharts/dynamicimport";
+import ApexChartWrapper from "../libs/react-apexcharts/wrapper";
+import DenseTable from "./BattleTable";
+import VotersList from "./VotersList";
 
 type BattleCardProps = {
   vsBattle: VsBattleEntity;
@@ -33,9 +30,7 @@ const BattleCard = (props: BattleCardProps) => {
 
   const option1IsVoted = () => {
     const option1Voters = props.vsBattle.attributes?.option_1_voters?.data;
-    if (
-      option1Voters?.filter((item) => item.id === props.user?.id).length === 0
-    ) {
+    if (option1Voters?.filter((item) => item.id === props.user?.id).length === 0) {
       return false;
     } else if (props.user === null) {
       return false;
@@ -44,9 +39,7 @@ const BattleCard = (props: BattleCardProps) => {
 
   const option2IsVoted = () => {
     const option2Voters = props.vsBattle.attributes?.option_2_voters?.data;
-    if (
-      option2Voters?.filter((item) => item.id === props.user?.id).length === 0
-    ) {
+    if (option2Voters?.filter((item) => item.id === props.user?.id).length === 0) {
       return false;
     } else if (props.user === null) {
       return false;
@@ -59,16 +52,14 @@ const BattleCard = (props: BattleCardProps) => {
     } else return false;
   };
 
-  const option1voters =
-    props.vsBattle?.attributes?.option_1_voters?.data.length || 0;
-  const option2voters =
-    props.vsBattle?.attributes?.option_2_voters?.data.length || 0;
+  const option1voters = props.vsBattle?.attributes?.option_1_voters?.data.length || 0;
+  const option2voters = props.vsBattle?.attributes?.option_2_voters?.data.length || 0;
   const option1title = props.vsBattle?.attributes?.option1!;
   const option2title = props.vsBattle?.attributes?.option2!;
   const color1 = theme.palette.info.light;
   const color2 = theme.palette.info.dark;
 
-  const series: ApexOptions['series'] = [option1voters, option2voters];
+  const series: ApexOptions["series"] = [option1voters, option2voters];
 
   const options: ApexOptions = {
     // chart: {
@@ -78,7 +69,7 @@ const BattleCard = (props: BattleCardProps) => {
     colors: [color1, color2],
     labels: [option1title, option2title],
     legend: {
-      position: 'bottom',
+      position: "bottom",
     },
     dataLabels: {
       enabled: false,
@@ -99,13 +90,13 @@ const BattleCard = (props: BattleCardProps) => {
   };
 
   return (
-    <Card style={{ marginBottom: '2em' }}>
+    <Card style={{ marginBottom: "2em" }}>
       <CardContent
         sx={{
-          display: 'flex',
-          textAlign: 'center',
-          alignItems: 'center',
-          flexDirection: 'column',
+          display: "flex",
+          textAlign: "center",
+          alignItems: "center",
+          flexDirection: "column",
           padding: (theme) => `${theme.spacing(9.75, 5, 9.25)} !important`,
         }}
       >
@@ -114,18 +105,18 @@ const BattleCard = (props: BattleCardProps) => {
             width: 50,
             height: 50,
             marginBottom: 2.25,
-            color: 'common.white',
-            backgroundColor: 'primary.main',
+            color: "common.white",
+            backgroundColor: "primary.main",
           }}
         >
-          <VoteOutline sx={{ fontSize: '2rem' }} />
+          <VoteOutline sx={{ fontSize: "2rem" }} />
         </Avatar>
         <Typography variant="h6" sx={{ marginBottom: 2.75 }}>
           {props.vsBattle.attributes?.title}
         </Typography>
         {props.user?.id ? (
           <Typography variant="body2" sx={{ marginBottom: 6 }}>
-            {archived() ? 'voice your opinion' : 'voting is now closed'}
+            {archived() ? "voice your opinion" : "voting is now closed"}
           </Typography>
         ) : (
           <Typography variant="body2" sx={{ marginBottom: 6 }}>
@@ -134,7 +125,7 @@ const BattleCard = (props: BattleCardProps) => {
         )}
         <div>
           <Tooltip
-            title={props.user?.id ? '' : 'Log in to vote'}
+            title={props.user?.id ? "" : "Log in to vote"}
             TransitionComponent={Zoom}
             placement="top"
             arrow
@@ -143,21 +134,21 @@ const BattleCard = (props: BattleCardProps) => {
               variant="contained"
               sx={{
                 padding: (theme) => theme.spacing(1.75, 5.5),
-                marginLeft: '2em',
+                marginLeft: "2em",
               }}
               onClick={() => {
                 if (props.user?.id && archived()) {
                   props.handleVote(props.vsBattle.id!, 1);
-                  console.log('onClick button');
+                  console.log("onClick button");
                 }
               }}
-              color={option1IsVoted() ? 'secondary' : 'primary'}
+              color={option1IsVoted() ? "secondary" : "primary"}
             >
               {props.vsBattle.attributes?.option1}
             </Button>
           </Tooltip>
           <Tooltip
-            title={props.user?.id ? '' : 'Log in to vote'}
+            title={props.user?.id ? "" : "Log in to vote"}
             TransitionComponent={Zoom}
             placement="top"
             arrow
@@ -166,15 +157,15 @@ const BattleCard = (props: BattleCardProps) => {
               variant="contained"
               sx={{
                 padding: (theme) => theme.spacing(1.75, 5.5),
-                marginLeft: '2em',
+                marginLeft: "2em",
               }}
               onClick={() => {
                 if (props.user?.id && archived()) {
                   props.handleVote(props.vsBattle.id!, 2);
-                  console.log('onClick button');
+                  console.log("onClick button");
                 }
               }}
-              color={option2IsVoted() ? 'secondary' : 'primary'}
+              color={option2IsVoted() ? "secondary" : "primary"}
             >
               {props.vsBattle.attributes?.option2}
             </Button>
@@ -186,32 +177,25 @@ const BattleCard = (props: BattleCardProps) => {
       {(option1IsVoted() || option2IsVoted()) && (
         <Box
           sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            flexDirection: 'column',
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
           }}
         >
           {props.showChart ? (
             <DenseTable
-              option1={
-                props.vsBattle?.attributes?.option_1_voters?.data.length || 0
-              }
-              option2={
-                props.vsBattle?.attributes?.option_2_voters?.data.length || 0
-              }
+              option1={props.vsBattle?.attributes?.option_1_voters?.data.length || 0}
+              option2={props.vsBattle?.attributes?.option_2_voters?.data.length || 0}
             />
           ) : (
             <ApexChartWrapper>
-              <Box
-                id="chart"
-                sx={{ display: 'flex', justifyContent: 'center' }}
-              >
+              <Box id="chart" sx={{ display: "flex", justifyContent: "center" }}>
                 <ReactApexcharts
                   type="donut"
                   options={options}
                   series={series}
                   width={250}
-                  height={'100%'}
+                  height={"100%"}
                 ></ReactApexcharts>
               </Box>
             </ApexChartWrapper>

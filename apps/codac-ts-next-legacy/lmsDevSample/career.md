@@ -1,8 +1,8 @@
 ---
-navTitle: 'Career Services'
-title: 'Welcome to the Career Services'
-metaTitle: 'Career Services'
-metaDescription: 'Career Services'
+navTitle: "Career Services"
+title: "Welcome to the Career Services"
+metaTitle: "Career Services"
+metaDescription: "Career Services"
 access: all
 order: 30
 ---

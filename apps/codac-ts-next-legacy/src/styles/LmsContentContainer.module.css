@@ -7,7 +7,7 @@
 
 .content code {
   background: darkslategrey;
-  border-left: 3px solid #C6A7FE;
+  border-left: 3px solid #c6a7fe;
   border-radius: 0.5em;
   color: #f4f4f4;
   font-family: monospace;
@@ -56,13 +56,10 @@
   color: #26a69a;
 }
 
-@media (hover:hover) {
-
+@media (hover: hover) {
   .copyButton:hover {
     opacity: 1;
     transition: 0.2s;
     cursor: pointer;
   }
-
 }
-

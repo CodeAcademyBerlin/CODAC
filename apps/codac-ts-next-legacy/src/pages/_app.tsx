@@ -1,42 +1,38 @@
 // // ** React Perfect Scrollbar Style
 // import 'react-perfect-scrollbar/dist/css/styles.css'
 // ** Global css styles
-import '../styles/globals.css';
+import "../styles/globals.css";
 
 // import 'react-toastify/dist/ReactToastify.css';
-import { ApolloProvider } from '@apollo/client';
-import type { EmotionCache } from '@emotion/cache';
+import { ApolloProvider } from "@apollo/client";
+import type { EmotionCache } from "@emotion/cache";
 // ** Utils Imports
-import { CacheProvider } from '@emotion/react';
-import { CssBaseline } from '@mui/material';
-import { VT323 } from '@next/font/google';
-import type { NextPage } from 'next';
-import type { AppProps } from 'next/app';
+import { CacheProvider } from "@emotion/react";
+import { CssBaseline } from "@mui/material";
+import { VT323 } from "@next/font/google";
+import type { NextPage } from "next";
+import type { AppProps } from "next/app";
 // import { AppProps } from 'next/dist/next-server/lib/router/router';
 // ** Next Imports
-import Head from 'next/head';
-import Router from 'next/router';
+import Head from "next/head";
+import Router from "next/router";
 // // ** Loader Import
-import NProgress from 'nprogress';
-import React, { ReactElement, ReactNode, useEffect, useState } from 'react';
-import { ToastContainer } from 'react-toastify';
+import NProgress from "nprogress";
+import React, { type ReactElement, type ReactNode, useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
 
-import favicon from '../../public/favicon.ico';
-import { AuthProvider } from '../contexts/authContext';
-import {
-  SettingsConsumer,
-  SettingsProvider,
-} from '../contexts/settingsContext';
-import { SocketProvider } from '../contexts/socketContext';
-import MainLayout from '../layouts/MainLayout/MainLayout';
-import { useApollo } from '../lib/apolloClient';
-import createEmotionCache from '../lib/createEmotionCache';
-import ThemeComponent from '../theme/ThemeComponent';
-import { RouteGuard } from 'src/components/RouteGuard';
+import favicon from "../../public/favicon.ico";
+import { AuthProvider } from "../contexts/authContext";
+import { SettingsConsumer, SettingsProvider } from "../contexts/settingsContext";
+import { SocketProvider } from "../contexts/socketContext";
+import MainLayout from "../layouts/MainLayout/MainLayout";
+import { useApollo } from "../lib/apolloClient";
+import createEmotionCache from "../lib/createEmotionCache";
+import ThemeComponent from "../theme/ThemeComponent";
 
-const vt323 = VT323({ weight: '400', subsets: ['latin'] });
+const vt323 = VT323({ weight: "400", subsets: ["latin"] });
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
 
@@ -48,13 +44,13 @@ type AppPropsWithLayout = AppProps & {
 const clientSideEmotionCache = createEmotionCache();
 
 // ** Pace Loader
-Router.events.on('routeChangeStart', () => {
+Router.events.on("routeChangeStart", () => {
   NProgress.start();
 });
-Router.events.on('routeChangeError', () => {
+Router.events.on("routeChangeError", () => {
   NProgress.done();
 });
-Router.events.on('routeChangeComplete', () => {
+Router.events.on("routeChangeComplete", () => {
   NProgress.done();
 });
 
@@ -69,20 +65,20 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const start = () => {
-      console.log('start');
+      console.log("start");
       setLoading(true);
     };
     const end = () => {
-      console.log('finished');
+      console.log("finished");
       setLoading(false);
     };
-    Router.events.on('routeChangeStart', start);
-    Router.events.on('routeChangeComplete', end);
-    Router.events.on('routeChangeError', end);
+    Router.events.on("routeChangeStart", start);
+    Router.events.on("routeChangeComplete", end);
+    Router.events.on("routeChangeError", end);
     return () => {
-      Router.events.off('routeChangeStart', start);
-      Router.events.off('routeChangeComplete', end);
-      Router.events.off('routeChangeError', end);
+      Router.events.off("routeChangeStart", start);
+      Router.events.off("routeChangeComplete", end);
+      Router.events.off("routeChangeError", end);
     };
   }, []);
   const getLayout = Component.getLayout ?? MainLayout;
@@ -103,10 +99,7 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({
                   content={`CODAC – Code Academy Berlin Community App`}
                 />
                 <link rel="shortcut icon" href={favicon.src} />
-                <meta
-                  name="viewport"
-                  content="initial-scale=1, width=device-width"
-                />
+                <meta name="viewport" content="initial-scale=1, width=device-width" />
               </Head>
               <SettingsProvider>
                 <SettingsConsumer>

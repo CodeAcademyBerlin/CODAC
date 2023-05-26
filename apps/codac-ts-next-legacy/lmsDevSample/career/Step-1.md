@@ -1,10 +1,10 @@
 ---
-navTitle: 'Step 1'
-title: 'Step 1 - Understand'
-metaTitle: 'Career Service'
-metaDescription: 'Career Service content'
+navTitle: "Step 1"
+title: "Step 1 - Understand"
+metaTitle: "Career Service"
+metaDescription: "Career Service content"
 access: all
-next: 'career/Step-1/Chapter-1'
+next: "career/Step-1/Chapter-1"
 ---
 
 In the first step we want you to learn more about the local market, think about where you believe you want to work and what is important to know before signing a contract.  

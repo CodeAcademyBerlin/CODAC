@@ -1,28 +1,49 @@
 # CODAC Monorepo
 
+## Technologies
+
+- 📏 [TypeScript 5.0](https://www.typescriptlang.org/)
+- ⚡️ [Next.js 13.2](https://nextjs.org/)
+- ⚛️ [React 18.2](https://reactjs.org/)
+- 🌬️ [Tailwind CSS 3.3](https://tailwindcss.com/)
+- 📕 [Storybook 7.0](https://storybook.js.org/)
+- 🧪 [Testing Library](https://testing-library.com/)
+- 🃏 [Jest](https://jestjs.io/)
+- 🎭 [Playwright](https://playwright.dev/)
+- 🧹 [ESLint](https://eslint.org/)
+- 🤖 [CommitLint](https://commitlint.js.org/)
+- 💖 [Prettier](https://prettier.io/)
+- 📦 [pnpm](https://pnpm.io/)
+- 🏎️ [Turborepo](https://turbo.build/repo)
+- 👷 [Github Actions](https://github.com/features/actions)
+
 ## What's inside?
 
 This monorepo includes the following packages/apps:
 
-### Apps and Packages
+### Apps
 
-Apps:
+- `codac-ts-next-legacy`: a [Next.js](https://nextjs.org/) app with [MUI v5](https://mui.com/)
 
-- `codac-ts-next-tailwind`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/) dedicated to UI components develoment
-- `codac-ts-next-lms`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/) dedicated to making a standadole LMS interface
-- `codac-ts-next-mui`: a [Next.js](https://nextjs.org/) app with [MUI v5](https://mui.com/)
-- `web`: another [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-Packages:
-- `codac-administration`: a graphql types code generation app using codegen. It generates types and custom react hooks to query the CODAC administration backend
-- `codac-ui`: a stub React component library with [Tailwind CSS](https://tailwindcss.com/)
-shared by both `codac-ts-next-tailwind` and `storybook` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tailwind-config`: Commonalized theme of Tailwind [Tailwind CSS](https://tailwindcss.com/)
+- `codac-ts-next-lms`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/) dedicated to making a standadone LMS
+
+### Packages
+
+- `codac-server-graphql`: a graphql types code generation app using codegen. It generates types and custom react hooks to query the CODAC administration server
+
+- `codac-ui`: official design system of React/Next components done with [Tailwind CSS](https://tailwindcss.com/) and [Storybook](https://storybook.js.org/)
+
+- `eslint-config-custom`: shared `eslint` configuration
+
+- `jest-config`: shared `jest` configuration
+
+- `tailwind-config`: shared `tailwind` configuration with custom theme
+
+- `toxic-ui`: unofficial design system of React components done with [Tailwind CSS](https://tailwindcss.com/) and [Storybook](https://storybook.js.org/)
+
 - `tsconfig`: `tsconfig.json`s used throughout the monorepo
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Building Types packages/codac-administration
+### Building Types packages/codac-server-graphql
 
 This page generates the types and custom Apollo GraphQl hooks from a Strapi backend
 [Strapi Admin](https://codac-admin-dev.up.railway.app/admin)
