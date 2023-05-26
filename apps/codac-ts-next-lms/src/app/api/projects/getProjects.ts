@@ -5,12 +5,7 @@
 // good practise to add `server-only` preemptively.
 import "server-only";
 
-import type {
-  CourseEntity,
-  CourseEntityResponse,
-  CourseEntityResponseCollection,
-  ProjectEntityResponseCollection,
-} from "codac-server-graphql";
+import type { ProjectEntity, ProjectEntityResponseCollection } from "codac-server-graphql";
 import { notFound } from "next/navigation";
 
 import { getCourseByName } from "../courses/getCourses";
@@ -30,19 +25,19 @@ export async function getProjectsByCoursesName({ name }: { name: string }) {
   return projects.data;
 }
 export async function getProjectByName({ name }: { name: string }) {
-  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN ?? "";
+  const token = process.env.CODAC_SSG_TOKEN ?? "";
   const path = `/projects`;
   const urlParamsObject = {
     filters: { name },
     populate: "*",
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
-  const projects = await fetchAPI<ProjectEntityResponseCollection>(path, urlParamsObject, options);
-
-  if (!projects.data.length) {
+  const projects = await fetchAPI<ProjectEntity[]>(path, urlParamsObject, options);
+  console.log("projects", projects);
+  if (!projects.length) {
     // Render the closest `not-found.js` Error Boundary
     notFound();
   }
 
-  return projects.data[0];
+  return projects[0];
 }

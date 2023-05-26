@@ -2,7 +2,17 @@ import qs from "qs";
 
 import { getStrapiURL } from "./api-helpers";
 
-export async function fetchAPI<Response>(path: string, urlParamsObject = {}, options = {}) {
+interface Response<T> {
+  data: T;
+  error: {
+    status: number;
+    name: string;
+    message: string;
+    details: object;
+  } | null;
+}
+
+export async function fetchAPI<T>(path: string, urlParamsObject = {}, options = {}) {
   try {
     // Merge default and user options
     const mergedOptions = {
@@ -19,7 +29,13 @@ export async function fetchAPI<Response>(path: string, urlParamsObject = {}, opt
     console.log("requestUrl", requestUrl);
     // Trigger API call
     const response = await fetch(requestUrl, mergedOptions);
-    const data = (await response.json()) as Response;
+    const { data, error } = (await response.json()) as Response<T>;
+    console.log("data", data);
+
+    if (error) {
+      console.error(error);
+      throw new Error(`An error occurred while fetching the API: ${requestUrl}`);
+    }
     return data;
   } catch (error) {
     console.error(error);

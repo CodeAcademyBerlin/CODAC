@@ -5,21 +5,21 @@
 // good practise to add `server-only` preemptively.
 import "server-only";
 
-import type { ProjectEntityResponseCollection } from "codac-server-graphql";
+import type { ProjectEntity, ProjectEntityResponseCollection } from "codac-server-graphql";
 import { notFound } from "next/navigation";
 
 import { fetchAPI } from "../fetch-api";
 
 export async function getPagesByProjectName({ name }: { name: string }) {
-  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN ?? "";
+  const token = process.env.CODAC_SSG_TOKEN ?? "";
   const path = `/projects`;
   const urlParamsObject = {
     filters: { name },
     populate: "*",
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
-  const projects = await fetchAPI<ProjectEntityResponseCollection>(path, urlParamsObject, options);
-  const project = projects.data[0];
+  const projects = await fetchAPI<ProjectEntity[]>(path, urlParamsObject, options);
+  const project = projects[0];
   if (!project.attributes.pages) {
     // Render the closest `not-found.js` Error Boundary
     notFound();
@@ -35,19 +35,19 @@ export async function getPagesByProjectName({ name }: { name: string }) {
   return { pages: pages.data, spikes: spikes?.data ?? [] };
 }
 export async function getPageBySlug({ name }: { name: string }) {
-  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN ?? "";
+  const token = process.env.CODAC_SSG_TOKEN ?? "";
   const path = `/projects`;
   const urlParamsObject = {
     filters: { name },
     populate: "*",
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
-  const projects = await fetchAPI<ProjectEntityResponseCollection>(path, urlParamsObject, options);
+  const projects = await fetchAPI<ProjectEntity[]>(path, urlParamsObject, options);
 
-  if (!projects.data.length) {
+  if (!projects.length) {
     // Render the closest `not-found.js` Error Boundary
     notFound();
   }
 
-  return projects.data[0];
+  return projects[0];
 }
