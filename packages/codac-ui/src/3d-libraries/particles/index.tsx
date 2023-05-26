@@ -1,3 +1,4 @@
+"use client";
 import { useCallback } from "react";
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
@@ -31,6 +32,7 @@ export const ParticlesComp = ({ type }: { type: string }) => {
     // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
     // starting from v2 you can add only the features you need reducing the bundle size
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     await loadFull(engine);
     // await loadConfig(config)
   }, []);

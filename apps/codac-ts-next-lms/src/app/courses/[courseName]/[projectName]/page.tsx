@@ -1,3 +1,4 @@
+import { SkeletonCard } from "codac-ui";
 import { getProjectByName } from "src/app/api/projects/getProjects";
 
 export default async function Page({ params }: { params: { projectName: string } }) {

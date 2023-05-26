@@ -11,7 +11,6 @@ export const metadata = {
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
   const courses = await getCourses();
-  console.log("courses", courses);
   return (
     <DashboardLayout
       navigation={

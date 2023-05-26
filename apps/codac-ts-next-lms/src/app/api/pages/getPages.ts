@@ -5,10 +5,11 @@
 // good practise to add `server-only` preemptively.
 import "server-only";
 
-import type { ProjectEntity, ProjectEntityResponseCollection } from "codac-server-graphql";
+import type { ProjectEntity } from "codac-server-graphql";
 import { notFound } from "next/navigation";
 
 import { fetchAPI } from "../fetch-api";
+import type { PageEntity } from "./page";
 
 export async function getPagesByProjectName({ name }: { name: string }) {
   const token = process.env.CODAC_SSG_TOKEN ?? "";
@@ -36,18 +37,18 @@ export async function getPagesByProjectName({ name }: { name: string }) {
 }
 export async function getPageBySlug({ slug }: { slug: string }) {
   const token = process.env.CODAC_SSG_TOKEN ?? "";
-  const path = `/projects`;
+  const path = `/pages`;
   const urlParamsObject = {
     filters: { slug },
     populate: "*",
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
-  const projects = await fetchAPI<ProjectEntity[]>(path, urlParamsObject, options);
-
-  if (!projects.length) {
+  const page = await fetchAPI<PageEntity[]>(path, urlParamsObject, options);
+  console.log("pageFectch", page);
+  if (!page.length) {
     // Render the closest `not-found.js` Error Boundary
     notFound();
   }
 
-  return projects[0];
+  return page[0];
 }

@@ -13,8 +13,6 @@ import { fetchAPI } from "../fetch-api";
 export async function getProjectsByCoursesName({ name }: { name: string }) {
   const course = await getCourseByName({ name });
 
-  console.log("course", course);
-
   const { projects } = course.attributes;
 
   if (!projects || projects.data.length === 0) {
@@ -33,7 +31,6 @@ export async function getProjectByName({ name }: { name: string }) {
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
   const projects = await fetchAPI<ProjectEntity[]>(path, urlParamsObject, options);
-  console.log("projects", projects);
   if (!projects.length) {
     // Render the closest `not-found.js` Error Boundary
     notFound();

@@ -1,15 +1,18 @@
-import { SkeletonCard } from "codac-ui";
-import { getProjectByName } from "src/app/api/projects/getProjects";
+// import { DynamicSections } from "codac-ui";
 
 import { getPageBySlug } from "#/app/api/pages/getPages";
+import { dynamicSections } from "#/components/dynamic-sections";
 
 export default async function Page({ params }: { params: { pageSlug: string } }) {
   console.log("params", params);
   const page = await getPageBySlug({ slug: params.pageSlug });
-  console.log("page", page);
+  console.log("page", page.attributes.contentSections);
+  const { contentSections } = page.attributes;
   return (
-    <div className="space-y-4">
-      <h1 className="text-xl font-medium text-gray-400/80">{page.attributes.name}</h1>
+    <div className="flex ">
+      <div className="flex-auto">
+        {contentSections?.map((content) => dynamicSections({ section: content }))}
+      </div>
     </div>
   );
 }

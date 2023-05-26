@@ -16,7 +16,6 @@ export async function getCourses() {
   const options = { headers: { Authorization: `Bearer ${token}` } };
 
   const courses = await fetchAPI<CourseEntity[]>("/courses", { populate: "*" }, options);
-  console.log("courses", courses);
   if (courses?.length === 0) {
     // Render the closest `not-found.js` Error Boundary
     notFound();
@@ -34,7 +33,6 @@ export async function getCourseByName({ name }: { name: string }) {
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
   const courses = await fetchAPI<CourseEntity[]>(path, urlParamsObject, options);
-  console.log("courses", courses);
   if (!courses?.length) {
     // Render the closest `not-found.js` Error Boundary
     notFound();

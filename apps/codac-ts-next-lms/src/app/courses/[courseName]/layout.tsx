@@ -26,7 +26,6 @@ export default async function Layout({
           <div className="self-start">{/* <ClickCounter /> */}</div>
         </div>
       </Boundary>
-
       <div>{children}</div>
     </div>
   );
