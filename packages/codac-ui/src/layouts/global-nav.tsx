@@ -3,12 +3,11 @@ import { MenuAlt2Icon, XIcon } from "@heroicons/react/solid";
 import clsx from "clsx";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
-import { useRouter } from "next/router";
 import { useState } from "react";
 
+import { SideAuth } from "../components/side-auth";
 import { CodacLogoIcon } from "../icons/codac-logo";
 import { ThemeSwitch } from "../theme/theme-switch";
-import { SideAuth } from "../ui/side-auth";
 export interface Item {
   name: string;
   slug: string;

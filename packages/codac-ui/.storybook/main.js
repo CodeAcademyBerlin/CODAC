@@ -17,7 +17,7 @@ const config = {
     enableCrashReports: true,
   },
 
-  staticDirs: [resolve(__dirname, "..", "assets")],
+  staticDirs: [resolve(__dirname, "..", "src", "assets")],
   webpackFinal: async (config) => {
     if (config.resolve?.fallback)
       config.resolve.fallback = {

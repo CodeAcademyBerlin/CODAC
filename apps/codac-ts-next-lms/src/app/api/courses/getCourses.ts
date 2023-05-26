@@ -11,7 +11,7 @@ import { notFound } from "next/navigation";
 
 import { fetchAPI } from "../fetch-api";
 
-export async function getCourses({ parent }: { parent?: string } = {}) {
+export async function getCourses() {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN ?? "";
   const options = { headers: { Authorization: `Bearer ${token}` } };
 

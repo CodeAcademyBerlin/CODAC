@@ -1,4 +1,5 @@
 const colors = require("tailwindcss/colors");
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   content: ["src/**/*.{ts,tsx}", "../../packages/codac-ui/src/**/*.{ts,tsx}"],
@@ -9,6 +10,9 @@ module.exports = {
   // darkMode: ['class', '[data-mode="dark"]'],
   theme: {
     extend: {
+      fontFamily: {
+        'codac': ['CODAC', ...defaultTheme.fontFamily.sans],
+      },
       colors: {
         gray: colors.zinc,
         "gray-1000": "rgb(17,17,19)",
