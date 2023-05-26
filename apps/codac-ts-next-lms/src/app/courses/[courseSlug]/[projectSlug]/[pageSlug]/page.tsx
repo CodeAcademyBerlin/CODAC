@@ -1,7 +1,8 @@
 // import { DynamicSections } from "codac-ui";
 
-import { getPageBySlug } from "#/app/api/pages/getPages";
 import { dynamicSections } from "#/components/dynamic-sections";
+
+import { getPageBySlug } from "./getPages";
 
 export default async function Page({ params }: { params: { pageSlug: string } }) {
   console.log("params", params);

@@ -5,9 +5,10 @@
 // good practise to add `server-only` preemptively.
 import "server-only";
 
-import type { PageEntity, ProjectEntity } from "codac-server-graphql";
+import type { ProjectEntity } from "codac-server-graphql";
 import { notFound } from "next/navigation";
 
+import type { PageEntity } from "#/types/page";
 import { fetchAPI } from "#/utils/fetch-api";
 
 export async function getPagesByProjectName({ name }: { name: string }) {

@@ -1,7 +1,7 @@
 // import { ClickCounter } from '#/ui/click-counter';
 import { Boundary, TabGroup } from "codac-ui";
 
-import { getPagesByProjectName } from "#/app/api/pages/getPages";
+import { getPagesByProjectName } from "./[pageSlug]/getPages";
 
 export default async function Layout({
   children,
