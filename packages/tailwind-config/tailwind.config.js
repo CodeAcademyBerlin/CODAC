@@ -1,5 +1,36 @@
 const colors = require("tailwindcss/colors");
 const defaultTheme = require('tailwindcss/defaultTheme')
+const plugin = require('tailwindcss/plugin')
+
+// Rotate X utilities
+const rotateX = plugin(function ({ addUtilities }) {
+  addUtilities({
+    '.rotate-x-20': {
+      transform: 'rotateX(20deg)',
+    },
+    '.rotate-x-40': {
+      transform: 'rotateX(40deg)',
+    },
+    '.rotate-x-60': {
+      transform: 'rotateX(60deg)',
+    },
+    '.rotate-x-80': {
+      transform: 'rotateX(80deg)',
+    },
+  })
+})
+const perspective = plugin(function ({ addUtilities }) {
+  addUtilities({
+    '.perspective-o-50-50': {
+      ['perspective-origin']: '50% 50%',
+    },
+    '.perspective-180': {
+      perspective: '180px',
+    }
+  })
+})
+
+
 
 module.exports = {
   content: ["src/**/*.{ts,tsx}", "../../packages/codac-ui/src/**/*.{ts,tsx}"],
@@ -34,7 +65,7 @@ module.exports = {
       backgroundImage: ({ theme }) => ({
         "vc-border-gradient": `radial-gradient(at left top, ${theme(
           "colors.gray.500"
-        )}, 50px, ${theme("colors.gray.800")} 50%)`,
+        )}, 50px, ${theme("colors.secondary.800")} 50%)`,
       }),
       keyframes: ({ theme }) => ({
         rerender: {
@@ -88,8 +119,28 @@ module.exports = {
             opacity: "0",
           },
         },
+        planeMove: {
+          from: {
+            ["background-position"]: '0px 0px, 0px 0px'
+          },
+          to: {
+            ["background-position"]: '0px 100px, 0px 0px'
+          },
+          dashdraw: {
+            from: {
+              ["stroke-dashoffset"]: '2338'
+            },
+            to: {
+              ["stroke-dashoffset"]: '0'
+            }
+          }
+        }, animation: {
+          'planeMove': '6s linear infinite',
+          'dashdraw': '200s linear infinite reverse',
+          'fadeToTransparent': '1s linear infinite'
+        },
       }),
     },
   },
-  plugins: [require("@tailwindcss/typography"), require("@tailwindcss/forms")],
+  plugins: [require("@tailwindcss/typography"), require("@tailwindcss/forms"), rotateX, perspective],
 };

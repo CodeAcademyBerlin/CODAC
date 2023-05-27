@@ -1,6 +1,7 @@
 export { Boundary } from "./boundary";
 export { Button } from "./button";
 export { Card } from "./card";
+export * from "./card-shiny";
 export { ExternalLink } from "./external-link";
 export { RenderingPageSkeleton } from "./rendering-page-skeleton";
 export { SignIn } from "./sign-in";
