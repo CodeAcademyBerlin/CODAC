@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { getCourseBySlug } from "./getCourses";
+import { getCourseBySlug } from "#/app/strapi-queries/courses";
 
 export default async function Page({ params }: { params: { courseSlug: string } }) {
   const course = await getCourseBySlug({ slug: params.courseSlug });

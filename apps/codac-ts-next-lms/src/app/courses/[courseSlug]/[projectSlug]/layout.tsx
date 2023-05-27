@@ -1,7 +1,7 @@
 // import { ClickCounter } from '#/ui/click-counter';
 import { Boundary, TabGroup } from "codac-ui";
 
-import { getPagesByProjectSlug } from "./[pageSlug]/getPages";
+import { getPagesByProjectSlug } from "../../../strapi-queries/pages";
 
 export default async function Layout({
   children,

@@ -6,13 +6,15 @@
 /* eslint-disable @typescript-eslint/require-await */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { UsersPermissionsLoginPayload } from "codac-server-graphql";
+import type { AuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-const handler = NextAuth({
-  pages: {
-    // signIn: "/auth/signin",
-  },
 
+import type { UserLoginResponse } from "#/types/user";
+import { fetchAPI } from "#/utils/fetch-api";
+
+export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
@@ -27,7 +29,9 @@ const handler = NextAuth({
       },
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
-        const res = await fetch(`${process.env.NEXT_PUBLIC_CODAC_SERVER_URL}/api/auth/local`, {
+        const path = `/auth/local`;
+
+        const options = {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -36,18 +40,20 @@ const handler = NextAuth({
             identifier: credentials?.email,
             password: credentials?.password,
           }),
-        });
-
-        const { user, error } = await res.json();
-        console.log("user", user);
-        if (user) {
-          // Any object returned will be saved in `user` property of the JWT
+        };
+        const { jwt, user: userData } = await fetchAPI(
+          `/auth/local`,
+          { populate: "*" },
+          options,
+          false
+        );
+        console.log("userData", userData);
+        // const { user: userData, jwt, error } = await res.json();
+        if (userData && jwt) {
+          const user = { ...userData, jwt };
           return user;
         } else {
-          // If you return null then an error will be displayed advising the user to check their details.
           return null;
-
-          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }
       },
     }),
@@ -58,10 +64,12 @@ const handler = NextAuth({
     },
 
     async session({ session, token }) {
-      session.user = token as any;
+      session.user = token;
       return session;
     },
   },
-});
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

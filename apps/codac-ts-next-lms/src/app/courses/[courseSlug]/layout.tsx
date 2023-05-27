@@ -1,7 +1,7 @@
 // import { ClickCounter } from '#/ui/click-counter';
 import { Boundary, TabGroup } from "codac-ui";
 
-import { getProjectsByCoursesName } from "./[projectSlug]/getProjects";
+import { getProjectsByCoursesName } from "../../strapi-queries/projects";
 
 export default async function Layout({
   children,

@@ -19,7 +19,7 @@ export function DashboardLayout({
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head> */}
       {navigation}
-
+      {/*  */}
       <div className="lg:pl-72">
         <div className="mx-auto  space-y-8 px-2 pt-20  lg:px-8 lg:py-8">
           <div className="bg-vc-border-gradient rounded-lg p-px shadow-lg shadow-black/20">

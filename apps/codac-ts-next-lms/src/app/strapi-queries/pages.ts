@@ -50,7 +50,6 @@ export async function getPageBySlug({ slug }: { slug: string }) {
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
   const page = await fetchAPI<PageEntity[]>(path, urlParamsObject, options);
-  console.log("pageFectch", page);
   if (!page.length) {
     // Render the closest `not-found.js` Error Boundary
     notFound();

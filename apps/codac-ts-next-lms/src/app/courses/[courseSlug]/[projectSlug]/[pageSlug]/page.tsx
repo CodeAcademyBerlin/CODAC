@@ -1,13 +1,10 @@
 // import { DynamicSections } from "codac-ui";
 
+import { getPageBySlug } from "#/app/strapi-queries/pages";
 import { dynamicSections } from "#/components/dynamic-sections";
 
-import { getPageBySlug } from "./getPages";
-
 export default async function Page({ params }: { params: { pageSlug: string } }) {
-  console.log("params", params);
   const page = await getPageBySlug({ slug: params.pageSlug });
-  console.log("page", page.attributes.contentSections);
   const { contentSections } = page.attributes;
   return (
     <div className="flex ">

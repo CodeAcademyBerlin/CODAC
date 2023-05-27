@@ -13,7 +13,7 @@ export const BerlinSkyline = () => {
   return (
     <div className="absolute bottom-[40%] left-0 right-0 overflow-hidden px-10">
       <svg viewBox="0 0 667.7 259.9" className="animate-[dashdraw_200s_linear_infinite_reverse]">
-        <g stroke="#31969ac0" fill="none" id="layer1" transform="translate(529.3378,-883.68646,-4)">
+        <g stroke="#31969ac0" fill="none" id="layer1" transform="translate(529.3378,-883.68646)">
           {/* <rect id="Himmel" x="-529.3" y="883.7" width="667.7" height="259.9" /> */}
           <path
             id="Fernsehturm"

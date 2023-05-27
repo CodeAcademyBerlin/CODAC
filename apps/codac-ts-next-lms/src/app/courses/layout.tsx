@@ -1,24 +1,29 @@
-import { Boundary, DashboardLayout, GlobalNav, SignIn, TabGroup } from "codac-ui";
-import React from "react";
+"use client";
+import { DashboardLayout, GlobalNav, SignIn } from "codac-ui";
 
 import { navigation } from "#/constants/navigation";
 
-import { getCourses } from "./[courseSlug]/getCourses";
+import { useAuth } from "../hooks/useAuth";
 
 export const metadata = {
   title: "Courses",
 };
 
-export default async function Layout({ children }: { children: React.ReactNode }) {
-  const courses = await getCourses();
+export default function Layout({ children }: { children: React.ReactNode }) {
+  // const session = await getServerSession(authOptions);
+  // console.log("session", session);
+  // const courses = await getCourses();
+  const { user } = useAuth();
+  console.log("user", user);
+
   return (
     <DashboardLayout
       navigation={
-        <GlobalNav navigation={navigation} header="CODAC LMS" authentication={<SignIn />} />
+        <GlobalNav navigation={navigation} header="CODAC LMS" authentication={user?.email} />
       }
     >
       <div className="space-y-9">
-        <Boundary labels={["courses"]} color="blue">
+        {/* <Boundary labels={["courses"]} color="blue">
           <div className="flex justify-between">
             <TabGroup
               path={`/courses`}
@@ -30,9 +35,9 @@ export default async function Layout({ children }: { children: React.ReactNode }
               ]}
             />
 
-            <div className="self-start">{/* <ClickCounter /> */}</div>
+            <div className="self-start"></div>
           </div>
-        </Boundary>
+        </Boundary> */}
         <div>{children}</div>
       </div>
     </DashboardLayout>

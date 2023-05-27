@@ -1,9 +1,26 @@
-import Link from "next/link";
+import { Boundary, DashboardLayout, GlobalNav, SignIn, TabGroup } from "codac-ui";
+// import { getServerSession } from "next-auth/next";
+import React from "react";
 
-export default function Page() {
+import { getCourses } from "#/app/strapi-queries/courses";
+export default async function Page() {
+  const courses = await getCourses();
   return (
-    <div className="prose prose-sm prose-invert max-w-none">
+    <div className="">
       <h1 className="text-xl font-bold">Courses</h1>
+      <Boundary labels={["courses"]} color="blue">
+        <div className="flex justify-between">
+          <TabGroup
+            path={`/courses`}
+            items={[
+              ...courses.map((x) => ({
+                text: x.attributes.name,
+                slug: x.attributes.slug ?? "",
+              })),
+            ]}
+          />
+        </div>
+      </Boundary>
     </div>
   );
 }

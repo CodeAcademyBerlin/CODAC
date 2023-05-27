@@ -12,7 +12,16 @@ interface Response<T> {
   } | null;
 }
 
-export async function fetchAPI<T>(path: string, urlParamsObject = {}, options = {}) {
+const typeResponse = (res, datadir: boolean) => {
+  return datadir ? (res as Response<T>) : (res as T);
+};
+
+export async function fetchAPI<T>(
+  path: string,
+  urlParamsObject = {},
+  options = {},
+  dataResponse = true
+) {
   try {
     // Merge default and user options
     const mergedOptions = {
@@ -26,12 +35,16 @@ export async function fetchAPI<T>(path: string, urlParamsObject = {}, options = 
     // Build request URL
     const queryString = qs.stringify(urlParamsObject);
     const requestUrl = `${getStrapiURL(`/api${path}${queryString ? `?${queryString}` : ""}`)}`;
-    console.log("requestUrl", requestUrl);
     // Trigger API call
+    console.log("requestUrl", requestUrl);
     const response = await fetch(requestUrl, mergedOptions);
-    const { data, error } = (await response.json()) as Response<T>;
-    console.log("data", data);
+    console.log("respon", response);
 
+    const res = (await response.json()) as Response<T> | T;
+
+    const data: T = dataResponse ? res.data : res;
+
+    const error = res.error;
     if (error) {
       console.error(error);
       throw new Error(`An error occurred while fetching the API: ${requestUrl}`);

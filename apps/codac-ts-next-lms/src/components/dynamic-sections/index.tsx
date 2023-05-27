@@ -5,7 +5,6 @@ import { SectionMarkdown } from "#/components/dynamic-sections/markdown";
 import type { PageContentSectionsDynamicZone } from "#/types/page";
 
 export function dynamicSections({ section }: { section: PageContentSectionsDynamicZone }) {
-  console.log("section.__components", section.__component);
   switch (section.__component) {
     case "sections.rich-text":
       // return <article className="prose prose-slate">{section.content || ""}</article>;

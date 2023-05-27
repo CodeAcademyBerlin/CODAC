@@ -1,4 +1,4 @@
-import { getProjectByName } from "#/app/courses/[courseSlug]/[projectSlug]/getProjects";
+import { getProjectByName } from "#/app/strapi-queries/projects";
 
 export default async function Page({ params }: { params: { projectSlug: string } }) {
   const project = await getProjectByName({ slug: params.projectSlug });

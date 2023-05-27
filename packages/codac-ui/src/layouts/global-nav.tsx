@@ -18,7 +18,7 @@ export function GlobalNav({
   header,
   authentication,
 }: {
-  authentication: React.ReactNode | null;
+  authentication: string;
   navigation: { name: string; items: Item[] }[];
   header: string;
 }) {
@@ -79,7 +79,8 @@ export function GlobalNav({
             );
           })}
         </nav>
-        <SideAuth className="absolute hidden sm:block">{authentication}</SideAuth>
+
+        <SideAuth user={authentication} className="absolute hidden sm:block"></SideAuth>
       </div>
     </div>
   );

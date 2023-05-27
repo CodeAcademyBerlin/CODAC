@@ -63,9 +63,7 @@ module.exports = {
         },
       },
       backgroundImage: ({ theme }) => ({
-        "vc-border-gradient": `radial-gradient(at left top, ${theme(
-          "colors.gray.500"
-        )}, 50px, ${theme("colors.secondary.800")} 50%)`,
+        "vc-border-gradient": `radial-gradient(at left top, ${theme("colors.gray.500")}, 50px, ${theme("colors.secondary.800")}, 50%)`,
       }),
       keyframes: ({ theme }) => ({
         rerender: {
