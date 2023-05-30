@@ -1,7 +1,7 @@
-import type { DefaultSession, DefaultUser } from 'next-auth';
-import type { DefaultJWT, JWT } from 'next-auth/jwt';
+import type { DefaultSession, DefaultUser } from "next-auth";
+import type { DefaultJWT, JWT } from "next-auth/jwt";
 
-declare module 'next-auth/jwt' {
+declare module "next-auth/jwt" {
   /**
    * Returned by the `jwt` callback and `getToken`, when using JWT sessions
    *
@@ -16,7 +16,7 @@ declare module 'next-auth/jwt' {
   }
 }
 
-declare module 'next-auth' {
+declare module "next-auth" {
   /**
    * The shape of the returned object in the OAuth providers' `profile` callback,
    * available in the `jwt` and `session` callbacks,
@@ -36,6 +36,7 @@ declare module 'next-auth' {
       name?: string | null;
       email?: string | null;
       image?: string | null;
+      accessToken?: string | null;
     } & JWT;
   }
 
@@ -102,7 +103,11 @@ declare module 'next-auth' {
      * [`getSession`](https://next-auth.js.org/getting-started/client#getsession) |
      *
      */
-    session: (params: { session: Session; user: User | AdapterUser; token: JWT }) => Awaitable<Session>;
+    session: (params: {
+      session: Session;
+      user: User | AdapterUser;
+      token: JWT;
+    }) => Awaitable<Session>;
     /**
      * This callback is called whenever a JSON Web Token is created (i.e. at sign in)
      * or updated (i.e whenever a session is accessed in the client).
@@ -124,4 +129,4 @@ declare module 'next-auth' {
     }) => Awaitable<JWT>;
   }
 }
-export * from 'next-auth';
+export * from "next-auth";

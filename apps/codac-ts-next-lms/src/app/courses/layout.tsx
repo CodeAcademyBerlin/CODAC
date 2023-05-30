@@ -1,5 +1,5 @@
 "use client";
-import { DashboardLayout, GlobalNav, SignIn } from "codac-ui";
+import { GlobalNav, LMSLayout, SignIn } from "codac-ui";
 
 import { navigation } from "#/constants/navigation";
 
@@ -17,9 +17,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   console.log("user", user);
 
   return (
-    <DashboardLayout
+    <LMSLayout
       navigation={
-        <GlobalNav navigation={navigation} header="CODAC LMS" authentication={user?.email} />
+        <GlobalNav navigation={navigation} header="CODAC LMS" authentication={user?.email ?? ""} />
       }
     >
       <div className="space-y-9">
@@ -40,6 +40,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </Boundary> */}
         <div>{children}</div>
       </div>
-    </DashboardLayout>
+    </LMSLayout>
   );
 }

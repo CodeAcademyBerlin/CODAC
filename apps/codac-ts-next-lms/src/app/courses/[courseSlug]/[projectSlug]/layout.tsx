@@ -3,7 +3,7 @@ import { Boundary, TabGroup } from "codac-ui";
 
 import { getPagesByProjectSlug } from "../../../strapi-queries/pages";
 
-export default async function Layout({
+export default function Layout({
   children,
   params,
 }: {
@@ -13,16 +13,16 @@ export default async function Layout({
     courseSlug: string;
   };
 }) {
-  const { projectSlug, courseSlug } = params;
-  const {
-    pages,
-    // spikes
-  } = await getPagesByProjectSlug({ slug: projectSlug });
+  // const { projectSlug, courseSlug } = params;
+  // const {
+  //   pages,
+  //   // spikes
+  // } = await getPagesByProjectSlug({ slug: projectSlug });
 
-  const pagesLinks = pages.map((x) => ({
-    text: x.attributes.title,
-    slug: x.attributes.slug ?? "",
-  }));
+  // const pagesLinks = pages.map((x) => ({
+  //   text: x.attributes.title,
+  //   slug: x.attributes.slug ?? "",
+  // }));
   // const spikesLinks =
   //   spikes.map((x) => ({
   //     text: x.attributes.title ?? "",
@@ -30,19 +30,14 @@ export default async function Layout({
   //   })) ?? [];
   return (
     <div className="space-y-9">
-      <div className="flex gap-2">
+      {/* <div className="flex gap-2">
         <div className="flex-auto">
           <Boundary labels={["pages"]} color="orange">
             <TabGroup path={`/courses/${courseSlug}/${projectSlug}`} items={[...pagesLinks]} />
-            <div className="self-start">{/* <ClickCounter /> */}</div>
           </Boundary>
         </div>
-        {/* <div className="flex-auto">
-          <Boundary labels={["spikes"]} color="cyan">
-            <TabGroup path={`/courses/${courseSlug}/${projectSlug}`} items={[...spikesLinks]} />
-          </Boundary>
-        </div> */}
-      </div>
+     
+      </div> */}
 
       <div>{children}</div>
     </div>

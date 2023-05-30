@@ -21,39 +21,42 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   console.log("user", user);
 
   useEffect(() => {
-    const token = session?.user.jwt ?? "";
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-floating-promises
-    session && !user && getUser(token);
+    status === "authenticated" && !user && getUser();
   }, [session]);
 
-  const getUser = async (jwt: string) => {
-    const options = { headers: { Authorization: `Bearer ${jwt}` } };
-    const urlParamsObject = {
-      // sort: { createdAt: 'desc' },
-      // filters: {
-      //     category: {
-      //         slug: filter,
-      //     },
-      // },
-      populate: {
-        role: { fields: ["url"] },
-        student: {
-          populate: "*",
-        },
-        // authorsBio: {
-        //     populate: '*',
+  const getUser = async () => {
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (session?.user?.accessToken) {
+      const token = session.user.accessToken;
+      const options = { headers: { Authorization: `Bearer ${token}` } };
+      const urlParamsObject = {
+        // sort: { createdAt: 'desc' },
+        // filters: {
+        //     category: {
+        //         slug: filter,
+        //     },
         // },
-      },
-    };
-    const data = await fetchAPI<UsersPermissionsMe>("/users/me", urlParamsObject, options, false);
+        populate: {
+          role: { fields: ["url"] },
+          student: {
+            populate: "*",
+          },
+          // authorsBio: {
+          //     populate: '*',
+          // },
+        },
+      };
+      const data = await fetchAPI<UsersPermissionsMe>("/users/me", urlParamsObject, options, false);
 
-    if (!data) {
-      // Render the closest `not-found.js` Error Boundary
-      notFound();
-    } else {
-      setUser(data);
+      if (!data) {
+        // Render the closest `not-found.js` Error Boundary
+        notFound();
+      } else {
+        setUser(data);
 
-      return null;
+        return null;
+      }
     }
   };
 

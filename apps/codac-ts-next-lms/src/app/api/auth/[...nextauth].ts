@@ -1,12 +1,3 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/require-await */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-import { UsersPermissionsLoginPayload } from "codac-server-graphql";
 import type { AuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -41,7 +32,7 @@ export const authOptions: AuthOptions = {
             password: credentials?.password,
           }),
         };
-        const { jwt, user: userData } = await fetchAPI(
+        const { jwt: accessToken, user: userData } = await fetchAPI<UserLoginResponse>(
           `/auth/local`,
           { populate: "*" },
           options,
@@ -49,8 +40,8 @@ export const authOptions: AuthOptions = {
         );
         console.log("userData", userData);
         // const { user: userData, jwt, error } = await res.json();
-        if (userData && jwt) {
-          const user = { ...userData, jwt };
+        if (userData && accessToken) {
+          const user = { ...userData, accessToken };
           return user;
         } else {
           return null;
@@ -59,17 +50,17 @@ export const authOptions: AuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    jwt({ token, user }) {
       return { ...token, ...user };
     },
 
-    async session({ session, token }) {
+    session({ session, token }) {
       session.user = token;
       return session;
     },
   },
 };
 
-const handler = NextAuth(authOptions);
-
-export { handler as GET, handler as POST };
+export default NextAuth(authOptions);
+// const handler = NextAuth(authOptions);
+// export { handler as GET, handler as POST };

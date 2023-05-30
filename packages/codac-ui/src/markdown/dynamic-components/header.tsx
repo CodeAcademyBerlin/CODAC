@@ -9,11 +9,10 @@ interface Props {
 }
 
 export const SectionHeader = ({ data }: Props) => {
-  console.log("Header", data);
   return (
-    <>
-      <h1>Title: {data.title}</h1>
-      <p>Subtitle: {data.subtitle}</p>
-    </>
+    <div className="space-y-1.5">
+      <div className="text-secondary text-center text-2xl font-bold leading-snug">{data.title}</div>
+      <div className="text-sm leading-snug text-white">{data.subtitle}</div>
+    </div>
   );
 };

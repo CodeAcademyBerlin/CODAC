@@ -38,6 +38,7 @@ export async function getPagesByProjectSlug({ slug }: { slug: string }) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   return {
     pages: pages.data,
+    project,
     // spikes: spikes.data
   };
 }

@@ -7,7 +7,6 @@ export default async function Page() {
   const courses = await getCourses();
   return (
     <div className="">
-      <h1 className="text-xl font-bold">Courses</h1>
       <Boundary labels={["courses"]} color="blue">
         <div className="flex justify-between">
           <TabGroup
