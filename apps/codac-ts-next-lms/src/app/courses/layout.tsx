@@ -5,9 +5,9 @@ import { navigation } from "#/constants/navigation";
 
 import { useAuth } from "../hooks/useAuth";
 
-export const metadata = {
-  title: "Courses",
-};
+// export const metadata = {
+//   title: "Courses",
+// };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   // const session = await getServerSession(authOptions);

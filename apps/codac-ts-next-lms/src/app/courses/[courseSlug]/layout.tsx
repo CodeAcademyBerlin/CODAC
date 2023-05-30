@@ -5,10 +5,10 @@
 
 export default function Layout({
   children,
-  params,
-}: {
+}: // params,
+{
   children: React.ReactNode;
-  params: { courseSlug: string };
+  // params: { courseSlug: string };
 }) {
   // const courseSlug = params.courseSlug;
   // const projects = await getProjectsByCoursesName({ slug: courseSlug });
