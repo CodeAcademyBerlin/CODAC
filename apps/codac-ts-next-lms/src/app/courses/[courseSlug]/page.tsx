@@ -5,21 +5,25 @@ import { getCourseBySlug } from "#/app/strapi-queries/courses";
 
 export default async function Page({ params }: { params: { courseSlug: string } }) {
   const course = await getCourseBySlug({ slug: params.courseSlug });
-  const { projects } = course.attributes;
-  const projectTimeline = projects?.data.map((project) => ({
-    title: project.attributes.name,
-    description: project.attributes.description ?? "",
-    date: project.attributes.length?.toString() ?? "",
-    href: `./courses/${params.courseSlug}/${project.attributes.slug ?? ""}`,
-  }));
+  const { projects, objectives } = course.attributes;
+  // const projectTimeline = projects?.data.map((project) => ({
+  //   title: project.attributes.name,
+  //   description: project.attributes.description ?? "",
+  //   date: project.attributes.length?.toString() ?? "",
+  //   href: `./courses/${params.courseSlug}/${project.attributes.slug ?? ""}`,
+  // }));
   return (
     <div className="space-y-4">
       <h1 className="text-4xl font-bold text-gray-200">{course.attributes.name}</h1>
       <p className="text-gray-400">{course.attributes.description}</p>
-      {/* <p className="text-gray-400">{course.attributes.objectives}</p> */}
+      {/* {objectives.map((objective) => (
+        <p key={objective} className="text-gray-400">
+          {objective}
+        </p>
+      ))} */}
 
       <Boundary labels={["projects"]} color="violet">
-        {projectTimeline && <Timeline color="violet" items={projectTimeline} />}
+        {/* {projectTimeline && <Timeline color="violet" items={projectTimeline} />} */}
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
           {projects?.data.map((project) => {
             return (

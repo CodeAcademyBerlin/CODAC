@@ -5,6 +5,9 @@ query getAllCourses {
       attributes {
         name
         description
+        objectives {
+          name
+        }
         mentors {
           data {
             attributes {

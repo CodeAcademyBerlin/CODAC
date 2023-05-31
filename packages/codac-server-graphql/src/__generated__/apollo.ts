@@ -51,6 +51,9 @@ export const GetAllCoursesDocument = gql`
       attributes {
         name
         description
+        objectives {
+          name
+        }
         mentors {
           data {
             attributes {
