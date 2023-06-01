@@ -69,7 +69,7 @@ export const GetAllCoursesDocument = gql`
             }
           }
         }
-        length
+        calc_length
       }
     }
   }
@@ -108,20 +108,13 @@ export const GetCourseProjectDocument = gql`
     data {
       attributes {
         name
-        length
+        calc_length
         projects(filters: {id: {eq: $projectIds}}) {
           data {
             id
             attributes {
               name
               description
-              spikes {
-                data {
-                  attributes {
-                    title
-                  }
-                }
-              }
               pages {
                 data {
                   attributes {
@@ -218,7 +211,7 @@ export const GetCourseByNameDocument = gql`
       attributes {
         name
         description
-        length
+        calc_length
         createdAt
         projects {
           data {
@@ -226,10 +219,19 @@ export const GetCourseByNameDocument = gql`
             attributes {
               name
               description
-              spikes {
-                data {
-                  attributes {
-                    title
+              sprints {
+                name
+                length
+                objectives {
+                  name
+                }
+                pages {
+                  data {
+                    attributes {
+                      title
+                      slug
+                      locale
+                    }
                   }
                 }
               }
@@ -400,12 +402,19 @@ export const GetProjectsDocument = gql`
       attributes {
         name
         description
-        spikes {
-          data {
-            id
-            attributes {
-              title
-              day
+        sprints {
+          name
+          length
+          objectives {
+            name
+          }
+          pages {
+            data {
+              attributes {
+                title
+                slug
+                locale
+              }
             }
           }
         }
@@ -448,13 +457,20 @@ export const GetProjectDocument = gql`
       attributes {
         name
         description
-        length
-        spikes {
-          data {
-            id
-            attributes {
-              title
-              day
+        calc_length
+        sprints {
+          name
+          length
+          objectives {
+            name
+          }
+          pages {
+            data {
+              attributes {
+                title
+                slug
+                locale
+              }
             }
           }
         }
@@ -498,7 +514,7 @@ export const GetSpikesDocument = gql`
       id
       attributes {
         title
-        day
+        sprint_day
         recording {
           data {
             attributes {
@@ -552,7 +568,7 @@ export const GetSpikeDocument = gql`
     data {
       attributes {
         title
-        day
+        sprint_day
         recording {
           data {
             attributes {

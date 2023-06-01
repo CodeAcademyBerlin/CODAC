@@ -16,28 +16,28 @@ export async function getPagesByProjectSlug({ slug }: { slug: string }) {
   const path = `/projects`;
   const urlParamsObject = {
     filters: { slug },
-    populate: "*",
+    populate: "sprints.pages",
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
   const projects = await fetchAPI<ProjectEntity[]>(path, urlParamsObject, options);
   const project = projects[0];
+  console.log("project", project);
 
-  if (!project.attributes.pages) {
+  if (!projects) {
     // Render the closest `not-found.js` Error Boundary
     notFound();
   }
-  const pages = project.attributes.pages;
+  // const { sprints } = project.attributes.sprints;
 
   // const spikes = project?.attributes?.spikes ?? [];
 
-  if (!pages.data.length) {
-    // Render the closest `not-found.js` Error Boundary
-    notFound();
-  }
+  // if (!sprints.length) {
+  //   // Render the closest `not-found.js` Error Boundary
+  //   notFound();
+  // }
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   return {
-    pages: pages.data,
     project,
     // spikes: spikes.data
   };

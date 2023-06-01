@@ -1,5 +1,5 @@
 "use client";
-import { GlobalNav, LMSLayout, SignIn } from "codac-ui";
+import { GlobalNav, Header, LMSLayout, SignIn } from "codac-ui";
 
 import { navigation } from "#/constants/navigation";
 
@@ -17,11 +17,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   console.log("user", user);
 
   return (
-    <LMSLayout
-      navigation={
-        <GlobalNav navigation={navigation} header="CODAC LMS" authentication={user?.email ?? ""} />
-      }
-    >
+    <LMSLayout navigation={<Header />}>
       <div className="space-y-9">
         {/* <Boundary labels={["courses"]} color="blue">
           <div className="flex justify-between">

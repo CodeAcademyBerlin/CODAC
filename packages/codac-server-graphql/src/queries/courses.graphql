@@ -23,7 +23,7 @@ query getAllCourses {
             }
           }
         }
-        length
+        calc_length
       }
     }
   }
@@ -33,20 +33,15 @@ query getCourseProject($name: String, $projectIds: ID) {
     data {
       attributes {
         name
-        length
+        calc_length
+
         projects(filters: { id: { eq: $projectIds } }) {
           data {
             id
             attributes {
               name
               description
-              spikes {
-                data {
-                  attributes {
-                    title
-                  }
-                }
-              }
+
               pages {
                 data {
                   attributes {
@@ -82,7 +77,7 @@ query getCourseByName($name: String!) {
       attributes {
         name
         description
-        length
+        calc_length
         createdAt
         projects {
           data {
@@ -90,10 +85,19 @@ query getCourseByName($name: String!) {
             attributes {
               name
               description
-              spikes {
-                data {
-                  attributes {
-                    title
+              sprints {
+                name
+                length
+                objectives {
+                  name
+                }
+                pages {
+                  data {
+                    attributes {
+                      title
+                      slug
+                      locale
+                    }
                   }
                 }
               }
