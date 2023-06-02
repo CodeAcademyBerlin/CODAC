@@ -45,8 +45,7 @@ export function LMSAddressBar() {
   const pathname = usePathname();
   const segments = pathname.split("/").slice(1) ?? [];
   const lmsSegments = pathname.split("/").slice(2) ?? [];
-  console.log("lmsSegments", lmsSegments);
-  console.log("segments", segments);
+
   return (
     <div className="flex flex-col gap-y-3 ">
       {/* <div className="text-gray-600">

@@ -2,7 +2,7 @@ const shimmer = `relative overflow-hidden before:absolute before:inset-0 before:
 
 export function RenderingPageSkeleton() {
   return (
-    <div className="grid grid-cols-6 gap-x-6 gap-y-3">
+    <div className="grid grid-cols-6 gap-y-3">
       <div className="col-span-full space-y-3 lg:col-span-4">
         <div className={`h-8 rounded-lg bg-gray-700 ${shimmer}`} />
         <div className={`h-[72px] rounded-lg bg-gray-800 ${shimmer}`} />

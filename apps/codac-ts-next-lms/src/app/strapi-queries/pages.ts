@@ -16,12 +16,11 @@ export async function getProjectBySlug({ slug }: { slug: string }) {
   const path = `/projects`;
   const urlParamsObject = {
     filters: { slug },
-    populate: "sprints.pages",
+    populate: ["sprints.pages", "sprints.spikes", "sprints.objectives"],
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
   const projects = await fetchAPI<ProjectEntity[]>(path, urlParamsObject, options);
   const project = projects[0];
-  console.log("project", project);
 
   if (!projects) {
     // Render the closest `not-found.js` Error Boundary
