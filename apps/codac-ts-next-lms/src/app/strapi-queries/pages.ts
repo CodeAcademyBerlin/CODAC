@@ -11,7 +11,7 @@ import { notFound } from "next/navigation";
 import type { PageEntity } from "#/types/page";
 import { fetchAPI } from "#/utils/fetch-api";
 
-export async function getPagesByProjectSlug({ slug }: { slug: string }) {
+export async function getProjectBySlug({ slug }: { slug: string }) {
   const token = process.env.CODAC_SSG_TOKEN ?? "";
   const path = `/projects`;
   const urlParamsObject = {

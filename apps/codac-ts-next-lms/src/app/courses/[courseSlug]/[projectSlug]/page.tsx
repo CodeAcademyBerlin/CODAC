@@ -1,7 +1,7 @@
-import { Boundary, TabGroup } from "codac-ui";
+import { Boundary, TabGroup, Timeline } from "codac-ui";
 import Link from "next/link";
 
-import { getPagesByProjectSlug } from "#/app/strapi-queries/pages";
+import { getProjectBySlug } from "#/app/strapi-queries/pages";
 
 export default async function Page({
   params,
@@ -10,8 +10,7 @@ export default async function Page({
 }) {
   // const project = await getProjectByName({ slug: params.projectSlug });
   const { projectSlug, courseSlug } = params;
-  const { project } = await getPagesByProjectSlug({ slug: projectSlug });
-  console.log("project", project);
+  const { project } = await getProjectBySlug({ slug: projectSlug });
   const { sprints, name, description } = project.attributes;
   // const sprintsLinks = sprints.map((x) => ({
   //   text: x.name ?? "",
@@ -21,7 +20,12 @@ export default async function Page({
   //   // Render the closest `not-found.js` Error Boundary
   //   notFound();
   // }
-  console.log("sprints", sprints);
+  const projectTimeline = sprints?.map((sprint) => ({
+    title: sprint?.name ?? "",
+    description: "",
+    date: sprint?.length ?? "",
+    href: ``,
+  }));
   return (
     <div className="space-y-4">
       <h2 className="text-2xl font-bold text-gray-200">{name}</h2>
@@ -29,11 +33,10 @@ export default async function Page({
 
       <div className="grid grid-cols-1 gap-5">
         {/* <TabGroup path={`/courses/${courseSlug}/${projectSlug}`} items={[...sprintsLinks]} /> */}
+        {/* {projectTimeline && <Timeline color="violet" items={projectTimeline} />} */}
 
         {sprints?.map((sprint) => {
-          console.log("sprint", sprint);
           const pages = sprint?.pages?.data ?? [];
-          console.log("pages", pages);
           return (
             <div key={sprint?.id} className="font-medium text-gray-200 group-hover:text-gray-50">
               <h3 className="text-2xl font-bold text-gray-200">{sprint?.name}</h3>
@@ -76,3 +79,4 @@ export default async function Page({
     </div>
   );
 }
+export const dynamic = "force-static";

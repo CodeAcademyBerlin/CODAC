@@ -5,7 +5,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { type } from "os";
 import React, { Suspense } from "react";
 
-import { Boundary } from "../components";
+import { Boundary, Button } from "../components";
 // function Params() {
 //   const searchParams = useSearchParams()!;
 
@@ -67,7 +67,11 @@ export function LMSAddressBar() {
          <div>
           <span className="px-2 text-gray-400">acme.com</span>
         </div> */}
-
+      <div className="my-2">
+        <Link href="/courses">
+          <Button color="cyan">courses</Button>
+        </Link>
+      </div>
       {lmsSegments.map((segment, i) => {
         return (
           <Boundary size="small" key={segment} labels={[labels[i].label]} color={labels[i].color}>

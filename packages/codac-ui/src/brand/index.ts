@@ -1,6 +1,6 @@
-export * from "./berlin-skyline";
-export * from "./brand-logo";
-export * from "./brand-text";
-export * from "./codac-font";
-export * from "./codac-logo";
-export * from "./tron-grid";
+export { BerlinSkyline } from "./berlin-skyline";
+export { BrandLogo, NeonAnim } from "./brand-logo";
+export { BrandText } from "./brand-text";
+export { codacFont, codacFontClass } from "./codac-font";
+export { CodacLogo } from "./codac-logo";
+export { TronGrid } from "./tron-grid";

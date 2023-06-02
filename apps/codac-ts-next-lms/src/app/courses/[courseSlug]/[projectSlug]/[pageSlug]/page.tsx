@@ -14,3 +14,4 @@ export default async function Page({ params }: { params: { pageSlug: string } })
     </div>
   );
 }
+export const dynamic = "force-static";

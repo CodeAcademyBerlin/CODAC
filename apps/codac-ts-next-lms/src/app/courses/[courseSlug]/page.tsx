@@ -49,3 +49,5 @@ export default async function Page({ params }: { params: { courseSlug: string } 
     </div>
   );
 }
+// export const revalidate = "force-cache";
+export const dynamic = "force-static";

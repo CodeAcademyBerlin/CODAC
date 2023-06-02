@@ -1,9 +1,9 @@
-"use client";
+// "use client";
 import { GlobalNav, Header, LMSLayout, SignIn } from "codac-ui";
 
 import { navigation } from "#/constants/navigation";
 
-import { useAuth } from "../hooks/useAuth";
+// import { useAuth } from "../hooks/useAuth";
 
 // export const metadata = {
 //   title: "Courses",
@@ -13,8 +13,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   // const session = await getServerSession(authOptions);
   // console.log("session", session);
   // const courses = await getCourses();
-  const { user } = useAuth();
-  console.log("user", user);
+  // const { user } = useAuth();
+  // console.log("user", user);
 
   return (
     <LMSLayout navigation={<Header />}>

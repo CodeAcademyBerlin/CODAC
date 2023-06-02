@@ -1,2 +1,2 @@
-export * from "./use-mounted";
-export * from "./use-theme";
+export { useMounted } from "./use-mounted";
+export { useTheme } from "./use-theme";

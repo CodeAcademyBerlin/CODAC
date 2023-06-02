@@ -123,22 +123,26 @@ module.exports = {
           },
           to: {
             ["background-position"]: '0px 100px, 0px 0px'
-          },
-          dashdraw: {
-            from: {
-              ["stroke-dashoffset"]: '2338'
-            },
-            to: {
-              ["stroke-dashoffset"]: '0'
-            }
           }
-        }, animation: {
-          'planeMove': '6s linear infinite',
-          'dashdraw': '200s linear infinite reverse',
-          'fadeToTransparent': '1s linear infinite'
-        },
-      }),
+        }
+        ,
+        dashdraw: {
+          from: {
+            ["stroke-dashoffset"]: '2338',
+            ["stroke-dasharray"]: '2338'
+          },
+          to: {
+            ["stroke-dashoffset"]: '0',
+            ["stroke-dasharray"]: '2338'
+          }
+        }
+      }), animation: {
+        'planeMove': '6s linear infinite',
+        'dashdraw': '200s linear infinite reverse',
+        'fadeToTransparent': '1s linear infinite'
+      },
     },
   },
+
   plugins: [require("@tailwindcss/typography"), require("@tailwindcss/forms"), rotateX, perspective],
 };

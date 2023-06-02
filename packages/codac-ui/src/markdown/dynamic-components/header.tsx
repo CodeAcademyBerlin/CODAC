@@ -10,9 +10,9 @@ interface Props {
 
 export const SectionHeader = ({ data }: Props) => {
   return (
-    <div className="space-y-1.5">
-      <div className="text-secondary text-center text-2xl font-bold leading-snug">{data.title}</div>
-      <div className="text-sm leading-snug text-white">{data.subtitle}</div>
+    <div className="mb-8 space-y-1.5">
+      <div className="text-secondary text-center text-3xl font-bold leading-snug">{data.title}</div>
+      <div className="text-md text-center leading-snug text-gray-100">{data.subtitle}</div>
     </div>
   );
 };

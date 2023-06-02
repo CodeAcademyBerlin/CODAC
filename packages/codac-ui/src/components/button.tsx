@@ -1,17 +1,12 @@
-import clsx from "clsx";
-
 export function Button({
-  kind = "default",
+  color = "pink",
   ...props
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  kind?: "default" | "error";
+  color?: "pink" | "blue" | "violet" | "cyan" | "orange";
 }) {
   return (
     <button
-      className={clsx("rounded-lg px-3 py-1 text-sm font-medium", {
-        "bg-gray-700 text-gray-100 hover:bg-gray-500 hover:text-white": kind === "default",
-        "bg-vercel-pink text-red-50 hover:bg-pink-600 hover:text-white": kind === "error",
-      })}
+      className={`cursor-pointer rounded-lg border-2 border-codac-${color} px-3 py-2 text-gray-100 hover:bg-codac-${color} hover:text-codac-${color}`}
       {...props}
     />
   );
