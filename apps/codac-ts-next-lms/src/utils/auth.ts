@@ -1,13 +1,19 @@
+/* eslint-disable turbo/no-undeclared-env-vars */
+import type { UsersPermissionsLoginPayload, UsersPermissionsUser } from "codac-server-graphql";
 import type { AuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
-import CredentialsProvider from "next-auth/providers/credentials";
+// import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 
-import type { UserLoginResponse } from "#/types/user";
 import { fetchAPI } from "#/utils/fetch-api";
 
 export const authOptions: AuthOptions = {
   providers: [
-    CredentialsProvider({
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID ?? "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
+    }),
+    /*  CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
       name: "Credentials",
       // `credentials` is used to generate a form on the sign in page.
@@ -20,8 +26,6 @@ export const authOptions: AuthOptions = {
       },
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
-        const path = `/auth/local`;
-
         const options = {
           method: "POST",
           headers: {
@@ -47,15 +51,76 @@ export const authOptions: AuthOptions = {
           return null;
         }
       },
-    }),
+    }), */
   ],
   callbacks: {
-    jwt({ token, user }) {
-      return { ...token, ...user };
+    async signIn({ account, profile }) {
+      if (account?.provider === "google") {
+        console.log("profile", profile);
+        const token = process.env.CODAC_SSG_TOKEN ?? "";
+
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+
+        const users = await fetchAPI<UsersPermissionsUser[]>(
+          `/users`,
+          {
+            filters: { email: profile?.email },
+          },
+          options,
+          false
+        );
+
+        if (users.length && users[0].email === profile?.email) {
+          return true;
+          // return profile.email_verified && profile.email.endsWith(profile.email);
+        }
+        return "/unauthorized";
+      }
+      return false;
+      // return true;Do different verification for other providers that don't have `email_verified`
     },
 
+    async jwt({ token, account }) {
+      if (account?.provider === "google") {
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+
+        const { jwt, user: userData } = await fetchAPI<UsersPermissionsLoginPayload>(
+          `/auth/${account.provider}/callback`,
+          { access_token: account.access_token },
+          options,
+          false
+        );
+
+        if (jwt != null) {
+          token.accessToken = jwt;
+          token.id = userData.id;
+        }
+      }
+      // If we are using credentials, we already have the token from strapi
+      // else {
+      //   // (token.id = user.id), (token.jwt = user.jwt);
+      //   return { ...token, ...user };
+      // }
+      return token;
+    },
     session({ session, token }) {
-      session.user = token;
+      // Send properties to the client, like an access_token and user id from a provider.
+      if (session.user) {
+        session.user.accessToken = token.accessToken;
+        session.user.id = token.id;
+      }
+
       return session;
     },
   },

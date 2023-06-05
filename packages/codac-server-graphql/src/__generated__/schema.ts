@@ -435,18 +435,6 @@ export type ComponentAchievementAchievement = {
   unlockedOn?: Maybe<Scalars['DateTime']>;
 };
 
-export type ComponentAttendanceAttendanceDay = {
-  __typename?: 'ComponentAttendanceAttendanceDay';
-  id: Scalars['ID'];
-};
-
-export type ComponentAttendanceAttendanceHour = {
-  __typename?: 'ComponentAttendanceAttendanceHour';
-  hour?: Maybe<Scalars['Time']>;
-  id: Scalars['ID'];
-  present?: Maybe<Scalars['Boolean']>;
-};
-
 export type ComponentCardsBlogCard = {
   __typename?: 'ComponentCardsBlogCard';
   dateTime?: Maybe<Scalars['DateTime']>;
@@ -788,6 +776,24 @@ export type ComponentLmsSprintsInput = {
   spikes?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
 };
 
+export type ComponentLmsTags = {
+  __typename?: 'ComponentLmsTags';
+  id: Scalars['ID'];
+  tag?: Maybe<Scalars['String']>;
+};
+
+export type ComponentLmsTagsFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentLmsTagsFiltersInput>>>;
+  not?: InputMaybe<ComponentLmsTagsFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentLmsTagsFiltersInput>>>;
+  tag?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentLmsTagsInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  tag?: InputMaybe<Scalars['String']>;
+};
+
 export type ComponentMetaMetadata = {
   __typename?: 'ComponentMetaMetadata';
   id: Scalars['ID'];
@@ -990,6 +996,7 @@ export type Course = {
   calc_length?: Maybe<Scalars['Int']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
+  image?: Maybe<UploadFileEntityResponse>;
   mentors?: Maybe<MentorRelationResponseCollection>;
   name: Scalars['String'];
   objectives?: Maybe<Array<Maybe<ComponentLmsObjectives>>>;
@@ -1058,6 +1065,7 @@ export type CourseFiltersInput = {
 export type CourseInput = {
   calc_length?: InputMaybe<Scalars['Int']>;
   description?: InputMaybe<Scalars['String']>;
+  image?: InputMaybe<Scalars['ID']>;
   mentors?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   name?: InputMaybe<Scalars['String']>;
   objectives?: InputMaybe<Array<InputMaybe<ComponentLmsObjectivesInput>>>;
@@ -1313,7 +1321,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = Achievement | Attendance | Chat | CodacOverflow | CodingChallenge | Cohort | ComponentAchievementAchievement | ComponentAttendanceAttendanceDay | ComponentAttendanceAttendanceHour | ComponentCardsBlogCard | ComponentChatMessage | ComponentCommentsComments | ComponentFeedbackFeedback | ComponentHolidaysHoliday | ComponentHoursHours | ComponentKanbanBoard | ComponentKanbanCard | ComponentKanbanColumn | ComponentLeadLifecycle | ComponentLinksButton | ComponentLinksButtonLink | ComponentLinksLink | ComponentLmsObjectives | ComponentLmsSprints | ComponentMetaMetadata | ComponentMetaTags | ComponentNotificationNotifications | ComponentRatingRatings | ComponentSectionsBottomActions | ComponentSectionsFeatureColumnsGroup | ComponentSectionsFeatureRowsGroup | ComponentSectionsFile | ComponentSectionsGoogleSlide | ComponentSectionsHeader | ComponentSectionsHero | ComponentSectionsLargeVideo | ComponentSectionsLeadForm | ComponentSectionsRichText | ComponentSectionsTestimonialsGroup | ComponentStudentAchievement | ComponentStudentProject | ComponentStudentTimeOff | Course | EmailDesignerEmailTemplate | Holiday | I18NLocale | JobPost | Lead | LmsFeedback | Mentor | Page | Project | Spike | Student | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VsBattle;
+export type GenericMorph = Achievement | Attendance | Chat | CodacOverflow | CodingChallenge | Cohort | ComponentAchievementAchievement | ComponentCardsBlogCard | ComponentChatMessage | ComponentCommentsComments | ComponentFeedbackFeedback | ComponentHolidaysHoliday | ComponentHoursHours | ComponentKanbanBoard | ComponentKanbanCard | ComponentKanbanColumn | ComponentLeadLifecycle | ComponentLinksButton | ComponentLinksButtonLink | ComponentLinksLink | ComponentLmsObjectives | ComponentLmsSprints | ComponentLmsTags | ComponentMetaMetadata | ComponentMetaTags | ComponentNotificationNotifications | ComponentRatingRatings | ComponentSectionsBottomActions | ComponentSectionsFeatureColumnsGroup | ComponentSectionsFeatureRowsGroup | ComponentSectionsFile | ComponentSectionsGoogleSlide | ComponentSectionsHeader | ComponentSectionsHero | ComponentSectionsLargeVideo | ComponentSectionsLeadForm | ComponentSectionsRichText | ComponentSectionsTestimonialsGroup | ComponentStudentAchievement | ComponentStudentProject | ComponentStudentTimeOff | Course | EmailDesignerEmailTemplate | Holiday | I18NLocale | JobPost | Lead | LmsFeedback | Mentor | Page | Project | Spike | Student | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VsBattle;
 
 export type GenericServerResponse = {
   __typename?: 'GenericServerResponse';
@@ -2385,6 +2393,7 @@ export type Page = {
 data: ComponentMetaMetadata;
   publishedAt?: Maybe<Scalars['DateTime']>;
   slug?: Maybe<Scalars['String']>;
+  tags?: Maybe<Array<Maybe<ComponentLmsTags>>>;
   title: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -2394,6 +2403,13 @@ export type PageLocalizationsArgs = {
   filters?: InputMaybe<PageFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type PageTagsArgs = {
+  filters?: InputMaybe<ComponentLmsTagsFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -2428,6 +2444,7 @@ export type PageFiltersInput = {
   or?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
+  tags?: InputMaybe<ComponentLmsTagsFiltersInput>;
   title?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
@@ -2438,6 +2455,7 @@ export type PageInput = {
   metadata?: InputMaybe<ComponentMetaMetadataInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   slug?: InputMaybe<Scalars['String']>;
+  tags?: InputMaybe<Array<InputMaybe<ComponentLmsTagsInput>>>;
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -2467,19 +2485,10 @@ export type Project = {
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   name: Scalars['String'];
-  pages?: Maybe<PageRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   slug?: Maybe<Scalars['String']>;
   sprints?: Maybe<Array<Maybe<ComponentLmsSprints>>>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-
-export type ProjectPagesArgs = {
-  filters?: InputMaybe<PageFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -2515,7 +2524,6 @@ export type ProjectFiltersInput = {
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ProjectFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ProjectFiltersInput>>>;
-  pages?: InputMaybe<PageFiltersInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
   sprints?: InputMaybe<ComponentLmsSprintsFiltersInput>;
@@ -2526,7 +2534,6 @@ export type ProjectInput = {
   calc_length?: InputMaybe<Scalars['Int']>;
   description?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
-  pages?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   slug?: InputMaybe<Scalars['String']>;
   sprints?: InputMaybe<Array<InputMaybe<ComponentLmsSprintsInput>>>;
@@ -2957,7 +2964,6 @@ export type StringFilterInput = {
 
 export type Student = {
   __typename?: 'Student';
-  TimeOff?: Maybe<Array<Maybe<ComponentStudentTimeOff>>>;
   alumni?: Maybe<Scalars['Boolean']>;
   attendances?: Maybe<AttendanceRelationResponseCollection>;
   cohort?: Maybe<CohortEntityResponse>;
@@ -2970,13 +2976,6 @@ export type Student = {
   start_date?: Maybe<Scalars['Date']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   user?: Maybe<UsersPermissionsUserEntityResponse>;
-};
-
-
-export type StudentTimeOffArgs = {
-  filters?: InputMaybe<ComponentStudentTimeOffFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -3004,7 +3003,6 @@ export type StudentEntityResponseCollection = {
 };
 
 export type StudentFiltersInput = {
-  TimeOff?: InputMaybe<ComponentStudentTimeOffFiltersInput>;
   alumni?: InputMaybe<BooleanFilterInput>;
   and?: InputMaybe<Array<InputMaybe<StudentFiltersInput>>>;
   attendances?: InputMaybe<AttendanceFiltersInput>;
@@ -3024,7 +3022,6 @@ export type StudentFiltersInput = {
 };
 
 export type StudentInput = {
-  TimeOff?: InputMaybe<Array<InputMaybe<ComponentStudentTimeOffInput>>>;
   alumni?: InputMaybe<Scalars['Boolean']>;
   attendances?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   cohort?: InputMaybe<Scalars['ID']>;
@@ -3558,7 +3555,7 @@ export type GetCourseProjectQueryVariables = Exact<{
 }>;
 
 
-export type GetCourseProjectQuery = { __typename?: 'Query', courses?: { __typename?: 'CourseEntityResponseCollection', data: Array<{ __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name: string, calc_length?: number | null, projects?: { __typename?: 'ProjectRelationResponseCollection', data: Array<{ __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', name: string, description?: string | null, pages?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', title: string, slug?: string | null, locale?: string | null } | null }> } | null } | null }> } | null } | null }> } | null };
+export type GetCourseProjectQuery = { __typename?: 'Query', courses?: { __typename?: 'CourseEntityResponseCollection', data: Array<{ __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name: string, calc_length?: number | null, projects?: { __typename?: 'ProjectRelationResponseCollection', data: Array<{ __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', name: string, description?: string | null, sprints?: Array<{ __typename?: 'ComponentLmsSprints', pages?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', title: string, slug?: string | null, locale?: string | null } | null }> } | null } | null> | null } | null }> } | null } | null }> } | null };
 
 export type GetCourseProjectsQueryVariables = Exact<{
   name?: InputMaybe<Scalars['String']>;

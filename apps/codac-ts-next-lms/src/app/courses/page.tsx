@@ -2,7 +2,7 @@ import { Boundary, DashboardLayout, GlobalNav, SignIn, TabGroup } from "codac-ui
 // import { getServerSession } from "next-auth/next";
 import React from "react";
 
-import { getCourses } from "#/app/strapi-queries/courses";
+import { getCourses } from "#/strapi-queries/courses";
 export default async function Page() {
   const courses = await getCourses();
   return (

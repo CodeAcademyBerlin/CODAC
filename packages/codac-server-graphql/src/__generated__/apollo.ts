@@ -115,12 +115,14 @@ export const GetCourseProjectDocument = gql`
             attributes {
               name
               description
-              pages {
-                data {
-                  attributes {
-                    title
-                    slug
-                    locale
+              sprints {
+                pages {
+                  data {
+                    attributes {
+                      title
+                      slug
+                      locale
+                    }
                   }
                 }
               }

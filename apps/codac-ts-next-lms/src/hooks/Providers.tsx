@@ -4,7 +4,7 @@ import { ThemeProvider } from "codac-ui";
 import { SessionProvider } from "next-auth/react";
 import React, { type ReactNode } from "react";
 
-import { AuthProvider } from "#/app/hooks/useAuth";
+import { AuthProvider } from "#/hooks/useAuth";
 interface Props {
   children: ReactNode;
 }

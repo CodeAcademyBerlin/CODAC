@@ -18,6 +18,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState<boolean>(true);
   const [user, setUser] = useState<UsersPermissionsMe | null>(null);
   console.log("session", session);
+  console.log("status", status);
   console.log("user", user);
 
   useEffect(() => {
@@ -37,15 +38,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         //         slug: filter,
         //     },
         // },
-        populate: {
-          role: { fields: ["url"] },
-          student: {
-            populate: "*",
-          },
-          // authorsBio: {
-          //     populate: '*',
-          // },
-        },
+        populate: ["role", "student"],
+        // role: { fields: ["url"] },
+        // student: {
+        //   populate: "*",
+        // },
+        // authorsBio: {
+        //     populate: '*',
+        // },
+        // },
       };
       const data = await fetchAPI<UsersPermissionsMe>("/users/me", urlParamsObject, options, false);
 

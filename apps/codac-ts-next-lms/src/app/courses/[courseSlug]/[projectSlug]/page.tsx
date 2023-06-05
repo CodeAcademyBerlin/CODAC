@@ -1,7 +1,7 @@
 import { Boundary, TabGroup, Timeline } from "codac-ui";
 import Link from "next/link";
 
-import { getProjectBySlug } from "#/app/strapi-queries/pages";
+import { getProjectBySlug } from "#/strapi-queries/pages";
 
 export default async function Page({
   params,

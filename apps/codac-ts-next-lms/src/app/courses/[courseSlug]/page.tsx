@@ -1,7 +1,7 @@
 import { Boundary, Timeline } from "codac-ui";
 import Link from "next/link";
 
-import { getCourseBySlug } from "#/app/strapi-queries/courses";
+import { getCourseBySlug } from "#/strapi-queries/courses";
 
 export default async function Page({ params }: { params: { courseSlug: string } }) {
   const course = await getCourseBySlug({ slug: params.courseSlug });
