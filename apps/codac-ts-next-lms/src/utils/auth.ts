@@ -1,5 +1,9 @@
 /* eslint-disable turbo/no-undeclared-env-vars */
-import type { UsersPermissionsLoginPayload, UsersPermissionsUser } from "codac-server-graphql";
+import type {
+  UsersPermissionsLoginPayload,
+  UsersPermissionsMe,
+  UsersPermissionsUser,
+} from "codac-server-graphql";
 import type { AuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 // import CredentialsProvider from "next-auth/providers/credentials";
@@ -8,6 +12,12 @@ import GoogleProvider from "next-auth/providers/google";
 import { fetchAPI } from "#/utils/fetch-api";
 
 export const authOptions: AuthOptions = {
+  theme: {
+    colorScheme: "auto", // "auto" | "dark" | "light"
+    brandColor: "#00897B", // Hex color code
+    logo: "../../codac-logo.png", // Absolute URL to image
+    buttonText: "#FF0080", // Hex color code
+  },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID ?? "",
@@ -57,13 +67,13 @@ export const authOptions: AuthOptions = {
     async signIn({ account, profile }) {
       if (account?.provider === "google") {
         console.log("profile", profile);
-        const token = process.env.CODAC_SSG_TOKEN ?? "";
+        const strapiToken = process.env.CODAC_OAUTH_TOKEN ?? "";
 
         const options = {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${strapiToken}`,
           },
         };
 
@@ -88,23 +98,47 @@ export const authOptions: AuthOptions = {
 
     async jwt({ token, account }) {
       if (account?.provider === "google") {
+        const strapiToken = process.env.CODAC_OAUTH_TOKEN ?? "";
+
         const options = {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${strapiToken}`,
           },
         };
 
         const { jwt, user: userData } = await fetchAPI<UsersPermissionsLoginPayload>(
           `/auth/${account.provider}/callback`,
-          { access_token: account.access_token },
+          {
+            access_token: account.access_token,
+          },
           options,
           false
         );
 
         if (jwt != null) {
+          const options = { headers: { Authorization: `Bearer ${jwt}` } };
+          const urlParamsObject = {
+            // sort: { createdAt: 'desc' },
+            // filters: {
+            //     category: {
+            //         slug: filter,
+            //     },
+            // },
+            populate: ["role", "student", "student.course"],
+          };
+
+          const data = await fetchAPI<UsersPermissionsMe>(
+            "/users/me",
+            urlParamsObject,
+            options,
+            false
+          );
+          console.log("data", data);
           token.accessToken = jwt;
           token.id = userData.id;
+          token.userRole = data.role?.name;
         }
       }
       // If we are using credentials, we already have the token from strapi
@@ -119,6 +153,7 @@ export const authOptions: AuthOptions = {
       if (session.user) {
         session.user.accessToken = token.accessToken;
         session.user.id = token.id;
+        session.user.role = token.userRole;
       }
 
       return session;

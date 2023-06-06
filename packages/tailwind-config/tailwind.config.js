@@ -135,12 +135,28 @@ module.exports = {
             ["stroke-dashoffset"]: '0',
             ["stroke-dasharray"]: '2338'
           }
+        },
+        neonLight: {
+          "0%": {
+            ["text-shadow"]: '1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191, 1px 4px 1px #919191,   1px 5px 1px #919191, 1px 6px 1px #919191, 1px 7px 1px #919191, 1px 8px 1px #919191, 1px 9px 1px #919191, 1px 10px 1px #919191, 1px 18px 6px rgba(16, 16, 16, 0.4), 1px 22px 10px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2), 1px 30px 300px #38bcc1'
+          },
+          "90%": {
+            ["text-shadow"]: '1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191, 1px 4px 1px #919191,  1px 5px 1px #919191, 1px 6px 1px #919191, 1px 7px 1px #919191, 1px 8px 1px #919191, 1px 9px 1px #919191, 1px 10px 1px #919191, 1px 18px 6px rgba(16, 16, 16, 0.4), 1px 22px 10px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2), 1px 30px 400px #38bcc1'
+          },
+          "95%": {
+            ["text-shadow"]: '1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191, 1px 4px 1px #919191, 1px 5px 1px #919191, 1px 6px 1px #919191, 1px 7px 1px #919191, 1px 8px 1px #919191,  1px 9px 1px #919191, 1px 10px 1px #919191, 1px 18px 6px rgba(16, 16, 16, 0.4),  1px 22px 10px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2)'
+          },
+          "100%": {
+            ["text-shadow"]: '1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191, 1px 4px 1px #919191, 1px 5px 1px #919191, 1px 6px 1px #919191, 1px 7px 1px #919191, 1px 8px 1px #919191, 1px 9px 1px #919191, 1px 10px 1px #919191, 1px 18px 6px rgba(16, 16, 16, 0.4), 1px 22px 10px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2), 1px 30px 500px #38bcc1'
+          }
         }
-      }), animation: {
-        'planeMove': '6s linear infinite',
-        'dashdraw': '200s linear infinite reverse',
-        'fadeToTransparent': '1s linear infinite'
-      },
+      }),
+      // not working
+      // animation: {
+      // 'planeMove': '6s linear infinite',
+      // 'dashdraw': '200s linear infinite reverse',
+      // 'fadeToTransparent': '1s linear infinite'
+      // },
     },
   },
 

@@ -9,14 +9,15 @@ export default withAuth({
   callbacks: {
     authorized({ req, token }) {
       // `/admin` requires admin role
-      // if (req.nextUrl.pathname === "/admin") {
-      //   return token?.userRole === "admin";
-      // }
-      console.log("token", token);
+      console.log("req.", req.nextUrl);
+      if (req.nextUrl.pathname === "/courses/(.*)") {
+        console.log("token", token);
+        return token?.userRole === "Mentor";
+      }
       // `/me` only requires the user to be logged in
       return !!token;
     },
   },
 });
 
-export const config = { matcher: ["/courses/:path*", "/me"] };
+export const config = { matcher: ["/courses/(.*)"] };

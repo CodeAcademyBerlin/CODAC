@@ -1,4 +1,4 @@
-import { Boundary, TabGroup, Timeline } from "codac-ui";
+import { Boundary } from "codac-ui";
 import Link from "next/link";
 
 import { getProjectBySlug } from "#/strapi-queries/pages";
@@ -103,19 +103,6 @@ export default async function Page({
             </div>
           );
         })}
-        {/* {pages.map((page) => {
-            return (
-              <Link
-                href={`./courses/${courseSlug}/${projectSlug}/${page.attributes.slug ?? ""}`}
-                key={page.id}
-                className="group block space-y-1.5 rounded-lg bg-gray-900 px-5 py-3 hover:bg-gray-800"
-              >
-                <div className="font-medium text-gray-200 group-hover:text-gray-50">
-                  {page.attributes.title}
-                </div>
-              </Link>
-            );
-          })} */}
       </div>
     </div>
   );

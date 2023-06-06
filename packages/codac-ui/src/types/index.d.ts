@@ -35,3 +35,8 @@ interface UsedPrice {
   currency: Currency;
   scale: number;
 }
+export interface Review {
+  name: string;
+  rating: number;
+  text: string;
+}

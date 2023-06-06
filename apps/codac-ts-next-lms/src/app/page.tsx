@@ -1,6 +1,5 @@
-import { BlankLayout, BrandLogo, CardShinyHOC, ToggleButton } from "codac-ui";
+import { BlankLayout, BrandLogo, CardShinyHOC } from "codac-ui";
 import Link from "next/link";
-import { useState } from "react";
 
 import LandingGraphics from "#/components/LandingGraphics";
 
@@ -20,7 +19,7 @@ const Landing = () => {
           <CardShinyHOC>
             <BrandLogo>CODAC</BrandLogo>
             <div className="py-4 text-center">
-              <p className="font-bold text-white text-zinc-400">by Code Academy Berlin</p>
+              <p className="font-bold text-zinc-400">by Code Academy Berlin</p>
             </div>
           </CardShinyHOC>
         </Link>

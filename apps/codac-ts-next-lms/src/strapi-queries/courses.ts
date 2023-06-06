@@ -23,6 +23,7 @@ export async function getCourses() {
 
   return courses;
 }
+
 export async function getCourseBySlug({ slug }: { slug: string }) {
   const token = process.env.CODAC_SSG_TOKEN ?? "";
   const path = `/courses`;

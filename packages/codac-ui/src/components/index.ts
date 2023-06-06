@@ -1,9 +1,13 @@
 export { Boundary } from "./boundary";
 export { Button } from "./button";
 export { Card } from "./card";
-export * from "./card-shiny";
+export { CardShiny, CardShinyHOC } from "./card-shiny";
+export { CourseCard } from "./course-card";
+export { CourseReviewCard } from "./course-review-card";
 export { ExternalLink } from "./external-link";
+export { Ping } from "./ping";
 export { RenderingPageSkeleton } from "./rendering-page-skeleton";
+export { Reviews, ReviewsSkeleton } from "./reviews";
 export { SignIn } from "./sign-in";
 export { SkeletonCard } from "./skeleton-card";
 export { Tab } from "./tab";

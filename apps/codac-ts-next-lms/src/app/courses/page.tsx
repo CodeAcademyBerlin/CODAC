@@ -1,4 +1,4 @@
-import { Boundary, DashboardLayout, GlobalNav, SignIn, TabGroup } from "codac-ui";
+import { Boundary, CourseCard, DashboardLayout, GlobalNav, SignIn, TabGroup } from "codac-ui";
 // import { getServerSession } from "next-auth/next";
 import React from "react";
 
@@ -8,8 +8,8 @@ export default async function Page() {
   return (
     <div className="">
       <Boundary labels={["courses"]} color="blue">
-        <div className="flex justify-between">
-          <TabGroup
+        <div className="flex justify-around">
+          {/* <TabGroup
             path={`/courses`}
             items={[
               ...courses.map((x) => ({
@@ -17,7 +17,10 @@ export default async function Page() {
                 slug: x.attributes.slug ?? "",
               })),
             ]}
-          />
+          /> */}
+          {courses.map((x) => (
+            <CourseCard key={x.id} course={x} href={`/courses/${x.attributes.slug ?? ""}`} />
+          ))}
         </div>
       </Boundary>
     </div>
