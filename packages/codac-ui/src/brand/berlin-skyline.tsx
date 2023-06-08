@@ -16,7 +16,7 @@ export const BerlinSkyline = () => {
         // strokeDashoffset={2338.5}
         // strokeDasharray={2338.5}
         viewBox="0 0 667.7 259.9"
-        className="animate-[dashdraw_60s_linear_infinite]"
+        className="animate-[dashdraw_60s_linear]"
       >
         <g stroke="#31969ac0" fill="none" id="layer1" transform="translate(529.3378,-883.68646)">
           {/* <rect id="Himmel" x="-529.3" y="883.7" width="667.7" height="259.9" /> */}

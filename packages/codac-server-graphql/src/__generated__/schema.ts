@@ -81,11 +81,8 @@ export type Attendance = {
   createdAt?: Maybe<Scalars['DateTime']>;
   day?: Maybe<Scalars['Date']>;
   done?: Maybe<Scalars['Boolean']>;
-  email?: Maybe<Scalars['String']>;
   excuse?: Maybe<Scalars['String']>;
-  firstname?: Maybe<Scalars['String']>;
   hours?: Maybe<Array<Maybe<ComponentHoursHours>>>;
-  lastname?: Maybe<Scalars['String']>;
   present?: Maybe<Scalars['Boolean']>;
   project?: Maybe<Scalars['String']>;
   student?: Maybe<StudentEntityResponse>;
@@ -124,12 +121,9 @@ export type AttendanceFiltersInput = {
   createdAt?: InputMaybe<DateTimeFilterInput>;
   day?: InputMaybe<DateFilterInput>;
   done?: InputMaybe<BooleanFilterInput>;
-  email?: InputMaybe<StringFilterInput>;
   excuse?: InputMaybe<StringFilterInput>;
-  firstname?: InputMaybe<StringFilterInput>;
   hours?: InputMaybe<ComponentHoursHoursFiltersInput>;
   id?: InputMaybe<IdFilterInput>;
-  lastname?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<AttendanceFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<AttendanceFiltersInput>>>;
   present?: InputMaybe<BooleanFilterInput>;
@@ -144,11 +138,8 @@ export type AttendanceInput = {
   cohort?: InputMaybe<Scalars['ID']>;
   day?: InputMaybe<Scalars['Date']>;
   done?: InputMaybe<Scalars['Boolean']>;
-  email?: InputMaybe<Scalars['String']>;
   excuse?: InputMaybe<Scalars['String']>;
-  firstname?: InputMaybe<Scalars['String']>;
   hours?: InputMaybe<Array<InputMaybe<ComponentHoursHoursInput>>>;
-  lastname?: InputMaybe<Scalars['String']>;
   present?: InputMaybe<Scalars['Boolean']>;
   project?: InputMaybe<Scalars['String']>;
   student?: InputMaybe<Scalars['ID']>;
@@ -998,6 +989,7 @@ export type Course = {
   description?: Maybe<Scalars['String']>;
   image?: Maybe<UploadFileEntityResponse>;
   mentors?: Maybe<MentorRelationResponseCollection>;
+  months?: Maybe<Scalars['Int']>;
   name: Scalars['String'];
   objectives?: Maybe<Array<Maybe<ComponentLmsObjectives>>>;
   projects?: Maybe<ProjectRelationResponseCollection>;
@@ -1052,6 +1044,7 @@ export type CourseFiltersInput = {
   description?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
   mentors?: InputMaybe<MentorFiltersInput>;
+  months?: InputMaybe<IntFilterInput>;
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<CourseFiltersInput>;
   objectives?: InputMaybe<ComponentLmsObjectivesFiltersInput>;
@@ -1067,6 +1060,7 @@ export type CourseInput = {
   description?: InputMaybe<Scalars['String']>;
   image?: InputMaybe<Scalars['ID']>;
   mentors?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  months?: InputMaybe<Scalars['Int']>;
   name?: InputMaybe<Scalars['String']>;
   objectives?: InputMaybe<Array<InputMaybe<ComponentLmsObjectivesInput>>>;
   projects?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -3012,6 +3006,7 @@ export type StudentFiltersInput = {
   firstname?: InputMaybe<StringFilterInput>;
   github?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
+  job_center_id?: InputMaybe<StringFilterInput>;
   lastname?: InputMaybe<StringFilterInput>;
   linkedin?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<StudentFiltersInput>;
@@ -3028,6 +3023,7 @@ export type StudentInput = {
   course?: InputMaybe<Scalars['ID']>;
   firstname?: InputMaybe<Scalars['String']>;
   github?: InputMaybe<Scalars['String']>;
+  job_center_id?: InputMaybe<Scalars['String']>;
   lastname?: InputMaybe<Scalars['String']>;
   linkedin?: InputMaybe<Scalars['String']>;
   start_date?: InputMaybe<Scalars['Date']>;

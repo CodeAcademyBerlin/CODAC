@@ -24,7 +24,7 @@ const Markdown = async ({ data }: Props) => {
   const markdown = await markdownProcessor(data.content ?? "");
   return (
     <article
-      className="prose  dark:prose-invert max-w-none"
+      className="prose dark:prose-invert max-w-none"
       dangerouslySetInnerHTML={{ __html: markdown }}
     ></article>
   );

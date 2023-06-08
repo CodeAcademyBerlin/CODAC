@@ -1,28 +1,32 @@
-export default function Page() {
+import { Ping, Reviews, ReviewsSkeleton } from "codac-ui";
+import { Suspense } from "react";
+
+import { fetchStrapiSuspense } from "#/utils/fetch-api";
+
+import { Cohorts, RecommendedCohortsSkeleton } from "./_components/cohorts";
+
+export const runtime = "experimental-edge";
+
+export default function Page({ params }: { params: { id: string } }) {
   return (
-    <div className="prose prose-sm prose-invert max-w-none">
-      <h1 className="text-xl font-bold">Streaming with Suspense</h1>
+    <div className="space-y-8 lg:space-y-14">
+      <Suspense fallback={<RecommendedCohortsSkeleton />}>
+        {/* @ts-expect-error Async Server Component */}
 
-      <ul>
-        <li>
-          Streaming allows you to progressively render and send units of the UI from the server to
-          the client.
-        </li>
+        <Cohorts data={fetchStrapiSuspense({ path: "/cohorts" })} />
+      </Suspense>
 
-        <li>
-          This allows the user to see and interact with the most essential parts of the page while
-          the rest of the content loads - instead of waiting for the whole page to load before they
-          can interact with anything.
-        </li>
-
-        <li>Streaming works with both Edge and Node runtimes.</li>
-
-        <li>
-          Try streaming by <strong>selecting a runtime</strong> in the navigation above.
-        </li>
-      </ul>
-
-      <div className="flex gap-2"></div>
+      {/* <Suspense fallback={<RecommendedCoursesSkeleton />}>
+       @ts-expect-error Async Server Component 
+        <RecommendedCourses
+          path="/course"
+          data={fetch(`${getStrapiURL()}/api/courses`, {
+            // We intentionally disable Next.js Cache to better demo
+            // streaming
+            // cache: "no-store",
+          })}
+        />
+      </Suspense> */}
     </div>
   );
 }

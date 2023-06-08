@@ -55,6 +55,7 @@
     "@heroicons/react": "1.0.6",
     "date-fns": "2.29.3",
     "dinero.js": "2.0.0-alpha.8",
+    "prism-react-renderer": "^2.0.4",
     "react-markdown": "^8.0.7",
     "react-particles": "^2.9.3",
     "rehype-attr": "^2.1.4",

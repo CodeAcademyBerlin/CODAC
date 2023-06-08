@@ -1,30 +1,30 @@
-import type { CourseEntityResponseCollection } from "codac-server-graphql";
+import type {
+  CourseEntityResponseCollection,
+  UsersPermissionsMe,
+  UsersPermissionsUser,
+} from "codac-server-graphql";
 import { CourseCard } from "codac-ui";
 
-export async function RecommendedCourses({
-  path,
-  data,
-}: {
-  path: string;
-  data: Promise<Response>;
-}) {
-  const courses = (await data.then(async (res) => res.json())) as CourseEntityResponseCollection;
-  console.log("courses", courses);
+import { fetchAPI } from "#/utils/fetch-api";
+export const UserInfo = async ({ data }: { data: Promise<Response> }) => {
+  const users = (await data.then(async (res) => res.json())) as UsersPermissionsUser[];
+
+  console.log("users", users);
   return (
     <div className="space-y-6">
       <div>
-        <div className="text-lg font-medium text-white">Recommended Products for You</div>
+        <div className="text-lg font-medium text-white">User Info</div>
       </div>
       <div className="grid grid-cols-4 gap-6">
-        {courses.data.map((course) => (
-          <div key={course.id} className="col-span-4 lg:col-span-1">
-            <CourseCard course={course} href={`${path}/${course.id}`} />
+        {users.map((user) => (
+          <div key={user.email} className="col-span-4 lg:col-span-1">
+            {user.username}
           </div>
         ))}
       </div>
     </div>
   );
-}
+};
 
 const shimmer = `relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent`;
 

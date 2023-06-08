@@ -2,6 +2,7 @@ export { Boundary } from "./boundary";
 export { Button } from "./button";
 export { Card } from "./card";
 export { CardShiny, CardShinyHOC } from "./card-shiny";
+export { CohortCard } from "./cohort-card";
 export { CourseCard } from "./course-card";
 export { CourseReviewCard } from "./course-review-card";
 export { ExternalLink } from "./external-link";
