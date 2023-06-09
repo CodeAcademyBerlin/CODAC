@@ -1,5 +1,4 @@
 .cache/
-.lighthouseci/
 .next/
 .swc/
 .turbo/
@@ -10,3 +9,5 @@ e2e-results/
 out/
 storybook-static/
 *.js
+node_modules/
+packages/codac-server-graphql/tsup.config.ts

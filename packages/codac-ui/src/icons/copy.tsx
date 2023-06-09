@@ -1,6 +1,6 @@
-import type { ComponentProps, ReactElement } from 'react'
+import type { ComponentProps, ReactElement } from "react";
 
-export function CopyIcon(props: ComponentProps<'svg'>): ReactElement {
+export function CopyIcon(props: ComponentProps<"svg">): ReactElement {
   return (
     <svg
       width="24"
@@ -28,5 +28,5 @@ export function CopyIcon(props: ComponentProps<'svg'>): ReactElement {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }

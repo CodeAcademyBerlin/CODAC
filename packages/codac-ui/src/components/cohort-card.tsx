@@ -7,13 +7,16 @@ import { CardTag } from "./card-tag";
 
 export const CohortCard = ({ cohort, href }: { cohort: CohortEntity; href: string }) => {
   const image = cohort.attributes.logo?.data.attributes.url ?? "";
+  const startDate = cohort.attributes.start_date as string | undefined;
   return (
     <Link href={href} className="group block">
       <div className="space-y-2">
         <div className="relative">
-          <div className="absolute left-2 top-2 z-10 flex">
-            <CardTag tag={formatDate(cohort.attributes.start_date ?? "")} />
-          </div>
+          {startDate != undefined && (
+            <div className="absolute left-2 top-2 z-10 flex">
+              <CardTag tag={formatDate(startDate)} />
+            </div>
+          )}
           <Image
             src={image}
             width={150}

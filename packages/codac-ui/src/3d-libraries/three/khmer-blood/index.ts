@@ -1,2 +1,2 @@
-export * from './Universe'
-export * from './Spaceship'
+export * from "./Spaceship";
+export * from "./Universe";

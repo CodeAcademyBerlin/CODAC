@@ -4,7 +4,7 @@ const level = "warn";
 // const level = "error";
 
 module.exports = {
-  // parser: "@typescript-eslint/parser",
+  parser: "@typescript-eslint/parser",
   // parserOptions: {
   //   tsconfigRootDir: resolve(__dirname, "../.."),
   //   project: [

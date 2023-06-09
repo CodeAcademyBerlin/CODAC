@@ -10,7 +10,7 @@ const config = {
   ],
   framework: {
     // name: '@storybook/react-webpack5', // Remove this
-    name: '@storybook/nextjs', // Add this
+    name: "@storybook/nextjs", // Add this
     options: {},
   },
   // framework: path.resolve(require.resolve('@storybook/nextjs/preset'), '..'),
@@ -27,7 +27,6 @@ const config = {
         fs: false,
         zlib: false,
         stream: false,
-
       };
     return config;
   },
