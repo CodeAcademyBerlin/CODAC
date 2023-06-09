@@ -41,7 +41,7 @@ export const Card = ({ image, imageBlur, rating, name, description, href }: Card
     //       />}
     //     </div>
 
-    //     <div className="group-hover:text-vercel-cyan truncate text-sm font-medium text-white">
+    //     <div className="group-hover:text-codac-cyan truncate text-sm font-medium text-white">
     //       {name}
     //     </div>
     //     {description &&  <div className="text-sm text-gray-300">

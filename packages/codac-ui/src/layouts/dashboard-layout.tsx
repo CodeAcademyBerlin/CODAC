@@ -1,3 +1,5 @@
+import NextTopLoader from "nextjs-toploader";
+
 import { AddressBar } from "./address-bar";
 
 export function DashboardLayout({
@@ -18,6 +20,17 @@ export function DashboardLayout({
         <link rel="shortcut icon" href="public/favicon.ico" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head> */}
+      <NextTopLoader
+        color="#2299DD"
+        initialPosition={0.08}
+        crawlSpeed={200}
+        height={3}
+        crawl={true}
+        showSpinner={true}
+        easing="ease"
+        speed={200}
+        shadow="0 0 10px #2299DD,0 0 5px #2299DD"
+      />
       {navigation}
       {/*  */}
       <div className="lg:pl-72">

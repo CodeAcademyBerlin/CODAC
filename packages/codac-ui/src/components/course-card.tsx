@@ -25,7 +25,7 @@ export const CourseCard = ({ course, href }: { course: CourseEntity; href: strin
           />
         </div>
 
-        <div className="group-hover:text-vercel-cyan truncate text-sm font-medium text-white">
+        <div className="group-hover:text-codac-cyan truncate text-sm font-medium text-white">
           {course.attributes.name}
         </div>
 

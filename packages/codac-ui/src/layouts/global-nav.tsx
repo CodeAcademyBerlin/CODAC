@@ -3,6 +3,7 @@ import { MenuAlt2Icon, XIcon } from "@heroicons/react/solid";
 import clsx from "clsx";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 import { SideAuth } from "../components/side-auth";
@@ -17,10 +18,12 @@ export function GlobalNav({
   navigation,
   header,
   authentication,
+  appDir = true,
 }: {
   authentication: string;
   navigation: { name: string; items: Item[] }[];
   header: string;
+  appDir?: boolean;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const close = () => {
@@ -71,9 +74,13 @@ export function GlobalNav({
                 </div>
 
                 <div className="space-y-1">
-                  {section.items.map((item) => (
-                    <GlobalNavItemApp key={item.slug} item={item} close={close} />
-                  ))}
+                  {section.items.map((item) => {
+                    return appDir ? (
+                      <GlobalNavItemApp key={item.slug} item={item} close={close} />
+                    ) : (
+                      <GlobalNavItem key={item.slug} item={item} close={close} />
+                    );
+                  })}
                 </div>
               </div>
             );
@@ -89,6 +96,24 @@ export function GlobalNav({
 function GlobalNavItemApp({ item, close }: { item: Item; close: () => false | void }) {
   const segment = useSelectedLayoutSegment();
   const isActive = item.slug === segment;
+
+  return (
+    <Link
+      onClick={close}
+      href={`/${item.slug}`}
+      className={clsx("block rounded-md px-3 py-2 text-sm font-medium hover:text-gray-300", {
+        "text-gray-400 hover:bg-gray-800": !isActive,
+        "text-white": isActive,
+      })}
+    >
+      {item.name}
+    </Link>
+  );
+}
+function GlobalNavItem({ item, close }: { item: Item; close: () => false | void }) {
+  const router = useRouter();
+  const currentRoute = router.pathname.split("/");
+  const isActive = currentRoute.includes(item.slug);
 
   return (
     <Link

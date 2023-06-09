@@ -23,7 +23,7 @@ export function Header() {
             type="search"
             name="search"
             id="search"
-            className="focus:border-vercel-pink focus:ring-vercel-pink block w-full rounded-full border-none bg-gray-600 pl-10 font-medium text-gray-200 focus:ring-2"
+            className="focus:border-codac-pink focus:ring-codac-pink block w-full rounded-full border-none bg-gray-600 pl-10 font-medium text-gray-200 focus:ring-2"
             autoComplete="off"
           />
         </div>
@@ -32,7 +32,7 @@ export function Header() {
       <div className="flex shrink-0 gap-x-3">
         <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-600 text-white">
           <UserIcon className="w-6 text-white" />
-          <div className="bg-vercel-cyan absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full text-sm font-bold text-cyan-800">
+          <div className="bg-codac-cyan absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full text-sm font-bold text-cyan-800">
             <span>4</span>
           </div>
         </div>

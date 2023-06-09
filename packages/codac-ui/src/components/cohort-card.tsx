@@ -25,7 +25,7 @@ export const CohortCard = ({ cohort, href }: { cohort: CohortEntity; href: strin
           />
         </div>
 
-        <div className="group-hover:text-vercel-cyan truncate text-sm font-medium text-white">
+        <div className="group-hover:text-codac-cyan truncate text-sm font-medium text-white">
           {cohort.attributes.name}
         </div>
 

@@ -8,7 +8,12 @@ const config = {
     "@storybook/addon-interactions",
     "@storybook/addon-styling",
   ],
-  framework: path.resolve(require.resolve('@storybook/nextjs/preset'), '..'),
+  framework: {
+    // name: '@storybook/react-webpack5', // Remove this
+    name: '@storybook/nextjs', // Add this
+    options: {},
+  },
+  // framework: path.resolve(require.resolve('@storybook/nextjs/preset'), '..'),
   core: {
     // disableTelemetry: true,
     enableCrashReports: true,
