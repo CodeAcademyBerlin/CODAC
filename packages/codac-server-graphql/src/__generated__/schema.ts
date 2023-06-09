@@ -81,7 +81,9 @@ export type Attendance = {
   createdAt?: Maybe<Scalars['DateTime']>;
   day?: Maybe<Scalars['Date']>;
   done?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
   excuse?: Maybe<Scalars['String']>;
+  firstname?: Maybe<Scalars['String']>;
   hours?: Maybe<Array<Maybe<ComponentHoursHours>>>;
   present?: Maybe<Scalars['Boolean']>;
   project?: Maybe<Scalars['String']>;
@@ -121,9 +123,12 @@ export type AttendanceFiltersInput = {
   createdAt?: InputMaybe<DateTimeFilterInput>;
   day?: InputMaybe<DateFilterInput>;
   done?: InputMaybe<BooleanFilterInput>;
+  email?: InputMaybe<StringFilterInput>;
   excuse?: InputMaybe<StringFilterInput>;
+  firstname?: InputMaybe<StringFilterInput>;
   hours?: InputMaybe<ComponentHoursHoursFiltersInput>;
   id?: InputMaybe<IdFilterInput>;
+  lastname?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<AttendanceFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<AttendanceFiltersInput>>>;
   present?: InputMaybe<BooleanFilterInput>;
@@ -138,7 +143,9 @@ export type AttendanceInput = {
   cohort?: InputMaybe<Scalars['ID']>;
   day?: InputMaybe<Scalars['Date']>;
   done?: InputMaybe<Scalars['Boolean']>;
+  email?: InputMaybe<Scalars['String']>;
   excuse?: InputMaybe<Scalars['String']>;
+  firstname?: InputMaybe<Scalars['String']>;
   hours?: InputMaybe<Array<InputMaybe<ComponentHoursHoursInput>>>;
   present?: InputMaybe<Scalars['Boolean']>;
   project?: InputMaybe<Scalars['String']>;
@@ -1229,11 +1236,9 @@ export enum Enum_Mentor_Specialization {
 }
 
 export enum Enum_Page_Category {
-  Academy = 'academy',
-  Career = 'career',
-  Data = 'data',
+  Lms = 'lms',
   Other = 'other',
-  Web = 'web'
+  Spike = 'spike'
 }
 
 export type EmailDesignerEmailTemplate = {
