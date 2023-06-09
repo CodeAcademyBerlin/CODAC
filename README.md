@@ -23,9 +23,9 @@ This monorepo includes the following packages/apps:
 
 ### Apps
 
-- `codac-ts-next-legacy`: a [Next.js](https://nextjs.org/) app with [MUI v5](https://mui.com/)
+- `codac-community`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/) dedicated to for the Code Academy Berlin community
 
-- `codac-ts-next-lms`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/) dedicated to making a standadone LMS
+- `codac-lms`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/) dedicated to making a standadone LMS
 
 ### Packages
 
@@ -38,8 +38,6 @@ This monorepo includes the following packages/apps:
 - `jest-config`: shared `jest` configuration
 
 - `tailwind-config`: shared `tailwind` configuration with custom theme
-
-- `toxic-ui`: unofficial design system of React components done with [Tailwind CSS](https://tailwindcss.com/) and [Storybook](https://storybook.js.org/)
 
 - `tsconfig`: `tsconfig.json`s used throughout the monorepo
 
@@ -77,7 +75,11 @@ This Turborepo has some additional tools already setup for you:
 
 ### Contributing
 
-- Fork the project
+- Fork the project on Github
+- Clone the project : `git clone https://github.com/CodeAcademyBerlin/CODAC.git`
+- Go to the project directory : `cd CODAC`
+- Install dependencies : `pnpm install`
+- Build the project : `pnpm build`
 - Create your feature branch (git checkout -b feature/AmazingFeature)
 - Make your changes
 - Commit your changes (git commit -m 'Add some AmazingFeature')

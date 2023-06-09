@@ -1,6 +1,6 @@
-import type { ComponentProps, ReactElement } from 'react'
+import type { ComponentProps, ReactElement } from "react";
 
-export function XIcon(props: ComponentProps<'svg'>): ReactElement {
+export function XIcon(props: ComponentProps<"svg">): ReactElement {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,5 +16,5 @@ export function XIcon(props: ComponentProps<'svg'>): ReactElement {
         clipRule="evenodd"
       />
     </svg>
-  )
+  );
 }

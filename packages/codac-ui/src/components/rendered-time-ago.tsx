@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 "use client";
 
 import ms from "ms";
@@ -5,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 // https://github.com/streamich/react-use/blob/master/src/useInterval.ts
 const useInterval = (callback: Function, delay?: number | null) => {
-  const savedCallback = useRef<Function>(() => {});
+  const savedCallback = useRef<Function>(() => null);
 
   useEffect(() => {
     savedCallback.current = callback;
@@ -13,6 +14,7 @@ const useInterval = (callback: Function, delay?: number | null) => {
 
   useEffect(() => {
     if (delay !== null) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       const interval = setInterval(() => savedCallback.current(), delay || 0);
       return () => {
         clearInterval(interval);

@@ -1,2 +1,2 @@
-export * from "./theme-context";
-export * from "./theme-switch";
+export { ThemeContext, ThemeProvider } from "./theme-context";
+export { ThemeSwitch } from "./theme-switch";

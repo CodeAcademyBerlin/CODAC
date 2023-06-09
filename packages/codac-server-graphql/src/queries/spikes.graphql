@@ -4,7 +4,7 @@ query getSpikes {
       id
       attributes {
         title
-        day
+        sprint_day
         recording {
           data {
             attributes {
@@ -29,7 +29,7 @@ query getSpike($id: ID!) {
     data {
       attributes {
         title
-        day
+        sprint_day
         recording {
           data {
             attributes {

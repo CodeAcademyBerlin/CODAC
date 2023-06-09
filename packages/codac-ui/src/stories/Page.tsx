@@ -4,7 +4,9 @@ import { navData } from "./navSampleData";
 
 export const Page = () => {
   return (
-    <DashboardLayout navigation={<GlobalNav navigation={navData} header="Demo" />}>
+    <DashboardLayout
+      navigation={<GlobalNav authentication={"user"} navigation={navData} header="Demo" />}
+    >
       <div className="space-y-8">
         <h1 className="text-xl font-medium text-gray-300">Examples</h1>
 

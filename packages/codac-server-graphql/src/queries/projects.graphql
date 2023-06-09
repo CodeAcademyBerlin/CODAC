@@ -5,12 +5,19 @@ query getProjects {
       attributes {
         name
         description
-        spikes {
-          data {
-            id
-            attributes {
-              title
-              day
+        sprints {
+          name
+          length
+          objectives {
+            name
+          }
+          pages {
+            data {
+              attributes {
+                title
+                slug
+                locale
+              }
             }
           }
         }
@@ -24,13 +31,20 @@ query getProject($id: ID!) {
       attributes {
         name
         description
-        length
-        spikes {
-          data {
-            id
-            attributes {
-              title
-              day
+        calc_length
+        sprints {
+          name
+          length
+          objectives {
+            name
+          }
+          pages {
+            data {
+              attributes {
+                title
+                slug
+                locale
+              }
             }
           }
         }

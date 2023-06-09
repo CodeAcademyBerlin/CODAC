@@ -2,7 +2,7 @@ import { create } from "@storybook/theming/create";
 
 const commonOptions = {
   brandTitle: "CODAC UI",
-  brandUrl: "https://codac-ui.vercel.app/",
+  brandUrl: "https://codac-ui.codac.app/",
   brandTarget: "_blank",
   fontBase: '"Open Sans", sans-serif',
   fontCode: "monospace",

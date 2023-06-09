@@ -81,11 +81,9 @@ export type Attendance = {
   createdAt?: Maybe<Scalars['DateTime']>;
   day?: Maybe<Scalars['Date']>;
   done?: Maybe<Scalars['Boolean']>;
-  email?: Maybe<Scalars['String']>;
   excuse?: Maybe<Scalars['String']>;
-  firstname?: Maybe<Scalars['String']>;
   hours?: Maybe<Array<Maybe<ComponentHoursHours>>>;
-  lastname?: Maybe<Scalars['String']>;
+  present?: Maybe<Scalars['Boolean']>;
   project?: Maybe<Scalars['String']>;
   student?: Maybe<StudentEntityResponse>;
   time_off?: Maybe<ComponentStudentTimeOff>;
@@ -123,14 +121,12 @@ export type AttendanceFiltersInput = {
   createdAt?: InputMaybe<DateTimeFilterInput>;
   day?: InputMaybe<DateFilterInput>;
   done?: InputMaybe<BooleanFilterInput>;
-  email?: InputMaybe<StringFilterInput>;
   excuse?: InputMaybe<StringFilterInput>;
-  firstname?: InputMaybe<StringFilterInput>;
   hours?: InputMaybe<ComponentHoursHoursFiltersInput>;
   id?: InputMaybe<IdFilterInput>;
-  lastname?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<AttendanceFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<AttendanceFiltersInput>>>;
+  present?: InputMaybe<BooleanFilterInput>;
   project?: InputMaybe<StringFilterInput>;
   student?: InputMaybe<StudentFiltersInput>;
   time_off?: InputMaybe<ComponentStudentTimeOffFiltersInput>;
@@ -142,11 +138,9 @@ export type AttendanceInput = {
   cohort?: InputMaybe<Scalars['ID']>;
   day?: InputMaybe<Scalars['Date']>;
   done?: InputMaybe<Scalars['Boolean']>;
-  email?: InputMaybe<Scalars['String']>;
   excuse?: InputMaybe<Scalars['String']>;
-  firstname?: InputMaybe<Scalars['String']>;
   hours?: InputMaybe<Array<InputMaybe<ComponentHoursHoursInput>>>;
-  lastname?: InputMaybe<Scalars['String']>;
+  present?: InputMaybe<Scalars['Boolean']>;
   project?: InputMaybe<Scalars['String']>;
   student?: InputMaybe<Scalars['ID']>;
   time_off?: InputMaybe<ComponentStudentTimeOffInput>;
@@ -432,18 +426,6 @@ export type ComponentAchievementAchievement = {
   unlockedOn?: Maybe<Scalars['DateTime']>;
 };
 
-export type ComponentAttendanceAttendanceDay = {
-  __typename?: 'ComponentAttendanceAttendanceDay';
-  id: Scalars['ID'];
-};
-
-export type ComponentAttendanceAttendanceHour = {
-  __typename?: 'ComponentAttendanceAttendanceHour';
-  hour?: Maybe<Scalars['Time']>;
-  id: Scalars['ID'];
-  present?: Maybe<Scalars['Boolean']>;
-};
-
 export type ComponentCardsBlogCard = {
   __typename?: 'ComponentCardsBlogCard';
   dateTime?: Maybe<Scalars['DateTime']>;
@@ -714,6 +696,95 @@ export type ComponentLinksLink = {
   url: Scalars['String'];
 };
 
+export type ComponentLmsObjectives = {
+  __typename?: 'ComponentLmsObjectives';
+  id: Scalars['ID'];
+  name?: Maybe<Scalars['String']>;
+};
+
+export type ComponentLmsObjectivesFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentLmsObjectivesFiltersInput>>>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentLmsObjectivesFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentLmsObjectivesFiltersInput>>>;
+};
+
+export type ComponentLmsObjectivesInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentLmsSprints = {
+  __typename?: 'ComponentLmsSprints';
+  id: Scalars['ID'];
+  length: Scalars['Int'];
+  name?: Maybe<Scalars['String']>;
+  objectives?: Maybe<Array<Maybe<ComponentLmsObjectives>>>;
+  pages?: Maybe<PageRelationResponseCollection>;
+  spikes?: Maybe<SpikeRelationResponseCollection>;
+};
+
+
+export type ComponentLmsSprintsObjectivesArgs = {
+  filters?: InputMaybe<ComponentLmsObjectivesFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type ComponentLmsSprintsPagesArgs = {
+  filters?: InputMaybe<PageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type ComponentLmsSprintsSpikesArgs = {
+  filters?: InputMaybe<SpikeFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentLmsSprintsFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentLmsSprintsFiltersInput>>>;
+  length?: InputMaybe<IntFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentLmsSprintsFiltersInput>;
+  objectives?: InputMaybe<ComponentLmsObjectivesFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentLmsSprintsFiltersInput>>>;
+  pages?: InputMaybe<PageFiltersInput>;
+  spikes?: InputMaybe<SpikeFiltersInput>;
+};
+
+export type ComponentLmsSprintsInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  length?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  objectives?: InputMaybe<Array<InputMaybe<ComponentLmsObjectivesInput>>>;
+  pages?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  spikes?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+};
+
+export type ComponentLmsTags = {
+  __typename?: 'ComponentLmsTags';
+  id: Scalars['ID'];
+  tag?: Maybe<Scalars['String']>;
+};
+
+export type ComponentLmsTagsFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentLmsTagsFiltersInput>>>;
+  not?: InputMaybe<ComponentLmsTagsFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentLmsTagsFiltersInput>>>;
+  tag?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentLmsTagsInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  tag?: InputMaybe<Scalars['String']>;
+};
+
 export type ComponentMetaMetadata = {
   __typename?: 'ComponentMetaMetadata';
   id: Scalars['ID'];
@@ -786,6 +857,13 @@ export type ComponentSectionsBottomActionsButtonsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+export type ComponentSectionsCodeblock = {
+  __typename?: 'ComponentSectionsCodeblock';
+  code: Scalars['String'];
+  id: Scalars['ID'];
+  language?: Maybe<Enum_Componentsectionscodeblock_Language>;
+};
+
 export type ComponentSectionsFeatureColumnsGroup = {
   __typename?: 'ComponentSectionsFeatureColumnsGroup';
   id: Scalars['ID'];
@@ -805,8 +883,8 @@ export type ComponentSectionsFile = {
 
 export type ComponentSectionsGoogleSlide = {
   __typename?: 'ComponentSectionsGoogleSlide';
-  Link?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
+  link: Scalars['String'];
 };
 
 export type ComponentSectionsHeader = {
@@ -877,6 +955,7 @@ export type ComponentStudentProject = {
   __typename?: 'ComponentStudentProject';
   course?: Maybe<CourseEntityResponse>;
   id: Scalars['ID'];
+  main_course?: Maybe<Scalars['Boolean']>;
   start_date?: Maybe<Scalars['Date']>;
 };
 
@@ -912,13 +991,16 @@ export type ComponentStudentTimeOffInput = {
 
 export type Course = {
   __typename?: 'Course';
-  content?: Maybe<PageEntityResponse>;
+  calc_length?: Maybe<Scalars['Int']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
-  length?: Maybe<Scalars['Int']>;
+  image?: Maybe<UploadFileEntityResponse>;
   mentors?: Maybe<MentorRelationResponseCollection>;
+  months?: Maybe<Scalars['Int']>;
   name: Scalars['String'];
+  objectives?: Maybe<Array<Maybe<ComponentLmsObjectives>>>;
   projects?: Maybe<ProjectRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
   slug?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -926,6 +1008,13 @@ export type Course = {
 
 export type CourseMentorsArgs = {
   filters?: InputMaybe<MentorFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type CourseObjectivesArgs = {
+  filters?: InputMaybe<ComponentLmsObjectivesFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
@@ -957,27 +1046,32 @@ export type CourseEntityResponseCollection = {
 
 export type CourseFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<CourseFiltersInput>>>;
-  content?: InputMaybe<PageFiltersInput>;
+  calc_length?: InputMaybe<IntFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   description?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
-  length?: InputMaybe<IntFilterInput>;
   mentors?: InputMaybe<MentorFiltersInput>;
+  months?: InputMaybe<IntFilterInput>;
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<CourseFiltersInput>;
+  objectives?: InputMaybe<ComponentLmsObjectivesFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<CourseFiltersInput>>>;
   projects?: InputMaybe<ProjectFiltersInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type CourseInput = {
-  content?: InputMaybe<Scalars['ID']>;
+  calc_length?: InputMaybe<Scalars['Int']>;
   description?: InputMaybe<Scalars['String']>;
-  length?: InputMaybe<Scalars['Int']>;
+  image?: InputMaybe<Scalars['ID']>;
   mentors?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  months?: InputMaybe<Scalars['Int']>;
   name?: InputMaybe<Scalars['String']>;
+  objectives?: InputMaybe<Array<InputMaybe<ComponentLmsObjectivesInput>>>;
   projects?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
   slug?: InputMaybe<Scalars['String']>;
 };
 
@@ -1076,6 +1170,15 @@ export enum Enum_Componentnotificationnotifications_Type {
   Announcement = 'announcement'
 }
 
+export enum Enum_Componentsectionscodeblock_Language {
+  Css = 'css',
+  Html = 'html',
+  Javascript = 'javascript',
+  Other = 'other',
+  Python = 'python',
+  Typescript = 'typescript'
+}
+
 export enum Enum_Componentstudenttimeoff_Period {
   Am = 'AM',
   Pm = 'PM',
@@ -1126,9 +1229,11 @@ export enum Enum_Mentor_Specialization {
 }
 
 export enum Enum_Page_Category {
-  Lms = 'lms',
+  Academy = 'academy',
+  Career = 'career',
+  Data = 'data',
   Other = 'other',
-  Spike = 'spike'
+  Web = 'web'
 }
 
 export type EmailDesignerEmailTemplate = {
@@ -1226,7 +1331,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = Achievement | Attendance | Chat | CodacOverflow | CodingChallenge | Cohort | ComponentAchievementAchievement | ComponentAttendanceAttendanceDay | ComponentAttendanceAttendanceHour | ComponentCardsBlogCard | ComponentChatMessage | ComponentCommentsComments | ComponentFeedbackFeedback | ComponentHolidaysHoliday | ComponentHoursHours | ComponentKanbanBoard | ComponentKanbanCard | ComponentKanbanColumn | ComponentLeadLifecycle | ComponentLinksButton | ComponentLinksButtonLink | ComponentLinksLink | ComponentMetaMetadata | ComponentMetaTags | ComponentNotificationNotifications | ComponentRatingRatings | ComponentSectionsBottomActions | ComponentSectionsFeatureColumnsGroup | ComponentSectionsFeatureRowsGroup | ComponentSectionsFile | ComponentSectionsGoogleSlide | ComponentSectionsHeader | ComponentSectionsHero | ComponentSectionsLargeVideo | ComponentSectionsLeadForm | ComponentSectionsRichText | ComponentSectionsTestimonialsGroup | ComponentStudentAchievement | ComponentStudentProject | ComponentStudentTimeOff | Course | EmailDesignerEmailTemplate | Holiday | I18NLocale | JobPost | Lead | LmsFeedback | Mentor | Page | Project | Spike | Student | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VsBattle;
+export type GenericMorph = Achievement | Attendance | Chat | CodacOverflow | CodingChallenge | Cohort | ComponentAchievementAchievement | ComponentCardsBlogCard | ComponentChatMessage | ComponentCommentsComments | ComponentFeedbackFeedback | ComponentHolidaysHoliday | ComponentHoursHours | ComponentKanbanBoard | ComponentKanbanCard | ComponentKanbanColumn | ComponentLeadLifecycle | ComponentLinksButton | ComponentLinksButtonLink | ComponentLinksLink | ComponentLmsObjectives | ComponentLmsSprints | ComponentLmsTags | ComponentMetaMetadata | ComponentMetaTags | ComponentNotificationNotifications | ComponentRatingRatings | ComponentSectionsBottomActions | ComponentSectionsCodeblock | ComponentSectionsFeatureColumnsGroup | ComponentSectionsFeatureRowsGroup | ComponentSectionsFile | ComponentSectionsGoogleSlide | ComponentSectionsHeader | ComponentSectionsHero | ComponentSectionsLargeVideo | ComponentSectionsLeadForm | ComponentSectionsRichText | ComponentSectionsTestimonialsGroup | ComponentStudentAchievement | ComponentStudentProject | ComponentStudentTimeOff | Course | EmailDesignerEmailTemplate | Holiday | I18NLocale | JobPost | Lead | LmsFeedback | Mentor | Page | Project | Spike | Student | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VsBattle;
 
 export type GenericServerResponse = {
   __typename?: 'GenericServerResponse';
@@ -2298,6 +2403,7 @@ export type Page = {
 data: ComponentMetaMetadata;
   publishedAt?: Maybe<Scalars['DateTime']>;
   slug?: Maybe<Scalars['String']>;
+  tags?: Maybe<Array<Maybe<ComponentLmsTags>>>;
   title: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -2310,7 +2416,14 @@ export type PageLocalizationsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-export type PageContentSectionsDynamicZone = ComponentSectionsHeader | ComponentSectionsRichText | Error;
+
+export type PageTagsArgs = {
+  filters?: InputMaybe<ComponentLmsTagsFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type PageContentSectionsDynamicZone = ComponentSectionsCodeblock | ComponentSectionsGoogleSlide | ComponentSectionsHeader | ComponentSectionsRichText | Error;
 
 export type PageEntity = {
   __typename?: 'PageEntity';
@@ -2341,6 +2454,7 @@ export type PageFiltersInput = {
   or?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
+  tags?: InputMaybe<ComponentLmsTagsFiltersInput>;
   title?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
@@ -2351,6 +2465,7 @@ export type PageInput = {
   metadata?: InputMaybe<ComponentMetaMetadataInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   slug?: InputMaybe<Scalars['String']>;
+  tags?: InputMaybe<Array<InputMaybe<ComponentLmsTagsInput>>>;
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -2376,30 +2491,20 @@ export type PaginationArg = {
 
 export type Project = {
   __typename?: 'Project';
+  calc_length: Scalars['Int'];
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
-  length?: Maybe<Scalars['Int']>;
   name: Scalars['String'];
-  pages?: Maybe<PageRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   slug?: Maybe<Scalars['String']>;
-  spikes?: Maybe<SpikeRelationResponseCollection>;
+  sprints?: Maybe<Array<Maybe<ComponentLmsSprints>>>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 
-export type ProjectPagesArgs = {
-  filters?: InputMaybe<PageFiltersInput>;
+export type ProjectSprintsArgs = {
+  filters?: InputMaybe<ComponentLmsSprintsFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-
-export type ProjectSpikesArgs = {
-  filters?: InputMaybe<SpikeFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -2422,28 +2527,26 @@ export type ProjectEntityResponseCollection = {
 
 export type ProjectFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ProjectFiltersInput>>>;
+  calc_length?: InputMaybe<IntFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   description?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
-  length?: InputMaybe<IntFilterInput>;
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ProjectFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ProjectFiltersInput>>>;
-  pages?: InputMaybe<PageFiltersInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
-  spikes?: InputMaybe<SpikeFiltersInput>;
+  sprints?: InputMaybe<ComponentLmsSprintsFiltersInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type ProjectInput = {
+  calc_length?: InputMaybe<Scalars['Int']>;
   description?: InputMaybe<Scalars['String']>;
-  length?: InputMaybe<Scalars['Int']>;
   name?: InputMaybe<Scalars['String']>;
-  pages?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   slug?: InputMaybe<Scalars['String']>;
-  spikes?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  sprints?: InputMaybe<Array<InputMaybe<ComponentLmsSprintsInput>>>;
 };
 
 export type ProjectRelationResponseCollection = {
@@ -2590,6 +2693,7 @@ export type QueryCourseArgs = {
 export type QueryCoursesArgs = {
   filters?: InputMaybe<CourseFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -2794,9 +2898,9 @@ export type Spike = {
   __typename?: 'Spike';
   content?: Maybe<PageEntityResponse>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  day?: Maybe<Scalars['Int']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   recording?: Maybe<UploadFileEntityResponse>;
+  sprint_day?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -2822,20 +2926,20 @@ export type SpikeFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<SpikeFiltersInput>>>;
   content?: InputMaybe<PageFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
-  day?: InputMaybe<IntFilterInput>;
   id?: InputMaybe<IdFilterInput>;
   not?: InputMaybe<SpikeFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<SpikeFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
+  sprint_day?: InputMaybe<IntFilterInput>;
   title?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type SpikeInput = {
   content?: InputMaybe<Scalars['ID']>;
-  day?: InputMaybe<Scalars['Int']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   recording?: InputMaybe<Scalars['ID']>;
+  sprint_day?: InputMaybe<Scalars['Int']>;
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -2870,7 +2974,6 @@ export type StringFilterInput = {
 
 export type Student = {
   __typename?: 'Student';
-  TimeOff?: Maybe<Array<Maybe<ComponentStudentTimeOff>>>;
   alumni?: Maybe<Scalars['Boolean']>;
   attendances?: Maybe<AttendanceRelationResponseCollection>;
   cohort?: Maybe<CohortEntityResponse>;
@@ -2883,13 +2986,6 @@ export type Student = {
   start_date?: Maybe<Scalars['Date']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   user?: Maybe<UsersPermissionsUserEntityResponse>;
-};
-
-
-export type StudentTimeOffArgs = {
-  filters?: InputMaybe<ComponentStudentTimeOffFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -2917,7 +3013,6 @@ export type StudentEntityResponseCollection = {
 };
 
 export type StudentFiltersInput = {
-  TimeOff?: InputMaybe<ComponentStudentTimeOffFiltersInput>;
   alumni?: InputMaybe<BooleanFilterInput>;
   and?: InputMaybe<Array<InputMaybe<StudentFiltersInput>>>;
   attendances?: InputMaybe<AttendanceFiltersInput>;
@@ -2927,6 +3022,7 @@ export type StudentFiltersInput = {
   firstname?: InputMaybe<StringFilterInput>;
   github?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
+  job_center_id?: InputMaybe<StringFilterInput>;
   lastname?: InputMaybe<StringFilterInput>;
   linkedin?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<StudentFiltersInput>;
@@ -2937,13 +3033,13 @@ export type StudentFiltersInput = {
 };
 
 export type StudentInput = {
-  TimeOff?: InputMaybe<Array<InputMaybe<ComponentStudentTimeOffInput>>>;
   alumni?: InputMaybe<Scalars['Boolean']>;
   attendances?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   cohort?: InputMaybe<Scalars['ID']>;
   course?: InputMaybe<Scalars['ID']>;
   firstname?: InputMaybe<Scalars['String']>;
   github?: InputMaybe<Scalars['String']>;
+  job_center_id?: InputMaybe<Scalars['String']>;
   lastname?: InputMaybe<Scalars['String']>;
   linkedin?: InputMaybe<Scalars['String']>;
   start_date?: InputMaybe<Scalars['Date']>;
@@ -3463,7 +3559,7 @@ export type GetChallengesQuery = { __typename?: 'Query', codingChallenges?: { __
 export type GetAllCoursesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllCoursesQuery = { __typename?: 'Query', courses?: { __typename?: 'CourseEntityResponseCollection', data: Array<{ __typename?: 'CourseEntity', id?: string | null, attributes?: { __typename?: 'Course', name: string, description?: string | null, length?: number | null, mentors?: { __typename?: 'MentorRelationResponseCollection', data: Array<{ __typename?: 'MentorEntity', attributes?: { __typename?: 'Mentor', user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', firstname?: string | null, lastname?: string | null, email: string } | null } | null } | null } | null }> } | null } | null }> } | null };
+export type GetAllCoursesQuery = { __typename?: 'Query', courses?: { __typename?: 'CourseEntityResponseCollection', data: Array<{ __typename?: 'CourseEntity', id?: string | null, attributes?: { __typename?: 'Course', name: string, description?: string | null, calc_length?: number | null, objectives?: Array<{ __typename?: 'ComponentLmsObjectives', name?: string | null } | null> | null, mentors?: { __typename?: 'MentorRelationResponseCollection', data: Array<{ __typename?: 'MentorEntity', attributes?: { __typename?: 'Mentor', user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', firstname?: string | null, lastname?: string | null, email: string } | null } | null } | null } | null }> } | null } | null }> } | null };
 
 export type GetCourseProjectQueryVariables = Exact<{
   name?: InputMaybe<Scalars['String']>;
@@ -3471,7 +3567,7 @@ export type GetCourseProjectQueryVariables = Exact<{
 }>;
 
 
-export type GetCourseProjectQuery = { __typename?: 'Query', courses?: { __typename?: 'CourseEntityResponseCollection', data: Array<{ __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name: string, length?: number | null, projects?: { __typename?: 'ProjectRelationResponseCollection', data: Array<{ __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', name: string, description?: string | null, spikes?: { __typename?: 'SpikeRelationResponseCollection', data: Array<{ __typename?: 'SpikeEntity', attributes?: { __typename?: 'Spike', title?: string | null } | null }> } | null, pages?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', title: string, slug?: string | null, locale?: string | null } | null }> } | null } | null }> } | null } | null }> } | null };
+export type GetCourseProjectQuery = { __typename?: 'Query', courses?: { __typename?: 'CourseEntityResponseCollection', data: Array<{ __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name: string, calc_length?: number | null, projects?: { __typename?: 'ProjectRelationResponseCollection', data: Array<{ __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', name: string, description?: string | null, sprints?: Array<{ __typename?: 'ComponentLmsSprints', pages?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', title: string, slug?: string | null, locale?: string | null } | null }> } | null } | null> | null } | null }> } | null } | null }> } | null };
 
 export type GetCourseProjectsQueryVariables = Exact<{
   name?: InputMaybe<Scalars['String']>;
@@ -3485,43 +3581,43 @@ export type GetCourseByNameQueryVariables = Exact<{
 }>;
 
 
-export type GetCourseByNameQuery = { __typename?: 'Query', courses?: { __typename?: 'CourseEntityResponseCollection', data: Array<{ __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name: string, description?: string | null, length?: number | null, createdAt?: any | null, projects?: { __typename?: 'ProjectRelationResponseCollection', data: Array<{ __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', name: string, description?: string | null, spikes?: { __typename?: 'SpikeRelationResponseCollection', data: Array<{ __typename?: 'SpikeEntity', attributes?: { __typename?: 'Spike', title?: string | null } | null }> } | null } | null }> } | null, mentors?: { __typename?: 'MentorRelationResponseCollection', data: Array<{ __typename?: 'MentorEntity', attributes?: { __typename?: 'Mentor', user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', firstname?: string | null, lastname?: string | null, email: string } | null } | null } | null } | null }> } | null } | null }> } | null };
+export type GetCourseByNameQuery = { __typename?: 'Query', courses?: { __typename?: 'CourseEntityResponseCollection', data: Array<{ __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name: string, description?: string | null, calc_length?: number | null, createdAt?: any | null, projects?: { __typename?: 'ProjectRelationResponseCollection', data: Array<{ __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', name: string, description?: string | null, sprints?: Array<{ __typename?: 'ComponentLmsSprints', name?: string | null, length: number, objectives?: Array<{ __typename?: 'ComponentLmsObjectives', name?: string | null } | null> | null, pages?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', title: string, slug?: string | null, locale?: string | null } | null }> } | null } | null> | null } | null }> } | null, mentors?: { __typename?: 'MentorRelationResponseCollection', data: Array<{ __typename?: 'MentorEntity', attributes?: { __typename?: 'Mentor', user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', firstname?: string | null, lastname?: string | null, email: string } | null } | null } | null } | null }> } | null } | null }> } | null };
 
 export type GetPageQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type GetPageQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', id?: string | null, attributes?: { __typename?: 'Page', locale?: string | null, slug?: string | null, title: string, contentSections: Array<{ __typename: 'ComponentSectionsHeader', id: string, title?: string | null, subtitle?: string | null } | { __typename: 'ComponentSectionsRichText', id: string, content?: string | null } | { __typename?: 'Error' } | null> } | null }> } | null };
+export type GetPageQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', id?: string | null, attributes?: { __typename?: 'Page', locale?: string | null, slug?: string | null, title: string, contentSections: Array<{ __typename?: 'ComponentSectionsCodeblock' } | { __typename?: 'ComponentSectionsGoogleSlide' } | { __typename: 'ComponentSectionsHeader', id: string, title?: string | null, subtitle?: string | null } | { __typename: 'ComponentSectionsRichText', id: string, content?: string | null } | { __typename?: 'Error' } | null> } | null }> } | null };
 
 export type GetPagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetPagesQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', id?: string | null, attributes?: { __typename?: 'Page', locale?: string | null, slug?: string | null, contentSections: Array<{ __typename: 'ComponentSectionsHeader', id: string, title?: string | null, subtitle?: string | null } | { __typename: 'ComponentSectionsRichText', id: string, content?: string | null } | { __typename?: 'Error' } | null> } | null }> } | null };
+export type GetPagesQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', id?: string | null, attributes?: { __typename?: 'Page', locale?: string | null, slug?: string | null, contentSections: Array<{ __typename?: 'ComponentSectionsCodeblock' } | { __typename?: 'ComponentSectionsGoogleSlide' } | { __typename: 'ComponentSectionsHeader', id: string, title?: string | null, subtitle?: string | null } | { __typename: 'ComponentSectionsRichText', id: string, content?: string | null } | { __typename?: 'Error' } | null> } | null }> } | null };
 
 export type GetProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetProjectsQuery = { __typename?: 'Query', projects?: { __typename?: 'ProjectEntityResponseCollection', data: Array<{ __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', name: string, description?: string | null, spikes?: { __typename?: 'SpikeRelationResponseCollection', data: Array<{ __typename?: 'SpikeEntity', id?: string | null, attributes?: { __typename?: 'Spike', title?: string | null, day?: number | null } | null }> } | null } | null }> } | null };
+export type GetProjectsQuery = { __typename?: 'Query', projects?: { __typename?: 'ProjectEntityResponseCollection', data: Array<{ __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', name: string, description?: string | null, sprints?: Array<{ __typename?: 'ComponentLmsSprints', name?: string | null, length: number, objectives?: Array<{ __typename?: 'ComponentLmsObjectives', name?: string | null } | null> | null, pages?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', title: string, slug?: string | null, locale?: string | null } | null }> } | null } | null> | null } | null }> } | null };
 
 export type GetProjectQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type GetProjectQuery = { __typename?: 'Query', project?: { __typename?: 'ProjectEntityResponse', data?: { __typename?: 'ProjectEntity', attributes?: { __typename?: 'Project', name: string, description?: string | null, length?: number | null, spikes?: { __typename?: 'SpikeRelationResponseCollection', data: Array<{ __typename?: 'SpikeEntity', id?: string | null, attributes?: { __typename?: 'Spike', title?: string | null, day?: number | null } | null }> } | null } | null } | null } | null };
+export type GetProjectQuery = { __typename?: 'Query', project?: { __typename?: 'ProjectEntityResponse', data?: { __typename?: 'ProjectEntity', attributes?: { __typename?: 'Project', name: string, description?: string | null, calc_length: number, sprints?: Array<{ __typename?: 'ComponentLmsSprints', name?: string | null, length: number, objectives?: Array<{ __typename?: 'ComponentLmsObjectives', name?: string | null } | null> | null, pages?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', title: string, slug?: string | null, locale?: string | null } | null }> } | null } | null> | null } | null } | null } | null };
 
 export type GetSpikesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetSpikesQuery = { __typename?: 'Query', spikes?: { __typename?: 'SpikeEntityResponseCollection', data: Array<{ __typename?: 'SpikeEntity', id?: string | null, attributes?: { __typename?: 'Spike', title?: string | null, day?: number | null, recording?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename: 'UploadFile', url: string } | null } | null } | null, content?: { __typename?: 'PageEntityResponse', data?: { __typename?: 'PageEntity', attributes?: { __typename: 'Page' } | null } | null } | null } | null }> } | null };
+export type GetSpikesQuery = { __typename?: 'Query', spikes?: { __typename?: 'SpikeEntityResponseCollection', data: Array<{ __typename?: 'SpikeEntity', id?: string | null, attributes?: { __typename?: 'Spike', title?: string | null, sprint_day?: number | null, recording?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename: 'UploadFile', url: string } | null } | null } | null, content?: { __typename?: 'PageEntityResponse', data?: { __typename?: 'PageEntity', attributes?: { __typename: 'Page' } | null } | null } | null } | null }> } | null };
 
 export type GetSpikeQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type GetSpikeQuery = { __typename?: 'Query', spike?: { __typename?: 'SpikeEntityResponse', data?: { __typename?: 'SpikeEntity', attributes?: { __typename?: 'Spike', title?: string | null, day?: number | null, recording?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null };
+export type GetSpikeQuery = { __typename?: 'Query', spike?: { __typename?: 'SpikeEntityResponse', data?: { __typename?: 'SpikeEntity', attributes?: { __typename?: 'Spike', title?: string | null, sprint_day?: number | null, recording?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null };
 
 export type GetMeQueryVariables = Exact<{ [key: string]: never; }>;
 
