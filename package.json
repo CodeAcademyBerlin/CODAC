@@ -1,10 +1,10 @@
 {
   "private": true,
-  "name": "codac-monorepo",
+  "name": "codac",
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/CodeAcademyBerlin/CODAC-monorepo.git"
+    "url": "https://github.com/CodeAcademyBerlin/CODAC.git"
   },
   "scripts": {
     "clean": "turbo run clean --no-daemon",
@@ -20,6 +20,7 @@
     "fix:eslint": "eslint --fix .",
     "fix:prettier": "prettier --plugin-search-dir=. --write .",
     "fix": "run-s fix:*",
+    "test": "jest --passWithNoTests --runInBand",
     "prepare": "husky install"
   },
   "lint-staged": {

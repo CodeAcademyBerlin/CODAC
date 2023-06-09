@@ -15,7 +15,7 @@ const Landing = () => {
         {/* <div className="absolute right-2 top-2">
           <ToggleButton checked={animation} toggle={toggleAnimation} label="" />
         </div> */}
-        <Link href="/courses">
+        <Link href="/dashboard">
           <CardShinyHOC>
             <BrandLogo>CODAC</BrandLogo>
             <div className="py-4 text-center">

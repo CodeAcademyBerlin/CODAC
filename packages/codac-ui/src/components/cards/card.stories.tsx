@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button } from "./button";
+import { Card } from "./card";
 
 const meta = {
-  component: Button,
-} satisfies Meta<typeof Button>;
+  component: Card,
+} satisfies Meta<typeof Card>;
 
 export default meta;
 
@@ -12,7 +12,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    color: "pink",
-    children: "Click me!",
+    title: "Card Title",
+    tag: "Card Tag",
   },
 };

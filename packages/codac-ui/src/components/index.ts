@@ -1,10 +1,7 @@
 export { Boundary } from "./boundary";
 export { Button } from "./button";
-export { Card } from "./card";
 export { CardShiny, CardShinyHOC } from "./card-shiny";
-export { CohortCard } from "./cohort-card";
-export { CourseCard } from "./course-card";
-export { CourseReviewCard } from "./course-review-card";
+export { Card, ReviewCard } from "./cards";
 export { ExternalLink } from "./external-link";
 export { Ping } from "./ping";
 export { RenderingPageSkeleton } from "./rendering-page-skeleton";

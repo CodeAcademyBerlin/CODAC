@@ -6,6 +6,7 @@ export function Button({
 }) {
   return (
     <button
+      name="button"
       className={`cursor-pointer rounded-lg border-2 border-codac-${color} px-3 py-2 text-gray-100 hover:bg-codac-${color} hover:text-codac-${color}`}
       {...props}
     />

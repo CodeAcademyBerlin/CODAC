@@ -69,7 +69,6 @@ export const GetAllCoursesDocument = gql`
             }
           }
         }
-        calc_length
       }
     }
   }
@@ -108,7 +107,6 @@ export const GetCourseProjectDocument = gql`
     data {
       attributes {
         name
-        calc_length
         projects(filters: {id: {eq: $projectIds}}) {
           data {
             id
@@ -213,7 +211,6 @@ export const GetCourseByNameDocument = gql`
       attributes {
         name
         description
-        calc_length
         createdAt
         projects {
           data {

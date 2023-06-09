@@ -1,7 +1,12 @@
-import type { Review } from "../types";
-import { CourseRating } from "./course-rating";
+export interface Review {
+  name: string;
+  rating: number;
+  text: string;
+}
 
-export const CourseReviewCard = ({ review }: { review: Review }) => {
+import { CardRating } from "./card-rating";
+
+export const ReviewCard = ({ review }: { review: Review }) => {
   return (
     <div className="space-y-4">
       <div className="space-y-2">
@@ -10,7 +15,7 @@ export const CourseReviewCard = ({ review }: { review: Review }) => {
           <div className="text-sm text-white">{review.name}</div>
         </div>
 
-        {review.rating ? <CourseRating rating={review.rating} /> : null}
+        {review.rating ? <CardRating rating={review.rating} /> : null}
       </div>
 
       <div className="text-gray-400">{review.text}</div>

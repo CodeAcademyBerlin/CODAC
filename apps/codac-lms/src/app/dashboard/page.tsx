@@ -5,15 +5,17 @@ import { fetchStrapiSuspense } from "#/utils/fetch-api";
 
 import { Cohorts, RecommendedCohortsSkeleton } from "./_components/cohorts";
 
-export const runtime = "experimental-edge";
-
+// export const runtime = "experimental-edge";
+const urlParamsObject = {
+  populate: ["logo"],
+};
 export default function Page({ params }: { params: { id: string } }) {
   return (
     <div className="space-y-8 lg:space-y-14">
       <Suspense fallback={<RecommendedCohortsSkeleton />}>
         {/* @ts-expect-error Async Server Component */}
 
-        <Cohorts data={fetchStrapiSuspense({ path: "/cohorts" })} />
+        <Cohorts data={fetchStrapiSuspense({ path: "/cohorts", urlParamsObject })} />
       </Suspense>
 
       {/* <Suspense fallback={<RecommendedCoursesSkeleton />}>

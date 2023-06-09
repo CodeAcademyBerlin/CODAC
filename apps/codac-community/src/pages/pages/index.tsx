@@ -2,7 +2,7 @@ import { GetPagesDocument, type GetPagesQuery } from "codac-server-graphql";
 import { Card } from "codac-ui";
 import type { InferGetStaticPropsType } from "next/types";
 
-import { initializeApollo } from "../../lib/apolloClient";
+import { initializeApollo } from "#/lib/apolloClient";
 
 export default function Pages({ pages }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
@@ -14,8 +14,7 @@ export default function Pages({ pages }: InferGetStaticPropsType<typeof getStati
             page.attributes && (
               <Card
                 key={page.id}
-                name={page.attributes.slug ?? ""}
-                // description={course?.attributes?.description || ""}
+                title={page.attributes.slug ?? ""}
                 href={`/pages/${page.attributes.slug ?? ""}`}
               />
               // <div

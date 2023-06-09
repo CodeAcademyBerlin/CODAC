@@ -23,7 +23,6 @@ query getAllCourses {
             }
           }
         }
-        calc_length
       }
     }
   }
@@ -33,8 +32,6 @@ query getCourseProject($name: String, $projectIds: ID) {
     data {
       attributes {
         name
-        calc_length
-
         projects(filters: { id: { eq: $projectIds } }) {
           data {
             id
@@ -78,7 +75,6 @@ query getCourseByName($name: String!) {
       attributes {
         name
         description
-        calc_length
         createdAt
         projects {
           data {
