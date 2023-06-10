@@ -6,7 +6,6 @@
     "clean": {
       "cache": false
     },
-    "lint": {},
     "dev": {
       "cache": false,
       "dependsOn": ["^build"],
@@ -27,13 +26,12 @@
       "dependsOn": ["^build"],
       "outputs": ["storybook-static/**"]
     },
-    "test:e2e": {
-      "cache": false,
-      "dependsOn": ["^build"]
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"]
     },
-    "test:unit": {
-      "cache": false,
-      "dependsOn": ["^build"]
+    "lint": {
+      "outputs": []
     }
   }
 }

@@ -26,8 +26,8 @@
     "build": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build -o ./storybook-static",
-    "test:unit": "jest --ci --coverage",
-    "test:watch": "jest --watch"
+    "lint": "next lint",
+    "test": "jest --coverage"
   },
   "devDependencies": {
     "@react-spring/three": "^9.7.2",
@@ -53,8 +53,7 @@
     "jest-config": "workspace:*",
     "storybook": "7.0.10",
     "tailwind-config": "workspace:*",
-    "tsconfig": "workspace:*",
-    "tsup": "^6.7.0"
+    "tsconfig": "workspace:*"
   },
   "dependencies": {
     "@headlessui/react": "^1.5.0",

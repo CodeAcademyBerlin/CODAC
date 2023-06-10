@@ -13,14 +13,9 @@
     "check": "turbo run check --no-daemon",
     "storybook:dev": "turbo run storybook:dev --no-daemon",
     "storybook:build": "turbo run storybook:build --no-daemon",
-    "test:unit": "turbo run test:unit --concurrency=1 --no-daemon",
-    "lint:prettier": "prettier --plugin-search-dir=. --check .",
-    "lint:eslint": "eslint --cache .",
-    "lint": "run-s lint:*",
-    "fix:eslint": "eslint --fix .",
-    "fix:prettier": "prettier --plugin-search-dir=. --write .",
-    "fix": "run-s fix:*",
-    "test": "jest --passWithNoTests --runInBand",
+    "lint": "turbo run lint --no-daemon",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "test": "turbo run test --no-daemon",
     "prepare": "husky install"
   },
   "lint-staged": {
@@ -49,6 +44,7 @@
     "npm-run-all": "4.1.5",
     "prettier": "2.8.8",
     "prettier-plugin-tailwindcss": "^0.1.11",
+    "ts-jest": "^29.1.0",
     "turbo": "latest",
     "typescript": "^5.0.4"
   },

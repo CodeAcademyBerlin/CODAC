@@ -1,4 +1,4 @@
-const { resolve } = require("node:path");
+// const { resolve } = require("node:path");
 
 const level = "warn";
 // const level = "error";
@@ -30,11 +30,11 @@ module.exports = {
   //     "jsx": true
   //   }
   // },
-  // parserOptions: {
-  //   babelOptions: {
-  //     presets: [require.resolve("next/babel")],
-  //   },
-  // },
+  parserOptions: {
+    babelOptions: {
+      presets: [require.resolve("next/babel")],
+    },
+  },
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",

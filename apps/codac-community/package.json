@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test:unit": "jest --ci --coverage",
-    "test:watch": "jest --watch"
+    "test": "jest --coverage --passWithNoTests"
   },
   "dependencies": {
     "@apollo/link-error": "^2.0.0-beta.3",
@@ -34,6 +33,7 @@
     "tailwind-config": "workspace:*",
     "tailwindcss": "^3.2.4",
     "tsconfig": "workspace:*",
+    "jest-config": "workspace:*",
     "typescript": "^4.9.4"
   }
 }
