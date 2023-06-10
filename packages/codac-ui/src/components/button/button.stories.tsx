@@ -15,9 +15,14 @@ export const Default: Story = {
     children: "Button",
     color: "pink",
   },
+
   argTypes: {
     onClick: {
       action: "onClick",
+    },
+    color: {
+      options: ["pink", "blue", "violet", "cyan", "orange"],
+      control: { type: "radio" },
     },
   },
 };

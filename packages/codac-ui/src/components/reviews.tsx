@@ -5,7 +5,7 @@ export async function Reviews({ data }: { data: Promise<Response> }) {
 
   return (
     <div className="space-y-6">
-      <div className="text-lg font-medium text-white">Customer Reviews</div>
+      <div className="text-lg font-medium text-white">Reviews</div>
       <div className="space-y-8">
         {reviews.map((review) => {
           return <ReviewCard key={review.name} review={review} />;

@@ -22,7 +22,7 @@ const DynamicPage = ({ pageContext }: { pageContext: PageContext }) => {
 
 export default DynamicPage;
 
-const client = initializeApollo(null, null);
+const client = initializeApollo({});
 export const getStaticPaths = async (context: GetStaticPropsContext) => {
   // Get all pages from Strapi
   const allPages = context.locales

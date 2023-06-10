@@ -33,10 +33,16 @@ export const getToken = (req?: NextApiRequest | IncomingMessage | null) => {
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;
 
-const createApolloClient = (req?: NextApiRequest | IncomingMessage | null) => {
+const createApolloClient = ({
+  req,
+  serverToken,
+}: {
+  req?: NextApiRequest | IncomingMessage | null;
+  serverToken?: boolean;
+}) => {
   // isomorphic fetch for passing the cookies along with each GraphQL request
   const enhancedFetch = async (url: RequestInfo, init: RequestInit) => {
-    const token = getToken(req) ?? "";
+    const token = serverToken ? process.env.CODAC_SSG_TOKEN : getToken(req) ?? "";
     const response = await fetch(url, {
       ...init,
       headers: {
@@ -83,11 +89,15 @@ const createApolloClient = (req?: NextApiRequest | IncomingMessage | null) => {
   });
 };
 
-export const initializeApollo = (
-  initialState: any | null,
-  req: NextApiRequest | IncomingMessage | null
-) => {
-  const _apolloClient = apolloClient ?? createApolloClient(req);
+interface ApolloProps {
+  initialState?: any;
+  req?: NextApiRequest | IncomingMessage | null;
+  serverToken?: boolean;
+}
+
+export const initializeApollo = ({ initialState, req, serverToken }: ApolloProps) => {
+  req?.headers.cookie;
+  const _apolloClient = apolloClient ?? createApolloClient({ req, serverToken });
 
   // If your page has Next.js data fetching methods that use Apollo Client, the initial state
   // get hydrated here
@@ -127,6 +137,6 @@ export const addApolloState = (
 
 export function useApollo(pageProps: PageProps) {
   const state = pageProps[APOLLO_STATE_PROP_NAME];
-  const store = useMemo(() => initializeApollo(state, null), [state]);
+  const store = useMemo(() => initializeApollo({ initialState: state }), [state]);
   return store;
 }

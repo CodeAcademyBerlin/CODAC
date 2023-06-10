@@ -1,6 +1,6 @@
 export { Boundary } from "./boundary";
 export { Button } from "./button";
-export { CardShiny, CardShinyHOC } from "./card-shiny";
+export { CardShiny, CardShinyHOC } from "./cards/card-shiny";
 export { Card, ReviewCard } from "./cards";
 export { ExternalLink } from "./external-link";
 export { Ping } from "./ping";

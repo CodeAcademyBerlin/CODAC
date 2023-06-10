@@ -1,4 +1,8 @@
-import { GetPagesDocument, type GetPagesQuery } from "codac-server-graphql";
+import {
+  GetPagesDocument,
+  useGetAllCoursesLazyQuery,
+  type GetPagesQuery,
+} from "codac-server-graphql";
 import { Card } from "codac-ui";
 import type { InferGetStaticPropsType } from "next/types";
 
@@ -8,6 +12,7 @@ export default function Pages({ pages }: InferGetStaticPropsType<typeof getStati
   return (
     <div className="space-y-7">
       <h1 className="text-3xl font-semibold text-white">Pages</h1>
+
       <div className="xs:grid-cols-1 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {pages.map((page) => {
           return (
@@ -93,7 +98,7 @@ export async function getStaticProps() {
   // const { data, loading, error } = useGetAllCoursesQuery();
   // console.log("🚀 ~ ~ error:", error);
   // console.log("🚀 ~ data ~ data:", data);
-  const client = initializeApollo(null, null);
+  const client = initializeApollo({});
 
   const { data, error } = await client.query<GetPagesQuery>({
     query: GetPagesDocument,

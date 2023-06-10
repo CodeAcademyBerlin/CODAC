@@ -13,6 +13,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     title: "Card Title",
-    tag: "Card Tag",
+    tag: "tag",
+    image: "codac-logo.png",
   },
 };

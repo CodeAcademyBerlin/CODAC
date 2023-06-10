@@ -2,7 +2,7 @@ import { GetPageDocument, type GetPageQuery, type PageEntity } from "codac-serve
 
 import { initializeApollo } from "./apolloClient";
 
-const client = initializeApollo(null, null);
+const client = initializeApollo({});
 
 export const getPageData = async (
   params: { slug: string[] },

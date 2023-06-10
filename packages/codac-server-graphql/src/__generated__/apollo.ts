@@ -4,6 +4,51 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
+export const LoginDocument = gql`
+    mutation login($email: String!, $password: String!) {
+  login(input: {identifier: $email, password: $password, provider: "credential"}) {
+    jwt
+    user {
+      username
+      id
+      email
+      role {
+        type
+        name
+        description
+        id
+      }
+    }
+  }
+}
+    `;
+export type LoginMutationFn = Apollo.MutationFunction<Types.LoginMutation, Types.LoginMutationVariables>;
+
+/**
+ * __useLoginMutation__
+ *
+ * To run a mutation, you first call `useLoginMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useLoginMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [loginMutation, { data, loading, error }] = useLoginMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *      password: // value for 'password'
+ *   },
+ * });
+ */
+export function useLoginMutation(baseOptions?: Apollo.MutationHookOptions<Types.LoginMutation, Types.LoginMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<Types.LoginMutation, Types.LoginMutationVariables>(LoginDocument, options);
+      }
+export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
+export type LoginMutationResult = Apollo.MutationResult<Types.LoginMutation>;
+export type LoginMutationOptions = Apollo.BaseMutationOptions<Types.LoginMutation, Types.LoginMutationVariables>;
 export const GetChallengesDocument = gql`
     query getChallenges {
   codingChallenges {
@@ -43,6 +88,129 @@ export function useGetChallengesLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type GetChallengesQueryHookResult = ReturnType<typeof useGetChallengesQuery>;
 export type GetChallengesLazyQueryHookResult = ReturnType<typeof useGetChallengesLazyQuery>;
 export type GetChallengesQueryResult = Apollo.QueryResult<Types.GetChallengesQuery, Types.GetChallengesQueryVariables>;
+export const GetCohortsDocument = gql`
+    query getCohorts {
+  cohorts {
+    data {
+      attributes {
+        name
+        start_date
+        logo {
+          data {
+            attributes {
+              url
+              alternativeText
+              caption
+              previewUrl
+            }
+          }
+        }
+        students {
+          data {
+            id
+            attributes {
+              start_date
+              user {
+                data {
+                  id
+                  attributes {
+                    firstname
+                    lastname
+                    avatar {
+                      data {
+                        attributes {
+                          url
+                          alternativeText
+                          name
+                          caption
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetCohortsQuery__
+ *
+ * To run a query within a React component, call `useGetCohortsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCohortsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCohortsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetCohortsQuery(baseOptions?: Apollo.QueryHookOptions<Types.GetCohortsQuery, Types.GetCohortsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<Types.GetCohortsQuery, Types.GetCohortsQueryVariables>(GetCohortsDocument, options);
+      }
+export function useGetCohortsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Types.GetCohortsQuery, Types.GetCohortsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<Types.GetCohortsQuery, Types.GetCohortsQueryVariables>(GetCohortsDocument, options);
+        }
+export type GetCohortsQueryHookResult = ReturnType<typeof useGetCohortsQuery>;
+export type GetCohortsLazyQueryHookResult = ReturnType<typeof useGetCohortsLazyQuery>;
+export type GetCohortsQueryResult = Apollo.QueryResult<Types.GetCohortsQuery, Types.GetCohortsQueryVariables>;
+export const StudentCohortDocument = gql`
+    query studentCohort($userId: ID) {
+  students(filters: {user: {id: {eq: $userId}}}) {
+    data {
+      id
+      attributes {
+        cohort {
+          data {
+            attributes {
+              name
+              start_date
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useStudentCohortQuery__
+ *
+ * To run a query within a React component, call `useStudentCohortQuery` and pass it any options that fit your needs.
+ * When your component renders, `useStudentCohortQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useStudentCohortQuery({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useStudentCohortQuery(baseOptions?: Apollo.QueryHookOptions<Types.StudentCohortQuery, Types.StudentCohortQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<Types.StudentCohortQuery, Types.StudentCohortQueryVariables>(StudentCohortDocument, options);
+      }
+export function useStudentCohortLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Types.StudentCohortQuery, Types.StudentCohortQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<Types.StudentCohortQuery, Types.StudentCohortQueryVariables>(StudentCohortDocument, options);
+        }
+export type StudentCohortQueryHookResult = ReturnType<typeof useStudentCohortQuery>;
+export type StudentCohortLazyQueryHookResult = ReturnType<typeof useStudentCohortLazyQuery>;
+export type StudentCohortQueryResult = Apollo.QueryResult<Types.StudentCohortQuery, Types.StudentCohortQueryVariables>;
 export const GetAllCoursesDocument = gql`
     query getAllCourses {
   courses {
@@ -608,6 +776,137 @@ export function useGetSpikeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<T
 export type GetSpikeQueryHookResult = ReturnType<typeof useGetSpikeQuery>;
 export type GetSpikeLazyQueryHookResult = ReturnType<typeof useGetSpikeLazyQuery>;
 export type GetSpikeQueryResult = Apollo.QueryResult<Types.GetSpikeQuery, Types.GetSpikeQueryVariables>;
+export const FilterStudentByUserIdDocument = gql`
+    query filterStudentByUserId($userId: ID) {
+  students(filters: {user: {id: {eq: $userId}}}) {
+    data {
+      attributes {
+        user {
+          data {
+            id
+            attributes {
+              firstname
+              lastname
+              email
+              avatar {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+        github
+        linkedin
+        start_date
+        cohort {
+          data {
+            attributes {
+              name
+              start_date
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useFilterStudentByUserIdQuery__
+ *
+ * To run a query within a React component, call `useFilterStudentByUserIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFilterStudentByUserIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFilterStudentByUserIdQuery({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useFilterStudentByUserIdQuery(baseOptions?: Apollo.QueryHookOptions<Types.FilterStudentByUserIdQuery, Types.FilterStudentByUserIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<Types.FilterStudentByUserIdQuery, Types.FilterStudentByUserIdQueryVariables>(FilterStudentByUserIdDocument, options);
+      }
+export function useFilterStudentByUserIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Types.FilterStudentByUserIdQuery, Types.FilterStudentByUserIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<Types.FilterStudentByUserIdQuery, Types.FilterStudentByUserIdQueryVariables>(FilterStudentByUserIdDocument, options);
+        }
+export type FilterStudentByUserIdQueryHookResult = ReturnType<typeof useFilterStudentByUserIdQuery>;
+export type FilterStudentByUserIdLazyQueryHookResult = ReturnType<typeof useFilterStudentByUserIdLazyQuery>;
+export type FilterStudentByUserIdQueryResult = Apollo.QueryResult<Types.FilterStudentByUserIdQuery, Types.FilterStudentByUserIdQueryVariables>;
+export const AllStudentsDocument = gql`
+    query allStudents {
+  students {
+    data {
+      attributes {
+        user {
+          data {
+            id
+            attributes {
+              firstname
+              lastname
+              email
+              avatar {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+        github
+        linkedin
+        start_date
+        cohort {
+          data {
+            attributes {
+              name
+              start_date
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useAllStudentsQuery__
+ *
+ * To run a query within a React component, call `useAllStudentsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllStudentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAllStudentsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAllStudentsQuery(baseOptions?: Apollo.QueryHookOptions<Types.AllStudentsQuery, Types.AllStudentsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<Types.AllStudentsQuery, Types.AllStudentsQueryVariables>(AllStudentsDocument, options);
+      }
+export function useAllStudentsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Types.AllStudentsQuery, Types.AllStudentsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<Types.AllStudentsQuery, Types.AllStudentsQueryVariables>(AllStudentsDocument, options);
+        }
+export type AllStudentsQueryHookResult = ReturnType<typeof useAllStudentsQuery>;
+export type AllStudentsLazyQueryHookResult = ReturnType<typeof useAllStudentsLazyQuery>;
+export type AllStudentsQueryResult = Apollo.QueryResult<Types.AllStudentsQuery, Types.AllStudentsQueryVariables>;
 export const GetMeDocument = gql`
     query getMe {
   me {

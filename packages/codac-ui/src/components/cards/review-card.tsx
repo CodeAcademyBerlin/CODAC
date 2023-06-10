@@ -18,7 +18,7 @@ export const ReviewCard = ({ review }: { review: Review }) => {
         {review.rating ? <CardRating rating={review.rating} /> : null}
       </div>
 
-      <div className="text-gray-400">{review.text}</div>
+      <div className="max-w-sm text-gray-400">{review.text}</div>
     </div>
   );
 };

@@ -1,1 +1,1 @@
-export { dynamicSections, SectionHeader, SectionMarkdown } from "./dynamic-components";
+export * from "./dynamic-components";

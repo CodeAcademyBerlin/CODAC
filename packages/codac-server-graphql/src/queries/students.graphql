@@ -1,0 +1,73 @@
+query filterStudentByUserId($userId: ID) {
+  students(filters: { user: { id: { eq: $userId } } }) {
+    data {
+      attributes {
+        user {
+          data {
+            id
+            attributes {
+              firstname
+              lastname
+              email
+              avatar {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+        github
+        linkedin
+        start_date
+        cohort {
+          data {
+            attributes {
+              name
+              start_date
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query allStudents {
+  students {
+    data {
+      attributes {
+        user {
+          data {
+            id
+            attributes {
+              firstname
+              lastname
+              email
+              avatar {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+        github
+        linkedin
+        start_date
+        cohort {
+          data {
+            attributes {
+              name
+              start_date
+            }
+          }
+        }
+      }
+    }
+  }
+}

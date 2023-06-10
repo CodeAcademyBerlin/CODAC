@@ -1,24 +1,41 @@
-// "use client";
-// .draw2 {
-//   stroke-dasharray: 2338.5;
-//   stroke-dashoffset: 2338.5;
-//   animation: dash2 3s linear infinite;
-// }
-// @keyframes dash2 {
-//   to { stroke-dashoffset: 0;}
-// }
-// import styled, { keyframes } from "styled-components";
+import { clsx } from "clsx";
 
-export const BerlinSkyline = () => {
+export const BerlinSkyline = ({
+  animateRerendering = true,
+  color = "default",
+}: {
+  animateRerendering?: boolean;
+  color?: "pink" | "blue" | "violet" | "cyan" | "orange" | "default";
+}) => {
+  const strokeColor = () => {
+    switch (color) {
+      case "pink":
+        return "#FF0080";
+      case "blue":
+        return "#0070F3";
+      case "cyan":
+        return "#50E3C2";
+      case "orange":
+        return "#F5A623";
+      case "violet":
+        return "#7928CA";
+      default:
+        return "#38bcc1";
+    }
+  };
+
   return (
-    <div className="absolute bottom-[40%] left-0 right-0 hidden overflow-hidden px-10 lg:block">
+    <div className={"absolute bottom-[40%] left-0 right-0 hidden overflow-hidden px-10 sm:block"}>
       <svg
-        // strokeDashoffset={2338.5}
-        // strokeDasharray={2338.5}
         viewBox="0 0 667.7 259.9"
-        className="animate-[dashdraw_60s_linear]"
+        className={clsx({ "animate-[dashdraw_60s_linear]": animateRerendering })}
       >
-        <g stroke="#31969ac0" fill="none" id="layer1" transform="translate(529.3378,-883.68646)">
+        <g
+          stroke={strokeColor()}
+          fill="none"
+          id="layer1"
+          transform="translate(529.3378,-883.68646)"
+        >
           {/* <rect id="Himmel" x="-529.3" y="883.7" width="667.7" height="259.9" /> */}
           <path
             id="Fernsehturm"
