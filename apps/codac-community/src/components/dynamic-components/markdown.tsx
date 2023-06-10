@@ -1,4 +1,4 @@
-import type { ComponentSectionsRichText } from "codac-server-graphql";
+import type { ComponentSectionsRichText } from "codac-graphql-types";
 import ReactMarkdown from "react-markdown";
 interface Props {
   data: ComponentSectionsRichText;

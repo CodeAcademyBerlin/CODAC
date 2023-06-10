@@ -11,7 +11,7 @@ module.exports = {
   //     "./apps/codac-ts-next-lms/tsconfig.json",
   //     "./packages/codac-ui/tsconfig.json",
   //     "./packages/toxic-ui/tsconfig.json",
-  //     "./packages/codac-server-graphql/tsconfig.json",
+  //     "./packages/codac-graphql-types/tsconfig.json",
   //   ],
   //   sourceType: "module",
   //   ecmaVersion: 2020,

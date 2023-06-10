@@ -2,7 +2,7 @@ import {
   GetPagesDocument,
   useGetAllCoursesLazyQuery,
   type GetPagesQuery,
-} from "codac-server-graphql";
+} from "codac-graphql-types";
 import { Card } from "codac-ui";
 import type { InferGetStaticPropsType } from "next/types";
 

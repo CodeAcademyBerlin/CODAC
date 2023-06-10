@@ -3,7 +3,7 @@ import type {
   UsersPermissionsLoginPayload,
   UsersPermissionsMe,
   UsersPermissionsUser,
-} from "codac-server-graphql";
+} from "codac-graphql-types";
 import type { AuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 // import CredentialsProvider from "next-auth/providers/credentials";

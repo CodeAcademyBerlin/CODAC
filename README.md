@@ -29,7 +29,7 @@ This monorepo includes the following packages/apps:
 
 ### Packages
 
-- `codac-server-graphql`: a graphql types code generation app using codegen. It generates types and custom react hooks to query the CODAC administration server
+- `codac-graphql-types: a graphql types code generation app using codegen. It generates types and custom react hooks to query the CODAC administration server
 
 - `codac-ui`: official design system of React/Next components done with [Tailwind CSS](https://tailwindcss.com/) and [Storybook](https://storybook.js.org/)
 
@@ -41,7 +41,7 @@ This monorepo includes the following packages/apps:
 
 - `tsconfig`: `tsconfig.json`s used throughout the monorepo
 
-### Building Types packages/codac-server-graphql
+### Building Types packages/codac-graphql-types
 
 This page generates the types and custom Apollo GraphQl hooks from a Strapi backend
 [Strapi Admin](https://codac-admin-dev.up.railway.app/admin)

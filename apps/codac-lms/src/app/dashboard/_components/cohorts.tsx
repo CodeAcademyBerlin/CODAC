@@ -1,4 +1,4 @@
-import type { CohortEntityResponseCollection } from "codac-server-graphql";
+import type { CohortEntityResponseCollection } from "codac-graphql-types";
 import { Card, Ping } from "codac-ui";
 
 export const Cohorts = async ({ data }: { data: Promise<Response> }) => {

@@ -1,4 +1,4 @@
-import type { UsersPermissionsLoginPayload, UsersPermissionsMe } from "codac-server-graphql";
+import type { UsersPermissionsLoginPayload, UsersPermissionsMe } from "codac-graphql-types";
 import { destroyCookie, setCookie } from "nookies";
 import { createContext, type ReactNode, useState } from "react";
 

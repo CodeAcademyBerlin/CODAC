@@ -1,4 +1,4 @@
-import type { ComponentSectionsHeader } from "codac-server-graphql";
+import type { ComponentSectionsHeader } from "codac-graphql-types";
 
 interface Props {
   data: ComponentSectionsHeader;

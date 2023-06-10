@@ -1,4 +1,4 @@
-import type { UploadFile, UsersPermissionsMeRole } from "codac-server-graphql";
+import type { UploadFile, UsersPermissionsMeRole } from "codac-graphql-types";
 
 export interface UserLoginResponse {
   jwt: string;

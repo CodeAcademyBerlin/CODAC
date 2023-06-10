@@ -1,4 +1,4 @@
-import type { UsersPermissionsMe } from "codac-server-graphql";
+import type { UsersPermissionsMe } from "codac-graphql-types";
 import { notFound } from "next/navigation";
 
 import { fetchAPI } from "#/utils/fetch-api";

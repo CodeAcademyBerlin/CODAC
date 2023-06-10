@@ -6,7 +6,7 @@
 // good practise to add `server-only` preemptively.
 import "server-only";
 
-import type { CourseEntity } from "codac-server-graphql";
+import type { CourseEntity } from "codac-graphql-types";
 import { notFound } from "next/navigation";
 
 import { fetchAPI } from "#/utils/fetch-api";

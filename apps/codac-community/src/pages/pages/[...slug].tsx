@@ -3,7 +3,7 @@ import {
   GetPagesDocument,
   type PageContentSectionsDynamicZone,
   type PageEntity,
-} from "codac-server-graphql";
+} from "codac-graphql-types";
 import type { GetStaticPropsContext } from "next/types";
 
 import DynamicZoneSections from "#/components/DynamicZoneSections";

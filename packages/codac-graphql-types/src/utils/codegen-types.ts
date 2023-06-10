@@ -37,7 +37,7 @@ const config: CodegenConfig = {
 
 // const config2: CodegenConfig = {
 //   overwrite: true,
-//   // schema: `https://codac-server-graphql.up.railway.app/graphql`,
+//   // schema: `https://codac-graphql-types.up.railway.app/graphql`,
 //   schema: `https://codac-admin-dev.up.railway.app/graphql`,
 //   documents: "./**/*.graphql",
 //   generates: {

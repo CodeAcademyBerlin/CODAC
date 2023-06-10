@@ -1,6 +1,6 @@
 // components/VideoEmbed.tsx
 
-import type { ComponentSectionsGoogleSlide } from "codac-server-graphql";
+import type { ComponentSectionsGoogleSlide } from "codac-graphql-types";
 
 interface Props {
   data: ComponentSectionsGoogleSlide;

@@ -1,5 +1,5 @@
 import { initializeApollo } from "#/lib/apolloClient";
-import { CohortEntity, GetCohortsDocument, GetCohortsQuery } from "codac-server-graphql";
+import { CohortEntity, GetCohortsDocument, GetCohortsQuery } from "codac-graphql-types";
 import { Ping, Card } from "codac-ui";
 import { IncomingMessage } from "http";
 import { InferGetServerSidePropsType, GetServerSideProps, NextApiRequest } from "next";

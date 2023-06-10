@@ -3,7 +3,7 @@ module.exports = {
   // experimental: {
   //   appDir: true,
   // },
-  transpilePackages: ["codac-ui", "codac-server-graphql"],
+  transpilePackages: ["codac-ui", "codac-graphql-types"],
   images: {
     remotePatterns: [
       {

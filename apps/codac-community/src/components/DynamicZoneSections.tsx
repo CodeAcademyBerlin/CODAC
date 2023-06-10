@@ -1,4 +1,4 @@
-import type { PageContentSectionsDynamicZone } from "codac-server-graphql";
+import type { PageContentSectionsDynamicZone } from "codac-graphql-types";
 import { SectionHeader, SectionRichText } from "codac-ui";
 import type { FC } from "react";
 

@@ -38,7 +38,7 @@ const config: CodegenConfig = {
 // pnpm add -D @graphql-codegen/near-operation-file-preset
 // const configNearfile: CodegenConfig = {
 //   overwrite: true,
-//   // schema: `https://codac-server-graphql.up.railway.app/graphql`,
+//   // schema: `https://codac-graphql-typesp.railway.app/graphql`,
 //   schema: `https://codac-admin-dev.up.railway.app/graphql`,
 //   documents: "./**/*.graphql",
 //   generates: {

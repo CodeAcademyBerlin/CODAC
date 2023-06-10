@@ -1,4 +1,4 @@
-import { GetPageDocument, type GetPageQuery, type PageEntity } from "codac-server-graphql";
+import { GetPageDocument, type GetPageQuery, type PageEntity } from "codac-graphql-types";
 
 import { initializeApollo } from "./apolloClient";
 
