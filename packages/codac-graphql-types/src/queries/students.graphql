@@ -35,7 +35,7 @@ query filterStudentByUserId($userId: ID) {
   }
 }
 
-query allStudents {
+query getAllStudents {
   students {
     data {
       attributes {

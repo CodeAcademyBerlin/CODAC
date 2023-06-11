@@ -6,9 +6,9 @@ import {
 } from "codac-graphql-types";
 import type { GetStaticPropsContext } from "next/types";
 
-import DynamicZoneSections from "#/components/DynamicZoneSections";
 import { initializeApollo } from "#/lib/apolloClient";
 import type { ApolloGenericQuery } from "#/types/apollo";
+import DynamicZoneSections from "#/components/dynamic-zone-sections";
 
 interface PageContext {
   slug: string;
@@ -38,7 +38,6 @@ export const getStaticPaths = async (context: GetStaticPropsContext) => {
     : [];
 
   const pages = (await Promise.all(allPages)).flat();
-  console.log("pages", pages);
   const paths = pages.map(({ attributes }) => {
     const { slug, locale } = attributes;
     const slugArray = slug?.split("/");
@@ -79,7 +78,6 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 
       contentSections,
     };
-    console.log("pageContext", pageContext);
     return {
       props: {
         pageContext: {

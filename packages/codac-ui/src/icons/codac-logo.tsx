@@ -5,7 +5,7 @@ export function CodacLogoIcon(props: ComponentProps<"svg">): ReactElement {
     <svg
       // width="10"
       // height="30"
-      className="fill-primary group-hover:fill-primary dark:fill-gray-400 dark:group-hover:fill-gray-50"
+      className="dark:fill-primary group-hover:fill-primary fill-gray-400 "
       xmlns="http://www.w3.org/2000/svg"
       viewBox="30.9 40 429.6 424"
       {...props}

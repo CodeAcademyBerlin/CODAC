@@ -1,7 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { COOKIES_TOKEN_NAME } from "#/constants";
 import {
   ApolloClient,
   ApolloLink,
@@ -11,38 +8,27 @@ import {
 import { onError } from "@apollo/link-error";
 import { createUploadLink } from "apollo-upload-client";
 import merge from "deepmerge";
-import type { IncomingMessage } from "http";
 import fetch from "isomorphic-unfetch";
 import isEqual from "lodash.isequal";
 import type { AppProps } from "next/app";
-import type { NextApiRequest, NextPage } from "next/types";
 import { parseCookies } from "nookies";
 import { useMemo } from "react";
-const devUrl = `https://codac-admin-dev.up.railway.app`;
-console.log("process.env.NEXT_PUBLIC_CODAC_SERVER_URL", process.env.NEXT_PUBLIC_CODAC_SERVER_URL);
-type PageProps = any;
-const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
-export const COOKIES_TOKEN_NAME = "token";
 
-export const getToken = (req?: NextApiRequest | IncomingMessage | null) => {
-  if (!req) return;
-  const parsedCookies = parseCookies({ req });
-  // return localStorage.getItem("token")
-  return parsedCookies[COOKIES_TOKEN_NAME];
+const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
+
+export const getToken = () => {
+  if (typeof window !== "undefined") {
+    const parsedCookies = parseCookies();
+    return parsedCookies[COOKIES_TOKEN_NAME];
+  } else return "";
 };
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;
 
-const createApolloClient = ({
-  req,
-  serverToken,
-}: {
-  req?: NextApiRequest | IncomingMessage | null;
-  serverToken?: boolean;
-}) => {
+const createApolloClient = ({ ssgToken }: { ssgToken: boolean }) => {
   // isomorphic fetch for passing the cookies along with each GraphQL request
   const enhancedFetch = async (url: RequestInfo, init: RequestInit) => {
-    const token = serverToken ? process.env.CODAC_SSG_TOKEN : getToken(req) ?? "";
+    const token = ssgToken ? process.env.CODAC_SSG_TOKEN! : getToken();
     const response = await fetch(url, {
       ...init,
       headers: {
@@ -70,7 +56,7 @@ const createApolloClient = ({
       }),
       // this uses apollo-link-http under the hood, so all the options here come from that package
       createUploadLink({
-        uri: `${process.env.NEXT_PUBLIC_CODAC_SERVER_URL ?? devUrl}/graphql`,
+        uri: `${process.env.NEXT_PUBLIC_CODAC_SERVER_URL}/graphql`,
         // Make sure that CORS and cookies work
         fetchOptions: {
           mode: "cors",
@@ -89,16 +75,8 @@ const createApolloClient = ({
   });
 };
 
-interface ApolloProps {
-  initialState?: any;
-  req?: NextApiRequest | IncomingMessage | null;
-  serverToken?: boolean;
-}
-
-export const initializeApollo = ({ initialState, req, serverToken }: ApolloProps) => {
-  req?.headers.cookie;
-  const _apolloClient = apolloClient ?? createApolloClient({ req, serverToken });
-
+export const initializeApollo = (initialState?: NormalizedCacheObject, ssgToken = false) => {
+  const _apolloClient = apolloClient ?? createApolloClient({ ssgToken });
   // If your page has Next.js data fetching methods that use Apollo Client, the initial state
   // get hydrated here
   if (initialState) {
@@ -135,8 +113,9 @@ export const addApolloState = (
   return pageProps;
 };
 
-export function useApollo(pageProps: PageProps) {
-  const state = pageProps[APOLLO_STATE_PROP_NAME];
+//  client side provider
+export function useApollo(pageProps: { [APOLLO_STATE_PROP_NAME]: NormalizedCacheObject }) {
+  const state: NormalizedCacheObject = pageProps[APOLLO_STATE_PROP_NAME];
   const store = useMemo(() => initializeApollo({ initialState: state }), [state]);
   return store;
 }

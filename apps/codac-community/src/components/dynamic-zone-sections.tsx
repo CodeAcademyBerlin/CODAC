@@ -2,9 +2,6 @@ import type { PageContentSectionsDynamicZone } from "codac-graphql-types";
 import { SectionHeader, SectionRichText } from "codac-ui";
 import type { FC } from "react";
 
-import Header from "./dynamic-components/header";
-import Markdown from "./dynamic-components/markdown";
-
 // Map Strapi sections to dynamicZone components
 const contentSectionsList = {
   ComponentSectionsHeader: SectionHeader,

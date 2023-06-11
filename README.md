@@ -29,7 +29,7 @@ This monorepo includes the following packages/apps:
 
 ### Packages
 
-- `codac-graphql-types: a graphql types code generation app using codegen. It generates types and custom react hooks to query the CODAC administration server
+- `codac-graphql-types`: a graphql types code generation app using codegen. It generates types and custom react hooks to query the CODAC administration server
 
 - `codac-ui`: official design system of React/Next components done with [Tailwind CSS](https://tailwindcss.com/) and [Storybook](https://storybook.js.org/)
 
@@ -75,12 +75,12 @@ This Turborepo has some additional tools already setup for you:
 
 ### Contributing
 
-- Fork the project on Github
 - Clone the project : `git clone https://github.com/CodeAcademyBerlin/CODAC.git`
 - Go to the project directory : `cd CODAC`
 - Install dependencies : `pnpm install`
 - Build the project : `pnpm build`
 - Create your feature branch (git checkout -b feature/AmazingFeature)
+- Adapt file `pnpm-workspace.yaml` to your needs
 - Make your changes
 - Commit your changes (git commit -m 'Add some AmazingFeature')
 - Push to the branch (git push origin feature/AmazingFeature)

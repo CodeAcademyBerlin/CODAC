@@ -4,7 +4,7 @@ const level = "warn";
 // const level = "error";
 
 module.exports = {
-  // parser: "@typescript-eslint/parser",
+  parser: "@typescript-eslint/parser",
   // parserOptions: {
   //   tsconfigRootDir: resolve(__dirname, "../.."),
   //   project: [
@@ -16,13 +16,13 @@ module.exports = {
   //   sourceType: "module",
   //   ecmaVersion: 2020,
   // },
-  // parserOptions: {
-  //   babelOptions: {
-  //     presets: [require.resolve("next/babel")],
-  //   },
-  //   project: ["./apps/*/tsconfig.json", "./packages/*/tsconfig.json"],
-  //   tsconfigRootDir: resolve(__dirname, "../.."),
-  // },
+  parserOptions: {
+    babelOptions: {
+      presets: [require.resolve("next/babel")],
+    },
+    // project: ["./apps/*/tsconfig.json", "./packages/*/tsconfig.json"],
+    // tsconfigRootDir: resolve(__dirname, "../.."),
+  },
   // parserOptions: {
   //   ecmaVersion: "latest",
   //   sourceType: "module",
@@ -30,11 +30,11 @@ module.exports = {
   //     "jsx": true
   //   }
   // },
-  parserOptions: {
-    babelOptions: {
-      presets: [require.resolve("next/babel")],
-    },
-  },
+  // parserOptions: {
+  //   babelOptions: {
+  //     presets: [require.resolve("next/babel")],
+  //   },
+  // },
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",

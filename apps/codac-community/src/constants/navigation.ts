@@ -6,6 +6,16 @@ export interface Item {
 
 export const navigation: { name: string; items: Item[] }[] = [
   {
+    name: "Dashboard",
+    items: [
+      {
+        name: "Dashboard",
+        slug: "dashboard",
+        description: "dashboard",
+      },
+    ],
+  },
+  {
     name: "Community",
     items: [
       {
@@ -15,6 +25,7 @@ export const navigation: { name: string; items: Item[] }[] = [
       },
     ],
   },
+
   {
     name: "LMS",
     items: [

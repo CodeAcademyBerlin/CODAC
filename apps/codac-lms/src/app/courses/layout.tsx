@@ -1,5 +1,5 @@
 // "use client";
-import { GlobalNav, Header, LMSLayout, SignIn } from "codac-ui";
+import { GlobalNav, Header, LMSLayout } from "codac-ui";
 
 import { navigation } from "#/constants/navigation";
 

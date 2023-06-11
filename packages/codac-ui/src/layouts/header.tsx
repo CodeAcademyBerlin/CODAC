@@ -38,7 +38,7 @@ export function Header() {
         </div>
 
         {/* <Image
-          src="/prince-akachi-LWkFHEGpleE-unsplash.jpg"
+          src=""
           className="rounded-full"
           width={40}
           height={40}
