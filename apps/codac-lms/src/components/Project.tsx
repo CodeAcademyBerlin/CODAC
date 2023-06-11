@@ -1,4 +1,4 @@
-import { Project } from "codac-server-graphql";
+import { Project } from "codac-graphql-types";
 import Link from "next/link";
 import React from "react";
 

@@ -1,5 +1,5 @@
 const colors = require("tailwindcss/colors");
-const defaultTheme = require("tailwindcss/defaultTheme");
+// const defaultTheme = require("tailwindcss/defaultTheme");
 const plugin = require("tailwindcss/plugin");
 
 // Rotate X utilities
@@ -39,26 +39,26 @@ module.exports = {
   // darkMode: ['class', '[data-mode="dark"]'],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
-        mono: ["JetBrains Mono", ...defaultTheme.fontFamily.mono],
-        display: ["Oswald"],
-        body: ['"Open Sans"'],
-        CODAC: ["var(----codac-font)"],
-      },
+      // fontFamily: {
+      //   sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+      //   mono: ["Consolas Mono", ...defaultTheme.fontFamily.mono],
+      //   display: ["Oswald"],
+      //   body: ['"Open Sans"'],
+      //   CODAC: ["var(----codac-font)"],
+      // },
       colors: {
-        gray: colors.zinc,
-        "gray-1000": "rgb(17,17,19)",
-        "gray-1100": "rgb(10,10,11)",
         primary: "#00897B",
         secondary: "#FF0080",
         codac: {
           pink: "#FF0080",
           blue: "#0070F3",
-          cyan: "#50E3C2",
+          cyan: "#00897B",
           orange: "#F5A623",
           violet: "#7928CA",
         },
+        gray: colors.zinc,
+        "gray-1000": "rgb(17,17,19)",
+        "gray-1100": "rgb(10,10,11)",
       },
       backgroundImage: ({ theme }) => ({
         "vc-border-gradient": `radial-gradient(at left top, ${theme(

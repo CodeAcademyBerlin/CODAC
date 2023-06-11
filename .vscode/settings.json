@@ -9,6 +9,10 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
+  "jest.autoRun": "off",
+  "jest.disabledWorkspaceFolders": [],
+  "jest.jestCommandLine": "npm test",
+  "jestrunner.jestCommand": "npm test",
   "eslint.workingDirectories": [
     {
       "pattern": "apps/*/"

@@ -1,21 +1,13 @@
-import { BlankLayout, BrandLogo, CardShinyHOC } from "codac-ui";
+import { LandingGraphics, BlankLayout, CardShinyHOC, BrandLogo } from "codac-ui";
 import Link from "next/link";
 
-import LandingGraphics from "#/components/LandingGraphics";
-
 const Landing = () => {
-  // const [animation, setAnimation] = useState(true);
-  // const toggleAnimation = () => {
-  //   setAnimation(!animation);
-  // };
+  console.log("process.env", process.env);
   return (
     <>
-      <LandingGraphics />
+      <LandingGraphics color="default" animateRerendering={true} />
       <BlankLayout>
-        {/* <div className="absolute right-2 top-2">
-          <ToggleButton checked={animation} toggle={toggleAnimation} label="" />
-        </div> */}
-        <Link href="/courses">
+        <Link href="/dashboard">
           <CardShinyHOC>
             <BrandLogo>CODAC</BrandLogo>
             <div className="py-4 text-center">

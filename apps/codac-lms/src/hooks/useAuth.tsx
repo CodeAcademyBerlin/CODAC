@@ -1,4 +1,4 @@
-import type { UsersPermissionsMe } from "codac-server-graphql";
+import type { UsersPermissionsMe } from "codac-graphql-types";
 import { notFound } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { createContext, useContext, useEffect, useState } from "react";

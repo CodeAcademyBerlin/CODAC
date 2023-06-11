@@ -6,7 +6,6 @@ import { useSelectedLayoutSegment } from "next/navigation";
 import { useState } from "react";
 
 import { BrandText } from "../brand";
-import { SideAuth } from "../components/side-auth";
 import { CodacLogoIcon } from "../icons/codac-logo";
 import { ThemeSwitch } from "../theme/theme-switch";
 import { LMSAddressBar } from "./lms-address-bar";
@@ -24,8 +23,12 @@ export function LMSNav() {
   return (
     <div className="fixed top-0 z-10 flex w-full flex-col border-b border-gray-800 bg-gray-200 dark:bg-black  lg:bottom-0 lg:z-auto lg:w-72 lg:border-b-0 lg:border-r lg:border-gray-800">
       <div className="flex h-14 items-center px-4 py-4 lg:h-auto">
-        <Link href="/" className="group flex  items-center gap-x-2.5" onClick={close}>
-          <div className="h-7 w-7 group-hover:border-white/50">
+        <Link
+          href="/"
+          className="group flex items-center  gap-x-2.5 group-hover:border-white/50"
+          onClick={close}
+        >
+          <div className="h-7 w-7 ">
             <CodacLogoIcon />
           </div>
           <BrandText>CODAC LMS</BrandText>

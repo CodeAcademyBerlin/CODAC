@@ -1,0 +1,122 @@
+query getAllCourses {
+  courses {
+    data {
+      id
+      attributes {
+        name
+        description
+        objectives {
+          name
+        }
+        mentors {
+          data {
+            attributes {
+              user {
+                data {
+                  attributes {
+                    firstname
+                    lastname
+                    email
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+query getCourseProject($name: String, $projectIds: ID) {
+  courses(filters: { name: { eq: $name } }) {
+    data {
+      attributes {
+        name
+        projects(filters: { id: { eq: $projectIds } }) {
+          data {
+            id
+            attributes {
+              name
+              description
+              sprints {
+                pages {
+                  data {
+                    attributes {
+                      title
+                      slug
+                      locale
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+query getCourseProjects($name: String) {
+  courses(filters: { name: { eq: $name } }) {
+    data {
+      attributes {
+        projects {
+          data {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+query getCourseByName($name: String!) {
+  courses(filters: { name: { eq: $name } }) {
+    data {
+      attributes {
+        name
+        description
+        createdAt
+        projects {
+          data {
+            id
+            attributes {
+              name
+              description
+              sprints {
+                name
+                length
+                objectives {
+                  name
+                }
+                pages {
+                  data {
+                    attributes {
+                      title
+                      slug
+                      locale
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        mentors {
+          data {
+            attributes {
+              user {
+                data {
+                  attributes {
+                    firstname
+                    lastname
+                    email
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

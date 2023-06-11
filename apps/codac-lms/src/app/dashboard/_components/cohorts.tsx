@@ -1,11 +1,8 @@
-import type { CohortEntity, CohortEntityResponseCollection } from "codac-server-graphql";
-import { CohortCard, Ping } from "codac-ui";
+import type { CohortEntityResponseCollection } from "codac-graphql-types";
+import { Card, Ping } from "codac-ui";
 
-import { fetchAPI } from "#/utils/fetch-api";
 export const Cohorts = async ({ data }: { data: Promise<Response> }) => {
   const cohorts = (await data.then(async (res) => res.json())) as CohortEntityResponseCollection;
-
-  console.log("cohorts", cohorts);
   return (
     <div className="space-y-6">
       <div>
@@ -20,7 +17,12 @@ export const Cohorts = async ({ data }: { data: Promise<Response> }) => {
                 {" "}
                 <Ping />
               </div>
-              <CohortCard cohort={cohort} href={`/cohorts/${cohort.id}`} />
+              <Card
+                image={cohort.attributes.logo?.data.attributes.url}
+                title={cohort.attributes.name ?? ""}
+                tag={`${cohort.attributes.students?.data.length ?? ""} students`}
+                href={`/cohorts/${cohort.id}`}
+              />
             </div>
           </div>
         ))}

@@ -21,7 +21,7 @@ export function DashboardLayout({
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head> */}
       <NextTopLoader
-        color="#2299DD"
+        color="#FF0080"
         initialPosition={0.08}
         crawlSpeed={200}
         height={3}

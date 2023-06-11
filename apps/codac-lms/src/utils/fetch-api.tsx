@@ -68,7 +68,7 @@ export async function fetchStrapiSuspense({
   options = {},
 }: {
   path: string;
-  urlParamsObject: object;
+  urlParamsObject: { populate?: string[]; sort?: object; filters?: object };
   options: object;
 }) {
   // Merge default and user options

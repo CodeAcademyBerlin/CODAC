@@ -4,11 +4,9 @@ import clsx from "clsx";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { useRouter } from "next/router";
-import { useState } from "react";
-
-import { SideAuth } from "../components/side-auth";
+import { ReactNode, useState } from "react";
 import { CodacLogoIcon } from "../icons/codac-logo";
-import { ThemeSwitch } from "../theme/theme-switch";
+import { BrandText } from "../brand";
 export interface Item {
   name: string;
   slug: string;
@@ -20,7 +18,7 @@ export function GlobalNav({
   authentication,
   appDir = true,
 }: {
-  authentication: string;
+  authentication: ReactNode;
   navigation: { name: string; items: Item[] }[];
   header: string;
   appDir?: boolean;
@@ -38,9 +36,7 @@ export function GlobalNav({
             <CodacLogoIcon />
           </div>
 
-          <h3 className="text-primary font-semibold tracking-wide dark:text-gray-400 dark:group-hover:text-gray-50">
-            {header}
-          </h3>
+          <BrandText> {header}</BrandText>
         </Link>
       </div>
 
@@ -51,7 +47,6 @@ export function GlobalNav({
           setIsOpen(!isOpen);
         }}
       >
-        <ThemeSwitch />
         <div className="font-medium text-gray-100 group-hover:text-gray-400">Menu</div>
         {isOpen ? (
           <XIcon className="block w-6 text-gray-400" />
@@ -86,9 +81,9 @@ export function GlobalNav({
             );
           })}
         </nav>
-
-        <SideAuth user={authentication} className="absolute hidden sm:block"></SideAuth>
       </div>
+      <div className="flex-grow"></div>
+      <div className="px-4 py-4 lg:px-6 lg:py-6">{authentication}</div>
     </div>
   );
 }

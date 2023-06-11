@@ -1,4 +1,4 @@
-const { resolve } = require("node:path");
+// const { resolve } = require("node:path");
 
 const level = "warn";
 // const level = "error";
@@ -11,7 +11,7 @@ module.exports = {
   //     "./apps/codac-ts-next-lms/tsconfig.json",
   //     "./packages/codac-ui/tsconfig.json",
   //     "./packages/toxic-ui/tsconfig.json",
-  //     "./packages/codac-server-graphql/tsconfig.json",
+  //     "./packages/codac-graphql-types/tsconfig.json",
   //   ],
   //   sourceType: "module",
   //   ecmaVersion: 2020,
@@ -20,9 +20,21 @@ module.exports = {
     babelOptions: {
       presets: [require.resolve("next/babel")],
     },
-    project: ["./apps/*/tsconfig.json", "./packages/*/tsconfig.json"],
-    tsconfigRootDir: resolve(__dirname, "../.."),
+    // project: ["./apps/*/tsconfig.json", "./packages/*/tsconfig.json"],
+    // tsconfigRootDir: resolve(__dirname, "../.."),
   },
+  // parserOptions: {
+  //   ecmaVersion: "latest",
+  //   sourceType: "module",
+  //   ecmaFeatures: {
+  //     "jsx": true
+  //   }
+  // },
+  // parserOptions: {
+  //   babelOptions: {
+  //     presets: [require.resolve("next/babel")],
+  //   },
+  // },
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -79,8 +91,29 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["**/*.{spec,test}.{ts,tsx}"],
-      extends: ["plugin:testing-library/react", "plugin:jest-dom/recommended"],
+      // 3) Now we enable eslint-plugin-testing-library rules or preset only for matching files!
+      env: {
+        jest: true,
+      },
+      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+      extends: ['plugin:testing-library/react', 'plugin:jest/recommended'],
+      rules: {
+        'import/no-extraneous-dependencies': [
+          'off',
+          { devDependencies: ['**/?(*.)+(spec|test).[jt]s?(x)'] },
+        ],
+      },
     },
+  ],
+  ignorePatterns: [
+    '**/*.js',
+    '**/*.json',
+    'node_modules',
+    'public',
+    'styles',
+    '.next',
+    'coverage',
+    'dist',
+    '.turbo',
   ],
 };

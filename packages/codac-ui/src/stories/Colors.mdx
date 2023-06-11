@@ -1,0 +1,37 @@
+import { Meta, ColorPalette, ColorItem } from "@storybook/blocks";
+import tailwindTheme from "tailwind-config/tailwind.config";
+import { themeColorsFlat } from "../utils/colors";
+
+<Meta title="Colors" />
+ {console.log("foo", themeColorsFlat(tailwindTheme.theme?.extend.colors))}
+  <ColorPalette>
+  {themeColorsFlat(tailwindTheme.theme?.extend.colors).map((color) => (
+    <ColorItem
+      title={color.name}
+      subtitle={color.value}
+      colors={{ [color.name]: color.value }}
+    />
+  ))
+  }
+  <ColorItem
+    title="theme.color.greyscale"
+    subtitle="Some of the greys"
+    colors={{ White: "#FFFFFF", Alabaster: "#F8F8F8", Concrete: "#F3F3F3" }}
+  />
+
+</ColorPalette>
+{/* <ColorPalette>
+
+  <ColorItem title="theme.color.primary" subtitle="Coral" colors={{ WildWatermelon: "#FF4785" }} />
+  <ColorItem title="theme.color.secondary" subtitle="Ocean" colors={{ DodgerBlue: "#1EA7FD" }} />
+  <ColorItem
+    title="theme.color.positive"
+    subtitle="Green"
+    colors={{
+      Apple: "rgba(102,191,60,1)",
+      Apple80: "rgba(102,191,60,.8)",
+      Apple60: "rgba(102,191,60,.6)",
+      Apple30: "rgba(102,191,60,.3)",
+    }}
+  />
+</ColorPalette> */}

@@ -1,0 +1,65 @@
+query getCohorts {
+  cohorts {
+    data {
+      attributes {
+        name
+        start_date
+        logo {
+          data {
+            attributes {
+              url
+              alternativeText
+              caption
+              previewUrl
+            }
+          }
+        }
+        students {
+          data {
+            id
+            attributes {
+              start_date
+              user {
+                data {
+                  id
+                  attributes {
+                    firstname
+                    lastname
+
+                    avatar {
+                      data {
+                        attributes {
+                          url
+                          alternativeText
+                          name
+                          caption
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+query studentCohort($userId: ID) {
+  students(filters: { user: { id: { eq: $userId } } }) {
+    data {
+      id
+      attributes {
+        cohort {
+          data {
+            attributes {
+              name
+              start_date
+            }
+          }
+        }
+      }
+    }
+  }
+}

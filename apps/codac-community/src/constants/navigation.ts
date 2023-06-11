@@ -6,6 +6,27 @@ export interface Item {
 
 export const navigation: { name: string; items: Item[] }[] = [
   {
+    name: "Dashboard",
+    items: [
+      {
+        name: "Dashboard",
+        slug: "dashboard",
+        description: "dashboard",
+      },
+    ],
+  },
+  {
+    name: "Community",
+    items: [
+      {
+        name: "Community",
+        slug: "community",
+        description: "Community",
+      },
+    ],
+  },
+
+  {
     name: "LMS",
     items: [
       {
@@ -13,26 +34,6 @@ export const navigation: { name: string; items: Item[] }[] = [
         slug: "pages",
         description: "Pages",
       },
-      // {
-      //   name: "Projects",
-      //   slug: "projects",
-      //   description: "Projects",
-      // },
-      // {
-      //   name: "Spikes",
-      //   slug: "spikes",
-      //   description: "Spikes",
-      // },
     ],
   },
-  // {
-  //   name: "Pages",
-  //   items: [
-  //     {
-  //       name: "Pages",
-  //       slug: "pages",
-  //       description: "Pages",
-  //     },
-  //   ],
-  // },
 ];

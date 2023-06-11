@@ -1,4 +1,4 @@
-import { Boundary, CourseCard, DashboardLayout, GlobalNav, SignIn, TabGroup } from "codac-ui";
+import { Boundary, Card } from "codac-ui";
 // import { getServerSession } from "next-auth/next";
 import React from "react";
 
@@ -18,8 +18,14 @@ export default async function Page() {
               })),
             ]}
           /> */}
-          {courses.map((x) => (
-            <CourseCard key={x.id} course={x} href={`/courses/${x.attributes.slug ?? ""}`} />
+          {courses.map((course) => (
+            <Card
+              key={course.id}
+              title={course.attributes.name}
+              image={course.attributes.image?.data.attributes.url}
+              href={`/courses/${course.attributes.slug ?? ""}`}
+              tag={`${course.attributes.months ?? ""} months`}
+            />
           ))}
         </div>
       </Boundary>

@@ -1,15 +1,14 @@
-import type { Review } from "../types";
-import { CourseReviewCard } from "./course-review-card";
-
+import { ReviewCard } from "./cards";
+import { Review } from "./cards/review-card";
 export async function Reviews({ data }: { data: Promise<Response> }) {
   const reviews = (await data.then(async (res) => res.json())) as Review[];
 
   return (
     <div className="space-y-6">
-      <div className="text-lg font-medium text-white">Customer Reviews</div>
+      <div className="text-lg font-medium text-white">Reviews</div>
       <div className="space-y-8">
         {reviews.map((review) => {
-          return <CourseReviewCard key={review.name} review={review} />;
+          return <ReviewCard key={review.name} review={review} />;
         })}
       </div>
     </div>

@@ -8,7 +8,7 @@ export * from "./globe";
 export * from "./information-circle";
 export * from "./menu";
 export * from "./moon";
-export * from "./spinner";
+export { SpinnerIcon } from "./spinner";
 export * from "./sun";
 export * from "./word-wrap";
 export * from "./x";
