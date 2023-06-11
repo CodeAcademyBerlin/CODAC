@@ -35,8 +35,8 @@ module.exports = {
   future: {
     hoverOnlyWhenSupported: true,
   },
-  // darkMode: "class",
-  darkMode: ['class', '[data-mode="dark"]'],
+  darkMode: "class",
+  // darkMode: ['class', '[data-mode="dark"]'],
   theme: {
     extend: {
       // fontFamily: {
