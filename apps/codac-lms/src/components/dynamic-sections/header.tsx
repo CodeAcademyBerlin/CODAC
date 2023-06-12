@@ -9,7 +9,6 @@ interface Props {
 }
 
 export const SectionHeader = ({ data }: Props) => {
-  console.log("Header", data);
   return (
     <div className="flex space-y-1.5">
       <div className="text-secondary text-center text-2xl font-bold leading-snug">{data.title}</div>

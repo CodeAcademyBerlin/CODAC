@@ -17,9 +17,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const { data: session, status } = useSession();
   const [loading, setLoading] = useState<boolean>(true);
   const [user, setUser] = useState<UsersPermissionsMe | null>(null);
-  console.log("session", session);
-  console.log("status", status);
-  console.log("user", user);
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-floating-promises

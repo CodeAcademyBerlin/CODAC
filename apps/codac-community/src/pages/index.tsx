@@ -1,6 +1,6 @@
-import { LandingGraphics, BlankLayout, CardShinyHOC, BrandLogo } from "codac-ui";
+import { BlankLayout, BrandLogo, CardShinyHOC, LandingGraphics } from "codac-ui";
 import Link from "next/link";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 const Landing = () => {
   return (
@@ -24,7 +24,7 @@ Landing.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>;
 
 export default Landing;
 
-export async function getStaticProps() {
+export function getStaticProps() {
   return {
     props: {}, // will be passed to the page component as props
   };

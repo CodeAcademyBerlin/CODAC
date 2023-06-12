@@ -12,7 +12,6 @@ type contentSectionsType = typeof contentSectionsList;
 
 // Display a dynamicZone individually
 const Zone = ({ data }: { data: PageContentSectionsDynamicZone }) => {
-  console.log("data", data);
   // Prepare the component
   const DynamicComponent: FC<{ data: any }> =
     contentSectionsList[data.__typename as keyof contentSectionsType];

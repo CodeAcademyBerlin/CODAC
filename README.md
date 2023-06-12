@@ -24,14 +24,17 @@ This monorepo includes the following packages/apps:
 ### Apps
 
 - `codac-community`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/) dedicated to for the Code Academy Berlin community
+  [deployed](https://codac-lms.vercel.app/)
 
 - `codac-lms`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/) dedicated to making a standadone LMS
+  [deployed](https://codac-community.vercel.app/)
 
 ### Packages
 
 - `codac-graphql-types`: a graphql types code generation app using codegen. It generates types and custom react hooks to query the CODAC administration server
 
 - `codac-ui`: official design system of React/Next components done with [Tailwind CSS](https://tailwindcss.com/) and [Storybook](https://storybook.js.org/)
+  [deployed](https://codac-ui.vercel.app/)
 
 - `eslint-config-custom`: shared `eslint` configuration
 

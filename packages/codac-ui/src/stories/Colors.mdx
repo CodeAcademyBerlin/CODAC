@@ -3,7 +3,6 @@ import tailwindTheme from "tailwind-config/tailwind.config";
 import { themeColorsFlat } from "../utils/colors";
 
 <Meta title="Colors" />
- {console.log("foo", themeColorsFlat(tailwindTheme.theme?.extend.colors))}
   <ColorPalette>
   {themeColorsFlat(tailwindTheme.theme?.extend.colors).map((color) => (
     <ColorItem

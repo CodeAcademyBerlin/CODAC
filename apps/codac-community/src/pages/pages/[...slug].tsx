@@ -42,7 +42,6 @@ export const getStaticPaths = async (context: GetStaticPropsContext) => {
     const { slug, locale } = attributes;
     const slugArray = slug?.split("/");
 
-    console.log("slug", slug);
     return {
       params: { slug: slugArray },
       locale,
