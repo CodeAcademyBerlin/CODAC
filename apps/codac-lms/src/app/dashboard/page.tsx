@@ -9,13 +9,15 @@ import { Cohorts, RecommendedCohortsSkeleton } from "./_components/cohorts";
 const urlParamsObject = {
   populate: ["logo"],
 };
+const token = process.env.CODAC_SSG_TOKEN ?? "";
+const options = { headers: { Authorization: `Bearer ${token}` } };
 export default function Page({ params }: { params: { id: string } }) {
   return (
     <div className="space-y-8 lg:space-y-14">
       <Suspense fallback={<RecommendedCohortsSkeleton />}>
         {/* @ts-expect-error Async Server Component */}
 
-        <Cohorts data={fetchStrapiSuspense({ path: "/cohorts", urlParamsObject })} />
+        <Cohorts data={fetchStrapiSuspense({ path: "/cohorts", urlParamsObject, options })} />
       </Suspense>
 
       {/* <Suspense fallback={<RecommendedCoursesSkeleton />}>
