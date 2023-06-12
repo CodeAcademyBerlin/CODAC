@@ -1,10 +1,10 @@
 "use client";
 
 import { Boundary, Button } from "codac-ui";
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function Error({ error, reset }: { error: Error; reset: () => void }) {
-  React.useEffect(() => {
+  useEffect(() => {
     console.log("logging error:", error);
   }, [error]);
 

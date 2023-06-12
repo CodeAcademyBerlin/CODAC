@@ -1,11 +1,12 @@
-import { COOKIES_TOKEN_NAME } from "#/constants";
 import {
   useGetMeQuery,
   type UsersPermissionsLoginPayload,
   type UsersPermissionsMe,
 } from "codac-graphql-types";
 import { destroyCookie, setCookie } from "nookies";
-import { createContext, type ReactNode, useState, useEffect } from "react";
+import { createContext, type ReactNode, useEffect, useState } from "react";
+
+import { COOKIES_TOKEN_NAME } from "#/constants";
 
 type User = UsersPermissionsMe | null;
 
@@ -33,7 +34,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User>(null);
   const { data, error, loading: authLoading, refetch: getMe } = useGetMeQuery();
 
-  console.log("user", user);
   useEffect(() => {
     if (data?.me && !error) {
       const user = data.me as UsersPermissionsMe;
@@ -49,7 +49,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         // maxAge: 30 * 24 * 60 * 60,
         path: "/",
       });
-    getMe();
+    getMe().catch((error) => {
+      console.log(error);
+    });
   };
 
   const logout = () => {

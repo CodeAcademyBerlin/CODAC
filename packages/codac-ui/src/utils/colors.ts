@@ -1,10 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+
+// TODO / fix types
 export const themeColorsFlat = (tailwindColors: {
-  codac: { [s: string]: unknown } | ArrayLike<unknown>;
+  codac: Record<string, unknown> | ArrayLike<unknown>;
 }) => {
   let category = "";
 
-  const flattenObject = (obj: { [x: string]: any }) => {
-    const flattened: { [x: string]: any } = {};
+  const flattenObject = (obj: Record<string, any>) => {
+    const flattened: Record<string, string> = {};
     Object.keys(obj).map((key) => {
       if (typeof obj[key] === "object" && obj[key] !== null) {
         category = key;

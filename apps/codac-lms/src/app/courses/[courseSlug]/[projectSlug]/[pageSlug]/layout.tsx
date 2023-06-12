@@ -21,10 +21,8 @@ export default async function Layout({
   const { sprints, name, description } = project.attributes;
 
   const pages = sprints?.map((sprint) => sprint?.pages).flat()[0]?.data ?? [];
-  console.log("pages", pages);
   const index = pages.findIndex((page) => page.attributes.slug === params.pageSlug);
   const nextPage = pages[index + 1];
-  console.log("nextPage", nextPage);
   const previousPage = pages[index - 1];
   return (
     <div className="space-y-9">

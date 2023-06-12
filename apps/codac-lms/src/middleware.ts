@@ -9,9 +9,7 @@ export default withAuth({
   callbacks: {
     authorized({ req, token }) {
       // `/admin` requires admin role
-      console.log("req.", req.nextUrl);
       if (req.nextUrl.pathname === "/courses/(.*)") {
-        console.log("token", token);
         return token?.userRole === "Mentor";
       }
       // `/me` only requires the user to be logged in

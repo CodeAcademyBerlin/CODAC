@@ -1,7 +1,8 @@
-import { AuthContext } from "#/contexts/authContext";
-import { UsersPermissionsLoginPayload, useLoginMutation } from "codac-graphql-types";
+import { useLoginMutation, type UsersPermissionsLoginPayload } from "codac-graphql-types";
 import { Boundary, CodacLogo, Modal, SpinnerIcon } from "codac-ui";
-import { ChangeEvent, useContext, useState } from "react";
+import { type ChangeEvent, useContext, useState } from "react";
+
+import { AuthContext } from "#/contexts/authContext";
 
 interface State {
   password: string;
@@ -21,7 +22,8 @@ const LoginModal = () => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     e.preventDefault();
     loginMutation({
       variables: {

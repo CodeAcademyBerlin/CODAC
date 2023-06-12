@@ -1,28 +1,30 @@
-// const { resolve } = require("node:path");
+const { resolve } = require("node:path");
 
 const level = "warn";
 // const level = "error";
 
 module.exports = {
-  parser: "@typescript-eslint/parser",
-  // parserOptions: {
-  //   tsconfigRootDir: resolve(__dirname, "../.."),
-  //   project: [
-  //     "./apps/codac-ts-next-lms/tsconfig.json",
-  //     "./packages/codac-ui/tsconfig.json",
-  //     "./packages/toxic-ui/tsconfig.json",
-  //     "./packages/codac-graphql-types/tsconfig.json",
-  //   ],
-  //   sourceType: "module",
-  //   ecmaVersion: 2020,
-  // },
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint'],
   parserOptions: {
-    babelOptions: {
-      presets: [require.resolve("next/babel")],
-    },
-    // project: ["./apps/*/tsconfig.json", "./packages/*/tsconfig.json"],
-    // tsconfigRootDir: resolve(__dirname, "../.."),
+    tsconfigRootDir: resolve(__dirname, "../.."),
+    project: [
+      "./apps/codac-lms/tsconfig.json",
+      "./apps/codac-community/tsconfig.json",
+      "./packages/codac-ui/tsconfig.json",
+      "./packages/codac-graphql-types/tsconfig.json",
+    ],
+    sourceType: "module",
+    ecmaVersion: 2020,
   },
+
+  // parserOptions: {
+  //   babelOptions: {
+  //     presets: [require.resolve("next/babel")],
+  //   },
+  //   project: ["./apps/*/tsconfig.json", "./packages/*/tsconfig.json"],
+  //   // tsconfigRootDir: resolve(__dirname, "../.."),
+  // },
   // parserOptions: {
   //   ecmaVersion: "latest",
   //   sourceType: "module",
@@ -48,8 +50,9 @@ module.exports = {
   ],
   plugins: ["simple-import-sort", "testing-library"],
   rules: {
+    "@typescript-eslint/no-unsafe-argument": "off",
     "@next/next/no-html-link-for-pages": "off",
-    "@typescript-eslint/consistent-type-exports": `${level}`,
+    // "@typescript-eslint/consistent-type-exports": `off`,
     "@typescript-eslint/consistent-type-imports": [
       `${level}`,
       {
@@ -70,9 +73,9 @@ module.exports = {
       },
     ],
     "@typescript-eslint/no-confusing-void-expression": `${level}`,
-    "@typescript-eslint/no-duplicate-type-constituents": `${level}`,
+    // "@typescript-eslint/no-duplicate-type-constituents": `${level}`,
     "@typescript-eslint/no-import-type-side-effects": `${level}`,
-    "@typescript-eslint/no-redundant-type-constituents": `${level}`,
+    // "@typescript-eslint/no-redundant-type-constituents": `${level}`,
     "@typescript-eslint/no-unnecessary-qualifier": `${level}`,
     "@typescript-eslint/no-unused-vars": [
       `${level}`,

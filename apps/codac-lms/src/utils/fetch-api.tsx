@@ -36,7 +36,6 @@ export async function fetchAPI<T>(
       encodeValuesOnly: true, // prettify URL
     });
     const requestUrl = `${getStrapiURL(`/api${path}${queryString ? `?${queryString}` : ""}`)}`;
-    console.log("requestUrl", requestUrl);
     // Trigger API call
     const response = await fetch(requestUrl, mergedOptions);
     const getData = async () => {
@@ -86,7 +85,6 @@ export async function fetchStrapiSuspense({
     encodeValuesOnly: true, // prettify URL
   });
   const requestUrl = `${getStrapiURL(`/api${path}${queryString ? `?${queryString}` : ""}`)}`;
-  console.log("requestUrl", requestUrl);
   // Trigger API call
   return fetch(requestUrl, mergedOptions);
 }

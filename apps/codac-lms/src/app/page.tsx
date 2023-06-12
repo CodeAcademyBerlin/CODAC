@@ -1,8 +1,7 @@
-import { LandingGraphics, BlankLayout, CardShinyHOC, BrandLogo } from "codac-ui";
+import { BlankLayout, BrandLogo, CardShinyHOC, LandingGraphics } from "codac-ui";
 import Link from "next/link";
 
 const Landing = () => {
-  console.log("process.env", process.env);
   return (
     <>
       <LandingGraphics color="default" animateRerendering={true} />
