@@ -2,7 +2,9 @@ import type { CohortEntityResponseCollection } from "codac-graphql-types";
 import { Card, Ping } from "codac-ui";
 
 export const Cohorts = async ({ data }: { data: Promise<Response> }) => {
-  const cohorts = (await data.then(async (res) => res.json())) as CohortEntityResponseCollection;
+  const cohorts = (await data.then(async (res) =>
+    res.json()
+  )) as CohortEntityResponseCollection | null;
   return (
     <div className="space-y-6">
       <div>
@@ -10,8 +12,8 @@ export const Cohorts = async ({ data }: { data: Promise<Response> }) => {
       </div>
 
       <div className="grid grid-cols-4 gap-6">
-        {cohorts.data.map((cohort) => (
-          <div key={cohort.attributes.name} className="col-span-4 lg:col-span-1">
+        {cohorts?.data.map((cohort) => (
+          <div key={cohort.id} className="col-span-4 lg:col-span-1">
             <div className="relative">
               <div className="absolute -left-4 top-2">
                 {" "}
