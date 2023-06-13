@@ -9,7 +9,6 @@
 - 📕 [Storybook 7.0](https://storybook.js.org/)
 - 🧪 [Testing Library](https://testing-library.com/)
 - 🃏 [Jest](https://jestjs.io/)
-- 🎭 [Playwright](https://playwright.dev/)
 - 🧹 [ESLint](https://eslint.org/)
 - 🤖 [CommitLint](https://commitlint.js.org/)
 - 💖 [Prettier](https://prettier.io/)
@@ -24,10 +23,10 @@ This monorepo includes the following packages/apps:
 ### Apps
 
 - `codac-community`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/) dedicated to for the Code Academy Berlin community
-  [deployed](https://codac-lms.vercel.app/)
+  [deployed](https://codac-community.vercel.app/)
 
 - `codac-lms`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/) dedicated to making a standadone LMS
-  [deployed](https://codac-community.vercel.app/)
+  [deployed](https://codac-lms.vercel.app/)
 
 ### Packages
 
@@ -77,6 +76,10 @@ This Turborepo has some additional tools already setup for you:
 - [Prettier](https://prettier.io) for code formatting
 
 ### Contributing
+
+The project uses pnpm as package manager. Install it with `npm install -g pnpm`
+
+To contribute to the project, follow these steps:
 
 - Clone the project : `git clone https://github.com/CodeAcademyBerlin/CODAC.git`
 - Go to the project directory : `cd CODAC`

@@ -6,9 +6,9 @@ import {
 } from "codac-graphql-types";
 import type { GetStaticPropsContext } from "next/types";
 
+import DynamicZoneSections from "#/components/dynamic-zone-sections";
 import { initializeApollo } from "#/lib/apolloClient";
 import type { ApolloGenericQuery } from "#/types/apollo";
-import DynamicZoneSections from "#/components/dynamic-zone-sections";
 
 interface PageContext {
   slug: string;

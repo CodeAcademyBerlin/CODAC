@@ -19,8 +19,8 @@ export interface PageEntity {
 export type PageContentSectionsDynamicZone =
   | ComponentSectionsHeader
   | ComponentSectionsRichText
-  | ComponentSectionsGoogleSlide;
-
+  | ComponentSectionsGoogleSlide
+  | ComponentSectionsCodeBlock;
 interface ComponentSectionsCodeBlock {
   __component: "sections.codeblock";
   code: string;

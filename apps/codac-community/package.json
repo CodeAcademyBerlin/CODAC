@@ -16,7 +16,8 @@
     "next": "13.4.1",
     "nookies": "^2.5.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "socket.io-client": "^4.6.2"
   },
   "devDependencies": {
     "@types/apollo-upload-client": "^17.0.2",
@@ -27,13 +28,13 @@
     "autoprefixer": "^10.4.13",
     "codac-graphql-types": "workspace:*",
     "eslint-config-custom": "workspace:*",
+    "jest-config": "workspace:*",
     "lodash.isequal": "^4.5.0",
     "next-config": "workspace:*",
     "postcss": "^8.4.20",
     "tailwind-config": "workspace:*",
     "tailwindcss": "^3.2.4",
     "tsconfig": "workspace:*",
-    "jest-config": "workspace:*",
     "typescript": "^4.9.4"
   }
 }

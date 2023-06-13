@@ -1,4 +1,5 @@
-export { dynamicSections } from "./dynamic-sections";
+export { SectionCodeblock } from "./codeblock";
+export { SectionGoogleSlide } from "./google-slide";
 export { SectionHeader } from "./header";
-export { SectionMarkdown } from "./markdown";
+export { SectionMarkdownAsync, SectionMarkdownSync } from "./markdown";
 export { SectionRichText } from "./rich-text";

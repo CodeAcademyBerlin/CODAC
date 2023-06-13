@@ -1,23 +1,22 @@
-const { resolve } = require("node:path");
+// const { resolve } = require("node:path");
 
 const level = "warn";
 // const level = "error";
 
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
-  parserOptions: {
-    tsconfigRootDir: resolve(__dirname, "../.."),
-    project: [
-      "./apps/codac-lms/tsconfig.json",
-      "./apps/codac-community/tsconfig.json",
-      "./packages/codac-ui/tsconfig.json",
-      "./packages/codac-graphql-types/tsconfig.json",
-    ],
-    sourceType: "module",
-    ecmaVersion: 2020,
-  },
-
+  // plugins: ['@typescript-eslint'],
+  // parserOptions: {
+  //   tsconfigRootDir: resolve(__dirname, "../.."),
+  //   project: [
+  //     "./apps/codac-lms/tsconfig.json",
+  //     "./apps/codac-community/tsconfig.json",
+  //     "./packages/codac-ui/tsconfig.json",
+  //     "./packages/codac-graphql-types/tsconfig.json",
+  //   ],
+  //   sourceType: "module",
+  //   ecmaVersion: 2020,
+  // },
   // parserOptions: {
   //   babelOptions: {
   //     presets: [require.resolve("next/babel")],
@@ -32,11 +31,11 @@ module.exports = {
   //     "jsx": true
   //   }
   // },
-  // parserOptions: {
-  //   babelOptions: {
-  //     presets: [require.resolve("next/babel")],
-  //   },
-  // },
+  parserOptions: {
+    babelOptions: {
+      presets: [require.resolve("next/babel")],
+    },
+  },
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -52,7 +51,7 @@ module.exports = {
   rules: {
     "@typescript-eslint/no-unsafe-argument": "off",
     "@next/next/no-html-link-for-pages": "off",
-    // "@typescript-eslint/consistent-type-exports": `off`,
+    "@typescript-eslint/consistent-type-exports": `off`,
     "@typescript-eslint/consistent-type-imports": [
       `${level}`,
       {
@@ -76,7 +75,7 @@ module.exports = {
     // "@typescript-eslint/no-duplicate-type-constituents": `${level}`,
     "@typescript-eslint/no-import-type-side-effects": `${level}`,
     // "@typescript-eslint/no-redundant-type-constituents": `${level}`,
-    "@typescript-eslint/no-unnecessary-qualifier": `${level}`,
+    // "@typescript-eslint/no-unnecessary-qualifier": `${level}`,
     "@typescript-eslint/no-unused-vars": [
       `${level}`,
       {

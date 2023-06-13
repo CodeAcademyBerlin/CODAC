@@ -1,12 +1,11 @@
 import { Button } from "codac-ui";
-import { useContext } from "react";
 
-import { AuthContext } from "#/contexts/authContext";
+import { useAuth } from "#/contexts/authContext";
 
 import LoginModal from "./login-modal";
 
 const Auth = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout } = useAuth();
 
   return (
     <>

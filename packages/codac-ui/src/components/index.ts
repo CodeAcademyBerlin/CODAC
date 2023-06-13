@@ -1,8 +1,9 @@
 export { Boundary } from "./boundary";
 export { Button } from "./button";
-export { CardShiny, CardShinyHOC } from "./cards/card-shiny";
 export { Card, ReviewCard } from "./cards";
+export { CardShiny, CardShinyHOC } from "./cards/card-shiny";
 export { ExternalLink } from "./external-link";
+export { Modal } from "./modal";
 export { Ping } from "./ping";
 export { RenderingPageSkeleton } from "./rendering-page-skeleton";
 export { Reviews, ReviewsSkeleton } from "./reviews";
@@ -11,4 +12,3 @@ export { Tab } from "./tab";
 export { TabGroup } from "./tab-group";
 export { Timeline } from "./timeline";
 export { ToggleButton } from "./toggle-button";
-export { Modal } from "./modal";

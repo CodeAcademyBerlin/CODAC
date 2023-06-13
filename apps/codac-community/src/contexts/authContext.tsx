@@ -4,7 +4,7 @@ import {
   type UsersPermissionsMe,
 } from "codac-graphql-types";
 import { destroyCookie, setCookie } from "nookies";
-import { createContext, type ReactNode, useEffect, useState } from "react";
+import { createContext, type ReactNode, useContext, useEffect, useState } from "react";
 
 import { COOKIES_TOKEN_NAME } from "#/constants";
 
@@ -28,7 +28,8 @@ const initialAuth: AuthContextValue = {
   },
 };
 
-export const AuthContext = createContext<AuthContextValue>(initialAuth);
+const AuthContext = createContext<AuthContextValue>(initialAuth);
+export const useAuth = (): AuthContextValue => useContext(AuthContext);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User>(null);

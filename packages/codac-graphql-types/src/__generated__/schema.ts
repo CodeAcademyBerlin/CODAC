@@ -954,6 +954,7 @@ export type ComponentStudentAchievement = {
 export type ComponentStudentProject = {
   __typename?: 'ComponentStudentProject';
   course?: Maybe<CourseEntityResponse>;
+  generate_attendance: Scalars['Boolean'];
   id: Scalars['ID'];
   main_course?: Maybe<Scalars['Boolean']>;
   start_date?: Maybe<Scalars['Date']>;
@@ -3548,6 +3549,14 @@ export type VsBattleInput = {
   title?: InputMaybe<Scalars['String']>;
 };
 
+export type AddChatMessageMutationVariables = Exact<{
+  chatId: Scalars['ID'];
+  body: Scalars['String'];
+}>;
+
+
+export type AddChatMessageMutation = { __typename?: 'Mutation', addChatMessage?: { __typename?: 'GenericServerResponse', success?: boolean | null, message?: string | null } | null };
+
 export type LoginMutationVariables = Exact<{
   email: Scalars['String'];
   password: Scalars['String'];
@@ -3560,6 +3569,18 @@ export type GetChallengesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetChallengesQuery = { __typename?: 'Query', codingChallenges?: { __typename?: 'CodingChallengeEntityResponseCollection', data: Array<{ __typename?: 'CodingChallengeEntity', attributes?: { __typename?: 'CodingChallenge', challenge?: string | null, difficulty?: number | null } | null }> } | null };
+
+export type GetChatsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetChatsQuery = { __typename?: 'Query', chats?: { __typename?: 'ChatEntityResponseCollection', data: Array<{ __typename?: 'ChatEntity', id?: string | null, attributes?: { __typename?: 'Chat', name?: string | null, messages?: Array<{ __typename?: 'ComponentChatMessage', body?: string | null, timestamp?: any | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', username: string } | null } | null } | null } | null> | null } | null }> } | null };
+
+export type GetChatQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type GetChatQuery = { __typename?: 'Query', chat?: { __typename?: 'ChatEntityResponse', data?: { __typename?: 'ChatEntity', id?: string | null, attributes?: { __typename?: 'Chat', name?: string | null, messages?: Array<{ __typename?: 'ComponentChatMessage', id: string, body?: string | null, timestamp?: any | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', username: string, email: string } | null } | null } | null } | null> | null } | null } | null } | null };
 
 export type GetCohortsQueryVariables = Exact<{ [key: string]: never; }>;
 

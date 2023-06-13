@@ -4,9 +4,10 @@ import clsx from "clsx";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { useRouter } from "next/router";
-import { ReactNode, useState } from "react";
-import { CodacLogoIcon } from "../icons/codac-logo";
+import { type ReactNode, useState } from "react";
+
 import { BrandText } from "../brand";
+import { CodacLogoIcon } from "../icons/codac-logo";
 export interface Item {
   name: string;
   slug: string;
