@@ -1,15 +1,15 @@
 import { useLoginMutation, type UsersPermissionsLoginPayload } from "codac-graphql-types";
 import { Boundary, CodacLogo, Modal, SpinnerIcon } from "codac-ui";
-import { type ChangeEvent, useContext, useState } from "react";
+import { type ChangeEvent, useState } from "react";
 
-import { AuthContext } from "#/contexts/authContext";
+import { useAuth } from "#/contexts/authContext";
 
 interface State {
   password: string;
   email: string;
 }
 const LoginModal = () => {
-  const { onLoginSuccess } = useContext(AuthContext);
+  const { onLoginSuccess } = useAuth();
 
   const [loginMutation, { data, loading, error }] = useLoginMutation();
 
@@ -90,7 +90,7 @@ const LoginModal = () => {
 
           <div className="text-center">
             <p className="text-codac-blue mt-2 text-sm hover:underline dark:text-gray-400">
-              Forgot password?
+              Forgot password? (not implemented)
             </p>
           </div>
         </div>

@@ -16,8 +16,16 @@ export interface PageEntity {
   attributes: Page;
   id: string;
 }
-type PageContentSectionsDynamicZone = ComponentSectionsHeader | ComponentSectionsRichText;
-
+export type PageContentSectionsDynamicZone =
+  | ComponentSectionsHeader
+  | ComponentSectionsRichText
+  | ComponentSectionsGoogleSlide
+  | ComponentSectionsCodeBlock;
+interface ComponentSectionsCodeBlock {
+  __component: "sections.codeblock";
+  code: string;
+  id: string;
+}
 interface ComponentSectionsRichText {
   __component: "sections.rich-text";
   content?: Maybe<Scalars["String"]>;
@@ -28,4 +36,9 @@ interface ComponentSectionsHeader {
   id: string;
   subtitle?: Maybe<Scalars["String"]>;
   title?: Maybe<Scalars["String"]>;
+}
+interface ComponentSectionsGoogleSlide {
+  __component: "sections.google-slide";
+  link: string;
+  id: string;
 }

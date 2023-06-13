@@ -1,6 +1,7 @@
-import { navigation } from "#/constants/navigation";
 import Link from "next/link";
 import React from "react";
+
+import { navigation } from "#/constants/navigation";
 
 const Navigation = () => {
   return (

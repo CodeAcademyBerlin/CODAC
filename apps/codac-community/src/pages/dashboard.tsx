@@ -1,12 +1,8 @@
-import Link from "next/link";
-
-import { navigation } from "#/constants/navigation";
-import { AuthContext } from "#/contexts/authContext";
-import { useContext, use } from "react";
 import Navigation from "#/components/navigation";
+import { useAuth } from "#/contexts/authContext";
 
 export default function Dashboard() {
-  const { user, authLoading } = useContext(AuthContext);
+  const { user, authLoading } = useAuth();
   return (
     <div>
       <h1 className="text-xl font-medium text-gray-300">CODAC COMMUNITY</h1>

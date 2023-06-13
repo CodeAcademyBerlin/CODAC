@@ -23,6 +23,11 @@ export const navigation: { name: string; items: Item[] }[] = [
         slug: "community",
         description: "Community",
       },
+      {
+        name: "Chat",
+        slug: "chat",
+        description: "Chat",
+      },
     ],
   },
 
