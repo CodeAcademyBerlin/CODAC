@@ -24,6 +24,7 @@ function Community({ cohorts }: { cohorts: CohortEntity[] }) {
                     href={`community/cohort/${cohort.attributes.name}`}
                   />
                 </div>
+                // </Link>
               )}
             </div>
           ))}
