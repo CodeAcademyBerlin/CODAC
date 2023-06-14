@@ -27,7 +27,6 @@
       "outputs": ["storybook-static/**"]
     },
     "test": {
-      "dependsOn": ["^build"],
       "outputs": ["coverage/**"]
     },
     "lint": {

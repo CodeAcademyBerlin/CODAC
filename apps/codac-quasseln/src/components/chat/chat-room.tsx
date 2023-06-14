@@ -1,18 +1,44 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-import {
-  type Chat,
-  type ComponentChatMessage,
-  type Maybe,
-  useAddChatMessageMutation,
-  useGetChatQuery,
-} from "codac-graphql-types";
-import React, { useEffect, useRef, useState } from "react";
+import { gql, useMutation, useQuery } from "@apollo/client";
+import { type Chat, ChatEntity, type ComponentChatMessage } from "codac-graphql-types";
+import { useEffect, useState } from "react";
 
 import { useSocket } from "#/contexts/socketContext";
+import { ApolloGenericQuery } from "#/types/apollo";
 
 import { ChatBubble } from "./chat-bubble";
+const GetChatDocument = gql`
+  query getChat($id: ID!) {
+    chat(id: $id) {
+      data {
+        id
+        attributes {
+          name
+          messages {
+            id
+            body
+            timestamp
+            author {
+              data {
+                attributes {
+                  username
+                  email
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+const AddChatMsgDocument = gql`
+  mutation addChatMessage($chatId: ID!, $body: String!) {
+    addChatMessage(chatId: $chatId, body: $body) {
+      success
+      message
+    }
+  }
+`;
 
 interface Props {
   roomId: string;
@@ -20,12 +46,13 @@ interface Props {
 
 const ChatRoom: React.FC<Props> = ({ roomId }) => {
   const [chatHistory, setChatHistory] = useState<ComponentChatMessage[]>([]);
-  const { data, refetch } = useGetChatQuery({
+  const { data, refetch } = useQuery<ApolloGenericQuery<ChatEntity>>(GetChatDocument, {
     variables: {
       id: roomId,
     },
   });
-  const [addChatMessageMutation] = useAddChatMessageMutation();
+  const [addChatMessageMutation] = useMutation(AddChatMsgDocument);
+
   const [msg, setMsg] = useState<string>("");
   const [typing, setTyping] = useState<boolean>(false);
   const { socket } = useSocket();
@@ -33,7 +60,6 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
   useEffect(() => {
     if (socket) {
       socket.on("chat:update", (chatEvent: Chat) => {
-        console.log("chatEvent", chatEvent);
         const history = chatEvent.messages as ComponentChatMessage[];
         history.length && setChatHistory(history);
       });

@@ -3,6 +3,7 @@ import type { StudentEntity } from "codac-graphql-types";
 import { Card, SkeletonCards } from "codac-ui";
 
 import type { ApolloGenericQuery } from "#/types/apollo";
+
 // graphql query
 const GetStudentsDocument = gql`
   query getAllStudents {
