@@ -1,4 +1,4 @@
-const nextJest = require("next/jest");
+import nextJest from "next/jest";
 
 /** @type {import('jest').Config} */
 const config = {
@@ -11,4 +11,4 @@ const config = {
 };
 
 const defineConfig = nextJest({ dir: "./" });
-module.exports = defineConfig(config);
+export default defineConfig(config);

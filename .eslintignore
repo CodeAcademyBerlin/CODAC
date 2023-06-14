@@ -11,4 +11,3 @@ storybook-static/
 *.js
 node_modules/
 packages/codac-graphql-types/tsup.config.ts
-packages/eslint-config-custom/index.js

@@ -1,13 +1,37 @@
-import { useGetChatsQuery } from "codac-graphql-types";
-import { Button, Card } from "codac-ui";
+import { gql, useQuery } from "@apollo/client";
+import { ChatEntity } from "codac-graphql-types";
+import { Button } from "codac-ui";
 import { useEffect, useState } from "react";
 
 import ChatRoom from "#/components/chat/chat-room";
 import { useSocket } from "#/contexts/socketContext";
+import { ApolloGenericQuery } from "#/types/apollo";
+const GetChatsDocument = gql`
+  query getChats {
+    chats {
+      data {
+        id
+        attributes {
+          name
+          messages {
+            body
+            timestamp
+            author {
+              data {
+                attributes {
+                  username
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 function Chat() {
-  const { data } = useGetChatsQuery();
-
+  const { data } = useQuery<ApolloGenericQuery<ChatEntity[]>>(GetChatsDocument);
   const [connected, setConnected] = useState(false);
   const [room, setRoom] = useState<string>("");
   const { socket } = useSocket();
@@ -19,6 +43,7 @@ function Chat() {
     }
   }, [socket]);
   console.log("socket", socket);
+
   return (
     <>
       <div className="space-y-6">
