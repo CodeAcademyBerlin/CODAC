@@ -1,9 +1,12 @@
-import Students from "#/components/community/students";
-import { initializeApollo } from "#/lib/apolloClient";
-import { CohortEntity, GetCohortsDocument, GetCohortsQuery } from "codac-graphql-types";
+// import Students from "#/components/community/students";
+import { type CohortEntity, GetCohortsDocument, type GetCohortsQuery } from "codac-graphql-types";
 import { Card } from "codac-ui";
-import { IncomingMessage } from "http";
-import { NextApiRequest } from "next";
+import type { IncomingMessage } from "http";
+import type { NextApiRequest } from "next";
+import Link from "next/link";
+import { useRouter } from "next/router";
+
+import { initializeApollo } from "#/lib/apolloClient";
 
 // function Community({ cohorts }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 function Community({ cohorts }: { cohorts: CohortEntity[] }) {
@@ -17,23 +20,23 @@ function Community({ cohorts }: { cohorts: CohortEntity[] }) {
         <div className="grid grid-cols-4 gap-6">
           {cohorts.map((cohort) => (
             <div key={cohort.id} className="col-span-4 lg:col-span-1">
-              {cohort?.attributes && (
+              {cohort.attributes && (
+                // <Link href={`/students/${student.id}`}>
                 <div className="relative">
                   <Card
                     image={cohort.attributes.logo?.data.attributes.url}
                     title={cohort.attributes.name ?? ""}
                     tag={`${cohort.attributes.students?.data.length ?? ""} students`}
-                    href={`/cohorts/${cohort.id}`}
+                    href={`community/cohort/${cohort.attributes.name}`}
                   />
                 </div>
+                // </Link>
               )}
             </div>
           ))}
         </div>
 
-        <div className="">
-          <Students />
-        </div>
+        <div className="">{/* <Students /> */}</div>
       </div>
     </>
   );
