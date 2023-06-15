@@ -1,7 +1,9 @@
 import { DashboardLayout, GlobalNav } from "codac-ui";
-import React, { ReactNode } from "react";
-import Auth from "./auth";
+import React, { type ReactNode } from "react";
+
 import { navigation } from "#/constants/navigation";
+
+import Auth from "./auth";
 
 function MainLayout({ children }: { children: ReactNode }) {
   return (

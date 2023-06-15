@@ -44,7 +44,7 @@ function Community({ cohorts }: { cohorts: CohortEntity[] }) {
 
 export default Community;
 
-export const getServerSideProps = async (ctx: { req: NextApiRequest | IncomingMessage | null }) => {
+export const getServerSideProps = async () => {
   try {
     const client = initializeApollo();
     const { data, error } = await client.query<GetCohortsQuery>({ query: GetCohortsDocument });

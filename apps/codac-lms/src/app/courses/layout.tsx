@@ -1,5 +1,6 @@
 // "use client";
-import { GlobalNav, Header, LMSLayout } from "codac-ui";
+import { BlankLayout, GlobalNav, Header, LMSLayout } from "codac-ui";
+import { LMSNav } from "codac-ui/layouts/lms-nav";
 
 import { navigation } from "#/constants/navigation";
 
@@ -17,7 +18,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   // console.log("user", user);
 
   return (
-    <LMSLayout navigation={<Header />}>
+    <LMSLayout sideNav={<LMSNav />}>
       <div className="space-y-9">
         {/* <Boundary labels={["courses"]} color="blue">
           <div className="flex justify-between">

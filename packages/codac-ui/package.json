@@ -51,6 +51,12 @@
     "codac-graphql-types": "workspace:*",
     "eslint-config-custom": "workspace:*",
     "jest-config": "workspace:*",
+    "prismjs": "^1.29.0",
+    "rehype": "^12.0.1",
+    "rehype-parse": "^8.0.4",
+    "rehype-prism": "^2.2.2",
+    "rehype-sanitize": "^5.0.1",
+    "remark-toc": "^8.0.1",
     "storybook": "7.0.10",
     "tailwind-config": "workspace:*",
     "tsconfig": "workspace:*"

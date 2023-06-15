@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 
-import { markdownProcessor } from "../remark";
+import { markdownProcessor, markdownProcessorSync } from "../remark";
 
 interface ComponentSectionsRichText {
   __component: "sections.rich-text";
@@ -12,16 +12,30 @@ interface Props {
   data: ComponentSectionsRichText;
 }
 
-export const SectionMarkdown = ({ data }: Props) => {
+// Can only be used as async server component in Next.js app router
+export const SectionMarkdownAsync = ({ data }: Props) => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       {/* @ts-expect-error Async Server Component */}
-      <Markdown data={data} />
+      <MarkdownAsync data={data} />
     </Suspense>
   );
 };
-const Markdown = async ({ data }: Props) => {
+export const SectionMarkdownSync = ({ data }: Props) => {
+  return <MarkdownSync data={data} />;
+};
+
+const MarkdownAsync = async ({ data }: Props) => {
   const markdown = await markdownProcessor(data.content ?? "");
+  return (
+    <article
+      className="prose dark:prose-invert max-w-none"
+      dangerouslySetInnerHTML={{ __html: markdown }}
+    ></article>
+  );
+};
+const MarkdownSync = ({ data }: Props) => {
+  const markdown = markdownProcessorSync(data.content ?? "");
   return (
     <article
       className="prose dark:prose-invert max-w-none"

@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 // import { ClickCounter } from '#/ui/click-counter';
 
+import { LMSAddressBar, LMSLayout } from "codac-ui";
+import { LMSNav } from "codac-ui/layouts/lms-nav";
 import Link from "next/link";
 
 import { getProjectBySlug } from "#/strapi-queries/pages";
@@ -18,7 +20,7 @@ export default async function Layout({
 }) {
   const { projectSlug } = params;
   const { project } = await getProjectBySlug({ slug: projectSlug });
-  const { sprints, name, description } = project.attributes;
+  const { sprints } = project.attributes;
 
   const pages = sprints?.map((sprint) => sprint?.pages).flat()[0]?.data ?? [];
   const index = pages.findIndex((page) => page.attributes.slug === params.pageSlug);
@@ -35,7 +37,7 @@ export default async function Layout({
                 previousPage.attributes.slug ?? ""
               }`}
             >
-              <p className="text-blue-500 hover:text-blue-700">Previous</p>
+              <p className="text-codac-pink hover:text-gray-50">Previous</p>
             </Link>
           )}
         </div>
@@ -46,7 +48,7 @@ export default async function Layout({
                 nextPage.attributes.slug ?? ""
               }`}
             >
-              <p className="text-blue-500 hover:text-blue-700">Next</p>
+              <p className="text-codac-pink hover:text-gray-50">Next</p>
             </Link>
           )}
         </div>

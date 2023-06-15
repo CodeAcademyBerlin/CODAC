@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { LandingGraphics } from "./landing-graphics";
 import { BlankLayout } from "..";
+import { LandingGraphics } from "./landing-graphics";
 
 const meta = {
   component: LandingGraphics,

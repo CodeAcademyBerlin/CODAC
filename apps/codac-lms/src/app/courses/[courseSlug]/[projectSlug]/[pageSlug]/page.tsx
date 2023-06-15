@@ -1,5 +1,4 @@
-import { dynamicSections } from "codac-ui";
-
+import { dynamicSections } from "#/components/dynamic-sections";
 import { getPageBySlug } from "#/strapi-queries/pages";
 
 export default async function Page({ params }: { params: { pageSlug: string } }) {
