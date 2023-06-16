@@ -1,4 +1,5 @@
 import "#/styles.css";
+import "../../styles/globals.css";
 
 import { ApolloProvider } from "@apollo/client";
 import { ThemeProvider } from "codac-ui";

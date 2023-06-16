@@ -89,51 +89,44 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
   };
 
   return (
-    <div>
-      <div
-        style={{
-          backgroundColor: "inherit",
-          width: "95%",
-          height: "110%",
-          padding: "20px",
-          borderRadius: "10px",
-        }}
-      >
-        {chatHistory.map((message) => (
-          <>
-            <ChatBubble key={message.id} message={message}></ChatBubble>
-          </>
-        ))}
-
-        {typing && (
-          <div className="flex flex-row items-center space-x-2">
-            <p className="text-sm text-white">someone typing...</p>
+    <div className="chatroom-container">
+      <span style={{ backgroundColor: "yellow" }}>display here room's name</span>
+      <button style={{ backgroundColor: "yellow" }} className="see-older-message">
+        See older messages
+      </button>
+      {chatHistory.map((message) => (
+        <ChatBubble key={message.id} message={message}></ChatBubble>
+      ))}
+      {roomId !== "" && (
+        <>
+          {typing && <p className="activity-message">someone typing...</p>}
+          <div className="send-message-container">
+            <textarea
+              placeholder="Write something..."
+              onFocus={() => {
+                setTyping(true);
+              }}
+              onBlur={() => {
+                setTyping(false);
+              }}
+              id="outlined-basic"
+              // label={{ socket } ? "Write something" : "Connecting..."}
+              value={msg}
+              onChange={(e) => {
+                setMsg(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  sendMessage();
+                }
+              }}
+            />
+            <button style={{ backgroundColor: "yellow" }} className="send-button">
+              Send
+            </button>
           </div>
-        )}
-        {roomId !== "" && (
-          <input
-            placeholder="Write something..."
-            className="h-10 w-full rounded-lg border-2 border-gray-300 bg-white px-5 pr-16 text-sm focus:outline-none"
-            onFocus={() => {
-              setTyping(true);
-            }}
-            onBlur={() => {
-              setTyping(false);
-            }}
-            id="outlined-basic"
-            // label={{ socket } ? 'Write something' : 'Connecting...'}
-            value={msg}
-            onChange={(e) => {
-              setMsg(e.target.value);
-            }}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                sendMessage();
-              }
-            }}
-          />
-        )}
-      </div>
+        </>
+      )}
     </div>
   );
 };
