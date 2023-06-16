@@ -1,10 +1,7 @@
 // import Students from "#/components/community/students";
 import { type CohortEntity, GetCohortsDocument, type GetCohortsQuery } from "codac-graphql-types";
 import { Card } from "codac-ui";
-import type { IncomingMessage } from "http";
-import type { NextApiRequest } from "next";
-import Link from "next/link";
-import { useRouter } from "next/router";
+
 
 import { initializeApollo } from "#/lib/apolloClient";
 
