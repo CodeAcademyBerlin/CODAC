@@ -1,11 +1,8 @@
 // import Students from "#/components/community/students";
 import { type CohortEntity, GetCohortsDocument, type GetCohortsQuery } from "codac-graphql-types";
 import { Card } from "codac-ui";
-
-
 import { initializeApollo } from "#/lib/apolloClient";
 
-// function Community({ cohorts }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 function Community({ cohorts }: { cohorts: CohortEntity[] }) {
   return (
     <>
@@ -13,12 +10,10 @@ function Community({ cohorts }: { cohorts: CohortEntity[] }) {
         <div>
           <div className="text-lg font-medium text-white">Cohorts</div>
         </div>
-
         <div className="grid grid-cols-4 gap-6">
           {cohorts.map((cohort) => (
             <div key={cohort.id} className="col-span-4 lg:col-span-1">
               {cohort.attributes && (
-                // <Link href={`/students/${student.id}`}>
                 <div className="relative">
                   <Card
                     image={cohort.attributes.logo?.data.attributes.url}
@@ -27,19 +22,21 @@ function Community({ cohorts }: { cohorts: CohortEntity[] }) {
                     href={`community/cohort/${cohort.attributes.name}`}
                   />
                 </div>
-                // </Link>
               )}
             </div>
           ))}
         </div>
-
-        <div className="">{/* <Students /> */}</div>
+      </div>
+      <div>
+        <div className="space-y-6 text-lg font-medium text-white">Staffs</div>
       </div>
     </>
   );
 }
 
 export default Community;
+
+
 
 export const getServerSideProps = async () => {
   try {

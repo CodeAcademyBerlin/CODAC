@@ -1,8 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
 import type { StudentEntity } from "codac-graphql-types";
-import { Card, Ping, SkeletonCards } from "codac-ui";
-
+import { Card, SkeletonCards } from "codac-ui";
 import type { ApolloGenericQuery } from "#/types/apollo";
+import { CardStudent } from "./cardStudent";
 
 const GetStudentsDocument = gql`
   query getAllStudents($cohortName: String) {
@@ -52,22 +52,7 @@ function Students() {
         {loading && <SkeletonCards number={3} isLoading={loading} />}
         <div className="grid grid-cols-4 gap-2">
           {students.map((student) => (
-            <div key={student.id} className="">
-              {student.attributes && (
-                <div className="relative">
-                  <div className="absolute -left-4 top-2">
-                    <Ping></Ping>
-                  </div>
-                  <Card
-                    image={
-                      student.attributes.user?.data.attributes.avatar?.data.attributes.url ?? ""
-                    }
-                    title={student.attributes.firstname ?? ""}
-                    href={`/students/${student.id}`}
-                  />
-                </div>
-              )}
-            </div>
+            <CardStudent key={student.id} student={student} />
           ))}
         </div>
       </div>

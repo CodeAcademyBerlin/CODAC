@@ -1,6 +1,5 @@
 import React from "react";
-
-import Students from "#/components/community/students";
+import Students from "#/components/community/Students";
 import { useRouter } from "next/router";
 
 export default function Cohort() {
@@ -9,5 +8,5 @@ export default function Cohort() {
   const { id } = router.query;
 
 
-  return <Students cohortName={id} />;
+  return <Students cohortName={id} />
 }
