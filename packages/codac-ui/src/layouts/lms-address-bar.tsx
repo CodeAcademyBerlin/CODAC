@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -41,7 +41,8 @@ const labels: Label[] = [
   { label: "project", color: "violet", colorClass: "hover:text-codac-violet" },
   { label: "page", color: "orange", colorClass: "hover:text-codac-orange" },
 ];
-export function LMSAddressBar() {
+export function LMSAddressBar({ lmsTree }: { lmsTree: any }) {
+  console.log("lmsTreefla", lmsTree);
   const pathname = usePathname();
   const segments = pathname.split("/").slice(1) ?? [];
   const lmsSegments = pathname.split("/").slice(2) ?? [];

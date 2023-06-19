@@ -1,24 +1,28 @@
-import { Ping, Reviews, ReviewsSkeleton } from "codac-ui";
 import { Suspense } from "react";
 
 import { fetchStrapiSuspense } from "#/utils/fetch-api";
 
 import { Cohorts, RecommendedCohortsSkeleton } from "./_components/cohorts";
+import { Courses, RecommendedCoursesSkeleton } from "./_components/courses";
 
 // export const runtime = "experimental-edge";
 const urlParamsObject = {
-  populate: ["logo"],
+  populate: ["image"],
 };
 const token = process.env.CODAC_SSG_TOKEN ?? "";
 const options = { headers: { Authorization: `Bearer ${token}` } };
 export default function Page({ params }: { params: { id: string } }) {
   return (
     <div className="space-y-8 lg:space-y-14">
-      <Suspense fallback={<RecommendedCohortsSkeleton />}>
+      <Suspense fallback={<RecommendedCoursesSkeleton />}>
         {/* @ts-expect-error Async Server Component */}
 
-        <Cohorts data={fetchStrapiSuspense({ path: "/cohorts", urlParamsObject, options })} />
+        <Courses data={fetchStrapiSuspense({ path: "/courses", urlParamsObject, options })} />
       </Suspense>
+      {/* <Suspense fallback={<RecommendedCohortsSkeleton />}>
+
+        <Cohorts data={fetchStrapiSuspense({ path: "/cohorts", urlParamsObject, options })} />
+      </Suspense> */}
 
       {/* <Suspense fallback={<RecommendedCoursesSkeleton />}>
        @ts-expect-error Async Server Component 

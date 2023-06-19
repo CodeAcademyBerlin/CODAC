@@ -9,8 +9,8 @@ export const metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <LMSLayout
-      // topNav={<Header />}
-      sideNav={<LMSNav />}
+    // topNav={<Header />}
+    // sideNav={<LMSNav />}
     >
       <div className="space-y-10">{children}</div>
     </LMSLayout>

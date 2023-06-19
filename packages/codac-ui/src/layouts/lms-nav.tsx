@@ -14,7 +14,7 @@ export interface Item {
   slug: string;
   description?: string;
 }
-export function LMSNav() {
+export function LMSNav({ lmsTree }: { lmsTree: any }) {
   const [isOpen, setIsOpen] = useState(false);
   const close = () => {
     setIsOpen(false);
@@ -60,7 +60,7 @@ export function LMSNav() {
         })}
       >
         <nav className="space-y-6 px-2 py-5">
-          <LMSAddressBar />
+          <LMSAddressBar lmsTree={lmsTree} />
           {/* {navigation.map((section) => {
             return (
               <div key={section.name}>

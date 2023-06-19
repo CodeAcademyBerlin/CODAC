@@ -10,5 +10,6 @@ export { Reviews, ReviewsSkeleton } from "./reviews";
 export { SkeletonCard, SkeletonCards } from "./skeleton/skeleton-card";
 export { Tab } from "./tab";
 export { TabGroup } from "./tab-group";
+export { TagLabel } from "./tag-label";
 export { Timeline } from "./timeline";
 export { ToggleButton } from "./toggle-button";
