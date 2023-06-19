@@ -1,9 +1,8 @@
-/* eslint-disable turbo/no-undeclared-env-vars */
 // `server-only` guarantees any modules that import code in file
 // will never run on the client. Even though this particular api
 // doesn't currently use sensitive environment variables, it's
 // good practise to add `server-only` preemptively.
-import "server-only";
+"server-only";
 
 import type { ProjectEntity } from "codac-graphql-types";
 import { notFound } from "next/navigation";

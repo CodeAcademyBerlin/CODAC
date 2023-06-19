@@ -6,7 +6,7 @@ export default async function Page({ params }: { params: { pageSlug: string } })
 
   const { contentSections } = page.attributes;
   return (
-    <div className="flex ">
+    <div className="flex">
       <div className="flex-auto">
         {contentSections?.map((content) => dynamicSections({ section: content }))}
       </div>

@@ -28,7 +28,7 @@ export default async function Page({
   // }));
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl font-bold text-gray-200">{name}</h2>
+      <h2 className="text-codac-violet text-4xl font-bold">{name}</h2>
       <p className="text-gray-400">{description}</p>
 
       <div className="grid grid-cols-1 gap-10 space-y-4 py-6">
@@ -61,7 +61,7 @@ export default async function Page({
               </div>
               <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
                 <Boundary labels={["pages"]} color="orange">
-                  {pages.map((page, i) => {
+                  {pages.map((page) => {
                     return (
                       <Link
                         href={`./courses/${courseSlug}/${projectSlug}/${
