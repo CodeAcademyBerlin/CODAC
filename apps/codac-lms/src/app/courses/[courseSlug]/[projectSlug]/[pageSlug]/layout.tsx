@@ -1,8 +1,3 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
-// import { ClickCounter } from '#/ui/click-counter';
-
-import { LMSAddressBar, LMSLayout } from "codac-ui";
-import { LMSNav } from "codac-ui/layouts/lms-nav";
 import Link from "next/link";
 
 import { getProjectBySlug } from "#/strapi-queries/pages";

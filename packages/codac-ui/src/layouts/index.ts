@@ -1,4 +1,5 @@
 export * from "./address-bar";
+export { AuthMenu } from "./auth-menu";
 export { BlankLayout } from "./blank-layout";
 export { DashboardLayout } from "./dashboard-layout";
 export { GlobalNav } from "./global-nav";

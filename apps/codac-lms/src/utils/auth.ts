@@ -6,9 +6,10 @@ import type {
 } from "codac-graphql-types";
 import type { AuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
-// import CredentialsProvider from "next-auth/providers/credentials";
+import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 
+import { UserLoginResponse } from "#/types/user";
 import { fetchAPI } from "#/utils/fetch-api";
 
 export const authOptions: AuthOptions = {
@@ -23,7 +24,7 @@ export const authOptions: AuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID ?? "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
     }),
-    /*  CredentialsProvider({
+    CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
       name: "Credentials",
       // `credentials` is used to generate a form on the sign in page.
@@ -61,7 +62,7 @@ export const authOptions: AuthOptions = {
           return null;
         }
       },
-    }), */
+    }),
   ],
   callbacks: {
     async signIn({ account, profile }) {
@@ -92,11 +93,12 @@ export const authOptions: AuthOptions = {
         }
         return "/unauthorized";
       }
-      return false;
-      // return true;Do different verification for other providers that don't have `email_verified`
+      // return false;
+      // Do different verification for other providers that don't have `email_verified`
+      return true;
     },
 
-    async jwt({ token, account }) {
+    async jwt({ token, account, user }) {
       if (account?.provider === "google") {
         const strapiToken = process.env.CODAC_OAUTH_TOKEN ?? "";
 
@@ -142,10 +144,10 @@ export const authOptions: AuthOptions = {
         }
       }
       // If we are using credentials, we already have the token from strapi
-      // else {
-      //   // (token.id = user.id), (token.jwt = user.jwt);
-      //   return { ...token, ...user };
-      // }
+      else {
+        // (token.id = user.id), (token.jwt = user.jwt);
+        return { ...token, ...user };
+      }
       return token;
     },
     session({ session, token }) {

@@ -10,8 +10,13 @@ export const TronGrid = ({
   return (
     <div className="perspective-o-50-50 perspective-180 absolute -z-10 h-full w-full">
       <div
+        // Tron grid (not compatible with tailwindcss)
+        // style={{
+        //   backgroundImage:
+        //     "-webkit-linear-gradient(#38bcc1 3px, transparent 3px),-webkit-linear-gradient(left, #38bcc1 3px, transparent 3px)",
+        // }}
         className={clsx(
-          "rotate-x-80 absolute bottom-[-35%] left-[-50%] h-[130%] w-[200%]   bg-[length:100px_100px] bg-[-1px_-1px]",
+          "rotate-x-80 absolute bottom-[-35%] left-[-50%] h-[130%] w-[200%] bg-[length:100px_100px] bg-[-1px_-1px]",
           {
             "bg-[linear-gradient(#38bcc1_3px,transparent_3px)]": color === "default",
             "bg-[linear-gradient(#FF0080_3px,transparent_3px)]": color === "pink",
@@ -25,7 +30,7 @@ export const TronGrid = ({
       >
         <div
           className={clsx("h-full w-full", {
-            "bg-[linear-gradient(#38bcc1_3px,transparent)]": color === "default",
+            "bg-[linear-gradient(#38bcc1,transparent)]": color === "default",
             "bg-[linear-gradient(#FF0080_3px,transparent)]": color === "pink",
             "bg-[linear-gradient(#0070F3_3px,transparent)]": color === "blue",
             "bg-[linear-gradient(#50E3C2_3px,transparent)]": color === "cyan",
@@ -37,3 +42,4 @@ export const TronGrid = ({
     </div>
   );
 };
+// webkit-linear-gradient(left, #38bcc1 3px, transparent 3px

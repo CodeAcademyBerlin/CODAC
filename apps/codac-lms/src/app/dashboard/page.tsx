@@ -1,5 +1,7 @@
+import { getServerSession } from "next-auth/next";
 import { Suspense } from "react";
 
+import { authOptions } from "#/utils/auth";
 import { fetchStrapiSuspense } from "#/utils/fetch-api";
 
 import { Cohorts, RecommendedCohortsSkeleton } from "./_components/cohorts";
@@ -11,7 +13,9 @@ const urlParamsObject = {
 };
 const token = process.env.CODAC_SSG_TOKEN ?? "";
 const options = { headers: { Authorization: `Bearer ${token}` } };
-export default function Page({ params }: { params: { id: string } }) {
+export default async function Page() {
+  const session = await getServerSession(authOptions);
+  console.log("session", session);
   return (
     <div className="space-y-8 lg:space-y-14">
       <Suspense fallback={<RecommendedCoursesSkeleton />}>
@@ -19,6 +23,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
         <Courses data={fetchStrapiSuspense({ path: "/courses", urlParamsObject, options })} />
       </Suspense>
+
       {/* <Suspense fallback={<RecommendedCohortsSkeleton />}>
 
         <Cohorts data={fetchStrapiSuspense({ path: "/cohorts", urlParamsObject, options })} />

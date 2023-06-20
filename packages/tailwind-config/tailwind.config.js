@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const colors = require("tailwindcss/colors");
 // const defaultTheme = require("tailwindcss/defaultTheme");
 const plugin = require("tailwindcss/plugin");
@@ -61,9 +62,11 @@ module.exports = {
         "gray-1100": "rgb(10,10,11)",
       },
       backgroundImage: ({ theme }) => ({
+        "black-gradient": "bg-gray-300-border-gradient border border-slate-900 bg-zinc-950 p-px shadow-lg shadow-black dark:bg-[linear-gradient(45deg,transparent_25%,rgba(68,68,68,.2)_50%,transparent_75%,transparent_100%)]",
+        "tron-grid": `-webkit-linear-gradient(${theme("colors.primary")} 3px, transparent 3px),-webkit-linear-gradient(left, ${theme("colors.primary")} 3px, transparent 3px)`,
         "vc-border-gradient": `radial-gradient(at left top, ${theme(
           "colors.gray.500"
-        )}, 50px, ${theme("colors.secondary.800")}, 50%)`,
+        )}, 50px, ${theme("colors.secondary")}, 50%)`,
       }),
       keyframes: ({ theme }) => ({
         rerender: {

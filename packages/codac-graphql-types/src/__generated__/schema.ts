@@ -180,6 +180,7 @@ export type Chat = {
   createdAt?: Maybe<Scalars['DateTime']>;
   messages?: Maybe<Array<Maybe<ComponentChatMessage>>>;
   name?: Maybe<Scalars['String']>;
+  pinned?: Maybe<Scalars['Boolean']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   users?: Maybe<UsersPermissionsUserRelationResponseCollection>;
@@ -224,6 +225,7 @@ export type ChatFiltersInput = {
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ChatFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ChatFiltersInput>>>;
+  pinned?: InputMaybe<BooleanFilterInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   users?: InputMaybe<UsersPermissionsUserFiltersInput>;
@@ -232,6 +234,7 @@ export type ChatFiltersInput = {
 export type ChatInput = {
   messages?: InputMaybe<Array<InputMaybe<ComponentChatMessageInput>>>;
   name?: InputMaybe<Scalars['String']>;
+  pinned?: InputMaybe<Scalars['Boolean']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   users?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
 };
@@ -441,6 +444,7 @@ export type ComponentChatMessage = {
   body?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   timestamp?: Maybe<Scalars['DateTime']>;
+  updated?: Maybe<Scalars['DateTime']>;
 };
 
 export type ComponentChatMessageFiltersInput = {
@@ -450,6 +454,7 @@ export type ComponentChatMessageFiltersInput = {
   not?: InputMaybe<ComponentChatMessageFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentChatMessageFiltersInput>>>;
   timestamp?: InputMaybe<DateTimeFilterInput>;
+  updated?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type ComponentChatMessageInput = {
@@ -457,6 +462,7 @@ export type ComponentChatMessageInput = {
   body?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
   timestamp?: InputMaybe<Scalars['DateTime']>;
+  updated?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type ComponentCommentsComments = {
@@ -2974,6 +2980,7 @@ export type Student = {
   __typename?: 'Student';
   alumni?: Maybe<Scalars['Boolean']>;
   attendances?: Maybe<AttendanceRelationResponseCollection>;
+  calc_missed_days?: Maybe<Scalars['Int']>;
   cohort?: Maybe<CohortEntityResponse>;
   course?: Maybe<CourseEntityResponse>;
   createdAt?: Maybe<Scalars['DateTime']>;
@@ -3014,6 +3021,7 @@ export type StudentFiltersInput = {
   alumni?: InputMaybe<BooleanFilterInput>;
   and?: InputMaybe<Array<InputMaybe<StudentFiltersInput>>>;
   attendances?: InputMaybe<AttendanceFiltersInput>;
+  calc_missed_days?: InputMaybe<IntFilterInput>;
   cohort?: InputMaybe<CohortFiltersInput>;
   course?: InputMaybe<CourseFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
@@ -3033,6 +3041,7 @@ export type StudentFiltersInput = {
 export type StudentInput = {
   alumni?: InputMaybe<Scalars['Boolean']>;
   attendances?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  calc_missed_days?: InputMaybe<Scalars['Int']>;
   cohort?: InputMaybe<Scalars['ID']>;
   course?: InputMaybe<Scalars['ID']>;
   firstname?: InputMaybe<Scalars['String']>;
