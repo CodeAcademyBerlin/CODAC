@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import type { ReactNode } from "react";
 
 export function LMSLayout({
@@ -11,10 +12,21 @@ export function LMSLayout({
 }) {
   return (
     <>
-      {topNav && topNav}
+      <div
+        className={clsx("bg-zinc-950 transition-all duration-500", {
+          "lg:ml-64": sideNav,
+        })}
+      >
+        {topNav && topNav}
+      </div>
       {sideNav && sideNav}
+      {/* {sideNav && (
+        <div className="absolute top-24 z-10 flex w-full flex-col border-b border-gray-800 bg-gray-200 dark:bg-zinc-950  lg:bottom-0 lg:z-auto lg:w-72 lg:border-b-0 lg:border-r lg:border-gray-800">
+          {sideNav}
+        </div>
+      )} */}
       <div className="lg:pl-72">
-        <div className="mx-auto  space-y-8 px-2 pt-20  lg:px-8 lg:py-8">
+        <div className="mx-auto space-y-8 px-2 pt-3  lg:px-8 lg:py-8 lg:pt-10">
           {/* {navigation} */}
           {/*<div className="bg-vc-border-gradient rounded-lg p-px shadow-lg shadow-black/20">
             <div className="rounded-lg bg-black">

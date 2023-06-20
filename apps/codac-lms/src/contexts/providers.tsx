@@ -3,6 +3,8 @@
 import { ThemeProvider } from "codac-ui";
 import { SessionProvider } from "next-auth/react";
 import React, { type ReactNode } from "react";
+
+import { AuthProvider } from "#/contexts/useAuth";
 interface Props {
   children: ReactNode;
 }
@@ -10,7 +12,9 @@ interface Props {
 const Providers = ({ children }: Props) => {
   return (
     <SessionProvider>
-      <ThemeProvider>{children}</ThemeProvider>
+      <AuthProvider>
+        <ThemeProvider>{children}</ThemeProvider>
+      </AuthProvider>
     </SessionProvider>
   );
 };

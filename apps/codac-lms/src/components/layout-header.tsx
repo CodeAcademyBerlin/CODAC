@@ -1,44 +1,64 @@
 "use client";
 
-import { AuthMenu, Button, CodacLogo, Header, SearchBar } from "codac-ui";
+import { AuthMenu, BrandText, Button, CodacLogo, Header, SearchBar, SpinnerIcon } from "codac-ui";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { useAuth } from "#/hooks/useAuth";
+import { useAuth } from "#/contexts/useAuth";
 
 export default function LayoutHeader() {
   const { user } = useAuth();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdown = useRef<HTMLDivElement>(null);
+
   console.log("user", user);
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const session = useSession();
+  console.log("session", session);
+  const toggleMenu = () => setDropdownOpen(!dropdownOpen);
   const handleSignOut = () => signOut();
+  useEffect(() => {
+    // only add the event listener when the menu is opened
+    if (!dropdownOpen) return;
+    function handleClick(event: { target: any }) {
+      if (dropdown.current && !dropdown.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    }
+    window.addEventListener("click", handleClick);
+    // clean up
+    return () => window.removeEventListener("click", handleClick);
+  }, [dropdownOpen]);
   return (
     <Header>
-      <Link href="/">
-        <div className="text-primary h-10 w-10 hover:opacity-70">
-          <CodacLogo />
-        </div>
-      </Link>
+      <div className="flex-grow"></div>
       <div className="w-64">
         <SearchBar />
       </div>
-      {user ? (
-        <AuthMenu
-          handleSignOut={handleSignOut}
-          avatar={user?.avatar?.url}
-          toggleMenu={toggleMenu}
-          isOpen={isMenuOpen}
-        />
+
+      {session.status === "loading" ? (
+        <SpinnerIcon className="-ml-1 mr-3 h-5 w-5 animate-spin text-white" />
       ) : (
-        <Button
-          color="pink"
-          onClick={() => {
-            signIn();
-          }}
-        >
-          Sign In{" "}
-        </Button>
+        <>
+          {session.status === "authenticated" ? (
+            <AuthMenu
+              handleSignOut={handleSignOut}
+              avatar={user?.avatar?.url}
+              toggleMenu={toggleMenu}
+              isOpen={dropdownOpen}
+              passRef={dropdown}
+            />
+          ) : (
+            <Button
+              color="cyan"
+              onClick={() => {
+                signIn();
+              }}
+            >
+              Sign In{" "}
+            </Button>
+          )}
+        </>
       )}
     </Header>
   );

@@ -5,7 +5,7 @@ export function ArrowRightIcon({
   ...props
 }: ComponentProps<"svg"> & { pathClassName?: string }): ReactElement {
   return (
-    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" {...props}>
+    <svg viewBox="0 0 24 24" stroke="currentColor" {...props}>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

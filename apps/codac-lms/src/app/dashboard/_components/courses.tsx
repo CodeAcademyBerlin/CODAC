@@ -11,7 +11,7 @@ export const Courses = async ({ data }: { data: Promise<Response> }) => {
         <div className="text-lg font-medium text-white">Courses</div>
       </div>
 
-      <div className="grid grid-cols-4 gap-6">
+      <div className="flex flex-wrap justify-around gap-6">
         {courses?.data.map((course) => (
           <div key={course.id} className="col-span-4 lg:col-span-1">
             <div className="relative">

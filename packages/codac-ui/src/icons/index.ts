@@ -1,4 +1,4 @@
-export * from "./arrow-right";
+export { ArrowRightIcon } from "./arrow-right";
 export * from "./check";
 export * from "./copy";
 export * from "./discord";

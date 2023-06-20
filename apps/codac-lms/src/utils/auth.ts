@@ -118,29 +118,25 @@ export const authOptions: AuthOptions = {
           options,
           false
         );
-
+        console.log("jwt", jwt);
         if (jwt != null) {
-          const options = { headers: { Authorization: `Bearer ${jwt}` } };
-          const urlParamsObject = {
-            // sort: { createdAt: 'desc' },
-            // filters: {
-            //     category: {
-            //         slug: filter,
-            //     },
-            // },
-            populate: ["role", "student", "student.course"],
-          };
+          // const options = { headers: { Authorization: `Bearer ${jwt}` } };
+          // const urlParamsObject = {
+          //   populate: ["role", "student", "student.course"],
+          // };
 
-          const data = await fetchAPI<UsersPermissionsMe>(
-            "/users/me",
-            urlParamsObject,
-            options,
-            false
-          );
-          console.log("data", data);
+          // const data = await fetchAPI<UsersPermissionsMe>(
+          //   "/users/me",
+          //   urlParamsObject,
+          //   options,
+          //   false
+          // );
+          // console.log("data", data);
           token.accessToken = jwt;
           token.id = userData.id;
-          token.userRole = data.role?.name;
+          // token.userRole = data.role?.name;
+          console.log("token", token);
+          return token;
         }
       }
       // If we are using credentials, we already have the token from strapi
