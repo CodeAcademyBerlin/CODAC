@@ -30,11 +30,11 @@ export default function LayoutSideNav() {
   };
   useEffect(() => {
     const getTree = async () => {
-      if (session?.user?.accessToken) {
-        const token = session.user.accessToken;
-        const tree = await getUserLMSTree();
-        setLmsTree(tree);
-      }
+      // if (session?.user?.accessToken) {
+      //   const token = session.user.accessToken;
+      //   const tree = await getUserLMSTree();
+      //   setLmsTree(tree);
+      // }
     };
     getTree();
   }, [session?.user?.accessToken]);
