@@ -1,11 +1,11 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { type Chat, ChatEntity, type ComponentChatMessage } from "codac-graphql-types";
+import { Button } from "codac-sassy";
 import { useEffect, useState } from "react";
 
 import { useSocket } from "#/contexts/socketContext";
 import { ApolloGenericQuery } from "#/types/apollo";
 
-import { Button } from "../../../../../packages/codac-cleanUI/src/stories/button/Button";
 import { ChatBubble } from "./chat-bubble";
 const GetChatDocument = gql`
   query getChat($id: ID!) {

@@ -1,0 +1,14 @@
+@import "../../../../../apps/codac-quasseln/styles/vars";
+
+textarea {
+  border-radius: $border-radius;
+  border: none;
+  &.lightmode {
+    background-color: yellow;
+  }
+
+  &.darkmode {
+    background-color: white;
+    padding: $reg-space;
+  }
+}

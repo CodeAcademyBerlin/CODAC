@@ -1,0 +1,11 @@
+textarea {
+  border-radius: 1em;
+  border: none;
+}
+textarea.lightmode {
+  background-color: yellow;
+}
+textarea.darkmode {
+  background-color: white;
+  padding: 1rem;
+}/*# sourceMappingURL=input.css.map */
