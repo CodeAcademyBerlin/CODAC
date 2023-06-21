@@ -12,7 +12,7 @@
 .chatroom-container .message {
   grid-column: span 1;
   padding: 0.5rem 1rem 1rem;
-  border-radius: 0.5rem;
+  border-radius: 1em;
 }
 .chatroom-container .message .message-label {
   font-size: 60%;
@@ -35,22 +35,10 @@
   display: flex;
   align-items: flex-end;
   gap: 1rem;
-  align-self: flex-end;
-  width: 60%;
 }
 .send-message-container textarea {
-  border-radius: 0.5rem;
-  width: 100%;
+  border-radius: 1em;
   background-color: #cdfef9;
-}
-.send-message-container .send-button {
-  padding: 0.5rem 1rem;
-  max-width: -moz-fit-content;
-  max-width: fit-content;
-  border-radius: 0.5rem;
-  background-color: #02645a;
-  height: -moz-fit-content;
-  height: fit-content;
 }
 
 .activity-message {

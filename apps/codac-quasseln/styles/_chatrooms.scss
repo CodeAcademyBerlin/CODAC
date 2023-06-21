@@ -41,24 +41,13 @@
 
 .send-message-container {
   display: flex;
-
   align-items: flex-end;
   gap: $reg-space;
-  align-self: flex-end;
-  width: 60%;
 
   textarea {
     border-radius: $border-radius;
-    width: 100%;
+    // width: 100%;
     background-color: lighten($codac-primary-color, 70%);
-  }
-
-  .send-button {
-    padding: $sm-space $reg-space;
-    max-width: fit-content;
-    border-radius: $border-radius;
-    background-color: $codac-primary-color;
-    height: fit-content;
   }
 }
 
@@ -71,8 +60,4 @@
   display: flex;
   gap: $reg-space;
   align-items: center;
-
-  // span {
-  //   color: white;
-  // }
 }

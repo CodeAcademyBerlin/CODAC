@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useSocket } from "#/contexts/socketContext";
 import { ApolloGenericQuery } from "#/types/apollo";
 
+import { Button } from "../../../../../packages/codac-cleanUI/src/stories/button/Button";
 import { ChatBubble } from "./chat-bubble";
 const GetChatDocument = gql`
   query getChat($id: ID!) {
@@ -90,7 +91,7 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
 
   return (
     <div className="chatroom-container">
-      <span style={{ backgroundColor: "yellow" }}>display here room's name</span>
+      <span style={{ backgroundColor: "yellow" }}>display here the rooms’ name</span>
       <button style={{ backgroundColor: "yellow" }} className="see-older-message">
         See older messages
       </button>
@@ -100,6 +101,7 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
       {roomId !== "" && (
         <>
           {typing && <p className="activity-message">someone typing...</p>}
+
           <div className="send-message-container">
             <textarea
               placeholder="Write something..."
@@ -109,8 +111,6 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
               onBlur={() => {
                 setTyping(false);
               }}
-              id="outlined-basic"
-              // label={{ socket } ? "Write something" : "Connecting..."}
               value={msg}
               onChange={(e) => {
                 setMsg(e.target.value);
@@ -121,9 +121,14 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
                 }
               }}
             />
-            <button style={{ backgroundColor: "yellow" }} className="send-button">
-              Send
-            </button>
+
+            <Button
+              label="Send"
+              primary
+              onClick={() => {
+                sendMessage();
+              }}
+            />
           </div>
         </>
       )}
