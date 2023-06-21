@@ -7,3 +7,4 @@ export type ApolloGenericQuery<Type> = Record<
     error: ApolloError | undefined;
   }
 >;
+ 

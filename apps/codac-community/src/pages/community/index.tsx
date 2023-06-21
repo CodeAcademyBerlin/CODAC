@@ -1,6 +1,8 @@
 // import Students from "#/components/community/students";
 import { type CohortEntity, GetCohortsDocument, type GetCohortsQuery } from "codac-graphql-types";
 import { Card } from "codac-ui";
+
+import Staffs from "#/components/community/Staffs";
 import { initializeApollo } from "#/lib/apolloClient";
 
 function Community({ cohorts }: { cohorts: CohortEntity[] }) {
@@ -30,13 +32,14 @@ function Community({ cohorts }: { cohorts: CohortEntity[] }) {
       <div>
         <div className="space-y-6 text-lg font-medium text-white">Staffs</div>
       </div>
+      <div>
+        <Staffs />
+      </div>
     </>
   );
 }
 
 export default Community;
-
-
 
 export const getServerSideProps = async () => {
   try {

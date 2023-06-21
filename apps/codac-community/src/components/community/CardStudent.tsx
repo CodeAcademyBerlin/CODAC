@@ -6,7 +6,9 @@ interface CardStudentProp {
   student: StudentEntity;
 }
 
-export const CardStudent = ({ student }: CardStudentProp) => {
+export const CardStudent = (props: CardStudentProp) => {
+
+  const { student } = props;
   return (
     <div>
       <div key={student.id} className="">
