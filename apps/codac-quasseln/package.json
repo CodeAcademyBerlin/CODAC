@@ -13,6 +13,7 @@
     "@apollo/link-error": "^2.0.0-beta.3",
     "apollo-upload-client": "^17.0.0",
     "codac-ui": "workspace:*",
+    "codac-sassy": "workspace:*",
     "next": "13.4.1",
     "nookies": "^2.5.2",
     "react": "^18.2.0",
