@@ -20,9 +20,8 @@ export const ChatBubble = ({ message }: { message: any }) => {
     } else {
       formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     }
-    formattedDate += ` @ ${date.getHours() < 10 ? "0" : ""}${date.getHours()}:${
-      date.getMinutes() < 10 ? "0" : ""
-    }${date.getMinutes()}`;
+    formattedDate += ` @ ${date.getHours() < 10 ? "0" : ""}${date.getHours()}:${date.getMinutes() < 10 ? "0" : ""
+      }${date.getMinutes()}`;
 
     return formattedDate;
   };
@@ -30,7 +29,8 @@ export const ChatBubble = ({ message }: { message: any }) => {
   return (
     <>
       {user?.username !== author ? (
-        <div className="flex flex-row  justify-start gap-3 p-2">
+        // ADDING MESSAGE.ID TO THE DIV....
+        <div key={message.id} className="flex flex-row  justify-start gap-3 p-2">
           <p className="text-secondary text-xs font-semibold uppercase">
             <b>{author} </b>
             {formatDate(message.timestamp)}
@@ -47,6 +47,10 @@ export const ChatBubble = ({ message }: { message: any }) => {
           </p>
 
           <div className="rounded-xl bg-white p-3">
+            {/* add this button to see the future function.... Chris 21/06/23 */}
+            <button>
+              <span>delete function (X)</span>
+            </button>
             <p className="text-primary text-xl">{message.body}</p>
           </div>
         </div>

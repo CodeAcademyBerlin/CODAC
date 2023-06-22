@@ -1,5 +1,6 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { type Chat, ChatEntity, type ComponentChatMessage } from "codac-graphql-types";
+
 import { useEffect, useState } from "react";
 
 import { useSocket } from "#/contexts/socketContext";
@@ -13,8 +14,8 @@ const GetChatDocument = gql`
         id
         attributes {
           name
-          messages {
-            id
+          messages{
+            id 
             body
             timestamp
             author {
@@ -31,6 +32,8 @@ const GetChatDocument = gql`
     }
   }
 `;
+
+
 const AddChatMsgDocument = gql`
   mutation addChatMessage($chatId: ID!, $body: String!) {
     addChatMessage(chatId: $chatId, body: $body) {
@@ -39,6 +42,18 @@ const AddChatMsgDocument = gql`
     }
   }
 `;
+// esta puede ser la version delete...
+
+const DeleteChatMsgDocument = gql`
+  mutation deleteChatMessage($chatId: ID!, $messageId: ID!){
+    deleteChatMessage(chatId: $chatId, messageId: $messageId){
+      success
+      message
+    }
+  }
+`;
+
+// faltaria edit message...(update...?)
 
 interface Props {
   roomId: string;
@@ -46,12 +61,18 @@ interface Props {
 
 const ChatRoom: React.FC<Props> = ({ roomId }) => {
   const [chatHistory, setChatHistory] = useState<ComponentChatMessage[]>([]);
+
   const { data, refetch } = useQuery<ApolloGenericQuery<ChatEntity>>(GetChatDocument, {
     variables: {
       id: roomId,
     },
   });
+  console.log('data for chris... :>> ', data);
   const [addChatMessageMutation] = useMutation(AddChatMsgDocument);
+
+  //  I'm trying to figure out the delete function.... 21/06/23
+  const [deleteChatMessageMutation] = useMutation(DeleteChatMsgDocument)
+
 
   const [msg, setMsg] = useState<string>("");
   const [typing, setTyping] = useState<boolean>(false);
@@ -72,9 +93,17 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
       const history = data?.chat?.data?.attributes?.messages as ComponentChatMessage[];
       console.log("history roomId", history);
       history.length && setChatHistory(history);
+      //  I have maped over the variable in order to find only the id of each message 
+      const messageId = history.map((message) => {
+        return message.id
+      })
+      console.log('messageId :>> ', messageId);
+      // trying to fin the message id.... chris 21/06/23 
       console.log("updatedHistory roomId", chatHistory);
     }
   }, [roomId, data]);
+
+
 
   const sendMessage = () => {
     if (msg) {
@@ -88,6 +117,20 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
     }
   };
 
+  //  the could be the delete function... 21/06/23
+  const deleteMessage = () => {
+    if (msg) {
+      deleteChatMessageMutation({
+        variables: {
+          chatId: `${roomId}`,
+          // messageId: `${messageId}` 
+        }
+      })
+    }
+
+  }
+
+
   return (
     <div>
       <div
@@ -100,9 +143,11 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
         }}
       >
         {chatHistory.map((message) => (
-          <>
+          //adding a div to solve problem with key...
+          // Problem with the key.id solved.... Chris 21/06/23 01.07pm
+          <div key={message.id}>
             <ChatBubble key={message.id} message={message}></ChatBubble>
-          </>
+          </div>
         ))}
 
         {typing && (
