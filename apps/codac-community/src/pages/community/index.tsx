@@ -2,7 +2,7 @@
 import { type CohortEntity, GetCohortsDocument, type GetCohortsQuery } from "codac-graphql-types";
 import { Card } from "codac-ui";
 
-import Staffs from "#/components/community/Staffs";
+import Mentors from "#/components/community/Mentors";
 import { initializeApollo } from "#/lib/apolloClient";
 
 function Community({ cohorts }: { cohorts: CohortEntity[] }) {
@@ -33,7 +33,7 @@ function Community({ cohorts }: { cohorts: CohortEntity[] }) {
         <div className="space-y-6 text-lg font-medium text-white">Staffs</div>
       </div>
       <div>
-        <Staffs />
+        <Mentors />
       </div>
     </>
   );

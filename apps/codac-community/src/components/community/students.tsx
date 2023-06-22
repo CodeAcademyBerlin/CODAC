@@ -6,13 +6,7 @@ import { useGetCohorts } from "#/graphql/hooks";
 import { CardStudent } from "./CardStudent";
 
 function Students() {
-  // const { data, loading } = useGetStudentsByCohortQuery({
-  //   variables: {
-  //     cohortName: "mikasa",
-  //   },
-  // });
 
-  // const students = data?.students?.data as StudentEntity[];
   const { students, loading } = useGetCohorts();
   console.log(students)
   return (
