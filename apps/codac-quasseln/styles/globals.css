@@ -1,0 +1,53 @@
+/** messages chronology **/
+.chatroom-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.chatroom-container .message-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.chatroom-container .message {
+  grid-column: span 1;
+  padding: 0.5rem 1rem 1rem;
+  border-radius: 1em;
+}
+.chatroom-container .message .message-label {
+  font-size: 60%;
+  padding: 0.5rem 0;
+}
+.chatroom-container .my-message {
+  background-color: white;
+  grid-column-start: 2;
+}
+.chatroom-container .my-message .message-label {
+  text-align: right;
+}
+.chatroom-container .you-all-message {
+  background-color: #9bfdf3;
+  grid-column-start: 1;
+}
+
+/** send a message **/
+.send-message-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+}
+.send-message-container textarea {
+  border-radius: 1em;
+  background-color: #cdfef9;
+}
+
+.activity-message {
+  color: white;
+  font-size: 60%;
+}
+
+.chatroom-nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}/*# sourceMappingURL=globals.css.map */

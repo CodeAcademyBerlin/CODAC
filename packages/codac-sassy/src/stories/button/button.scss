@@ -1,0 +1,55 @@
+@import "../../../../../apps/codac-quasseln/styles/vars";
+
+.storybook-button {
+  border-radius: 50px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.5em 1em;
+  border: $border-solid transparent;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+
+  .label {
+    font-size: 16px;
+    font-size: "Noto Sans", sans-serif;
+  }
+
+  .icon {
+    height: 1em;
+    padding-right: 0.5em;
+  }
+
+  &.primary {
+    font-size: 1.25em;
+  }
+
+  &.secondary {
+    font-size: 1em;
+  }
+
+  &.lightmode {
+    color: white;
+    background-color: $codac-primary-color;
+
+    &:hover {
+      background-color: darken($codac-primary-color, 5%);
+    }
+    &:active {
+      border: $border-solid lighten($codac-primary-color, 10%);
+    }
+  }
+
+  &.darkmode {
+    color: darken($codac-primary-color, 20%);
+    background-color: lighten($codac-primary-color, 30%);
+
+    &:hover {
+      background-color: lighten($codac-primary-color, 50%);
+    }
+    &:active {
+      border: $border-solid lighten($codac-primary-color, 20%);
+    }
+  }
+}

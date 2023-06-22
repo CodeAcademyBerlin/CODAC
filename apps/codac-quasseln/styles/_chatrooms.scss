@@ -1,0 +1,63 @@
+/** messages chronology **/
+
+.chatroom-container {
+  display: flex;
+  flex-direction: column;
+  gap: $reg-space;
+
+  .message-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $reg-space;
+  }
+  // applying to all messages
+  .message {
+    grid-column: span 1;
+    padding: $sm-space $reg-space $reg-space;
+    border-radius: $border-radius;
+
+    .message-label {
+      font-size: $smaller-text;
+      padding: $sm-space 0;
+    }
+  }
+  // my messages
+  .my-message {
+    background-color: white;
+    grid-column-start: 2;
+
+    .message-label {
+      text-align: right;
+    }
+  }
+  // other users' messages
+  .you-all-message {
+    background-color: lighten($codac-primary-color, 60%);
+    grid-column-start: 1;
+  }
+}
+
+/** send a message **/
+
+.send-message-container {
+  display: flex;
+  align-items: flex-end;
+  gap: $reg-space;
+
+  textarea {
+    border-radius: $border-radius;
+    // width: 100%;
+    background-color: lighten($codac-primary-color, 70%);
+  }
+}
+
+.activity-message {
+  color: white;
+  font-size: $smaller-text;
+}
+
+.chatroom-nav {
+  display: flex;
+  gap: $reg-space;
+  align-items: center;
+}

@@ -27,34 +27,16 @@ export const ChatBubble = ({ message }: { message: any }) => {
   };
 
   return (
-    <>
-      {user?.username !== author ? (
-        // ADDING MESSAGE.ID TO THE DIV....
-        <div key={message.id} className="flex flex-row  justify-start gap-3 p-2">
-          <p className="text-secondary text-xs font-semibold uppercase">
-            <b>{author} </b>
-            {formatDate(message.timestamp)}
-          </p>
-          <div className="bg-primary rounded-xl p-3">
-            <p className="text-xl text-white">{message.body}</p>
-          </div>
+    <div className="message-container">
+      <div className={`message ${user?.username === author ? "my-message" : "you-all-message"}`}>
+        <div className="message-label">
+          {user?.username !== author ? <strong>{author}</strong> : <strong>me</strong>}{" "}
+          {formatDate(message.timestamp)}
         </div>
-      ) : (
-        <div className="flex flex-row  justify-end gap-3 p-2">
-          <p className="text-secondary text-xs font-semibold uppercase">
-            <b>{author} </b>
-            {formatDate(message.timestamp)}
-          </p>
-
-          <div className="rounded-xl bg-white p-3">
-            {/* add this button to see the future function.... Chris 21/06/23 */}
-            <button>
-              <span>delete function (X)</span>
-            </button>
-            <p className="text-primary text-xl">{message.body}</p>
-          </div>
+        <div className="message-bubble">
+          <p>{message.body}</p>
         </div>
-      )}
-    </>
+      </div>
+    </div>
   );
 };
