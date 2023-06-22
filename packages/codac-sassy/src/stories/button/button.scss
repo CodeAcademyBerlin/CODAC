@@ -1,19 +1,19 @@
-@import "../../../../../apps/codac-quasseln/styles/vars";
+@import "../../../../../apps/codac-quasseln/styles/globals.scss";
 
 .storybook-button {
   border-radius: 50px;
   cursor: pointer;
   line-height: 1;
-  padding: 0.5em 1em;
+  padding: 0.5em 1em !important;
   border: $border-solid transparent;
   display: flex;
   align-items: center;
-  width: fit-content;
-  height: fit-content;
 
+  height: fit-content;
+  width: fit-content;
   .label {
     font-size: 16px;
-    font-size: "Noto Sans", sans-serif;
+    font-size: $font;
   }
 
   .icon {

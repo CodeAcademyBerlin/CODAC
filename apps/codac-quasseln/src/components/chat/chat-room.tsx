@@ -95,40 +95,43 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
       <button style={{ backgroundColor: "yellow" }} className="see-older-message">
         See older messages
       </button>
+
       {chatHistory.map((message) => (
         <ChatBubble key={message.id} message={message}></ChatBubble>
       ))}
+
       {roomId !== "" && (
         <>
           {typing && <p className="activity-message">someone typing...</p>}
 
           <div className="send-message-container">
-            <textarea
-              placeholder="Write something..."
-              onFocus={() => {
-                setTyping(true);
-              }}
-              onBlur={() => {
-                setTyping(false);
-              }}
-              value={msg}
-              onChange={(e) => {
-                setMsg(e.target.value);
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
+            <div>
+              <textarea
+                placeholder="Write something..."
+                onFocus={() => {
+                  setTyping(true);
+                }}
+                onBlur={() => {
+                  setTyping(false);
+                }}
+                value={msg}
+                onChange={(e) => {
+                  setMsg(e.target.value);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    sendMessage();
+                  }
+                }}
+              />
+              <Button
+                label="Send"
+                primary
+                onClick={() => {
                   sendMessage();
-                }
-              }}
-            />
-
-            <Button
-              label="Send"
-              primary
-              onClick={() => {
-                sendMessage();
-              }}
-            />
+                }}
+              />
+            </div>
           </div>
         </>
       )}

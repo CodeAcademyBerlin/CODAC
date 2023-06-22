@@ -11,30 +11,13 @@ const meta: Meta<typeof Input> = {
 export default meta;
 type Story = StoryObj<typeof Input>;
 
-export const PrimaryLightmode: Story = {
+export const Lightmode: Story = {
   args: {
     darkmode: false,
   },
 };
 
-export const PrimaryDarkmode: Story = {
-  args: {
-    darkmode: true,
-  },
-  parameters: {
-    backgrounds: {
-      default: "dark",
-    },
-  },
-};
-
-export const SecondaryLightmode: Story = {
-  args: {
-    darkmode: false,
-  },
-};
-
-export const SecondaryDarkmode: Story = {
+export const Darkmode: Story = {
   args: {
     darkmode: true,
   },

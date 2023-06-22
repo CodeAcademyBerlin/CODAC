@@ -40,13 +40,22 @@
 /** send a message **/
 
 .send-message-container {
-  display: flex;
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: $reg-space;
 
+  div {
+    display: flex;
+    gap: $sm-space;
+    flex-direction: column;
+    width: 100%;
+    grid-column-start: 2;
+    align-items: flex-end;
+  }
+
   textarea {
+    width: 100%;
     border-radius: $border-radius;
-    // width: 100%;
     background-color: lighten($codac-primary-color, 70%);
   }
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./input.css";
 
 interface InputProps {
@@ -17,5 +17,26 @@ interface InputProps {
  */
 export const Input = ({ darkmode = false, ...props }: InputProps) => {
   const isDarkmode = darkmode ? "darkmode" : "lightmode";
-  return <textarea className={["storybook-input", isDarkmode].join(" ")} {...props}></textarea>;
+
+  return (
+    <textarea
+      className={isDarkmode}
+      placeholder="Write something..."
+      // onFocus={() => {
+      //   setTyping(true);
+      // }}
+      // onBlur={() => {
+      //   setTyping(false);
+      // }}
+      // value={msg}
+      // onChange={(e) => {
+      //   setMsg(e.target.value);
+      // }}
+      // onKeyDown={(e) => {
+      //   if (e.key === "Enter") {
+      //     sendMessage();
+      //   }
+      // }}
+    />
+  );
 };
