@@ -5,10 +5,9 @@ import { useGetCohorts } from "#/graphql/hooks";
 
 import { CardStudent } from "./CardStudent";
 
-function Students() {
-
+function ListStudent() {
   const { students, loading } = useGetCohorts();
-  console.log(students)
+  console.log(students);
   return (
     <>
       <div className="space-y-6">
@@ -17,13 +16,12 @@ function Students() {
         </div>
         {loading && <SkeletonCards number={3} isLoading={loading} />}
         <div className="grid grid-cols-4 gap-2">
-          {students && students.map((student) => (
-            <CardStudent key={student.id} student={student} />
-          ))}
+          {students &&
+            students.map((student) => <CardStudent key={student.id} student={student} />)}
         </div>
       </div>
     </>
   );
 }
 
-export default Students;
+export default ListStudent;

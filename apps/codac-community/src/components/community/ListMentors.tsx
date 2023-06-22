@@ -4,9 +4,7 @@ import { Card } from "codac-ui";
 
 import { useGetMentors } from "#/graphql/hooks";
 
-const Mentors = () => {
-  // const { data, loading, error } = useGetAllStaffsQuery();
-  // const mentors = data?.mentors?.data ?? [];
+const ListMentors = () => {
   const { mentors, loading, error } = useGetMentors();
   console.log(mentors);
 
@@ -26,7 +24,7 @@ const Mentors = () => {
                         mentor.attributes.user?.data.attributes.avatar?.data.attributes.url ?? ""
                       }
                       title={mentor.attributes.user?.data.attributes.username}
-                      href={`/mentor/${mentor.id}`}
+                      href={`/community/mentor/${mentor.id}`}
                     />
                   </div>
                 )}
@@ -38,4 +36,4 @@ const Mentors = () => {
   );
 };
 
-export default Mentors;
+export default ListMentors;
