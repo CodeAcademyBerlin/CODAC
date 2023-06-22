@@ -54,9 +54,11 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
       setSocket(s);
     }
   };
+  // why do you use have Socket as dependency...? 
+  // shoud we clean it up? in the return...? 
   useEffect(() => {
     connectSocket();
-  }, [socket, user]);
+  }, [user]);
 
   const data = {
     socket,

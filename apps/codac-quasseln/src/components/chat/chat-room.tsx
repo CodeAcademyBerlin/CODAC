@@ -2,12 +2,15 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import { type Chat, ChatEntity, type ComponentChatMessage } from "codac-graphql-types";
 import { Button } from "codac-sassy";
 
+
 import { useEffect, useState } from "react";
 
 import { useSocket } from "#/contexts/socketContext";
 import { ApolloGenericQuery } from "#/types/apollo";
 
 import { ChatBubble } from "./chat-bubble";
+
+import { GetChatsQuery } from "codac-graphql-types";
 const GetChatDocument = gql`
   query getChat($id: ID!) {
     chat(id: $id) {
@@ -20,6 +23,7 @@ const GetChatDocument = gql`
             body
             timestamp
             author {
+              id
               data {
                 attributes {
                   username
@@ -43,8 +47,8 @@ const AddChatMsgDocument = gql`
     }
   }
 `;
-// esta puede ser la version delete...
 
+// esta puede ser la version delete...
 const DeleteChatMsgDocument = gql`
   mutation deleteChatMessage($chatId: ID!, $messageId: ID!){
     deleteChatMessage(chatId: $chatId, messageId: $messageId){
@@ -55,7 +59,6 @@ const DeleteChatMsgDocument = gql`
 `;
 
 // faltaria edit message...(update...?)
-
 interface Props {
   roomId: string;
 }
@@ -68,7 +71,7 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
       id: roomId,
     },
   });
-  console.log('data for chris... :>> ', data);
+  // console.log('data for chris... :>> ', data);
   const [addChatMessageMutation] = useMutation(AddChatMsgDocument);
 
   //  I'm trying to figure out the delete function.... 21/06/23
@@ -139,7 +142,9 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
         See older messages
       </button>
       {chatHistory.map((message) => (
-        <ChatBubble key={message.id} message={message}></ChatBubble>
+        <div key={message.id}>
+          <ChatBubble key={message.id} message={message}></ChatBubble>
+        </div>
       ))}
       {roomId !== "" && (
         <>
