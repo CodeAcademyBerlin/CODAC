@@ -182,9 +182,16 @@ const SingleChat = (props: Props) => {
                         )
                     })}
                 </div>
-                <div style={{ color: "whitesmoke", textAlign: "center" }}>
+                <div style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    color: "whitesmoke",
+                    textAlign: "center",
+                    margin: "auto",
+                    justifyContent: "center"
+                }}>
                     <textarea
-                        style={{ outline: "none", resize: "none", color: "black", width: "90%", margin: "auto" }}
+                        style={{ outline: "none", resize: "none", color: "black", width: "80%", height: "60px" }}
                         placeholder='write something...'
                         value={message}
                         // ask Emily why refetch each time I write something....
@@ -194,12 +201,15 @@ const SingleChat = (props: Props) => {
                         }}
                         onKeyDown={(e) => {
                             if (e.key === "Enter") {
-
                                 sendMessage();
                                 refetch();
                             }
                         }}
-                    />
+                    >
+                    </textarea>
+                    <button
+                        style={{ width: "10%", border: "2px solid blue", height: "60px" }}
+                        onClick={sendMessage}>Send</button>
                 </div>
             </div>
         </div>
