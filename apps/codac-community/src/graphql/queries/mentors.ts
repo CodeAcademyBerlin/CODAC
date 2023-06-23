@@ -5,9 +5,6 @@ export const GetMentorsAllDocument = gql`
       data {
         id
         attributes {
-          github
-          linkedin
-          createdAt
           user {
             data {
               attributes {

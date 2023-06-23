@@ -3,7 +3,7 @@ import { SkeletonCards } from "codac-ui";
 
 import { useGetCohorts } from "#/graphql/hooks";
 
-import { CardStudent } from "./CardStudent";
+import { CardStudent } from "./StudentCard";
 
 function ListStudent() {
   const { students, loading } = useGetCohorts();

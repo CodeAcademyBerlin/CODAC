@@ -2,7 +2,7 @@ import { Card, SkeletonCards } from "codac-ui";
 
 import { useGetMentor } from "#/graphql/hooks";
 
-export const Mentor = ({ id }: { id: string }) => {
+export const Mentor = ({ id }: { id: string  }) => {
   const { mentor, loading, error } = useGetMentor(id);
   console.log(mentor);
 

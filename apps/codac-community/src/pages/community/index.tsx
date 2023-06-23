@@ -2,7 +2,7 @@
 import { type CohortEntity, GetCohortsDocument, type GetCohortsQuery } from "codac-graphql-types";
 import { Card } from "codac-ui";
 
-import ListMentors from "#/components/community/ListMentors";
+import ListMentors from "#/components/community/MentorsList";
 import { initializeApollo } from "#/lib/apolloClient";
 
 function Community({ cohorts }: { cohorts: CohortEntity[] }) {

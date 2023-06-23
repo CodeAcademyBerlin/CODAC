@@ -1,11 +1,7 @@
-import { useRouter } from "next/router";
 import React from "react";
 
-import ListStudent from "#/components/community/ListStudent";
+import ListStudent from "#/components/community/StudentList";
 
 export default function Cohort() {
-  const router = useRouter();
-  const { id } = router.query;
-
-  return <ListStudent cohortName={id} />;
+  return <ListStudent />;
 }

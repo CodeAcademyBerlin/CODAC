@@ -7,10 +7,6 @@ export const GetStudentsByCohortDocument = gql`
         id
         attributes {
           firstname
-          lastname
-          github
-          linkedin
-          createdAt
           user {
             data {
               attributes {
@@ -27,6 +23,13 @@ export const GetStudentsByCohortDocument = gql`
             }
           }
           cohort {
+            data {
+              attributes {
+                name
+              }
+            }
+          }
+          course {
             data {
               attributes {
                 name
