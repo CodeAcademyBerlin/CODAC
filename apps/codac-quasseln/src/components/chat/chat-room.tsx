@@ -23,8 +23,8 @@ const GetChatDocument = gql`
             body
             timestamp
             author {
-              id
               data {
+                id
                 attributes {
                   username
                   email
@@ -38,7 +38,6 @@ const GetChatDocument = gql`
   }
 `;
 
-
 const AddChatMsgDocument = gql`
   mutation addChatMessage($chatId: ID!, $body: String!) {
     addChatMessage(chatId: $chatId, body: $body) {
@@ -48,17 +47,6 @@ const AddChatMsgDocument = gql`
   }
 `;
 
-// esta puede ser la version delete...
-const DeleteChatMsgDocument = gql`
-  mutation deleteChatMessage($chatId: ID!, $messageId: ID!){
-    deleteChatMessage(chatId: $chatId, messageId: $messageId){
-      success
-      message
-    }
-  }
-`;
-
-// faltaria edit message...(update...?)
 interface Props {
   roomId: string;
 }
@@ -73,9 +61,6 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
   });
   // console.log('data for chris... :>> ', data);
   const [addChatMessageMutation] = useMutation(AddChatMsgDocument);
-
-  //  I'm trying to figure out the delete function.... 21/06/23
-  const [deleteChatMessageMutation] = useMutation(DeleteChatMsgDocument)
 
 
   const [msg, setMsg] = useState<string>("");
@@ -107,8 +92,6 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
     }
   }, [roomId, data]);
 
-
-
   const sendMessage = () => {
     if (msg) {
       addChatMessageMutation({
@@ -120,20 +103,6 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
       setMsg("");
     }
   };
-
-  //  the could be the delete function... 21/06/23
-  const deleteMessage = () => {
-    if (msg) {
-      deleteChatMessageMutation({
-        variables: {
-          chatId: `${roomId}`,
-          // messageId: `${messageId}` 
-        }
-      })
-    }
-
-  }
-
 
   return (
     <div className="chatroom-container">
