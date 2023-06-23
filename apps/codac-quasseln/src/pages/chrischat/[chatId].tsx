@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router'
 import { gql, useQuery, useMutation } from "@apollo/client";
-import React, { useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import { useAuth } from '#/contexts/authContext';
+import { timeStamp } from 'console';
 
 
 
@@ -31,25 +32,21 @@ const getChatHistoryById = gql`
 query getChatHistoryById($id: ID) {
   conversation(id: $id) {
     data {
+        id
       attributes {
         messages {
           data {
             id
             attributes {
               body
+              publishedAt
               createdAt
               updatedAt
               author {
                 data {
+                id
                   attributes {
                     username
-                    avatar {
-                      data {
-                        attributes {
-                          url
-                        }
-                      }
-                    }
                   }
                 }
               }
@@ -61,7 +58,7 @@ query getChatHistoryById($id: ID) {
   }
 }
 `;
-
+// I have to add the pinned property to the query/mutation--- 
 const createNewMessage = gql`
 mutation createMessage( $body: String!, $conversationId: ID!, $authorId: ID!){
   createMessage( data: {body: $body, conversation: $conversationId, author: $authorId} ) {
@@ -85,48 +82,62 @@ mutation createMessage( $body: String!, $conversationId: ID!, $authorId: ID!){
 }
 `;
 
-// this are the variables..... 
-// {"body": "CODAC... from Emily", 
-// "conversationId": 1,
-// "authorId": 18
-// }
+const deleteChatMessage = gql`
+mutation deleteMessage( $id: ID!) {
+  deleteMessage(id: $id) {
+    data {
+      id
+    }
+  }
+}
+`;
+
+const upDateChatMessage = gql`
+mutation updateMessage($id: ID!, $body: String!){
+  updateMessage(id: $id, data: {body: $body}) {
+    data{
+      id
+      attributes{
+        body
+        author{
+          data{
+            id
+            attributes{username}
+          }
+        }
+      }
+    }
+  }
+}
+`;
+
+
+
+
 
 type Props = {}
 
 const SingleChat = (props: Props) => {
     const { user } = useAuth();
     const userId = user?.id
-
-    const router = useRouter();
+    console.log('userId :>> ', userId);
+    // const router = useRouter();
     const { chatId } = useRouter().query;
-
     const [active, setActive] = useState("");
     // Refetching enables you to refresh query results in response to a particular user action, as opposed to using a fixed interval.
     const { data: chatRooms, error, loading } = useQuery(getSingleChat,
-        {
-            variables: {
-                id: chatId
-            }
-        });
+        { variables: { id: chatId } });
     //  the refecth should be for the chat history...
 
     const { data: allMessages, loading: chatLoading, error: messageError, refetch } = useQuery(getChatHistoryById,
-        {
-            variables: {
-                id: active
-            }
-        });
+        { variables: { id: active } });
 
-    // do I need this chatHitory state????
-    const [chatHistory, setChatHistory] = useState([]);
-
+    // do I need this chatHistory state????
+    // const [chatHistory, setChatHistory] = useState([]);
     const [message, setMessage] = useState("");
-
     // do I need this  typing state????
     // const [typing, setTyping] = useState(false);
 
-
-    // esta pendiente.....
     const [newMessageMutation] = useMutation(createNewMessage);
     const sendMessage = () => {
         if (message) {
@@ -138,14 +149,64 @@ const SingleChat = (props: Props) => {
                 }
             })
             setMessage("");
+            refetch();
         }
+    }
+
+    const [deleteMessageMutation] = useMutation(deleteChatMessage);
+    //  the mentor has permmision to delete as well... condicional... id not working and only deleting first message...
+    const deleteMessage = (e: FormEvent<HTMLFormElement>, message: any) => {
+        e.preventDefault();
+        console.log('object :>> ', message.attributes.author.data.id);
+        if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
+            deleteMessageMutation({
+                variables: {
+                    id: message.id
+                }
+            })
+        }
+        refetch();
+        setDeleteModal(!deleteModal);
+    }
+
+    // const [updateMessageMutation]
+
+    // this is for the date in each message...
+    const formatDate = (timestamp: string) => {
+        const date = new Date(timestamp);
+        const today = new Date();
+        const yesterday = new Date();
+        yesterday.setDate(today.getDate() - 1)
+        let formattedDate = "";
+        if (date.getDate() === today.getDate()) {
+            formattedDate = "Today";
+        } else if (date.getDate() === yesterday.getDate()) {
+            formattedDate = "Yesterday";
+        } else {
+            formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+        }
+        // what it that???? +=  ?
+        formattedDate += `@ ${date.getHours() < 10 ? "0" : ""}${date.getHours()}:
+        ${date.getMinutes() < 10 ? "0" : ""}${date.getMinutes()}`;
+        return formattedDate;
     }
 
     // console.log('chatId :>> ', chatId);
     // console.log('router :>> ', router);
     // console.log('data :>> ', chatRooms);
-    // console.log('messages history :>> ', allMessages?.conversation?.data.attributes.messages.data);
+    console.log('messages history :>> ', allMessages?.conversation?.data.attributes.messages.data);
 
+    // +++++++++++++++++++++++ MODALS ++++++++++++++++++++++
+
+    const [deleteModal, setDeleteModal] = useState(false);
+    // const [optionsModal, setOptionsModal] = useState(false);
+    const toogleDeleteModal = () => {
+        setDeleteModal(!deleteModal)
+    }
+    // const toogleOptionsModal = (e: any) => {
+    //     e.stopPropagation()
+    //     setOptionsModal(!optionsModal)
+    // }
 
 
     return (
@@ -160,28 +221,163 @@ const SingleChat = (props: Props) => {
                                 setActive(conversation.id.toString());
                                 // await getMessages();
                             }}
-
                         >
-                            <p>{conversation.attributes?.title}</p>
+                            <h3 style={{
+                                color: "white",
+                                margin: "5px",
+                                border: "2px solid white",
+                                borderRadius: "5px",
+                                textAlign: "center"
+                            }}>{conversation.attributes?.title}</h3>
                         </div>
                     )
                 })}
 
             </div>
 
-
-
             {/* All Messages from a conversation.... */}
             <div style={{ border: "2px solid white" }}>
                 <div style={{ border: "2px solid white", width: "90%", height: "300px", margin: "auto", overflow: "scroll" }} >
                     {allMessages && allMessages?.conversation?.data.attributes?.messages?.data?.map((message: any) => {
                         return (
-                            <div style={{ border: "1px solid red", width: "90%", margin: "5px" }} key={message.id}>
-                                <p>{message.attributes.body}</p>
+                            <div className='message_container' style={{ border: "1px solid red", width: "90%", margin: "5px" }} key={message.id}>
+                                <div style={{
+                                    display: "flex",
+                                    // border: "yellow 2px solid",
+                                    justifyContent: "space-between"
+                                }}>
+                                    <div className='message_label'
+                                        style={{
+                                            display: "flexbox",
+                                            // border: "2px white solid",
+                                            width: "50%",
+                                            fontSize: "11px",
+                                            marginLeft: "2px"
+                                        }}>
+                                        <h2 style={{ color: "white" }}>id: {message.id}</h2>
+
+                                        {user?.username !== message.attributes.author.data?.attributes.username ?
+                                            <strong>{message.attributes.author.data?.attributes.username}</strong> :
+                                            <strong>me</strong>}
+
+
+                                        {formatDate(message.attributes.createdAt)}
+                                    </div>
+
+                                    <div className='message_functions_container'
+                                        style={{
+                                            display: "flex",
+                                            // border: "2px white solid",
+                                            width: "40%",
+                                            gap: "5px",
+                                            justifyContent: "flex-end",
+                                            marginRight: "2px",
+                                            fontSize: "10px"
+                                        }}>
+                                        <button>edit</button>
+                                        <button onClick={toogleDeleteModal}>delete</button>
+                                    </div>
+                                </div>
+                                <div className='text_body' >
+                                    <p>{message.attributes.body}</p>
+                                </div>
+                                {/* // +++++++++++++++++++++++++ DELETE MODAL +++++++++++++++++++ */}
+                                {deleteModal && (<div className='delete_post_modal'
+                                    style={{
+                                        width: "100vw",
+                                        height: "100vh",
+                                        top: "0",
+                                        left: "0",
+                                        right: "0",
+                                        bottom: "0",
+                                        position: "fixed"
+                                    }}
+                                >
+                                    <div className='delete_modal_overlay'
+                                        style={{
+                                            width: "100vw",
+                                            height: "100vh",
+                                            top: "0",
+                                            left: "0",
+                                            right: "0",
+                                            bottom: "0",
+                                            position: "fixed",
+                                            // backgroundColor: "black",
+                                            backgroundColor: "rgba(0,0,0,0.3)"
+                                        }}
+                                        onClick={toogleDeleteModal}>
+                                        <div className='delete_post_modal_container' onClick={e => { e.stopPropagation() }}
+                                            style={{
+                                                position: "relative",
+                                                zIndex: "1000",
+                                                display: "flex",
+                                                flexDirection: "column",
+                                                width: "35%",
+                                                height: "25%",
+                                                border: "white solid 3px",
+                                                borderRadius: "10px",
+                                                backgroundColor: "white",
+                                                margin: "auto",
+                                                marginTop: "200px"
+                                            }}>
+                                            {/* onSubmit={deleteMessage}  */}
+                                            {/* {(<button onClick={(e) => { handleDeleteCommentSubmit(e, comment._id) }}>} */}
+                                            <form onSubmit={(e) => { deleteMessage(e, message) }} >
+
+                                                <div className='delete_post_modal_text'
+                                                    style={{
+                                                        marginTop: "10px",
+                                                        color: "black",
+                                                        textAlign: "center"
+                                                    }}>
+                                                    <h3>Do you want to delete your message?</h3>
+                                                </div>
+                                                <div className='delete_post_modal_btns'
+                                                    style={{
+                                                        display: "flex",
+                                                        justifyContent: "center",
+                                                        gap: "10px",
+                                                        marginTop: "20px"
+                                                    }}>
+                                                    <button
+                                                        type='submit'
+                                                        style={{
+                                                            color: "white",
+                                                            backgroundColor: "black",
+                                                            border: "none",
+                                                            borderRadius: "5px",
+                                                            height: "30px",
+                                                            width: "80px",
+                                                        }}
+                                                    // onClick={toogleDeleteModal}
+                                                    >Continue</button>
+
+                                                    <button
+                                                        style={{
+                                                            color: "white",
+                                                            backgroundColor: "black",
+                                                            border: "none",
+                                                            borderRadius: "5px",
+                                                            height: "30px",
+                                                            width: "80px",
+                                                        }}
+                                                        onClick={toogleDeleteModal}>Cancel</button>
+
+                                                </div>
+
+                                            </form>
+                                        </div>
+
+                                    </div>
+
+                                </div>)}
+
                             </div>
                         )
                     })}
                 </div>
+
+                {/* +++++++++++++++++++++++++ TEXT BODY +++++++++++++++++++ */}
                 <div style={{
                     display: "flex",
                     flexDirection: "row",

@@ -80,18 +80,15 @@ export const ChatBubble = ({ message }: { message: any }) => {
     alert("message deleted")
   }
 
-  // const handleDeleteMessage = async (e: { preventDefault: () => void }) => {
-  //   e.preventDefault();
-
-
-  // }
-
-
-
   return (
     <div className="message-container">
       <div className={`message ${user?.username === author ? "my-message" : "you-all-message"}`}>
-        <div className="message-label">
+        <div className="message-label"
+          style={{
+            display: "flexbox",
+            border: "2px white solid"
+          }}
+        >
           {user?.username !== author ? <strong>{author}</strong> : <strong>me</strong>}{" "}
           {formatDate(message.timestamp)}
           <button >edit</button><br />

@@ -49,6 +49,7 @@ type Props = {}
 const ChrisChat = (props: Props) => {
     const { data, error, loading } = useQuery(GetAllChats);
     const { user } = useAuth();
+    console.log('user :>> ', user);
 
     // do I need this connected state???
     const [connected, setConnected] = useState(false);
@@ -75,7 +76,7 @@ const ChrisChat = (props: Props) => {
                     <h1 style={{ color: "white" }}>Index For Alls Chatrooms... </h1>
                 </div>
                 <div>
-                    {data && data?.chatrooms.data.map((chat: any) => {
+                    {data && data?.chatrooms?.data.map((chat: any) => {
                         return (
                             <div key={chat.id}
                                 style={{
