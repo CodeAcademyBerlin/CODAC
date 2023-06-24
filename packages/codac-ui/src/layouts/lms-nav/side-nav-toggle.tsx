@@ -1,17 +1,13 @@
 "use client";
 import clsx from "clsx";
-import React, { ReactNode, useState } from "react";
+import React, { useState } from "react";
 
-import { ArrowRightIcon } from "../icons";
+import { ArrowRightIcon } from "../../icons";
 
-export interface LMSNavProps {
-  content: ReactNode;
-}
-export function LMSSideNav({ content }: LMSNavProps) {
+export const SideNavToggle = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
-    <div className="lg:ml-72">
+    <>
       <div
         className={clsx("fixed top-2 z-30 h-10 w-10 transition-all duration-500 lg:hidden", {
           "left-52": isOpen,
@@ -35,17 +31,6 @@ export function LMSSideNav({ content }: LMSNavProps) {
           }
         )}
       ></div>
-      <div
-        className={clsx(
-          "fixed left-0 top-0 z-20 h-full w-64 bg-zinc-950 shadow-lg transition-all duration-500",
-          {
-            "translate-x-0": isOpen,
-            "-translate-x-full lg:translate-x-0": !isOpen,
-          }
-        )}
-      >
-        {content}
-      </div>
-    </div>
+    </>
   );
-}
+};

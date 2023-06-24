@@ -420,7 +420,7 @@ export const GetCourseProjectDocument = gql`
               name
               description
               sprints {
-                pages {
+                lessons {
                   data {
                     attributes {
                       title
@@ -530,7 +530,7 @@ export const GetCourseByNameDocument = gql`
                 objectives {
                   name
                 }
-                pages {
+                lessons {
                   data {
                     attributes {
                       title
@@ -713,7 +713,7 @@ export const GetProjectsDocument = gql`
           objectives {
             name
           }
-          pages {
+          lessons {
             data {
               attributes {
                 title
@@ -769,7 +769,7 @@ export const GetProjectDocument = gql`
           objectives {
             name
           }
-          pages {
+          lessons {
             data {
               attributes {
                 title

@@ -6,4 +6,5 @@ export { GlobalNav } from "./global-nav";
 export { Header } from "./header";
 export { LMSAddressBar } from "./lms-address-bar";
 export { LMSLayout } from "./lms-layout";
-export { LMSSideNav } from "./lms-side-nav";
+export { LMSTreeNav } from "./lms-nav/lms-tree-nav";
+export { LMSTreeProjects } from "./lms-nav/lms-tree-projects";

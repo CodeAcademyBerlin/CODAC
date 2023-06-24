@@ -138,6 +138,16 @@ module.exports = {
             ["stroke-dasharray"]: "2338",
           },
         },
+        dashTriangle: {
+          from: {
+            ["stroke-dashoffset"]: "1200",
+            ["stroke-dasharray"]: "1200",
+          },
+          to: {
+            ["stroke-dashoffset"]: "0",
+            ["stroke-dasharray"]: "1200",
+          },
+        },
         neonLight: {
           "0%": {
             ["text-shadow"]:

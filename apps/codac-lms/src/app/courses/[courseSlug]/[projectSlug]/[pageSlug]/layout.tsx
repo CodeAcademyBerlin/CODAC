@@ -17,10 +17,10 @@ export default async function Layout({
   const { project } = await getProjectBySlug({ slug: projectSlug });
   const { sprints } = project.attributes;
 
-  const pages = sprints?.map((sprint) => sprint?.pages).flat()[0]?.data ?? [];
-  const index = pages.findIndex((page) => page.attributes.slug === params.pageSlug);
-  const nextPage = pages[index + 1];
-  const previousPage = pages[index - 1];
+  const lessons = sprints?.map((sprint) => sprint?.lessons).flat()[0]?.data ?? [];
+  const index = lessons.findIndex((lesson) => lesson.attributes.slug === params.pageSlug);
+  const nextPage = lessons[index + 1];
+  const previousPage = lessons[index - 1];
   return (
     <div className="space-y-9">
       {children}

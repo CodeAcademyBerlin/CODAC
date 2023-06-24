@@ -10,8 +10,10 @@ export const metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <LMSLayout topNav={<LayoutHeader />} sideNav={<LayoutSideNav />}>
-      <div className="space-y-10 ">{children}</div>
-    </LMSLayout>
+    <div className="h-screen bg-[url('/grid.svg')]">
+      <LMSLayout topNav={<LayoutHeader />}>
+        <div className="space-y-10 ">{children}</div>
+      </LMSLayout>
+    </div>
   );
 }

@@ -6,7 +6,7 @@
 // good practise to add `server-only` preemptively.
 import "server-only";
 
-import type { CourseEntity } from "codac-graphql-types";
+import { CourseEntity } from "codac-graphql-types";
 import { notFound } from "next/navigation";
 
 import { fetchAPI } from "#/utils/fetch-api";
@@ -23,7 +23,7 @@ export async function getCourses() {
 
   return courses;
 }
-export async function getLMSTree() {
+export async function getLMSTreeSSG() {
   const token = process.env.CODAC_SSG_TOKEN ?? "";
   const options = { headers: { Authorization: `Bearer ${token}` } };
 

@@ -1,5 +1,6 @@
 export { ArrowRightIcon } from "./arrow-right";
 export * from "./check";
+export { CloseIcon } from "./close";
 export * from "./copy";
 export * from "./discord";
 export * from "./expand";

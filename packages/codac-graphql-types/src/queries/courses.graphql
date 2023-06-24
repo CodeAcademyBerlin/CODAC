@@ -39,7 +39,7 @@ query getCourseProject($name: String, $projectIds: ID) {
               name
               description
               sprints {
-                pages {
+                lessons {
                   data {
                     attributes {
                       title
@@ -88,7 +88,7 @@ query getCourseByName($name: String!) {
                 objectives {
                   name
                 }
-                pages {
+                lessons {
                   data {
                     attributes {
                       title

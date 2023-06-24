@@ -12,31 +12,17 @@ export default async function Page({
   const { projectSlug, courseSlug } = params;
   const { project } = await getProjectBySlug({ slug: projectSlug });
   const { sprints, name, description } = project.attributes;
-  // const sprintsLinks = sprints.map((x) => ({
-  //   text: x.name ?? "",
-  //   slug: x.name ?? "",
-  // }));
-  // if (!sprints.length) {
-  //   // Render the closest `not-found.js` Error Boundary
-  //   notFound();
-  // }
-  // const projectTimeline = sprints?.map((sprint) => ({
-  //   title: sprint?.name ?? "",
-  //   description: "",
-  //   date: sprint?.length ?? "",
-  //   href: ``,
-  // }));
+
   return (
     <div className="space-y-4">
       <h2 className="text-codac-violet text-4xl font-bold">{name}</h2>
       <p className="text-gray-400">{description}</p>
 
       <div className="grid grid-cols-1 gap-10 space-y-4 py-6">
-        {/* <TabGroup path={`/courses/${courseSlug}/${projectSlug}`} items={[...sprintsLinks]} /> */}
         {/* {projectTimeline && <Timeline color="violet" items={projectTimeline} />} */}
 
         {sprints?.map((sprint) => {
-          const pages = sprint?.pages?.data ?? [];
+          const lessons = sprint?.lessons?.data ?? [];
           const spikes = sprint?.spikes?.data ?? [];
           const objectives = sprint?.objectives ?? [];
           return (
@@ -47,31 +33,34 @@ export default async function Page({
                   <h3 className="text-secondary text-center text-2xl font-bold">{sprint?.name}</h3>
                 </div>
 
-                <div>
-                  <h4 className="text-lg leading-snug text-gray-200">🎯 Objectives</h4>
-                  <ul>
-                    {objectives.map((objective) => (
-                      <li key={objective?.id} className="flex gap-1 align-middle text-white">
-                        <CheckIcon className="self-center" />
-                        {objective?.name}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {objectives.length > 0 && (
+                  <div>
+                    <h4 className="text-lg leading-snug text-gray-200">🎯 Objectives</h4>
+
+                    <ul>
+                      {objectives.map((objective) => (
+                        <li key={objective?.id} className="flex gap-1 align-middle text-white">
+                          <CheckIcon className="self-center" />
+                          {objective?.name}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
               <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-                <Boundary labels={["pages"]} color="orange">
-                  {pages.map((page) => {
+                <Boundary labels={["lessons"]} color="orange">
+                  {lessons.map((lesson) => {
                     return (
                       <Link
                         href={`./courses/${courseSlug}/${projectSlug}/${
-                          page.attributes.slug ?? ""
+                          lesson.attributes.slug ?? ""
                         }`}
-                        key={page.id}
+                        key={lesson.id}
                         className="group my-2 block rounded-lg bg-gray-900 px-5 py-3 text-center hover:bg-gray-500"
                       >
                         <div className="font-medium text-gray-200 group-hover:text-gray-50">
-                          {`${page.attributes.title}`}
+                          {`${lesson.attributes.title}`}
                         </div>
                       </Link>
                     );
@@ -80,20 +69,20 @@ export default async function Page({
                 <Boundary labels={["spikes"]} color="cyan">
                   {spikes.map((spike) => {
                     return (
-                      // <Link
-                      //   href={`./courses/${courseSlug}/${projectSlug}/${
-                      //     spike.attributes.slug ?? ""
-                      //   }`}
-                      //   key={spike.id}
-                      //   className="group block space-y-1.5 rounded-lg bg-gray-900 px-5 py-3 hover:bg-gray-800"
-                      // >
-                      <div
+                      <Link
+                        href={`./courses/${courseSlug}/${projectSlug}/${
+                          spike.attributes.slug ?? ""
+                        }`}
                         key={spike.id}
-                        className="font-medium text-gray-200 group-hover:text-gray-50"
+                        className="group block space-y-1.5 rounded-lg bg-gray-900 px-5 py-3 hover:bg-gray-800"
                       >
-                        {spike.attributes.title}
-                      </div>
-                      // </Link>
+                        <div
+                          key={spike.id}
+                          className="font-medium text-gray-200 group-hover:text-gray-50"
+                        >
+                          {spike.attributes.title}
+                        </div>
+                      </Link>
                     );
                   })}
                 </Boundary>

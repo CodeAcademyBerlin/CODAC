@@ -27,7 +27,7 @@ export const AuthMenu = ({
       >
         <div
           className={clsx(
-            "absolute right-0 top-12 z-10 mt-2 origin-top-right rounded-sm bg-zinc-600 transition-all duration-100",
+            "absolute right-0 top-12 z-20 mt-2 origin-top-right rounded-sm bg-zinc-600 transition-all duration-100",
             {
               "block w-44": isOpen,
               "hidden w-0": !isOpen,

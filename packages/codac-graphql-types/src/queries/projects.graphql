@@ -11,7 +11,7 @@ query getProjects {
           objectives {
             name
           }
-          pages {
+          lessons {
             data {
               attributes {
                 title
@@ -38,7 +38,7 @@ query getProject($id: ID!) {
           objectives {
             name
           }
-          pages {
+          lessons {
             data {
               attributes {
                 title
