@@ -1,6 +1,6 @@
 "use client";
 import clsx from "clsx";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 
 import { ArrowRightIcon } from "../icons";
 
@@ -8,11 +8,27 @@ export interface LMSNavProps {
   content: ReactNode;
 }
 export function LMSSideNav({ content }: LMSNavProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
+
+  const menu = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // only add the event listener when the menu is opened
+    if (!isOpen) return;
+    function handleClick(event: { target: any }) {
+      if (menu.current && !menu.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+    window.addEventListener("click", handleClick);
+    // clean up
+    return () => window.removeEventListener("click", handleClick);
+  }, [isOpen]);
 
   return (
     <div className="lg:ml-72">
       <div
+        ref={menu}
         className={clsx("fixed top-2 z-30 h-10 w-10 transition-all duration-500 lg:hidden", {
           "left-52": isOpen,
           "left-0": !isOpen,

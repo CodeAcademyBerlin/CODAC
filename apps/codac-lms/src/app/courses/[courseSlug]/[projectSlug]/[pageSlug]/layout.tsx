@@ -1,3 +1,4 @@
+import { ComponentLmsSprints } from "codac-graphql-types";
 import Link from "next/link";
 
 import { getProjectBySlug } from "#/strapi-queries/server/pages";
@@ -15,35 +16,46 @@ export default async function Layout({
 }) {
   const { projectSlug } = params;
   const { project } = await getProjectBySlug({ slug: projectSlug });
-  const { sprints } = project.attributes;
+  const sprints = project.attributes.sprints;
 
   const lessons = sprints?.map((sprint) => sprint?.lessons).flat()[0]?.data ?? [];
-  const index = lessons.findIndex((lesson) => lesson.attributes.slug === params.pageSlug);
-  const nextPage = lessons[index + 1];
-  const previousPage = lessons[index - 1];
+  const spikes = sprints?.map((sprint) => sprint?.spikes).flat()[0]?.data ?? [];
+  const pages = [...lessons, ...spikes];
+  console.log("pages", pages);
+  const index = pages.findIndex((page) => page.attributes.slug === params.pageSlug);
+  const nextPage = pages[index + 1];
+  const previousPage = pages[index - 1];
   return (
     <div className="space-y-9">
       {children}
       <div className="grid grid-cols-2 justify-between gap-4">
         <div className="text-left">
-          {previousPage && (
+          {previousPage ? (
             <Link
               href={`/courses/${params.courseSlug}/${params.projectSlug}/${
                 previousPage.attributes.slug ?? ""
               }`}
             >
-              <p className="text-codac-pink hover:text-gray-50">Previous</p>
+              <p className="text-codac-pink hover:text-gray-50">previous</p>
+            </Link>
+          ) : (
+            <Link href={`/courses/${params.courseSlug}/${params.projectSlug}`}>
+              <p className="text-codac-pink hover:text-gray-50">start of sprint</p>
             </Link>
           )}
         </div>
         <div className="text-right">
-          {nextPage && (
+          {nextPage ? (
             <Link
               href={`/courses/${params.courseSlug}/${params.projectSlug}/${
                 nextPage.attributes.slug ?? ""
               }`}
             >
-              <p className="text-codac-pink hover:text-gray-50">Next</p>
+              <p className="text-codac-pink hover:text-gray-50">next</p>
+            </Link>
+          ) : (
+            <Link href={`/courses/${params.courseSlug}/${params.projectSlug}`}>
+              <p className="text-codac-pink hover:text-gray-50">end of sprint</p>
             </Link>
           )}
         </div>

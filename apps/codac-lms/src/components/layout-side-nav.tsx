@@ -4,36 +4,11 @@ import { BrandText, CodacLogo, LMSTreeNav, SpinnerIcon } from "codac-ui";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { getLMSTree } from "#/strapi-queries/client/courses";
 
 export default function LayoutSideNav() {
-  const [menuOpen, setMenuOpen] = useState(true);
-
-  const menu = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // only add the event listener when the menu is opened
-    if (!menuOpen) return;
-    function handleClick(event: { target: any }) {
-      if (menu.current && !menu.current.contains(event.target)) {
-        setMenuOpen(false);
-      }
-    }
-    window.addEventListener("click", handleClick);
-    // clean up
-    return () => window.removeEventListener("click", handleClick);
-  }, [menuOpen]);
-
-  return (
-    <div ref={menu}>
-      <NavContent />
-    </div>
-  );
-}
-
-const NavContent = () => {
   const { data: session } = useSession();
   const pathname = usePathname();
   const segments = pathname.split("/").splice(1);
@@ -63,4 +38,4 @@ const NavContent = () => {
       {lmsTree ? <LMSTreeNav segments={segments} courses={lmsTree} /> : <SpinnerIcon />}
     </div>
   );
-};
+}

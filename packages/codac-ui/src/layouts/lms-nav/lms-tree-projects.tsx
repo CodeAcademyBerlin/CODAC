@@ -49,7 +49,7 @@ export function LMSTreeProjects({ projects, segments }: Props) {
                           // isSegment={ segments[3] === sprint.}
                           title={sprint.name ?? ""}
                         >
-                          <div className="flex flex-col gap-y-3">
+                          <div className="flex flex-col gap-y-5">
                             <Boundary size="xsmall" labels={["lessons"]} color={"orange"}>
                               {lessons &&
                                 lessons.data.map((lesson) => (

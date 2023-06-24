@@ -15,3 +15,8 @@ export interface UsersPermissionsMe {
   role?: UsersPermissionsMeRole;
   username: string;
 }
+export interface SearchResults {
+  courses: Course[];
+  projects: Project[];
+  pages: Page[];
+}

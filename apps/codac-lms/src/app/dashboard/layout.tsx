@@ -1,4 +1,4 @@
-import { Boundary, LMSLayout } from "codac-ui";
+import { LMSLayout } from "codac-ui";
 import React from "react";
 
 import LayoutHeader from "#/components/layout-header";
