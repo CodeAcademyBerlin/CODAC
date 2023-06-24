@@ -1,16 +1,16 @@
 import { StudentEntity, useGetStudentsByCohortQuery } from "codac-graphql-types";
 import { SkeletonCards } from "codac-ui";
 
-import { useGetCohorts } from "#/graphql/hooks";
+import { useGetStudentsByCohorts } from "#/graphql/hooks";
 
 import { StudentCard } from "./StudentCard";
 
-function StudentList() {
-  const { students, loading } = useGetCohorts();
+function StudentList({ cohortName }: { cohortName: string }) {
+  const { students, loading } = useGetStudentsByCohorts(cohortName);
   console.log(students);
   return (
     <>
-      <div className="space-y-6">
+      <div className="space-y-10">
         <div>
           <div className="text-lg font-medium text-white">Students</div>
         </div>

@@ -8,7 +8,7 @@ import { initializeApollo } from "#/lib/apolloClient";
 function Community({ cohorts }: { cohorts: CohortEntity[] }) {
   return (
     <>
-      <div className="space-y-6">
+      <div className="space-y-8">
         <div>
           <div className="text-lg font-medium text-white">Cohorts</div>
         </div>

@@ -2,22 +2,28 @@ import { Card, SkeletonCards } from "codac-ui";
 
 import { useGetCohortByName } from "#/graphql/hooks";
 
-export const Cohort = () => {
-  const { cohort, loading, error } = useGetCohortByName();
+export const Cohort = ({ cohortName }: { cohortName: string }) => {
+  const { cohort, loading, error } = useGetCohortByName(cohortName);
   console.log(cohort);
   return (
-    <div className="space-y-12">
-      <div className=" text-white">helloooo</div>
+    <div className="space-y-8">
+      <div>
+        <div className="text-lg font-medium text-white">Cohort</div>
+      </div>
       {loading && <SkeletonCards number={3} isLoading={loading} />}
       {error && <div>something is wrong</div>}
       <div className="grid grid-cols-4 gap-4">
         {cohort && (
-          <div key={cohort.id}>
+          <div key={cohort.id} className="flex items-center justify-between">
             {cohort.attributes && (
               <div className="relative">
                 <Card image={cohort.attributes.logo?.data.attributes.url} />
               </div>
             )}
+            <div className="text-white">
+              <h2>{cohort.attributes.name}</h2>
+              <h2>{cohort.attributes.start_date}</h2>
+            </div>
           </div>
         )}
       </div>

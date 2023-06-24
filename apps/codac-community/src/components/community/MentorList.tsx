@@ -10,10 +10,10 @@ const MentorList = () => {
 
   return (
     <>
-      <div className="space-y-6">
+      <div className="space-y-10">
         {loading && <SkeletonCards number={3} isLoading={loading} />}
         {error && <div>something is wrong</div>}
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-4 gap-2 ">
           {mentors &&
             mentors.map((mentor: MentorEntity) => {
               console.log(mentor);

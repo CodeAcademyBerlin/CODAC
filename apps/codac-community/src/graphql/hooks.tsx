@@ -4,8 +4,12 @@ import { CohortEntity, MentorEntity, StudentEntity } from "codac-graphql-types";
 import { getCohortByNameDocument, GetStudentsByCohortDocument } from "./queries/cohort";
 import { GetMentorIdDocument, GetMentorsAllDocument } from "./queries/mentors";
 
-export const useGetCohorts = () => {
-  const { data, error, loading } = useQuery(GetStudentsByCohortDocument);
+export const useGetStudentsByCohorts = (cohortName:string) => {
+  const { data, error, loading } = useQuery(GetStudentsByCohortDocument, {
+    variables: {
+      cohortName: cohortName,
+    },
+  });
   const students = data?.students?.data as StudentEntity[];
 
   return { students, error, loading };
@@ -28,11 +32,15 @@ export const useGetMentor = (id: string) => {
 
   return { mentor, loading, error };
 };
-export const useGetCohortByName = () => {
-  const { data, error, loading } = useQuery(getCohortByNameDocument);
-  console.log('helo data',data)
+export const useGetCohortByName = (cohortName: string) => {
+  const { data, error, loading } = useQuery(getCohortByNameDocument, {
+    variables: {
+      cohortName: cohortName,
+    },
+  });
+  console.log("helo data", data);
   const cohort = data?.cohorts?.data[0] as CohortEntity;
-  console.log('helo cohort',cohort)
+  console.log("helo cohort", cohort);
 
   return { cohort, error, loading };
 };
