@@ -1,7 +1,8 @@
 import type { CourseEntity, UsersPermissionsMe } from "codac-graphql-types";
 import { notFound } from "next/navigation";
+import { Session } from "next-auth";
 
-import { fetchAPI } from "#/utils/fetch-api";
+import { fetchAPI, fetchStrapi, fetchStrapiSuspense } from "#/utils/fetch-api";
 
 // export async function getUser(jwt: string) {
 //   const options = { headers: { Authorization: `Bearer ${jwt}` } };
@@ -15,34 +16,25 @@ import { fetchAPI } from "#/utils/fetch-api";
 //   return null;
 // }
 
-export async function getUserLMSTree() {
-  const token = process.env.CODAC_SSG_TOKEN ?? "";
+export async function getUserData(token: string) {
   const options = { headers: { Authorization: `Bearer ${token}` } };
-
-  const courses = await fetchAPI<CourseEntity[]>(
-    "/courses",
-    {
-      fields: ["name", "slug"],
+  const data = await fetchStrapi({
+    path: "/users/me",
+    dataResponse: false,
+    urlParamsObject: {
       populate: {
-        fields: ["name", "slug"],
-        projects: {
-          fields: ["name", "slug"],
-          populate: {
-            sprints: {
-              populate: "*",
-            },
-          },
+        courses: {
+          populate: ["image"],
         },
       },
-      // populate: ["projects.sprints.pages", "projects.sprints.spikes"],
-      // fields: ["name", "slug"],
     },
-    options
-  );
-  if (courses?.length === 0) {
+    options,
+  });
+  console.log("data", data);
+  if (!data) {
     // Render the closest `not-found.js` Error Boundary
     notFound();
   }
 
-  return courses;
+  return data;
 }

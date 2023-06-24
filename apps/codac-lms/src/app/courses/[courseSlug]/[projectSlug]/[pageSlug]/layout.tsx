@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { getProjectBySlug } from "#/strapi-queries/pages";
+import { getProjectBySlug } from "#/strapi-queries/server/pages";
 
 export default async function Layout({
   children,

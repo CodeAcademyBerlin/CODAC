@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
-/* eslint-disable turbo/no-undeclared-env-vars */
 // `server-only` guarantees any modules that import code in file
 // will never run on the client. Even though this particular api
 // doesn't currently use sensitive environment variables, it's
@@ -16,37 +14,6 @@ export async function getCourses() {
   const options = { headers: { Authorization: `Bearer ${token}` } };
 
   const courses = await fetchAPI<CourseEntity[]>("/courses", { populate: "*" }, options);
-  if (courses?.length === 0) {
-    // Render the closest `not-found.js` Error Boundary
-    notFound();
-  }
-
-  return courses;
-}
-export async function getLMSTreeSSG() {
-  const token = process.env.CODAC_SSG_TOKEN ?? "";
-  const options = { headers: { Authorization: `Bearer ${token}` } };
-
-  const courses = await fetchAPI<CourseEntity[]>(
-    "/courses",
-    {
-      fields: ["name", "slug"],
-      populate: {
-        fields: ["name", "slug"],
-        projects: {
-          fields: ["name", "slug"],
-          populate: {
-            sprints: {
-              populate: "*",
-            },
-          },
-        },
-      },
-      // populate: ["projects.sprints.pages", "projects.sprints.spikes"],
-      // fields: ["name", "slug"],
-    },
-    options
-  );
   if (courses?.length === 0) {
     // Render the closest `not-found.js` Error Boundary
     notFound();

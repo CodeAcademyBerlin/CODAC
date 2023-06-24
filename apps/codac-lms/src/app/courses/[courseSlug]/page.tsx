@@ -1,19 +1,13 @@
-import { Boundary, TagLabel, Timeline } from "codac-ui";
+import { Boundary, TagLabel } from "codac-ui";
 import Link from "next/link";
 
-import { getCourseBySlug } from "#/strapi-queries/courses";
+import { getCourseBySlug } from "#/strapi-queries/server/courses";
 
 export default async function Page({ params }: { params: { courseSlug: string } }) {
   const course = await getCourseBySlug({ slug: params.courseSlug });
   const { projects } = course.attributes;
-  // const projectTimeline = projects?.data.map((project) => ({
-  //   title: project.attributes.name,
-  //   description: project.attributes.description ?? "",
-  //   date: `${project.attributes.calc_length} days` ?? "",
-  //   href: `./courses/${params.courseSlug}/${project.attributes.slug ?? ""}`,
-  // }));
+
   return (
-    // <div className="bg-gray-300-border-gradient rounded-lg border border-slate-900 bg-zinc-950 p-px shadow-lg shadow-black dark:bg-[linear-gradient(45deg,transparent_25%,rgba(68,68,68,.2)_50%,transparent_75%,transparent_100%)]">
     <div className="space-x-4">
       <h1 className="text-codac-blue text-4xl font-bold">{course.attributes.name}</h1>
       <p className="text-gray-400">{course.attributes.description}</p>
@@ -46,5 +40,4 @@ export default async function Page({ params }: { params: { courseSlug: string } 
     </div>
   );
 }
-// export const revalidate = "force-cache";
 export const dynamic = "force-static";

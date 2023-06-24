@@ -54,6 +54,7 @@ export const authOptions: AuthOptions = {
           false
         );
         console.log("userData", userData);
+        console.log("accessToken", accessToken);
         // const { user: userData, jwt, error } = await res.json();
         if (userData && accessToken) {
           const user = { ...userData, accessToken };
@@ -141,19 +142,24 @@ export const authOptions: AuthOptions = {
       }
       // If we are using credentials, we already have the token from strapi
       else {
+        console.log("token", token);
+        console.log("user", user);
+        console.log("account", account);
         // (token.id = user.id), (token.jwt = user.jwt);
         return { ...token, ...user };
       }
       return token;
     },
     session({ session, token }) {
+      console.log("token", token);
+
       // Send properties to the client, like an access_token and user id from a provider.
-      if (session.user) {
+      if (session.user && token) {
         session.user.accessToken = token.accessToken;
         session.user.id = token.id;
         session.user.role = token.userRole;
       }
-
+      console.log("sessioqqqqqqqqqqqqqn", session);
       return session;
     },
   },

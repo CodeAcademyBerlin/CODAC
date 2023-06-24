@@ -2,8 +2,6 @@ import "../styles.css";
 
 import Providers from "#/contexts/providers";
 
-// import { codac } from "codac-ui";
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">

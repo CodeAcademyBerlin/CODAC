@@ -2,7 +2,7 @@ import { Boundary, Card } from "codac-ui";
 // import { getServerSession } from "next-auth/next";
 import React from "react";
 
-import { getCourses } from "#/strapi-queries/courses";
+import { getCourses } from "#/strapi-queries/server/courses";
 export default async function Page() {
   const courses = await getCourses();
   return (

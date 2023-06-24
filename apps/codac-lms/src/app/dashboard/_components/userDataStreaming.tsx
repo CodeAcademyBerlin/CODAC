@@ -1,24 +1,22 @@
-import type { CourseEntityResponseCollection } from "codac-graphql-types";
+import type { CourseEntityResponseCollection, UsersPermissionsMe } from "codac-graphql-types";
 import { Card, Ping } from "codac-ui";
+import Image from "next/image";
 
-export const Courses = async ({ data }: { data: Promise<Response> }) => {
-  const courses = (await data.then(async (res) =>
-    res.json()
-  )) as CourseEntityResponseCollection | null;
+export const UserDataStreaming = async ({ data }: { data: Promise<Response> }) => {
+  const userData = (await data.then(async (res) => res.json())) as UsersPermissionsMe | null;
+  console.log("userData", userData);
   return (
     <div className="space-y-6">
       <div>
-        <div className="text-lg font-medium text-white">Courses</div>
+        <div className="text-lg font-medium text-white">{userData?.firstname}</div>
+        <Image src={userData?.avatar?.url ?? ""} alt="avatar" width={100} height={100} />
       </div>
 
-      <div className="flex flex-wrap justify-around gap-6">
+      {/* <div className="flex flex-wrap justify-around gap-6">
         {courses?.data.map((course) => (
           <div key={course.id} className="col-span-4 lg:col-span-1">
             <div className="relative">
-              {/* <div className="absolute -left-4 top-2">
-                {" "}
-                <Ping />
-              </div> */}
+         
               <Card
                 image={course.attributes.image?.data.attributes.url}
                 title={course.attributes.name ?? ""}
@@ -28,7 +26,7 @@ export const Courses = async ({ data }: { data: Promise<Response> }) => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

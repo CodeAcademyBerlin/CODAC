@@ -1,4 +1,4 @@
-import { BlankLayout, BrandLogo, CardShinyHOC, CodacLogoTriangle, LandingGraphics } from "codac-ui";
+import { BlankLayout, CodacLogoTriangle, LandingGraphics } from "codac-ui";
 import Link from "next/link";
 
 const Landing = () => {
@@ -8,12 +8,6 @@ const Landing = () => {
       <BlankLayout>
         <Link href="/dashboard">
           <CodacLogoTriangle />
-          {/* <CardShinyHOC>
-            <BrandLogo>CODAC</BrandLogo>
-            <div className="py-4 text-center">
-              <p className="font-bold text-zinc-400">by Code Academy Berlin</p>
-            </div>
-          </CardShinyHOC> */}
         </Link>
       </BlankLayout>
     </>
