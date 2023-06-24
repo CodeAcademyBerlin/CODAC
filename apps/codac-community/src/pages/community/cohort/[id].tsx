@@ -1,7 +1,11 @@
-import React from "react";
+import { Cohort } from "#/components/community/Cohort";
+import StudentList from "#/components/community/StudentList";
 
-import ListStudent from "#/components/community/StudentList";
-
-export default function Cohort() {
-  return <ListStudent />;
+export default function CohortPage() {
+  return (
+    <>
+      <Cohort/>
+      <StudentList />
+    </>
+  );
 }

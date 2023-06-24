@@ -3,9 +3,9 @@ import { SkeletonCards } from "codac-ui";
 
 import { useGetCohorts } from "#/graphql/hooks";
 
-import { CardStudent } from "./StudentCard";
+import { StudentCard } from "./StudentCard";
 
-function ListStudent() {
+function StudentList() {
   const { students, loading } = useGetCohorts();
   console.log(students);
   return (
@@ -17,11 +17,11 @@ function ListStudent() {
         {loading && <SkeletonCards number={3} isLoading={loading} />}
         <div className="grid grid-cols-4 gap-2">
           {students &&
-            students.map((student) => <CardStudent key={student.id} student={student} />)}
+            students.map((student) => <StudentCard key={student.id} student={student} />)}
         </div>
       </div>
     </>
   );
 }
 
-export default ListStudent;
+export default StudentList;

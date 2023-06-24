@@ -41,3 +41,23 @@ export const GetStudentsByCohortDocument = gql`
     }
   }
 `;
+export const getCohortByNameDocument = gql`
+  query getCohortByName($cohortName: String) {
+    cohorts(filters: { name: { eq: $cohortName } }) {
+      data {
+        id
+        attributes {
+          name
+          start_date
+          logo {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;

@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
-import { MentorEntity, StudentEntity } from "codac-graphql-types";
+import { CohortEntity, MentorEntity, StudentEntity } from "codac-graphql-types";
 
-import { GetStudentsByCohortDocument } from "./queries/cohort";
+import { getCohortByNameDocument, GetStudentsByCohortDocument } from "./queries/cohort";
 import { GetMentorIdDocument, GetMentorsAllDocument } from "./queries/mentors";
 
 export const useGetCohorts = () => {
@@ -24,7 +24,15 @@ export const useGetMentor = (id: string) => {
     },
   });
 
-  const mentor = data?.mentor?.data as MentorEntity
+  const mentor = data?.mentor?.data as MentorEntity;
 
   return { mentor, loading, error };
+};
+export const useGetCohortByName = () => {
+  const { data, error, loading } = useQuery(getCohortByNameDocument);
+  console.log('helo data',data)
+  const cohort = data?.cohorts?.data[0] as CohortEntity;
+  console.log('helo cohort',cohort)
+
+  return { cohort, error, loading };
 };
