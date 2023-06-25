@@ -1,4 +1,3 @@
-import { StudentEntity, useGetStudentsByCohortQuery } from "codac-graphql-types";
 import { SkeletonCards } from "codac-ui";
 
 import { useGetStudentsByCohorts } from "#/graphql/hooks";
@@ -17,7 +16,13 @@ function StudentList({ cohortName }: { cohortName: string }) {
         {loading && <SkeletonCards number={3} isLoading={loading} />}
         <div className="grid grid-cols-4 gap-2">
           {students &&
-            students.map((student) => <StudentCard key={student.id} student={student} />)}
+            students.map((student) => (
+              <StudentCard
+                key={student.id}
+                student={student}
+            
+              />
+            ))}
         </div>
       </div>
     </>

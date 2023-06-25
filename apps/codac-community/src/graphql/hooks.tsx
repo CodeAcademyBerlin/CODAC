@@ -1,10 +1,17 @@
 import { useQuery } from "@apollo/client";
-import { CohortEntity, MentorEntity, StudentEntity } from "codac-graphql-types";
+import {
+  CohortEntity,
+  MentorEntity,
+  Student,
+  StudentEntity,
+  StudentEntityResponse,
+} from "codac-graphql-types";
 
-import { getCohortByNameDocument, GetStudentsByCohortDocument } from "./queries/cohort";
+import { GetCohortByNameDocument, GetStudentsByCohortDocument } from "./queries/cohort";
 import { GetMentorIdDocument, GetMentorsAllDocument } from "./queries/mentors";
+import { GetStudentByIdDocument } from "./queries/student";
 
-export const useGetStudentsByCohorts = (cohortName:string) => {
+export const useGetStudentsByCohorts = (cohortName: string) => {
   const { data, error, loading } = useQuery(GetStudentsByCohortDocument, {
     variables: {
       cohortName: cohortName,
@@ -33,7 +40,7 @@ export const useGetMentor = (id: string) => {
   return { mentor, loading, error };
 };
 export const useGetCohortByName = (cohortName: string) => {
-  const { data, error, loading } = useQuery(getCohortByNameDocument, {
+  const { data, error, loading } = useQuery(GetCohortByNameDocument, {
     variables: {
       cohortName: cohortName,
     },
@@ -43,4 +50,15 @@ export const useGetCohortByName = (cohortName: string) => {
   console.log("helo cohort", cohort);
 
   return { cohort, error, loading };
+};
+export const useGetStudent = (id: string) => {
+  const { data, error, loading } = useQuery(GetStudentByIdDocument, {
+    variables: {
+      id: id,
+    },
+  });
+  console.log("useGetStudent: ", data);
+  const student = data?.student?.data as StudentEntity;
+
+  return { student, error, loading };
 };

@@ -1,6 +1,5 @@
 import { StudentEntity } from "codac-graphql-types";
 import { Card } from "codac-ui";
-import React from "react";
 
 interface CardStudentProp {
   student: StudentEntity;
@@ -10,14 +9,14 @@ export const StudentCard = (props: CardStudentProp) => {
   const { student } = props;
   return (
     <div>
-      <div key={student.id} className="">
+      <div className="">
         {student.attributes && (
           <div className="relative">
             <div className="absolute -left-4 top-2"></div>
             <Card
               image={student.attributes.user?.data.attributes.avatar?.data.attributes.url ?? ""}
               title={student.attributes.firstname ?? ""}
-              href={`/students/${student.id}`}
+              href={`/community/cohort/student/${student.id}`}
             />
           </div>
         )}

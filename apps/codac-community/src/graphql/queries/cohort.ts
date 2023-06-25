@@ -41,7 +41,7 @@ export const GetStudentsByCohortDocument = gql`
     }
   }
 `;
-export const getCohortByNameDocument = gql`
+export const GetCohortByNameDocument = gql`
   query getCohortByName($cohortName: String) {
     cohorts(filters: { name: { eq: $cohortName } }) {
       data {
