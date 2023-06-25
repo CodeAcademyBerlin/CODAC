@@ -267,7 +267,7 @@ const SingleChat = (props: Props) => {
                                             // border: "2px white solid",
                                             width: "50%",
                                             fontSize: "11px",
-                                            marginLeft: "2px"
+                                            marginLeft: "3px"
                                         }}>
                                         {/* <h2 style={{ color: "white" }}>id: {message.id}</h2> */}
 
