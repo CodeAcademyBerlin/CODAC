@@ -1,22 +1,22 @@
 "use client";
 
-import { Course, Page, Project } from "codac-graphql-types";
-import { AuthMenu, Button, Header, SearchBar, SearchResult, SpinnerIcon } from "codac-ui";
+import { AuthMenu, Button, Header, SearchBar, SpinnerIcon } from "codac-ui";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useEffect, useRef, useState } from "react";
 
+import { LMSSearchResult } from "#/components/lms-search-result";
 import { useAuth } from "#/contexts/useAuth";
 import { lmsSearch } from "#/strapi-queries/client/search";
-import { SearchResults } from "#/types/user";
+import { LMSSearchResults } from "#/types/user";
 
 export default function LayoutHeader() {
   const { user } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [search, setSearch] = useState("");
-  const [searchResults, setSearchResults] = useState<SearchResults | null>(null);
+  const [searchValue, setSearchValue] = useState("");
+  const [searchResults, setSearchResults] = useState<LMSSearchResults | null>(null);
 
-  const dropdown = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLDivElement>(null);
 
   const session = useSession();
@@ -24,43 +24,52 @@ export default function LayoutHeader() {
   const handleSignOut = () => signOut();
   useEffect(() => {
     // only add the event listener when the menu is opened
-    if (!dropdownOpen) return;
+    if (!dropdownOpen && !searchOpen) return;
     function handleClick(event: { target: any }) {
-      if (dropdown.current && !dropdown.current.contains(event.target)) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setDropdownOpen(false);
+      }
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setSearchOpen(false);
       }
     }
     window.addEventListener("click", handleClick);
     // clean up
     return () => window.removeEventListener("click", handleClick);
-  }, [dropdownOpen]);
+  }, [dropdownOpen, searchOpen]);
 
   useEffect(() => {
-    if (search.length > 2) {
+    if (searchValue.length > 2) {
       const getSearchResults = async () => {
-        const res = await lmsSearch(search, session.data?.user?.accessToken as string);
+        const res = await lmsSearch(searchValue, session.data?.user?.accessToken as string);
         console.log("res", res);
         res && setSearchResults(res);
       };
       getSearchResults();
     }
-  }, [search]);
+  }, [searchValue]);
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
+    setSearchValue(e.target.value);
     setSearchOpen(true);
+  };
+  const handleClearSearch = () => {
+    setSearchValue("");
+    setSearchOpen(false);
+    setSearchResults(null);
   };
   return (
     <Header>
       <div className="w-24 flex-none"></div>
       <div className="flex-1">
         <SearchBar
-          value={search}
-          onChange={handleSearch}
-          toggleSearchOpen={() => setSearchOpen(!searchOpen)}
+          searchValue={searchValue}
+          searchOpen={searchOpen}
+          setSearchValue={handleSearch}
+          setSearchOpen={setSearchOpen}
+          handleClearSearch={handleClearSearch}
+          searchResults={searchResults && <LMSSearchResult searchResults={searchResults} />}
+          passRef={searchRef}
         />
-        {searchOpen && searchResults && (
-          <SearchResult searchResults={searchResults} passRef={searchRef} />
-        )}
       </div>
 
       {session.status === "loading" ? (
@@ -73,7 +82,7 @@ export default function LayoutHeader() {
               avatar={user?.avatar?.url}
               toggleMenu={toggleMenu}
               isOpen={dropdownOpen}
-              passRef={dropdown}
+              passRef={dropdownRef}
             />
           ) : (
             <Button

@@ -8,7 +8,6 @@ export { Ping } from "./ping";
 export { RenderingPageSkeleton } from "./rendering-page-skeleton";
 export { Reviews, ReviewsSkeleton } from "./reviews";
 export { SearchBar } from "./search-bar";
-export { SearchResult } from "./search-result";
 export { SkeletonCard, SkeletonCards } from "./skeleton/skeleton-card";
 export { Tab } from "./tab";
 export { TabGroup } from "./tab-group";
