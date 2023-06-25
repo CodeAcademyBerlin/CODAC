@@ -110,11 +110,6 @@ mutation updateMessage($id: ID!, $body: String!){
   }
 }
 `;
-
-
-
-
-
 type Props = {}
 
 const SingleChat = (props: Props) => {
@@ -134,42 +129,63 @@ const SingleChat = (props: Props) => {
 
     // do I need this chatHistory state????
     // const [chatHistory, setChatHistory] = useState([]);
-    const [message, setMessage] = useState("");
+    const [messageText, setMessageText] = useState("");
     // do I need this  typing state????
     // const [typing, setTyping] = useState(false);
 
     const [newMessageMutation] = useMutation(createNewMessage);
     const sendMessage = () => {
-        if (message) {
+        if (messageText) {
             newMessageMutation({
                 variables: {
                     conversationId: active,
                     authorId: userId,
-                    body: message
+                    body: messageText
                 }
             })
-            setMessage("");
-            refetch();
+            setMessageText("");
         }
+        refetch();
     }
 
     const [deleteMessageMutation] = useMutation(deleteChatMessage);
     //  the mentor has permmision to delete as well... condicional... id not working and only deleting first message...
     const deleteMessage = (e: FormEvent<HTMLFormElement>, message: any) => {
         e.preventDefault();
-        console.log('object :>> ', message.attributes.author.data.id);
+        console.log('object :>> ', message.attributes.author.data?.id);
         if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
             deleteMessageMutation({
                 variables: {
                     id: message.id
                 }
             })
+            refetch();
         }
-        refetch();
         setDeleteModal(!deleteModal);
     }
+    // when fetch the message we let graphql
+    // sort property and sort the messages by created.... display them like that 
 
-    // const [updateMessageMutation]
+    const [updateMessageMutation] = useMutation(upDateChatMessage);
+
+    const updateMessage = (e: FormEvent<HTMLFormElement>, message: any) => {
+        e.preventDefault();
+        console.log('message.id :>> ', message.id);
+        if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
+            if (messageText) {
+                updateMessageMutation({
+                    variables: {
+                        id: message.id,
+                        body: messageText
+                    }
+                })
+            }
+            setMessageText("")
+            refetch();
+        }
+        setOptionsModal(!optionsModal)
+    }
+
 
     // this is for the date in each message...
     const formatDate = (timestamp: string) => {
@@ -199,14 +215,13 @@ const SingleChat = (props: Props) => {
     // +++++++++++++++++++++++ MODALS ++++++++++++++++++++++
 
     const [deleteModal, setDeleteModal] = useState(false);
-    // const [optionsModal, setOptionsModal] = useState(false);
+    const [optionsModal, setOptionsModal] = useState(false);
     const toogleDeleteModal = () => {
         setDeleteModal(!deleteModal)
     }
-    // const toogleOptionsModal = (e: any) => {
-    //     e.stopPropagation()
-    //     setOptionsModal(!optionsModal)
-    // }
+    const toogleOptionsModal = () => {
+        setOptionsModal(!optionsModal)
+    }
 
 
     return (
@@ -254,7 +269,7 @@ const SingleChat = (props: Props) => {
                                             fontSize: "11px",
                                             marginLeft: "2px"
                                         }}>
-                                        <h2 style={{ color: "white" }}>id: {message.id}</h2>
+                                        {/* <h2 style={{ color: "white" }}>id: {message.id}</h2> */}
 
                                         {user?.username !== message.attributes.author.data?.attributes.username ?
                                             <strong>{message.attributes.author.data?.attributes.username}</strong> :
@@ -274,13 +289,95 @@ const SingleChat = (props: Props) => {
                                             marginRight: "2px",
                                             fontSize: "10px"
                                         }}>
-                                        <button>edit</button>
+                                        <button onClick={toogleOptionsModal}>edit</button>
                                         <button onClick={toogleDeleteModal}>delete</button>
                                     </div>
                                 </div>
                                 <div className='text_body' >
                                     <p>{message.attributes.body}</p>
                                 </div>
+                                {/* +++++++++++++++++++++++++++++ EDIT MODAL +++++++++++++++++++++ */}
+                                {optionsModal && (<div className='edit_message_modal'
+                                    style={{
+                                        width: "100vw",
+                                        height: "100vh",
+                                        top: "0",
+                                        left: "0",
+                                        right: "0",
+                                        bottom: "0",
+                                        position: "fixed"
+                                    }}>
+                                    <div className='edit_message_modal_overlay'
+                                        style={{
+                                            width: "100vw",
+                                            height: "100vh",
+                                            top: "0",
+                                            left: "0",
+                                            right: "0",
+                                            bottom: "0",
+                                            position: "fixed",
+                                            // backgroundColor: "black",
+                                            backgroundColor: "rgba(0,0,0,0.3)"
+                                        }}
+                                        onClick={toogleOptionsModal}>
+                                        <div className='edit_message_modal_container' onClick={e => { e.stopPropagation() }}
+                                            style={{
+                                                position: "relative",
+                                                zIndex: "1000",
+                                                display: "flex",
+                                                flexDirection: "column",
+                                                width: "35%",
+                                                height: "25%",
+                                                border: "white solid 3px",
+                                                borderRadius: "10px",
+                                                backgroundColor: "white",
+                                                margin: "auto",
+                                                marginTop: "200px"
+                                            }}>
+                                            {/* <form onSubmit={(e) => { deleteMessage(e, message) }} > aquí viene la funcion!! */}
+                                            <form onSubmit={(e) => { updateMessage(e, message) }}>
+                                                <label htmlFor="edit_post_text" style={{ color: "black" }}>Edit Message</label>
+                                                <textarea
+                                                    style={{
+                                                        outline: "none",
+                                                        resize: "none",
+                                                        color: "black",
+                                                        width: "90%",
+                                                        height: "60px"
+                                                    }}
+                                                    name="edit_message"
+                                                    id="edit_post_text"
+                                                    placeholder="write something..."
+                                                    value={messageText}
+                                                    onChange={(e) => {
+                                                        e.stopPropagation();
+                                                        setMessageText(e.target.value)
+                                                        console.log('messageText :>> ', messageText);
+                                                    }}
+                                                    onKeyDown={(e) => {
+
+                                                        if (e.key === "Enter") {
+                                                            // updateMessage.....
+                                                        }
+                                                    }}
+                                                ></textarea>
+                                                <button type='submit'
+                                                    style={{
+                                                        color: "black",
+                                                        border: "2px solid green"
+                                                    }}
+                                                >Save Changes</button>
+                                                <button type='button' style={{
+                                                    color: "black",
+                                                    border: "2px solid green"
+                                                }}
+                                                    onClick={toogleOptionsModal}
+                                                >Cancel</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>)}
+
                                 {/* // +++++++++++++++++++++++++ DELETE MODAL +++++++++++++++++++ */}
                                 {deleteModal && (<div className='delete_post_modal'
                                     style={{
@@ -353,6 +450,7 @@ const SingleChat = (props: Props) => {
                                                     >Continue</button>
 
                                                     <button
+                                                        type='button'
                                                         style={{
                                                             color: "white",
                                                             backgroundColor: "black",
@@ -389,11 +487,11 @@ const SingleChat = (props: Props) => {
                     <textarea
                         style={{ outline: "none", resize: "none", color: "black", width: "80%", height: "60px" }}
                         placeholder='write something...'
-                        value={message}
+                        value={messageText}
                         // ask Emily why refetch each time I write something....
                         onChange={(e: { preventDefault: () => void, target: any }) => {
                             e.preventDefault();
-                            setMessage(e.target.value);
+                            setMessageText(e.target.value);
                         }}
                         onKeyDown={(e) => {
                             if (e.key === "Enter") {
