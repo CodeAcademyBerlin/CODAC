@@ -39,7 +39,6 @@ query getChatHistoryById($id: ID) {
             id
             attributes {
               body
-              publishedAt
               createdAt
               updatedAt
               author {
@@ -81,7 +80,7 @@ mutation createMessage( $body: String!, $conversationId: ID!, $authorId: ID!){
   }
 }
 `;
-
+// Collection of pinned messages inside the user----
 const deleteChatMessage = gql`
 mutation deleteMessage( $id: ID!) {
   deleteMessage(id: $id) {
@@ -115,18 +114,15 @@ type Props = {}
 const SingleChat = (props: Props) => {
     const { user } = useAuth();
     const userId = user?.id
-    console.log('userId :>> ', userId);
-    // const router = useRouter();
     const { chatId } = useRouter().query;
     const [active, setActive] = useState("");
     // Refetching enables you to refresh query results in response to a particular user action, as opposed to using a fixed interval.
     const { data: chatRooms, error, loading } = useQuery(getSingleChat,
         { variables: { id: chatId } });
-    //  the refecth should be for the chat history...
 
+    //  the refecth should be for the chat history...
     const { data: allMessages, loading: chatLoading, error: messageError, refetch } = useQuery(getChatHistoryById,
         { variables: { id: active } });
-
     // do I need this chatHistory state????
     // const [chatHistory, setChatHistory] = useState([]);
     const [messageText, setMessageText] = useState("");
@@ -167,7 +163,6 @@ const SingleChat = (props: Props) => {
     // sort property and sort the messages by created.... display them like that 
 
     const [updateMessageMutation] = useMutation(upDateChatMessage);
-
     const updateMessage = (e: FormEvent<HTMLFormElement>, message: any) => {
         e.preventDefault();
         console.log('message.id :>> ', message.id);
@@ -185,7 +180,6 @@ const SingleChat = (props: Props) => {
         }
         setOptionsModal(!optionsModal)
     }
-
 
     // this is for the date in each message...
     const formatDate = (timestamp: string) => {
@@ -233,8 +227,7 @@ const SingleChat = (props: Props) => {
                     return (
                         <div key={conversation.id}
                             onClick={async () => {
-                                setActive(conversation.id.toString());
-                                // await getMessages();
+                                setActive(conversation.id);
                             }}
                         >
                             <h3 style={{
@@ -242,7 +235,8 @@ const SingleChat = (props: Props) => {
                                 margin: "5px",
                                 border: "2px solid white",
                                 borderRadius: "5px",
-                                textAlign: "center"
+                                textAlign: "center",
+                                cursor: "pointer"
                             }}>{conversation.attributes?.title}</h3>
                         </div>
                     )
@@ -267,7 +261,7 @@ const SingleChat = (props: Props) => {
                                             // border: "2px white solid",
                                             width: "50%",
                                             fontSize: "11px",
-                                            marginLeft: "3px"
+                                            marginLeft: "2px"
                                         }}>
                                         {/* <h2 style={{ color: "white" }}>id: {message.id}</h2> */}
 
