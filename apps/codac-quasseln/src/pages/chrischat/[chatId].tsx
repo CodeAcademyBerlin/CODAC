@@ -53,31 +53,7 @@ const getChatHistoryById = gql`
         }
       }
     }
-  }
-      attributes {
-        messages {
-          data {
-            id
-            attributes {
-              body
-              createdAt
-              updatedAt
-              author {
-                data {
-                id
-                  attributes {
-                    username
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-`;
+  }`;
 // I have to add the pinned property to the query/mutation---
 const createNewMessage = gql`
   mutation createMessage($body: String!, $conversationId: ID!, $authorId: ID!) {
@@ -135,154 +111,103 @@ const upDateChatMessage = gql`
 type Props = {};
 
 const SingleChat = (props: Props) => {
-    const { user } = useAuth();
-    const userId = user?.id;
-    console.log("userId :>> ", userId);
-    // const router = useRouter();
-    const { chatId } = useRouter().query;
-    const [active, setActive] = useState(2);
-    // Refetching enables you to refresh query results in response to a particular user action, as opposed to using a fixed interval.
-    const {
-        data: chatRooms,
-        error,
-        loading,
-    } = useQuery(getSingleChat, { variables: { id: chatId } });
-    //  the refecth should be for the chat history...
+  const { user } = useAuth();
+  const userId = user?.id;
+  console.log("userId :>> ", userId);
+  // const router = useRouter();
+  const { chatId } = useRouter().query;
+  const [active, setActive] = useState(2);
+  // Refetching enables you to refresh query results in response to a particular user action, as opposed to using a fixed interval.
+  const {
+    data: chatRooms,
+    error,
+    loading,
+  } = useQuery(getSingleChat, { variables: { id: chatId } });
+  //  the refecth should be for the chat history...
 
-    const {
-        data: allMessages,
-        loading: chatLoading,
-        error: messageError,
-        refetch,
-    } = useQuery(getChatHistoryById, { variables: { id: active } });
+  const {
+    data: allMessages,
+    loading: chatLoading,
+    error: messageError,
+    refetch,
+  } = useQuery(getChatHistoryById, { variables: { id: active } });
 
-    // do I need this chatHistory state????
-    // const [chatHistory, setChatHistory] = useState([]);
-    const [messageText, setMessageText] = useState("");
-    // do I need this  typing state????
-    // const [typing, setTyping] = useState(false);
-    const { user } = useAuth();
-    const userId = user?.id
-    const { chatId } = useRouter().query;
-    const [active, setActive] = useState("");
-    // Refetching enables you to refresh query results in response to a particular user action, as opposed to using a fixed interval.
-    const { data: chatRooms, error, loading } = useQuery(getSingleChat,
-        { variables: { id: chatId } });
+  // do I need this chatHistory state????
+  // const [chatHistory, setChatHistory] = useState([]);
+  const [messageText, setMessageText] = useState("");
+  // do I need this  typing state????
+  // const [typing, setTyping] = useState(false);
 
-    //  the refecth should be for the chat history...
-    const { data: allMessages, loading: chatLoading, error: messageError, refetch } = useQuery(getChatHistoryById,
-        { variables: { id: active } });
-    // do I need this chatHistory state????
-    // const [chatHistory, setChatHistory] = useState([]);
-    const [messageText, setMessageText] = useState("");
-    // do I need this  typing state????
-    // const [typing, setTyping] = useState(false);
-
-    const [newMessageMutation] = useMutation(createNewMessage);
-    const sendMessage = () => {
-        if (messageText) {
-            newMessageMutation({
-                variables: {
-                    conversationId: active,
-                    authorId: userId,
-                    body: messageText,
-                },
-            });
-            setMessageText("");
-        }
-        refetch();
-    };
-
-    const [deleteMessageMutation] = useMutation(deleteChatMessage);
-    //  the mentor has permmision to delete as well... condicional... id not working and only deleting first message...
-    const deleteMessage = (e: FormEvent<HTMLFormElement>, message: any) => {
-        e.preventDefault();
-        console.log("object :>> ", message.attributes.author.data?.id);
-        if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
-            deleteMessageMutation({
-                variables: {
-                    id: message.id,
-                },
-            });
-            refetch();
-        }
-        setDeleteModal(!deleteModal);
-    };
-    // when fetch the message we let graphql
-    // sort property and sort the messages by created.... display them like that
-
-    const [updateMessageMutation] = useMutation(upDateChatMessage);
-
-    const updateMessage = (e: FormEvent<HTMLFormElement>, message: any) => {
-        e.preventDefault();
-        console.log("message.id :>> ", message.id);
-        if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
-            if (messageText) {
-                updateMessageMutation({
-                    variables: {
-                        id: message.id,
-                        body: messageText,
-                    },
-                });
-            }
-            setMessageText("");
-            refetch();
-        }
-        setOptionsModal(!optionsModal);
-    };
-
-    // this is for the date in each message...
-    const formatDate = (timestamp: string) => {
-        const date = new Date(timestamp);
-        const today = new Date();
-        const yesterday = new Date();
-        yesterday.setDate(today.getDate() - 1);
-        let formattedDate = "";
-        if (date.getDate() === today.getDate()) {
-            formattedDate = "Today";
-        } else if (date.getDate() === yesterday.getDate()) {
-            formattedDate = "Yesterday";
-        } else {
-            formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-        }
-        // what it that???? +=  ?
-        formattedDate += `@ ${date.getHours() < 10 ? "0" : ""}${date.getHours()}:
-    const [updateMessageMutation] = useMutation(upDateChatMessage);
-    const updateMessage = (e: FormEvent<HTMLFormElement>, message: any) => {
-        e.preventDefault();
-        console.log('message.id :>> ', message.id);
-        if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
-            if (messageText) {
-                updateMessageMutation({
-                    variables: {
-                        id: message.id,
-                        body: messageText
-                    }
-                })
-            }
-            setMessageText("")
-            refetch();
-        }
-        setOptionsModal(!optionsModal)
+  const [newMessageMutation] = useMutation(createNewMessage);
+  const sendMessage = () => {
+    if (messageText) {
+      newMessageMutation({
+        variables: {
+          conversationId: active,
+          authorId: userId,
+          body: messageText,
+        },
+      });
+      setMessageText("");
     }
+    refetch();
+  };
 
-    // this is for the date in each message...
-    const formatDate = (timestamp: string) => {
-        const date = new Date(timestamp);
-        const today = new Date();
-        const yesterday = new Date();
-        yesterday.setDate(today.getDate() - 1)
-        let formattedDate = "";
-        if (date.getDate() === today.getDate()) {
-            formattedDate = "Today";
-        } else if (date.getDate() === yesterday.getDate()) {
-            formattedDate = "Yesterday";
-        } else {
-            formattedDate = `${ date.getDate() } /${date.getMonth() + 1}/${ date.getFullYear() } `;
-        }
-        // what it that???? +=  ?
-        formattedDate += `@${ date.getHours() < 10 ? "0" : "" }${ date.getHours() }:
-        ${ date.getMinutes() < 10 ? "0" : "" }${ date.getMinutes() } `;
+  const [deleteMessageMutation] = useMutation(deleteChatMessage);
+  //  the mentor has permmision to delete as well... condicional... id not working and only deleting first message...
+  const deleteMessage = (e: FormEvent<HTMLFormElement>, message: any) => {
+    e.preventDefault();
+    console.log("object :>> ", message.attributes.author.data?.id);
+    if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
+      deleteMessageMutation({
+        variables: {
+          id: message.id,
+        },
+      });
+      refetch();
+    }
+    setDeleteModal(!deleteModal);
+  };
+  // when fetch the message we let graphql
+  // sort property and sort the messages by created.... display them like that
+
+  const [updateMessageMutation] = useMutation(upDateChatMessage);
+
+  const updateMessage = (e: FormEvent<HTMLFormElement>, message: any) => {
+    e.preventDefault();
+    console.log("message.id :>> ", message.id);
+    if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
+      if (messageText) {
+        updateMessageMutation({
+          variables: {
+            id: message.id,
+            body: messageText,
+          },
+        });
+      }
+      setMessageText("");
+      refetch();
+    }
+    setOptionsModal(!optionsModal);
+  };
+
+  // this is for the date in each message...
+  const formatDate = (timestamp: string) => {
+    const date = new Date(timestamp);
+    const today = new Date();
+    const yesterday = new Date();
+    yesterday.setDate(today.getDate() - 1);
+    let formattedDate = "";
+    if (date.getDate() === today.getDate()) {
+      formattedDate = "Today";
+    } else if (date.getDate() === yesterday.getDate()) {
+      formattedDate = "Yesterday";
+    } else {
+      formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+    }
+    // what it that???? +=  ?
+    formattedDate += `@ ${date.getHours() < 10 ? "0" : ""}${date.getHours()}:
+        ${date.getMinutes() < 10 ? "0" : ""}${date.getMinutes()} `;
     return formattedDate;
   };
 
@@ -332,32 +257,6 @@ const SingleChat = (props: Props) => {
             );
           })}
       </div>
-    return (
-        <div style={{ color: "whitesmoke" }}>
-            <h1>Welcome to {chatRooms?.chatroom.data?.attributes.name}</h1>
-            <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
-                <h2>Conversations...</h2>
-                {chatRooms && chatRooms.chatroom?.data?.attributes.conversations?.data?.map((conversation: any) => {
-                    return (
-                        <div key={conversation.id}
-                            onClick={async () => {
-                                setActive(conversation.id);
-                            }}
-                        >
-                            <h3 style={{
-                                color: "white",
-                                margin: "5px",
-                                border: "2px solid white",
-                                borderRadius: "5px",
-                                textAlign: "center",
-                                cursor: "pointer"
-                            }}>{conversation.attributes?.title}</h3>
-                        </div>
-                    )
-                })}
-
-            </div>
-
       {/* All Messages from a conversation.... */}
       <div style={{ border: "2px solid white" }}>
         <div
@@ -613,7 +512,7 @@ const SingleChat = (props: Props) => {
                                   height: "30px",
                                   width: "80px",
                                 }}
-                                // onClick={toogleDeleteModal}
+                              // onClick={toogleDeleteModal}
                               >
                                 Continue
                               </button>
