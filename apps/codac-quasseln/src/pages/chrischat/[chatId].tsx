@@ -53,7 +53,36 @@ const getChatHistoryById = gql`
         }
       }
     }
+<<<<<<< HEAD
   }`;
+=======
+  }
+      attributes {
+        messages {
+          data {
+            id
+            attributes {
+              body
+            #   publishedAt
+              createdAt
+              updatedAt
+              author {
+                data {
+                id
+                  attributes {
+                    username
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`;
+>>>>>>> 548c3b3 (added query to get all pinned msgs)
 // I have to add the pinned property to the query/mutation---
 const createNewMessage = gql`
   mutation createMessage($body: String!, $conversationId: ID!, $authorId: ID!) {
@@ -109,6 +138,21 @@ const upDateChatMessage = gql`
   }
 `;
 type Props = {};
+
+
+// fetching all pinned messages
+const getPinnedMessages = gql`
+query pinnedMessages {
+    messages(filters: { pinned: { eq: true } }){
+    data  {
+            id
+      attributes{
+                pinned
+            }
+
+        }
+    }
+} `;
 
 const SingleChat = (props: Props) => {
   const { user } = useAuth();
