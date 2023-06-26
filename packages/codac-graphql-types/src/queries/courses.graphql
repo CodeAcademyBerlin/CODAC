@@ -48,6 +48,15 @@ query getCourseProject($name: String, $projectIds: ID) {
                     }
                   }
                 }
+                spikes {
+                  data {
+                    attributes {
+                      title
+                      slug
+                      locale
+                    }
+                  }
+                }
               }
             }
           }
@@ -97,19 +106,13 @@ query getCourseByName($name: String!) {
                     }
                   }
                 }
-              }
-            }
-          }
-        }
-        mentors {
-          data {
-            attributes {
-              user {
-                data {
-                  attributes {
-                    firstname
-                    lastname
-                    email
+                spikes {
+                  data {
+                    attributes {
+                      title
+                      slug
+                      locale
+                    }
                   }
                 }
               }

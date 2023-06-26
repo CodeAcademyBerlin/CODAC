@@ -20,6 +20,15 @@ query getProjects {
               }
             }
           }
+          spikes {
+            data {
+              attributes {
+                title
+                slug
+                locale
+              }
+            }
+          }
         }
       }
     }
@@ -39,6 +48,15 @@ query getProject($id: ID!) {
             name
           }
           lessons {
+            data {
+              attributes {
+                title
+                slug
+                locale
+              }
+            }
+          }
+          spikes {
             data {
               attributes {
                 title
