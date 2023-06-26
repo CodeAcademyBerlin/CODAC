@@ -36,7 +36,7 @@ export default async function Page({
         {/* {projectTimeline && <Timeline color="violet" items={projectTimeline} />} */}
 
         {sprints?.map((sprint) => {
-          const pages = sprint?.pages?.data ?? [];
+          const pages = sprint?.lessons?.data ?? [];
           const spikes = sprint?.spikes?.data ?? [];
           const objectives = sprint?.objectives ?? [];
           return (

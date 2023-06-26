@@ -420,7 +420,16 @@ export const GetCourseProjectDocument = gql`
               name
               description
               sprints {
-                pages {
+                lessons {
+                  data {
+                    attributes {
+                      title
+                      slug
+                      locale
+                    }
+                  }
+                }
+                spikes {
                   data {
                     attributes {
                       title
@@ -530,7 +539,7 @@ export const GetCourseByNameDocument = gql`
                 objectives {
                   name
                 }
-                pages {
+                lessons {
                   data {
                     attributes {
                       title
@@ -539,19 +548,13 @@ export const GetCourseByNameDocument = gql`
                     }
                   }
                 }
-              }
-            }
-          }
-        }
-        mentors {
-          data {
-            attributes {
-              user {
-                data {
-                  attributes {
-                    firstname
-                    lastname
-                    email
+                spikes {
+                  data {
+                    attributes {
+                      title
+                      slug
+                      locale
+                    }
                   }
                 }
               }
@@ -713,7 +716,16 @@ export const GetProjectsDocument = gql`
           objectives {
             name
           }
-          pages {
+          lessons {
+            data {
+              attributes {
+                title
+                slug
+                locale
+              }
+            }
+          }
+          spikes {
             data {
               attributes {
                 title
@@ -769,7 +781,16 @@ export const GetProjectDocument = gql`
           objectives {
             name
           }
-          pages {
+          lessons {
+            data {
+              attributes {
+                title
+                slug
+                locale
+              }
+            }
+          }
+          spikes {
             data {
               attributes {
                 title
