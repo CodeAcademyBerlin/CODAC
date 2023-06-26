@@ -38,17 +38,17 @@ query getCourseProject($name: String, $projectIds: ID) {
             attributes {
               name
               description
-              sprints {
-                pages {
-                  data {
-                    attributes {
-                      title
-                      slug
-                      locale
-                    }
-                  }
-                }
-              }
+              #   sprints {
+              #   #   # pages {
+              #   #   #   data {
+              #   #   #     attributes {
+              #   #   #       title
+              #   #   #       slug
+              #   #   #       locale
+              #   #   #     }
+              #   #   #   }
+              #   #   # }
+              #   # }
             }
           }
         }
@@ -88,15 +88,15 @@ query getCourseByName($name: String!) {
                 objectives {
                   name
                 }
-                pages {
-                  data {
-                    attributes {
-                      title
-                      slug
-                      locale
-                    }
-                  }
-                }
+                # pages {
+                #   data {
+                #     attributes {
+                #       title
+                #       slug
+                #       locale
+                #     }
+                #   }
+                # }
               }
             }
           }
