@@ -11,7 +11,16 @@ query getProjects {
           objectives {
             name
           }
-          pages {
+          lessons {
+            data {
+              attributes {
+                title
+                slug
+                locale
+              }
+            }
+          }
+          spikes {
             data {
               attributes {
                 title
@@ -38,7 +47,16 @@ query getProject($id: ID!) {
           objectives {
             name
           }
-          pages {
+          lessons {
+            data {
+              attributes {
+                title
+                slug
+                locale
+              }
+            }
+          }
+          spikes {
             data {
               attributes {
                 title
