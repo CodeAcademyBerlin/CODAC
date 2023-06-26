@@ -61,5 +61,6 @@
     border-radius: $border-radius;
     padding: $reg-space;
     font-family: $font;
+    background-color: lighten($codac-primary-color, 70%);
   }
 }
