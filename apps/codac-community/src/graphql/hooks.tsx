@@ -39,7 +39,8 @@ export const useGetCohortByName = (cohortName: string) => {
       cohortName: cohortName,
     },
   });
-  console.log("helo data", data);
+  console.log("this is the cohortbyname data", data)
+
   const cohort = data?.cohorts?.data[0] as CohortEntity;
   console.log("helo cohort", cohort);
 

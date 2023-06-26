@@ -4,7 +4,9 @@ import { useGetCohortByName } from "#/graphql/hooks";
 
 export const Cohort = ({ cohortName }: { cohortName: string }) => {
   const { cohort, loading, error } = useGetCohortByName(cohortName);
-  console.log(cohort);
+
+  console.log("esse aqui é o cohortName", cohortName);
+  console.log("aqui é o cohort", cohort);
   return (
     <div className="space-y-12 ">
       <div>
