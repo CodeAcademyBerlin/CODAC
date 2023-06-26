@@ -12,7 +12,7 @@ export const StudentCard = (props: CardStudentProp) => {
       <div className="">
         {student.attributes && (
           <div className="relative">
-            <div className="absolute -left-4 top-2"></div>
+            <div className="absolute top-2"></div>
             <Card
               image={student.attributes.user?.data.attributes.avatar?.data.attributes.url ?? ""}
               title={student.attributes.firstname ?? ""}

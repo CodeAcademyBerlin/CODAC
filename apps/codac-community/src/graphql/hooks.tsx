@@ -1,11 +1,5 @@
 import { useQuery } from "@apollo/client";
-import {
-  CohortEntity,
-  MentorEntity,
-  Student,
-  StudentEntity,
-  StudentEntityResponse,
-} from "codac-graphql-types";
+import { CohortEntity, MentorEntity, StudentEntity } from "codac-graphql-types";
 
 import { GetCohortByNameDocument, GetStudentsByCohortDocument } from "./queries/cohort";
 import { GetMentorIdDocument, GetMentorsAllDocument } from "./queries/mentors";
@@ -57,7 +51,6 @@ export const useGetStudent = (id: string) => {
       id: id,
     },
   });
-  console.log("useGetStudent: ", data);
   const student = data?.student?.data as StudentEntity;
 
   return { student, error, loading };

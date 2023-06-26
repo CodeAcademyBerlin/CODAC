@@ -14,9 +14,9 @@ export interface CardProps {
 
 export const Card = ({ image, href = "", tag, title = "", rating }: CardProps) => {
   return (
-    <Link href={href} className="group block">
-      <div className="space-y-2">
-        <div className="relative">
+    <Link href={href} className="">
+      <div className="">
+        <div className="relative" style={{ height: "220px" }}>
           {tag != undefined && (
             <div className="absolute left-2 top-2 z-10 flex">
               <CardTag tag={tag} />
@@ -25,10 +25,11 @@ export const Card = ({ image, href = "", tag, title = "", rating }: CardProps) =
           {image && (
             <Image
               src={image}
-              width={150}
-              height={150}
-              className="rounded-xl backdrop-invert group-hover:opacity-80"
+              width={180}
+              height={220}
+              className="h-full rounded-xl backdrop-invert group-hover:opacity-80"
               alt={title}
+
               // placeholder="blur"
               // blurDataURL={course.attributes.image?.data.attributes.url}
             />
