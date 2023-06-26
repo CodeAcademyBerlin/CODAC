@@ -109,48 +109,54 @@ export const Bubble = ({
   const messageDate = formatDate(timestamp);
 
   return (
-    <div className={["bubble-container", isDarkmode].join(" ")} {...props}>
-      <div className="bubble-dashboard">
-        {editable ? (
-          <>
-            <p className="legend">
-              <span className="author">me</span> · <span className="timestamp"> {messageDate}</span>
-            </p>
-            <button onClick={handleEditClick}>
-              <Image className="icon" src={editIcon} alt="edit" width={30} height={30} />
-            </button>
-            <button onClick={handleDeleteClick}>
-              <Image className="icon" src={deleteIcon} alt="delete" width={30} height={30} />
-            </button>
-            <button onClick={handlePinClick}>
-              <Image
-                className="icon"
-                src={pinned ? pinnedIcon : pinIcon}
-                alt="pin"
-                width={30}
-                height={30}
-              />
-            </button>
-          </>
-        ) : (
-          <>
-            <p className="legend">
-              <span className="author">{author}</span> ·{" "}
-              <span className="timestamp">{messageDate}</span>
-            </p>
-            <button onClick={handlePinClick}>
-              <Image
-                className="icon"
-                src={pinned ? pinnedIcon : pinIcon}
-                alt="pin"
-                width={30}
-                height={30}
-              />
-            </button>
-          </>
-        )}
+    <div
+      className={`bubble-container ${isDarkmode} ${editable ? "my-message" : "your-message"}`}
+      {...props}
+    >
+      <div>
+        <div className="bubble-dashboard">
+          {editable ? (
+            <>
+              <p className="legend">
+                <span className="author">me</span> ·{" "}
+                <span className="timestamp"> {messageDate}</span>
+              </p>
+              <button onClick={handleEditClick}>
+                <Image className="icon" src={editIcon} alt="edit" width={30} height={30} />
+              </button>
+              <button onClick={handleDeleteClick}>
+                <Image className="icon" src={deleteIcon} alt="delete" width={30} height={30} />
+              </button>
+              <button onClick={handlePinClick}>
+                <Image
+                  className="icon"
+                  src={pinned ? pinnedIcon : pinIcon}
+                  alt="pin"
+                  width={30}
+                  height={30}
+                />
+              </button>
+            </>
+          ) : (
+            <>
+              <p className="legend">
+                <span className="author">{author}</span> ·{" "}
+                <span className="timestamp">{messageDate}</span>
+              </p>
+              <button onClick={handlePinClick}>
+                <Image
+                  className="icon"
+                  src={pinned ? pinnedIcon : pinIcon}
+                  alt="pin"
+                  width={30}
+                  height={30}
+                />
+              </button>
+            </>
+          )}
+        </div>
+        <div className="bubble-message">{content}</div>
       </div>
-      <div className="bubble-message">{content}</div>
     </div>
   );
 };
