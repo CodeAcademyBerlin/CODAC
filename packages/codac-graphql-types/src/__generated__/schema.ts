@@ -180,6 +180,7 @@ export type Chat = {
   createdAt?: Maybe<Scalars['DateTime']>;
   messages?: Maybe<Array<Maybe<ComponentChatMessage>>>;
   name?: Maybe<Scalars['String']>;
+  pinned?: Maybe<Scalars['Boolean']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   users?: Maybe<UsersPermissionsUserRelationResponseCollection>;
@@ -224,6 +225,7 @@ export type ChatFiltersInput = {
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ChatFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ChatFiltersInput>>>;
+  pinned?: InputMaybe<BooleanFilterInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   users?: InputMaybe<UsersPermissionsUserFiltersInput>;
@@ -232,8 +234,76 @@ export type ChatFiltersInput = {
 export type ChatInput = {
   messages?: InputMaybe<Array<InputMaybe<ComponentChatMessageInput>>>;
   name?: InputMaybe<Scalars['String']>;
+  pinned?: InputMaybe<Scalars['Boolean']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   users?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+};
+
+export type Chatroom = {
+  __typename?: 'Chatroom';
+  conversations?: Maybe<ConversationRelationResponseCollection>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  users_permissions_users?: Maybe<UsersPermissionsUserRelationResponseCollection>;
+};
+
+
+export type ChatroomConversationsArgs = {
+  filters?: InputMaybe<ConversationFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type ChatroomUsers_Permissions_UsersArgs = {
+  filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ChatroomEntity = {
+  __typename?: 'ChatroomEntity';
+attributes: Chatroom;
+  id: string;
+};
+
+export type ChatroomEntityResponse = {
+  __typename?: 'ChatroomEntityResponse';
+data: ChatroomEntity;
+};
+
+export type ChatroomEntityResponseCollection = {
+  __typename?: 'ChatroomEntityResponseCollection';
+  data: Array<ChatroomEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type ChatroomFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ChatroomFiltersInput>>>;
+  conversations?: InputMaybe<ConversationFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ChatroomFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ChatroomFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  users_permissions_users?: InputMaybe<UsersPermissionsUserFiltersInput>;
+};
+
+export type ChatroomInput = {
+  conversations?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  name?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  users_permissions_users?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+};
+
+export type ChatroomRelationResponseCollection = {
+  __typename?: 'ChatroomRelationResponseCollection';
+  data: Array<ChatroomEntity>;
 };
 
 export type CodacOverflow = {
@@ -441,6 +511,7 @@ export type ComponentChatMessage = {
   body?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   timestamp?: Maybe<Scalars['DateTime']>;
+  updated?: Maybe<Scalars['DateTime']>;
 };
 
 export type ComponentChatMessageFiltersInput = {
@@ -450,6 +521,7 @@ export type ComponentChatMessageFiltersInput = {
   not?: InputMaybe<ComponentChatMessageFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentChatMessageFiltersInput>>>;
   timestamp?: InputMaybe<DateTimeFilterInput>;
+  updated?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type ComponentChatMessageInput = {
@@ -457,6 +529,7 @@ export type ComponentChatMessageInput = {
   body?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
   timestamp?: InputMaybe<Scalars['DateTime']>;
+  updated?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type ComponentCommentsComments = {
@@ -662,40 +735,6 @@ export type ComponentLeadLifecycleInput = {
   state?: InputMaybe<Enum_Componentleadlifecycle_State>;
 };
 
-export type ComponentLinksButton = {
-  __typename?: 'ComponentLinksButton';
-  id: Scalars['ID'];
-  text?: Maybe<Scalars['String']>;
-  type?: Maybe<Enum_Componentlinksbutton_Type>;
-};
-
-export type ComponentLinksButtonLink = {
-  __typename?: 'ComponentLinksButtonLink';
-  id: Scalars['ID'];
-  newTab?: Maybe<Scalars['Boolean']>;
-  text?: Maybe<Scalars['String']>;
-  type?: Maybe<Enum_Componentlinksbuttonlink_Type>;
-  url?: Maybe<Scalars['String']>;
-};
-
-export type ComponentLinksButtonLinkFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentLinksButtonLinkFiltersInput>>>;
-  newTab?: InputMaybe<BooleanFilterInput>;
-  not?: InputMaybe<ComponentLinksButtonLinkFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<ComponentLinksButtonLinkFiltersInput>>>;
-  text?: InputMaybe<StringFilterInput>;
-  type?: InputMaybe<StringFilterInput>;
-  url?: InputMaybe<StringFilterInput>;
-};
-
-export type ComponentLinksLink = {
-  __typename?: 'ComponentLinksLink';
-  id: Scalars['ID'];
-  newTab?: Maybe<Scalars['Boolean']>;
-  text: Scalars['String'];
-  url: Scalars['String'];
-};
-
 export type ComponentLmsObjectives = {
   __typename?: 'ComponentLmsObjectives';
   id: Scalars['ID'];
@@ -718,10 +757,18 @@ export type ComponentLmsSprints = {
   __typename?: 'ComponentLmsSprints';
   id: Scalars['ID'];
   length: Scalars['Int'];
+  lessons?: Maybe<PageRelationResponseCollection>;
   name?: Maybe<Scalars['String']>;
   objectives?: Maybe<Array<Maybe<ComponentLmsObjectives>>>;
-  pages?: Maybe<PageRelationResponseCollection>;
-  spikes?: Maybe<SpikeRelationResponseCollection>;
+  spikes?: Maybe<PageRelationResponseCollection>;
+};
+
+
+export type ComponentLmsSprintsLessonsArgs = {
+  filters?: InputMaybe<PageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -732,16 +779,8 @@ export type ComponentLmsSprintsObjectivesArgs = {
 };
 
 
-export type ComponentLmsSprintsPagesArgs = {
-  filters?: InputMaybe<PageFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-
 export type ComponentLmsSprintsSpikesArgs = {
-  filters?: InputMaybe<SpikeFiltersInput>;
+  filters?: InputMaybe<PageFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
@@ -750,20 +789,20 @@ export type ComponentLmsSprintsSpikesArgs = {
 export type ComponentLmsSprintsFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ComponentLmsSprintsFiltersInput>>>;
   length?: InputMaybe<IntFilterInput>;
+  lessons?: InputMaybe<PageFiltersInput>;
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ComponentLmsSprintsFiltersInput>;
   objectives?: InputMaybe<ComponentLmsObjectivesFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentLmsSprintsFiltersInput>>>;
-  pages?: InputMaybe<PageFiltersInput>;
-  spikes?: InputMaybe<SpikeFiltersInput>;
+  spikes?: InputMaybe<PageFiltersInput>;
 };
 
 export type ComponentLmsSprintsInput = {
   id?: InputMaybe<Scalars['ID']>;
   length?: InputMaybe<Scalars['Int']>;
+  lessons?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   name?: InputMaybe<Scalars['String']>;
   objectives?: InputMaybe<Array<InputMaybe<ComponentLmsObjectivesInput>>>;
-  pages?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   spikes?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
 };
 
@@ -845,16 +884,8 @@ export type ComponentRatingRatings = {
 
 export type ComponentSectionsBottomActions = {
   __typename?: 'ComponentSectionsBottomActions';
-  buttons?: Maybe<Array<Maybe<ComponentLinksButtonLink>>>;
   id: Scalars['ID'];
   title?: Maybe<Scalars['String']>;
-};
-
-
-export type ComponentSectionsBottomActionsButtonsArgs = {
-  filters?: InputMaybe<ComponentLinksButtonLinkFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type ComponentSectionsCodeblock = {
@@ -862,16 +893,6 @@ export type ComponentSectionsCodeblock = {
   code: Scalars['String'];
   id: Scalars['ID'];
   language?: Maybe<Enum_Componentsectionscodeblock_Language>;
-};
-
-export type ComponentSectionsFeatureColumnsGroup = {
-  __typename?: 'ComponentSectionsFeatureColumnsGroup';
-  id: Scalars['ID'];
-};
-
-export type ComponentSectionsFeatureRowsGroup = {
-  __typename?: 'ComponentSectionsFeatureRowsGroup';
-  id: Scalars['ID'];
 };
 
 export type ComponentSectionsFile = {
@@ -896,20 +917,12 @@ export type ComponentSectionsHeader = {
 
 export type ComponentSectionsHero = {
   __typename?: 'ComponentSectionsHero';
-  buttons?: Maybe<Array<Maybe<ComponentLinksButtonLink>>>;
   description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   label?: Maybe<Scalars['String']>;
   picture?: Maybe<UploadFileEntityResponse>;
   smallTextWithLink?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
-};
-
-
-export type ComponentSectionsHeroButtonsArgs = {
-  filters?: InputMaybe<ComponentLinksButtonLinkFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type ComponentSectionsLargeVideo = {
@@ -925,7 +938,6 @@ export type ComponentSectionsLeadForm = {
   emailPlaceholder?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   location?: Maybe<Scalars['String']>;
-  submitButton?: Maybe<ComponentLinksButton>;
   title?: Maybe<Scalars['String']>;
 };
 
@@ -939,7 +951,6 @@ export type ComponentSectionsTestimonialsGroup = {
   __typename?: 'ComponentSectionsTestimonialsGroup';
   description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
-  link?: Maybe<ComponentLinksLink>;
   title?: Maybe<Scalars['String']>;
 };
 
@@ -988,6 +999,101 @@ export type ComponentStudentTimeOffInput = {
   reason?: InputMaybe<Scalars['String']>;
   timestamp?: InputMaybe<Scalars['DateTime']>;
   type?: InputMaybe<Enum_Componentstudenttimeoff_Type>;
+};
+
+export type ComponentUserProgress = {
+  __typename?: 'ComponentUserProgress';
+  id: Scalars['ID'];
+  projects?: Maybe<Array<Maybe<ComponentUserProjects>>>;
+};
+
+
+export type ComponentUserProgressProjectsArgs = {
+  filters?: InputMaybe<ComponentUserProjectsFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentUserProjects = {
+  __typename?: 'ComponentUserProjects';
+  end_date?: Maybe<Scalars['Date']>;
+  id: Scalars['ID'];
+  progress?: Maybe<Scalars['Float']>;
+  project?: Maybe<ProjectEntityResponse>;
+  start_date?: Maybe<Scalars['Date']>;
+};
+
+export type ComponentUserProjectsFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentUserProjectsFiltersInput>>>;
+  end_date?: InputMaybe<DateFilterInput>;
+  not?: InputMaybe<ComponentUserProjectsFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentUserProjectsFiltersInput>>>;
+  progress?: InputMaybe<FloatFilterInput>;
+  project?: InputMaybe<ProjectFiltersInput>;
+  start_date?: InputMaybe<DateFilterInput>;
+};
+
+export type Conversation = {
+  __typename?: 'Conversation';
+  chatroom?: Maybe<ChatroomEntityResponse>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  messages?: Maybe<MessageRelationResponseCollection>;
+  pinned?: Maybe<Scalars['Boolean']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type ConversationMessagesArgs = {
+  filters?: InputMaybe<MessageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ConversationEntity = {
+  __typename?: 'ConversationEntity';
+attributes: Conversation;
+  id: string;
+};
+
+export type ConversationEntityResponse = {
+  __typename?: 'ConversationEntityResponse';
+data: ConversationEntity;
+};
+
+export type ConversationEntityResponseCollection = {
+  __typename?: 'ConversationEntityResponseCollection';
+  data: Array<ConversationEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type ConversationFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ConversationFiltersInput>>>;
+  chatroom?: InputMaybe<ChatroomFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  messages?: InputMaybe<MessageFiltersInput>;
+  not?: InputMaybe<ConversationFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ConversationFiltersInput>>>;
+  pinned?: InputMaybe<BooleanFilterInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type ConversationInput = {
+  chatroom?: InputMaybe<Scalars['ID']>;
+  messages?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  pinned?: InputMaybe<Scalars['Boolean']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type ConversationRelationResponseCollection = {
+  __typename?: 'ConversationRelationResponseCollection';
+  data: Array<ConversationEntity>;
 };
 
 export type Course = {
@@ -1073,6 +1179,11 @@ export type CourseInput = {
   slug?: InputMaybe<Scalars['String']>;
 };
 
+export type CourseRelationResponseCollection = {
+  __typename?: 'CourseRelationResponseCollection';
+  data: Array<CourseEntity>;
+};
+
 export type DateFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
@@ -1145,16 +1256,6 @@ export enum Enum_Componentleadlifecycle_State {
   Lead = 'Lead',
   Out = 'Out',
   Student = 'Student'
-}
-
-export enum Enum_Componentlinksbuttonlink_Type {
-  Primary = 'primary',
-  Secondary = 'secondary'
-}
-
-export enum Enum_Componentlinksbutton_Type {
-  Primary = 'primary',
-  Secondary = 'secondary'
 }
 
 export enum Enum_Componentmetatags_Tag {
@@ -1232,6 +1333,12 @@ export enum Enum_Page_Category {
   Data = 'data',
   Other = 'other',
   Web = 'web'
+}
+
+export enum Enum_Page_Type {
+  Forum = 'forum',
+  Lesson = 'lesson',
+  Spike = 'spike'
 }
 
 export type EmailDesignerEmailTemplate = {
@@ -1329,7 +1436,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = Achievement | Attendance | Chat | CodacOverflow | CodingChallenge | Cohort | ComponentAchievementAchievement | ComponentCardsBlogCard | ComponentChatMessage | ComponentCommentsComments | ComponentFeedbackFeedback | ComponentHolidaysHoliday | ComponentHoursHours | ComponentKanbanBoard | ComponentKanbanCard | ComponentKanbanColumn | ComponentLeadLifecycle | ComponentLinksButton | ComponentLinksButtonLink | ComponentLinksLink | ComponentLmsObjectives | ComponentLmsSprints | ComponentLmsTags | ComponentMetaMetadata | ComponentMetaTags | ComponentNotificationNotifications | ComponentRatingRatings | ComponentSectionsBottomActions | ComponentSectionsCodeblock | ComponentSectionsFeatureColumnsGroup | ComponentSectionsFeatureRowsGroup | ComponentSectionsFile | ComponentSectionsGoogleSlide | ComponentSectionsHeader | ComponentSectionsHero | ComponentSectionsLargeVideo | ComponentSectionsLeadForm | ComponentSectionsRichText | ComponentSectionsTestimonialsGroup | ComponentStudentAchievement | ComponentStudentProject | ComponentStudentTimeOff | Course | EmailDesignerEmailTemplate | Holiday | I18NLocale | JobPost | Lead | LmsFeedback | Mentor | Page | Project | Spike | Student | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VsBattle;
+export type GenericMorph = Achievement | Attendance | Chat | Chatroom | CodacOverflow | CodingChallenge | Cohort | ComponentAchievementAchievement | ComponentCardsBlogCard | ComponentChatMessage | ComponentCommentsComments | ComponentFeedbackFeedback | ComponentHolidaysHoliday | ComponentHoursHours | ComponentKanbanBoard | ComponentKanbanCard | ComponentKanbanColumn | ComponentLeadLifecycle | ComponentLmsObjectives | ComponentLmsSprints | ComponentLmsTags | ComponentMetaMetadata | ComponentMetaTags | ComponentNotificationNotifications | ComponentRatingRatings | ComponentSectionsBottomActions | ComponentSectionsCodeblock | ComponentSectionsFile | ComponentSectionsGoogleSlide | ComponentSectionsHeader | ComponentSectionsHero | ComponentSectionsLargeVideo | ComponentSectionsLeadForm | ComponentSectionsRichText | ComponentSectionsTestimonialsGroup | ComponentStudentAchievement | ComponentStudentProject | ComponentStudentTimeOff | ComponentUserProgress | ComponentUserProjects | Conversation | Course | EmailDesignerEmailTemplate | Holiday | I18NLocale | JobPost | Lead | LmsFeedback | Mentor | Message | Page | Project | Spike | Student | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VsBattle;
 
 export type GenericServerResponse = {
   __typename?: 'GenericServerResponse';
@@ -1539,9 +1646,14 @@ export type Lead = {
   course?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   date?: Maybe<Scalars['Date']>;
+  email?: Maybe<Scalars['String']>;
+  firstname?: Maybe<Scalars['String']>;
+  lastname?: Maybe<Scalars['String']>;
   lifecycle?: Maybe<Array<Maybe<ComponentLeadLifecycle>>>;
   main_course?: Maybe<CourseEntityResponse>;
   marketingfunnel?: Maybe<Enum_Lead_Marketingfunnel>;
+  msg?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -1725,6 +1837,61 @@ export type MentorRelationResponseCollection = {
   data: Array<MentorEntity>;
 };
 
+export type Message = {
+  __typename?: 'Message';
+  author?: Maybe<UsersPermissionsUserEntityResponse>;
+  body?: Maybe<Scalars['String']>;
+  conversation?: Maybe<ConversationEntityResponse>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  pinned?: Maybe<Scalars['Boolean']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type MessageEntity = {
+  __typename?: 'MessageEntity';
+attributes: Message;
+  id: string;
+};
+
+export type MessageEntityResponse = {
+  __typename?: 'MessageEntityResponse';
+data: MessageEntity;
+};
+
+export type MessageEntityResponseCollection = {
+  __typename?: 'MessageEntityResponseCollection';
+  data: Array<MessageEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type MessageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<MessageFiltersInput>>>;
+  author?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  body?: InputMaybe<StringFilterInput>;
+  conversation?: InputMaybe<ConversationFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<MessageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<MessageFiltersInput>>>;
+  pinned?: InputMaybe<BooleanFilterInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type MessageInput = {
+  author?: InputMaybe<Scalars['ID']>;
+  body?: InputMaybe<Scalars['String']>;
+  conversation?: InputMaybe<Scalars['ID']>;
+  pinned?: InputMaybe<Scalars['Boolean']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type MessageRelationResponseCollection = {
+  __typename?: 'MessageRelationResponseCollection';
+  data: Array<MessageEntity>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   /** Add achievement on a student */
@@ -1744,15 +1911,18 @@ export type Mutation = {
   createAchievement?: Maybe<AchievementEntityResponse>;
   createAttendance?: Maybe<AttendanceEntityResponse>;
   createChat?: Maybe<ChatEntityResponse>;
+  createChatroom?: Maybe<ChatroomEntityResponse>;
   createCodacOverflow?: Maybe<CodacOverflowEntityResponse>;
   createCodingChallenge?: Maybe<CodingChallengeEntityResponse>;
   createCohort?: Maybe<CohortEntityResponse>;
+  createConversation?: Maybe<ConversationEntityResponse>;
   createCourse?: Maybe<CourseEntityResponse>;
   createEmailDesignerEmailTemplate?: Maybe<EmailDesignerEmailTemplateEntityResponse>;
   createJobPost?: Maybe<JobPostEntityResponse>;
   createLead?: Maybe<LeadEntityResponse>;
   createLmsFeedback?: Maybe<LmsFeedbackEntityResponse>;
   createMentor?: Maybe<MentorEntityResponse>;
+  createMessage?: Maybe<MessageEntityResponse>;
   createPage?: Maybe<PageEntityResponse>;
   createPageLocalization?: Maybe<PageEntityResponse>;
   createProject?: Maybe<ProjectEntityResponse>;
@@ -1772,11 +1942,13 @@ export type Mutation = {
   deleteChat?: Maybe<ChatEntityResponse>;
   /** Add message on a chat item */
   deleteChatMessage?: Maybe<GenericServerResponse>;
+  deleteChatroom?: Maybe<ChatroomEntityResponse>;
   deleteCodacOverflow?: Maybe<CodacOverflowEntityResponse>;
   deleteCodingChallenge?: Maybe<CodingChallengeEntityResponse>;
   /** Add comment on a coding challenge item */
   deleteCodingChallengeComment?: Maybe<GenericServerResponse>;
   deleteCohort?: Maybe<CohortEntityResponse>;
+  deleteConversation?: Maybe<ConversationEntityResponse>;
   deleteCourse?: Maybe<CourseEntityResponse>;
   deleteEmailDesignerEmailTemplate?: Maybe<EmailDesignerEmailTemplateEntityResponse>;
   deleteHoliday?: Maybe<HolidayEntityResponse>;
@@ -1788,6 +1960,7 @@ export type Mutation = {
   deleteLead?: Maybe<LeadEntityResponse>;
   deleteLmsFeedback?: Maybe<LmsFeedbackEntityResponse>;
   deleteMentor?: Maybe<MentorEntityResponse>;
+  deleteMessage?: Maybe<MessageEntityResponse>;
   deletePage?: Maybe<PageEntityResponse>;
   deleteProject?: Maybe<ProjectEntityResponse>;
   deleteSpike?: Maybe<SpikeEntityResponse>;
@@ -1821,11 +1994,13 @@ export type Mutation = {
   updateChat?: Maybe<ChatEntityResponse>;
   /** Update message on a chat item */
   updateChatMessage?: Maybe<GenericServerResponse>;
+  updateChatroom?: Maybe<ChatroomEntityResponse>;
   updateCodacOverflow?: Maybe<CodacOverflowEntityResponse>;
   updateCodingChallenge?: Maybe<CodingChallengeEntityResponse>;
   /** Update comment on a coding challenge item */
   updateCodingChallengeComment?: Maybe<GenericServerResponse>;
   updateCohort?: Maybe<CohortEntityResponse>;
+  updateConversation?: Maybe<ConversationEntityResponse>;
   updateCourse?: Maybe<CourseEntityResponse>;
   updateEmailDesignerEmailTemplate?: Maybe<EmailDesignerEmailTemplateEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
@@ -1838,6 +2013,7 @@ export type Mutation = {
   updateLead?: Maybe<LeadEntityResponse>;
   updateLmsFeedback?: Maybe<LmsFeedbackEntityResponse>;
   updateMentor?: Maybe<MentorEntityResponse>;
+  updateMessage?: Maybe<MessageEntityResponse>;
   updatePage?: Maybe<PageEntityResponse>;
   updateProject?: Maybe<ProjectEntityResponse>;
   updateSpike?: Maybe<SpikeEntityResponse>;
@@ -1917,6 +2093,11 @@ export type MutationCreateChatArgs = {
 };
 
 
+export type MutationCreateChatroomArgs = {
+  data: ChatroomInput;
+};
+
+
 export type MutationCreateCodacOverflowArgs = {
   data: CodacOverflowInput;
 };
@@ -1929,6 +2110,11 @@ export type MutationCreateCodingChallengeArgs = {
 
 export type MutationCreateCohortArgs = {
   data: CohortInput;
+};
+
+
+export type MutationCreateConversationArgs = {
+  data: ConversationInput;
 };
 
 
@@ -1959,6 +2145,11 @@ export type MutationCreateLmsFeedbackArgs = {
 
 export type MutationCreateMentorArgs = {
   data: MentorInput;
+};
+
+
+export type MutationCreateMessageArgs = {
+  data: MessageInput;
 };
 
 
@@ -2042,6 +2233,11 @@ export type MutationDeleteChatMessageArgs = {
 };
 
 
+export type MutationDeleteChatroomArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type MutationDeleteCodacOverflowArgs = {
   id: Scalars['ID'];
 };
@@ -2059,6 +2255,11 @@ export type MutationDeleteCodingChallengeCommentArgs = {
 
 
 export type MutationDeleteCohortArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteConversationArgs = {
   id: Scalars['ID'];
 };
 
@@ -2101,6 +2302,11 @@ export type MutationDeleteLmsFeedbackArgs = {
 
 
 export type MutationDeleteMentorArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteMessageArgs = {
   id: Scalars['ID'];
 };
 
@@ -2235,6 +2441,12 @@ export type MutationUpdateChatMessageArgs = {
 };
 
 
+export type MutationUpdateChatroomArgs = {
+  data: ChatroomInput;
+  id: Scalars['ID'];
+};
+
+
 export type MutationUpdateCodacOverflowArgs = {
   data: CodacOverflowInput;
   id: Scalars['ID'];
@@ -2256,6 +2468,12 @@ export type MutationUpdateCodingChallengeCommentArgs = {
 
 export type MutationUpdateCohortArgs = {
   data: CohortInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateConversationArgs = {
+  data: ConversationInput;
   id: Scalars['ID'];
 };
 
@@ -2318,6 +2536,12 @@ export type MutationUpdateLmsFeedbackArgs = {
 
 export type MutationUpdateMentorArgs = {
   data: MentorInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateMessageArgs = {
+  data: MessageInput;
   id: Scalars['ID'];
 };
 
@@ -2401,8 +2625,10 @@ export type Page = {
 data: ComponentMetaMetadata;
   publishedAt?: Maybe<Scalars['DateTime']>;
   slug?: Maybe<Scalars['String']>;
+  sprint_day?: Maybe<Scalars['Int']>;
   tags?: Maybe<Array<Maybe<ComponentLmsTags>>>;
   title: Scalars['String'];
+  type: Enum_Page_Type;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -2421,7 +2647,7 @@ export type PageTagsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-export type PageContentSectionsDynamicZone = ComponentSectionsCodeblock | ComponentSectionsGoogleSlide | ComponentSectionsHeader | ComponentSectionsRichText | Error;
+export type PageContentSectionsDynamicZone = ComponentSectionsCodeblock | ComponentSectionsGoogleSlide | ComponentSectionsHeader | ComponentSectionsLargeVideo | ComponentSectionsRichText | Error;
 
 export type PageEntity = {
   __typename?: 'PageEntity';
@@ -2452,8 +2678,10 @@ export type PageFiltersInput = {
   or?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
+  sprint_day?: InputMaybe<IntFilterInput>;
   tags?: InputMaybe<ComponentLmsTagsFiltersInput>;
   title?: InputMaybe<StringFilterInput>;
+  type?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
@@ -2463,8 +2691,10 @@ export type PageInput = {
   metadata?: InputMaybe<ComponentMetaMetadataInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   slug?: InputMaybe<Scalars['String']>;
+  sprint_day?: InputMaybe<Scalars['Int']>;
   tags?: InputMaybe<Array<InputMaybe<ComponentLmsTagsInput>>>;
   title?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Enum_Page_Type>;
 };
 
 export type PageRelationResponseCollection = {
@@ -2564,6 +2794,8 @@ export type Query = {
   attendance?: Maybe<AttendanceEntityResponse>;
   attendances?: Maybe<AttendanceEntityResponseCollection>;
   chat?: Maybe<ChatEntityResponse>;
+  chatroom?: Maybe<ChatroomEntityResponse>;
+  chatrooms?: Maybe<ChatroomEntityResponseCollection>;
   chats?: Maybe<ChatEntityResponseCollection>;
   codacOverflow?: Maybe<CodacOverflowEntityResponse>;
   codacOverflows?: Maybe<CodacOverflowEntityResponseCollection>;
@@ -2571,6 +2803,8 @@ export type Query = {
   codingChallenges?: Maybe<CodingChallengeEntityResponseCollection>;
   cohort?: Maybe<CohortEntityResponse>;
   cohorts?: Maybe<CohortEntityResponseCollection>;
+  conversation?: Maybe<ConversationEntityResponse>;
+  conversations?: Maybe<ConversationEntityResponseCollection>;
   course?: Maybe<CourseEntityResponse>;
   courses?: Maybe<CourseEntityResponseCollection>;
   emailDesignerEmailTemplate?: Maybe<EmailDesignerEmailTemplateEntityResponse>;
@@ -2587,10 +2821,13 @@ export type Query = {
   me?: Maybe<UsersPermissionsMe>;
   mentor?: Maybe<MentorEntityResponse>;
   mentors?: Maybe<MentorEntityResponseCollection>;
+  message?: Maybe<MessageEntityResponse>;
+  messages?: Maybe<MessageEntityResponseCollection>;
   page?: Maybe<PageEntityResponse>;
   pages?: Maybe<PageEntityResponseCollection>;
   project?: Maybe<ProjectEntityResponse>;
   projects?: Maybe<ProjectEntityResponseCollection>;
+  search?: Maybe<SearchResponse>;
   spike?: Maybe<SpikeEntityResponse>;
   spikes?: Maybe<SpikeEntityResponseCollection>;
   student?: Maybe<StudentEntityResponse>;
@@ -2637,6 +2874,19 @@ export type QueryChatArgs = {
 };
 
 
+export type QueryChatroomArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryChatroomsArgs = {
+  filters?: InputMaybe<ChatroomFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
 export type QueryChatsArgs = {
   filters?: InputMaybe<ChatFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
@@ -2679,6 +2929,19 @@ export type QueryCohortArgs = {
 export type QueryCohortsArgs = {
   filters?: InputMaybe<CohortFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryConversationArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryConversationsArgs = {
+  filters?: InputMaybe<ConversationFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -2774,6 +3037,19 @@ export type QueryMentorsArgs = {
 };
 
 
+export type QueryMessageArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryMessagesArgs = {
+  filters?: InputMaybe<MessageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
 export type QueryPageArgs = {
   id?: InputMaybe<Scalars['ID']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
@@ -2799,6 +3075,12 @@ export type QueryProjectsArgs = {
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QuerySearchArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+  query: Scalars['String'];
 };
 
 
@@ -2892,6 +3174,34 @@ export type ResponseCollectionMeta = {
   pagination: Pagination;
 };
 
+export type SearchResponse = {
+  __typename?: 'SearchResponse';
+  courses?: Maybe<CourseEntityResponseCollection>;
+  pages?: Maybe<PageEntityResponseCollection>;
+  projects?: Maybe<ProjectEntityResponseCollection>;
+};
+
+
+export type SearchResponseCoursesArgs = {
+  filters?: InputMaybe<CourseFiltersInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+  pagination?: InputMaybe<PaginationArg>;
+};
+
+
+export type SearchResponsePagesArgs = {
+  filters?: InputMaybe<PageFiltersInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+  pagination?: InputMaybe<PaginationArg>;
+};
+
+
+export type SearchResponseProjectsArgs = {
+  filters?: InputMaybe<ProjectFiltersInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+  pagination?: InputMaybe<PaginationArg>;
+};
+
 export type Spike = {
   __typename?: 'Spike';
   content?: Maybe<PageEntityResponse>;
@@ -2941,11 +3251,6 @@ export type SpikeInput = {
   title?: InputMaybe<Scalars['String']>;
 };
 
-export type SpikeRelationResponseCollection = {
-  __typename?: 'SpikeRelationResponseCollection';
-  data: Array<SpikeEntity>;
-};
-
 export type StringFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
@@ -2974,6 +3279,7 @@ export type Student = {
   __typename?: 'Student';
   alumni?: Maybe<Scalars['Boolean']>;
   attendances?: Maybe<AttendanceRelationResponseCollection>;
+  calc_missed_days?: Maybe<Scalars['Int']>;
   cohort?: Maybe<CohortEntityResponse>;
   course?: Maybe<CourseEntityResponse>;
   createdAt?: Maybe<Scalars['DateTime']>;
@@ -3014,6 +3320,7 @@ export type StudentFiltersInput = {
   alumni?: InputMaybe<BooleanFilterInput>;
   and?: InputMaybe<Array<InputMaybe<StudentFiltersInput>>>;
   attendances?: InputMaybe<AttendanceFiltersInput>;
+  calc_missed_days?: InputMaybe<IntFilterInput>;
   cohort?: InputMaybe<CohortFiltersInput>;
   course?: InputMaybe<CourseFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
@@ -3033,6 +3340,7 @@ export type StudentFiltersInput = {
 export type StudentInput = {
   alumni?: InputMaybe<Scalars['Boolean']>;
   attendances?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  calc_missed_days?: InputMaybe<Scalars['Int']>;
   cohort?: InputMaybe<Scalars['ID']>;
   course?: InputMaybe<Scalars['ID']>;
   firstname?: InputMaybe<Scalars['String']>;
@@ -3389,7 +3697,9 @@ export type UsersPermissionsUser = {
   __typename?: 'UsersPermissionsUser';
   avatar?: Maybe<UploadFileEntityResponse>;
   blocked?: Maybe<Scalars['Boolean']>;
+  chatrooms?: Maybe<ChatroomRelationResponseCollection>;
   confirmed?: Maybe<Scalars['Boolean']>;
+  courses?: Maybe<CourseRelationResponseCollection>;
   createdAt?: Maybe<Scalars['DateTime']>;
   email: Scalars['String'];
   firstname?: Maybe<Scalars['String']>;
@@ -3402,6 +3712,22 @@ export type UsersPermissionsUser = {
   student?: Maybe<StudentEntityResponse>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   username: Scalars['String'];
+};
+
+
+export type UsersPermissionsUserChatroomsArgs = {
+  filters?: InputMaybe<ChatroomFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type UsersPermissionsUserCoursesArgs = {
+  filters?: InputMaybe<CourseFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -3431,8 +3757,10 @@ export type UsersPermissionsUserEntityResponseCollection = {
 export type UsersPermissionsUserFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
   blocked?: InputMaybe<BooleanFilterInput>;
+  chatrooms?: InputMaybe<ChatroomFiltersInput>;
   confirmationToken?: InputMaybe<StringFilterInput>;
   confirmed?: InputMaybe<BooleanFilterInput>;
+  courses?: InputMaybe<CourseFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   email?: InputMaybe<StringFilterInput>;
   firstname?: InputMaybe<StringFilterInput>;
@@ -3455,8 +3783,10 @@ export type UsersPermissionsUserFiltersInput = {
 export type UsersPermissionsUserInput = {
   avatar?: InputMaybe<Scalars['ID']>;
   blocked?: InputMaybe<Scalars['Boolean']>;
+  chatrooms?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   confirmationToken?: InputMaybe<Scalars['String']>;
   confirmed?: InputMaybe<Scalars['Boolean']>;
+  courses?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   email?: InputMaybe<Scalars['String']>;
   firstname?: InputMaybe<Scalars['String']>;
   kanban?: InputMaybe<ComponentKanbanBoardInput>;
@@ -3605,7 +3935,7 @@ export type GetCourseProjectQueryVariables = Exact<{
 }>;
 
 
-export type GetCourseProjectQuery = { __typename?: 'Query', courses?: { __typename?: 'CourseEntityResponseCollection', data: Array<{ __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name: string, projects?: { __typename?: 'ProjectRelationResponseCollection', data: Array<{ __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', name: string, description?: string | null, sprints?: Array<{ __typename?: 'ComponentLmsSprints', pages?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', title: string, slug?: string | null, locale?: string | null } | null }> } | null } | null> | null } | null }> } | null } | null }> } | null };
+export type GetCourseProjectQuery = { __typename?: 'Query', courses?: { __typename?: 'CourseEntityResponseCollection', data: Array<{ __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name: string, projects?: { __typename?: 'ProjectRelationResponseCollection', data: Array<{ __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', name: string, description?: string | null, sprints?: Array<{ __typename?: 'ComponentLmsSprints', lessons?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', title: string, slug?: string | null, locale?: string | null } | null }> } | null, spikes?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', title: string, slug?: string | null, locale?: string | null } | null }> } | null } | null> | null } | null }> } | null } | null }> } | null };
 
 export type GetCourseProjectsQueryVariables = Exact<{
   name?: InputMaybe<Scalars['String']>;
@@ -3619,31 +3949,31 @@ export type GetCourseByNameQueryVariables = Exact<{
 }>;
 
 
-export type GetCourseByNameQuery = { __typename?: 'Query', courses?: { __typename?: 'CourseEntityResponseCollection', data: Array<{ __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name: string, description?: string | null, createdAt?: any | null, projects?: { __typename?: 'ProjectRelationResponseCollection', data: Array<{ __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', name: string, description?: string | null, sprints?: Array<{ __typename?: 'ComponentLmsSprints', name?: string | null, length: number, objectives?: Array<{ __typename?: 'ComponentLmsObjectives', name?: string | null } | null> | null, pages?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', title: string, slug?: string | null, locale?: string | null } | null }> } | null } | null> | null } | null }> } | null, mentors?: { __typename?: 'MentorRelationResponseCollection', data: Array<{ __typename?: 'MentorEntity', attributes?: { __typename?: 'Mentor', user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', firstname?: string | null, lastname?: string | null, email: string } | null } | null } | null } | null }> } | null } | null }> } | null };
+export type GetCourseByNameQuery = { __typename?: 'Query', courses?: { __typename?: 'CourseEntityResponseCollection', data: Array<{ __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name: string, description?: string | null, createdAt?: any | null, projects?: { __typename?: 'ProjectRelationResponseCollection', data: Array<{ __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', name: string, description?: string | null, sprints?: Array<{ __typename?: 'ComponentLmsSprints', name?: string | null, length: number, objectives?: Array<{ __typename?: 'ComponentLmsObjectives', name?: string | null } | null> | null, lessons?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', title: string, slug?: string | null, locale?: string | null } | null }> } | null, spikes?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', title: string, slug?: string | null, locale?: string | null } | null }> } | null } | null> | null } | null }> } | null } | null }> } | null };
 
 export type GetPageQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type GetPageQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', id?: string | null, attributes?: { __typename?: 'Page', locale?: string | null, slug?: string | null, title: string, contentSections: Array<{ __typename?: 'ComponentSectionsCodeblock' } | { __typename?: 'ComponentSectionsGoogleSlide' } | { __typename: 'ComponentSectionsHeader', id: string, title?: string | null, subtitle?: string | null } | { __typename: 'ComponentSectionsRichText', id: string, content?: string | null } | { __typename?: 'Error' } | null> } | null }> } | null };
+export type GetPageQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', id?: string | null, attributes?: { __typename?: 'Page', locale?: string | null, slug?: string | null, title: string, contentSections: Array<{ __typename?: 'ComponentSectionsCodeblock' } | { __typename?: 'ComponentSectionsGoogleSlide' } | { __typename: 'ComponentSectionsHeader', id: string, title?: string | null, subtitle?: string | null } | { __typename?: 'ComponentSectionsLargeVideo' } | { __typename: 'ComponentSectionsRichText', id: string, content?: string | null } | { __typename?: 'Error' } | null> } | null }> } | null };
 
 export type GetPagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetPagesQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', id?: string | null, attributes?: { __typename?: 'Page', locale?: string | null, slug?: string | null, contentSections: Array<{ __typename?: 'ComponentSectionsCodeblock' } | { __typename?: 'ComponentSectionsGoogleSlide' } | { __typename: 'ComponentSectionsHeader', id: string, title?: string | null, subtitle?: string | null } | { __typename: 'ComponentSectionsRichText', id: string, content?: string | null } | { __typename?: 'Error' } | null> } | null }> } | null };
+export type GetPagesQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', id?: string | null, attributes?: { __typename?: 'Page', locale?: string | null, slug?: string | null, contentSections: Array<{ __typename?: 'ComponentSectionsCodeblock' } | { __typename?: 'ComponentSectionsGoogleSlide' } | { __typename: 'ComponentSectionsHeader', id: string, title?: string | null, subtitle?: string | null } | { __typename?: 'ComponentSectionsLargeVideo' } | { __typename: 'ComponentSectionsRichText', id: string, content?: string | null } | { __typename?: 'Error' } | null> } | null }> } | null };
 
 export type GetProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetProjectsQuery = { __typename?: 'Query', projects?: { __typename?: 'ProjectEntityResponseCollection', data: Array<{ __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', name: string, description?: string | null, sprints?: Array<{ __typename?: 'ComponentLmsSprints', name?: string | null, length: number, objectives?: Array<{ __typename?: 'ComponentLmsObjectives', name?: string | null } | null> | null, pages?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', title: string, slug?: string | null, locale?: string | null } | null }> } | null } | null> | null } | null }> } | null };
+export type GetProjectsQuery = { __typename?: 'Query', projects?: { __typename?: 'ProjectEntityResponseCollection', data: Array<{ __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', name: string, description?: string | null, sprints?: Array<{ __typename?: 'ComponentLmsSprints', name?: string | null, length: number, objectives?: Array<{ __typename?: 'ComponentLmsObjectives', name?: string | null } | null> | null, lessons?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', title: string, slug?: string | null, locale?: string | null } | null }> } | null, spikes?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', title: string, slug?: string | null, locale?: string | null } | null }> } | null } | null> | null } | null }> } | null };
 
 export type GetProjectQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type GetProjectQuery = { __typename?: 'Query', project?: { __typename?: 'ProjectEntityResponse', data?: { __typename?: 'ProjectEntity', attributes?: { __typename?: 'Project', name: string, description?: string | null, calc_length: number, sprints?: Array<{ __typename?: 'ComponentLmsSprints', name?: string | null, length: number, objectives?: Array<{ __typename?: 'ComponentLmsObjectives', name?: string | null } | null> | null, pages?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', title: string, slug?: string | null, locale?: string | null } | null }> } | null } | null> | null } | null } | null } | null };
+export type GetProjectQuery = { __typename?: 'Query', project?: { __typename?: 'ProjectEntityResponse', data?: { __typename?: 'ProjectEntity', attributes?: { __typename?: 'Project', name: string, description?: string | null, calc_length: number, sprints?: Array<{ __typename?: 'ComponentLmsSprints', name?: string | null, length: number, objectives?: Array<{ __typename?: 'ComponentLmsObjectives', name?: string | null } | null> | null, lessons?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', title: string, slug?: string | null, locale?: string | null } | null }> } | null, spikes?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', title: string, slug?: string | null, locale?: string | null } | null }> } | null } | null> | null } | null } | null } | null };
 
 export type GetSpikesQueryVariables = Exact<{ [key: string]: never; }>;
 
