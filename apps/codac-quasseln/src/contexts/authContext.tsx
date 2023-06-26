@@ -37,6 +37,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if (data?.me && !error) {
+      console.log("this is the updated data/user:", data);
       const user = data.me as UsersPermissionsMe;
       setUser(user);
     }

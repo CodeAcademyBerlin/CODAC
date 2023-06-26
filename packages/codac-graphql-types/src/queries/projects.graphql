@@ -11,15 +11,15 @@ query getProjects {
           objectives {
             name
           }
-          pages {
-            data {
-              attributes {
-                title
-                slug
-                locale
-              }
-            }
-          }
+          # pages {
+          #   data {
+          #     attributes {
+          #       title
+          #       slug
+          #       locale
+          #     }
+          #   }
+          # }
         }
       }
     }
@@ -38,15 +38,15 @@ query getProject($id: ID!) {
           objectives {
             name
           }
-          pages {
-            data {
-              attributes {
-                title
-                slug
-                locale
-              }
-            }
-          }
+          # pages {
+          #   data {
+          #     attributes {
+          #       title
+          #       slug
+          #       locale
+          #     }
+          #   }
+          # }
         }
       }
     }

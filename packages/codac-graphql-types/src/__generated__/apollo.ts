@@ -419,17 +419,6 @@ export const GetCourseProjectDocument = gql`
             attributes {
               name
               description
-              sprints {
-                pages {
-                  data {
-                    attributes {
-                      title
-                      slug
-                      locale
-                    }
-                  }
-                }
-              }
             }
           }
         }
@@ -529,15 +518,6 @@ export const GetCourseByNameDocument = gql`
                 length
                 objectives {
                   name
-                }
-                pages {
-                  data {
-                    attributes {
-                      title
-                      slug
-                      locale
-                    }
-                  }
                 }
               }
             }
@@ -713,15 +693,6 @@ export const GetProjectsDocument = gql`
           objectives {
             name
           }
-          pages {
-            data {
-              attributes {
-                title
-                slug
-                locale
-              }
-            }
-          }
         }
       }
     }
@@ -768,15 +739,6 @@ export const GetProjectDocument = gql`
           length
           objectives {
             name
-          }
-          pages {
-            data {
-              attributes {
-                title
-                slug
-                locale
-              }
-            }
           }
         }
       }
@@ -1060,6 +1022,14 @@ export const GetMeDocument = gql`
     lastname
     avatar {
       url
+    }
+  }
+  chatrooms {
+    data {
+      id
+      attributes {
+        name
+      }
     }
   }
 }
