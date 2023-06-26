@@ -14,15 +14,9 @@ function StudentList({ cohortName }: { cohortName: string }) {
           <div className="text-lg font-medium text-white">Students</div>
         </div>
         {loading && <SkeletonCards number={3} isLoading={loading} />}
-        <div className="grid grid-cols-4 gap-2">
+        <div className="flex min-w-full grid-cols-5 flex-wrap gap-4 object-cover">
           {students &&
-            students.map((student) => (
-              <StudentCard
-                key={student.id}
-                student={student}
-            
-              />
-            ))}
+            students.map((student) => <StudentCard key={student.id} student={student} />)}
         </div>
       </div>
     </>

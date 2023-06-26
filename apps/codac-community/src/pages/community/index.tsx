@@ -12,14 +12,14 @@ function Community({ cohorts }: { cohorts: CohortEntity[] }) {
         <div>
           <div className="text-lg font-medium text-white">Cohorts</div>
         </div>
-        <div className="grid grid-cols-5 gap-3 object-cover ">
+        <div className="flex min-w-full grid-cols-5 flex-wrap gap-4 object-cover">
           {cohorts.map((cohort) => (
             <div
               key={cohort.id}
-              className="transform transition-transform duration-300 hover:scale-105"
+              className=" object-cover transition-transform duration-300 hover:scale-105"
             >
               {cohort.attributes && (
-                <div className="relative ">
+                <div className="relative  ">
                   <Card
                     image={cohort.attributes.logo?.data.attributes.url}
                     title={cohort.attributes.name ?? ""}
