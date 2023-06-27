@@ -4,49 +4,62 @@
   display: flex;
   flex-direction: column;
   gap: $reg-space;
+  border: 2px solid orange;
+  // display: grid;
+  // grid-template-columns: 1fr 1fr;
+  // gap: $reg-space;
 
-  .message-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: $reg-space;
-  }
+  // .message-container {
+  //   display: grid;
+  //   grid-template-columns: 1fr 1fr;
+  //   gap: $reg-space;
+  // }
   // applying to all messages
-  .message {
-    grid-column: span 1;
-    padding: $sm-space $reg-space $reg-space;
-    border-radius: $border-radius;
+  // .message {
+  //   grid-column: span 1;
+  //   padding: $sm-space $reg-space $reg-space;
+  //   border-radius: $border-radius;
 
-    .message-label {
-      font-size: $smaller-text;
-      padding: $sm-space 0;
-    }
-  }
+  //   .message-label {
+  //     font-size: $smaller-text;
+  //     padding: $sm-space 0;
+  //   }
+  // }
   // my messages
-  .my-message {
-    background-color: white;
-    grid-column-start: 2;
+  // .my-message {
+  //   background-color: white;
+  //   grid-column-start: 2;
 
-    .message-label {
-      text-align: right;
-    }
-  }
+  //   .message-label {
+  //     text-align: right;
+  //   }
+  // }
   // other users' messages
-  .you-all-message {
-    background-color: lighten($codac-primary-color, 60%);
-    grid-column-start: 1;
-  }
+  // .you-all-message {
+  //   background-color: lighten($codac-primary-color, 60%);
+  //   grid-column-start: 1;
+  // }
 }
 
 /** send a message **/
 
 .send-message-container {
-  display: flex;
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: $reg-space;
 
+  div {
+    display: flex;
+    gap: $sm-space;
+    flex-direction: column;
+    width: 100%;
+    grid-column-start: 2;
+    align-items: flex-end;
+  }
+
   textarea {
+    width: 100%;
     border-radius: $border-radius;
-    // width: 100%;
     background-color: lighten($codac-primary-color, 70%);
   }
 }
