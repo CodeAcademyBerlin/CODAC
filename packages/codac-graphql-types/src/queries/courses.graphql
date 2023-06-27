@@ -38,17 +38,26 @@ query getCourseProject($name: String, $projectIds: ID) {
             attributes {
               name
               description
-              #   sprints {
-              #   #   # pages {
-              #   #   #   data {
-              #   #   #     attributes {
-              #   #   #       title
-              #   #   #       slug
-              #   #   #       locale
-              #   #   #     }
-              #   #   #   }
-              #   #   # }
-              #   # }
+              sprints {
+                lessons {
+                  data {
+                    attributes {
+                      title
+                      slug
+                      locale
+                    }
+                  }
+                }
+                spikes {
+                  data {
+                    attributes {
+                      title
+                      slug
+                      locale
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -88,28 +97,22 @@ query getCourseByName($name: String!) {
                 objectives {
                   name
                 }
-                # pages {
-                #   data {
-                #     attributes {
-                #       title
-                #       slug
-                #       locale
-                #     }
-                #   }
-                # }
-              }
-            }
-          }
-        }
-        mentors {
-          data {
-            attributes {
-              user {
-                data {
-                  attributes {
-                    firstname
-                    lastname
-                    email
+                lessons {
+                  data {
+                    attributes {
+                      title
+                      slug
+                      locale
+                    }
+                  }
+                }
+                spikes {
+                  data {
+                    attributes {
+                      title
+                      slug
+                      locale
+                    }
                   }
                 }
               }

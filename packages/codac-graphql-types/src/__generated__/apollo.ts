@@ -419,6 +419,26 @@ export const GetCourseProjectDocument = gql`
             attributes {
               name
               description
+              sprints {
+                lessons {
+                  data {
+                    attributes {
+                      title
+                      slug
+                      locale
+                    }
+                  }
+                }
+                spikes {
+                  data {
+                    attributes {
+                      title
+                      slug
+                      locale
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -519,19 +539,22 @@ export const GetCourseByNameDocument = gql`
                 objectives {
                   name
                 }
-              }
-            }
-          }
-        }
-        mentors {
-          data {
-            attributes {
-              user {
-                data {
-                  attributes {
-                    firstname
-                    lastname
-                    email
+                lessons {
+                  data {
+                    attributes {
+                      title
+                      slug
+                      locale
+                    }
+                  }
+                }
+                spikes {
+                  data {
+                    attributes {
+                      title
+                      slug
+                      locale
+                    }
                   }
                 }
               }
@@ -693,6 +716,24 @@ export const GetProjectsDocument = gql`
           objectives {
             name
           }
+          lessons {
+            data {
+              attributes {
+                title
+                slug
+                locale
+              }
+            }
+          }
+          spikes {
+            data {
+              attributes {
+                title
+                slug
+                locale
+              }
+            }
+          }
         }
       }
     }
@@ -739,6 +780,24 @@ export const GetProjectDocument = gql`
           length
           objectives {
             name
+          }
+          lessons {
+            data {
+              attributes {
+                title
+                slug
+                locale
+              }
+            }
+          }
+          spikes {
+            data {
+              attributes {
+                title
+                slug
+                locale
+              }
+            }
           }
         }
       }

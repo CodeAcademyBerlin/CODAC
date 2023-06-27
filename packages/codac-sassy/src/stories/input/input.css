@@ -1,11 +1,16 @@
 textarea {
-  border-radius: 1em;
+  border-radius: 0.75em;
   border: none;
+  padding: 1rem;
+  font-size: 16px;
+  font-size: "Noto Sans", sans-serif;
+  color: black;
 }
 textarea.lightmode {
-  background-color: yellow;
+  border: 1px solid #69fced;
+  background-color: #cdfef9;
 }
 textarea.darkmode {
+  border: 1px solid #69fced;
   background-color: white;
-  padding: 1rem;
 }/*# sourceMappingURL=input.css.map */

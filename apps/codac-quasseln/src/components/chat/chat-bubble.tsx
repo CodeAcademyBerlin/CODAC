@@ -1,15 +1,15 @@
+import { Bubble } from "codac-sassy";
 import React from "react";
 import { gql, useMutation, useQuery } from "@apollo/client";
-
 
 import { useAuth } from "#/contexts/authContext";
 
 // ++++++  creating the delete function... Chris 22/06/23 +++++++
 const deleteChatMessage = gql`
-  mutation deleteMessage( $id: ID!) {
-  deleteMessage(id: $id) {
-    data {
-      id
+  mutation deleteMessage($id: ID!) {
+    deleteMessage(id: $id) {
+      data {
+        id
       }
     }
   }
@@ -27,29 +27,24 @@ const deleteChatMessage = gql`
 interface Message {
   author: {
     data: {
-      id: string,
+      id: string;
       attributes: {
-        username: string,
-        email: string
-      }
-    }
-  }
-  body: string,
-  id: string,
-  timestamp: string,
-  updated: string | null
+        username: string;
+        email: string;
+      };
+    };
+  };
+  body: string;
+  id: string;
+  timestamp: string;
+  updated: string | null;
 }
 export const ChatBubble = ({ message }: { message: any }) => {
   const { user } = useAuth();
-  // const {data, refetch}= useQuery(Get)
-  console.log("message.id", message)
 
-  // esta funcion tengo que llamarla después.. ojo!! 
-  const [deleteMessageMutation] = useMutation(deleteChatMessage)
   const author =
-    message?.author?.data?.attributes?.username || (message?.author?.data?.attributes?.username as string);
-  const authorId =
-    message?.author.data?.id
+    message?.author?.data?.attributes?.username || (message?.author?.username as string);
+  const myMessage = user?.username === author; // Check if user is the author
 
   const formatDate = (timestamp: string) => {
     const date = new Date(timestamp);
@@ -64,8 +59,9 @@ export const ChatBubble = ({ message }: { message: any }) => {
     } else {
       formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     }
-    formattedDate += ` @ ${date.getHours() < 10 ? "0" : ""}${date.getHours()}:${date.getMinutes() < 10 ? "0" : ""
-      }${date.getMinutes()}`;
+    formattedDate += ` @ ${date.getHours() < 10 ? "0" : ""}${date.getHours()}:${
+      date.getMinutes() < 10 ? "0" : ""
+    }${date.getMinutes()}`;
     return formattedDate;
   };
 
@@ -73,31 +69,22 @@ export const ChatBubble = ({ message }: { message: any }) => {
     if (authorId === user?.id) {
       deleteMessageMutation({
         variables: {
-          id: `${message.id}`
-        }
-      })
+          id: `${message.id}`,
+        },
+      });
     }
-    alert("message deleted")
-  }
+    alert("message deleted");
+  };
 
   return (
-    <div className="message-container">
-      <div className={`message ${user?.username === author ? "my-message" : "you-all-message"}`}>
-        <div className="message-label"
-          style={{
-            display: "flexbox",
-            border: "2px white solid"
-          }}
-        >
-          {user?.username !== author ? <strong>{author}</strong> : <strong>me</strong>}{" "}
-          {formatDate(message.timestamp)}
-          <button >edit</button><br />
-          <button onClick={deleteMessage} >delete</button>
-        </div>
-        <div className="message-bubble">
-          <p>{message.body}</p>
-        </div>
-      </div>
-    </div>
+    <>
+      <Bubble
+        darkmode
+        content={message.body}
+        author={author}
+        {...(myMessage ? { editable: true } : { editable: false })}
+        timestamp={message.timestamp}
+      />
+    </>
   );
 };
