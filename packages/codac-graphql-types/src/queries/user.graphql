@@ -14,4 +14,12 @@ query getMe {
       url
     }
   }
+  chatrooms {
+    data {
+      id
+      attributes {
+        name
+      }
+    }
+  }
 }
