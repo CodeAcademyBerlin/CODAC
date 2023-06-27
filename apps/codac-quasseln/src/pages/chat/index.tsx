@@ -54,7 +54,8 @@ function Chat() {
         <div style={{ backgroundColor: "yellow" }} className="chatroom-nav">
           <span>Access other chat rooms</span>
           {data?.chats?.data.map((room) => (
-            <>
+            // chris added a div with the key={room.id} to solve error 22/06/23
+            <div key={room.id}>
               {room.attributes && (
                 <Button
                   key={room.id}
@@ -65,7 +66,7 @@ function Chat() {
                   {room.attributes.name ?? ""}
                 </Button>
               )}
-            </>
+            </div>
           ))}
         </div>
       </div>

@@ -249,7 +249,6 @@ export type Chatroom = {
 export type ChatroomConversationsArgs = {
   filters?: InputMaybe<ConversationFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
 };
 
@@ -1033,7 +1032,6 @@ export type Conversation = {
 export type ConversationMessagesArgs = {
   filters?: InputMaybe<MessageFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
 };
 
@@ -1882,7 +1880,6 @@ export type Message = {
   conversation?: Maybe<ConversationEntityResponse>;
   createdAt?: Maybe<Scalars["DateTime"]>;
   pinned?: Maybe<Scalars["Boolean"]>;
-  publishedAt?: Maybe<Scalars["DateTime"]>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
 };
 
@@ -1913,7 +1910,6 @@ export type MessageFiltersInput = {
   not?: InputMaybe<MessageFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<MessageFiltersInput>>>;
   pinned?: InputMaybe<BooleanFilterInput>;
-  publishedAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
@@ -1922,7 +1918,6 @@ export type MessageInput = {
   body?: InputMaybe<Scalars["String"]>;
   conversation?: InputMaybe<Scalars["ID"]>;
   pinned?: InputMaybe<Scalars["Boolean"]>;
-  publishedAt?: InputMaybe<Scalars["DateTime"]>;
 };
 
 export type MessageRelationResponseCollection = {
@@ -2813,7 +2808,6 @@ export type QueryChatroomArgs = {
 export type QueryChatroomsArgs = {
   filters?: InputMaybe<ChatroomFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
 };
 
@@ -2863,7 +2857,6 @@ export type QueryConversationArgs = {
 export type QueryConversationsArgs = {
   filters?: InputMaybe<ConversationFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
 };
 
@@ -2950,7 +2943,6 @@ export type QueryMessageArgs = {
 export type QueryMessagesArgs = {
   filters?: InputMaybe<MessageFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
 };
 
@@ -3594,6 +3586,12 @@ export type UsersPermissionsUser = {
 
 export type UsersPermissionsUserChatroomsArgs = {
   filters?: InputMaybe<ChatroomFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+};
+
+export type UsersPermissionsUserCoursesArgs = {
+  filters?: InputMaybe<CourseFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
@@ -4484,16 +4482,4 @@ export type GetAllStudentsQuery = {
 
 export type GetMeQueryVariables = Exact<{ [key: string]: never }>;
 
-export type GetMeQuery = {
-  __typename?: "Query";
-  me?: {
-    __typename?: "UsersPermissionsMe";
-    id?: string | null;
-    email?: string | null;
-    username: string;
-    firstname?: string | null;
-    lastname?: string | null;
-    role?: { __typename?: "UsersPermissionsMeRole"; id: string; name: string } | null;
-    avatar?: { __typename?: "UploadFile"; url: string } | null;
-  } | null;
-};
+export type GetAllStudentsQuery = { __typename?: 'Query', students?: { __typename?: 'StudentEntityResponseCollection', data: Array<{ __typename?: 'StudentEntity', attributes?: { __typename?: 'Student', github?: string | null, linkedin?: string | null, start_date?: any | null, user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', firstname?: string | null, lastname?: string | null, email: string, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null, cohort?: { __typename?: 'CohortEntityResponse', data?: { __typename?: 'CohortEntity', attributes?: { __typename?: 'Cohort', name?: string | null, start_date?: any | null } | null } | null } | null } | null }> } | null };

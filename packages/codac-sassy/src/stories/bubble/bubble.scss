@@ -1,0 +1,66 @@
+@import "../../../../../apps/codac-quasseln/styles/globals.scss";
+
+.bubble-container {
+  font-family: $font;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $reg-space;
+
+  &.my-message {
+    * {
+      grid-column-start: 2;
+    }
+  }
+
+  .legend {
+    font-size: 80%;
+  }
+
+  &.darkmode {
+    .bubble-message {
+      background-color: white;
+    }
+    .legend {
+      color: white;
+    }
+  }
+
+  .bubble-dashboard {
+    justify-content: flex-end;
+    margin: $xs-space $border-radius 0;
+    align-items: center;
+    gap: $sm-space;
+    display: flex;
+    height: fit-content;
+    button {
+      background-color: transparent;
+      border: none;
+      align-items: center;
+      padding: 0.1em;
+      display: flex;
+
+      &:hover {
+        opacity: 60%;
+      }
+
+      &:active {
+        opacity: 100%;
+        transform: scale(1.1);
+      }
+
+      img {
+        height: auto;
+        width: auto;
+        max-height: 12px;
+      }
+    }
+  }
+  .bubble-message {
+    min-height: 2rem;
+    max-height: fit-content;
+    border-radius: $border-radius;
+    padding: $reg-space;
+    font-family: $font;
+    background-color: lighten($codac-primary-color, 70%);
+  }
+}
