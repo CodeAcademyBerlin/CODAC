@@ -48,9 +48,7 @@ export const useGetCohortByName = (cohortName: string) => {
 };
 export const useGetStudent = (id: string) => {
   const { data, error, loading } = useQuery(GetStudentByIdDocument, {
-    variables: {
-      id: id,
-    },
+    variables: { id }
   });
   const student = data?.student?.data as StudentEntity;
 

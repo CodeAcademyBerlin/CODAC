@@ -11,6 +11,7 @@ export const StudentCard = (props: CardStudentProp) => {
     <div>
       <div className="">
         {student.attributes && (
+          
           <div className="relative">
             <div className="absolute top-2"></div>
             <Card
