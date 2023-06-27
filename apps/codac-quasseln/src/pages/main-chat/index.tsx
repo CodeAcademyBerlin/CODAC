@@ -86,7 +86,7 @@ const ChrisChat = (props: Props) => {
                   textAlign: "center"
                 }} >
                 {/* se puede con el nombre?? sería mejor... */}
-                <Link href={`chrischat/${chat.id}`}>
+                <Link href={`main-chat/${chat.id}`}>
                   <p>{chat.attributes.name}</p>
                 </Link>
               </div>
