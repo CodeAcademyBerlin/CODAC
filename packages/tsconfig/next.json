@@ -4,7 +4,6 @@
   "extends": "./react.json",
   "compilerOptions": {
     "allowJs": true,
-    "noEmit": true,
     "resolveJsonModule": true,
     "jsx": "preserve"
   }
