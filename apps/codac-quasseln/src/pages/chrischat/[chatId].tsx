@@ -134,14 +134,14 @@ const SingleChat = (props: Props) => {
   // const router = useRouter();
   const { chatId } = useRouter().query;
   const [active, setActive] = useState(2);
-  // Refetching enables you to refresh query results in response to a particular user action, as opposed to using a fixed interval.
+  // Refetching enables you to refrescdh query results in response to a particular user action, as opposed to using a fixed interval.
   const {
     data: chatRooms,
     error,
     loading,
   } = useQuery(getSingleChat, { variables: { id: chatId } });
   //  the refecth should be for the chat history...
-
+  console.log('chatRooms :>> ', chatRooms);
   const {
     data: allMessages,
     loading: chatLoading,
@@ -156,6 +156,7 @@ const SingleChat = (props: Props) => {
   // const [typing, setTyping] = useState(false);
 
   const [newMessageMutation] = useMutation(createNewMessage);
+
   const sendMessage = () => {
     if (messageText) {
       newMessageMutation({
