@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { getServerSession, Session } from "next-auth";
 import { getSession } from "next-auth/react";
 
-import { SearchResults } from "#/types/user";
+import { LMSSearchResults } from "#/types/user";
 import { authOptions } from "#/utils/auth";
 import { fetchAPI, fetchStrapi, fetchStrapiSuspense } from "#/utils/fetch-api";
 
@@ -21,7 +21,7 @@ import { fetchAPI, fetchStrapi, fetchStrapiSuspense } from "#/utils/fetch-api";
 
 export async function lmsSearch(query: string, token: string) {
   const options = { headers: { Authorization: `Bearer ${token}` } };
-  const data = await fetchStrapi<SearchResults>({
+  const data = await fetchStrapi<LMSSearchResults>({
     path: "/fuzzy-search/search/",
     urlParamsObject: {
       query: query,

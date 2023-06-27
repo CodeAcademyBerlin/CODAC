@@ -5,6 +5,7 @@ export const CoursesStreaming = async ({ data }: { data: Promise<Response> }) =>
   const courses = (await data.then(async (res) =>
     res.json()
   )) as CourseEntityResponseCollection | null;
+  console.log("courses", courses);
   return (
     <div className="space-y-6">
       <div>
@@ -12,22 +13,23 @@ export const CoursesStreaming = async ({ data }: { data: Promise<Response> }) =>
       </div>
 
       <div className="flex flex-wrap justify-around gap-6">
-        {courses?.data.map((course) => (
-          <div key={course.id} className="col-span-4 lg:col-span-1">
-            <div className="relative">
-              {/* <div className="absolute -left-4 top-2">
+        {courses?.data &&
+          courses.data.map((course) => (
+            <div key={course.id} className="col-span-4 lg:col-span-1">
+              <div className="relative">
+                {/* <div className="absolute -left-4 top-2">
                 {" "}
                 <Ping />
               </div> */}
-              <Card
-                image={course.attributes.image?.data.attributes.url}
-                title={course.attributes.name ?? ""}
-                tag={`${course.attributes.months} months`}
-                href={`/courses/${course.attributes.slug}`}
-              />
+                <Card
+                  image={course.attributes.image?.data.attributes.url}
+                  title={course.attributes.name ?? ""}
+                  tag={`${course.attributes.months} months`}
+                  href={`/courses/${course.attributes.slug}`}
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );
