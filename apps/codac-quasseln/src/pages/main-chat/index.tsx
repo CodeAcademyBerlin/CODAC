@@ -80,7 +80,7 @@ const ChrisChat = (props: Props) => {
               <div key={chat.id}
                 style={{
                   color: "white",
-                  margin: "5px",
+                  margin: "6px",
                   border: "2px solid white",
                   borderRadius: "5px",
                   textAlign: "center"
