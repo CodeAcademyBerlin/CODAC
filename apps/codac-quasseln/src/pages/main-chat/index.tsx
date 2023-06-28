@@ -80,13 +80,13 @@ const ChrisChat = (props: Props) => {
               <div key={chat.id}
                 style={{
                   color: "white",
-                  margin: "5px",
+                  margin: "6px",
                   border: "2px solid white",
                   borderRadius: "5px",
                   textAlign: "center"
                 }} >
                 {/* se puede con el nombre?? sería mejor... */}
-                <Link href={`chrischat/${chat.id}`}>
+                <Link href={`main-chat/${chat.id}`}>
                   <p>{chat.attributes.name}</p>
                 </Link>
               </div>
