@@ -10,7 +10,8 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "incremental": true
+    "incremental": true,
+    "noEmit": true
   },
   "include": [
     "next-env.d.ts",
