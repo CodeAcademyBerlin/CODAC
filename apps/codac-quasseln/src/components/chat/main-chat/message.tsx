@@ -1,11 +1,9 @@
-import { useState } from "react"
-import React from 'react'
+import { useState } from "react";
+import React from "react";
 import { useAuth } from "#/contexts/authContext";
 import { gql, useQuery } from "@apollo/client";
 
 import { formatDate } from "#/utils/api-helpers";
-
-
 
 // const [deleteModal, setDeleteModal] = useState(false);
 // const [optionsModal, setOptionsModal] = useState(false);
@@ -16,27 +14,22 @@ import { formatDate } from "#/utils/api-helpers";
 //   setOptionsModal(!optionsModal);
 // };
 const Message = ({ message }: { message: any }) => {
-
-
   console.log("message.id: ", message.id);
 
   const getSingleMessage = gql`
-  query GetMessageById($id: ID) {
-    message(id: $id ){
-      data{
-        id
-        attributes{ 
-          body
+    query GetMessageById($id: ID) {
+      message(id: $id) {
+        data {
+          id
+          attributes {
+            body
+          }
         }
       }
     }
-
-  }
   `;
 
-
-
-  const { loading, error, data } = useQuery(getSingleMessage, {
+  const { loading, error, data, refetch } = useQuery(getSingleMessage, {
     variables: { id: message.id },
   });
 
@@ -99,7 +92,9 @@ const Message = ({ message }: { message: any }) => {
         </div>
       </div>
       <div className="text_body">
-        <p style={{ padding: "2rem", fontSize: "2rem", color: "white" }}>{data && data.message.data.attributes?.body}</p>
+        <p style={{ padding: "2rem", fontSize: "2rem", color: "white" }}>
+          {data && data.message.data.attributes?.body}
+        </p>
       </div>
       {/* +++++++++++++++++++++++++++++ EDIT MODAL +++++++++++++++++++++ */}
       {/* {optionsModal && (
@@ -316,8 +311,7 @@ const Message = ({ message }: { message: any }) => {
         </div>
       )} */}
     </div>
+  );
+};
 
-  )
-}
-
-export default Message
+export default Message;
