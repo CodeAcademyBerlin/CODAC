@@ -4,7 +4,8 @@ import React, { FormEvent, useState } from "react";
 import { useAuth } from "#/contexts/authContext";
 import { timeStamp } from "console";
 
-// This query is to find the chatroom.... NOT all the messages...
+// This query is to find the chatroom.... NOT all the messages... (do you mean conversations????)
+
 const getSingleChat = gql`
   query GetChatQuery($id: ID) {
     chatroom(id: $id) {
@@ -17,6 +18,7 @@ const getSingleChat = gql`
               id
               attributes {
                 title
+                pinned
               }
             }
           }
@@ -32,6 +34,7 @@ const getChatHistoryById = gql`
       data {
         id
         attributes {
+          pinned
           messages {
             data {
               id
@@ -53,7 +56,7 @@ const getChatHistoryById = gql`
         }
       }
     }
-  } 
+  }
 `;
 // I have to add the pinned property to the query/mutation---
 const createNewMessage = gql`
@@ -111,25 +114,72 @@ const upDateChatMessage = gql`
 `;
 type Props = {};
 
-
 // fetching all pinned messages
-const getPinnedMessages = gql`
-query pinnedMessages {
-    messages(filters: { pinned: { eq: true } }){
-    data  {
-            id
-      attributes{
-                pinned
-            }
+// const getPinnedMessages = gql`
+//   query pinnedMessages {
+//     messages(filters: { pinned: { eq: true } }) {
+//       data {
+//         id
+//         attributes {
+//           pinned
+//         }
+//       }
+//     }
+//   }
+// `;
 
+// UPDATE PINNED CONVERSATION MUTATION/QUERY
+const updatePinnedConversation = gql`
+  mutation updateArticle($id: ID!, $pinned: Boolean!) {
+    updateConversation(id: $id, data: { pinned: $pinned }) {
+      data {
+        id
+        attributes {
+          title
+          pinned
         }
+      }
     }
-} `;
+  }
+`;
 
 const SingleChat = (props: Props) => {
   const { user } = useAuth();
+  console.log("user :>> ", user);
   const userId = user?.id;
-  console.log("userId :>> ", userId);
+  // console.log("userId :>> ", userId);
+
+  // UPDATE PINNED CONVERSATION FUNCTION
+  const [updatePinnedMutation] = useMutation(updatePinnedConversation);
+  const updatePinned = async (
+    e: React.MouseEvent<HTMLParagraphElement, MouseEvent>,
+    conversation: any
+  ) => {
+    e.preventDefault();
+    // const { user } = useAuth();
+    //  console.log("message.id :>> ", message.id);
+    if (user?.role?.name === "Mentor") {
+      if (conversation?.attributes?.pinned === false) {
+        updatePinnedMutation({
+          variables: {
+            id: conversation.id,
+            pinned: true,
+          },
+        });
+      } else if (conversation?.attributes?.pinned === true) {
+        updatePinnedMutation({
+          variables: {
+            id: conversation.id,
+            pinned: false,
+          },
+        });
+      }
+
+      await refetch();
+    }
+  };
+  ///////////////////////////////////////////////////////////////////////////////////////////
+
   // const router = useRouter();
   const { chatId } = useRouter().query;
   const [active, setActive] = useState("");
@@ -140,7 +190,7 @@ const SingleChat = (props: Props) => {
     loading,
   } = useQuery(getSingleChat, { variables: { id: chatId } });
   //  the refecth should be for the chat history...
-  console.log('chatRooms :>> ', chatRooms);
+  // console.log("chatRooms :>> ", chatRooms);
   const {
     data: allMessages,
     loading: chatLoading,
@@ -169,7 +219,6 @@ const SingleChat = (props: Props) => {
     }
     await refetch();
   };
-
 
   const [deleteMessageMutation] = useMutation(deleteChatMessage);
   //  the mentor has permmision to delete as well... condicional... id not working and only deleting first message...
@@ -247,72 +296,144 @@ const SingleChat = (props: Props) => {
 
   return (
     <div>
-      <h1 style={{
-        color: "white", fontWeight: "bold", textAlign: "center"
-      }} >Welcome to {chatRooms?.chatroom.data?.attributes.name}</h1>
+      <h1
+        style={{
+          color: "white",
+          fontWeight: "bold",
+          textAlign: "center",
+        }}
+      >
+        Welcome to {chatRooms?.chatroom.data?.attributes.name}
+      </h1>
 
       {/* Este es el div que alberga todo el chat!!!!!! */}
 
-      <div style={{
-        color: "whitesmoke",
-        display: "flex",
-        flexDirection: "row",
-        marginTop: "10px",
-        border: "green solid 3px"
-      }}>
-        <div className="container for conversations (pinned and normal...)"
+      <div
+        style={{
+          color: "whitesmoke",
+          display: "flex",
+          flexDirection: "row",
+          marginTop: "10px",
+          border: "green solid 3px",
+        }}
+      >
+        {/* CONVERSATIONS DIV */}
+        <div
+          className="for conversations (pinned and normal...) container"
           style={{
             display: "flex",
             flexDirection: "column",
-            width: "30%"
-          }}>
-          <div className="pinned-conversations..."
-            style={{
-              border: "white 3px solid",
-              marginBottom: "5px"
-            }}>
-            <h3>Pinned Conversations...</h3>
-          </div>
-          <hr />
+            width: "30%",
+            border: "solid 2px red",
+          }}
+        >
+          {/* HIER ARE THE PINNED CONVERSATIONS */}
+
           <div style={{ display: "flex", flexDirection: "column", gap: "5px", width: "100%" }}>
             {chatRooms &&
               chatRooms.chatroom?.data?.attributes.conversations?.data?.map((conversation: any) => {
-                return (
-                  <div
-                    style={
-                      {
-                        border: "solid 2px white",
-
-                      }
-                    }
-                    key={conversation.id}
-                    onClick={async () => {
-                      setActive(conversation.id);
-                    }}
-                  >
-                    <h3
+                // console.log("conversation :>> ", conversation);
+                if (conversation.attributes.pinned === true) {
+                  return (
+                    <div
                       style={{
-                        color: "white",
-                        margin: "5px",
-                        border: "2px solid white",
-                        borderRadius: "5px",
-                        textAlign: "center",
-                        cursor: "pointer",
+                        border: "solid 2px blue",
+                      }}
+                      key={conversation.id}
+                      onClick={async () => {
+                        setActive(conversation.id);
                       }}
                     >
-                      {conversation.attributes?.title}
-                    </h3>
-                  </div>
-                );
+                      {/* HIER COME THE PINN ICON; PLEASE CHANGE IT FOR THE <p> */}
+                      <>
+                        {user?.role?.name === "Mentor" ? (
+                          <p
+                            onClick={(e) => updatePinned(e, conversation)}
+                            style={{ cursor: "pointer" }}
+                          >
+                            X
+                          </p>
+                        ) : (
+                          ""
+                        )}
+                      </>
+                      <h3
+                        style={{
+                          color: "blue",
+                          margin: "5px",
+                          border: "2px solid blue",
+                          borderRadius: "5px",
+                          textAlign: "center",
+                          cursor: "pointer",
+                        }}
+                      >
+                        {conversation.attributes?.title}
+                      </h3>
+                    </div>
+                  );
+                }
+              })}
+          </div>
+
+          <hr />
+
+          {/* HIER ARE THE NOT PINNED CONVERSATIONS */}
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "5px", width: "100%" }}>
+            {chatRooms &&
+              chatRooms.chatroom?.data?.attributes.conversations?.data?.map((conversation: any) => {
+                console.log("conversation :>> ", conversation);
+                if (conversation.attributes.pinned === false) {
+                  return (
+                    <div
+                      style={{
+                        border: "solid 2px white",
+                      }}
+                      key={conversation.id}
+                      onClick={async () => {
+                        setActive(conversation.id);
+                      }}
+                    >
+                      {/* HIER COME THE PINN ICON; PLEASE CHANGE IT FOR THE <p> */}
+                      <>
+                        {user?.role?.name === "Mentor" ? (
+                          <p
+                            onClick={(e) => updatePinned(e, conversation)}
+                            style={{ cursor: "pointer" }}
+                          >
+                            X
+                          </p>
+                        ) : (
+                          ""
+                        )}
+                      </>
+
+                      <h3
+                        style={{
+                          color: "white",
+                          margin: "5px",
+                          border: "2px solid white",
+                          borderRadius: "5px",
+                          textAlign: "center",
+                          cursor: "pointer",
+                        }}
+                      >
+                        {conversation.attributes?.title}
+                      </h3>
+                    </div>
+                  );
+                }
               })}
           </div>
         </div>
 
         {/* All Messages from a conversation.... */}
-        <div style={{
-          border: "2px solid white",
-          width: "75%"
-        }}>
+        <div
+          style={{
+            border: "2px solid white",
+            width: "75%",
+          }}
+        >
           <div
             style={{
               border: "2px solid white",
@@ -454,7 +575,6 @@ const SingleChat = (props: Props) => {
                                 onKeyDown={(e) => {
                                   if (e.key === "Enter") {
                                     // updateMessage.....
-
                                   }
                                 }}
                               ></textarea>
@@ -567,7 +687,7 @@ const SingleChat = (props: Props) => {
                                     height: "30px",
                                     width: "80px",
                                   }}
-                                // onClick={toogleDeleteModal}
+                                  // onClick={toogleDeleteModal}
                                 >
                                   Continue
                                 </button>
@@ -596,7 +716,6 @@ const SingleChat = (props: Props) => {
                 );
               })}
           </div>
-
 
           {/* +++++++++++++++++++++++++ TEXT BODY +++++++++++++++++++ */}
           <div
@@ -639,7 +758,6 @@ const SingleChat = (props: Props) => {
             </button>
           </div>
         </div>
-
       </div>
     </div>
   );
