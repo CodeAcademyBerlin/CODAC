@@ -54,7 +54,7 @@ const getChatHistoryById = gql`
         }
       }
     }
-  } 
+  }
 `;
 // I have to add the pinned property to the query/mutation---
 const createNewMessage = gql`
@@ -112,20 +112,19 @@ const upDateChatMessage = gql`
 `;
 type Props = {};
 
-
 // fetching all pinned messages
 const getPinnedMessages = gql`
-query pinnedMessages {
-    messages(filters: { pinned: { eq: true } }){
-    data  {
-            id
-      attributes{
-                pinned
-            }
-
+  query pinnedMessages {
+    messages(filters: { pinned: { eq: true } }) {
+      data {
+        id
+        attributes {
+          pinned
         }
+      }
     }
-} `;
+  }
+`;
 
 const SingleChat = (props: Props) => {
   const { user } = useAuth();
@@ -136,12 +135,12 @@ const SingleChat = (props: Props) => {
   const [active, setActive] = useState("");
   // Refetching enables you to refrescdh query results in response to a particular user action, as opposed to using a fixed interval.
   const {
-    data: chatRooms,
+    data: conversations,
     error,
     loading,
   } = useQuery(getSingleChat, { variables: { id: chatId } });
   //  the refecth should be for the chat history...
-  console.log('chatRooms :>> ', chatRooms);
+  console.log("chatRooms :>> ", conversations);
   const {
     data: allMessages,
     loading: chatLoading,
@@ -171,44 +170,43 @@ const SingleChat = (props: Props) => {
     await refetch();
   };
 
-
-  const [deleteMessageMutation] = useMutation(deleteChatMessage);
-  //  the mentor has permmision to delete as well... condicional... id not working and only deleting first message...
-  const deleteMessage = async (e: FormEvent<HTMLFormElement>, message: any) => {
-    e.preventDefault();
-    console.log("object :>> ", message.attributes.author.data?.id);
-    if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
-      deleteMessageMutation({
-        variables: {
-          id: message.id,
-        },
-      });
-      await refetch();
-    }
-    setDeleteModal(!deleteModal);
-  };
+  // const [deleteMessageMutation] = useMutation(deleteChatMessage);
+  // //  the mentor has permmision to delete as well... condicional... id not working and only deleting first message...
+  // const deleteMessage = async (e: FormEvent<HTMLFormElement>, message: any) => {
+  //   e.preventDefault();
+  //   console.log("object :>> ", message.attributes.author.data?.id);
+  //   if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
+  //     deleteMessageMutation({
+  //       variables: {
+  //         id: message.id,
+  //       },
+  //     });
+  //     await refetch();
+  //   }
+  //   setDeleteModal(!deleteModal);
+  // };
   // when fetch the message we let graphql
   // sort property and sort the messages by created.... display them like that
 
-  const [updateMessageMutation] = useMutation(upDateChatMessage);
+  // const [updateMessageMutation] = useMutation(upDateChatMessage);
 
-  const updateMessage = async (e: FormEvent<HTMLFormElement>, message: any) => {
-    e.preventDefault();
-    console.log("message.id :>> ", message.id);
-    if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
-      if (messageText) {
-        updateMessageMutation({
-          variables: {
-            id: message.id,
-            body: messageText,
-          },
-        });
-      }
-      setMessageText("");
-      await refetch();
-    }
-    setOptionsModal(!optionsModal);
-  };
+  // const updateMessage = async (e: FormEvent<HTMLFormElement>, message: any) => {
+  //   e.preventDefault();
+  //   console.log("message.id :>> ", message.id);
+  //   if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
+  //     if (messageText) {
+  //       updateMessageMutation({
+  //         variables: {
+  //           id: message.id,
+  //           body: messageText,
+  //         },
+  //       });
+  //     }
+  //     setMessageText("");
+  //     await refetch();
+  //   }
+  //   setOptionsModal(!optionsModal);
+  // };
 
   // this is for the date in each message...
   const formatDate = (timestamp: string) => {
@@ -248,72 +246,85 @@ const SingleChat = (props: Props) => {
 
   return (
     <div>
-      <h1 style={{
-        color: "white", fontWeight: "bold", textAlign: "center"
-      }} >Welcome to {chatRooms?.chatroom.data?.attributes.name}</h1>
+      <h1
+        style={{
+          color: "white",
+          fontWeight: "bold",
+          textAlign: "center",
+        }}
+      >
+        Welcome to {conversations?.chatroom.data?.attributes.name}
+      </h1>
 
       {/* Este es el div que alberga todo el chat!!!!!! */}
 
-      <div style={{
-        color: "whitesmoke",
-        display: "flex",
-        flexDirection: "row",
-        marginTop: "10px",
-        border: "green solid 3px"
-      }}>
-        <div className="container for conversations (pinned and normal...)"
+      <div
+        style={{
+          color: "whitesmoke",
+          display: "flex",
+          flexDirection: "row",
+          marginTop: "10px",
+          border: "green solid 3px",
+        }}
+      >
+        <div
+          className="for conversations (pinned and normal...) container"
           style={{
             display: "flex",
             flexDirection: "column",
-            width: "30%"
-          }}>
-          <div className="pinned-conversations..."
+            width: "30%",
+          }}
+        >
+          <div
+            className="pinned-conversations..."
             style={{
               border: "white 3px solid",
-              marginBottom: "5px"
-            }}>
+              marginBottom: "5px",
+            }}
+          >
             <h3>Pinned Conversations...</h3>
           </div>
           <hr />
           <div style={{ display: "flex", flexDirection: "column", gap: "5px", width: "100%" }}>
-            {chatRooms &&
-              chatRooms.chatroom?.data?.attributes.conversations?.data?.map((conversation: any) => {
-                return (
-                  <div
-                    style={
-                      {
-                        border: "solid 2px white",
-
-                      }
-                    }
-                    key={conversation.id}
-                    onClick={async () => {
-                      setActive(conversation.id);
-                    }}
-                  >
-                    <h3
+            {conversations &&
+              conversations.chatroom?.data?.attributes.conversations?.data?.map(
+                (conversation: any) => {
+                  return (
+                    <div
                       style={{
-                        color: "white",
-                        margin: "5px",
-                        border: "2px solid white",
-                        borderRadius: "5px",
-                        textAlign: "center",
-                        cursor: "pointer",
+                        border: "solid 2px white",
+                      }}
+                      key={conversation.id}
+                      onClick={async () => {
+                        setActive(conversation.id);
                       }}
                     >
-                      {conversation.attributes?.title}
-                    </h3>
-                  </div>
-                );
-              })}
+                      <h3
+                        style={{
+                          color: "white",
+                          margin: "5px",
+                          border: "2px solid white",
+                          borderRadius: "5px",
+                          textAlign: "center",
+                          cursor: "pointer",
+                        }}
+                      >
+                        {conversation.attributes?.title}
+                      </h3>
+                    </div>
+                  );
+                }
+              )}
           </div>
         </div>
 
         {/* All Messages from a conversation.... */}
-        <div style={{
-          border: "2px solid white",
-          width: "75%"
-        }}>
+        <div
+          style={{
+            border: "2px solid white",
+            width: "75%",
+          }}
+        >
           <div
             style={{
               border: "2px solid white",
@@ -325,13 +336,9 @@ const SingleChat = (props: Props) => {
           >
             {allMessages &&
               allMessages?.conversation?.data.attributes?.messages?.data?.map((message: any) => {
-                return (
-
-                  <Message message={message} />
-                );
+                return <Message message={message} />;
               })}
           </div>
-
 
           {/* +++++++++++++++++++++++++ TEXT BODY +++++++++++++++++++ */}
           <div
@@ -374,7 +381,6 @@ const SingleChat = (props: Props) => {
             </button>
           </div>
         </div>
-
       </div>
     </div>
   );
