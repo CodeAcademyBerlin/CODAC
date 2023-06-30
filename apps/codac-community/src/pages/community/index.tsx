@@ -8,20 +8,21 @@ import { initializeApollo } from "#/lib/apolloClient";
 function Community({ cohorts }: { cohorts: CohortEntity[] }) {
   return (
     <>
-      <div className="space-y-10 p-10">
+      <div className="">
         <div>
           <div className="text-lg font-medium text-white">Cohorts</div>
         </div>
-        <div className="flex min-w-full grid-cols-5 flex-wrap gap-4 object-cover">
+        <div className="flex min-w-full grid-cols-5 flex-wrap object-cover">
           {cohorts.map((cohort) => (
             <div
               key={cohort.id}
-              className=" object-cover transition-transform duration-300 hover:scale-105"
+              className="object-cover transition-transform duration-300 hover:scale-105"
             >
               {cohort.attributes && (
-                <div className="relative  ">
+                <div className="relative">
                   <Card
                     image={cohort.attributes.logo?.data.attributes.url}
+                    startDate={cohort.attributes.start_date ?? ""}
                     title={cohort.attributes.name ?? ""}
                     tag={`${cohort.attributes.students?.data.length ?? ""} students`}
                     href={`community/cohort/${cohort.attributes.name}`}

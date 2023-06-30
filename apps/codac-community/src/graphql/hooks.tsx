@@ -7,11 +7,14 @@ import { GetStudentByIdDocument } from "./queries/student";
 
 export const useGetStudentsByCohorts = (cohortName: string) => {
   const { data, error, loading } = useQuery(GetStudentsByCohortDocument, {
+
     variables: {
       cohortName: cohortName,
     },
   });
+      console.log(data);
   const students = data?.students?.data as StudentEntity[];
+  console.log(students)
 
   return { students, error, loading };
 };

@@ -12,10 +12,10 @@ const MentorList = () => {
 
   return (
     <>
-      <div className="space-y-10">
+      <div className="">
         {loading && <SkeletonCards number={3} isLoading={loading} />}
         {error && <div>something is wrong</div>}
-        <div className="flex min-w-full flex-wrap gap-3 object-cover p-10">
+        <div className="flex min-w-full grid-cols-5 flex-wrap ">
           {mentors &&
             mentors.map((mentor: MentorEntity) => {
               const avatarUrl =

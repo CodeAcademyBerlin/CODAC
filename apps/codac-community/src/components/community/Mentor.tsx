@@ -18,6 +18,7 @@ export const Mentor = ({ id }: { id: string  }) => {
                 <Card
                   image={mentor.attributes.user?.data.attributes.avatar?.data.attributes.url ?? ""}
                   title={mentor.attributes.user?.data.attributes.username}
+                 
                 />
               </div>
             )}
