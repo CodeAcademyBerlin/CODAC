@@ -1,76 +1,355 @@
+.go-to-chat-container {
+  margin-top: $reg-space;
+}
+.go-to-chat {
+  display: flex;
+  gap: $sm-space;
+  align-items: center;
+  width: fit-content;
+  color: white;
+  font-weight: 600;
+  border-bottom: $border-solid white;
+  .icon path {
+    fill: white;
+  }
+  &:hover {
+    border-bottom: $border-solid transparent;
+  }
+}
+
 /** messages chronology **/
+h1 {
+  color: white;
+  font-size: xx-large;
+}
+
+.chatroom-access-link-container {
+  display: flex;
+  gap: $reg-space !important;
+  margin: $reg-space 0;
+  flex-direction: column;
+  .chatroom-access-link {
+    padding: $reg-space;
+    border-radius: $border-radius;
+    cursor: pointer;
+    display: flex;
+    gap: $reg-space;
+    align-items: center;
+    border: $border-solid-xl transparent;
+    background-color: rgb(30, 30, 30);
+    color: white;
+    .icon path {
+      fill: white;
+    }
+  }
+}
 
 .chatroom-container {
   display: flex;
   flex-direction: column;
   gap: $reg-space;
   border: 2px solid orange;
-  // display: grid;
-  // grid-template-columns: 1fr 1fr;
-  // gap: $reg-space;
-
-  // .message-container {
-  //   display: grid;
-  //   grid-template-columns: 1fr 1fr;
-  //   gap: $reg-space;
-  // }
-  // applying to all messages
-  // .message {
-  //   grid-column: span 1;
-  //   padding: $sm-space $reg-space $reg-space;
-  //   border-radius: $border-radius;
-
-  //   .message-label {
-  //     font-size: $smaller-text;
-  //     padding: $sm-space 0;
-  //   }
-  // }
-  // my messages
-  // .my-message {
-  //   background-color: white;
-  //   grid-column-start: 2;
-
-  //   .message-label {
-  //     text-align: right;
-  //   }
-  // }
-  // other users' messages
-  // .you-all-message {
-  //   background-color: lighten($codac-primary-color, 60%);
-  //   grid-column-start: 1;
-  // }
 }
 
-/** send a message **/
+///////////////
+
+.chat-container {
+  color: white;
+  margin: $reg-space 0;
+  display: flex;
+
+  .chat-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 20em;
+    width: 30%;
+    background-color: rgb(20, 20, 20);
+
+    .pinned-conversations-container,
+    .unpinned-conversations-container {
+      display: flex;
+      flex-direction: column;
+      gap: $reg-space;
+      padding: $reg-space $reg-space * 2 $reg-space $reg-space;
+
+      .pinned-conversation,
+      .unpinned-conversation {
+        padding: $reg-space;
+        border-radius: $border-radius;
+        cursor: pointer;
+        display: flex;
+        gap: $reg-space;
+        align-items: center;
+        font-weight: 600;
+        border: $border-solid-xl transparent;
+      }
+    }
+    .pinned-conversations-container {
+      background-color: $codac-primary-color;
+      border-radius: $border-radius 0 0 0;
+
+      .pinned-conversation {
+        color: darken($codac-primary-color, 20%);
+        background-color: lighten($codac-primary-color, 60%);
+        &.is-inactive {
+          background-color: darken($codac-primary-color, 5%);
+          color: white;
+          .pin-icon path {
+            fill: lighten($codac-primary-color, 20%);
+          }
+          &:hover {
+            color: darken($codac-primary-color, 20%);
+            .pin-icon path {
+              fill: darken($codac-primary-color, 20%);
+            }
+          }
+        }
+
+        .pin-icon {
+          path {
+            fill: darken($codac-primary-color, 10%);
+          }
+        }
+
+        &:hover {
+          background-color: lighten($codac-primary-color, 50%);
+        }
+
+        &:active {
+          border: $border-solid-xl lighten($codac-primary-color, 20%);
+        }
+      }
+    }
+    .unpinned-conversations-container {
+      background-color: rgb(30, 30, 30);
+      border-radius: 0 0 0 $border-radius;
+      height: 100%;
+      .unpinned-conversation {
+        background-color: rgb(20, 20, 20);
+
+        .unpin-icon {
+          path {
+            fill: lighten($codac-primary-color, 20%);
+          }
+        }
+
+        &.is-active {
+          background-color: white;
+          color: rgb(20, 20, 20);
+        }
+      }
+    }
+
+    .conversations-container-title {
+      font-size: 80%;
+    }
+  }
+
+  .chat-convo-container {
+    background-color: rgb(40, 40, 40);
+    border-radius: 0 $border-radius $border-radius 0;
+    padding: $reg-space $reg-space $reg-space $reg-space * 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: $reg-space !important;
+
+    .message-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      gap: $reg-space;
+
+      .message-bubble {
+        border-radius: $border-radius;
+        color: black;
+
+        .message-label {
+          font-size: 80%;
+          color: white;
+          padding: $xs-space;
+          display: flex;
+          gap: $xs-space;
+          justify-content: flex-end;
+
+          .message-functions-panel {
+            padding: 0 $border-radius;
+            display: flex;
+            gap: $sm-space;
+
+            .icon {
+              path {
+                fill: white;
+                &:hover {
+                  fill: lighten($codac-primary-color, 70%);
+                }
+                &:active {
+                  fill: lighten($codac-primary-color, 50%);
+                }
+              }
+            }
+          }
+        }
+
+        &.my-message {
+          grid-column-start: 2;
+          .message-text {
+            background-color: white;
+          }
+        }
+        &.user-message {
+          .message-text {
+            background-color: lighten($codac-primary-color, 70%);
+          }
+        }
+      }
+    }
+  }
+}
+
+.message-text {
+  padding: $reg-space;
+  border-radius: $border-radius;
+}
+
+.edit-message-modal-overlay,
+.delete-post-modal-overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.edit-message-modal-container,
+.delete-message-modal_container {
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  border-radius: $border-radius;
+  background-color: lighten($codac-primary-color, 70%);
+  justify-content: center;
+  padding: $reg-space;
+  margin: 15rem auto;
+  gap: $reg-space;
+
+  p {
+    color: darken($codac-primary-color, 60%);
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: $sm-space;
+    label {
+      font-weight: 600;
+    }
+    textarea {
+      margin: $sm-space 0;
+      border-radius: $border-radius;
+      padding: $reg-space;
+      border: $border-solid $codac-primary-color;
+    }
+    .buttons-container {
+      display: flex;
+      gap: $sm-space;
+      margin-top: $reg-space;
+      button {
+        padding: $sm-space;
+        border-radius: $border-radius;
+        font-weight: 600;
+      }
+      button.primary {
+        background-color: $codac-primary-color;
+        color: white;
+        border: $border-solid transparent;
+        &:hover {
+          background-color: darken($codac-primary-color, 5%);
+          border: $border-solid transparent;
+        }
+        &:active {
+          background-color: darken($codac-primary-color, 5%);
+          border: $border-solid lighten($codac-primary-color, 20%);
+        }
+      }
+      button.secondary {
+        border: $border-solid $codac-primary-color;
+        color: $codac-primary-color;
+        &:hover {
+          background-color: lighten($codac-primary-color, 75%);
+        }
+        &:active {
+          border: $border-solid lighten($codac-primary-color, 20%);
+        }
+      }
+    }
+  }
+}
 
 .send-message-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   gap: $reg-space;
-
-  div {
-    display: flex;
-    gap: $sm-space;
-    flex-direction: column;
-    width: 100%;
-    grid-column-start: 2;
-    align-items: flex-end;
-  }
 
   textarea {
+    color: black;
     width: 100%;
     border-radius: $border-radius;
-    background-color: lighten($codac-primary-color, 70%);
+  }
+
+  button {
+    height: fit-content;
+    width: fit-content;
+    padding: $reg-space;
+    border-radius: $border-radius;
+    color: darken($codac-primary-color, 20%);
+    background-color: lighten($codac-primary-color, 30%);
+    display: flex;
+    gap: $sm-space;
+    align-items: center;
+    &:hover {
+      background-color: lighten($codac-primary-color, 50%);
+    }
+    &:active {
+      border: $border-solid lighten($codac-primary-color, 20%);
+    }
   }
 }
 
-.activity-message {
-  color: white;
-  font-size: $smaller-text;
-}
+// /** send a message **/
 
-.chatroom-nav {
-  display: flex;
-  gap: $reg-space;
-  align-items: center;
-}
+// .send-message-container {
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+//   gap: $reg-space;
+
+//   div {
+//     display: flex;
+//     gap: $sm-space;
+//     flex-direction: column;
+//     width: 100%;
+//     grid-column-start: 2;
+//     align-items: flex-end;
+//   }
+
+//   textarea {
+//     width: 100%;
+//     border-radius: $border-radius;
+//     background-color: lighten($codac-primary-color, 70%);
+//   }
+// }
+
+// .activity-message {
+//   color: white;
+//   font-size: $smaller-text;
+// }
+
+// .chatroom-nav {
+//   display: flex;
+//   gap: $reg-space;
+//   align-items: center;
+// }
