@@ -117,6 +117,7 @@ const Message = ({ message }: { message: any }) => {
               <button
                 onClick={() => {
                   setEditToggle(!editToggle);
+                  setNewMsg(message.attributes.body);
                 }}
               >
                 Edit
