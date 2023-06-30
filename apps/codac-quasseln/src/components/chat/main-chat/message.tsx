@@ -60,7 +60,7 @@ const Message = ({ message }: { message: any }) => {
   console.log("message.id: ", message.id);
   const [hiddenDiv, setHiddenDiv] = useState(false);
   const [editToggle, setEditToggle] = useState(false);
-  const [newMsg, setNewMsg] = useState("");
+  const [newMsg, setNewMsg] = useState(message?.attributes?.body || "");
 
   const { loading, error, data, refetch } = useQuery(getSingleMessage, {
     variables: { id: message.id },
@@ -90,7 +90,8 @@ const Message = ({ message }: { message: any }) => {
   const updateMessage = async (e: FormEvent<HTMLFormElement>, message: any) => {
     e.preventDefault();
     console.log("message.id :>> ", message.id);
-    if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
+    console.log("msg attributes:>>", message.attributes);
+    if (userId === message.attributes.author.data.id) {
       if (newMsg) {
         updateMessageMutation({
           variables: {
@@ -148,9 +149,15 @@ const Message = ({ message }: { message: any }) => {
       {editToggle && (
         <>
           <div className="option-B">
-            <form action="submit">
-              <label htmlFor="newText">{message && message.attributes?.body}</label>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              updateMessage(e, message);
+              setEditToggle(!editToggle);
+            }}>
+
               <textarea
+                style={{ resize: "none", color: "black" }}
+                // className="text-black"
                 name="newText"
                 value={newMsg}
                 onChange={(e) => {
@@ -159,13 +166,7 @@ const Message = ({ message }: { message: any }) => {
                 }}
               />
               <button
-                type="submit"
-                onClick={() => {
-                  updateMessage;
-                }}
-              >
-                Submit
-              </button>
+                type="submit">Submit</button>
               <button
                 type="button"
                 onClick={() => {

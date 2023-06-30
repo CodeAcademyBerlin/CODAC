@@ -156,7 +156,7 @@ const SingleChat = (props: Props) => {
 
   const [newMessageMutation] = useMutation(createNewMessage);
 
-  const sendMessage = async () => {
+  const sendMessage = () => {
     if (messageText) {
       newMessageMutation({
         variables: {
@@ -167,7 +167,7 @@ const SingleChat = (props: Props) => {
       });
       setMessageText("");
     }
-    await refetch();
+    refetch();
   };
 
   // const [deleteMessageMutation] = useMutation(deleteChatMessage);
