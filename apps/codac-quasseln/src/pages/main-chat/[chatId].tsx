@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { gql, useQuery, useMutation } from "@apollo/client";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 import { useAuth } from "#/contexts/authContext";
 import { timeStamp } from "console";
 import Message from "#/components/chat/main-chat/message";
@@ -154,10 +154,6 @@ const SingleChat = (props: Props) => {
   const deleteMsg = () => {
     refetch()
   }
-
-
-
-
   // UPDATE PINNED CONVERSATION FUNCTION
   const [updatePinnedMutation] = useMutation(updatePinnedConversation);
   const updatePinned = async (
@@ -206,6 +202,15 @@ const SingleChat = (props: Props) => {
     error: messageError,
     refetch,
   } = useQuery(getChatHistoryById, { variables: { id: active } });
+
+  // FUNCTION TO SCROLL DOWN TO THE LAST MESSAGE IN THE CHAT
+  const messagesEndRef = React.useRef<HTMLDivElement>(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }
+  useEffect(scrollToBottom, [allMessages]);
+
+
 
   // do I need this chatHistory state????
   // const [chatHistory, setChatHistory] = useState([]);
@@ -452,13 +457,14 @@ const SingleChat = (props: Props) => {
           >
             {allMessages &&
               allMessages?.conversation?.data.attributes?.messages?.data?.map((message: any) => {
+
                 return <Message
                   message={message}
                   deleteMsg={deleteMsg}
-
-
                 />;
+
               })}
+            <div ref={messagesEndRef} />
           </div>
 
           {/* +++++++++++++++++++++++++ TEXT BODY +++++++++++++++++++ */}
