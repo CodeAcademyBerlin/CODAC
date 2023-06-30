@@ -56,8 +56,8 @@ const deleteChatMessage = gql`
   }
 `;
 
-const Message = ({ message }: { message: any }) => {
-  console.log("message.id: ", message.id);
+const Message = ({ message, deleteMsg }: { message: any, deleteMsg: () => void }) => {
+  // console.log("message.id: ", message.id);
   const [hiddenDiv, setHiddenDiv] = useState(false);
   const [editToggle, setEditToggle] = useState(false);
   const [newMsg, setNewMsg] = useState(message?.attributes?.body || "");
@@ -76,21 +76,21 @@ const Message = ({ message }: { message: any }) => {
 
   const [deleteMessageMutation] = useMutation(deleteChatMessage);
   //  the mentor has permmision to delete as well... condicional... id not working and only deleting first message...
-  const deleteMessage = async (messageId: any) => {
-    console.log("object :>> ", message.attributes.author.data?.id);
+  const deleteMessage = (messageId: any) => {
+    // console.log("object :>> ", message.attributes.author.data?.id);
     if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
       deleteMessageMutation({
         variables: {
           id: message.id,
         },
       });
-      await refetch();
+      deleteMsg()
     }
   };
   const updateMessage = async (e: FormEvent<HTMLFormElement>, message: any) => {
     e.preventDefault();
-    console.log("message.id :>> ", message.id);
-    console.log("msg attributes:>>", message.attributes);
+    // console.log("message.id :>> ", message.id);
+    // console.log("msg attributes:>>", message.attributes);
     if (userId === message.attributes.author.data.id) {
       if (newMsg) {
         updateMessageMutation({
@@ -112,7 +112,7 @@ const Message = ({ message }: { message: any }) => {
         <>
           <div className="option-A" style={{ border: "2px solid white", margin: "1rem" }}>
             <p>
-              {message && message.attributes.author.data.attributes.username} -{" "}
+              {message && message.attributes.author.data?.attributes.username} -{" "}
               {message && message.attributes.createdAt}{" "}
               <button
                 onClick={() => {
@@ -134,14 +134,15 @@ const Message = ({ message }: { message: any }) => {
             <p>{message && message.attributes?.body}</p>
             {hiddenDiv && (
               <>
-                <span>No</span>
-                <span
+                <button>No</button>
+                <button
                   onClick={() => {
                     deleteMessage(message.id);
+
                   }}
                 >
                   Yes
-                </span>
+                </button>
               </>
             )}
           </div>

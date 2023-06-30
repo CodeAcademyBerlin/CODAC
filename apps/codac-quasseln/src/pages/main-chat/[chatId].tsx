@@ -147,9 +147,16 @@ const updatePinnedConversation = gql`
 const SingleChat = (props: Props) => {
   const [testVariable, setTestVariable] = useState(false);
   const { user } = useAuth();
-  console.log("user :>> ", user);
+  // console.log("user :>> ", user);
   const userId = user?.id;
-  // console.log("userId :>> ", userId);
+  // console.log("userId :>> ", userId)
+
+  const deleteMsg = () => {
+    refetch()
+  }
+
+
+
 
   // UPDATE PINNED CONVERSATION FUNCTION
   const [updatePinnedMutation] = useMutation(updatePinnedConversation);
@@ -220,7 +227,8 @@ const SingleChat = (props: Props) => {
       setMessageText("");
     }
     refetch();
-    setTestVariable(!testVariable);
+    // setTestVariable(!testVariable);
+
   };
 
   // const [deleteMessageMutation] = useMutation(deleteChatMessage);
@@ -284,12 +292,13 @@ const SingleChat = (props: Props) => {
   // console.log('chatId :>> ', chatId);
   // console.log('router :>> ', router);
   // console.log('data :>> ', chatRooms);
-  console.log("messages history :>> ", allMessages?.conversation?.data.attributes.messages.data);
+  // console.log("messages history :>> ", allMessages?.conversation?.data.attributes.messages.data);
 
   // +++++++++++++++++++++++ MODALS ++++++++++++++++++++++
 
   return (
     <div>
+
       <h1
         style={{
           color: "white",
@@ -379,7 +388,7 @@ const SingleChat = (props: Props) => {
             {conversations &&
               conversations.chatroom?.data?.attributes.conversations?.data?.map(
                 (conversation: any) => {
-                  console.log("conversation :>> ", conversation);
+                  // console.log("conversation :>> ", conversation);
                   if (conversation.attributes.pinned === false) {
                     return (
                       <div
@@ -443,7 +452,12 @@ const SingleChat = (props: Props) => {
           >
             {allMessages &&
               allMessages?.conversation?.data.attributes?.messages?.data?.map((message: any) => {
-                return <Message message={message} />;
+                return <Message
+                  message={message}
+                  deleteMsg={deleteMsg}
+
+
+                />;
               })}
           </div>
 
