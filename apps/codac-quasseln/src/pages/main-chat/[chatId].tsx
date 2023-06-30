@@ -36,7 +36,7 @@ const getChatHistoryById = gql`
         id
         attributes {
           pinned
-          messages {
+          messages(pagination: { page: 1, pageSize: 100 }) {
             data {
               id
               attributes {
@@ -145,6 +145,7 @@ const updatePinnedConversation = gql`
 `;
 
 const SingleChat = (props: Props) => {
+  const [testVariable, setTestVariable] = useState(false);
   const { user } = useAuth();
   console.log("user :>> ", user);
   const userId = user?.id;
@@ -219,6 +220,7 @@ const SingleChat = (props: Props) => {
       setMessageText("");
     }
     refetch();
+    setTestVariable(!testVariable);
   };
 
   // const [deleteMessageMutation] = useMutation(deleteChatMessage);
@@ -286,15 +288,6 @@ const SingleChat = (props: Props) => {
 
   // +++++++++++++++++++++++ MODALS ++++++++++++++++++++++
 
-  const [deleteModal, setDeleteModal] = useState(false);
-  const [optionsModal, setOptionsModal] = useState(false);
-  const toogleDeleteModal = () => {
-    setDeleteModal(!deleteModal);
-  };
-  const toogleOptionsModal = () => {
-    setOptionsModal(!optionsModal);
-  };
-
   return (
     <div>
       <h1
@@ -332,48 +325,50 @@ const SingleChat = (props: Props) => {
 
           <div style={{ display: "flex", flexDirection: "column", gap: "5px", width: "100%" }}>
             {conversations &&
-              conversations.chatroom?.data?.attributes.conversations?.data?.map((conversation: any) => {
-                // console.log("conversation :>> ", conversation);
-                if (conversation.attributes.pinned === true) {
-                  return (
-                    <div
-                      style={{
-                        border: "solid 2px blue",
-                      }}
-                      key={conversation.id}
-                      onClick={async () => {
-                        setActive(conversation.id);
-                      }}
-                    >
-                      {/* HIER COME THE PINN ICON; PLEASE CHANGE IT FOR THE <p> */}
-                      <>
-                        {user?.role?.name === "Mentor" ? (
-                          <p
-                            onClick={(e) => updatePinned(e, conversation)}
-                            style={{ cursor: "pointer" }}
-                          >
-                            X
-                          </p>
-                        ) : (
-                          ""
-                        )}
-                      </>
-                      <h3
+              conversations.chatroom?.data?.attributes.conversations?.data?.map(
+                (conversation: any) => {
+                  // console.log("conversation :>> ", conversation);
+                  if (conversation.attributes.pinned === true) {
+                    return (
+                      <div
                         style={{
-                          color: "blue",
-                          margin: "5px",
-                          border: "2px solid blue",
-                          borderRadius: "5px",
-                          textAlign: "center",
-                          cursor: "pointer",
+                          border: "solid 2px blue",
+                        }}
+                        key={conversation.id}
+                        onClick={async () => {
+                          setActive(conversation.id);
                         }}
                       >
-                        {conversation.attributes?.title}
-                      </h3>
-                    </div>
-                  );
+                        {/* HIER COME THE PINN ICON; PLEASE CHANGE IT FOR THE <p> */}
+                        <>
+                          {user?.role?.name === "Mentor" ? (
+                            <p
+                              onClick={(e) => updatePinned(e, conversation)}
+                              style={{ cursor: "pointer" }}
+                            >
+                              X
+                            </p>
+                          ) : (
+                            ""
+                          )}
+                        </>
+                        <h3
+                          style={{
+                            color: "blue",
+                            margin: "5px",
+                            border: "2px solid blue",
+                            borderRadius: "5px",
+                            textAlign: "center",
+                            cursor: "pointer",
+                          }}
+                        >
+                          {conversation.attributes?.title}
+                        </h3>
+                      </div>
+                    );
+                  }
                 }
-              })}
+              )}
           </div>
 
           <hr />
@@ -382,49 +377,51 @@ const SingleChat = (props: Props) => {
 
           <div style={{ display: "flex", flexDirection: "column", gap: "5px", width: "100%" }}>
             {conversations &&
-              conversations.chatroom?.data?.attributes.conversations?.data?.map((conversation: any) => {
-                console.log("conversation :>> ", conversation);
-                if (conversation.attributes.pinned === false) {
-                  return (
-                    <div
-                      style={{
-                        border: "solid 2px white",
-                      }}
-                      key={conversation.id}
-                      onClick={async () => {
-                        setActive(conversation.id);
-                      }}
-                    >
-                      {/* HIER COME THE PINN ICON; PLEASE CHANGE IT FOR THE <p> */}
-                      <>
-                        {user?.role?.name === "Mentor" ? (
-                          <p
-                            onClick={(e) => updatePinned(e, conversation)}
-                            style={{ cursor: "pointer" }}
-                          >
-                            X
-                          </p>
-                        ) : (
-                          ""
-                        )}
-                      </>
-
-                      <h3
+              conversations.chatroom?.data?.attributes.conversations?.data?.map(
+                (conversation: any) => {
+                  console.log("conversation :>> ", conversation);
+                  if (conversation.attributes.pinned === false) {
+                    return (
+                      <div
                         style={{
-                          color: "white",
-                          margin: "5px",
-                          border: "2px solid white",
-                          borderRadius: "5px",
-                          textAlign: "center",
-                          cursor: "pointer",
+                          border: "solid 2px white",
+                        }}
+                        key={conversation.id}
+                        onClick={async () => {
+                          setActive(conversation.id);
                         }}
                       >
-                        {conversation.attributes?.title}
-                      </h3>
-                    </div>
-                  );
+                        {/* HIER COME THE PINN ICON; PLEASE CHANGE IT FOR THE <p> */}
+                        <>
+                          {user?.role?.name === "Mentor" ? (
+                            <p
+                              onClick={(e) => updatePinned(e, conversation)}
+                              style={{ cursor: "pointer" }}
+                            >
+                              X
+                            </p>
+                          ) : (
+                            ""
+                          )}
+                        </>
+
+                        <h3
+                          style={{
+                            color: "white",
+                            margin: "5px",
+                            border: "2px solid white",
+                            borderRadius: "5px",
+                            textAlign: "center",
+                            cursor: "pointer",
+                          }}
+                        >
+                          {conversation.attributes?.title}
+                        </h3>
+                      </div>
+                    );
+                  }
                 }
-              })}
+              )}
           </div>
         </div>
 
@@ -497,3 +494,5 @@ const SingleChat = (props: Props) => {
 };
 
 export default SingleChat;
+
+
