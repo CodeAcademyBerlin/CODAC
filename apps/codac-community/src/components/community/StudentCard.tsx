@@ -7,6 +7,7 @@ interface CardStudentProp {
 
 export const StudentCard = (props: CardStudentProp) => {
   const { student } = props;
+  
   return (
     <div>
       <div className="">

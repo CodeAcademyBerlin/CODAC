@@ -15,7 +15,9 @@ export const Student = ({ id }: { id: string }) => {
         {student && (
           <div key={student.id}>
             {student.attributes && (
+                
               <div className="relative object-cover text-white">
+                
                 <Card
                   image={student.attributes.user?.data.attributes.avatar?.data.attributes.url ?? ""}
                   title={student.attributes.firstname ?? ""}

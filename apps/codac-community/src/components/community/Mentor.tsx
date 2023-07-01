@@ -10,7 +10,7 @@ export const Mentor = ({ id }: { id: string  }) => {
     <div className="space-y-12">
       {loading && <SkeletonCards number={3} isLoading={loading} />}
       {error && <div>something is wrong</div>}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="">
         {mentor && (
           <div key={mentor.id}>
             {mentor.attributes && (

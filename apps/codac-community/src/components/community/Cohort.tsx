@@ -6,7 +6,7 @@ export const Cohort = ({ cohortName }: { cohortName: string }) => {
   const { cohort, loading, error } = useGetCohortByName(cohortName);
 
   return (
-    <div className="space-y-12 ">
+    <div className="">
       <div>
         <div className="space-y-10 p-10 text-lg font-medium text-white">Cohort</div>
       </div>
@@ -14,7 +14,7 @@ export const Cohort = ({ cohortName }: { cohortName: string }) => {
       {error && <div>something is wrong</div>}
       <div className="flex grid-cols-4 gap-8">
         {cohort && (
-          <div key={cohort.id} className="flex items-center justify-between">
+          <div key={cohort.id} className="">
             {cohort.attributes && (
               <div className="relative ">
                 <Card

@@ -57,3 +57,4 @@ export const useGetStudent = (id: string) => {
 
   return { student, error, loading };
 };
+

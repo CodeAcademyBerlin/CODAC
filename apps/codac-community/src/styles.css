@@ -6,6 +6,7 @@
   background: #17141d;
   box-shadow: -1rem 0 3rem #000;
   transition: 0.2s;
+  min-width: 21rem;
 }
 
 .card:hover {

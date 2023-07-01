@@ -12,12 +12,9 @@ function Community({ cohorts }: { cohorts: CohortEntity[] }) {
         <div>
           <div className="text-lg font-medium text-white">Cohorts</div>
         </div>
-        <div className="flex min-w-full grid-cols-6 flex-wrap object-cover">
+        <div className="flex min-w-full grid-cols-6 flex-wrap ">
           {cohorts.map((cohort) => (
-            <div
-              key={cohort.id}
-              className="object-cover transition-transform duration-300 hover:scale-105"
-            >
+            <div key={cohort.id} className="">
               {cohort.attributes && (
                 <div className="relative">
                   <Card
@@ -25,6 +22,7 @@ function Community({ cohorts }: { cohorts: CohortEntity[] }) {
                     startDate={cohort.attributes.start_date ?? ""}
                     title={cohort.attributes.name ?? ""}
                     tag={`${cohort.attributes.students?.data.length ?? ""} students`}
+                //course 
                     href={`community/cohort/${cohort.attributes.name}`}
                   />
                 </div>

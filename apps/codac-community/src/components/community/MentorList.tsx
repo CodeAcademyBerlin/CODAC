@@ -27,9 +27,10 @@ const MentorList = () => {
                   className="duration-400 transform transition-transform hover:scale-105"
                 >
                   {mentor.attributes && (
-                    <div className="relative">
+                    <div className="">
                       <Card
                         image={imageUrl}
+                        //course
                         title={mentor.attributes.user?.data.attributes.username}
                         href={`/community/mentor/${mentor.id}`}
                       />

@@ -7,6 +7,7 @@ import { StudentCard } from "./StudentCard";
 function StudentList({ cohortName }: { cohortName: string }) {
   const { students, loading } = useGetStudentsByCohorts(cohortName);
   console.log(students);
+  
   return (
     <>
       <div className="space-y-10">
