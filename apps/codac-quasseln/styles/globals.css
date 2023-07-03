@@ -239,10 +239,13 @@ h1 {
 .buttons-container {
   display: flex;
   gap: 0.5rem;
-  align-items: center !important;
+  align-items: center;
+}
+.buttons-container span {
+  line-height: 1;
 }
 .buttons-container button {
-  padding: 0.5rem;
+  padding: 0.25rem 0.5rem;
   border-radius: 0.25em;
   font-weight: 600;
 }
@@ -260,11 +263,13 @@ h1 {
   border: 1px solid #04c8b4;
 }
 .buttons-container button.secondary {
-  border: 1px solid #02645a;
-  color: #02645a;
+  border: 1px solid #9bfdf3;
+  color: #9bfdf3;
 }
 .buttons-container button.secondary:hover {
   background-color: #e6fffc;
+  color: #024b44;
+  border-color: #024b44;
 }
 .buttons-container button.secondary:active {
   border: 1px solid #04c8b4;
@@ -314,5 +319,5 @@ h1 {
   gap: 0.25rem;
   color: white;
   font-size: 80%;
-  background-color: yellow;
+  align-items: center;
 }/*# sourceMappingURL=globals.css.map */

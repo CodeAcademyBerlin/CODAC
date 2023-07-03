@@ -259,10 +259,13 @@ h1 {
 .buttons-container {
   display: flex;
   gap: $sm-space;
-  align-items: center !important;
+  align-items: center;
+  span {
+    line-height: 1;
+  }
 
   button {
-    padding: $sm-space;
+    padding: $xs-space $sm-space;
     border-radius: $border-radius;
     font-weight: 600;
   }
@@ -280,10 +283,12 @@ h1 {
     }
   }
   button.secondary {
-    border: $border-solid $codac-primary-color;
-    color: $codac-primary-color;
+    border: $border-solid lighten($codac-primary-color, 60%);
+    color: lighten($codac-primary-color, 60%);
     &:hover {
       background-color: lighten($codac-primary-color, 75%);
+      color: darken($codac-primary-color, 5%);
+      border-color: darken($codac-primary-color, 5%);
     }
     &:active {
       border: $border-solid lighten($codac-primary-color, 20%);
@@ -335,7 +340,7 @@ h1 {
   gap: $xs-space;
   color: white;
   font-size: 80%;
-  background-color: yellow;
+  align-items: center;
 }
 
 // /** send a message **/
