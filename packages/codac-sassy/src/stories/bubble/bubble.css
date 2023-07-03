@@ -308,6 +308,13 @@ h1 {
   border: 1px solid #04c8b4;
 }
 
+.no-convo-message {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .bubble-container {
   font-family: "Noto Sans", sans-serif;
   display: grid;

@@ -320,6 +320,13 @@ h1 {
   }
 }
 
+.no-convo-message {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 // /** send a message **/
 
 // .send-message-container {
