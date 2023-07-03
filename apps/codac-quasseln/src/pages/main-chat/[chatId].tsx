@@ -207,26 +207,6 @@ const SingleChat = (props: Props) => {
     // setTestVariable(!testVariable);
   };
 
-  const formatDate = (timestamp: string) => {
-    const date = new Date(timestamp);
-    const today = new Date();
-    const yesterday = new Date();
-    yesterday.setDate(today.getDate() - 1);
-    let formattedDate = "";
-    if (date.getDate() === today.getDate()) {
-      formattedDate = "Today";
-    } else if (date.getDate() === yesterday.getDate()) {
-      formattedDate = "Yesterday";
-    } else {
-      formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-    }
-    formattedDate += `@ ${date.getHours() < 10 ? "0" : ""}${date.getHours()}:${
-      date.getMinutes() < 10 ? "0" : ""
-    }${date.getMinutes()} `;
-
-    return formattedDate;
-  };
-
   return (
     <div>
       <h1>Welcome to {conversations?.chatroom.data?.attributes.name}</h1>

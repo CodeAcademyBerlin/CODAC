@@ -235,45 +235,38 @@ h1 {
   padding: 1rem;
   border: 1px solid #02645a;
 }
-.edit-message-modal-container form .buttons-container,
-.delete-message-modal_container form .buttons-container {
+
+.buttons-container {
   display: flex;
   gap: 0.5rem;
-  margin-top: 1rem;
+  align-items: center !important;
 }
-.edit-message-modal-container form .buttons-container button,
-.delete-message-modal_container form .buttons-container button {
+.buttons-container button {
   padding: 0.5rem;
   border-radius: 0.25em;
   font-weight: 600;
 }
-.edit-message-modal-container form .buttons-container button.primary,
-.delete-message-modal_container form .buttons-container button.primary {
+.buttons-container button.primary {
   background-color: #02645a;
   color: white;
   border: 1px solid transparent;
 }
-.edit-message-modal-container form .buttons-container button.primary:hover,
-.delete-message-modal_container form .buttons-container button.primary:hover {
+.buttons-container button.primary:hover {
   background-color: #024b44;
   border: 1px solid transparent;
 }
-.edit-message-modal-container form .buttons-container button.primary:active,
-.delete-message-modal_container form .buttons-container button.primary:active {
+.buttons-container button.primary:active {
   background-color: #024b44;
   border: 1px solid #04c8b4;
 }
-.edit-message-modal-container form .buttons-container button.secondary,
-.delete-message-modal_container form .buttons-container button.secondary {
+.buttons-container button.secondary {
   border: 1px solid #02645a;
   color: #02645a;
 }
-.edit-message-modal-container form .buttons-container button.secondary:hover,
-.delete-message-modal_container form .buttons-container button.secondary:hover {
+.buttons-container button.secondary:hover {
   background-color: #e6fffc;
 }
-.edit-message-modal-container form .buttons-container button.secondary:active,
-.delete-message-modal_container form .buttons-container button.secondary:active {
+.buttons-container button.secondary:active {
   border: 1px solid #04c8b4;
 }
 
@@ -313,6 +306,15 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.yesno-panel {
+  padding: 0.25rem;
+  display: flex;
+  gap: 0.25rem;
+  color: white;
+  font-size: 80%;
+  background-color: yellow;
 }
 
 .bubble-container {

@@ -253,38 +253,40 @@ h1 {
       padding: $reg-space;
       border: $border-solid $codac-primary-color;
     }
-    .buttons-container {
-      display: flex;
-      gap: $sm-space;
-      margin-top: $reg-space;
-      button {
-        padding: $sm-space;
-        border-radius: $border-radius;
-        font-weight: 600;
-      }
-      button.primary {
-        background-color: $codac-primary-color;
-        color: white;
-        border: $border-solid transparent;
-        &:hover {
-          background-color: darken($codac-primary-color, 5%);
-          border: $border-solid transparent;
-        }
-        &:active {
-          background-color: darken($codac-primary-color, 5%);
-          border: $border-solid lighten($codac-primary-color, 20%);
-        }
-      }
-      button.secondary {
-        border: $border-solid $codac-primary-color;
-        color: $codac-primary-color;
-        &:hover {
-          background-color: lighten($codac-primary-color, 75%);
-        }
-        &:active {
-          border: $border-solid lighten($codac-primary-color, 20%);
-        }
-      }
+  }
+}
+
+.buttons-container {
+  display: flex;
+  gap: $sm-space;
+  align-items: center !important;
+
+  button {
+    padding: $sm-space;
+    border-radius: $border-radius;
+    font-weight: 600;
+  }
+  button.primary {
+    background-color: $codac-primary-color;
+    color: white;
+    border: $border-solid transparent;
+    &:hover {
+      background-color: darken($codac-primary-color, 5%);
+      border: $border-solid transparent;
+    }
+    &:active {
+      background-color: darken($codac-primary-color, 5%);
+      border: $border-solid lighten($codac-primary-color, 20%);
+    }
+  }
+  button.secondary {
+    border: $border-solid $codac-primary-color;
+    color: $codac-primary-color;
+    &:hover {
+      background-color: lighten($codac-primary-color, 75%);
+    }
+    &:active {
+      border: $border-solid lighten($codac-primary-color, 20%);
     }
   }
 }
@@ -325,6 +327,15 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.yesno-panel {
+  padding: $xs-space;
+  display: flex;
+  gap: $xs-space;
+  color: white;
+  font-size: 80%;
+  background-color: yellow;
 }
 
 // /** send a message **/

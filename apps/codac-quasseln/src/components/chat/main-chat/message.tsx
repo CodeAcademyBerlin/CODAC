@@ -119,6 +119,26 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
     };
   }, []);
 
+  const formatDate = (timestamp: string) => {
+    const date = new Date(timestamp);
+    const today = new Date();
+    const yesterday = new Date();
+    yesterday.setDate(today.getDate() - 1);
+    let formattedDate = "";
+    if (date.getDate() === today.getDate()) {
+      formattedDate = "Today";
+    } else if (date.getDate() === yesterday.getDate()) {
+      formattedDate = "Yesterday";
+    } else {
+      formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+    }
+    formattedDate += `@ ${date.getHours() < 10 ? "0" : ""}${date.getHours()}:${
+      date.getMinutes() < 10 ? "0" : ""
+    }${date.getMinutes()} `;
+
+    return formattedDate;
+  };
+
   return (
     <div className="message-container">
       {!editToggle && (
@@ -137,7 +157,7 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
               ) : (
                 <strong>me</strong>
               )}
-              {message && message.attributes.createdAt}
+              {formatDate(message && message.attributes.createdAt)}
               {user?.username === message.attributes.author.data?.attributes.username && (
                 <div className="message-functions-panel">
                   <button
@@ -174,21 +194,26 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
             </div>
             <p className="message-text">{message && message.attributes?.body}</p>
             {hiddenDiv && (
-              <div ref={hiddenDivRef}>
-                <button
-                  onClick={() => {
-                    setHiddenDiv(!hiddenDiv);
-                  }}
-                >
-                  No
-                </button>
-                <button
-                  onClick={() => {
-                    deleteMessage(message.id);
-                  }}
-                >
-                  Yes
-                </button>
+              <div className="yesno-panel" ref={hiddenDivRef}>
+                <span>Are you sure that you want to delete this message ?</span>
+                <div className="buttons-container">
+                  <button
+                    className="primary"
+                    onClick={() => {
+                      setHiddenDiv(!hiddenDiv);
+                    }}
+                  >
+                    No
+                  </button>
+                  <button
+                    className="secondary"
+                    onClick={() => {
+                      deleteMessage(message.id);
+                    }}
+                  >
+                    Yes
+                  </button>
+                </div>
               </div>
             )}
           </div>
