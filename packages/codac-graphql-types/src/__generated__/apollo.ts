@@ -227,45 +227,58 @@ export type GetChatQueryHookResult = ReturnType<typeof useGetChatQuery>;
 export type GetChatLazyQueryHookResult = ReturnType<typeof useGetChatLazyQuery>;
 export type GetChatQueryResult = Apollo.QueryResult<Types.GetChatQuery, Types.GetChatQueryVariables>;
 export const GetCohortsDocument = gql`
-    query getCohorts {
-  cohorts {
-    data {
-      attributes {
-        name
-        start_date
-        logo {
-          data {
-            attributes {
-              url
-              alternativeText
-              caption
-              previewUrl
+  query getCohorts {
+    cohorts {
+      data {
+        attributes {
+          name
+          start_date
+          
+
+          logo {
+            data {
+              attributes {
+                
+                url
+                alternativeText
+                caption
+                previewUrl
+              }
+              
             }
           }
-        }
-        students {
-          data {
-            id
-            attributes {
-              start_date
-              user {
-                data {
-                  id
-                  attributes {
-                    firstname
-                    lastname
-                    avatar {
-                      data {
-                        attributes {
-                          url
-                          alternativeText
-                          name
-                          caption
+          students {
+            data {
+              id
+              attributes {
+                start_date
+                course {
+                  data {
+                    attributes {
+                      name
+                    }
+                  }
+                }
+                user {
+                  data {
+                    id
+                    attributes {
+                      firstname
+                      lastname
+                      avatar {
+                        data {
+                          attributes {
+                            url
+                            alternativeText
+                            name
+                            caption
+                          }
                         }
                       }
                     }
                   }
                 }
+                
               }
             }
           }
@@ -273,8 +286,7 @@ export const GetCohortsDocument = gql`
       }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useGetCohortsQuery__
