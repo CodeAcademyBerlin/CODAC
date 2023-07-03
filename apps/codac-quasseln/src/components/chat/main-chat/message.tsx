@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import React from "react";
 import { useAuth } from "#/contexts/authContext";
 import { gql, useQuery, useMutation } from "@apollo/client";
@@ -69,7 +69,6 @@ const Message = ({ message, deleteMsg }: { message: any, deleteMsg: () => void }
   // console.log("data: ", data);
 
   const { user } = useAuth();
-
   const userId = user?.id;
 
   const [updateMessageMutation] = useMutation(upDateChatMessage);
@@ -105,12 +104,34 @@ const Message = ({ message, deleteMsg }: { message: any, deleteMsg: () => void }
       refetch();
     }
   };
+  // testing click outside the div closes it .....
+
+  const hiddenDivRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (hiddenDivRef.current && !hiddenDivRef.current.contains(event.target)) {
+        setHiddenDiv(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+
+
 
   return (
     <div className="message-container">
       {!editToggle && (
         <>
-          <div className="option-A" style={{ border: "2px solid white", margin: "1rem" }}>
+          <div
+            // ref={hiddenDivRef}
+            className="option-A" style={{ border: "2px solid white", margin: "1rem" }}>
             <p>
               {message && message.attributes.author.data?.attributes.username} -{" "}
               {message && message.attributes.createdAt}{" "}
@@ -133,8 +154,12 @@ const Message = ({ message, deleteMsg }: { message: any, deleteMsg: () => void }
             </p>
             <p>{message && message.attributes?.body}</p>
             {hiddenDiv && (
-              <>
-                <button>No</button>
+              <div ref={hiddenDivRef}>
+                <button
+                  onClick={() => {
+                    setHiddenDiv(!hiddenDiv);
+                  }}
+                >No</button>
                 <button
                   onClick={() => {
                     deleteMessage(message.id);
@@ -143,7 +168,7 @@ const Message = ({ message, deleteMsg }: { message: any, deleteMsg: () => void }
                 >
                   Yes
                 </button>
-              </>
+              </div>
             )}
           </div>
         </>

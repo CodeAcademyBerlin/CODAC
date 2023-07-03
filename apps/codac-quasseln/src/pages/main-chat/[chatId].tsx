@@ -188,14 +188,13 @@ const SingleChat = (props: Props) => {
   // const router = useRouter();
   const { chatId } = useRouter().query;
   const [active, setActive] = useState("");
-  // Refetching enables you to refrescdh query results in response to a particular user action, as opposed to using a fixed interval.
+  // Refetching enables you to refresh query results in response to a particular user action, as opposed to using a fixed interval.
   const {
     data: conversations,
     error,
     loading,
   } = useQuery(getSingleChat, { variables: { id: chatId } });
-  //  the refecth should be for the chat history...
-  // console.log("chatRooms :>> ", chatRooms);
+
   const {
     data: allMessages,
     loading: chatLoading,
@@ -206,7 +205,8 @@ const SingleChat = (props: Props) => {
   // FUNCTION TO SCROLL DOWN TO THE LAST MESSAGE IN THE CHAT
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ behavior: "auto" });
+    // behaivor options: instant, auto and smooth...
   }
   useEffect(scrollToBottom, [allMessages]);
 
@@ -236,44 +236,6 @@ const SingleChat = (props: Props) => {
 
   };
 
-  // const [deleteMessageMutation] = useMutation(deleteChatMessage);
-  // //  the mentor has permmision to delete as well... condicional... id not working and only deleting first message...
-  // const deleteMessage = async (e: FormEvent<HTMLFormElement>, message: any) => {
-  //   e.preventDefault();
-  //   console.log("object :>> ", message.attributes.author.data?.id);
-  //   if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
-  //     deleteMessageMutation({
-  //       variables: {
-  //         id: message.id,
-  //       },
-  //     });
-  //     await refetch();
-  //   }
-  //   setDeleteModal(!deleteModal);
-  // };
-  // when fetch the message we let graphql
-  // sort property and sort the messages by created.... display them like that
-
-  // const [updateMessageMutation] = useMutation(upDateChatMessage);
-
-  // const updateMessage = async (e: FormEvent<HTMLFormElement>, message: any) => {
-  //   e.preventDefault();
-  //   console.log("message.id :>> ", message.id);
-  //   if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
-  //     if (messageText) {
-  //       updateMessageMutation({
-  //         variables: {
-  //           id: message.id,
-  //           body: messageText,
-  //         },
-  //       });
-  //     }
-  //     setMessageText("");
-  //     await refetch();
-  //   }
-  //   setOptionsModal(!optionsModal);
-  // };
-
   // this is for the date in each message...
   const formatDate = (timestamp: string) => {
     const date = new Date(timestamp);
@@ -298,8 +260,6 @@ const SingleChat = (props: Props) => {
   // console.log('router :>> ', router);
   // console.log('data :>> ', chatRooms);
   // console.log("messages history :>> ", allMessages?.conversation?.data.attributes.messages.data);
-
-  // +++++++++++++++++++++++ MODALS ++++++++++++++++++++++
 
   return (
     <div>
