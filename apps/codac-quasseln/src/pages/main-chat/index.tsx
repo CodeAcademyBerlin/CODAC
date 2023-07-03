@@ -60,7 +60,7 @@ const ChrisChat = (props: Props) => {
       setConnected(false)
     }
   }, [socket]);
-
+  console.log('data :>> ', data);
   return (
     <>
       <div className='space-y-6' >
