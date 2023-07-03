@@ -65,9 +65,6 @@ const ChrisChat = (props: Props) => {
     <>
       <div className='space-y-6' >
         <div className='text-lg font-medium text-white'>Chat Rooms</div>
-        <div >index
-          <h1 style={{ color: "white" }}>Index For Alls Chatrooms... </h1>
-        </div>
         <div>
           {data && data?.chatrooms?.data.map((chat: any) => {
             return (

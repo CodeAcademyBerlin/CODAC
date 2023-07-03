@@ -210,9 +210,6 @@ const SingleChat = (props: Props) => {
   }
   useEffect(scrollToBottom, [allMessages]);
 
-
-  // do I need this chatHistory state????
-  // const [chatHistory, setChatHistory] = useState([]);
   const [messageText, setMessageText] = useState("");
   // do I need this  typing state????
   // const [typing, setTyping] = useState(false);
@@ -457,14 +454,12 @@ const SingleChat = (props: Props) => {
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   sendMessage();
-                  // refetch();
                 }
               }}
             ></input>
             <button
               style={{ width: "10%", border: "2px solid blue", height: "60px" }}
-              onClick={sendMessage}
-            >
+              onClick={sendMessage}>
               Send
             </button>
           </div>
