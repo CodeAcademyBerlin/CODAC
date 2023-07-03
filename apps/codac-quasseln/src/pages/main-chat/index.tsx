@@ -49,8 +49,6 @@ type Props = {}
 const ChrisChat = (props: Props) => {
   const { data, error, loading } = useQuery(GetAllChats);
   const { user } = useAuth();
-  console.log('user :>> ', user);
-
   // do I need this connected state???
   const [connected, setConnected] = useState(false);
 
@@ -62,10 +60,6 @@ const ChrisChat = (props: Props) => {
       setConnected(false)
     }
   }, [socket]);
-  console.log('socket :>> ', socket);
-
-  console.log('user :>> ', user);
-  console.log('data from chris query :>> ', data);
 
   return (
     <>
