@@ -105,6 +105,7 @@ const SingleChat = (props: Props) => {
   };
   // UPDATE PINNED CONVERSATION FUNCTION
   const [updatePinnedMutation] = useMutation(updatePinnedConversation);
+
   const updatePinned = async (
     e: React.MouseEvent<HTMLParagraphElement, MouseEvent>,
     conversation: any
@@ -171,9 +172,8 @@ const SingleChat = (props: Props) => {
         },
       });
       setMessageText("");
-    }
-    else {
-      return
+    } else {
+      return;
     }
     refetch();
     // setTestVariable(!testVariable);
@@ -217,8 +217,9 @@ const SingleChat = (props: Props) => {
                   if (conversation.attributes.pinned === true) {
                     return (
                       <div
-                        className={`pinned-conversation ${active === conversation.id ? "is-active" : "is-inactive"
-                          }`}
+                        className={`pinned-conversation ${
+                          active === conversation.id ? "is-active" : "is-inactive"
+                        }`}
                         key={conversation.id}
                         onClick={async () => {
                           setActive(conversation.id);
@@ -226,23 +227,27 @@ const SingleChat = (props: Props) => {
                       >
                         <>
                           {user?.role?.name === "Mentor" ? (
-                            <svg
-                              className="pin-icon"
-                              xmlns="http://www.w3.org/2000/svg"
-                              height="1em"
-                              viewBox="0 0 384 512"
-                              onClick={(e: any) => updatePinned(e, conversation)}
-                            // I added the onCLick with the function to pinne the conversation
-                            >
-                              <path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z" />
-                            </svg>
+                            <div className="tooltip">
+                              <svg
+                                className="pin-icon"
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="1em"
+                                viewBox="0 0 384 512"
+                                onClick={(e: any) => {
+                                  updatePinned(e, conversation);
+                                  console.log("click :");
+                                }}
+                              >
+                                <path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z" />
+                              </svg>
+                              <span className="tooltiptext">Unpin conversation</span>
+                            </div>
                           ) : (
                             <svg
                               className="pin-icon"
                               xmlns="http://www.w3.org/2000/svg"
                               height="1em"
                               viewBox="0 0 640 512"
-                              onClick={(e: any) => updatePinned(e, conversation)}
                             >
                               <path d="M208 352c114.9 0 208-78.8 208-176S322.9 0 208 0S0 78.8 0 176c0 38.6 14.7 74.3 39.6 103.4c-3.5 9.4-8.7 17.7-14.2 24.7c-4.8 6.2-9.7 11-13.3 14.3c-1.8 1.6-3.3 2.9-4.3 3.7c-.5 .4-.9 .7-1.1 .8l-.2 .2 0 0 0 0C1 327.2-1.4 334.4 .8 340.9S9.1 352 16 352c21.8 0 43.8-5.6 62.1-12.5c9.2-3.5 17.8-7.4 25.3-11.4C134.1 343.3 169.8 352 208 352zM448 176c0 112.3-99.1 196.9-216.5 207C255.8 457.4 336.4 512 432 512c38.2 0 73.9-8.7 104.7-23.9c7.5 4 16 7.9 25.2 11.4c18.3 6.9 40.3 12.5 62.1 12.5c6.9 0 13.1-4.5 15.2-11.1c2.1-6.6-.2-13.8-5.8-17.9l0 0 0 0-.2-.2c-.2-.2-.6-.4-1.1-.8c-1-.8-2.5-2-4.3-3.7c-3.6-3.3-8.5-8.1-13.3-14.3c-5.5-7-10.7-15.4-14.2-24.7c24.9-29 39.6-64.7 39.6-103.4c0-92.8-84.9-168.9-192.6-175.5c.4 5.1 .6 10.3 .6 15.5z" />
                             </svg>
@@ -267,8 +272,9 @@ const SingleChat = (props: Props) => {
                   if (conversation.attributes.pinned === false) {
                     return (
                       <div
-                        className={`unpinned-conversation ${active === conversation.id ? "is-active" : "is-inactive"
-                          }`}
+                        className={`unpinned-conversation ${
+                          active === conversation.id ? "is-active" : "is-inactive"
+                        }`}
                         key={conversation.id}
                         onClick={async () => {
                           setActive(conversation.id);
@@ -276,15 +282,23 @@ const SingleChat = (props: Props) => {
                       >
                         <>
                           {user?.role?.name === "Mentor" ? (
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              height="1em"
-                              viewBox="0 0 384 512"
-                              className="unpin-icon"
-                              onClick={(e: any) => updatePinned(e, conversation)}
-                            >
-                              <path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z" />
-                            </svg>
+                            <>
+                              <div className="tooltip">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  height="1em"
+                                  viewBox="0 0 384 512"
+                                  className="unpin-icon"
+                                  onClick={(e: any) => {
+                                    updatePinned(e, conversation);
+                                    console.log("click on unpinned :");
+                                  }}
+                                >
+                                  <path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z" />
+                                </svg>
+                                <span className="tooltiptext">Pin conversation</span>
+                              </div>
+                            </>
                           ) : (
                             <svg
                               className="unpin-icon"

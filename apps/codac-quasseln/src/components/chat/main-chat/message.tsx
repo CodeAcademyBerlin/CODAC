@@ -82,7 +82,7 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
       });
       deleteMsg();
     }
-    setHiddenDiv(false)
+    setHiddenDiv(false);
   };
   const updateMessage = async (e: FormEvent<HTMLFormElement>, message: any) => {
     e.preventDefault();
@@ -102,7 +102,6 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
       // await refetch();
       refetch();
     }
-
   };
   // testing click outside the div closes it .....
 

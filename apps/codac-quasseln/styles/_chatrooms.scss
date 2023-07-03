@@ -99,8 +99,10 @@ h1 {
           }
           &:hover {
             color: darken($codac-primary-color, 20%);
-            .pin-icon path {
-              fill: darken($codac-primary-color, 20%);
+            .pin-icon {
+              path {
+                fill: darken($codac-primary-color, 20%);
+              }
             }
           }
         }
@@ -341,6 +343,32 @@ h1 {
   color: white;
   font-size: 80%;
   align-items: center;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  .tooltiptext {
+    visibility: hidden;
+    width: fit-content;
+    background-color: $codac-primary-color;
+    color: #fff;
+    text-align: center;
+    border-radius: $border-radius;
+    padding: $xs-space;
+    position: absolute;
+    z-index: 1;
+    top: -10%;
+    left: 110%;
+    font-size: 60%;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    .tooltiptext {
+      visibility: visible;
+    }
+  }
 }
 
 // /** send a message **/
