@@ -196,7 +196,7 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
             </div>
             <p className="message-text">{message && message.attributes?.body}</p>
             {hiddenDiv && (
-              <div className="yesno-panel" ref={hiddenDivRef}>
+              <div className="delete-panel" ref={hiddenDivRef}>
                 <span>Delete this message ?</span>
                 <div className="buttons-container">
                   <button
@@ -232,6 +232,7 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
               }}
             >
               <textarea
+                className="message-editor"
                 name="newText"
                 value={newMsg}
                 onChange={(e) => {
@@ -239,15 +240,23 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
                   console.log("new message   :", newMsg);
                 }}
               />
-              <button type="submit">Submit</button>
-              <button
-                type="button"
-                onClick={() => {
-                  setEditToggle(!editToggle);
-                }}
-              >
-                Cancel
-              </button>
+              <div className="edit-panel">
+                Save changes ?
+                <div className="buttons-container">
+                  <button className="primary" type="submit">
+                    Yes
+                  </button>
+                  <button
+                    className="secondary"
+                    type="button"
+                    onClick={() => {
+                      setEditToggle(!editToggle);
+                    }}
+                  >
+                    No
+                  </button>
+                </div>
+              </div>
             </form>
           </div>
         </>

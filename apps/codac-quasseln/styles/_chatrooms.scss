@@ -336,7 +336,8 @@ h1 {
   justify-content: center;
 }
 
-.yesno-panel {
+.edit-panel,
+.delete-panel {
   padding: $xs-space;
   display: flex;
   gap: $xs-space;
@@ -370,7 +371,12 @@ h1 {
     }
   }
 }
-
+.message-editor {
+  resize: none;
+  color: black;
+  border-radius: $border-radius;
+  background-color: lightyellow;
+}
 // /** send a message **/
 
 // .send-message-container {

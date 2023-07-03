@@ -313,7 +313,8 @@ h1 {
   justify-content: center;
 }
 
-.yesno-panel {
+.edit-panel,
+.delete-panel {
   padding: 0.25rem;
   display: flex;
   gap: 0.25rem;
@@ -344,4 +345,11 @@ h1 {
 }
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+.message-editor {
+  resize: none;
+  color: black;
+  border-radius: 0.25em;
+  background-color: lightyellow;
 }/*# sourceMappingURL=globals.css.map */
