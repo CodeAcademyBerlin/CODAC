@@ -7,14 +7,13 @@ import { GetStudentByIdDocument } from "./queries/student";
 
 export const useGetStudentsByCohorts = (cohortName: string) => {
   const { data, error, loading } = useQuery(GetStudentsByCohortDocument, {
-
     variables: {
       cohortName: cohortName,
     },
   });
-      console.log(data);
+  console.log(data);
   const students = data?.students?.data as StudentEntity[];
-  console.log(students)
+  console.log(students);
 
   return { students, error, loading };
 };
@@ -42,7 +41,7 @@ export const useGetCohortByName = (cohortName: string) => {
       cohortName: cohortName,
     },
   });
-  console.log("this is the cohortbyname data", data)
+  console.log("this is the cohortbyname data", data);
 
   const cohort = data?.cohorts?.data[0] as CohortEntity;
   console.log("helo cohort", cohort);
@@ -51,10 +50,9 @@ export const useGetCohortByName = (cohortName: string) => {
 };
 export const useGetStudent = (id: string) => {
   const { data, error, loading } = useQuery(GetStudentByIdDocument, {
-    variables: { id }
+    variables: { id },
   });
   const student = data?.student?.data as StudentEntity;
 
   return { student, error, loading };
 };
-

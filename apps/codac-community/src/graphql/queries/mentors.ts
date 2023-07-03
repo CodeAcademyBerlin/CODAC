@@ -36,6 +36,7 @@ export const GetMentorIdDocument = gql`
           github
           linkedin
           createdAt
+          
           user {
             data {
               attributes {

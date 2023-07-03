@@ -7,6 +7,14 @@ export const GetStudentsByCohortDocument = gql`
         id
         attributes {
           firstname
+          start_date
+          course{
+            data{
+              attributes{
+                name
+              }
+            }
+          }
           user {
             data {
               attributes {
@@ -49,6 +57,8 @@ export const GetCohortByNameDocument = gql`
         attributes {
           name
           start_date
+          
+
           logo {
             data {
               attributes {

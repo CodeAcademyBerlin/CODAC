@@ -22,7 +22,6 @@ function Community({ cohorts }: { cohorts: CohortEntity[] }) {
                     startDate={cohort.attributes.start_date ?? ""}
                     title={cohort.attributes.name ?? ""}
                     tag={`${cohort.attributes.students?.data.length ?? ""} students`}
-                //course 
                     href={`community/cohort/${cohort.attributes.name}`}
                   />
                 </div>
