@@ -195,7 +195,7 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
             <p className="message-text">{message && message.attributes?.body}</p>
             {hiddenDiv && (
               <div className="yesno-panel" ref={hiddenDivRef}>
-                <span>Are you sure that you want to delete this message ?</span>
+                <span>Delete this message ?</span>
                 <div className="buttons-container">
                   <button
                     className="primary"
