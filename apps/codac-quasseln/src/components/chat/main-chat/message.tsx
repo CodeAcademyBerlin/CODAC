@@ -77,7 +77,7 @@ const Message = ({ message, deleteMsg }: { message: any, deleteMsg: () => void }
   //  the mentor has permmision to delete as well... condicional... id not working and only deleting first message...
   const deleteMessage = (messageId: any) => {
     // console.log("object :>> ", message.attributes.author.data?.id);
-    if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
+    if (userId === message.attributes.author.data?.id || user?.role?.name === "Mentor") {
       deleteMessageMutation({
         variables: {
           id: message.id,
@@ -85,6 +85,7 @@ const Message = ({ message, deleteMsg }: { message: any, deleteMsg: () => void }
       });
       deleteMsg()
     }
+    setHiddenDiv(false)
   };
   const updateMessage = async (e: FormEvent<HTMLFormElement>, message: any) => {
     e.preventDefault();
@@ -100,9 +101,11 @@ const Message = ({ message, deleteMsg }: { message: any, deleteMsg: () => void }
         });
       }
       setNewMsg("");
+      setEditToggle(false);
       // await refetch();
       refetch();
     }
+
   };
   // testing click outside the div closes it .....
 

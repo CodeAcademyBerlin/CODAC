@@ -205,11 +205,10 @@ const SingleChat = (props: Props) => {
   // FUNCTION TO SCROLL DOWN TO THE LAST MESSAGE IN THE CHAT
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "auto" });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     // behaivor options: instant, auto and smooth...
   }
   useEffect(scrollToBottom, [allMessages]);
-
 
 
   // do I need this chatHistory state????
@@ -221,7 +220,7 @@ const SingleChat = (props: Props) => {
   const [newMessageMutation] = useMutation(createNewMessage);
 
   const sendMessage = () => {
-    if (messageText) {
+    if (messageText.length >= 1) {
       newMessageMutation({
         variables: {
           conversationId: active,
@@ -230,6 +229,9 @@ const SingleChat = (props: Props) => {
         },
       });
       setMessageText("");
+    }
+    else {
+      return
     }
     refetch();
     // setTestVariable(!testVariable);
@@ -438,7 +440,7 @@ const SingleChat = (props: Props) => {
               justifyContent: "center",
             }}
           >
-            <textarea
+            <input
               style={{
                 outline: "none",
                 resize: "none",
@@ -448,7 +450,6 @@ const SingleChat = (props: Props) => {
               }}
               placeholder="write something..."
               value={messageText}
-              // ask Emily why refetch each time I write something....
               onChange={(e: { preventDefault: () => void; target: any }) => {
                 e.preventDefault();
                 setMessageText(e.target.value);
@@ -459,7 +460,7 @@ const SingleChat = (props: Props) => {
                   // refetch();
                 }
               }}
-            ></textarea>
+            ></input>
             <button
               style={{ width: "10%", border: "2px solid blue", height: "60px" }}
               onClick={sendMessage}

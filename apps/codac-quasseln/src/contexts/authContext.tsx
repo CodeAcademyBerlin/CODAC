@@ -2,7 +2,7 @@ import {
   useGetMeQuery,
   type UsersPermissionsLoginPayload,
   type UsersPermissionsMe,
-  type ChatroomEntityResponseCollection,
+  type ChatEntityResponseCollection,
 } from "codac-graphql-types";
 import { destroyCookie, setCookie } from "nookies";
 import { createContext, type ReactNode, useContext, useEffect, useState } from "react";
@@ -12,7 +12,7 @@ import { type } from "os";
 
 type User = UsersPermissionsMe | null;
 
-type ChatRooms = ChatroomEntityResponseCollection | null;
+type ChatRooms = ChatEntityResponseCollection | null;
 
 export interface AuthContextValue {
   user: User;
@@ -41,6 +41,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User>(null);
   const [chatRooms, setChatRooms] = useState<ChatRooms>(null);
   const { data, error, loading: authLoading, refetch: getMe } = useGetMeQuery();
+  console.log('data finding names to add main-chat :>> ', data);
 
   useEffect(() => {
     if (data?.me && !error) {

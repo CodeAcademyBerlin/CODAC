@@ -2,8 +2,10 @@ import Link from "next/link";
 import React from "react";
 
 import { navigation } from "#/constants/navigation";
+//  This comes from navigation.ts... the u can add allements to the dashboard...
 
 const Navigation = () => {
+
   return (
     <div className="space-y-10 text-white">
       {navigation.map((section) => {

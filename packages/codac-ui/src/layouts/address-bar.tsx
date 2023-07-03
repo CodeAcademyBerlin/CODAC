@@ -31,6 +31,7 @@ function Params() {
 
 export function AddressBar() {
   const pathname = usePathname();
+
   const segments = pathname?.split("/").slice(1) ?? [];
 
   return (
