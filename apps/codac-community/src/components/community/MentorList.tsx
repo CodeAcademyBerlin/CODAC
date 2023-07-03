@@ -4,6 +4,8 @@ import { Card } from "codac-ui";
 
 import { useGetMentors } from "#/graphql/hooks";
 
+import defaultAvatar from "../../../public/static/defaultAvatar.png"
+
 const MentorList = () => {
   const { mentors, loading, error } = useGetMentors();
   console.log(mentors);
@@ -18,7 +20,7 @@ const MentorList = () => {
             mentors.map((mentor: MentorEntity) => {
               const avatarUrl =
                 mentor.attributes?.user?.data?.attributes?.avatar?.data?.attributes?.url;
-              const imageUrl = avatarUrl || "/apps/codac-community/public/static/defaultAvatar.png";
+              const imageUrl = avatarUrl || defaultAvatar;
               return (
                 <div
                   key={mentor.id}
