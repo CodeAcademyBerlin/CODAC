@@ -8,7 +8,7 @@ export const Cohort = ({ cohortName }: { cohortName: string }) => {
   return (
     <div className="">
       <div>
-        <div className="space-y-10 p-10 text-lg font-medium text-white">Cohort</div>
+        <div className="m-2 space-y-10 text-lg font-medium text-white">Cohort</div>
       </div>
       {loading && <SkeletonCards number={3} isLoading={loading} />}
       {error && <div>something is wrong</div>}
@@ -16,7 +16,7 @@ export const Cohort = ({ cohortName }: { cohortName: string }) => {
         {cohort && (
           <div key={cohort.id} className="">
             {cohort.attributes && (
-              <div className="relative ">
+              <div className=" ">
                 <Card
                   image={cohort.attributes.logo?.data.attributes.url}
                   title={cohort.attributes.name ?? ""}

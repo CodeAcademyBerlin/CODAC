@@ -1,10 +1,10 @@
 import { MentorEntity } from "codac-graphql-types";
-import { SkeletonCards } from "codac-ui";
-import { Card } from "codac-ui";
+import { Card, SkeletonCards } from "codac-ui";
 
+// import { AvatarCard } from "codac-ui";
 import { useGetMentors } from "#/graphql/hooks";
 
-import defaultAvatar from "../../../public/static/defaultAvatar.png"
+import defaultAvatar from "../../../public/static/defaultAvatar.png";
 
 const MentorList = () => {
   const { mentors, loading, error } = useGetMentors();
@@ -15,7 +15,7 @@ const MentorList = () => {
       <div className="">
         {loading && <SkeletonCards number={3} isLoading={loading} />}
         {error && <div>something is wrong</div>}
-        <div className="flex min-w-full grid-cols-5 flex-wrap ">
+        <div className="flex min-w-full grid-cols-5 flex-wrap ml-6 p-1 ">
           {mentors &&
             mentors.map((mentor: MentorEntity) => {
               const avatarUrl =
@@ -30,7 +30,6 @@ const MentorList = () => {
                     <div className="">
                       <Card
                         image={imageUrl}
-                        //course
                         title={mentor.attributes.user?.data.attributes.username}
                         href={`/community/mentor/${mentor.id}`}
                       />

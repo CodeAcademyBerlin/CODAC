@@ -18,6 +18,13 @@ export const GetMentorsAllDocument = gql`
                     }
                   }
                 }
+                courses {
+                  data {
+                    attributes {
+                      name
+                    }
+                  }
+                }
               }
             }
           }
@@ -36,7 +43,7 @@ export const GetMentorIdDocument = gql`
           github
           linkedin
           createdAt
-          
+
           user {
             data {
               attributes {
@@ -46,6 +53,13 @@ export const GetMentorIdDocument = gql`
                     attributes {
                       url
                       previewUrl
+                    }
+                  }
+                }
+                courses {
+                  data {
+                    attributes {
+                      name
                     }
                   }
                 }

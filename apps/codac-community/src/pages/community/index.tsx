@@ -10,9 +10,9 @@ function Community({ cohorts }: { cohorts: CohortEntity[] }) {
     <>
       <div className="">
         <div>
-          <div className="text-lg font-medium text-white">Cohorts</div>
+          <div className="p-6 text-lg font-medium text-white">Cohorts</div>
         </div>
-        <div className="flex min-w-full grid-cols-6 flex-wrap ">
+        <div className="ml-6 flex min-w-full grid-cols-6 flex-wrap p-1 ">
           {cohorts.map((cohort) => (
             <div key={cohort.id} className="">
               {cohort.attributes && (
@@ -31,7 +31,7 @@ function Community({ cohorts }: { cohorts: CohortEntity[] }) {
         </div>
       </div>
       <div>
-        <div className="space-y-10 p-10 text-lg font-medium text-white">Staffs</div>
+        <div className="space-y-10 p-6 text-lg font-medium text-white">Mentors</div>
       </div>
       <div>
         <MentorList />
