@@ -1,4 +1,4 @@
-import {Card, SkeletonCards } from "codac-ui";
+import { ProfileCard, SkeletonCards } from "codac-ui";
 
 import { useGetMentor } from "#/graphql/hooks";
 
@@ -7,7 +7,7 @@ export const Mentor = ({ id }: { id: string }) => {
   console.log(mentor);
 
   return (
-    <div className="flex min-w-[50rem]">
+    <div className="flex justify-center">
       {loading && <SkeletonCards number={3} isLoading={loading} />}
       {error && <div>something is wrong</div>}
       <div className="">
@@ -15,7 +15,7 @@ export const Mentor = ({ id }: { id: string }) => {
           <div key={mentor.id}>
             {mentor.attributes && (
               <div className="">
-                <Card
+                <ProfileCard
                   image={mentor.attributes.user?.data.attributes.avatar?.data.attributes.url ?? ""}
                   title={mentor.attributes.user?.data.attributes.username}
                   github={mentor?.attributes?.github ?? ""}

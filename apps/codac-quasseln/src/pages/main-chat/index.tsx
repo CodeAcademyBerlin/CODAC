@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { gql, useQuery } from "@apollo/client";
 import Link from 'next/link';
 import { useSocket } from '#/contexts/socketContext';
-import { Enum_Componentleadlifecycle_State } from 'codac-graphql-types';
+import { Enum_Componentleadlifecycle_State } from "codac-graphql-types";
 
 
 
