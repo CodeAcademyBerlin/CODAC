@@ -1,7 +1,7 @@
 import { StudentEntity } from "codac-graphql-types";
 import { Card } from "codac-ui";
 
-import defaultAvatar from "../../../public/static/defaultAvatar.png";
+import defaultAvatar from "../../../public/defaultAvatar.png";
 
 interface CardStudentProp {
   student: StudentEntity;

@@ -4,7 +4,7 @@ import { Card, SkeletonCards } from "codac-ui";
 // import { AvatarCard } from "codac-ui";
 import { useGetMentors } from "#/graphql/hooks";
 
-import defaultAvatar from "../../../public/static/defaultAvatar.png";
+import defaultAvatar from "../../../public/defaultAvatar.png";
 
 const MentorList = () => {
   const { mentors, loading, error } = useGetMentors();
@@ -15,7 +15,7 @@ const MentorList = () => {
       <div className="">
         {loading && <SkeletonCards number={3} isLoading={loading} />}
         {error && <div>something is wrong</div>}
-        <div className="flex min-w-full grid-cols-5 flex-wrap ml-6 p-1 ">
+        <div className="ml-6 flex min-w-full grid-cols-5 flex-wrap p-1 ">
           {mentors &&
             mentors.map((mentor: MentorEntity) => {
               const avatarUrl =
@@ -31,6 +31,8 @@ const MentorList = () => {
                       <Card
                         image={imageUrl}
                         title={mentor.attributes.user?.data.attributes.username}
+                        // github={mentor?.attributes?.github ?? ""}
+                        // linkdin={mentor?.attributes?.linkedin ?? ""}
                         href={`/community/mentor/${mentor.id}`}
                       />
                     </div>
