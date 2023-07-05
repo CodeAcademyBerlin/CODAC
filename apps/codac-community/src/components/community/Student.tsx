@@ -19,7 +19,7 @@ export const Student = ({ id }: { id: string }) => {
                 <ProfileCard
                   image={student.attributes.user?.data.attributes.avatar?.data.attributes.url ?? ""}
                   title={student.attributes.firstname ?? ""}
-                  title={student.attributes.lastname ?? ""}
+                  // title={student.attributes.lastname ?? ""}
                   github={student?.attributes?.github ?? ""}
                   linkdin={student?.attributes?.linkedin ?? ""}
                   course={student.attributes?.course?.data?.attributes?.name || ""}

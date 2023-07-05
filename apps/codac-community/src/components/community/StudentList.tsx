@@ -2,7 +2,7 @@ import { SkeletonCards } from "codac-ui";
 
 import { useGetStudentsByCohorts } from "#/graphql/hooks";
 
-import { StudentCard } from "./StudentCard";
+import { StudentCard } from "./studentCard";
 
 function StudentList({ cohortName }: { cohortName: string }) {
   const { students, loading } = useGetStudentsByCohorts(cohortName);
@@ -13,7 +13,7 @@ function StudentList({ cohortName }: { cohortName: string }) {
       <div className="">
  
         {loading && <SkeletonCards number={3} isLoading={loading} />}
-        <div className="m-2 flex min-w-full grid-cols-5 flex-wrap object-cover">
+        <div className="m-6 flex min-w-full grid-cols-5 flex-wrap object-cover">
           {students &&
             students.map((student) => <StudentCard key={student.id} student={student} />)}
         </div>
