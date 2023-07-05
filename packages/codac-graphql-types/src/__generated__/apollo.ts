@@ -1147,6 +1147,14 @@ export const GetMeDocument = gql`
       url
     }
   }
+  chatrooms {
+    data {
+      id
+      attributes {
+        name
+      }
+    }
+  }
 }
     `;
 

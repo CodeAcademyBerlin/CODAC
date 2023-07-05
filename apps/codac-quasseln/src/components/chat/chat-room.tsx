@@ -1,11 +1,16 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { type Chat, ChatEntity, type ComponentChatMessage } from "codac-graphql-types";
+import { Button } from "codac-sassy";
+
+
 import { useEffect, useState } from "react";
 
 import { useSocket } from "#/contexts/socketContext";
 import { ApolloGenericQuery } from "#/types/apollo";
 
 import { ChatBubble } from "./chat-bubble";
+
+import { GetChatsQuery } from "codac-graphql-types";
 const GetChatDocument = gql`
   query getChat($id: ID!) {
     chat(id: $id) {
@@ -13,12 +18,13 @@ const GetChatDocument = gql`
         id
         attributes {
           name
-          messages {
-            id
+          messages{
+            id 
             body
             timestamp
             author {
               data {
+                id
                 attributes {
                   username
                   email
@@ -31,6 +37,7 @@ const GetChatDocument = gql`
     }
   }
 `;
+
 const AddChatMsgDocument = gql`
   mutation addChatMessage($chatId: ID!, $body: String!) {
     addChatMessage(chatId: $chatId, body: $body) {
@@ -46,12 +53,15 @@ interface Props {
 
 const ChatRoom: React.FC<Props> = ({ roomId }) => {
   const [chatHistory, setChatHistory] = useState<ComponentChatMessage[]>([]);
+
   const { data, refetch } = useQuery<ApolloGenericQuery<ChatEntity>>(GetChatDocument, {
     variables: {
       id: roomId,
     },
   });
+  // console.log('data for chris... :>> ', data);
   const [addChatMessageMutation] = useMutation(AddChatMsgDocument);
+
 
   const [msg, setMsg] = useState<string>("");
   const [typing, setTyping] = useState<boolean>(false);
@@ -72,6 +82,12 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
       const history = data?.chat?.data?.attributes?.messages as ComponentChatMessage[];
       console.log("history roomId", history);
       history.length && setChatHistory(history);
+      //  I have maped over the variable in order to find only the id of each message 
+      const messageId = history.map((message) => {
+        return message.id
+      })
+      console.log('messageId :>> ', messageId);
+      // trying to fin the message id.... chris 21/06/23 
       console.log("updatedHistory roomId", chatHistory);
     }
   }, [roomId, data]);
@@ -89,51 +105,53 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
   };
 
   return (
-    <div>
-      <div
-        style={{
-          backgroundColor: "inherit",
-          width: "95%",
-          height: "110%",
-          padding: "20px",
-          borderRadius: "10px",
-        }}
-      >
-        {chatHistory.map((message) => (
-          <>
-            <ChatBubble key={message.id} message={message}></ChatBubble>
-          </>
-        ))}
+    <div className="chatroom-container">
+      <span style={{ backgroundColor: "yellow" }}>display here the rooms’ name</span>
+      <button style={{ backgroundColor: "yellow" }} className="see-older-message">
+        See older messages
+      </button>
 
-        {typing && (
-          <div className="flex flex-row items-center space-x-2">
-            <p className="text-sm text-white">someone typing...</p>
+      {chatHistory.map((message) => (
+        <div key={message.id}>
+          <ChatBubble key={message.id} message={message}></ChatBubble>
+        </div>
+      ))}
+
+      {roomId !== "" && (
+        <>
+          {typing && <p className="activity-message">someone typing...</p>}
+
+          <div className="send-message-container">
+            <div>
+              <textarea
+                placeholder="Write something..."
+                onFocus={() => {
+                  setTyping(true);
+                }}
+                onBlur={() => {
+                  setTyping(false);
+                }}
+                value={msg}
+                onChange={(e) => {
+                  setMsg(e.target.value);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    sendMessage();
+                  }
+                }}
+              />
+              <Button
+                label="Send"
+                primary
+                onClick={() => {
+                  sendMessage();
+                }}
+              />
+            </div>
           </div>
-        )}
-        {roomId !== "" && (
-          <input
-            placeholder="Write something..."
-            className="h-10 w-full rounded-lg border-2 border-gray-300 bg-white px-5 pr-16 text-sm focus:outline-none"
-            onFocus={() => {
-              setTyping(true);
-            }}
-            onBlur={() => {
-              setTyping(false);
-            }}
-            id="outlined-basic"
-            // label={{ socket } ? 'Write something' : 'Connecting...'}
-            value={msg}
-            onChange={(e) => {
-              setMsg(e.target.value);
-            }}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                sendMessage();
-              }
-            }}
-          />
-        )}
-      </div>
+        </>
+      )}
     </div>
   );
 };

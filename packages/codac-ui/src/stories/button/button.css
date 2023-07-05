@@ -1,0 +1,48 @@
+/** Colors **/
+/** Borders **/
+.storybook-button {
+  border: 0;
+  border-radius: 3em;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1;
+  padding: 0.5em 1em;
+  border: 3px solid transparent;
+  display: flex;
+  align-items: center;
+}
+.storybook-button .label {
+  font-size: 16px;
+  font-size: "Noto Sans", sans-serif;
+}
+.storybook-button .icon {
+  width: 1em;
+  height: 1em;
+  padding-right: 0.5em;
+}
+.storybook-button.primary {
+  font-size: 1.25em;
+}
+.storybook-button.secondary {
+  font-size: 1em;
+}
+.storybook-button.lightmode {
+  color: white;
+  background-color: #02645a;
+}
+.storybook-button.lightmode:hover {
+  background-color: #024b44;
+}
+.storybook-button.lightmode:active {
+  border: 3px solid #039687;
+}
+.storybook-button.darkmode {
+  color: black;
+  background-color: #05fae1;
+}
+.storybook-button.darkmode:hover {
+  background-color: #69fced;
+}
+.storybook-button.darkmode:active {
+  border: 3px solid #04c8b4;
+}/*# sourceMappingURL=button.css.map */

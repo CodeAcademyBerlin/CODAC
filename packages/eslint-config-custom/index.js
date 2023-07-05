@@ -1,11 +1,13 @@
 module.exports = {
-  plugins: ['@typescript-eslint', "simple-import-sort", "testing-library"],
-  extends: ["next",
+  plugins: ["@typescript-eslint", "simple-import-sort", "testing-library"],
+  extends: [
+    "next",
     "turbo",
     "prettier",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    // "plugin:@typescript-eslint/strict",
+    "plugin:@typescript-eslint/strict",
+    // now the line 9 is active and I am not seeing the problem anymore with the import #
     "plugin:storybook/recommended",
     "plugin:storybook/csf-strict",
   ],
@@ -13,7 +15,7 @@ module.exports = {
     "@next/next/no-html-link-for-pages": "off",
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
-    "import/no-unresolved": "error",
+    "import/no-unresolved": "warn",
     // "@typescript-eslint/no-useless-empty-export": "warn",
     // "@typescript-eslint/promise-function-async": "warn",
     "@typescript-eslint/no-unused-vars": [
@@ -47,26 +49,26 @@ module.exports = {
       env: {
         jest: true,
       },
-      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
-      extends: ['plugin:testing-library/react', 'plugin:jest/recommended'],
+      files: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+      extends: ["plugin:testing-library/react", "plugin:jest/recommended"],
       rules: {
-        'import/no-extraneous-dependencies': [
-          'off',
-          { devDependencies: ['**/?(*.)+(spec|test).[jt]s?(x)'] },
+        "import/no-extraneous-dependencies": [
+          "off",
+          { devDependencies: ["**/?(*.)+(spec|test).[jt]s?(x)"] },
         ],
       },
     },
   ],
   ignorePatterns: [
-    '**/*.js',
-    '**/*.json',
-    'node_modules',
-    'public',
-    'styles',
-    '.next',
-    'coverage',
-    'dist',
-    '.turbo',
+    "**/*.js",
+    "**/*.json",
+    "node_modules",
+    "public",
+    "styles",
+    ".next",
+    "coverage",
+    "dist",
+    ".turbo",
   ],
 };
 // OLD Config
