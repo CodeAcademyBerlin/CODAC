@@ -66,13 +66,13 @@ export const ChatBubble = ({ message }: { message: any }) => {
   };
 
   const deleteMessage = () => {
-    if (authorId === user?.id) {
-      deleteMessageMutation({
-        variables: {
-          id: `${message.id}`,
-        },
-      });
-    }
+    // if (authorId === user?.id) {
+    //   deleteMessageMutation({
+    //     variables: {
+    //       id: `${message.id}`,
+    //     },
+    //   });
+    // }
     alert("message deleted");
   };
 
