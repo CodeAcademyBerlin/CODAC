@@ -44,7 +44,7 @@ const GetAllChats = gql`
 
 type Props = {};
 
-const ChrisChat = (props: Props) => {
+const KangaroosChat = (props: Props) => {
   const { data, error, loading } = useQuery(GetAllChats);
   const { user } = useAuth();
   console.log("user :>> ", user);
@@ -68,7 +68,7 @@ const ChrisChat = (props: Props) => {
   return (
     <>
       <h1>Chatrooms Access</h1>
-      <div className="chatroom-access-link-container" >
+      <div className="chatroom-access-link-container">
         {data &&
           data?.chatrooms?.data.map((chat: any) => {
             return (
@@ -95,4 +95,4 @@ const ChrisChat = (props: Props) => {
   );
 };
 
-export default ChrisChat;
+export default KangaroosChat;

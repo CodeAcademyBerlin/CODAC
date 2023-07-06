@@ -3,7 +3,7 @@ import { gql, useQuery, useMutation } from "@apollo/client";
 import React, { FormEvent, useEffect, useRef, useState } from "react";
 import { useAuth } from "#/contexts/authContext";
 import { timeStamp } from "console";
-import Message from "#/components/chat/main-chat/message";
+import Message from "#/components/Main-Chat-Components/message";
 
 // This query is to find the chatroom.... NOT all the messages... (do you mean conversations????)
 interface Conversation {
