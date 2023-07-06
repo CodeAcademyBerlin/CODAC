@@ -2,9 +2,18 @@ import { useRouter } from "next/router";
 import { gql, useQuery, useMutation } from "@apollo/client";
 import React, { FormEvent, useState } from "react";
 import { useAuth } from "#/contexts/authContext";
-import { timeStamp } from "console";
+import ConversationBuble from "../../components/Main-Chat-Components/ConversationBuble";
 
 // This query is to find the chatroom.... NOT all the messages... (do you mean conversations????)
+interface Conversation {
+  id: string;
+  attributes: {
+    pinned: boolean;
+    title: string;
+    description: string;
+  };
+}
+type Key = string | number | null | undefined;
 
 const getSingleChat = gql`
   query GetChatQuery($id: ID) {
@@ -19,6 +28,7 @@ const getSingleChat = gql`
               attributes {
                 title
                 pinned
+                description
               }
             }
           }
@@ -114,83 +124,20 @@ const upDateChatMessage = gql`
 `;
 type Props = {};
 
-// fetching all pinned messages
-// const getPinnedMessages = gql`
-//   query pinnedMessages {
-//     messages(filters: { pinned: { eq: true } }) {
-//       data {
-//         id
-//         attributes {
-//           pinned
-//         }
-//       }
-//     }
-//   }
-// `;
-
-// UPDATE PINNED CONVERSATION MUTATION/QUERY
-const updatePinnedConversation = gql`
-  mutation updateArticle($id: ID!, $pinned: Boolean!) {
-    updateConversation(id: $id, data: { pinned: $pinned }) {
-      data {
-        id
-        attributes {
-          title
-          pinned
-        }
-      }
-    }
-  }
-`;
-
 const SingleChat = (props: Props) => {
   const { user } = useAuth();
-  console.log("user :>> ", user);
   const userId = user?.id;
-  // console.log("userId :>> ", userId);
-
-  // UPDATE PINNED CONVERSATION FUNCTION
-  const [updatePinnedMutation] = useMutation(updatePinnedConversation);
-  const updatePinned = async (
-    e: React.MouseEvent<HTMLParagraphElement, MouseEvent>,
-    conversation: any
-  ) => {
-    e.preventDefault();
-    // const { user } = useAuth();
-    //  console.log("message.id :>> ", message.id);
-    if (user?.role?.name === "Mentor") {
-      if (conversation?.attributes?.pinned === false) {
-        updatePinnedMutation({
-          variables: {
-            id: conversation.id,
-            pinned: true,
-          },
-        });
-      } else if (conversation?.attributes?.pinned === true) {
-        updatePinnedMutation({
-          variables: {
-            id: conversation.id,
-            pinned: false,
-          },
-        });
-      }
-
-      await refetch();
-    }
-  };
-  ///////////////////////////////////////////////////////////////////////////////////////////
-
-  // const router = useRouter();
   const { chatId } = useRouter().query;
   const [active, setActive] = useState("");
-  // Refetching enables you to refrescdh query results in response to a particular user action, as opposed to using a fixed interval.
+
+  // Refetching enables you to refresh query results in response to a particular user action, as opposed to using a fixed interval.
   const {
     data: chatRooms,
     error,
     loading,
   } = useQuery(getSingleChat, { variables: { id: chatId } });
-  //  the refecth should be for the chat history...
-  // console.log("chatRooms :>> ", chatRooms);
+
+  //NOTE  GETTING ALL MESSAGES FOR A SINGLE CONVERSATION
   const {
     data: allMessages,
     loading: chatLoading,
@@ -198,14 +145,9 @@ const SingleChat = (props: Props) => {
     refetch,
   } = useQuery(getChatHistoryById, { variables: { id: active } });
 
-  // do I need this chatHistory state????
-  // const [chatHistory, setChatHistory] = useState([]);
+  //NOTE - SAVE/CREATE A NEW MESSAGE
   const [messageText, setMessageText] = useState("");
-  // do I need this  typing state????
-  // const [typing, setTyping] = useState(false);
-
   const [newMessageMutation] = useMutation(createNewMessage);
-
   const sendMessage = async () => {
     if (messageText) {
       newMessageMutation({
@@ -220,11 +162,10 @@ const SingleChat = (props: Props) => {
     await refetch();
   };
 
+  //NOTE - DELETE A MESSAGE
   const [deleteMessageMutation] = useMutation(deleteChatMessage);
-  //  the mentor has permmision to delete as well... condicional... id not working and only deleting first message...
   const deleteMessage = async (e: FormEvent<HTMLFormElement>, message: any) => {
     e.preventDefault();
-    console.log("object :>> ", message.attributes.author.data?.id);
     if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
       deleteMessageMutation({
         variables: {
@@ -235,14 +176,11 @@ const SingleChat = (props: Props) => {
     }
     setDeleteModal(!deleteModal);
   };
-  // when fetch the message we let graphql
-  // sort property and sort the messages by created.... display them like that
 
+  //NOTE - UPDATE A MESSAGE
   const [updateMessageMutation] = useMutation(upDateChatMessage);
-
   const updateMessage = async (e: FormEvent<HTMLFormElement>, message: any) => {
     e.preventDefault();
-    console.log("message.id :>> ", message.id);
     if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
       if (messageText) {
         updateMessageMutation({
@@ -258,7 +196,7 @@ const SingleChat = (props: Props) => {
     setOptionsModal(!optionsModal);
   };
 
-  // this is for the date in each message...
+  //NOTE this is for FORMAT the date in each message...
   const formatDate = (timestamp: string) => {
     const date = new Date(timestamp);
     const today = new Date();
@@ -272,16 +210,11 @@ const SingleChat = (props: Props) => {
     } else {
       formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     }
-    // what it that???? +=  ?
+    //NOTE (format the TIME hours and minuts)
     formattedDate += `@ ${date.getHours() < 10 ? "0" : ""}${date.getHours()}:
         ${date.getMinutes() < 10 ? "0" : ""}${date.getMinutes()} `;
     return formattedDate;
   };
-
-  // console.log('chatId :>> ', chatId);
-  // console.log('router :>> ', router);
-  // console.log('data :>> ', chatRooms);
-  console.log("messages history :>> ", allMessages?.conversation?.data.attributes.messages.data);
 
   // +++++++++++++++++++++++ MODALS ++++++++++++++++++++++
 
@@ -306,7 +239,7 @@ const SingleChat = (props: Props) => {
         Welcome to {chatRooms?.chatroom.data?.attributes.name}
       </h1>
 
-      {/* Este es el div que alberga todo el chat!!!!!! */}
+      {/* THIS DIV COTAINS ALL THE CHATROOM (conversations and messages)*/}
 
       <div
         style={{
@@ -328,106 +261,62 @@ const SingleChat = (props: Props) => {
           }}
         >
           {/* HIER ARE THE PINNED CONVERSATIONS */}
-
-          <div style={{ display: "flex", flexDirection: "column", gap: "5px", width: "100%" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "5px",
+              width: "100%",
+              color: "blue",
+            }}
+          >
             {chatRooms &&
-              chatRooms.chatroom?.data?.attributes.conversations?.data?.map((conversation: any) => {
-                // console.log("conversation :>> ", conversation);
-                if (conversation.attributes.pinned === true) {
-                  return (
-                    <div
-                      style={{
-                        border: "solid 2px blue",
-                      }}
-                      key={conversation.id}
-                      onClick={async () => {
-                        setActive(conversation.id);
-                      }}
-                    >
-                      {/* HIER COME THE PINN ICON; PLEASE CHANGE IT FOR THE <p> */}
-                      <>
-                        {user?.role?.name === "Mentor" ? (
-                          <p
-                            onClick={(e) => updatePinned(e, conversation)}
-                            style={{ cursor: "pointer" }}
-                          >
-                            X
-                          </p>
-                        ) : (
-                          ""
-                        )}
-                      </>
-                      <h3
-                        style={{
-                          color: "blue",
-                          margin: "5px",
-                          border: "2px solid blue",
-                          borderRadius: "5px",
-                          textAlign: "center",
-                          cursor: "pointer",
-                        }}
-                      >
-                        {conversation.attributes?.title}
-                      </h3>
-                    </div>
-                  );
+              chatRooms.chatroom?.data?.attributes.conversations?.data?.map(
+                (conversation: Conversation) => {
+                  if (conversation?.attributes?.pinned === true) {
+                    return (
+                      <ConversationBuble
+                        key={conversation.id}
+                        conversation={conversation}
+                        setActive={setActive}
+                      />
+                    );
+                  }
                 }
-              })}
+              )}
           </div>
 
           <hr />
 
           {/* HIER ARE THE NOT PINNED CONVERSATIONS */}
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "5px", width: "100%" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "5px",
+              width: "100%",
+              color: "white",
+            }}
+          >
             {chatRooms &&
-              chatRooms.chatroom?.data?.attributes.conversations?.data?.map((conversation: any) => {
-                console.log("conversation :>> ", conversation);
-                if (conversation.attributes.pinned === false) {
-                  return (
-                    <div
-                      style={{
-                        border: "solid 2px white",
-                      }}
-                      key={conversation.id}
-                      onClick={async () => {
-                        setActive(conversation.id);
-                      }}
-                    >
-                      {/* HIER COME THE PINN ICON; PLEASE CHANGE IT FOR THE <p> */}
-                      <>
-                        {user?.role?.name === "Mentor" ? (
-                          <p
-                            onClick={(e) => updatePinned(e, conversation)}
-                            style={{ cursor: "pointer" }}
-                          >
-                            X
-                          </p>
-                        ) : (
-                          ""
-                        )}
-                      </>
-
-                      <h3
-                        style={{
-                          color: "white",
-                          margin: "5px",
-                          border: "2px solid white",
-                          borderRadius: "5px",
-                          textAlign: "center",
-                          cursor: "pointer",
-                        }}
-                      >
-                        {conversation.attributes?.title}
-                      </h3>
-                    </div>
-                  );
+              chatRooms.chatroom?.data?.attributes.conversations?.data?.map(
+                (conversation: Conversation) => {
+                  if (conversation?.attributes?.pinned === false) {
+                    return (
+                      <ConversationBuble
+                        key={conversation.id}
+                        conversation={conversation}
+                        setActive={setActive}
+                      />
+                    );
+                  }
                 }
-              })}
+              )}
           </div>
         </div>
 
-        {/* All Messages from a conversation.... */}
+        {/* All Messages from a conversation.... MESSAGES DIV */}
         <div
           style={{
             border: "2px solid white",
@@ -454,7 +343,6 @@ const SingleChat = (props: Props) => {
                     <div
                       style={{
                         display: "flex",
-                        // border: "yellow 2px solid",
                         justifyContent: "space-between",
                       }}
                     >
@@ -462,14 +350,11 @@ const SingleChat = (props: Props) => {
                         className="message_label"
                         style={{
                           display: "flexbox",
-                          // border: "2px white solid",
                           width: "50%",
                           fontSize: "11px",
                           marginLeft: "3px",
                         }}
                       >
-                        {/* <h2 style={{ color: "white" }}>id: {message.id}</h2> */}
-
                         {user?.username !== message.attributes.author.data?.attributes.username ? (
                           <strong>{message.attributes.author.data?.attributes.username}</strong>
                         ) : (
@@ -483,7 +368,6 @@ const SingleChat = (props: Props) => {
                         className="message_functions_container"
                         style={{
                           display: "flex",
-                          // border: "2px white solid",
                           width: "40%",
                           gap: "5px",
                           justifyContent: "flex-end",
@@ -498,6 +382,7 @@ const SingleChat = (props: Props) => {
                     <div className="text_body">
                       <p>{message.attributes.body}</p>
                     </div>
+
                     {/* +++++++++++++++++++++++++++++ EDIT MODAL +++++++++++++++++++++ */}
                     {optionsModal && (
                       <div
@@ -522,8 +407,7 @@ const SingleChat = (props: Props) => {
                             right: "0",
                             bottom: "0",
                             position: "fixed",
-                            // backgroundColor: "black",
-                            backgroundColor: "rgba(0,0,0,0.3)",
+                            backgroundColor: "rgba(0,0,0,0.7)",
                           }}
                           onClick={toogleOptionsModal}
                         >
@@ -546,7 +430,6 @@ const SingleChat = (props: Props) => {
                               marginTop: "200px",
                             }}
                           >
-                            {/* <form onSubmit={(e) => { deleteMessage(e, message) }} > aquí viene la funcion!! */}
                             <form
                               onSubmit={(e) => {
                                 updateMessage(e, message);
@@ -627,8 +510,7 @@ const SingleChat = (props: Props) => {
                             right: "0",
                             bottom: "0",
                             position: "fixed",
-                            // backgroundColor: "black",
-                            backgroundColor: "rgba(0,0,0,0.3)",
+                            backgroundColor: "rgba(0,0,0,0.7)",
                           }}
                           onClick={toogleDeleteModal}
                         >
@@ -651,8 +533,6 @@ const SingleChat = (props: Props) => {
                               marginTop: "200px",
                             }}
                           >
-                            {/* onSubmit={deleteMessage}  */}
-                            {/* {(<button onClick={(e) => { handleDeleteCommentSubmit(e, comment._id) }}>} */}
                             <form
                               onSubmit={(e) => {
                                 deleteMessage(e, message);
@@ -738,7 +618,6 @@ const SingleChat = (props: Props) => {
               }}
               placeholder="write something..."
               value={messageText}
-              // ask Emily why refetch each time I write something....
               onChange={(e: { preventDefault: () => void; target: any }) => {
                 e.preventDefault();
                 setMessageText(e.target.value);
