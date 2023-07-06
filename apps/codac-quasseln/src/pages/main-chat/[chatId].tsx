@@ -2,10 +2,25 @@ import { useRouter } from "next/router";
 import { gql, useQuery, useMutation } from "@apollo/client";
 import React, { FormEvent, useEffect, useRef, useState } from "react";
 import { useAuth } from "#/contexts/authContext";
+
 import Message from "#/components/chat/main-chat/message";
 // import { timeStamp } from "console";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faBookmark } from "@fortawesome/free-solid-svg-icons";
+        
+import ConversationBuble from "../../components/Main-Chat-Components/ConversationBuble";
+
+// This query is to find the chatroom.... NOT all the messages... (do you mean conversations????)
+interface Conversation {
+  id: string;
+  attributes: {
+    pinned: boolean;
+    title: string;
+    description: string;
+  };
+}
+type Key = string | number | null | undefined;
+
 
 const getSingleChat = gql`
   query GetChatQuery($id: ID) {
@@ -20,6 +35,7 @@ const getSingleChat = gql`
               attributes {
                 title
                 pinned
+                description
               }
             }
           }
@@ -135,18 +151,22 @@ const SingleChat = (props: Props) => {
   // const router = useRouter();
   const { chatId } = useRouter().query;
   const [active, setActive] = useState("");
+
   // Refetching enables you to refresh query results in response to a particular user action, as opposed to using a fixed interval.
   const {
     data: conversations,
     error,
     loading,
   } = useQuery(getSingleChat, { variables: { id: chatId } });
+
+  //NOTE  GETTING ALL MESSAGES FOR A SINGLE CONVERSATION
   const {
     data: allMessages,
     loading: chatLoading,
     error: messageError,
     refetch,
   } = useQuery(getChatHistoryById, { variables: { id: active } });
+
 
   // FUNCTION TO SCROLL DOWN TO THE LAST MESSAGE IN THE CHAT
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
@@ -156,10 +176,10 @@ const SingleChat = (props: Props) => {
   };
   useEffect(scrollToBottom, [allMessages]);
 
-  const [messageText, setMessageText] = useState("");
-  // do I need this  typing state????
-  // const [typing, setTyping] = useState(false);
 
+  //NOTE - SAVE/CREATE A NEW MESSAGE
+
+  const [messageText, setMessageText] = useState("");
   const [newMessageMutation] = useMutation(createNewMessage);
 
   const sendMessage = () => {
@@ -181,6 +201,7 @@ const SingleChat = (props: Props) => {
 
   // the function to format the date was missing....
   // this function has to be used on the Message Component...
+
   const formatDate = (timestamp: string) => {
     const date = new Date(timestamp);
     const today = new Date();
@@ -194,7 +215,7 @@ const SingleChat = (props: Props) => {
     } else {
       formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     }
-    // what it that???? +=  ?
+    //NOTE (format the TIME hours and minuts)
     formattedDate += `@ ${date.getHours() < 10 ? "0" : ""}${date.getHours()}:
         ${date.getMinutes() < 10 ? "0" : ""}${date.getMinutes()} `;
     return formattedDate;
@@ -213,10 +234,17 @@ const SingleChat = (props: Props) => {
 
             {conversations &&
               conversations.chatroom?.data?.attributes.conversations?.data?.map(
-                (conversation: any) => {
-                  if (conversation.attributes.pinned === true) {
+                (conversation: Conversation) => {
+                  if (conversation?.attributes?.pinned === true) {
                     return (
-                      <div
+                      <>
+                        <ConversationBuble
+                        key={conversation.id}
+                        conversation={conversation}
+                        setActive={setActive}
+                      />
+                        
+                       <div
                         className={`pinned-conversation ${
                           active === conversation.id ? "is-active" : "is-inactive"
                         }`}
@@ -255,6 +283,7 @@ const SingleChat = (props: Props) => {
                         </>
                         <span>{conversation.attributes?.title}</span>
                       </div>
+                        </>
                     );
                   }
                 }
@@ -268,9 +297,15 @@ const SingleChat = (props: Props) => {
 
             {conversations &&
               conversations.chatroom?.data?.attributes.conversations?.data?.map(
-                (conversation: any) => {
-                  if (conversation.attributes.pinned === false) {
+                (conversation: Conversation) => {
+                  if (conversation?.attributes?.pinned === false) {
                     return (
+                    <>
+                    <ConversationBuble
+                        key={conversation.id}
+                        conversation={conversation}
+                        setActive={setActive}
+                      />
                       <div
                         className={`unpinned-conversation ${
                           active === conversation.id ? "is-active" : "is-inactive"
@@ -313,13 +348,14 @@ const SingleChat = (props: Props) => {
                         </>
                         <span>{conversation.attributes?.title}</span>
                       </div>
+                        </>
                     );
                   }
+          
                 }
               )}
           </div>
         </div>
-
         <div className="chat-convo-container">
           {allMessages &&
             allMessages?.conversation?.data?.attributes?.messages?.data?.map((message: any) => {
