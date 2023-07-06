@@ -7,8 +7,12 @@
   box-shadow: -1rem 0 3rem #000;
   transition: 0.2s;
   min-width: 15rem;
-  margin-right: 0rem;
 
+  margin-right: 0rem;
+}
+.cardCohort {
+  background: #17141d;
+  box-shadow: -1rem 0 3rem #000;
 }
 
 .card:hover {
