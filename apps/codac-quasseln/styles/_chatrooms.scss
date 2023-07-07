@@ -1,0 +1,76 @@
+/** messages chronology **/
+
+.chatroom-container {
+  display: flex;
+  flex-direction: column;
+  gap: $reg-space;
+  border: 2px solid orange;
+  // display: grid;
+  // grid-template-columns: 1fr 1fr;
+  // gap: $reg-space;
+
+  // .message-container {
+  //   display: grid;
+  //   grid-template-columns: 1fr 1fr;
+  //   gap: $reg-space;
+  // }
+  // applying to all messages
+  // .message {
+  //   grid-column: span 1;
+  //   padding: $sm-space $reg-space $reg-space;
+  //   border-radius: $border-radius;
+
+  //   .message-label {
+  //     font-size: $smaller-text;
+  //     padding: $sm-space 0;
+  //   }
+  // }
+  // my messages
+  // .my-message {
+  //   background-color: white;
+  //   grid-column-start: 2;
+
+  //   .message-label {
+  //     text-align: right;
+  //   }
+  // }
+  // other users' messages
+  // .you-all-message {
+  //   background-color: lighten($codac-primary-color, 60%);
+  //   grid-column-start: 1;
+  // }
+}
+
+/** send a message **/
+
+.send-message-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $reg-space;
+
+  div {
+    display: flex;
+    gap: $sm-space;
+    flex-direction: column;
+    width: 100%;
+    grid-column-start: 2;
+    align-items: flex-end;
+  }
+
+  textarea {
+    width: 100%;
+    border-radius: $border-radius;
+    background-color: lighten($codac-primary-color, 70%);
+  }
+}
+
+.activity-message {
+  color: white;
+  font-size: $smaller-text;
+}
+
+.chatroom-nav {
+  display: flex;
+  gap: $reg-space;
+  align-items: center;
+}

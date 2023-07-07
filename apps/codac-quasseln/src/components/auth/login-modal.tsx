@@ -8,10 +8,17 @@ interface State {
   password: string;
   email: string;
 }
-const LoginModal = () => {
-  const { onLoginSuccess } = useAuth();
+interface Props {
+  loginMutation: any;
+  onLoginSuccess: any;
+  error: any;
+  data: any;
+}
 
-  const [loginMutation, { data, loading, error }] = useLoginMutation();
+const LoginModal = ({ loginMutation, onLoginSuccess, error, data }: Props) => {
+  // const { onLoginSuccess } = useAuth();
+
+  // const [loginMutation, { data, loading, error }] = useLoginMutation();
 
   const [values, setValues] = useState<State>({
     password: "",
@@ -30,8 +37,6 @@ const LoginModal = () => {
         email: values.email,
         password: values.password,
       },
-    }).catch((error) => {
-      console.log(error);
     });
   };
   if (data?.login) {
@@ -58,6 +63,7 @@ const LoginModal = () => {
                 className="focus:border-secondary focus:ring-secondary text-codac-pink block w-full rounded-md bg-transparent shadow-sm sm:text-sm"
                 autoFocus
                 id="email"
+                name="email"
                 autoComplete="email"
                 type="text"
                 value={values.email}
@@ -72,6 +78,7 @@ const LoginModal = () => {
                 autoComplete="current-password"
                 id="password"
                 type="password"
+                name="password"
                 value={values.password}
                 onChange={handleChange("password")}
               />
@@ -80,6 +87,7 @@ const LoginModal = () => {
           </div>
           <div className="flex items-center justify-center">
             <button
+              name="login"
               onClick={handleSubmit}
               className="bg-codac-pink inline-flex items-center rounded-md px-4 py-2 text-sm font-semibold leading-6 text-white shadow transition duration-150 ease-in-out hover:bg-pink-300"
             >

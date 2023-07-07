@@ -13,7 +13,10 @@ const Navigation = () => {
               {section.name}
             </div>
 
-            <div className="grid grid-cols-1 gap-5  lg:grid-cols-2">
+            <div
+              style={{ border: "5px solid green" }}
+              className="grid grid-cols-1 gap-5  lg:grid-cols-2"
+            >
               {section.items.map((item) => {
                 return (
                   <Link

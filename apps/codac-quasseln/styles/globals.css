@@ -1,0 +1,38 @@
+/** messages chronology **/
+.chatroom-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 2px solid orange;
+}
+
+/** send a message **/
+.send-message-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.send-message-container div {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  width: 100%;
+  grid-column-start: 2;
+  align-items: flex-end;
+}
+.send-message-container textarea {
+  width: 100%;
+  border-radius: 0.75em;
+  background-color: #cdfef9;
+}
+
+.activity-message {
+  color: white;
+  font-size: 60%;
+}
+
+.chatroom-nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}/*# sourceMappingURL=globals.css.map */

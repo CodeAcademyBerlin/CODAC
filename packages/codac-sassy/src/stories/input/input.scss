@@ -1,0 +1,20 @@
+@import "../../../../../apps/codac-quasseln/styles/vars";
+
+textarea {
+  border-radius: $border-radius;
+  border: none;
+  padding: $reg-space;
+  font-size: 16px;
+  font-size: "Noto Sans", sans-serif;
+  color: black;
+
+  &.lightmode {
+    border: $border-solid lighten($codac-primary-color, 50%);
+    background-color: lighten($codac-primary-color, 70%);
+  }
+
+  &.darkmode {
+    border: $border-solid lighten($codac-primary-color, 50%);
+    background-color: white;
+  }
+}

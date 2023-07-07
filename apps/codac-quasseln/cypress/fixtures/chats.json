@@ -1,0 +1,244 @@
+{
+  "data": {
+    "chats": {
+      "data": [
+        {
+          "id": "1",
+          "attributes": {
+            "name": "Scouts",
+            "messages": [
+              {
+                "body": "qsfzesfze",
+                "timestamp": "2023-06-14T11:14:19.933Z",
+                "author": {
+                  "data": {
+                    "attributes": {
+                      "username": "mikasa"
+                    }
+                  }
+                }
+              },
+              {
+                "body": "azdazd",
+                "timestamp": "2023-06-14T11:15:11.443Z",
+                "author": {
+                  "data": {
+                    "attributes": {
+                      "username": "mikasa"
+                    }
+                  }
+                }
+              },
+              {
+                "body": "hello",
+                "timestamp": null,
+                "author": {
+                  "data": {
+                    "attributes": {
+                      "username": "lucas"
+                    }
+                  }
+                }
+              },
+              {
+                "body": "test",
+                "timestamp": "2023-06-14T11:19:48.481Z",
+                "author": {
+                  "data": {
+                    "attributes": {
+                      "username": "lucas"
+                    }
+                  }
+                }
+              },
+              {
+                "body": "XQqx",
+                "timestamp": "2023-06-14T11:20:00.051Z",
+                "author": {
+                  "data": {
+                    "attributes": {
+                      "username": "lucas"
+                    }
+                  }
+                }
+              },
+              {
+                "body": "test",
+                "timestamp": "2023-06-14T11:20:57.062Z",
+                "author": {
+                  "data": {
+                    "attributes": {
+                      "username": "lucas"
+                    }
+                  }
+                }
+              },
+              {
+                "body": "ddddddddddddd",
+                "timestamp": "2023-06-14T11:21:44.398Z",
+                "author": {
+                  "data": {
+                    "attributes": {
+                      "username": "lucas"
+                    }
+                  }
+                }
+              },
+              {
+                "body": "ghnghn",
+                "timestamp": "2023-06-14T13:45:53.737Z",
+                "author": {
+                  "data": {
+                    "attributes": {
+                      "username": "mikasa"
+                    }
+                  }
+                }
+              },
+              {
+                "body": "dddd",
+                "timestamp": "2023-06-14T14:29:28.189Z",
+                "author": {
+                  "data": {
+                    "attributes": {
+                      "username": "mikasa"
+                    }
+                  }
+                }
+              },
+              {
+                "body": "hello",
+                "timestamp": "2023-06-15T10:56:13.410Z",
+                "author": {
+                  "data": {
+                    "attributes": {
+                      "username": "armin"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "attributes": {
+            "name": "Kangaroos",
+            "messages": [
+              {
+                "body": "hello",
+                "timestamp": "2023-06-13T14:05:41.640Z",
+                "author": {
+                  "data": {
+                    "attributes": {
+                      "username": "mikasa"
+                    }
+                  }
+                }
+              },
+              {
+                "body": "hello",
+                "timestamp": "2023-06-14T11:20:20.511Z",
+                "author": {
+                  "data": {
+                    "attributes": {
+                      "username": "mikasa"
+                    }
+                  }
+                }
+              },
+              {
+                "body": "update",
+                "timestamp": "2023-06-14T11:20:45.958Z",
+                "author": {
+                  "data": {
+                    "attributes": {
+                      "username": "mikasa"
+                    }
+                  }
+                }
+              },
+              {
+                "body": "bfgbf",
+                "timestamp": "2023-06-14T11:51:54.175Z",
+                "author": {
+                  "data": {
+                    "attributes": {
+                      "username": "mikasa"
+                    }
+                  }
+                }
+              },
+              {
+                "body": "fngfgnfgn",
+                "timestamp": "2023-06-14T11:52:03.062Z",
+                "author": {
+                  "data": {
+                    "attributes": {
+                      "username": "lucas"
+                    }
+                  }
+                }
+              },
+              {
+                "body": "Jessica made it here!",
+                "timestamp": "2023-06-14T14:19:21.112Z",
+                "author": {
+                  "data": {
+                    "attributes": {
+                      "username": "mikasa"
+                    }
+                  }
+                }
+              },
+              {
+                "body": "pranab auch hier",
+                "timestamp": "2023-06-15T09:18:53.356Z",
+                "author": {
+                  "data": {
+                    "attributes": {
+                      "username": "mikasa"
+                    }
+                  }
+                }
+              },
+              {
+                "body": "me toooo ",
+                "timestamp": "2023-06-16T08:47:49.750Z",
+                "author": {
+                  "data": {
+                    "attributes": {
+                      "username": "mikasa"
+                    }
+                  }
+                }
+              },
+              {
+                "body": "eeeeqweqweqew",
+                "timestamp": "2023-06-16T11:29:29.018Z",
+                "author": {
+                  "data": {
+                    "attributes": {
+                      "username": "mikasa"
+                    }
+                  }
+                }
+              },
+              {
+                "body": "eeeeqweqweqew",
+                "timestamp": "2023-06-16T11:29:29.017Z",
+                "author": {
+                  "data": {
+                    "attributes": {
+                      "username": "mikasa"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,11 +1,50 @@
+import { Bubble } from "codac-sassy";
 import React from "react";
+import { gql, useMutation, useQuery } from "@apollo/client";
 
 import { useAuth } from "#/contexts/authContext";
 
+// ++++++  creating the delete function... Chris 22/06/23 +++++++
+const deleteChatMessage = gql`
+  mutation deleteMessage($id: ID!) {
+    deleteMessage(id: $id) {
+      data {
+        id
+      }
+    }
+  }
+`;
+
+// const deleteChatMessage = gql`
+// mutation deleteChatMessage($chatId:ID!,$messageId: ID!){
+//   deleteChatMessage(chatId: $chatId, messageId: $messageId){
+//     success
+//     message
+//   }
+// }`
+// should I include the author id?????? in the mutation????
+//  I cannot apply this change.... ask Emily??
+interface Message {
+  author: {
+    data: {
+      id: string;
+      attributes: {
+        username: string;
+        email: string;
+      };
+    };
+  };
+  body: string;
+  id: string;
+  timestamp: string;
+  updated: string | null;
+}
 export const ChatBubble = ({ message }: { message: any }) => {
   const { user } = useAuth();
+
   const author =
     message?.author?.data?.attributes?.username || (message?.author?.username as string);
+  const myMessage = user?.username === author; // Check if user is the author
 
   const formatDate = (timestamp: string) => {
     const date = new Date(timestamp);
@@ -23,34 +62,29 @@ export const ChatBubble = ({ message }: { message: any }) => {
     formattedDate += ` @ ${date.getHours() < 10 ? "0" : ""}${date.getHours()}:${
       date.getMinutes() < 10 ? "0" : ""
     }${date.getMinutes()}`;
-
     return formattedDate;
   };
 
+  // const deleteMessage = () => {
+  //   if (authorId === user?.id) {
+  //     deleteMessageMutation({
+  //       variables: {
+  //         id: `${message.id}`,
+  //       },
+  //     });
+  //   }
+  //   alert("message deleted");
+  // };
+
   return (
     <>
-      {user?.username !== author ? (
-        <div className="flex flex-row  justify-start gap-3 p-2">
-          <p className="text-secondary text-xs font-semibold uppercase">
-            <b>{author} </b>
-            {formatDate(message.timestamp)}
-          </p>
-          <div className="bg-primary rounded-xl p-3">
-            <p className="text-xl text-white">{message.body}</p>
-          </div>
-        </div>
-      ) : (
-        <div className="flex flex-row  justify-end gap-3 p-2">
-          <p className="text-secondary text-xs font-semibold uppercase">
-            <b>{author} </b>
-            {formatDate(message.timestamp)}
-          </p>
-
-          <div className="rounded-xl bg-white p-3">
-            <p className="text-primary text-xl">{message.body}</p>
-          </div>
-        </div>
-      )}
+      <Bubble
+        darkmode
+        content={message.body}
+        author={author}
+        {...(myMessage ? { editable: true } : { editable: false })}
+        timestamp={message.timestamp}
+      />
     </>
   );
 };
