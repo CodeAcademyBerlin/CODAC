@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import ChatRoom from "#/components/chat/chat-room";
 import { useSocket } from "#/contexts/socketContext";
 import { ApolloGenericQuery } from "#/types/apollo";
-const GetChatsDocument = gql`
+export const GetChatsDocument = gql`
   query getChats {
     chats {
       data {

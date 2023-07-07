@@ -2,7 +2,6 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import { type Chat, ChatEntity, type ComponentChatMessage } from "codac-graphql-types";
 import { Button } from "codac-sassy";
 
-
 import { useEffect, useState } from "react";
 
 import { useSocket } from "#/contexts/socketContext";
@@ -11,15 +10,15 @@ import { ApolloGenericQuery } from "#/types/apollo";
 import { ChatBubble } from "./chat-bubble";
 
 import { GetChatsQuery } from "codac-graphql-types";
-const GetChatDocument = gql`
+export const GetChatDocument = gql`
   query getChat($id: ID!) {
     chat(id: $id) {
       data {
         id
         attributes {
           name
-          messages{
-            id 
+          messages {
+            id
             body
             timestamp
             author {
@@ -62,7 +61,6 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
   // console.log('data for chris... :>> ', data);
   const [addChatMessageMutation] = useMutation(AddChatMsgDocument);
 
-
   const [msg, setMsg] = useState<string>("");
   const [typing, setTyping] = useState<boolean>(false);
   const { socket } = useSocket();
@@ -82,12 +80,12 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
       const history = data?.chat?.data?.attributes?.messages as ComponentChatMessage[];
       console.log("history roomId", history);
       history.length && setChatHistory(history);
-      //  I have maped over the variable in order to find only the id of each message 
+      //  I have maped over the variable in order to find only the id of each message
       const messageId = history.map((message) => {
-        return message.id
-      })
-      console.log('messageId :>> ', messageId);
-      // trying to fin the message id.... chris 21/06/23 
+        return message.id;
+      });
+      console.log("messageId :>> ", messageId);
+      // trying to fin the message id.... chris 21/06/23
       console.log("updatedHistory roomId", chatHistory);
     }
   }, [roomId, data]);

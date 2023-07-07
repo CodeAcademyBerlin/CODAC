@@ -65,16 +65,16 @@ export const ChatBubble = ({ message }: { message: any }) => {
     return formattedDate;
   };
 
-  const deleteMessage = () => {
-    if (authorId === user?.id) {
-      deleteMessageMutation({
-        variables: {
-          id: `${message.id}`,
-        },
-      });
-    }
-    alert("message deleted");
-  };
+  // const deleteMessage = () => {
+  //   if (authorId === user?.id) {
+  //     deleteMessageMutation({
+  //       variables: {
+  //         id: `${message.id}`,
+  //       },
+  //     });
+  //   }
+  //   alert("message deleted");
+  // };
 
   return (
     <>
