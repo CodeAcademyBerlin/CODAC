@@ -45,7 +45,7 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
       return;
     } else {
       const token = getToken();
-      console.log("token", token);
+
       const s: SocketIface = io(`${process.env.NEXT_PUBLIC_CODAC_SERVER_URL ?? ""}`, {
         auth: {
           token: token,

@@ -7,8 +7,6 @@ import Auth from "./auth";
 
 function MainLayout({ children }: { children: ReactNode }) {
   return (
-
-
     <DashboardLayout
       navigation={
         <GlobalNav
