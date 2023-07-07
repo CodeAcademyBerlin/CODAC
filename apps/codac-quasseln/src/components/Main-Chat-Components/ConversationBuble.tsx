@@ -122,7 +122,7 @@ const ConversationBuble = ({ conversation, setActive, active }: Props) => {
               description: messageText,
             },
           });
-          setSelectColor("Blue");
+          // setSelectColor("Blue");
         } else if (conver?.attributes?.pinned === true && isChecked === true) {
           updatePinnedMutation({
             variables: {
@@ -132,7 +132,7 @@ const ConversationBuble = ({ conversation, setActive, active }: Props) => {
               description: messageText,
             },
           });
-          setSelectColor("Blue");
+          // setSelectColor("Blue");
         } else if (conver?.attributes?.pinned === true && isChecked === false) {
           updatePinnedMutation({
             variables: {
@@ -142,7 +142,7 @@ const ConversationBuble = ({ conversation, setActive, active }: Props) => {
               description: messageText,
             },
           });
-          setSelectColor("White");
+          // setSelectColor("White");
         } else if (conver?.attributes?.pinned === false && isChecked === false) {
           updatePinnedMutation({
             variables: {
@@ -152,7 +152,7 @@ const ConversationBuble = ({ conversation, setActive, active }: Props) => {
               description: messageText,
             },
           });
-          setSelectColor("White");
+          // setSelectColor("White");
         }
 
         // await refetch();  //TODO - UNDER REVIEW
@@ -215,23 +215,25 @@ const ConversationBuble = ({ conversation, setActive, active }: Props) => {
         style={{
           color: selectColor,
           margin: "5px",
-          border: `solid 2px ${selectColor}`,
+          // border: `solid 2px ${selectColor}`,
           borderRadius: "5px",
-
           cursor: "pointer",
         }}
       >
-        <span>
+        <span style={{ fontSize: "x-large" }}>
           {conversation.attributes?.title.length < 30
             ? conversation.attributes?.title
             : `${kurzeTitle}...`}
         </span>{" "}
+        <br />
         <span>
           {conversation.attributes?.description ? (
             <>
-              {conversation.attributes?.description.length < 30
-                ? conversation.attributes?.description
-                : `${kurzeDescription}...`}
+              <i>
+                {conversation.attributes?.description.length < 30
+                  ? conversation.attributes?.description
+                  : `${kurzeDescription}...`}
+              </i>
             </>
           ) : (
             <>
