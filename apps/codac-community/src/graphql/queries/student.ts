@@ -15,6 +15,7 @@ export const GetStudentByIdDocument = gql`
             data {
               attributes {
                 username
+                email
                 courses {
                   data {
                     attributes {

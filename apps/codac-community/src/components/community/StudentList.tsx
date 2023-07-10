@@ -10,10 +10,10 @@ function StudentList({ cohortName }: { cohortName: string }) {
   
   return (
     <>
-      <div className="">
  
+      <div className="flex justify-center">
         {loading && <SkeletonCards number={3} isLoading={loading} />}
-        <div className="m-6 flex min-w-full grid-cols-5 flex-wrap object-cover">
+        <div className="flex grid-cols-5 flex-wrap justify-center">
           {students &&
             students.map((student) => <StudentCard key={student.id} student={student} />)}
         </div>

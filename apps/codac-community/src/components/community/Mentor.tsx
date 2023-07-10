@@ -1,4 +1,4 @@
-import { ProfileCard, SkeletonCards } from "codac-ui";
+import { Card, SkeletonCards } from "codac-ui";
 
 import { useGetMentor } from "#/graphql/hooks";
 
@@ -15,7 +15,7 @@ export const Mentor = ({ id }: { id: string }) => {
           <div key={mentor.id}>
             {mentor.attributes && (
               <div className="">
-                <ProfileCard
+                <Card
                   image={mentor.attributes.user?.data.attributes.avatar?.data.attributes.url ?? ""}
                   title={mentor.attributes.user?.data.attributes.username}
                   github={mentor?.attributes?.github ?? ""}

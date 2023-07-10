@@ -1,8 +1,8 @@
-import { SkeletonCards, CohortCard } from "codac-ui";
+import { SkeletonCards, Card } from "codac-ui";
 
 import { useGetCohortByName } from "#/graphql/hooks";
 
-export const Cohort = ({ cohortName }: { cohortName: string }) => {
+export const CohortCard = ({ cohortName }: { cohortName: string }) => {
   const { cohort, loading, error } = useGetCohortByName(cohortName);
 
   return (
@@ -14,7 +14,7 @@ export const Cohort = ({ cohortName }: { cohortName: string }) => {
           <div key={cohort.id} className="">
             {cohort.attributes && (
               <div className="">
-                <CohortCard
+                <Card
                   image={cohort.attributes.logo?.data.attributes.url}
                   title={cohort.attributes.name ?? ""}
                   startDate={cohort.attributes.start_date ?? ""}

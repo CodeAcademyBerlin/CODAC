@@ -1,5 +1,5 @@
 import { StudentEntity } from "codac-graphql-types";
-import { Card } from "codac-ui";
+import { CardList } from "codac-ui";
 
 import defaultAvatar from "../../../public/defaultAvatar.png";
 
@@ -15,11 +15,13 @@ export const StudentCard = (props: CardStudentProp) => {
 
   return (
     <div>
-      <div className="">
+      
+
+      <div className=" flex grid-cols-5 flex-wrap justify-center">
         {student.attributes && (
           <div className="relative">
             <div className="absolute top-2"></div>
-            <Card
+            <CardList
               image={imageUrl}
               title={student.attributes.firstname ?? ""}
               href={`/community/cohort/student/${student.id}`}

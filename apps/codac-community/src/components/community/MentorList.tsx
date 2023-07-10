@@ -1,5 +1,5 @@
 import { MentorEntity } from "codac-graphql-types";
-import { SkeletonCards, MentorListCard } from "codac-ui";
+import { SkeletonCards, CardList } from "codac-ui";
 
 // import { AvatarCard } from "codac-ui";
 import { useGetMentors } from "#/graphql/hooks";
@@ -28,11 +28,11 @@ const MentorList = () => {
                 >
                   {mentor.attributes && (
                     <div className="">
-                      <MentorListCard
+                      <CardList
                         image={imageUrl}
                         title={mentor.attributes.user?.data.attributes.username}
-                        // github={mentor?.attributes?.github ?? ""}
-                        // linkdin={mentor?.attributes?.linkedin ?? ""}
+                        github={mentor?.attributes?.github ?? ""}
+                        linkdin={mentor?.attributes?.linkedin ?? ""}
                         href={`/community/mentor/${mentor.id}`}
                       />
                     </div>

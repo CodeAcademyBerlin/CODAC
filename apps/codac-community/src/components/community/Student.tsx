@@ -1,4 +1,4 @@
-import { ProfileCard, SkeletonCards } from "codac-ui";
+import {Card, SkeletonCards } from "codac-ui";
 
 import { useGetStudent } from "#/graphql/hooks";
 
@@ -16,10 +16,9 @@ export const Student = ({ id }: { id: string }) => {
           <div key={student.id}>
             {student.attributes && (
               <div className="relative object-cover text-white">
-                <ProfileCard
+                <Card
                   image={student.attributes.user?.data.attributes.avatar?.data.attributes.url ?? ""}
                   title={student.attributes.firstname ?? ""}
-                  // title={student.attributes.lastname ?? ""}
                   github={student?.attributes?.github ?? ""}
                   linkdin={student?.attributes?.linkedin ?? ""}
                   course={student.attributes?.course?.data?.attributes?.name || ""}

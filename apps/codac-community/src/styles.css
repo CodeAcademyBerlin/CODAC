@@ -2,40 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 .card {
-  border-radius: 16px 16px 4px 4px;
-  background: #241f2e;
+  border-radius: 12px 12px 12px 12px;
+  background: #00897b;
   transition: 0.2s;
   min-width: 20rem;
   max-width: 17rem;
   margin-right: 1rem;
   margin-block: 1rem;
 }
-.mentorListCard{
+.mentorListCard {
   border-radius: 20px 16px 10px 10px;
   background: #17141d;
-  box-shadow: -1rem 0 3rem #000;
   transition: 0.2s;
   min-width: 20rem;
   max-width: 10rem;
   max-height: 10rem;
   margin-block: 1rem;
-
 }
 
 .card:hover {
-  border-right: 1px solid #508484;
   transition: ease-in-out 0.1s;
+ 
 }
 .mentorListCard:hover {
   border-left: 3px solid #508484;
   transition: ease-in-out 0.1s;
+  border-bottom: 1px solid #508484;
 }
-.imageborder{
-  border-bottom: 2px solid #508484;
+.imageBorderMentor {
+  border-bottom: 3px solid #508484;
+}
+.imageBorderCohort{
+  border-bottom: 3px solid #ffff;
 }
 .cardCohort {
   background: #17141d;
   box-shadow: -1rem 0 3rem #000;
+  border-radius: 12px 12px 12px 12px;
 }
 
 .card:hover {
