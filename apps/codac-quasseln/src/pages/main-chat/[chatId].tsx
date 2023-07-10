@@ -4,6 +4,7 @@ import React, { FormEvent, useEffect, useRef, useState } from "react";
 import { useAuth } from "#/contexts/authContext";
 import { timeStamp } from "console";
 import Message from "#/components/Main-Chat-Components/message";
+import ConversationBuble from "#/components/Main-Chat-Components/ConversationBuble";
 
 // This query is to find the chatroom.... NOT all the messages... (do you mean conversations????)
 interface Conversation {
@@ -223,6 +224,21 @@ const SingleChat = (props: Props) => {
 
             {conversations &&
               conversations.chatroom?.data?.attributes.conversations?.data?.map(
+                (conversation: Conversation) => {
+                  if (conversation?.attributes?.pinned === true) {
+                    return (
+                      <ConversationBuble
+                        key={conversation.id}
+                        conversation={conversation}
+                        setActive={setActive}
+                      />
+                    );
+                  }
+                }
+              )}
+
+            {/* {conversations &&
+              conversations.chatroom?.data?.attributes.conversations?.data?.map(
                 (conversation: any) => {
                   if (conversation.attributes.pinned === true) {
                     return (
@@ -268,13 +284,28 @@ const SingleChat = (props: Props) => {
                     );
                   }
                 }
-              )}
+              )} */}
           </div>
           <div className="unpinned-conversations-container">
             <span className="conversations-container-title">
               Other Conversations of{" "}
               <strong>{conversations?.chatroom.data?.attributes.name}</strong>
             </span>
+
+            {conversations &&
+              conversations.chatroom?.data?.attributes.conversations?.data?.map(
+                (conversation: Conversation) => {
+                  if (conversation?.attributes?.pinned === false) {
+                    return (
+                      <ConversationBuble
+                        key={conversation.id}
+                        conversation={conversation}
+                        setActive={setActive}
+                      />
+                    );
+                  }
+                }
+              )}
 
             {conversations &&
               conversations.chatroom?.data?.attributes.conversations?.data?.map(
