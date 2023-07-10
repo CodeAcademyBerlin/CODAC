@@ -146,19 +146,25 @@ const ConversationBuble = ({ conversation, setActive }: Props) => {
     : (lastMessage = "Empty Conversation...");
 
   const kurzeTitle = conversation?.attributes?.title.slice(0, 30);
-  console.log("kurzeTitle", kurzeTitle);
+  // console.log("kurzeTitle", kurzeTitle);
   const kurzeDescription = conversation?.attributes?.description?.slice(0, 30);
-  console.log("kurzeDescription", kurzeDescription);
+  // console.log("kurzeDescription", kurzeDescription);
   const kurzeLastMessage = lastMessage?.attributes?.body?.slice(0, 30);
-  console.log("kurzeLastMessage", kurzeLastMessage);
+  // console.log("kurzeLastMessage", kurzeLastMessage);
+  const [isActiveConvo, setIsActiveConvo] = useState<string>("");
+
+  const handleConversationClick = () => {
+    setActive(conversation.id);
+    console.log("conversation.id :", conversation.id);
+    setIsActiveConvo(conversation.id === isActiveConvo ? "" : conversation.id);
+    console.log("isActiveConvo :", isActiveConvo);
+  };
 
   return (
     <div
-      className="conversation"
+      className={`conversation ${conversation.id === isActiveConvo ? "active" : "inactive"}`}
       key={conversation.id}
-      onClick={async () => {
-        setActive(conversation.id);
-      }}
+      onClick={handleConversationClick}
     >
       <div className="flex-central">
         <div className="flex-start">

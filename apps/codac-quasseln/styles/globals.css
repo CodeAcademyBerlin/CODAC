@@ -9,18 +9,23 @@
   width: -moz-fit-content;
   width: fit-content;
   color: white;
-  border-bottom: 1px solid white;
+  border-bottom: 2px solid white;
 }
 .go-to-chat .icon path {
   fill: white;
 }
 .go-to-chat:hover {
-  border-bottom: 1px solid transparent;
+  border-bottom: 2px solid transparent;
 }
 
 h1 {
   color: white;
   font-size: xx-large;
+}
+
+.main-container {
+  height: auto;
+  background-color: transparent;
 }
 
 .chatroom-access-link-container {
@@ -54,12 +59,14 @@ h1 {
   color: white;
   margin: 1rem 0;
   display: flex;
+  height: 100vh;
 }
 .chat-container .chat-dashboard-container {
   display: flex;
   flex-direction: column;
   min-width: 20em;
   background-color: rgb(20, 20, 20);
+  height: 100%;
 }
 .chat-container .chat-dashboard-container .conversation-subtitle {
   font-size: 80%;
@@ -83,6 +90,8 @@ h1 {
   flex-direction: column;
   gap: 1rem;
   padding: 1rem 2rem 1rem 1rem;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
 }
 .chat-container .chat-dashboard-container .pinned-conversations-container .conversation,
 .chat-container .chat-dashboard-container .unpinned-conversations-container .conversation {
@@ -94,6 +103,15 @@ h1 {
   align-items: flex-start;
   font-weight: 600;
   border: 3px solid transparent;
+}
+.chat-container .chat-dashboard-container .pinned-conversations-container .conversation.active,
+.chat-container .chat-dashboard-container .unpinned-conversations-container .conversation.active {
+  background-color: white;
+  color: black;
+}
+.chat-container .chat-dashboard-container .pinned-conversations-container .conversation.active svg path,
+.chat-container .chat-dashboard-container .unpinned-conversations-container .conversation.active svg path {
+  fill: black;
 }
 .chat-container .chat-dashboard-container .pinned-conversations-container {
   background-color: #02645a;
@@ -147,13 +165,16 @@ h1 {
   font-size: 80%;
 }
 .chat-container .chat-convo-container {
-  background-color: rgb(40, 40, 40);
   border-radius: 0 0.25em 0.25em 0;
-  padding: 1rem 1rem 1rem 2rem;
+  padding: 1rem 1rem 2rem 2rem;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1rem !important;
+  overflow: auto;
+  height: 100%;
+  margin-bottom: 0;
+  background-color: black;
 }
 .chat-container .chat-convo-container .message-container {
   display: grid;
@@ -246,7 +267,7 @@ h1 {
   margin: 0.5rem 0;
   border-radius: 0.25em;
   padding: 1rem;
-  border: 1px solid #02645a;
+  border: 2px solid #02645a;
 }
 
 .buttons-container {
@@ -265,18 +286,18 @@ h1 {
 .buttons-container button.primary {
   background-color: #02645a;
   color: white;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
 }
 .buttons-container button.primary:hover {
   background-color: #024b44;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
 }
 .buttons-container button.primary:active {
   background-color: #024b44;
-  border: 1px solid #04c8b4;
+  border: 2px solid #04c8b4;
 }
 .buttons-container button.secondary {
-  border: 1px solid #9bfdf3;
+  border: 2px solid #9bfdf3;
   color: #9bfdf3;
 }
 .buttons-container button.secondary:hover {
@@ -285,7 +306,7 @@ h1 {
   border-color: #024b44;
 }
 .buttons-container button.secondary:active {
-  border: 1px solid #04c8b4;
+  border: 2px solid #04c8b4;
 }
 
 .send-message-container {
@@ -316,7 +337,7 @@ h1 {
   background-color: #69fced;
 }
 .send-message-container button:active {
-  border: 1px solid #04c8b4;
+  border: 2px solid #04c8b4;
 }
 
 .no-convo-message {
@@ -423,7 +444,7 @@ h1 {
 }
 
 .form-check-input[type=checkbox] {
-  border: 1px solid #02645a;
+  border: 2px solid #02645a;
 }
 .form-check-input[type=checkbox]:disabled {
   opacity: 30%;
