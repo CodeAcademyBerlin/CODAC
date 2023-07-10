@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Card } from "./card";
+import { Cohorts } from "./cohorts-card";
 
 const meta = {
-  component: Card,
-} satisfies Meta<typeof Card>;
+  component: Cohorts,
+} satisfies Meta<typeof Cohorts>;
 
 export default meta;
 

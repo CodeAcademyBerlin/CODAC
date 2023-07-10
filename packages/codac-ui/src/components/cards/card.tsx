@@ -1,56 +1,36 @@
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 
-import { CardRating } from "./card-rating";
-import { CardTag } from "./card-tag";
-
-export interface CardProps {
+export interface CohortCardProps {
   image?: string | StaticImageData;
-  tag?: string;
-  href?: string;
   title?: string;
-  rating?: number;
   startDate?: string;
-  course?: string;
   github?: string;
   linkdin?: string;
 }
 
-export const Card = ({
-  image,
-  href = "",
-  tag,
-  title = "",
-  rating,
-  startDate = "",
-  course = "",
-  github = "",
-  linkdin = "",
-}: CardProps) => {
+export const Card = ({ image, title = "", startDate = "", github = "",
+  linkdin = "" }: CohortCardProps) => {
   return (
-    <section className="card-list flex">
-      <article className="card bg-dark rounded-xl shadow-lg transition duration-200">
-        <header className="card-header">
-          <div>
-            {startDate && <p className="m-8 text-ms text-white">Start date {startDate}</p>}
-          </div>
-        </header>
-        <Link href={href} className="">
-          <div className="card-content m-6 flex items-center ">
-            {image && (
-              <Image
-                src={image}
-                width={160}
-                height={200}
-                className="filter-grayscale block h-24 w-24 rounded-full "
-                alt={title}
-              />
-            )}
-            <div className="group-hover:text-codac-cyan ml-6 truncate text-sm font-medium italic text-white">
-              {title}
-            </div>
-          </div>
-        </Link>
+    <div className="cardCohort m-20 flex justify-center p-12 ">
+      <div>
+        {image && (
+          <Image
+            style={{ minHeight: "230px", maxHeight: "300px" }}
+            src={image}
+            width={200}
+            height={200}
+            className="rounded-xl backdrop-invert group-hover:opacity-80"
+            alt={title}
+          />
+        )}
+      </div>
+      <div className="flex flex-col">
+        <div>
+          <div className="p-8 text-lg font-medium text-white"></div>
+        </div>
+        <h3 className="p-8 text-lg font-medium italic  text-white"> {title}</h3>
+        <div>{startDate && <p className="m-8 text-lg text-white">Start date {startDate}</p>}</div>
         <div className="flex justify-center gap-2 text-white">
           {github && (
             <Link href={github}>
@@ -78,13 +58,7 @@ export const Card = ({
             </Link>
           )}
         </div>
-
-        <div className="">{rating != undefined && <CardRating rating={rating} />}</div>
-        <div className="m-8 flex">{tag != undefined && <CardTag tag={tag} />}</div>
-        <div className="group-hover:text-codac-cyan m-6 truncate text-sm font-medium text-white">
-          {course}
-        </div>
-      </article>
-    </section>
+      </div>
+    </div>
   );
 };

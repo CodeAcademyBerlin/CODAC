@@ -1,9 +1,6 @@
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 
-import { CardRating } from "./card-rating";
-import { CardTag } from "./card-tag";
-
 export interface CardProps {
   image?: string | StaticImageData;
   tag?: string;
@@ -16,7 +13,7 @@ export interface CardProps {
   linkdin?: string;
 }
 
-export const MentorListCard = ({
+export const CardList = ({
   image,
   href = "",
   tag,
@@ -31,7 +28,7 @@ export const MentorListCard = ({
     <section className="card-list flex">
       <article className="mentorListCard shadow-lg transition duration-200">
         <header className="card-header">
-          <div>{startDate && <p className="text-ms m-8 text-white">Start date {startDate}</p>}</div>
+          <div>{startDate && <p className="text-ms m-8 text-black">Start date {startDate}</p>}</div>
         </header>
         <Link href={href} className="">
           <div className="card-content m-6 flex items-center ">
@@ -44,12 +41,17 @@ export const MentorListCard = ({
                 alt={title}
               />
             )}
-            <div className="group-hover:text-codac-cyan ml-6 truncate text-sm font-medium italic text-white">
-              {title}
+            <div className="flex flex-col ml-6">
+              <div className="group-hover:text-codac-cyan truncate text-sm font-medium italic text-white">
+                {title}
+              </div>
+              <div className="group-hover:text-codac-cyan truncate text-sm font-medium text-white">
+                {course}
+              </div>
             </div>
           </div>
         </Link>
-        <div className="flex justify-center gap-2 text-white">
+        <div className="flex justify-center  text-white">
           {github && (
             <Link href={github}>
               <svg
@@ -75,12 +77,6 @@ export const MentorListCard = ({
               </svg>
             </Link>
           )}
-        </div>
-
-        <div className="">{rating != undefined && <CardRating rating={rating} />}</div>
-        <div className="m-8 flex">{tag != undefined && <CardTag tag={tag} />}</div>
-        <div className="group-hover:text-codac-cyan m-6 truncate text-sm font-medium text-white">
-          {course}
         </div>
       </article>
     </section>

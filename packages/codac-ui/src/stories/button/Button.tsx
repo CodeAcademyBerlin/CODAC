@@ -1,10 +1,10 @@
 import React from "react";
 import "./button.css";
 import Image from "next/image";
-import sendIconWhite from "../assets/send-icon-white.svg";
-import sendIconBlack from "../assets/send-icon-black.svg";
-import joinIconWhite from "../assets/join-icon-white.svg";
-import joinIconBlack from "../assets/join-icon-black.svg";
+// import sendIconWhite from "../assets/send-icon-white.svg";
+// import sendIconBlack from "../assets/send-icon-black.svg";
+// import joinIconWhite from "../assets/join-icon-white.svg";
+// import joinIconBlack from "../assets/join-icon-black.svg";
 
 interface ButtonProps {
   /**
@@ -36,8 +36,8 @@ export const Button = ({
 }: ButtonProps) => {
   const isDarkmode = darkmode ? "darkmode" : "lightmode";
   const isPrimary = primary ? "primary" : "secondary";
-  const sendIcon = darkmode ? sendIconBlack : sendIconWhite;
-  const joinIcon = darkmode ? joinIconBlack : joinIconWhite;
+  // const sendIcon = darkmode ? sendIconBlack : sendIconWhite;
+  // const joinIcon = darkmode ? joinIconBlack : joinIconWhite;
 
   return (
     <button
@@ -45,11 +45,11 @@ export const Button = ({
       className={["storybook-button", isDarkmode, isPrimary].join(" ")}
       {...props}
     >
-      {label === "Send" ? (
+      {/* {label === "Send" ? (
         <Image className="icon" src={sendIcon} alt="" width={30} height={30} />
       ) : label === "Join" ? (
         <Image className="icon" src={joinIcon} alt="" width={30} height={30} />
-      ) : null}
+      ) : null} */}
       <span className="label">{label}</span>
     </button>
   );

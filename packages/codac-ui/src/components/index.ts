@@ -1,6 +1,6 @@
 export { Boundary } from "./boundary";
 export { Button } from "./button";
-export { Card, ReviewCard, CohortCard, ProfileCard, MentorListCard } from "./cards";
+export { Card, ReviewCard, CardList, Cohorts } from "./cards";
 export { CardShiny, CardShinyHOC } from "./cards/card-shiny";
 export { ExternalLink } from "./external-link";
 export { Modal } from "./modal";
