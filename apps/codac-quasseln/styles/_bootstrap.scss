@@ -1,0 +1,42 @@
+.form-check-input {
+  margin-right: 0.5em;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: top;
+  background-position: center;
+  border: 2px solid lighten($codac-primary-color, 20%);
+  appearance: none;
+  border-radius: 0.25em;
+  background-color: white;
+
+  &:active {
+    filter: brightness(90%);
+  }
+
+  &:checked {
+    background-color: $codac-primary-color;
+  }
+}
+.form-check-input[type="checkbox"] {
+  border: $border-solid $codac-primary-color;
+
+  &:disabled {
+    opacity: 30%;
+  }
+
+  &:checked {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+  }
+
+  &:hover {
+    background-color: lighten($codac-primary-color, 10%);
+  }
+}
+.form-check-input[type="radio"] {
+  border-radius: 50%;
+  background-color: $codac-primary-color;
+
+  &:checked {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
+  }
+}

@@ -7,7 +7,7 @@
   align-items: center;
   width: fit-content;
   color: white;
-  font-weight: 600;
+  // font-weight: 600;
   border-bottom: $border-solid white;
   .icon path {
     fill: white;
@@ -47,7 +47,6 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: $reg-space;
-  border: 2px solid orange;
 }
 
 ///////////////
@@ -111,9 +110,7 @@ h1 {
       .conversation {
         color: darken($codac-primary-color, 20%);
         background-color: lighten($codac-primary-color, 60%);
-        .pin-icon {
-          transform: rotate(-45deg);
-        }
+
         &.is-inactive {
           background-color: darken($codac-primary-color, 5%);
           color: white;
@@ -446,5 +443,6 @@ h1 {
     border-radius: $border-radius;
     margin: $reg-space 0;
     width: 100%;
+    color: black;
   }
 }
