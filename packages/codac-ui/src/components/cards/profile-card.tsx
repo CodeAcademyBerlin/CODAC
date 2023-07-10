@@ -19,7 +19,7 @@ export const ProfileCard = ({
   course = ""
 }: ProfileCardProps) => {
   return (
-    <div className=" m-2 flex justify-center p-4">
+    <div className="m-2 flex justify-center p-4">
       <div>
         {image && (
           <Image

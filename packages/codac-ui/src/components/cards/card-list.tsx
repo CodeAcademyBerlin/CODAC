@@ -16,7 +16,7 @@ export interface CardProps {
   linkdin?: string;
 }
 
-export const Card = ({
+export const MentorListCard = ({
   image,
   href = "",
   tag,
@@ -29,11 +29,9 @@ export const Card = ({
 }: CardProps) => {
   return (
     <section className="card-list flex">
-      <article className="card bg-dark rounded-xl shadow-lg transition duration-200">
+      <article className="mentorListCard shadow-lg transition duration-200">
         <header className="card-header">
-          <div>
-            {startDate && <p className="m-8 text-ms text-white">Start date {startDate}</p>}
-          </div>
+          <div>{startDate && <p className="text-ms m-8 text-white">Start date {startDate}</p>}</div>
         </header>
         <Link href={href} className="">
           <div className="card-content m-6 flex items-center ">
@@ -42,7 +40,7 @@ export const Card = ({
                 src={image}
                 width={160}
                 height={200}
-                className="filter-grayscale block h-24 w-24 rounded-full "
+                className="imageborder filter-grayscale block h-24 w-24 rounded-full "
                 alt={title}
               />
             )}

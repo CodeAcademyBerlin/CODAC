@@ -8,12 +8,12 @@ export interface CohortCardProps {
 
 export const CohortCard = ({ image, title = "", startDate = "" }: CohortCardProps) => {
   return (
-    <div className=" m-2 flex justify-center p-4">
+    <div className=" m-20 flex justify-center  cardCohort p-12">
 
       <div>
         {image && (
           <Image
-            style={{ minHeight: "240px", maxHeight: "240px" }}
+            style={{ minHeight: "230px", maxHeight: "300px" }}
             src={image}
             width={200}
             height={200}
@@ -25,12 +25,12 @@ export const CohortCard = ({ image, title = "", startDate = "" }: CohortCardProp
       </div>
       <div className="flex flex-col">
         <div>
-          <div className="p-8  text-lg font-medium text-white"></div>
+          <div className="p-8 text-lg font-medium text-white"></div>
         </div>
         <h3 className="p-8 text-lg font-medium italic  text-white"> {title}</h3>
 
         <div>
-          {startDate && <p className="m-8 text-xs text-gray-500">Start date {startDate}</p>}
+          {startDate && <p className="m-8 text-lg text-white">Start date {startDate}</p>}
         </div>
       </div>
     </div>
