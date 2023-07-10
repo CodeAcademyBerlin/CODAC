@@ -56,8 +56,7 @@ export const GetCohortByNameDocument = gql`
         id
         attributes {
           name
-          start_date
-          
+          start_date   
           logo {
             data {
               attributes {

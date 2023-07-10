@@ -2,17 +2,17 @@
 import { type CohortEntity, GetCohortsDocument, type GetCohortsQuery } from "codac-graphql-types";
 import { Card } from "codac-ui";
 
-import MentorList from "#/components/community/MentorList";
+import MentorList from "#/components/community/mentorList";
 import { initializeApollo } from "#/lib/apolloClient";
 
 function Community({ cohorts }: { cohorts: CohortEntity[] }) {
   return (
     <>
+      <div>
+        <div className="p-6 text-lg font-medium text-white">Cohorts</div>
+      </div>
       <div className="">
-        <div>
-          <div className="p-6 text-lg font-medium text-white">Cohorts</div>
-        </div>
-        <div className="ml-6 flex min-w-full grid-cols-6 flex-wrap p-1 ">
+        <div className="ml-6 justify-center flex min-w-full grid-cols-6 flex-wrap p-1 ">
           {cohorts.map((cohort) => (
             <div key={cohort.id} className="">
               {cohort.attributes && (
