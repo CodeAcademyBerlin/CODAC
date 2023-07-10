@@ -307,7 +307,7 @@ const SingleChat = (props: Props) => {
                 }
               )}
 
-            {conversations &&
+            {/* {conversations &&
               conversations.chatroom?.data?.attributes.conversations?.data?.map(
                 (conversation: any) => {
                   if (conversation.attributes.pinned === false) {
@@ -357,7 +357,7 @@ const SingleChat = (props: Props) => {
                     );
                   }
                 }
-              )}
+              )} */}
           </div>
         </div>
 

@@ -86,10 +86,8 @@ h1 {
   gap: 1rem;
   padding: 1rem 2rem 1rem 1rem;
 }
-.chat-container .chat-dashboard-container .pinned-conversations-container .pinned-conversation,
-.chat-container .chat-dashboard-container .pinned-conversations-container .unpinned-conversation,
-.chat-container .chat-dashboard-container .unpinned-conversations-container .pinned-conversation,
-.chat-container .chat-dashboard-container .unpinned-conversations-container .unpinned-conversation {
+.chat-container .chat-dashboard-container .pinned-conversations-container .conversation,
+.chat-container .chat-dashboard-container .unpinned-conversations-container .conversation {
   padding: 1rem;
   border-radius: 0.25em;
   cursor: pointer;
@@ -98,50 +96,55 @@ h1 {
   align-items: flex-start;
   font-weight: 600;
   border: 3px solid transparent;
-  background-color: red;
 }
 .chat-container .chat-dashboard-container .pinned-conversations-container {
   background-color: #02645a;
   border-radius: 0.25em 0 0 0;
 }
-.chat-container .chat-dashboard-container .pinned-conversations-container .pinned-conversation {
+.chat-container .chat-dashboard-container .pinned-conversations-container .conversation {
   color: black;
   background-color: #9bfdf3;
 }
-.chat-container .chat-dashboard-container .pinned-conversations-container .pinned-conversation.is-inactive {
+.chat-container .chat-dashboard-container .pinned-conversations-container .conversation .pin-icon {
+  transform: rotate(-45deg);
+}
+.chat-container .chat-dashboard-container .pinned-conversations-container .conversation.is-inactive {
   background-color: #024b44;
   color: white;
 }
-.chat-container .chat-dashboard-container .pinned-conversations-container .pinned-conversation.is-inactive .pin-icon path {
-  fill: #04c8b4;
-}
-.chat-container .chat-dashboard-container .pinned-conversations-container .pinned-conversation.is-inactive:hover {
+.chat-container .chat-dashboard-container .pinned-conversations-container .conversation.is-inactive:hover {
   color: black;
 }
-.chat-container .chat-dashboard-container .pinned-conversations-container .pinned-conversation.is-inactive:hover .pin-icon path {
+.chat-container .chat-dashboard-container .pinned-conversations-container .conversation.is-inactive:hover .pin-icon path {
   fill: black;
 }
-.chat-container .chat-dashboard-container .pinned-conversations-container .pinned-conversation .pin-icon path {
+.chat-container .chat-dashboard-container .pinned-conversations-container .conversation .pin-icon path {
   fill: #01322d;
 }
-.chat-container .chat-dashboard-container .pinned-conversations-container .pinned-conversation:hover {
+.chat-container .chat-dashboard-container .pinned-conversations-container .conversation:hover {
   background-color: #69fced;
 }
-.chat-container .chat-dashboard-container .pinned-conversations-container .pinned-conversation:active {
+.chat-container .chat-dashboard-container .pinned-conversations-container .conversation:active {
   border: 3px solid #04c8b4;
+}
+.chat-container .chat-dashboard-container .edit-conversation-svg:hover {
+  transform: scale(110%);
 }
 .chat-container .chat-dashboard-container .unpinned-conversations-container {
   background-color: rgb(30, 30, 30);
   border-radius: 0 0 0 0.25em;
   height: 100%;
 }
-.chat-container .chat-dashboard-container .unpinned-conversations-container .unpinned-conversation {
+.chat-container .chat-dashboard-container .unpinned-conversations-container .conversation {
   background-color: rgb(20, 20, 20);
 }
-.chat-container .chat-dashboard-container .unpinned-conversations-container .unpinned-conversation .unpin-icon path {
-  fill: #04c8b4;
+.chat-container .chat-dashboard-container .unpinned-conversations-container .conversation .edit-conversation-svg path {
+  fill: white;
 }
-.chat-container .chat-dashboard-container .unpinned-conversations-container .unpinned-conversation.is-active {
+.chat-container .chat-dashboard-container .unpinned-conversations-container .conversation .pin-icon path {
+  fill: white;
+}
+.chat-container .chat-dashboard-container .unpinned-conversations-container .conversation.is-active {
   background-color: white;
   color: rgb(20, 20, 20);
 }

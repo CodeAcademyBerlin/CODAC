@@ -154,7 +154,7 @@ const ConversationBuble = ({ conversation, setActive }: Props) => {
 
   return (
     <div
-      className="pinned-conversation"
+      className="conversation"
       key={conversation.id}
       onClick={async () => {
         setActive(conversation.id);
@@ -164,6 +164,7 @@ const ConversationBuble = ({ conversation, setActive }: Props) => {
         <div className="flex-start">
           {user?.role?.name === "Mentor" ? (
             <svg
+              className="edit-conversation-svg"
               onClick={toogleOptionsModal}
               xmlns="http://www.w3.org/2000/svg"
               height="1em"
@@ -196,6 +197,7 @@ const ConversationBuble = ({ conversation, setActive }: Props) => {
               viewBox="0 0 64 80"
               enable-background="new 0 0 64 64"
               height="1.2em"
+              // style={{ border: "2px solid violet" }}
             >
               <g>
                 <path
@@ -208,6 +210,7 @@ const ConversationBuble = ({ conversation, setActive }: Props) => {
           </div>
         ) : (
           <svg
+            style={{ border: "5px solid orange" }}
             className="pin-icon"
             xmlns="http://www.w3.org/2000/svg"
             height="1em"

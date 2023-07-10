@@ -17,13 +17,6 @@
   }
 }
 
-// .main-container {
-//   position: fixed;
-//   width: 80%;
-//   height: 100%;
-//   overflow: hidden;
-// }
-
 h1 {
   color: white;
   font-size: xx-large;
@@ -87,7 +80,6 @@ h1 {
     .flex-central {
       display: flex;
       justify-content: space-between;
-
       width: 100%;
       align-items: center;
     }
@@ -99,33 +91,33 @@ h1 {
       gap: $reg-space;
       padding: $reg-space $reg-space * 2 $reg-space $reg-space;
 
-      .pinned-conversation,
-      .unpinned-conversation {
+      .conversation {
         padding: $reg-space;
         border-radius: $border-radius;
         cursor: pointer;
         display: flex;
         flex-direction: column;
-        // gap: $reg-space;
+
         align-items: flex-start;
         font-weight: 600;
         border: $border-solid-xl transparent;
-        background-color: red;
       }
     }
+
     .pinned-conversations-container {
       background-color: $codac-primary-color;
       border-radius: $border-radius 0 0 0;
 
-      .pinned-conversation {
+      .conversation {
         color: darken($codac-primary-color, 20%);
         background-color: lighten($codac-primary-color, 60%);
+        .pin-icon {
+          transform: rotate(-45deg);
+        }
         &.is-inactive {
           background-color: darken($codac-primary-color, 5%);
           color: white;
-          .pin-icon path {
-            fill: lighten($codac-primary-color, 20%);
-          }
+
           &:hover {
             color: darken($codac-primary-color, 20%);
             .pin-icon {
@@ -151,16 +143,29 @@ h1 {
         }
       }
     }
+
+    .edit-conversation-svg {
+      &:hover {
+        transform: scale(110%);
+      }
+    }
+
     .unpinned-conversations-container {
       background-color: rgb(30, 30, 30);
       border-radius: 0 0 0 $border-radius;
       height: 100%;
-      .unpinned-conversation {
+      .conversation {
         background-color: rgb(20, 20, 20);
 
-        .unpin-icon {
+        .edit-conversation-svg {
           path {
-            fill: lighten($codac-primary-color, 20%);
+            fill: white;
+          }
+        }
+
+        .pin-icon {
+          path {
+            fill: white;
           }
         }
 
@@ -443,37 +448,3 @@ h1 {
     width: 100%;
   }
 }
-
-// /** send a message **/
-
-// .send-message-container {
-//   display: grid;
-//   grid-template-columns: 1fr 1fr;
-//   gap: $reg-space;
-
-//   div {
-//     display: flex;
-//     gap: $sm-space;
-//     flex-direction: column;
-//     width: 100%;
-//     grid-column-start: 2;
-//     align-items: flex-end;
-//   }
-
-//   textarea {
-//     width: 100%;
-//     border-radius: $border-radius;
-//     background-color: lighten($codac-primary-color, 70%);
-//   }
-// }
-
-// .activity-message {
-//   color: white;
-//   font-size: $smaller-text;
-// }
-
-// .chatroom-nav {
-//   display: flex;
-//   gap: $reg-space;
-//   align-items: center;
-// }
