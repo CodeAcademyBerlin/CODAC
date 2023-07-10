@@ -231,6 +231,7 @@ const SingleChat = (props: Props) => {
                           key={conversation.id}
                           conversation={conversation}
                           setActive={setActive}
+                          active={active}
                         />
                       );
                     }
@@ -252,6 +253,7 @@ const SingleChat = (props: Props) => {
                           key={conversation.id}
                           conversation={conversation}
                           setActive={setActive}
+                          active={active}
                         />
                       );
                     }

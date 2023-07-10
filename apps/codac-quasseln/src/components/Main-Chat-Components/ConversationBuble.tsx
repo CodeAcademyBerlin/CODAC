@@ -11,6 +11,7 @@ interface Props {
       title: string;
     };
   };
+  active: string;
   setActive: React.Dispatch<React.SetStateAction<string>>;
 }
 const updatePinnedConversation = gql`
@@ -61,12 +62,13 @@ const getChatHistoryById = gql`
   }
 `;
 
-const ConversationBuble = ({ conversation, setActive }: Props) => {
+const ConversationBuble = ({ conversation, setActive, active }: Props) => {
   const { user } = useAuth();
   const [optionsModal, setOptionsModal] = useState(false);
   const [messageText, setMessageText] = useState(conversation.attributes.description);
   const [messageTitle, setMessageTitle] = useState(conversation.attributes.title);
   const [isChecked, setIsChecked] = useState(conversation.attributes.pinned);
+
   const checkBox = () => {
     setIsChecked(!isChecked);
   };
@@ -156,13 +158,11 @@ const ConversationBuble = ({ conversation, setActive }: Props) => {
   const handleConversationClick = () => {
     setActive(conversation.id);
     console.log("conversation.id :", conversation.id);
-    setIsActiveConvo(conversation.id === isActiveConvo ? "" : conversation.id);
-    console.log("isActiveConvo :", isActiveConvo);
   };
 
   return (
     <div
-      className={`conversation ${conversation.id === isActiveConvo ? "active" : "inactive"}`}
+      className={`conversation ${conversation.id === active ? "active" : "inactive"}`}
       key={conversation.id}
       onClick={handleConversationClick}
     >
