@@ -104,6 +104,28 @@ const updatePinnedConversation = gql`
     }
   }
 `;
+
+const createConversation = gql`
+mutation createConversation($chatroomId: ID!, $title: String!, $pinned: Boolean, $description: String){
+  createConversation(data: { chatroom: $chatroomId title: $title pinned: $pinned description: $description }){
+    data{
+      id
+      attributes{
+        title
+        description
+        pinned
+        createdAt
+        updatedAt
+        chatroom{
+          data{
+            id
+          }
+
+        }
+      }
+    }
+  }
+}`
 type Props = {};
 
 const SingleChat = (props: Props) => {
@@ -150,6 +172,7 @@ const SingleChat = (props: Props) => {
     data: conversations,
     error,
     loading,
+    refetch: conversationRefetch
   } = useQuery(getSingleChat, { variables: { id: chatId } });
 
   //NOTE  GETTING ALL MESSAGES FOR A SINGLE CONVERSATION
@@ -171,7 +194,6 @@ const SingleChat = (props: Props) => {
 
   const [messageText, setMessageText] = useState("");
   const [newMessageMutation] = useMutation(createNewMessage);
-
   const sendMessage = () => {
     if (messageText.length >= 1) {
       newMessageMutation({
@@ -210,10 +232,41 @@ const SingleChat = (props: Props) => {
     return formattedDate;
   };
 
+  // new conversation states and functions
+  const [newConversationModal, setNewConversationModal] = useState(false);
+  const [newConversationTitle, setNewConversationTitle] = useState("");
+  const [newConversationDescription, setNewConversationDescription] = useState("");
+
+  const [createNewConversation] = useMutation(createConversation);
+  const newConversation = () => {
+    if (newConversationTitle.length >= 1) {
+      // console.log('active :>> ', chatId);
+      // console.log('newConversationTitle :>> ', newConversationTitle);
+      // console.log('newConversationDescription :>> ', newConversationDescription);
+      createNewConversation({
+        variables: {
+          chatroomId: chatId,
+          title: newConversationTitle,
+          pinned: false,
+          description: newConversationDescription
+        }
+      })
+      setNewConversationModal(false)
+      // back to empty string!
+      conversationRefetch();
+    } else {
+      // just for the beginning...
+      alert("please add a title")
+    }
+  }
+
+
+
+
   return (
     <>
       <div>
-        <h1>Welcome to {conversations?.chatroom.data?.attributes.name}</h1>
+        <h1>{conversations?.chatroom.data?.attributes.name}</h1>
         <div className="chat-container">
           <div className="chat-dashboard-container">
             <div className="pinned-conversations-container">
@@ -259,6 +312,10 @@ const SingleChat = (props: Props) => {
                     }
                   }
                 )}
+              {/* Inline styling to make a test version  */}
+              <button onClick={() => setNewConversationModal(!newConversationModal)}>
+                Create Conversation
+              </button>
             </div>
           </div>
           <div className="chat-convo-container">
@@ -302,6 +359,81 @@ const SingleChat = (props: Props) => {
           </div>
         </div>
       </div>
+      {/* Create conversation Modal */}
+      {newConversationModal && (
+        <div className="edit_message_modal">
+          <div
+            className="edit_message_modal_overlay"
+          // onClick={toogleOptionsModal} //TODO - UNDER REVIEW
+          >
+            <div
+              className="edit_message_modal_container"
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            // MODAL DIV:::: HERE STYLING FOR CHANGE DIV MODAL
+            >
+              <div>
+                <form>
+                  <p>Title</p>
+                  <input
+                    type="text"
+                    name="title"
+                    placeholder={"Enter a title"}
+                    value={newConversationTitle}
+                    onChange={(e) => {
+                      e.stopPropagation();
+                      setNewConversationTitle(e.target.value);
+                    }}
+                  ></input>
+                  <br /> <br />
+                  <p>Description</p>
+                  <input
+                    type="text"
+                    name="edit_conversation"
+                    id="edit_post_text"
+                    placeholder={"Please set a Description..."
+                    }
+                    value={newConversationDescription}
+                    onChange={(e) => {
+                      e.stopPropagation();
+                      setNewConversationDescription(e.target.value);
+                    }}
+                  // onKeyDown={(e) => {
+                  //   if (e.key === "Enter") {
+                  //     e.stopPropagation();
+                  //     (e: any) => updatePinned(e, conversation);
+                  //   }
+                  // }}
+                  ></input>
+                  {/* remove Check functionality for new Conversation div */}
+                  {/* <div className="flex-start" style={{ margin: "1rem 0" }}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={isChecked === true ? true : false}
+                      onChange={checkBox}
+                    ></input>
+                    <p>Do you want to pin this conversation ?</p>
+                  </div> */}
+                  <div className="buttons-container">
+                    <button
+                      className="primary"
+                      onClick={() => newConversation()}
+                      type="submit"
+                    >
+                      Create Conversation
+                    </button>
+                    <button className="secondary" type="button" onClick={() => setNewConversationModal(false)}>
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

@@ -67,7 +67,7 @@ const KangaroosChat = (props: Props) => {
 
   return (
     <>
-      <h1>Chatrooms Access</h1>
+      <h1>Your Chatrooms</h1>
       <div className="chatroom-access-link-container">
         {data &&
           data?.chatrooms?.data.map((chat: any) => {

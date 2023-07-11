@@ -203,21 +203,16 @@ const ConversationBuble = ({ conversation, setActive, active }: Props) => {
         )}
       </div>
       <p className="conversation-subtitle">
-        {conversation.attributes?.description ? (
+        {conversation.attributes?.description && (
           <>
-            {conversation.attributes?.description.length < 30
-              ? conversation.attributes?.description
-              : `${kurzeDescription}...`}
-          </>
-        ) : (
-          <>
-            <i>
-              {lastMessage?.attributes?.body.length < 30
-                ? lastMessage?.attributes?.body
-                : `${kurzeLastMessage}...`}
-            </i>
+            {conversation.attributes?.description
+              && `${kurzeDescription}...`}
           </>
         )}
+        {!conversation.attributes?.description && lastMessage?.attributes?.body &&
+          <i>
+            {kurzeLastMessage}...
+          </i>}
       </p>
 
       {/* +++++++++++++++++++++++++++++ EDIT MODAL +++++++++++++++++++++ */}
@@ -225,14 +220,14 @@ const ConversationBuble = ({ conversation, setActive, active }: Props) => {
         <div className="edit_message_modal">
           <div
             className="edit_message_modal_overlay"
-            // onClick={toogleOptionsModal} //TODO - UNDER REVIEW
+          // onClick={toogleOptionsModal} //TODO - UNDER REVIEW
           >
             <div
               className="edit_message_modal_container"
               onClick={(e) => {
                 e.stopPropagation();
               }}
-              // MODAL DIV:::: HERE STYLING FOR CHANGE DIV MODAL
+            // MODAL DIV:::: HERE STYLING FOR CHANGE DIV MODAL
             >
               <div>
                 <form>
