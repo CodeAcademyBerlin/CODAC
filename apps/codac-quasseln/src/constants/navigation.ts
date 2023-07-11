@@ -16,29 +16,29 @@ export const navigation: { name: string; items: Item[] }[] = [
     ],
   },
   {
-    name: "Chat",
+    name: "Chats",
     items: [
       {
-        name: "Chat",
+        name: "Legacy Chat",
         slug: "chat",
         description: "Chat",
       },
       {
-        name: "Main Chat",
+        name: "Kangaroos Chat",
         slug: "main-chat",
         description: "Main Chat",
       },
     ],
   },
-  {
-    name: "Main Chat",
-    items: [
-      {
-        name: "Main Chat",
-        slug: "main-chat",
-        description: "main chat",
-      },
-    ],
-  },
+  // {
+  //   name: "Main Chat",
+  //   items: [
+  //     {
+  //       name: "Main Chat",
+  //       slug: "main-chat",
+  //       description: "main chat",
+  //     },
+  //   ],
+  // },
 ];
 // New section "Main Chat" added by Christian.
