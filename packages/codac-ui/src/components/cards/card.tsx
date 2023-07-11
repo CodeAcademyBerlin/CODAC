@@ -7,10 +7,19 @@ export interface CohortCardProps {
   startDate?: string;
   github?: string;
   linkdin?: string;
+  course?: string;
+  email?: string;
 }
 
-export const Card = ({ image, title = "", startDate = "", github = "",
-  linkdin = "" }: CohortCardProps) => {
+export const Card = ({
+  image,
+  title = "",
+  startDate = "",
+  github = "",
+  linkdin = "",
+  course = "",
+  email = ""
+}: CohortCardProps) => {
   return (
     <div className="cardCohort m-20 flex justify-center p-12 ">
       <div>
@@ -29,8 +38,12 @@ export const Card = ({ image, title = "", startDate = "", github = "",
         <div>
           <div className="p-8 text-lg font-medium text-white"></div>
         </div>
-        <h3 className="p-8 text-lg font-medium italic  text-white"> {title}</h3>
-        <div>{startDate && <p className="m-8 text-lg text-white">Start date {startDate}</p>}</div>
+        <h3 className="text-md p-8 font-medium italic  text-white"> {title}</h3>
+        <div>{startDate && <p className="text-md m-8 text-white">Start date {startDate}</p>}</div>
+        <div className="group-hover:text-codac-cyan truncate text-sm font-medium text-white">
+          {course}
+        </div>
+        <h3>{email}</h3>
         <div className="flex justify-center gap-2 text-white">
           {github && (
             <Link href={github}>

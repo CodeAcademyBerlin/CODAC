@@ -1,10 +1,14 @@
 import { Card, SkeletonCards } from "codac-ui";
+import defaultAvatar from "../../../public/defaultAvatar.png";
 
 import { useGetMentor } from "#/graphql/hooks";
 
 export const Mentor = ({ id }: { id: string }) => {
   const { mentor, loading, error } = useGetMentor(id);
   console.log(mentor);
+
+    const avatarUrl = mentor?.attributes?.user?.data?.attributes?.avatar?.data?.attributes?.url ?? ""
+    const imageUrl = avatarUrl || defaultAvatar;
 
   return (
     <div className="flex justify-center">
@@ -16,10 +20,11 @@ export const Mentor = ({ id }: { id: string }) => {
             {mentor.attributes && (
               <div className="">
                 <Card
-                  image={mentor.attributes.user?.data.attributes.avatar?.data.attributes.url ?? ""}
+                  image={imageUrl}
                   title={mentor.attributes.user?.data.attributes.username}
                   github={mentor?.attributes?.github ?? ""}
                   linkdin={mentor?.attributes?.linkedin ?? ""}
+                  email={mentor.attributes.user?.data.attributes.email}
                 />
               </div>
             )}

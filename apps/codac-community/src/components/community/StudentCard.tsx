@@ -15,8 +15,6 @@ export const StudentCard = (props: CardStudentProp) => {
 
   return (
     <div>
-      
-
       <div className=" flex grid-cols-5 flex-wrap justify-center">
         {student.attributes && (
           <div className="relative">

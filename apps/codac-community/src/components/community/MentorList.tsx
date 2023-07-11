@@ -15,7 +15,7 @@ const MentorList = () => {
       <div className="flex justify-center">
         {loading && <SkeletonCards number={3} isLoading={loading} />}
         {error && <div>something is wrong</div>}
-        <div className="flex justify-center grid-cols-5 flex-wrap ">
+        <div className="flex justify-center grid-cols-2 flex-wrap ">
           {mentors &&
             mentors.map((mentor: MentorEntity) => {
               const avatarUrl =
