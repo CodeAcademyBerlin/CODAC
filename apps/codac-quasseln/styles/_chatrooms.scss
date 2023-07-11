@@ -7,7 +7,7 @@
   align-items: center;
   width: fit-content;
   color: white;
-  font-weight: 600;
+  // font-weight: 600;
   border-bottom: $border-solid white;
   .icon path {
     fill: white;
@@ -17,10 +17,14 @@
   }
 }
 
-/** messages chronology **/
 h1 {
   color: white;
   font-size: xx-large;
+}
+
+.main-container {
+  height: auto;
+  background-color: transparent;
 }
 
 .chatroom-access-link-container {
@@ -48,7 +52,6 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: $reg-space;
-  border: 2px solid orange;
 }
 
 ///////////////
@@ -57,13 +60,33 @@ h1 {
   color: white;
   margin: $reg-space 0;
   display: flex;
+  height: 100vh;
 
   .chat-dashboard-container {
     display: flex;
     flex-direction: column;
     min-width: 20em;
-    width: 30%;
     background-color: rgb(20, 20, 20);
+    height: 100%;
+
+    .conversation-subtitle {
+      font-size: 80%;
+      padding-top: 5px;
+      font-weight: 400;
+    }
+
+    .flex-start {
+      display: flex;
+      gap: $sm-space;
+      align-items: center;
+    }
+
+    .flex-central {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+    }
 
     .pinned-conversations-container,
     .unpinned-conversations-container {
@@ -71,32 +94,38 @@ h1 {
       flex-direction: column;
       gap: $reg-space;
       padding: $reg-space $reg-space * 2 $reg-space $reg-space;
-
-      .pinned-conversation,
-      .unpinned-conversation {
+      min-height: fit-content;
+      .conversation {
         padding: $reg-space;
         border-radius: $border-radius;
         cursor: pointer;
         display: flex;
-        gap: $reg-space;
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
         font-weight: 600;
         border: $border-solid-xl transparent;
+        &.active {
+          background-color: white;
+          color: black;
+          svg path {
+            fill: black;
+          }
+        }
       }
     }
+
     .pinned-conversations-container {
       background-color: $codac-primary-color;
       border-radius: $border-radius 0 0 0;
 
-      .pinned-conversation {
+      .conversation {
         color: darken($codac-primary-color, 20%);
         background-color: lighten($codac-primary-color, 60%);
+
         &.is-inactive {
           background-color: darken($codac-primary-color, 5%);
           color: white;
-          .pin-icon path {
-            fill: lighten($codac-primary-color, 20%);
-          }
+
           &:hover {
             color: darken($codac-primary-color, 20%);
             .pin-icon {
@@ -122,16 +151,29 @@ h1 {
         }
       }
     }
+
+    .edit-conversation-svg {
+      &:hover {
+        transform: scale(110%);
+      }
+    }
+
     .unpinned-conversations-container {
       background-color: rgb(30, 30, 30);
       border-radius: 0 0 0 $border-radius;
       height: 100%;
-      .unpinned-conversation {
+      .conversation {
         background-color: rgb(20, 20, 20);
 
-        .unpin-icon {
+        .edit-conversation-svg {
           path {
-            fill: lighten($codac-primary-color, 20%);
+            fill: white;
+          }
+        }
+
+        .pin-icon {
+          path {
+            fill: white;
           }
         }
 
@@ -148,14 +190,16 @@ h1 {
   }
 
   .chat-convo-container {
-    background-color: rgb(40, 40, 40);
     border-radius: 0 $border-radius $border-radius 0;
-    padding: $reg-space $reg-space $reg-space $reg-space * 2;
+    padding: $reg-space $reg-space $lg-space $lg-space;
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: $reg-space !important;
-
+    overflow: auto;
+    height: 100%;
+    margin-bottom: 0;
+    background-color: black;
     .message-container {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -371,42 +415,46 @@ h1 {
     }
   }
 }
-.message-editor {
-  resize: none;
-  color: black;
-  border-radius: $border-radius;
-  background-color: lightyellow;
+
+.message-editor-container {
+  grid-column-start: 2;
+
+  .message-editor {
+    resize: none;
+    color: black;
+    border-radius: $border-radius;
+    background-color: lightyellow;
+    width: 100%;
+  }
 }
-// /** send a message **/
 
-// .send-message-container {
-//   display: grid;
-//   grid-template-columns: 1fr 1fr;
-//   gap: $reg-space;
+.edit_message_modal_overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+}
 
-//   div {
-//     display: flex;
-//     gap: $sm-space;
-//     flex-direction: column;
-//     width: 100%;
-//     grid-column-start: 2;
-//     align-items: flex-end;
-//   }
-
-//   textarea {
-//     width: 100%;
-//     border-radius: $border-radius;
-//     background-color: lighten($codac-primary-color, 70%);
-//   }
-// }
-
-// .activity-message {
-//   color: white;
-//   font-size: $smaller-text;
-// }
-
-// .chatroom-nav {
-//   display: flex;
-//   gap: $reg-space;
-//   align-items: center;
-// }
+.edit_message_modal_container {
+  position: relative;
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(34, 34, 34);
+  color: white;
+  border-radius: $border-radius;
+  width: 50%;
+  height: auto;
+  padding: $reg-space $reg-space $lg-space;
+  margin: 200px auto auto;
+  input[type="text"] {
+    border-radius: $border-radius;
+    margin: $reg-space 0;
+    width: 100%;
+    color: black;
+  }
+}

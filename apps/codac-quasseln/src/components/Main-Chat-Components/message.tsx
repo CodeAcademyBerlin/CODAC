@@ -202,18 +202,18 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
                   <button
                     className="primary"
                     onClick={() => {
-                      setHiddenDiv(!hiddenDiv);
-                    }}
-                  >
-                    No
-                  </button>
-                  <button
-                    className="secondary"
-                    onClick={() => {
                       deleteMessage(message.id);
                     }}
                   >
                     Yes
+                  </button>
+                  <button
+                    className="secondary"
+                    onClick={() => {
+                      setHiddenDiv(!hiddenDiv);
+                    }}
+                  >
+                    No
                   </button>
                 </div>
               </div>
@@ -223,7 +223,7 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
       )}
       {editToggle && (
         <>
-          <div className="option-B">
+          <div className="message-editor-container option-B">
             <form
               onSubmit={(e) => {
                 e.preventDefault();

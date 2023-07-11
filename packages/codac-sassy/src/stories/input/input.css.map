@@ -1,1 +1,1 @@
-{"version":3,"sources":["input.scss","../../../../../apps/codac-quasseln/styles/_vars.scss","input.css"],"names":[],"mappings":"AAEA;EACE,qBCEc;EDDd,YAAA;EACA,aCMU;EDLV,eAAA;EACA,kCAAA;EACA,YAAA;AEDF;AFGE;EACE,yBAAA;EACA,yBAAA;AEDJ;AFIE;EACE,yBAAA;EACA,uBAAA;AEFJ","file":"input.css"}
+{"version":3,"sources":["input.scss","../../../../../apps/codac-quasseln/styles/_vars.scss","input.css"],"names":[],"mappings":"AAEA;EACE,qBCEc;EDDd,YAAA;EACA,aCOU;EDNV,eAAA;EACA,kCAAA;EACA,YAAA;AEDF;AFGE;EACE,yBAAA;EACA,yBAAA;AEDJ;AFIE;EACE,yBAAA;EACA,uBAAA;AEFJ","file":"input.css"}

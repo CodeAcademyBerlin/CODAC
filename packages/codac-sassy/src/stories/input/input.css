@@ -7,10 +7,10 @@ textarea {
   color: black;
 }
 textarea.lightmode {
-  border: 1px solid #69fced;
+  border: 2px solid #69fced;
   background-color: #cdfef9;
 }
 textarea.darkmode {
-  border: 1px solid #69fced;
+  border: 2px solid #69fced;
   background-color: white;
 }/*# sourceMappingURL=input.css.map */
