@@ -134,9 +134,8 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
     } else {
       formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     }
-    formattedDate += `@ ${date.getHours() < 10 ? "0" : ""}${date.getHours()}:${
-      date.getMinutes() < 10 ? "0" : ""
-    }${date.getMinutes()} `;
+    formattedDate += `@ ${date.getHours() < 10 ? "0" : ""}${date.getHours()}:${date.getMinutes() < 10 ? "0" : ""
+      }${date.getMinutes()} `;
 
     return formattedDate;
   };
@@ -147,11 +146,10 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
         <>
           <div
             // ref={hiddenDivRef}
-            className={`message-bubble option-A ${
-              user?.username === message.attributes.author.data?.attributes.username
+            className={`message-bubble option-A ${user?.username === message.attributes.author.data?.attributes.username
                 ? "my-message"
                 : "user-message"
-            }`}
+              }`}
           >
             <div className="message-label">
               {user?.username !== message.attributes.author.data?.attributes.username ? (

@@ -13,6 +13,7 @@ interface Props {
   };
   active: string;
   setActive: React.Dispatch<React.SetStateAction<string>>;
+  deleteConv: () => void
 }
 const updatePinnedConversation = gql`
   mutation updateArticle($id: ID!, $title: String!, $pinned: Boolean!, $description: String!) {
@@ -62,12 +63,22 @@ const getChatHistoryById = gql`
   }
 `;
 
-const ConversationBuble = ({ conversation, setActive, active }: Props) => {
+const deleteConversation = gql`
+mutation deleteConversation($id: ID!){
+  deleteConversation(id:$id){
+    data{
+      id
+    }
+  }
+}`
+
+const ConversationBuble = ({ conversation, setActive, active, deleteConv }: Props) => {
   const { user } = useAuth();
   const [optionsModal, setOptionsModal] = useState(false);
   const [messageText, setMessageText] = useState(conversation.attributes.description);
   const [messageTitle, setMessageTitle] = useState(conversation.attributes.title);
   const [isChecked, setIsChecked] = useState(conversation.attributes.pinned);
+  console.log('conversation :>> ', conversation);
 
   const checkBox = () => {
     setIsChecked(!isChecked);
@@ -81,6 +92,8 @@ const ConversationBuble = ({ conversation, setActive, active }: Props) => {
   const toogleOptionsModal = () => {
     setOptionsModal(!optionsModal);
   };
+  console.log('allMessages :>> ', allMessages);
+
   const [selectColor, setSelectColor] = useState("");
   const [updatePinnedMutation] = useMutation(updatePinnedConversation);
   const updatePinned = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, conver: any) => {
@@ -160,6 +173,22 @@ const ConversationBuble = ({ conversation, setActive, active }: Props) => {
     console.log("conversation.id :", conversation.id);
   };
 
+  //  DELETE CONVERSATION STATES AND FUNCTIONS...
+  const [deleteNewConversation] = useMutation(deleteConversation);
+
+  const deleteEmptyConversation = (conversationId: any) => {
+    if (allMessages.conversation.data.attributes.messages.data.length === 0) {
+      deleteNewConversation({
+        variables: {
+          id: conversationId
+        }
+      })
+      deleteConv()
+    }
+  }
+
+
+
   return (
     <div
       className={`conversation ${conversation.id === active ? "active" : "inactive"}`}
@@ -181,6 +210,16 @@ const ConversationBuble = ({ conversation, setActive, active }: Props) => {
           ) : (
             ""
           )}
+
+          {allMessages?.conversation.data?.attributes.messages.data.length === 0 &&
+            <button
+              onClick={() => {
+                deleteEmptyConversation(conversation.id)
+              }}
+            >X</button>
+          }
+
+
 
           <p>
             {conversation.attributes?.title.length < 30

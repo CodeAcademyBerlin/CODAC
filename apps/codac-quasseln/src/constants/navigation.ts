@@ -30,6 +30,9 @@ export const navigation: { name: string; items: Item[] }[] = [
       },
     ],
   },
+  // maybe it would be a good idea to have the chatrooms Links in the side bar...
+  // query getChatById only displaying names...
+
   // {
   //   name: "Main Chat",
   //   items: [

@@ -135,6 +135,10 @@ const SingleChat = (props: Props) => {
   const deleteMsg = () => {
     refetch();
   };
+
+  const deleteConv = () => {
+    conversationRefetch();
+  };
   // UPDATE PINNED CONVERSATION FUNCTION
   const [updatePinnedMutation] = useMutation(updatePinnedConversation);
 
@@ -236,13 +240,10 @@ const SingleChat = (props: Props) => {
   const [newConversationModal, setNewConversationModal] = useState(false);
   const [newConversationTitle, setNewConversationTitle] = useState("");
   const [newConversationDescription, setNewConversationDescription] = useState("");
-
   const [createNewConversation] = useMutation(createConversation);
+
   const newConversation = () => {
     if (newConversationTitle.length >= 1) {
-      // console.log('active :>> ', chatId);
-      // console.log('newConversationTitle :>> ', newConversationTitle);
-      // console.log('newConversationDescription :>> ', newConversationDescription);
       createNewConversation({
         variables: {
           chatroomId: chatId,
@@ -251,6 +252,8 @@ const SingleChat = (props: Props) => {
           description: newConversationDescription
         }
       })
+      setNewConversationTitle("")
+      setNewConversationDescription("")
       setNewConversationModal(false)
       // back to empty string!
       conversationRefetch();
@@ -259,9 +262,6 @@ const SingleChat = (props: Props) => {
       alert("please add a title")
     }
   }
-
-
-
 
   return (
     <>
@@ -285,6 +285,7 @@ const SingleChat = (props: Props) => {
                           conversation={conversation}
                           setActive={setActive}
                           active={active}
+                          deleteConv={deleteConv}
                         />
                       );
                     }
@@ -307,6 +308,7 @@ const SingleChat = (props: Props) => {
                           conversation={conversation}
                           setActive={setActive}
                           active={active}
+                          deleteConv={deleteConv}
                         />
                       );
                     }
