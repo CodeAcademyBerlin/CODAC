@@ -83,9 +83,7 @@ export const Cohorts = ({
 
         <div className="">{rating != undefined && <CardRating rating={rating} />}</div>
         <div className="ml-32 flex">{tag != undefined && <CardTag tag={tag} />}</div>
-        <div className="group-hover:text-codac-cyan m-6 truncate text-sm font-medium text-white">
-          {course}
-        </div>
+
       </article>
     </section>
   );
