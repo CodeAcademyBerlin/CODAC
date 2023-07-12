@@ -78,7 +78,7 @@ const ConversationBuble = ({ conversation, setActive, active, deleteConv }: Prop
   const [messageText, setMessageText] = useState(conversation.attributes.description);
   const [messageTitle, setMessageTitle] = useState(conversation.attributes.title);
   const [isChecked, setIsChecked] = useState(conversation.attributes.pinned);
-  console.log('conversation :>> ', conversation);
+
 
   const checkBox = () => {
     setIsChecked(!isChecked);
@@ -92,7 +92,7 @@ const ConversationBuble = ({ conversation, setActive, active, deleteConv }: Prop
   const toogleOptionsModal = () => {
     setOptionsModal(!optionsModal);
   };
-  console.log('allMessages :>> ', allMessages);
+
 
   const [selectColor, setSelectColor] = useState("");
   const [updatePinnedMutation] = useMutation(updatePinnedConversation);

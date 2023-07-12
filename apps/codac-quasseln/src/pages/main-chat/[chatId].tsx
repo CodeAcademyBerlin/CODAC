@@ -5,6 +5,8 @@ import { useAuth } from "#/contexts/authContext";
 import { timeStamp } from "console";
 import Message from "#/components/Main-Chat-Components/message";
 import ConversationBuble from "#/components/Main-Chat-Components/ConversationBuble";
+import { Socket } from "socket.io-client";
+import { useSocket } from "#/contexts/socketContext";
 
 // This query is to find the chatroom.... NOT all the messages... (do you mean conversations????)
 interface Conversation {
@@ -70,27 +72,14 @@ const getChatHistoryById = gql`
   }
 `;
 const createNewMessage = gql`
-  mutation createMessage($body: String!, $conversationId: ID!, $authorId: ID!) {
-    createMessage(data: { body: $body, conversation: $conversationId, author: $authorId }) {
-      data {
-        id
-        attributes {
-          author {
-            data {
-              id
-            }
-          }
-          body
-          conversation {
-            data {
-              id
-            }
-          }
-        }
-      }
-    }
+# Strappi create new name for the query
+# createConversationMessage instead of createMessage
+  mutation createConversationMessage($body: String!, $conversationId: ID!) {
+    createConversationMessage(body: $body, conversationId: $conversationId ) {
+      message
+      success
   }
-`;
+  }`;
 const updatePinnedConversation = gql`
   mutation updateArticle($id: ID!, $pinned: Boolean!) {
     updateConversation(id: $id, data: { pinned: $pinned }) {
@@ -171,6 +160,9 @@ const SingleChat = (props: Props) => {
   // const router = useRouter();
   const { chatId } = useRouter().query;
   const [active, setActive] = useState("");
+  const { socket } = useSocket();
+
+
   // Refetching enables you to refresh query results in response to a particular user action, as opposed to using a fixed interval.
   const {
     data: conversations,
@@ -262,6 +254,22 @@ const SingleChat = (props: Props) => {
       alert("please add a title")
     }
   }
+
+  useEffect(() => {
+    socket?.on("conversation:update", (conversation) => {
+      console.log('conversation :>> ', conversation);
+      if (conversation.id === active) {
+        conversationRefetch();
+      }
+    })
+    // socket?.on("message:update", (message) => {
+    //   console.log('message :>> ', message);
+
+    // })
+  }, [socket])
+  console.log("socket :>> ", socket);
+
+
 
   return (
     <>
