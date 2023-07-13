@@ -9,9 +9,11 @@
   max-width: 17rem;
   margin-right: 1rem;
   margin-block: 1rem;
-  border-left: 3px solid #508484;
+  min-height: 19rem;
+  margin: 10px;
+  border-left: 3px solid #00897b;
   transition: ease-in-out 0.1s;
-  border-bottom: 1px solid #508484;
+  border-bottom: 1px solid #00897b;
 }
 .mentorListCard {
   border-radius: 20px 16px 10px 10px;
@@ -20,6 +22,7 @@
   min-width: 20rem;
   max-width: 10rem;
   max-height: 10rem;
+  margin: 10px;
   margin-block: 1rem;
   border-left: 3px solid #00897b;
   transition: ease-in-out 0.1s;
@@ -28,7 +31,6 @@
 
 .card:hover {
   transition: ease-in-out 0.1s;
- 
 }
 .avatarBorder {
   border-bottom: 3px solid #00897b;
@@ -44,7 +46,6 @@
   transition: ease-in-out 0.1s;
   border-bottom: 1px solid #00897b;
 }
-
 
 .card:hover {
   transform: translateY(-1rem);

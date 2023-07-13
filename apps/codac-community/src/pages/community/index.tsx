@@ -12,7 +12,7 @@ function Community({ cohorts }: { cohorts: CohortEntity[] }) {
         <div className="p-6 text-lg font-medium text-white">Cohorts</div>
       </div>
       <div className="">
-        <div className="ml-4 flex min-w-full grid-cols-6 flex-wrap justify-center ">
+        <div className="flex min-w-full grid-cols-6 flex-wrap justify-center ">
           {cohorts.map((cohort) => (
             <div key={cohort.id} className="">
               {cohort.attributes && (

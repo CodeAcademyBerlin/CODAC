@@ -31,8 +31,6 @@ const MentorList = () => {
                       <CardList
                         image={imageUrl}
                         title={mentor.attributes.user?.data.attributes.username}
-                        github={mentor?.attributes?.github ?? ""}
-                        linkdin={mentor?.attributes?.linkedin ?? ""}
                         href={`/community/mentor/${mentor.id}`}
                       />
                     </div>

@@ -51,6 +51,7 @@ export const GetMentorIdDocument = gql`
             data {
               attributes {
                 username
+                email
                 avatar {
                   data {
                     attributes {

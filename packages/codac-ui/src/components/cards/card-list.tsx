@@ -16,22 +16,15 @@ export interface CardProps {
 export const CardList = ({
   image,
   href = "",
-  tag,
   title = "",
-  rating,
   startDate = "",
   course = "",
-  github = "",
-  linkdin = "",
 }: CardProps) => {
   return (
-    <section className="card-list flex">
-      <article className="mentorListCard shadow-lg transition duration-200">
-        <header className="card-header">
-          <div>{startDate && <p className="text-ms m-8 text-black">Start date {startDate}</p>}</div>
-        </header>
+    <section className="card-list flex ">
+      <article className="mentorListCard shadow-lg transition duration-200 ">
         <Link href={href} className="">
-          <div className="card-content m-6 flex items-center ">
+          <div className=" card-content m-4 flex items-center ">
             {image && (
               <Image
                 src={image}
@@ -47,6 +40,9 @@ export const CardList = ({
               </div>
               <div className="group-hover:text-codac-cyan truncate text-sm font-medium text-white">
                 {course}
+              </div>
+              <div>
+                {startDate && <p className="text-ms m-8 text-black">Start date {startDate}</p>}
               </div>
             </div>
           </div>

@@ -6,9 +6,7 @@ export default function CohortPage() {
   const cohortName = (router.query.id as string) ?? "";
   return (
     <>
-      <div>
-        <div className="p-6 text-lg font-medium text-white">Cohorts</div>
-      </div>
+ 
       <div className="flex justify-center">
         <CohortCard cohortName={cohortName} />
         <div />

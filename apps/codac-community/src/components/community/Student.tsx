@@ -22,6 +22,7 @@ export const Student = ({ id }: { id: string }) => {
                   github={student?.attributes?.github ?? ""}
                   linkdin={student?.attributes?.linkedin ?? ""}
                   course={student.attributes?.course?.data?.attributes?.name || ""}
+                  email={student.attributes.user?.data.attributes.email}
                 />
               </div>
             )}

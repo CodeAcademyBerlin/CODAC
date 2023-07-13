@@ -9,7 +9,7 @@ export const CohortCard = ({ cohortName }: { cohortName: string }) => {
     <div className="">
       {loading && <SkeletonCards number={3} isLoading={loading} />}
       {error && <div>something is wrong</div>}
-      <div className="flex grid-cols-4 gap-8">
+      <div className="flex grid-cols-4 gap-4">
         {cohort && (
           <div key={cohort.id} className="">
             {cohort.attributes && (

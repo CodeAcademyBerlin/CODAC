@@ -7,8 +7,8 @@ export const Mentor = ({ id }: { id: string }) => {
   const { mentor, loading, error } = useGetMentor(id);
   console.log(mentor);
 
-    const avatarUrl = mentor?.attributes?.user?.data?.attributes?.avatar?.data?.attributes?.url ?? ""
-    const imageUrl = avatarUrl || defaultAvatar;
+  const avatarUrl = mentor?.attributes?.user?.data?.attributes?.avatar?.data?.attributes?.url ?? "";
+  const imageUrl = avatarUrl || defaultAvatar;
 
   return (
     <div className="flex justify-center">
