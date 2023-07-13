@@ -2116,6 +2116,12 @@ export type MutationCreateConversationArgs = {
 };
 
 
+export type MutationCreateConversationMessageArgs = {
+  body: Scalars['String'];
+  conversationId: Scalars['ID'];
+};
+
+
 export type MutationCreateCourseArgs = {
   data: CourseInput;
 };
@@ -2259,6 +2265,11 @@ export type MutationDeleteCohortArgs = {
 
 export type MutationDeleteConversationArgs = {
   id: Scalars['ID'];
+};
+
+
+export type MutationDeleteConversationMessageArgs = {
+  messageId: Scalars['ID'];
 };
 
 
@@ -2473,6 +2484,12 @@ export type MutationUpdateCohortArgs = {
 export type MutationUpdateConversationArgs = {
   data: ConversationInput;
   id: Scalars['ID'];
+};
+
+
+export type MutationUpdateConversationMessageArgs = {
+  body: Scalars['String'];
+  messageId: Scalars['ID'];
 };
 
 

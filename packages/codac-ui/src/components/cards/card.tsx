@@ -9,7 +9,7 @@ export interface CohortCardProps {
   linkdin?: string;
   course?: string;
   email?: string;
-  
+  href?: string;
 }
 
 export const Card = ({
@@ -18,7 +18,8 @@ export const Card = ({
   github = "",
   linkdin = "",
   course = "",
-  email = ""
+  email = "",
+  href = "",
 }: CohortCardProps) => {
   return (
     <div className="cardCohort m-20 flex justify-center p-12 ">
@@ -35,12 +36,12 @@ export const Card = ({
         )}
       </div>
       <div className="m-8 flex flex-col">
-        <h3 className="m-8 text-md font-medium italic text-white">{title}</h3>
+        <h3 className="text-md m-8 font-medium italic text-white">{title}</h3>
         <div className="group-hover:text-codac-cyan truncate text-sm font-medium text-white">
           {course}
         </div>
         <div className="truncate text-sm font-medium text-white">{email}</div>
-        <div className="p-6 flex justify-center gap-2 text-white">
+        <div className="flex justify-center gap-2 p-6 text-white">
           {github && (
             <Link href={github}>
               <svg
