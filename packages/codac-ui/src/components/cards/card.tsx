@@ -26,7 +26,7 @@ export const Card = ({
       <div>
         {image && (
           <Image
-            style={{ minHeight: "230px", maxHeight: "300px" }}
+            style={{ aspectRatio: "1/1" }}
             src={image}
             width={200}
             height={200}
