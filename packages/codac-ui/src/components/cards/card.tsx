@@ -10,6 +10,7 @@ export interface CohortCardProps {
   course?: string;
   email?: string;
   href?: string;
+  tag?: string;
 }
 
 export const Card = ({
