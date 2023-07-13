@@ -1,10 +1,23 @@
 import { useRouter } from "next/router";
 import { gql, useQuery, useMutation } from "@apollo/client";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 import { useAuth } from "#/contexts/authContext";
 import { timeStamp } from "console";
+import Message from "#/components/Main-Chat-Components/message";
+import ConversationBuble from "#/components/Main-Chat-Components/ConversationBuble";
+import { Socket } from "socket.io-client";
+import { useSocket } from "#/contexts/socketContext";
 
 // This query is to find the chatroom.... NOT all the messages... (do you mean conversations????)
+interface Conversation {
+  id: string;
+  attributes: {
+    pinned: boolean;
+    title: string;
+    description: string;
+  };
+}
+type Key = string | number | null | undefined;
 
 const getSingleChat = gql`
   query GetChatQuery($id: ID) {
@@ -19,6 +32,7 @@ const getSingleChat = gql`
               attributes {
                 title
                 pinned
+                description
               }
             }
           }
@@ -27,7 +41,6 @@ const getSingleChat = gql`
     }
   }
 `;
-
 const getChatHistoryById = gql`
   query getChatHistoryById($id: ID) {
     conversation(id: $id) {
@@ -35,7 +48,7 @@ const getChatHistoryById = gql`
         id
         attributes {
           pinned
-          messages {
+          messages(pagination: { page: 1, pageSize: 100 }) {
             data {
               id
               attributes {
@@ -58,77 +71,15 @@ const getChatHistoryById = gql`
     }
   }
 `;
-// I have to add the pinned property to the query/mutation---
 const createNewMessage = gql`
-  mutation createMessage($body: String!, $conversationId: ID!, $authorId: ID!) {
-    createMessage(data: { body: $body, conversation: $conversationId, author: $authorId }) {
-      data {
-        id
-        attributes {
-          author {
-            data {
-              id
-            }
-          }
-          body
-          conversation {
-            data {
-              id
-            }
-          }
-        }
-      }
-    }
+# Strappi create new name for the query
+# createConversationMessage instead of createMessage
+  mutation createConversationMessage($body: String!, $conversationId: ID!) {
+    createConversationMessage(body: $body, conversationId: $conversationId ) {
+      message
+      success
   }
-`;
-// Collection of pinned messages inside the user----
-const deleteChatMessage = gql`
-  mutation deleteMessage($id: ID!) {
-    deleteMessage(id: $id) {
-      data {
-        id
-      }
-    }
-  }
-`;
-
-const upDateChatMessage = gql`
-  mutation updateMessage($id: ID!, $body: String!) {
-    updateMessage(id: $id, data: { body: $body }) {
-      data {
-        id
-        attributes {
-          body
-          author {
-            data {
-              id
-              attributes {
-                username
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-type Props = {};
-
-// fetching all pinned messages
-// const getPinnedMessages = gql`
-//   query pinnedMessages {
-//     messages(filters: { pinned: { eq: true } }) {
-//       data {
-//         id
-//         attributes {
-//           pinned
-//         }
-//       }
-//     }
-//   }
-// `;
-
-// UPDATE PINNED CONVERSATION MUTATION/QUERY
+  }`;
 const updatePinnedConversation = gql`
   mutation updateArticle($id: ID!, $pinned: Boolean!) {
     updateConversation(id: $id, data: { pinned: $pinned }) {
@@ -143,21 +94,48 @@ const updatePinnedConversation = gql`
   }
 `;
 
+const createConversation = gql`
+mutation createConversation($chatroomId: ID!, $title: String!, $pinned: Boolean, $description: String){
+  createConversation(data: { chatroom: $chatroomId title: $title pinned: $pinned description: $description }){
+    data{
+      id
+      attributes{
+        title
+        description
+        pinned
+        createdAt
+        updatedAt
+        chatroom{
+          data{
+            id
+          }
+
+        }
+      }
+    }
+  }
+}`
+type Props = {};
+
 const SingleChat = (props: Props) => {
   const { user } = useAuth();
-  console.log("user :>> ", user);
   const userId = user?.id;
-  // console.log("userId :>> ", userId);
 
+  const deleteMsg = () => {
+    refetch();
+  };
+
+  const deleteConv = () => {
+    conversationRefetch();
+  };
   // UPDATE PINNED CONVERSATION FUNCTION
   const [updatePinnedMutation] = useMutation(updatePinnedConversation);
+
   const updatePinned = async (
     e: React.MouseEvent<HTMLParagraphElement, MouseEvent>,
     conversation: any
   ) => {
     e.preventDefault();
-    // const { user } = useAuth();
-    //  console.log("message.id :>> ", message.id);
     if (user?.role?.name === "Mentor") {
       if (conversation?.attributes?.pinned === false) {
         updatePinnedMutation({
@@ -178,19 +156,22 @@ const SingleChat = (props: Props) => {
       await refetch();
     }
   };
-  ///////////////////////////////////////////////////////////////////////////////////////////
 
   // const router = useRouter();
   const { chatId } = useRouter().query;
   const [active, setActive] = useState("");
-  // Refetching enables you to refrescdh query results in response to a particular user action, as opposed to using a fixed interval.
+  const { socket } = useSocket();
+
+
+  // Refetching enables you to refresh query results in response to a particular user action, as opposed to using a fixed interval.
   const {
-    data: chatRooms,
+    data: conversations,
     error,
     loading,
+    refetch: conversationRefetch
   } = useQuery(getSingleChat, { variables: { id: chatId } });
-  //  the refecth should be for the chat history...
-  // console.log("chatRooms :>> ", chatRooms);
+
+  //NOTE  GETTING ALL MESSAGES FOR A SINGLE CONVERSATION
   const {
     data: allMessages,
     loading: chatLoading,
@@ -198,16 +179,19 @@ const SingleChat = (props: Props) => {
     refetch,
   } = useQuery(getChatHistoryById, { variables: { id: active } });
 
-  // do I need this chatHistory state????
-  // const [chatHistory, setChatHistory] = useState([]);
+  //NOTE - SAVE/CREATE A NEW MESSAGE
+  // FUNCTION TO SCROLL DOWN TO THE LAST MESSAGE IN THE CHAT
+  const messagesEndRef = React.useRef<HTMLDivElement>(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    // behaivor options: instant, auto and smooth...
+  };
+  useEffect(scrollToBottom, [allMessages]);
+
   const [messageText, setMessageText] = useState("");
-  // do I need this  typing state????
-  // const [typing, setTyping] = useState(false);
-
   const [newMessageMutation] = useMutation(createNewMessage);
-
-  const sendMessage = async () => {
-    if (messageText) {
+  const sendMessage = () => {
+    if (messageText.length >= 1) {
       newMessageMutation({
         variables: {
           conversationId: active,
@@ -216,49 +200,15 @@ const SingleChat = (props: Props) => {
         },
       });
       setMessageText("");
+    } else {
+      return;
     }
-    await refetch();
+    refetch();
+    // setTestVariable(!testVariable);
   };
 
-  const [deleteMessageMutation] = useMutation(deleteChatMessage);
-  //  the mentor has permmision to delete as well... condicional... id not working and only deleting first message...
-  const deleteMessage = async (e: FormEvent<HTMLFormElement>, message: any) => {
-    e.preventDefault();
-    console.log("object :>> ", message.attributes.author.data?.id);
-    if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
-      deleteMessageMutation({
-        variables: {
-          id: message.id,
-        },
-      });
-      await refetch();
-    }
-    setDeleteModal(!deleteModal);
-  };
-  // when fetch the message we let graphql
-  // sort property and sort the messages by created.... display them like that
-
-  const [updateMessageMutation] = useMutation(upDateChatMessage);
-
-  const updateMessage = async (e: FormEvent<HTMLFormElement>, message: any) => {
-    e.preventDefault();
-    console.log("message.id :>> ", message.id);
-    if (userId === message.attributes.author.data.id || user?.role?.name === "Mentor") {
-      if (messageText) {
-        updateMessageMutation({
-          variables: {
-            id: message.id,
-            body: messageText,
-          },
-        });
-      }
-      setMessageText("");
-      await refetch();
-    }
-    setOptionsModal(!optionsModal);
-  };
-
-  // this is for the date in each message...
+  // the function to format the date was missing....
+  // this function has to be used on the Message Component...
   const formatDate = (timestamp: string) => {
     const date = new Date(timestamp);
     const today = new Date();
@@ -272,494 +222,229 @@ const SingleChat = (props: Props) => {
     } else {
       formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     }
-    // what it that???? +=  ?
+    //NOTE (format the TIME hours and minuts)
     formattedDate += `@ ${date.getHours() < 10 ? "0" : ""}${date.getHours()}:
         ${date.getMinutes() < 10 ? "0" : ""}${date.getMinutes()} `;
     return formattedDate;
   };
 
-  // console.log('chatId :>> ', chatId);
-  // console.log('router :>> ', router);
-  // console.log('data :>> ', chatRooms);
-  console.log("messages history :>> ", allMessages?.conversation?.data.attributes.messages.data);
+  // new conversation states and functions
+  const [newConversationModal, setNewConversationModal] = useState(false);
+  const [newConversationTitle, setNewConversationTitle] = useState("");
+  const [newConversationDescription, setNewConversationDescription] = useState("");
+  const [createNewConversation] = useMutation(createConversation);
 
-  // +++++++++++++++++++++++ MODALS ++++++++++++++++++++++
+  const newConversation = () => {
+    if (newConversationTitle.length >= 1) {
+      createNewConversation({
+        variables: {
+          chatroomId: chatId,
+          title: newConversationTitle,
+          pinned: false,
+          description: newConversationDescription
+        }
+      })
+      setNewConversationTitle("")
+      setNewConversationDescription("")
+      setNewConversationModal(false)
+      // back to empty string!
+      conversationRefetch();
+    } else {
+      // just for the beginning...
+      alert("please add a title")
+    }
+  }
 
-  const [deleteModal, setDeleteModal] = useState(false);
-  const [optionsModal, setOptionsModal] = useState(false);
-  const toogleDeleteModal = () => {
-    setDeleteModal(!deleteModal);
-  };
-  const toogleOptionsModal = () => {
-    setOptionsModal(!optionsModal);
-  };
+  useEffect(() => {
+    socket?.on("conversation:update", (conversation) => {
+      console.log('conversation :>> ', conversation);
+      if (conversation.id === active) {
+        conversationRefetch();
+      }
+    })
+    // socket?.on("message:update", (message) => {
+    //   console.log('message :>> ', message);
+
+    // })
+  }, [socket])
+  console.log("socket :>> ", socket);
+
+
 
   return (
-    <div>
-      <h1
-        style={{
-          color: "white",
-          fontWeight: "bold",
-          textAlign: "center",
-        }}
-      >
-        Welcome to {chatRooms?.chatroom.data?.attributes.name}
-      </h1>
+    <>
+      <div>
+        <h1>{conversations?.chatroom.data?.attributes.name}</h1>
+        <div className="chat-container">
+          <div className="chat-dashboard-container">
+            <div className="pinned-conversations-container">
+              <span className="conversations-container-title">
+                Pinned Conversations of{" "}
+                <strong>{conversations?.chatroom.data?.attributes.name}</strong>
+              </span>
 
-      {/* Este es el div que alberga todo el chat!!!!!! */}
+              {conversations &&
+                conversations.chatroom?.data?.attributes.conversations?.data?.map(
+                  (conversation: Conversation) => {
+                    if (conversation?.attributes?.pinned === true) {
+                      return (
+                        <ConversationBuble
+                          key={conversation.id}
+                          conversation={conversation}
+                          setActive={setActive}
+                          active={active}
+                          deleteConv={deleteConv}
+                        />
+                      );
+                    }
+                  }
+                )}
+            </div>
+            <div className="unpinned-conversations-container">
+              <span className="conversations-container-title">
+                Other Conversations of{" "}
+                <strong>{conversations?.chatroom.data?.attributes.name}</strong>
+              </span>
 
-      <div
-        style={{
-          color: "whitesmoke",
-          display: "flex",
-          flexDirection: "row",
-          marginTop: "10px",
-          border: "green solid 3px",
-        }}
-      >
-        {/* CONVERSATIONS DIV */}
-        <div
-          className="for conversations (pinned and normal...) container"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            width: "30%",
-            border: "solid 2px red",
-          }}
-        >
-          {/* HIER ARE THE PINNED CONVERSATIONS */}
-
-          <div style={{ display: "flex", flexDirection: "column", gap: "5px", width: "100%" }}>
-            {chatRooms &&
-              chatRooms.chatroom?.data?.attributes.conversations?.data?.map((conversation: any) => {
-                // console.log("conversation :>> ", conversation);
-                if (conversation.attributes.pinned === true) {
-                  return (
-                    <div
-                      style={{
-                        border: "solid 2px blue",
-                      }}
-                      key={conversation.id}
-                      onClick={async () => {
-                        setActive(conversation.id);
-                      }}
-                    >
-                      {/* HIER COME THE PINN ICON; PLEASE CHANGE IT FOR THE <p> */}
-                      <>
-                        {user?.role?.name === "Mentor" ? (
-                          <p
-                            onClick={(e) => updatePinned(e, conversation)}
-                            style={{ cursor: "pointer" }}
-                          >
-                            X
-                          </p>
-                        ) : (
-                          ""
-                        )}
-                      </>
-                      <h3
-                        style={{
-                          color: "blue",
-                          margin: "5px",
-                          border: "2px solid blue",
-                          borderRadius: "5px",
-                          textAlign: "center",
-                          cursor: "pointer",
-                        }}
-                      >
-                        {conversation.attributes?.title}
-                      </h3>
-                    </div>
-                  );
-                }
-              })}
+              {conversations &&
+                conversations.chatroom?.data?.attributes.conversations?.data?.map(
+                  (conversation: Conversation) => {
+                    if (conversation?.attributes?.pinned === false) {
+                      return (
+                        <ConversationBuble
+                          key={conversation.id}
+                          conversation={conversation}
+                          setActive={setActive}
+                          active={active}
+                          deleteConv={deleteConv}
+                        />
+                      );
+                    }
+                  }
+                )}
+              {/* Inline styling to make a test version  */}
+              <button onClick={() => setNewConversationModal(!newConversationModal)}>
+                Create Conversation
+              </button>
+            </div>
           </div>
-
-          <hr />
-
-          {/* HIER ARE THE NOT PINNED CONVERSATIONS */}
-
-          <div style={{ display: "flex", flexDirection: "column", gap: "5px", width: "100%" }}>
-            {chatRooms &&
-              chatRooms.chatroom?.data?.attributes.conversations?.data?.map((conversation: any) => {
-                console.log("conversation :>> ", conversation);
-                if (conversation.attributes.pinned === false) {
-                  return (
-                    <div
-                      style={{
-                        border: "solid 2px white",
-                      }}
-                      key={conversation.id}
-                      onClick={async () => {
-                        setActive(conversation.id);
-                      }}
-                    >
-                      {/* HIER COME THE PINN ICON; PLEASE CHANGE IT FOR THE <p> */}
-                      <>
-                        {user?.role?.name === "Mentor" ? (
-                          <p
-                            onClick={(e) => updatePinned(e, conversation)}
-                            style={{ cursor: "pointer" }}
-                          >
-                            X
-                          </p>
-                        ) : (
-                          ""
-                        )}
-                      </>
-
-                      <h3
-                        style={{
-                          color: "white",
-                          margin: "5px",
-                          border: "2px solid white",
-                          borderRadius: "5px",
-                          textAlign: "center",
-                          cursor: "pointer",
-                        }}
-                      >
-                        {conversation.attributes?.title}
-                      </h3>
-                    </div>
-                  );
-                }
-              })}
-          </div>
-        </div>
-
-        {/* All Messages from a conversation.... */}
-        <div
-          style={{
-            border: "2px solid white",
-            width: "75%",
-          }}
-        >
-          <div
-            style={{
-              border: "2px solid white",
-              width: "90%",
-              height: "300px",
-              margin: "auto",
-              overflow: "scroll",
-            }}
-          >
+          <div className="chat-convo-container">
             {allMessages &&
-              allMessages?.conversation?.data.attributes?.messages?.data?.map((message: any) => {
-                return (
-                  <div
-                    className="message_container"
-                    style={{ border: "1px solid red", width: "90%", margin: "5px" }}
-                    key={message.id}
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        // border: "yellow 2px solid",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <div
-                        className="message_label"
-                        style={{
-                          display: "flexbox",
-                          // border: "2px white solid",
-                          width: "50%",
-                          fontSize: "11px",
-                          marginLeft: "3px",
-                        }}
-                      >
-                        {/* <h2 style={{ color: "white" }}>id: {message.id}</h2> */}
-
-                        {user?.username !== message.attributes.author.data?.attributes.username ? (
-                          <strong>{message.attributes.author.data?.attributes.username}</strong>
-                        ) : (
-                          <strong>me</strong>
-                        )}
-
-                        {formatDate(message.attributes.createdAt)}
-                      </div>
-
-                      <div
-                        className="message_functions_container"
-                        style={{
-                          display: "flex",
-                          // border: "2px white solid",
-                          width: "40%",
-                          gap: "5px",
-                          justifyContent: "flex-end",
-                          marginRight: "2px",
-                          fontSize: "10px",
-                        }}
-                      >
-                        <button onClick={toogleOptionsModal}>edit</button>
-                        <button onClick={toogleDeleteModal}>delete</button>
-                      </div>
-                    </div>
-                    <div className="text_body">
-                      <p>{message.attributes.body}</p>
-                    </div>
-                    {/* +++++++++++++++++++++++++++++ EDIT MODAL +++++++++++++++++++++ */}
-                    {optionsModal && (
-                      <div
-                        className="edit_message_modal"
-                        style={{
-                          width: "100vw",
-                          height: "100vh",
-                          top: "0",
-                          left: "0",
-                          right: "0",
-                          bottom: "0",
-                          position: "fixed",
-                        }}
-                      >
-                        <div
-                          className="edit_message_modal_overlay"
-                          style={{
-                            width: "100vw",
-                            height: "100vh",
-                            top: "0",
-                            left: "0",
-                            right: "0",
-                            bottom: "0",
-                            position: "fixed",
-                            // backgroundColor: "black",
-                            backgroundColor: "rgba(0,0,0,0.3)",
-                          }}
-                          onClick={toogleOptionsModal}
-                        >
-                          <div
-                            className="edit_message_modal_container"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                            }}
-                            style={{
-                              position: "relative",
-                              zIndex: "1000",
-                              display: "flex",
-                              flexDirection: "column",
-                              width: "35%",
-                              height: "25%",
-                              border: "white solid 3px",
-                              borderRadius: "10px",
-                              backgroundColor: "white",
-                              margin: "auto",
-                              marginTop: "200px",
-                            }}
-                          >
-                            {/* <form onSubmit={(e) => { deleteMessage(e, message) }} > aquí viene la funcion!! */}
-                            <form
-                              onSubmit={(e) => {
-                                updateMessage(e, message);
-                              }}
-                            >
-                              <label htmlFor="edit_post_text" style={{ color: "black" }}>
-                                Edit Message
-                              </label>
-                              <textarea
-                                style={{
-                                  outline: "none",
-                                  resize: "none",
-                                  color: "black",
-                                  width: "90%",
-                                  height: "60px",
-                                }}
-                                name="edit_message"
-                                id="edit_post_text"
-                                placeholder="write something..."
-                                value={messageText}
-                                onChange={(e) => {
-                                  e.stopPropagation();
-                                  setMessageText(e.target.value);
-                                  console.log("messageText :>> ", messageText);
-                                }}
-                                onKeyDown={(e) => {
-                                  if (e.key === "Enter") {
-                                    // updateMessage.....
-                                  }
-                                }}
-                              ></textarea>
-                              <button
-                                type="submit"
-                                style={{
-                                  color: "black",
-                                  border: "2px solid green",
-                                }}
-                              >
-                                Save Changes
-                              </button>
-                              <button
-                                type="button"
-                                style={{
-                                  color: "black",
-                                  border: "2px solid green",
-                                }}
-                                onClick={toogleOptionsModal}
-                              >
-                                Cancel
-                              </button>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* // +++++++++++++++++++++++++ DELETE MODAL +++++++++++++++++++ */}
-                    {deleteModal && (
-                      <div
-                        className="delete_post_modal"
-                        style={{
-                          width: "100vw",
-                          height: "100vh",
-                          top: "0",
-                          left: "0",
-                          right: "0",
-                          bottom: "0",
-                          position: "fixed",
-                        }}
-                      >
-                        <div
-                          className="delete_modal_overlay"
-                          style={{
-                            width: "100vw",
-                            height: "100vh",
-                            top: "0",
-                            left: "0",
-                            right: "0",
-                            bottom: "0",
-                            position: "fixed",
-                            // backgroundColor: "black",
-                            backgroundColor: "rgba(0,0,0,0.3)",
-                          }}
-                          onClick={toogleDeleteModal}
-                        >
-                          <div
-                            className="delete_post_modal_container"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                            }}
-                            style={{
-                              position: "relative",
-                              zIndex: "1000",
-                              display: "flex",
-                              flexDirection: "column",
-                              width: "35%",
-                              height: "25%",
-                              border: "white solid 3px",
-                              borderRadius: "10px",
-                              backgroundColor: "white",
-                              margin: "auto",
-                              marginTop: "200px",
-                            }}
-                          >
-                            {/* onSubmit={deleteMessage}  */}
-                            {/* {(<button onClick={(e) => { handleDeleteCommentSubmit(e, comment._id) }}>} */}
-                            <form
-                              onSubmit={(e) => {
-                                deleteMessage(e, message);
-                              }}
-                            >
-                              <div
-                                className="delete_post_modal_text"
-                                style={{
-                                  marginTop: "10px",
-                                  color: "black",
-                                  textAlign: "center",
-                                }}
-                              >
-                                <h3>Do you want to delete your message?</h3>
-                              </div>
-                              <div
-                                className="delete_post_modal_btns"
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "center",
-                                  gap: "10px",
-                                  marginTop: "20px",
-                                }}
-                              >
-                                <button
-                                  type="submit"
-                                  style={{
-                                    color: "white",
-                                    backgroundColor: "black",
-                                    border: "none",
-                                    borderRadius: "5px",
-                                    height: "30px",
-                                    width: "80px",
-                                  }}
-                                  // onClick={toogleDeleteModal}
-                                >
-                                  Continue
-                                </button>
-
-                                <button
-                                  type="button"
-                                  style={{
-                                    color: "white",
-                                    backgroundColor: "black",
-                                    border: "none",
-                                    borderRadius: "5px",
-                                    height: "30px",
-                                    width: "80px",
-                                  }}
-                                  onClick={toogleDeleteModal}
-                                >
-                                  Cancel
-                                </button>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
+              allMessages?.conversation?.data?.attributes?.messages?.data?.map((message: any) => {
+                return <Message message={message} deleteMsg={deleteMsg} />;
               })}
-          </div>
+            <div ref={messagesEndRef} />
 
-          {/* +++++++++++++++++++++++++ TEXT BODY +++++++++++++++++++ */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              color: "whitesmoke",
-              textAlign: "center",
-              margin: "auto",
-              justifyContent: "center",
-            }}
-          >
-            <textarea
-              style={{
-                outline: "none",
-                resize: "none",
-                color: "black",
-                width: "80%",
-                height: "60px",
-              }}
-              placeholder="write something..."
-              value={messageText}
-              // ask Emily why refetch each time I write something....
-              onChange={(e: { preventDefault: () => void; target: any }) => {
-                e.preventDefault();
-                setMessageText(e.target.value);
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  sendMessage();
-                  // refetch();
-                }
-              }}
-            ></textarea>
-            <button
-              style={{ width: "10%", border: "2px solid blue", height: "60px" }}
-              onClick={sendMessage}
-            >
-              Send
-            </button>
+            {active !== "" ? (
+              <div className="send-message-container">
+                <textarea
+                  placeholder="write something..."
+                  value={messageText}
+                  onChange={(e: { preventDefault: () => void; target: any }) => {
+                    e.preventDefault();
+                    setMessageText(e.target.value);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      sendMessage();
+                    }
+                  }}
+                  style={{ resize: "none" }}
+                ></textarea>
+
+                <button onClick={sendMessage}>
+                  <>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                      <path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z" />
+                    </svg>
+                    <span>Send</span>
+                  </>
+                </button>
+              </div>
+            ) : (
+              <div className="no-convo-message">
+                <p>🍕 Select a conversation to be able to chat</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
-    </div>
+      {/* Create conversation Modal */}
+      {newConversationModal && (
+        <div className="edit_message_modal">
+          <div
+            className="edit_message_modal_overlay"
+          // onClick={toogleOptionsModal} //TODO - UNDER REVIEW
+          >
+            <div
+              className="edit_message_modal_container"
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            // MODAL DIV:::: HERE STYLING FOR CHANGE DIV MODAL
+            >
+              <div>
+                <form>
+                  <p>Title</p>
+                  <input
+                    type="text"
+                    name="title"
+                    placeholder={"Enter a title"}
+                    value={newConversationTitle}
+                    onChange={(e) => {
+                      e.stopPropagation();
+                      setNewConversationTitle(e.target.value);
+                    }}
+                  ></input>
+                  <br /> <br />
+                  <p>Description</p>
+                  <input
+                    type="text"
+                    name="edit_conversation"
+                    id="edit_post_text"
+                    placeholder={"Please set a Description..."
+                    }
+                    value={newConversationDescription}
+                    onChange={(e) => {
+                      e.stopPropagation();
+                      setNewConversationDescription(e.target.value);
+                    }}
+                  // onKeyDown={(e) => {
+                  //   if (e.key === "Enter") {
+                  //     e.stopPropagation();
+                  //     (e: any) => updatePinned(e, conversation);
+                  //   }
+                  // }}
+                  ></input>
+                  {/* remove Check functionality for new Conversation div */}
+                  {/* <div className="flex-start" style={{ margin: "1rem 0" }}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={isChecked === true ? true : false}
+                      onChange={checkBox}
+                    ></input>
+                    <p>Do you want to pin this conversation ?</p>
+                  </div> */}
+                  <div className="buttons-container">
+                    <button
+                      className="primary"
+                      onClick={() => newConversation()}
+                      type="submit"
+                    >
+                      Create Conversation
+                    </button>
+                    <button className="secondary" type="button" onClick={() => setNewConversationModal(false)}>
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

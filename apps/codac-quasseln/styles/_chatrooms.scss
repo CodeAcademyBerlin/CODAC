@@ -1,76 +1,460 @@
-/** messages chronology **/
+.go-to-chat-container {
+  margin-top: $reg-space;
+}
+.go-to-chat {
+  display: flex;
+  gap: $sm-space;
+  align-items: center;
+  width: fit-content;
+  color: white;
+  // font-weight: 600;
+  border-bottom: $border-solid white;
+  .icon path {
+    fill: white;
+  }
+  &:hover {
+    border-bottom: $border-solid transparent;
+  }
+}
+
+h1 {
+  color: white;
+  font-size: xx-large;
+}
+
+.main-container {
+  height: auto;
+  background-color: transparent;
+}
+
+.chatroom-access-link-container {
+  display: flex;
+  gap: $reg-space !important;
+  margin: $reg-space 0;
+  flex-direction: column;
+  .chatroom-access-link {
+    padding: $reg-space;
+    border-radius: $border-radius;
+    cursor: pointer;
+    display: flex;
+    gap: $reg-space;
+    align-items: center;
+    border: $border-solid-xl transparent;
+    background-color: rgb(30, 30, 30);
+    color: white;
+    .icon path {
+      fill: white;
+    }
+  }
+}
 
 .chatroom-container {
   display: flex;
   flex-direction: column;
   gap: $reg-space;
-  border: 2px solid orange;
-  // display: grid;
-  // grid-template-columns: 1fr 1fr;
-  // gap: $reg-space;
-
-  // .message-container {
-  //   display: grid;
-  //   grid-template-columns: 1fr 1fr;
-  //   gap: $reg-space;
-  // }
-  // applying to all messages
-  // .message {
-  //   grid-column: span 1;
-  //   padding: $sm-space $reg-space $reg-space;
-  //   border-radius: $border-radius;
-
-  //   .message-label {
-  //     font-size: $smaller-text;
-  //     padding: $sm-space 0;
-  //   }
-  // }
-  // my messages
-  // .my-message {
-  //   background-color: white;
-  //   grid-column-start: 2;
-
-  //   .message-label {
-  //     text-align: right;
-  //   }
-  // }
-  // other users' messages
-  // .you-all-message {
-  //   background-color: lighten($codac-primary-color, 60%);
-  //   grid-column-start: 1;
-  // }
 }
 
-/** send a message **/
+///////////////
+
+.chat-container {
+  color: white;
+  margin: $reg-space 0;
+  display: flex;
+  height: 100vh;
+
+  .chat-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 20em;
+    background-color: rgb(20, 20, 20);
+    height: 100%;
+
+    .conversation-subtitle {
+      font-size: 80%;
+      padding-top: 5px;
+      font-weight: 400;
+    }
+
+    .flex-start {
+      display: flex;
+      gap: $sm-space;
+      align-items: center;
+    }
+
+    .flex-central {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+    }
+
+    .pinned-conversations-container,
+    .unpinned-conversations-container {
+      display: flex;
+      flex-direction: column;
+      gap: $reg-space;
+      padding: $reg-space $reg-space * 2 $reg-space $reg-space;
+      min-height: fit-content;
+      .conversation {
+        padding: $reg-space;
+        border-radius: $border-radius;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        font-weight: 600;
+        border: $border-solid-xl transparent;
+        &.active {
+          background-color: white;
+          color: black;
+          svg path {
+            fill: black;
+          }
+        }
+      }
+    }
+
+    .pinned-conversations-container {
+      background-color: $codac-primary-color;
+      border-radius: $border-radius 0 0 0;
+
+      .conversation {
+        color: darken($codac-primary-color, 20%);
+        background-color: lighten($codac-primary-color, 60%);
+
+        &.is-inactive {
+          background-color: darken($codac-primary-color, 5%);
+          color: white;
+
+          &:hover {
+            color: darken($codac-primary-color, 20%);
+            .pin-icon {
+              path {
+                fill: darken($codac-primary-color, 20%);
+              }
+            }
+          }
+        }
+
+        .pin-icon {
+          path {
+            fill: darken($codac-primary-color, 10%);
+          }
+        }
+
+        &:hover {
+          background-color: lighten($codac-primary-color, 50%);
+        }
+
+        &:active {
+          border: $border-solid-xl lighten($codac-primary-color, 20%);
+        }
+      }
+    }
+
+    .edit-conversation-svg {
+      &:hover {
+        transform: scale(110%);
+      }
+    }
+
+    .unpinned-conversations-container {
+      background-color: rgb(30, 30, 30);
+      border-radius: 0 0 0 $border-radius;
+      height: 100%;
+      .conversation {
+        background-color: rgb(20, 20, 20);
+
+        .edit-conversation-svg {
+          path {
+            fill: white;
+          }
+        }
+
+        .pin-icon {
+          path {
+            fill: white;
+          }
+        }
+
+        &.is-active {
+          background-color: white;
+          color: rgb(20, 20, 20);
+        }
+      }
+    }
+
+    .conversations-container-title {
+      font-size: 80%;
+    }
+  }
+
+  .chat-convo-container {
+    border-radius: 0 $border-radius $border-radius 0;
+    padding: $reg-space $reg-space $lg-space $lg-space;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: $reg-space !important;
+    overflow: auto;
+    height: 100%;
+    margin-bottom: 0;
+    background-color: black;
+    .message-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      gap: $reg-space;
+
+      .message-bubble {
+        border-radius: $border-radius;
+        color: black;
+
+        .message-label {
+          font-size: 80%;
+          color: white;
+          padding: $xs-space;
+          display: flex;
+          gap: $xs-space;
+          justify-content: flex-end;
+
+          .message-functions-panel {
+            padding: 0 $border-radius;
+            display: flex;
+            gap: $sm-space;
+
+            .icon {
+              path {
+                fill: white;
+                &:hover {
+                  fill: lighten($codac-primary-color, 70%);
+                }
+                &:active {
+                  fill: lighten($codac-primary-color, 50%);
+                }
+              }
+            }
+          }
+        }
+
+        &.my-message {
+          grid-column-start: 2;
+          .message-text {
+            background-color: white;
+          }
+        }
+        &.user-message {
+          .message-text {
+            background-color: lighten($codac-primary-color, 70%);
+          }
+        }
+      }
+    }
+  }
+}
+
+.message-text {
+  padding: $reg-space;
+  border-radius: $border-radius;
+}
+
+.edit-message-modal-overlay,
+.delete-post-modal-overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.edit-message-modal-container,
+.delete-message-modal_container {
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  border-radius: $border-radius;
+  background-color: lighten($codac-primary-color, 70%);
+  justify-content: center;
+  padding: $reg-space;
+  margin: 15rem auto;
+  gap: $reg-space;
+
+  p {
+    color: darken($codac-primary-color, 60%);
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: $sm-space;
+    label {
+      font-weight: 600;
+    }
+    textarea {
+      margin: $sm-space 0;
+      border-radius: $border-radius;
+      padding: $reg-space;
+      border: $border-solid $codac-primary-color;
+    }
+  }
+}
+
+.buttons-container {
+  display: flex;
+  gap: $sm-space;
+  align-items: center;
+  span {
+    line-height: 1;
+  }
+
+  button {
+    padding: $xs-space $sm-space;
+    border-radius: $border-radius;
+    font-weight: 600;
+  }
+  button.primary {
+    background-color: $codac-primary-color;
+    color: white;
+    border: $border-solid transparent;
+    &:hover {
+      background-color: darken($codac-primary-color, 5%);
+      border: $border-solid transparent;
+    }
+    &:active {
+      background-color: darken($codac-primary-color, 5%);
+      border: $border-solid lighten($codac-primary-color, 20%);
+    }
+  }
+  button.secondary {
+    border: $border-solid lighten($codac-primary-color, 60%);
+    color: lighten($codac-primary-color, 60%);
+    &:hover {
+      background-color: lighten($codac-primary-color, 75%);
+      color: darken($codac-primary-color, 5%);
+      border-color: darken($codac-primary-color, 5%);
+    }
+    &:active {
+      border: $border-solid lighten($codac-primary-color, 20%);
+    }
+  }
+}
 
 .send-message-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   gap: $reg-space;
-
-  div {
-    display: flex;
-    gap: $sm-space;
-    flex-direction: column;
-    width: 100%;
-    grid-column-start: 2;
-    align-items: flex-end;
-  }
 
   textarea {
+    color: black;
     width: 100%;
     border-radius: $border-radius;
-    background-color: lighten($codac-primary-color, 70%);
+  }
+
+  button {
+    height: fit-content;
+    width: fit-content;
+    padding: $reg-space;
+    border-radius: $border-radius;
+    color: darken($codac-primary-color, 20%);
+    background-color: lighten($codac-primary-color, 30%);
+    display: flex;
+    gap: $sm-space;
+    align-items: center;
+    &:hover {
+      background-color: lighten($codac-primary-color, 50%);
+    }
+    &:active {
+      border: $border-solid lighten($codac-primary-color, 20%);
+    }
   }
 }
 
-.activity-message {
-  color: white;
-  font-size: $smaller-text;
+.no-convo-message {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.chatroom-nav {
+.edit-panel,
+.delete-panel {
+  padding: $xs-space;
   display: flex;
-  gap: $reg-space;
+  gap: $xs-space;
+  color: white;
+  font-size: 80%;
   align-items: center;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  .tooltiptext {
+    visibility: hidden;
+    width: fit-content;
+    background-color: $codac-primary-color;
+    color: #fff;
+    text-align: center;
+    border-radius: $border-radius;
+    padding: $xs-space;
+    position: absolute;
+    z-index: 1;
+    top: -10%;
+    left: 110%;
+    font-size: 60%;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    .tooltiptext {
+      visibility: visible;
+    }
+  }
+}
+
+.message-editor-container {
+  grid-column-start: 2;
+
+  .message-editor {
+    resize: none;
+    color: black;
+    border-radius: $border-radius;
+    background-color: lightyellow;
+    width: 100%;
+  }
+}
+
+.edit_message_modal_overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.edit_message_modal_container {
+  position: relative;
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(34, 34, 34);
+  color: white;
+  border-radius: $border-radius;
+  width: 50%;
+  height: auto;
+  padding: $reg-space $reg-space $lg-space;
+  margin: 200px auto auto;
+  input[type="text"] {
+    border-radius: $border-radius;
+    margin: $reg-space 0;
+    width: 100%;
+    color: black;
+  }
 }

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import type { Chat } from "codac-graphql-types";
+import type { Chat, Conversation, ConversationEntity } from "codac-graphql-types";
 import { createContext, type ReactNode, useContext, useEffect, useState } from "react";
 import { io, type Socket } from "socket.io-client";
 
@@ -14,6 +14,7 @@ interface ServerToClientEvents {
   withAck: (d: string, callback: (e: number) => void) => void;
   ["chat:update"]: (chat: Chat) => void;
   ["chat"]: (chat: Chat) => void;
+  ["conversation:update"]: (conversation: ConversationEntity) => void;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -45,7 +46,7 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
       return;
     } else {
       const token = getToken();
-      console.log("token", token);
+
       const s: SocketIface = io(`${process.env.NEXT_PUBLIC_CODAC_SERVER_URL ?? ""}`, {
         auth: {
           token: token,

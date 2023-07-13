@@ -16,13 +16,32 @@ export const navigation: { name: string; items: Item[] }[] = [
     ],
   },
   {
-    name: "Chat",
+    name: "Chats",
     items: [
       {
-        name: "Chat",
+        name: "Legacy Chat",
         slug: "chat",
         description: "Chat",
       },
+      {
+        name: "Kangaroos Chat",
+        slug: "main-chat",
+        description: "Main Chat",
+      },
     ],
   },
+  // maybe it would be a good idea to have the chatrooms Links in the side bar...
+  // query getChatById only displaying names...
+
+  // {
+  //   name: "Main Chat",
+  //   items: [
+  //     {
+  //       name: "Main Chat",
+  //       slug: "main-chat",
+  //       description: "main chat",
+  //     },
+  //   ],
+  // },
 ];
+// New section "Main Chat" added by Christian.

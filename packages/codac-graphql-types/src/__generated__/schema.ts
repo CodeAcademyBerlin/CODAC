@@ -1908,6 +1908,8 @@ export type Mutation = {
   createCodingChallenge?: Maybe<CodingChallengeEntityResponse>;
   createCohort?: Maybe<CohortEntityResponse>;
   createConversation?: Maybe<ConversationEntityResponse>;
+  /** Add message on a conversation item */
+  createConversationMessage?: Maybe<GenericServerResponse>;
   createCourse?: Maybe<CourseEntityResponse>;
   createEmailDesignerEmailTemplate?: Maybe<EmailDesignerEmailTemplateEntityResponse>;
   createJobPost?: Maybe<JobPostEntityResponse>;
@@ -1941,6 +1943,8 @@ export type Mutation = {
   deleteCodingChallengeComment?: Maybe<GenericServerResponse>;
   deleteCohort?: Maybe<CohortEntityResponse>;
   deleteConversation?: Maybe<ConversationEntityResponse>;
+  /** Add message on a conversation item */
+  deleteConversationMessage?: Maybe<GenericServerResponse>;
   deleteCourse?: Maybe<CourseEntityResponse>;
   deleteEmailDesignerEmailTemplate?: Maybe<EmailDesignerEmailTemplateEntityResponse>;
   deleteHoliday?: Maybe<HolidayEntityResponse>;
@@ -1993,6 +1997,8 @@ export type Mutation = {
   updateCodingChallengeComment?: Maybe<GenericServerResponse>;
   updateCohort?: Maybe<CohortEntityResponse>;
   updateConversation?: Maybe<ConversationEntityResponse>;
+  /** Update message on a conversation item */
+  updateConversationMessage?: Maybe<GenericServerResponse>;
   updateCourse?: Maybe<CourseEntityResponse>;
   updateEmailDesignerEmailTemplate?: Maybe<EmailDesignerEmailTemplateEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
