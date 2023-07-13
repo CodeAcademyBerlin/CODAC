@@ -3,22 +3,7 @@ import React from "react";
 import { useAuth } from "#/contexts/authContext";
 import { gql, useQuery, useMutation } from "@apollo/client";
 import { formatDate } from "#/utils/api-helpers";
-import { useSocket } from "#/contexts/socketContext";
 
-// THIS QUERY IS NOT WORKING ANYMORE...
-
-// const upDateChatMessage = gql`
-//   mutation updateMessage($id: ID!, $body: String!) {
-//     updateMessage(id: $id, data: { body: $body }) {
-//       data {
-//         id
-//         attributes {
-//           body
-//         }
-//       }
-//     }
-//   }
-// `;
 
 // THIS IS THE NEW QUERY TO UPDATE THE MESSAGES LIVE!! 
 const upDateChatMessage = gql`
@@ -27,7 +12,6 @@ mutation updateMessage ($id: ID!, $body: String!){
     success
     message
   }
-
 }
 `;
 const getSingleMessage = gql`
@@ -57,17 +41,8 @@ const getSingleMessage = gql`
     }
   }
 `;
-//  THIS QUERY WORKS NO MORE
 
-// const deleteChatMessage = gql`
-//   mutation deleteMessage($id: ID!) {
-//     deleteMessage(id: $id) {
-//       data {
-//         id
-//       }
-//     }
-//   }
-// `;
+
 const deleteChatMessage = gql`
 mutation deleteChatMessage($id: ID!){
   deleteConversationMessage(messageId: $id){
@@ -77,8 +52,6 @@ mutation deleteChatMessage($id: ID!){
 }`
 
 const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }) => {
-  // console.log("message.id: ", message.id);
-  const { socket } = useSocket();
 
   const [hiddenDiv, setHiddenDiv] = useState(false);
   const [editToggle, setEditToggle] = useState(false);
@@ -88,13 +61,10 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
     variables: { id: message.id },
   });
 
-  // console.log("data: ", data);
-
   const { user } = useAuth();
   const userId = user?.id;
 
   const [updateMessageMutation] = useMutation(upDateChatMessage);
-
   const [deleteMessageMutation] = useMutation(deleteChatMessage);
   //  the mentor has permmision to delete as well... condicional... id not working and only deleting first message...
   const deleteMessage = (messageId: any) => {
@@ -128,6 +98,7 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
       refetch();
     }
   };
+
   // testing click outside the div closes it .....
 
   const hiddenDivRef = useRef<HTMLDivElement>(null);
@@ -138,9 +109,7 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
         setHiddenDiv(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -161,24 +130,8 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
     }
     formattedDate += `@ ${date.getHours() < 10 ? "0" : ""}${date.getHours()}:${date.getMinutes() < 10 ? "0" : ""
       }${date.getMinutes()} `;
-
     return formattedDate;
   };
-
-  useEffect(() => {
-    // socket?.on("message:update", (message) => {
-    socket?.on("conversation:update", (conversation) => {
-      // console.log('conversation :>> ', conversation);
-      refetch();
-      // deleteMsg();
-    })
-    socket?.on("conversation:update", (conversation) => {
-      // console.log('conversation :>> ', conversation);
-      deleteMsg();
-    })
-
-  }, [socket])
-
 
   return (
     <div className="message-container">

@@ -64,7 +64,7 @@ const KangaroosChat = (props: Props) => {
 
   console.log("socket :>> ", socket);
   console.log("user :>> ", user);
-  console.log("data from chris query :>> ", data);
+  console.log("data from query :>> ", data);
 
   return (
     <>

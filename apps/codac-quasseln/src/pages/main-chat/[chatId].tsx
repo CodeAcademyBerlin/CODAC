@@ -80,6 +80,7 @@ const createNewMessage = gql`
       success
   }
   }`;
+
 const updatePinnedConversation = gql`
   mutation updateArticle($id: ID!, $pinned: Boolean!) {
     updateConversation(id: $id, data: { pinned: $pinned }) {
@@ -163,6 +164,8 @@ const SingleChat = (props: Props) => {
   const { socket } = useSocket();
 
 
+
+
   // Refetching enables you to refresh query results in response to a particular user action, as opposed to using a fixed interval.
   const {
     data: conversations,
@@ -233,9 +236,11 @@ const SingleChat = (props: Props) => {
   const [newConversationModal, setNewConversationModal] = useState(false);
   const [newConversationTitle, setNewConversationTitle] = useState("");
   const [newConversationDescription, setNewConversationDescription] = useState("");
-  const [createNewConversation] = useMutation(createConversation);
+  const [createNewConversation, { loading: loadingNewConversation }] = useMutation(createConversation);
 
-  const newConversation = () => {
+  const newConversation = (e: any) => {
+    e.preventDefault()
+
     if (newConversationTitle.length >= 1) {
       createNewConversation({
         variables: {
@@ -258,20 +263,16 @@ const SingleChat = (props: Props) => {
 
   useEffect(() => {
     socket?.on("conversation:update", (conversation) => {
-      // console.log('conversation :>> ', conversation);
+      console.log('conversation :>> ', conversation);
       if (conversation.id === active) {
-        deleteMsg();
         conversationRefetch();
       }
     })
-    // socket?.on("message:update", (message) => {
-    //   console.log('message :>> ', message);
+  }, [socket]);
 
-    // })
-  }, [socket])
-  // console.log("socket :>> ", socket);
-
-
+  useEffect(() => {
+    conversationRefetch();
+  }, [active]);
 
   return (
     <>
@@ -293,7 +294,7 @@ const SingleChat = (props: Props) => {
                         <ConversationBuble
                           key={conversation.id}
                           conversation={conversation}
-                          setActive={setActive}
+                          setActive={() => setActive(conversation.id)}
                           active={active}
                           deleteConv={deleteConv}
                         />
@@ -316,7 +317,7 @@ const SingleChat = (props: Props) => {
                         <ConversationBuble
                           key={conversation.id}
                           conversation={conversation}
-                          setActive={setActive}
+                          setActive={() => setActive(conversation.id)}
                           active={active}
                           deleteConv={deleteConv}
                         />
@@ -325,9 +326,10 @@ const SingleChat = (props: Props) => {
                   }
                 )}
               {/* Inline styling to make a test version  */}
-              <button onClick={() => setNewConversationModal(!newConversationModal)}>
+              {loadingNewConversation ? <p>creating conversation</p> : <button onClick={() => setNewConversationModal(!newConversationModal)}>
                 Create Conversation
-              </button>
+              </button>}
+
             </div>
           </div>
           <div className="chat-convo-container">
@@ -431,7 +433,8 @@ const SingleChat = (props: Props) => {
                   <div className="buttons-container">
                     <button
                       className="primary"
-                      onClick={() => newConversation()}
+
+                      onClick={newConversation}
                       type="submit"
                     >
                       Create Conversation

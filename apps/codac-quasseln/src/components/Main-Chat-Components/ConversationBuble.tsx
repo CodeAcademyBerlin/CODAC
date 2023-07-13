@@ -12,7 +12,8 @@ interface Props {
     };
   };
   active: string;
-  setActive: React.Dispatch<React.SetStateAction<string>>;
+  // setActive: React.Dispatch<React.SetStateAction<string>>;
+  setActive: () => void
   deleteConv: () => void
 }
 const updatePinnedConversation = gql`
@@ -169,21 +170,22 @@ const ConversationBuble = ({ conversation, setActive, active, deleteConv }: Prop
   const [isActiveConvo, setIsActiveConvo] = useState<string>("");
 
   const handleConversationClick = () => {
-    setActive(conversation.id);
-    console.log("conversation.id :", conversation.id);
+    setActive();
   };
 
   //  DELETE CONVERSATION STATES AND FUNCTIONS...
   const [deleteNewConversation] = useMutation(deleteConversation);
 
-  const deleteEmptyConversation = (conversationId: any) => {
+  const deleteEmptyConversation = async (conversationId: any) => {
     if (allMessages.conversation.data.attributes.messages.data.length === 0) {
-      deleteNewConversation({
+      const deleted = await deleteNewConversation({
         variables: {
           id: conversationId
         }
       })
-      deleteConv()
+      if (deleted) {
+        deleteConv()
+      }
     }
   }
 
