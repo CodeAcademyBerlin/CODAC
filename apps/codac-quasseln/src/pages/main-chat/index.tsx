@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useSocket } from "#/contexts/socketContext";
 import { Enum_Componentleadlifecycle_State } from "codac-graphql-types";
 
+
 const GetAllChats = gql`
   query getAllChats {
     chatrooms {
@@ -63,7 +64,7 @@ const KangaroosChat = (props: Props) => {
 
   console.log("socket :>> ", socket);
   console.log("user :>> ", user);
-  console.log("data from chris query :>> ", data);
+  console.log("data from query :>> ", data);
 
   return (
     <>

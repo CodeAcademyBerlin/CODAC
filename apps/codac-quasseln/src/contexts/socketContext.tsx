@@ -7,6 +7,8 @@ import { io, type Socket } from "socket.io-client";
 import { getToken } from "#/lib/apolloClient";
 
 import { useAuth } from "./authContext";
+import { MessageEntity } from "codac-graphql-types";
+
 
 interface ServerToClientEvents {
   noArg: () => void;
@@ -15,6 +17,9 @@ interface ServerToClientEvents {
   ["chat:update"]: (chat: Chat) => void;
   ["chat"]: (chat: Chat) => void;
   ["conversation:update"]: (conversation: ConversationEntity) => void;
+  ["message:update"]: (message: MessageEntity) => void;
+
+
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
