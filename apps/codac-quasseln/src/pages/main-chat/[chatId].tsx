@@ -72,14 +72,15 @@ const getChatHistoryById = gql`
   }
 `;
 const createNewMessage = gql`
-# Strappi create new name for the query
-# createConversationMessage instead of createMessage
+  # Strappi create new name for the query
+  # createConversationMessage instead of createMessage
   mutation createConversationMessage($body: String!, $conversationId: ID!) {
-    createConversationMessage(body: $body, conversationId: $conversationId ) {
+    createConversationMessage(body: $body, conversationId: $conversationId) {
       message
       success
+    }
   }
-  }`;
+`;
 
 const updatePinnedConversation = gql`
   mutation updateArticle($id: ID!, $pinned: Boolean!) {
@@ -96,26 +97,33 @@ const updatePinnedConversation = gql`
 `;
 
 const createConversation = gql`
-mutation createConversation($chatroomId: ID!, $title: String!, $pinned: Boolean, $description: String){
-  createConversation(data: { chatroom: $chatroomId title: $title pinned: $pinned description: $description }){
-    data{
-      id
-      attributes{
-        title
-        description
-        pinned
-        createdAt
-        updatedAt
-        chatroom{
-          data{
-            id
+  mutation createConversation(
+    $chatroomId: ID!
+    $title: String!
+    $pinned: Boolean
+    $description: String
+  ) {
+    createConversation(
+      data: { chatroom: $chatroomId, title: $title, pinned: $pinned, description: $description }
+    ) {
+      data {
+        id
+        attributes {
+          title
+          description
+          pinned
+          createdAt
+          updatedAt
+          chatroom {
+            data {
+              id
+            }
           }
-
         }
       }
     }
   }
-}`
+`;
 type Props = {};
 
 const SingleChat = (props: Props) => {
@@ -163,15 +171,12 @@ const SingleChat = (props: Props) => {
   const [active, setActive] = useState("");
   const { socket } = useSocket();
 
-
-
-
   // Refetching enables you to refresh query results in response to a particular user action, as opposed to using a fixed interval.
   const {
     data: conversations,
     error,
     loading,
-    refetch: conversationRefetch
+    refetch: conversationRefetch,
   } = useQuery(getSingleChat, { variables: { id: chatId } });
 
   //NOTE  GETTING ALL MESSAGES FOR A SINGLE CONVERSATION
@@ -236,10 +241,11 @@ const SingleChat = (props: Props) => {
   const [newConversationModal, setNewConversationModal] = useState(false);
   const [newConversationTitle, setNewConversationTitle] = useState("");
   const [newConversationDescription, setNewConversationDescription] = useState("");
-  const [createNewConversation, { loading: loadingNewConversation }] = useMutation(createConversation);
+  const [createNewConversation, { loading: loadingNewConversation }] =
+    useMutation(createConversation);
 
   const newConversation = (e: any) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (newConversationTitle.length >= 1) {
       createNewConversation({
@@ -247,27 +253,27 @@ const SingleChat = (props: Props) => {
           chatroomId: chatId,
           title: newConversationTitle,
           pinned: false,
-          description: newConversationDescription
-        }
-      })
-      setNewConversationTitle("")
-      setNewConversationDescription("")
-      setNewConversationModal(false)
+          description: newConversationDescription,
+        },
+      });
+      setNewConversationTitle("");
+      setNewConversationDescription("");
+      setNewConversationModal(false);
       // back to empty string!
       conversationRefetch();
     } else {
       // just for the beginning...
-      alert("please add a title")
+      alert("please add a title");
     }
-  }
+  };
 
   useEffect(() => {
     socket?.on("conversation:update", (conversation) => {
-      console.log('conversation :>> ', conversation);
+      console.log("conversation :>> ", conversation);
       if (conversation.id === active) {
         conversationRefetch();
       }
-    })
+    });
   }, [socket]);
 
   useEffect(() => {
@@ -308,37 +314,47 @@ const SingleChat = (props: Props) => {
                 Other Conversations of{" "}
                 <strong>{conversations?.chatroom.data?.attributes.name}</strong>
               </span>
-
-              {conversations &&
-                conversations.chatroom?.data?.attributes.conversations?.data?.map(
-                  (conversation: Conversation) => {
-                    if (conversation?.attributes?.pinned === false) {
-                      return (
-                        <ConversationBuble
-                          key={conversation.id}
-                          conversation={conversation}
-                          setActive={() => setActive(conversation.id)}
-                          active={active}
-                          deleteConv={deleteConv}
-                        />
-                      );
+              <div className="unpinned-conversations">
+                {conversations &&
+                  conversations.chatroom?.data?.attributes.conversations?.data?.map(
+                    (conversation: Conversation) => {
+                      if (conversation?.attributes?.pinned === false) {
+                        return (
+                          <ConversationBuble
+                            key={conversation.id}
+                            conversation={conversation}
+                            setActive={() => setActive(conversation.id)}
+                            active={active}
+                            deleteConv={deleteConv}
+                          />
+                        );
+                      }
                     }
-                  }
-                )}
+                  )}
+              </div>
               {/* Inline styling to make a test version  */}
-              {loadingNewConversation ? <p>creating conversation</p> : <button onClick={() => setNewConversationModal(!newConversationModal)}>
-                Create Conversation
-              </button>}
-
             </div>
+            {loadingNewConversation ? (
+              <p>creating conversation</p>
+            ) : (
+              <div className="buttons-container newconvo-button">
+                <button
+                  className="primary"
+                  onClick={() => setNewConversationModal(!newConversationModal)}
+                >
+                  Create Conversation
+                </button>
+              </div>
+            )}
           </div>
           <div className="chat-convo-container">
-            {allMessages &&
-              allMessages?.conversation?.data?.attributes?.messages?.data?.map((message: any) => {
-                return <Message message={message} deleteMsg={deleteMsg} />;
-              })}
+            <div className="messages">
+              {allMessages &&
+                allMessages?.conversation?.data?.attributes?.messages?.data?.map((message: any) => {
+                  return <Message message={message} deleteMsg={deleteMsg} />;
+                })}
+            </div>
             <div ref={messagesEndRef} />
-
             {active !== "" ? (
               <div className="send-message-container">
                 <textarea
@@ -378,14 +394,14 @@ const SingleChat = (props: Props) => {
         <div className="edit_message_modal">
           <div
             className="edit_message_modal_overlay"
-          // onClick={toogleOptionsModal} //TODO - UNDER REVIEW
+            // onClick={toogleOptionsModal} //TODO - UNDER REVIEW
           >
             <div
               className="edit_message_modal_container"
               onClick={(e) => {
                 e.stopPropagation();
               }}
-            // MODAL DIV:::: HERE STYLING FOR CHANGE DIV MODAL
+              // MODAL DIV:::: HERE STYLING FOR CHANGE DIV MODAL
             >
               <div>
                 <form>
@@ -406,19 +422,18 @@ const SingleChat = (props: Props) => {
                     type="text"
                     name="edit_conversation"
                     id="edit_post_text"
-                    placeholder={"Please set a Description..."
-                    }
+                    placeholder={"Please set a Description..."}
                     value={newConversationDescription}
                     onChange={(e) => {
                       e.stopPropagation();
                       setNewConversationDescription(e.target.value);
                     }}
-                  // onKeyDown={(e) => {
-                  //   if (e.key === "Enter") {
-                  //     e.stopPropagation();
-                  //     (e: any) => updatePinned(e, conversation);
-                  //   }
-                  // }}
+                    // onKeyDown={(e) => {
+                    //   if (e.key === "Enter") {
+                    //     e.stopPropagation();
+                    //     (e: any) => updatePinned(e, conversation);
+                    //   }
+                    // }}
                   ></input>
                   {/* remove Check functionality for new Conversation div */}
                   {/* <div className="flex-start" style={{ margin: "1rem 0" }}>
@@ -431,15 +446,14 @@ const SingleChat = (props: Props) => {
                     <p>Do you want to pin this conversation ?</p>
                   </div> */}
                   <div className="buttons-container">
-                    <button
-                      className="primary"
-
-                      onClick={newConversation}
-                      type="submit"
-                    >
+                    <button className="primary" onClick={newConversation} type="submit">
                       Create Conversation
                     </button>
-                    <button className="secondary" type="button" onClick={() => setNewConversationModal(false)}>
+                    <button
+                      className="secondary"
+                      type="button"
+                      onClick={() => setNewConversationModal(false)}
+                    >
                       Cancel
                     </button>
                   </div>
