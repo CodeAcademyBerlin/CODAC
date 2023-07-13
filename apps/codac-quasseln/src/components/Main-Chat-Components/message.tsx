@@ -3,18 +3,32 @@ import React from "react";
 import { useAuth } from "#/contexts/authContext";
 import { gql, useQuery, useMutation } from "@apollo/client";
 import { formatDate } from "#/utils/api-helpers";
+import { useSocket } from "#/contexts/socketContext";
 
+// THIS QUERY IS NOT WORKING ANYMORE...
+
+// const upDateChatMessage = gql`
+//   mutation updateMessage($id: ID!, $body: String!) {
+//     updateMessage(id: $id, data: { body: $body }) {
+//       data {
+//         id
+//         attributes {
+//           body
+//         }
+//       }
+//     }
+//   }
+// `;
+
+// THIS IS THE NEW QUERY TO UPDATE THE MESSAGES LIVE!! 
 const upDateChatMessage = gql`
-  mutation updateMessage($id: ID!, $body: String!) {
-    updateMessage(id: $id, data: { body: $body }) {
-      data {
-        id
-        attributes {
-          body
-        }
-      }
-    }
+mutation updateMessage ($id: ID!, $body: String!){
+  updateConversationMessage(messageId: $id, body: $body ){
+    success
+    message
   }
+
+}
 `;
 const getSingleMessage = gql`
   query GetMessageById($id: ID) {
@@ -43,18 +57,29 @@ const getSingleMessage = gql`
     }
   }
 `;
+//  THIS QUERY WORKS NO MORE
+
+// const deleteChatMessage = gql`
+//   mutation deleteMessage($id: ID!) {
+//     deleteMessage(id: $id) {
+//       data {
+//         id
+//       }
+//     }
+//   }
+// `;
 const deleteChatMessage = gql`
-  mutation deleteMessage($id: ID!) {
-    deleteMessage(id: $id) {
-      data {
-        id
-      }
-    }
-  }
-`;
+mutation deleteChatMessage($id: ID!){
+  deleteConversationMessage(messageId: $id){
+  success
+  message
+}
+}`
 
 const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }) => {
   // console.log("message.id: ", message.id);
+  const { socket } = useSocket();
+
   const [hiddenDiv, setHiddenDiv] = useState(false);
   const [editToggle, setEditToggle] = useState(false);
   const [newMsg, setNewMsg] = useState(message?.attributes?.body || "");
@@ -140,6 +165,21 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
     return formattedDate;
   };
 
+  useEffect(() => {
+    // socket?.on("message:update", (message) => {
+    socket?.on("conversation:update", (conversation) => {
+      // console.log('conversation :>> ', conversation);
+      refetch();
+      // deleteMsg();
+    })
+    socket?.on("conversation:update", (conversation) => {
+      // console.log('conversation :>> ', conversation);
+      deleteMsg();
+    })
+
+  }, [socket])
+
+
   return (
     <div className="message-container">
       {!editToggle && (
@@ -147,8 +187,8 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
           <div
             // ref={hiddenDivRef}
             className={`message-bubble option-A ${user?.username === message.attributes.author.data?.attributes.username
-                ? "my-message"
-                : "user-message"
+              ? "my-message"
+              : "user-message"
               }`}
           >
             <div className="message-label">

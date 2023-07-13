@@ -178,6 +178,7 @@ const SingleChat = (props: Props) => {
     error: messageError,
     refetch,
   } = useQuery(getChatHistoryById, { variables: { id: active } });
+  // console.log('allMessages :>> ', allMessages);
 
   //NOTE - SAVE/CREATE A NEW MESSAGE
   // FUNCTION TO SCROLL DOWN TO THE LAST MESSAGE IN THE CHAT
@@ -257,8 +258,9 @@ const SingleChat = (props: Props) => {
 
   useEffect(() => {
     socket?.on("conversation:update", (conversation) => {
-      console.log('conversation :>> ', conversation);
+      // console.log('conversation :>> ', conversation);
       if (conversation.id === active) {
+        deleteMsg();
         conversationRefetch();
       }
     })
@@ -267,7 +269,7 @@ const SingleChat = (props: Props) => {
 
     // })
   }, [socket])
-  console.log("socket :>> ", socket);
+  // console.log("socket :>> ", socket);
 
 
 

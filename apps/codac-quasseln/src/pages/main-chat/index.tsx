@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useSocket } from "#/contexts/socketContext";
 import { Enum_Componentleadlifecycle_State } from "codac-graphql-types";
 
+
 const GetAllChats = gql`
   query getAllChats {
     chatrooms {

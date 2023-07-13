@@ -2269,7 +2269,6 @@ export type MutationDeleteConversationArgs = {
 
 
 export type MutationDeleteConversationMessageArgs = {
-  conversationId: Scalars['ID'];
   messageId: Scalars['ID'];
 };
 
@@ -2490,7 +2489,6 @@ export type MutationUpdateConversationArgs = {
 
 export type MutationUpdateConversationMessageArgs = {
   body: Scalars['String'];
-  conversationId: Scalars['ID'];
   messageId: Scalars['ID'];
 };
 
