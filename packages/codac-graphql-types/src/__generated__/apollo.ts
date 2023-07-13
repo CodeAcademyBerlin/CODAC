@@ -248,6 +248,13 @@ export const GetCohortsDocument = gql`
             id
             attributes {
               start_date
+              course {
+                data {
+                  attributes {
+                    name
+                  }
+                }
+              }
               user {
                 data {
                   id
@@ -594,6 +601,63 @@ export function useGetCourseByNameLazyQuery(baseOptions?: Apollo.LazyQueryHookOp
 export type GetCourseByNameQueryHookResult = ReturnType<typeof useGetCourseByNameQuery>;
 export type GetCourseByNameLazyQueryHookResult = ReturnType<typeof useGetCourseByNameLazyQuery>;
 export type GetCourseByNameQueryResult = Apollo.QueryResult<Types.GetCourseByNameQuery, Types.GetCourseByNameQueryVariables>;
+export const GetAllStaffsDocument = gql`
+    query getAllStaffs {
+  mentors {
+    data {
+      id
+      attributes {
+        github
+        linkedin
+        createdAt
+        user {
+          data {
+            attributes {
+              email
+              username
+              avatar {
+                data {
+                  attributes {
+                    url
+                    previewUrl
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetAllStaffsQuery__
+ *
+ * To run a query within a React component, call `useGetAllStaffsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllStaffsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllStaffsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAllStaffsQuery(baseOptions?: Apollo.QueryHookOptions<Types.GetAllStaffsQuery, Types.GetAllStaffsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<Types.GetAllStaffsQuery, Types.GetAllStaffsQueryVariables>(GetAllStaffsDocument, options);
+      }
+export function useGetAllStaffsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Types.GetAllStaffsQuery, Types.GetAllStaffsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<Types.GetAllStaffsQuery, Types.GetAllStaffsQueryVariables>(GetAllStaffsDocument, options);
+        }
+export type GetAllStaffsQueryHookResult = ReturnType<typeof useGetAllStaffsQuery>;
+export type GetAllStaffsLazyQueryHookResult = ReturnType<typeof useGetAllStaffsLazyQuery>;
+export type GetAllStaffsQueryResult = Apollo.QueryResult<Types.GetAllStaffsQuery, Types.GetAllStaffsQueryVariables>;
 export const GetPageDocument = gql`
     query getPage($slug: String) {
   pages(filters: {slug: {eq: $slug}}) {

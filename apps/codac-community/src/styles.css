@@ -1,3 +1,60 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.card {
+  border-radius: 12px 12px 12px 12px;
+  background: #17141d;
+  transition: 0.2s;
+  min-width: 20rem;
+  max-width: 17rem;
+  margin-right: 1rem;
+  margin-block: 1rem;
+  min-height: 19rem;
+  margin: 10px;
+  border-left: 3px solid #00897b;
+  transition: ease-in-out 0.1s;
+  border-bottom: 1px solid #00897b;
+}
+.mentorListCard {
+  border-radius: 20px 16px 10px 10px;
+  background: #17141d;
+  transition: 0.2s;
+  min-width: 20rem;
+  max-width: 10rem;
+  max-height: 10rem;
+  margin: 10px;
+  margin-block: 1rem;
+  border-left: 3px solid #00897b;
+  transition: ease-in-out 0.1s;
+  border-bottom: 1px solid #00897b;
+}
+
+.card:hover {
+  transition: ease-in-out 0.1s;
+}
+.avatarBorder {
+  border-bottom: 3px solid #00897b;
+}
+
+.cardCohort {
+  border-radius: 20px 16px 10px 10px;
+  background: #17141d;
+  transition: 0.2s;
+  min-width: 20rem;
+  margin-block: 1rem;
+  border-left: 3px solid #00897b;
+  transition: ease-in-out 0.1s;
+  border-bottom: 1px solid #00897b;
+}
+
+.card:hover {
+  transform: translateY(-1rem);
+}
+
+.card:hover ~ .card {
+  transform: translateX(130px);
+}
+
+.card:not(:first-child) {
+  margin-left: -130px;
+}

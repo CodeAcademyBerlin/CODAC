@@ -19,6 +19,13 @@ query getCohorts {
             id
             attributes {
               start_date
+              course {
+                data {
+                  attributes {
+                    name
+                  }
+                }
+              }
               user {
                 data {
                   id

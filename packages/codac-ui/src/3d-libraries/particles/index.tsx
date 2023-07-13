@@ -1,5 +1,5 @@
 "use client";
-import { useCallback } from "react";
+import { Suspense, useCallback } from "react";
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import { IOptions, type ISourceOptions, MoveDirection, OutMode } from "tsparticles-engine";
@@ -40,6 +40,10 @@ export const ParticlesComp = ({ type }: { type: string }) => {
   const particlesLoaded = useCallback(async (container: any) => {
     // await console.log(container);
   }, []);
-
-  return <Particles init={particlesInit} loaded={particlesLoaded} options={getOptions(type)} />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      {/* @ts-expect-error Async Server Component */}
+      <Particles init={particlesInit} loaded={particlesLoaded} options={getOptions(type)} />
+    </Suspense>
+  );
 };

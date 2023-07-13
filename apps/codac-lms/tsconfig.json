@@ -15,7 +15,8 @@
         "name": "next"
       }
     ],
-    "incremental": true
+    "incremental": true,
+    "noEmit": true
   },
   "include": [
     "next-env.d.ts",

@@ -1,40 +1,40 @@
+// import Students from "#/components/community/students";
 import { type CohortEntity, GetCohortsDocument, type GetCohortsQuery } from "codac-graphql-types";
-import { Card } from "codac-ui";
-import type { IncomingMessage } from "http";
-import type { NextApiRequest } from "next";
+import { Cohorts } from "codac-ui";
 
-import Students from "#/components/community/students";
+import MentorList from "#/components/community/mentorList";
 import { initializeApollo } from "#/lib/apolloClient";
 
-// function Community({ cohorts }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 function Community({ cohorts }: { cohorts: CohortEntity[] }) {
   return (
     <>
-      <div className="space-y-6">
-        <div>
-          <div className="text-lg font-medium text-white">Cohorts</div>
-        </div>
-
-        <div className="grid grid-cols-4 gap-6">
+      <div>
+        <div className="p-6 text-lg font-medium text-white">Cohorts</div>
+      </div>
+      <div className="">
+        <div className="flex min-w-full grid-cols-6 flex-wrap justify-center ">
           {cohorts.map((cohort) => (
-            <div key={cohort.id} className="col-span-4 lg:col-span-1">
+            <div key={cohort.id} className="">
               {cohort.attributes && (
                 <div className="relative">
-                  <Card
+                  <Cohorts
                     image={cohort.attributes.logo?.data.attributes.url}
+                    startDate={cohort.attributes.start_date ?? ""}
                     title={cohort.attributes.name ?? ""}
                     tag={`${cohort.attributes.students?.data.length ?? ""} students`}
-                    href={`/cohorts/${cohort.id}`}
+                    href={`community/cohort/${cohort.attributes.name}`}
                   />
                 </div>
               )}
             </div>
           ))}
         </div>
-
-        <div className="">
-          <Students />
-        </div>
+      </div>
+      <div>
+        <div className="space-y-10 p-6 text-lg font-medium text-white">Mentors</div>
+      </div>
+      <div>
+        <MentorList />
       </div>
     </>
   );
