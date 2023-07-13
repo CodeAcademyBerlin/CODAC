@@ -192,7 +192,7 @@ const SingleChat = (props: Props) => {
   // FUNCTION TO SCROLL DOWN TO THE LAST MESSAGE IN THE CHAT
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ behavior: "instant" });
     // behaivor options: instant, auto and smooth...
   };
   useEffect(scrollToBottom, [allMessages]);
@@ -269,10 +269,15 @@ const SingleChat = (props: Props) => {
 
   useEffect(() => {
     socket?.on("conversation:update", (conversation) => {
-      console.log("conversation :>> ", conversation);
       if (conversation.id === active) {
         conversationRefetch();
       }
+    });
+  }, [socket]);
+
+  useEffect(() => {
+    socket?.on("conversation:update", (conversation) => {
+      refetch();
     });
   }, [socket]);
 
@@ -352,9 +357,10 @@ const SingleChat = (props: Props) => {
               {allMessages &&
                 allMessages?.conversation?.data?.attributes?.messages?.data?.map((message: any) => {
                   return <Message message={message} deleteMsg={deleteMsg} />;
-                })}
+                })}{" "}
+              <div ref={messagesEndRef} />
             </div>
-            <div ref={messagesEndRef} />
+
             {active !== "" ? (
               <div className="send-message-container">
                 <textarea
