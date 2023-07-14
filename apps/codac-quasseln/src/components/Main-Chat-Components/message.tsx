@@ -1,18 +1,18 @@
+import { gql, useMutation, useQuery } from "@apollo/client";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import React from "react";
+
 import { useAuth } from "#/contexts/authContext";
-import { gql, useQuery, useMutation } from "@apollo/client";
 import { formatDate } from "#/utils/api-helpers";
 
-
-// THIS IS THE NEW QUERY TO UPDATE THE MESSAGES LIVE!! 
+// THIS IS THE NEW QUERY TO UPDATE THE MESSAGES LIVE!!
 const upDateChatMessage = gql`
-mutation updateMessage ($id: ID!, $body: String!){
-  updateConversationMessage(messageId: $id, body: $body ){
-    success
-    message
+  mutation updateMessage($id: ID!, $body: String!) {
+    updateConversationMessage(messageId: $id, body: $body) {
+      success
+      message
+    }
   }
-}
 `;
 const getSingleMessage = gql`
   query GetMessageById($id: ID) {
@@ -42,17 +42,16 @@ const getSingleMessage = gql`
   }
 `;
 
-
 const deleteChatMessage = gql`
-mutation deleteChatMessage($id: ID!){
-  deleteConversationMessage(messageId: $id){
-  success
-  message
-}
-}`
+  mutation deleteChatMessage($id: ID!) {
+    deleteConversationMessage(messageId: $id) {
+      success
+      message
+    }
+  }
+`;
 
 const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }) => {
-
   const [hiddenDiv, setHiddenDiv] = useState(false);
   const [editToggle, setEditToggle] = useState(false);
   const [newMsg, setNewMsg] = useState(message?.attributes?.body || "");
@@ -128,8 +127,9 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
     } else {
       formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     }
-    formattedDate += `@ ${date.getHours() < 10 ? "0" : ""}${date.getHours()}:${date.getMinutes() < 10 ? "0" : ""
-      }${date.getMinutes()} `;
+    formattedDate += `@ ${date.getHours() < 10 ? "0" : ""}${date.getHours()}:${
+      date.getMinutes() < 10 ? "0" : ""
+    }${date.getMinutes()} `;
     return formattedDate;
   };
 
@@ -139,10 +139,11 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
         <>
           <div
             // ref={hiddenDivRef}
-            className={`message-bubble option-A ${user?.username === message.attributes.author.data?.attributes.username
-              ? "my-message"
-              : "user-message"
-              }`}
+            className={`message-bubble option-A ${
+              user?.username === message.attributes.author.data?.attributes.username
+                ? "my-message"
+                : "user-message"
+            }`}
           >
             <div className="message-label">
               {user?.username !== message.attributes.author.data?.attributes.username ? (
@@ -188,7 +189,7 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
             <p className="message-text">{message && message.attributes?.body}</p>
             {hiddenDiv && (
               <div className="delete-panel" ref={hiddenDivRef}>
-                <span>Delete this message ?</span>
+                <span>Delete this message?</span>
                 <div className="buttons-container">
                   <button
                     className="primary"
@@ -232,7 +233,7 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
                 }}
               />
               <div className="edit-panel">
-                Save changes ?
+                Save changes?
                 <div className="buttons-container">
                   <button className="primary" type="submit">
                     Yes

@@ -1,12 +1,13 @@
-import { CohortCard } from "#/components/community/cohort";
-import StudentList  from "#/components/community/studentList";
-import router from "next/router";
+import { useRouter } from "next/router";
+
+import { CohortCard } from "#/components/community/Cohort";
+import StudentList from "#/components/community/StudentList";
 
 export default function CohortPage() {
+  const router = useRouter();
   const cohortName = (router.query.id as string) ?? "";
   return (
     <>
- 
       <div className="flex justify-center">
         <CohortCard cohortName={cohortName} />
         <div />
@@ -15,7 +16,7 @@ export default function CohortPage() {
         <div className="p-6 text-lg font-medium text-white">Students</div>
       </div>
       <div>
-        <StudentList  cohortName={cohortName} />
+        <StudentList cohortName={cohortName} />
       </div>
     </>
   );

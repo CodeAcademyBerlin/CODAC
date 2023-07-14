@@ -1,5 +1,5 @@
 import { MentorEntity } from "codac-graphql-types";
-import { SkeletonCards, CardList } from "codac-ui";
+import { CardList, SkeletonCards } from "codac-ui";
 
 // import { AvatarCard } from "codac-ui";
 import { useGetMentors } from "#/graphql/hooks";
@@ -15,7 +15,7 @@ const MentorList = () => {
       <div className="flex justify-center">
         {loading && <SkeletonCards number={3} isLoading={loading} />}
         {error && <div>something is wrong</div>}
-        <div className="flex justify-center grid-cols-2 flex-wrap ">
+        <div className="flex grid-cols-2 flex-wrap justify-center ">
           {mentors &&
             mentors.map((mentor: MentorEntity) => {
               const avatarUrl =

@@ -1,4 +1,4 @@
-import {Card, SkeletonCards } from "codac-ui";
+import { Card, SkeletonCards } from "codac-ui";
 
 import { useGetStudent } from "#/graphql/hooks";
 

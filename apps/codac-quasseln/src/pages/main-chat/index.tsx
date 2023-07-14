@@ -1,11 +1,9 @@
-import { useAuth } from "#/contexts/authContext";
-
-import React, { useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import Link from "next/link";
-import { useSocket } from "#/contexts/socketContext";
-import { Enum_Componentleadlifecycle_State } from "codac-graphql-types";
+import React, { useEffect, useState } from "react";
 
+import { useAuth } from "#/contexts/authContext";
+import { useSocket } from "#/contexts/socketContext";
 
 const GetAllChats = gql`
   query getAllChats {
@@ -43,7 +41,7 @@ const GetAllChats = gql`
   }
 `;
 
-type Props = {};
+type Props = object;
 
 const KangaroosChat = (props: Props) => {
   const { data, error, loading } = useQuery(GetAllChats);

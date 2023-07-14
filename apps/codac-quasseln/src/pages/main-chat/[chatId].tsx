@@ -1,11 +1,12 @@
-import { useRouter } from "next/router";
-import { gql, useQuery, useMutation } from "@apollo/client";
-import React, { FormEvent, useEffect, useRef, useState } from "react";
-import { useAuth } from "#/contexts/authContext";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import { timeStamp } from "console";
-import Message from "#/components/Main-Chat-Components/message";
-import ConversationBuble from "#/components/Main-Chat-Components/ConversationBuble";
+import { useRouter } from "next/router";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 import { Socket } from "socket.io-client";
+
+import ConversationBuble from "#/components/Main-Chat-Components/ConversationBuble";
+import Message from "#/components/Main-Chat-Components/message";
+import { useAuth } from "#/contexts/authContext";
 import { useSocket } from "#/contexts/socketContext";
 
 // This query is to find the chatroom.... NOT all the messages... (do you mean conversations????)
@@ -124,7 +125,7 @@ const createConversation = gql`
     }
   }
 `;
-type Props = {};
+type Props = object;
 
 const SingleChat = (props: Props) => {
   const { user } = useAuth();
@@ -356,7 +357,7 @@ const SingleChat = (props: Props) => {
             <div className="messages">
               {allMessages &&
                 allMessages?.conversation?.data?.attributes?.messages?.data?.map((message: any) => {
-                  return <Message message={message} deleteMsg={deleteMsg} />;
+                  return <Message key={message} message={message} deleteMsg={deleteMsg} />;
                 })}{" "}
               <div ref={messagesEndRef} />
             </div>

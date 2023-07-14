@@ -1,9 +1,9 @@
-import { Student } from "#/components/community/student";
-import router from "next/router";
+import { useRouter } from "next/router";
 
-
+import { Student } from "#/components/community/Student";
 
 const StudentId = () => {
+  const router = useRouter();
   const id = (router.query.id as string) ?? "";
 
   return <Student id={id} />;

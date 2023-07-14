@@ -1,7 +1,8 @@
 import { Card, SkeletonCards } from "codac-ui";
-import defaultAvatar from "../../../public/defaultAvatar.png";
 
 import { useGetMentor } from "#/graphql/hooks";
+
+import defaultAvatar from "../../../public/defaultAvatar.png";
 
 export const Mentor = ({ id }: { id: string }) => {
   const { mentor, loading, error } = useGetMentor(id);

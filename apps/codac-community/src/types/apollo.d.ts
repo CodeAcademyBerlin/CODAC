@@ -4,7 +4,6 @@ export type ApolloGenericQuery<Type> = Record<
     data: Type;
     loading: boolean;
     // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-    error: ApolloError | undefined;
+    error: any;
   }
 >;
- 
