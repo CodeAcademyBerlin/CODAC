@@ -244,7 +244,6 @@ export type Chatroom = {
   conversations?: Maybe<ConversationRelationResponseCollection>;
   createdAt?: Maybe<Scalars['DateTime']>;
   name?: Maybe<Scalars['String']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   users_permissions_users?: Maybe<UsersPermissionsUserRelationResponseCollection>;
 };
@@ -253,7 +252,6 @@ export type Chatroom = {
 export type ChatroomConversationsArgs = {
   filters?: InputMaybe<ConversationFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -289,7 +287,6 @@ export type ChatroomFiltersInput = {
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ChatroomFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ChatroomFiltersInput>>>;
-  publishedAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   users_permissions_users?: InputMaybe<UsersPermissionsUserFiltersInput>;
 };
@@ -297,7 +294,6 @@ export type ChatroomFiltersInput = {
 export type ChatroomInput = {
   conversations?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   name?: InputMaybe<Scalars['String']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
   users_permissions_users?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
 };
 
@@ -890,7 +886,7 @@ export type ComponentSectionsBottomActions = {
 
 export type ComponentSectionsCodeblock = {
   __typename?: 'ComponentSectionsCodeblock';
-  code: Scalars['String'];
+  codeblock?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   language?: Maybe<Enum_Componentsectionscodeblock_Language>;
 };
@@ -1037,9 +1033,9 @@ export type Conversation = {
   __typename?: 'Conversation';
   chatroom?: Maybe<ChatroomEntityResponse>;
   createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
   messages?: Maybe<MessageRelationResponseCollection>;
   pinned?: Maybe<Scalars['Boolean']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
   title?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -1048,7 +1044,6 @@ export type Conversation = {
 export type ConversationMessagesArgs = {
   filters?: InputMaybe<MessageFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -1073,21 +1068,21 @@ export type ConversationFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ConversationFiltersInput>>>;
   chatroom?: InputMaybe<ChatroomFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
   messages?: InputMaybe<MessageFiltersInput>;
   not?: InputMaybe<ConversationFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ConversationFiltersInput>>>;
   pinned?: InputMaybe<BooleanFilterInput>;
-  publishedAt?: InputMaybe<DateTimeFilterInput>;
   title?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type ConversationInput = {
   chatroom?: InputMaybe<Scalars['ID']>;
+  description?: InputMaybe<Scalars['String']>;
   messages?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   pinned?: InputMaybe<Scalars['Boolean']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -1844,7 +1839,6 @@ export type Message = {
   conversation?: Maybe<ConversationEntityResponse>;
   createdAt?: Maybe<Scalars['DateTime']>;
   pinned?: Maybe<Scalars['Boolean']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -1875,7 +1869,6 @@ export type MessageFiltersInput = {
   not?: InputMaybe<MessageFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<MessageFiltersInput>>>;
   pinned?: InputMaybe<BooleanFilterInput>;
-  publishedAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
@@ -1884,7 +1877,6 @@ export type MessageInput = {
   body?: InputMaybe<Scalars['String']>;
   conversation?: InputMaybe<Scalars['ID']>;
   pinned?: InputMaybe<Scalars['Boolean']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type MessageRelationResponseCollection = {
@@ -2882,7 +2874,6 @@ export type QueryChatroomArgs = {
 export type QueryChatroomsArgs = {
   filters?: InputMaybe<ChatroomFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -2941,7 +2932,6 @@ export type QueryConversationArgs = {
 export type QueryConversationsArgs = {
   filters?: InputMaybe<ConversationFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -3045,7 +3035,6 @@ export type QueryMessageArgs = {
 export type QueryMessagesArgs = {
   filters?: InputMaybe<MessageFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -3718,7 +3707,6 @@ export type UsersPermissionsUser = {
 export type UsersPermissionsUserChatroomsArgs = {
   filters?: InputMaybe<ChatroomFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
