@@ -59,7 +59,7 @@ export default async function Page({
                         key={lesson.id}
                         className="group my-2 block rounded-lg bg-gray-900 px-5 py-3 text-center hover:bg-gray-500"
                       >
-                        <div className="font-medium text-gray-200 group-hover:text-gray-50">
+                        <div className="font-medium text-gray-900 group-hover:text-gray-50 dark:text-gray-200">
                           {`${lesson.attributes.title}`}
                         </div>
                       </Link>

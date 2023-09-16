@@ -19,10 +19,10 @@ export default async function Page({ params }: { params: { courseSlug: string } 
                 <Link
                   href={`./courses/${params.courseSlug}/${project.attributes.slug ?? ""}`}
                   key={project.id}
-                  className="group relative block space-y-1.5 rounded-lg bg-gray-900 px-5 py-3 hover:bg-gray-800"
+                  className="group relative block space-y-1.5 rounded-lg px-5 py-3 hover:bg-gray-800 dark:bg-gray-900"
                 >
                   <TagLabel color="violet" labels={[`${project.attributes.calc_length} days`]} />
-                  <div className="font-medium text-gray-200 group-hover:text-gray-50">
+                  <div className="font-medium text-gray-800 group-hover:text-gray-50 dark:text-gray-200">
                     {project.attributes.name}
                   </div>
 

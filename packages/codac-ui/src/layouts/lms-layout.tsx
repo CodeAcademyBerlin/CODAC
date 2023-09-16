@@ -28,7 +28,7 @@ export function LMSLayout({
         })}
       >
         <div className="mx-auto min-h-[80%] space-y-8 px-2 pt-3 shadow-xl lg:px-8 lg:py-8 lg:pt-10">
-          <div className="border-primary/[.2] bg-gray-300-border-gradient rounded-lg border bg-zinc-950 p-px shadow-lg shadow-black dark:bg-[linear-gradient(45deg,transparent_25%,rgba(68,68,68,.2)_50%,transparent_75%,transparent_100%)]">
+          <div className="border-primary/[.2] bg-gray-300-border-gradient rounded-lg border bg-zinc-300 p-px shadow-lg shadow-black dark:bg-zinc-950 dark:bg-[linear-gradient(45deg,transparent_25%,rgba(68,68,68,.2)_50%,transparent_75%,transparent_100%)]">
             <div className="rounded-lg p-3.5 lg:p-6">{children}</div>
           </div>
         </div>

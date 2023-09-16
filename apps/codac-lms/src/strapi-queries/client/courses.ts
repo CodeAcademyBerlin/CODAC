@@ -12,7 +12,6 @@ export async function getLMSTree() {
     {
       fields: ["name", "slug"],
       populate: {
-        fields: ["name", "slug"],
         projects: {
           fields: ["name", "slug"],
           populate: {
@@ -27,6 +26,7 @@ export async function getLMSTree() {
     },
     options
   );
+  console.log("h", courses)
   if (courses?.length === 0) {
     // Render the closest `not-found.js` Error Boundary
     notFound();

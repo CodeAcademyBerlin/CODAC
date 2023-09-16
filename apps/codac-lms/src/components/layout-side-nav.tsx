@@ -1,6 +1,6 @@
 "use client";
 
-import { BrandText, CodacLogo, LMSTreeNav, SpinnerIcon } from "codac-ui";
+import { BrandText, CodacLogo, LMSTreeNav, SpinnerIcon, ThemeSwitch } from "codac-ui";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -14,6 +14,7 @@ export default function LayoutSideNav() {
   const segments = pathname.split("/").splice(1);
   const [lmsTree, setLmsTree] = useState<any>(null);
   console.log("segments", segments);
+  console.log("lmsTree", lmsTree);
   useEffect(() => {
     const getTree = async () => {
       if (session?.user?.accessToken) {
@@ -36,6 +37,7 @@ export default function LayoutSideNav() {
         <BrandText>CODAC LMS</BrandText>
       </Link>
       {lmsTree ? <LMSTreeNav segments={segments} courses={lmsTree} /> : <SpinnerIcon />}
+      <ThemeSwitch />
     </div>
   );
 }

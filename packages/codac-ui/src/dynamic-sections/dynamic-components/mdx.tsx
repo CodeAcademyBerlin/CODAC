@@ -20,7 +20,7 @@ const components: MDXComponents = {
     </h2>
   ),
   p: ({ children, ...rest }) => (
-    <p className="text-white" {...rest}>
+    <p className="text-black dark:text-white" {...rest}>
       {children}
     </p>
   ),
