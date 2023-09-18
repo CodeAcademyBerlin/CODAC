@@ -18,6 +18,17 @@ query getPage($slug: String) {
             id
             content
           }
+          ... on ComponentSectionsGoogleSlide {
+            __typename
+            id
+            link
+          }
+          ... on ComponentSectionsCodeblock {
+            __typename
+            id
+            language
+            codeblock
+          }
         }
       }
     }

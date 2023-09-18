@@ -38,26 +38,26 @@ query getCourseProject($name: String, $projectIds: ID) {
             attributes {
               name
               description
-              sprints {
-                lessons {
-                  data {
-                    attributes {
-                      title
-                      slug
-                      locale
-                    }
-                  }
-                }
-                spikes {
-                  data {
-                    attributes {
-                      title
-                      slug
-                      locale
-                    }
-                  }
-                }
-              }
+              # sprints {
+              # lessons {
+              #   data {
+              #     attributes {
+              #       title
+              #       slug
+              #       locale
+              #     }
+              #   }
+              # }
+              # spikes {
+              #   data {
+              #     attributes {
+              #       title
+              #       slug
+              #       locale
+              #     }
+              #   }
+              # }
+              # }
             }
           }
         }
@@ -97,24 +97,24 @@ query getCourseByName($name: String!) {
                 objectives {
                   name
                 }
-                lessons {
-                  data {
-                    attributes {
-                      title
-                      slug
-                      locale
-                    }
-                  }
-                }
-                spikes {
-                  data {
-                    attributes {
-                      title
-                      slug
-                      locale
-                    }
-                  }
-                }
+                # lessons {
+                # data {
+                #   attributes {
+                #     title
+                #     slug
+                #     locale
+                #   }
+                # }
+                # }
+                # spikes {
+                #   data {
+                #     attributes {
+                #       title
+                #       slug
+                #       locale
+                #     }
+                #   }
+                # }
               }
             }
           }

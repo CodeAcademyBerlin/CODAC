@@ -11,24 +11,24 @@ query getProjects {
           objectives {
             name
           }
-          lessons {
-            data {
-              attributes {
-                title
-                slug
-                locale
-              }
-            }
-          }
-          spikes {
-            data {
-              attributes {
-                title
-                slug
-                locale
-              }
-            }
-          }
+          # lessons {
+          #   data {
+          #     attributes {
+          #       title
+          #       slug
+          #       locale
+          #     }
+          #   }
+          # }
+          # spikes {
+          #   data {
+          #     attributes {
+          #       title
+          #       slug
+          #       locale
+          #     }
+          #   }
+          # }
         }
       }
     }
@@ -47,24 +47,24 @@ query getProject($id: ID!) {
           objectives {
             name
           }
-          lessons {
-            data {
-              attributes {
-                title
-                slug
-                locale
-              }
-            }
-          }
-          spikes {
-            data {
-              attributes {
-                title
-                slug
-                locale
-              }
-            }
-          }
+          # lessons {
+          #   data {
+          #     attributes {
+          #       title
+          #       slug
+          #       locale
+          #     }
+          #   }
+          # }
+          # spikes {
+          #   data {
+          #     attributes {
+          #       title
+          #       slug
+          #       locale
+          #     }
+          #   }
+          # }
         }
       }
     }
