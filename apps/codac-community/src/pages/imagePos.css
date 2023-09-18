@@ -1,0 +1,19 @@
+img[alt$=">"] {
+  float: right;
+  margin: 0;
+  margin-left: 1em;
+}
+
+img[alt$="<"] {
+  float: left;
+  margin: 0;
+  margin-right: 1em;
+}
+
+img[alt$="><"] {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+  float: none !important;
+}
