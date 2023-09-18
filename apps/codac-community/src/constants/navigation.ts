@@ -41,4 +41,14 @@ export const navigation: { name: string; items: Item[] }[] = [
       },
     ],
   },
+  {
+    name: "LMS-testing",
+    items: [
+      {
+        name: "Hello World",
+        slug: "lms",
+        description: "Hello World",
+      },
+    ],
+  },
 ];

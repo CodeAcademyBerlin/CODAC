@@ -1,17 +1,26 @@
 import type { PageContentSectionsDynamicZone } from "codac-graphql-types";
-import { SectionHeader, SectionMarkdownSync, SectionRichText } from "codac-ui";
+import {
+  // SectionCodeblock,
+  SectionGoogleSlide,
+  SectionHeader,
+  SectionMarkdownSync,
+  // SectionRichText,
+} from "codac-ui";
 import type { FC } from "react";
 
 // Map Strapi sections to dynamicZone components
 const contentSectionsList = {
   ComponentSectionsHeader: SectionHeader,
   ComponentSectionsRichText: SectionMarkdownSync,
+  ComponentSectionsGoogleSlide: SectionGoogleSlide,
+  // ComponentSectionsCodeblock: SectionCodeblock,
 };
 
 type ContentSectionsType = typeof contentSectionsList;
 
 // Display a dynamicZone individually
 const Zone = ({ data }: { data: PageContentSectionsDynamicZone }) => {
+  console.log("zone", data);
   // Prepare the component
   const DynamicComponent: FC<{ data: any }> =
     contentSectionsList[data.__typename as keyof ContentSectionsType];

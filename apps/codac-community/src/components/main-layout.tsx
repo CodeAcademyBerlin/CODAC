@@ -17,7 +17,7 @@ function MainLayout({ children }: { children: ReactNode }) {
         />
       }
     >
-      {children};
+      {children}
     </DashboardLayout>
   );
 }

@@ -1,4 +1,5 @@
 import "#/styles.css";
+import "./imagePos.css";
 
 import { ApolloProvider } from "@apollo/client";
 import { ThemeProvider } from "codac-ui";
