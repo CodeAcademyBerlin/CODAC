@@ -108,8 +108,9 @@ function GlobalNavItemApp({ item, close }: { item: Item; close: () => false | vo
 }
 function GlobalNavItem({ item, close }: { item: Item; close: () => false | void }) {
   const router = useRouter();
-  const currentRoute = router.pathname.split("/");
-  const isActive = currentRoute.includes(item.slug);
+  // const currentRoute = router.pathname.split("/");
+  // const isActive = currentRoute.includes(item.slug);
+  const isActive = router.pathname === `/${item.slug}`;
 
   return (
     <Link
