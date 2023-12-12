@@ -31,9 +31,8 @@ export default async function Page({
       <h2 className="text-2xl font-bold text-gray-200">{name}</h2>
       <p className="text-gray-400">{description}</p>
 
-      <div className="grid grid-cols-1 gap-10 space-y-4 divide-y-2 py-6">
-        {/* <TabGroup path={`/courses/${courseSlug}/${projectSlug}`} items={[...sprintsLinks]} /> */}
-        {/* {projectTimeline && <Timeline color="violet" items={projectTimeline} />} */}
+      {/* <div className="grid grid-cols-1 gap-10 space-y-4 divide-y-2 py-6">
+  
 
         {sprints?.map((sprint) => {
           const pages = sprint?.lessons?.data ?? [];
@@ -100,10 +99,10 @@ export default async function Page({
                   })}
                 </Boundary>
               </div>
-            </div>
+            </div> 
           );
         })}
-      </div>
+      </div>*/}
     </div>
   );
 }

@@ -1,14 +1,14 @@
 import {
+  type ChatEntityResponseCollection,
   useGetMeQuery,
   type UsersPermissionsLoginPayload,
   type UsersPermissionsMe,
-  type ChatEntityResponseCollection,
 } from "codac-graphql-types";
 import { destroyCookie, setCookie } from "nookies";
+import { type } from "os";
 import { createContext, type ReactNode, useContext, useEffect, useState } from "react";
 
 import { COOKIES_TOKEN_NAME } from "#/constants";
-import { type } from "os";
 
 type User = UsersPermissionsMe | null;
 
@@ -41,12 +41,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User>(null);
   const [chatRooms, setChatRooms] = useState<ChatRooms>(null);
   const { data, error, loading: authLoading, refetch: getMe } = useGetMeQuery();
-
+  console.log("data", data);
   // does this Use Context work??????
   //  the user now is different..... and has no chatrooms...
   useEffect(() => {
-    if (data?.me && !error) {
-      // console.log("this is the updated data/user:", data);
+    if (data?.me) {
+      console.log("this is the updated data/user:", data);
       const user = data.me as UsersPermissionsMe;
       setUser(user);
       const chatRooms = data.chatrooms as ChatRooms;

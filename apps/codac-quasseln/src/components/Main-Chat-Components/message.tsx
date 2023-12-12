@@ -7,11 +7,16 @@ import { formatDate } from "#/utils/api-helpers";
 
 // THIS IS THE NEW QUERY TO UPDATE THE MESSAGES LIVE!!
 const upDateChatMessage = gql`
-  mutation updateMessage($id: ID!, $body: String!) {
-    updateConversationMessage(messageId: $id, body: $body) {
-      success
-      message
+  mutation updateMessage($id: ID!, $data: MessageInput!) {
+    updateMessage(id: $id, data: $data) {
+      data {
+        id
+      }
     }
+    # updateConversationMessage(messageId: $id, body: $body) {
+    #   success
+    #   message
+    # }
   }
 `;
 const getSingleMessage = gql`
@@ -87,7 +92,9 @@ const Message = ({ message, deleteMsg }: { message: any; deleteMsg: () => void }
         updateMessageMutation({
           variables: {
             id: message.id,
-            body: newMsg, // we need to create a new form with this variable as msg body
+            data: {
+              body: newMsg, // we need to create a new form with this variable as msg body
+            },
           },
         });
       }

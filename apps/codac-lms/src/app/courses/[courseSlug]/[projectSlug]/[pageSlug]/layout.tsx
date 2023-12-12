@@ -22,15 +22,15 @@ export default async function Layout({
   const { project } = await getProjectBySlug({ slug: projectSlug });
   const { sprints } = project.attributes;
 
-  const pages = sprints?.map((sprint) => sprint?.lessons).flat()[0]?.data ?? [];
-  const index = pages.findIndex((page) => page.attributes.slug === params.pageSlug);
-  const nextPage = pages[index + 1];
-  const previousPage = pages[index - 1];
+  // const pages = sprints?.map((sprint) => sprint?.lessons).flat()[0]?.data ?? [];
+  // const index = pages.findIndex((page) => page.attributes.slug === params.pageSlug);
+  // const nextPage = pages[index + 1];
+  // const previousPage = pages[index - 1];
   return (
     <div className="space-y-9">
       {children}
       <div className="grid grid-cols-2 justify-between gap-4">
-        <div className="text-left">
+        {/* <div className="text-left">
           {previousPage && (
             <Link
               href={`/courses/${params.courseSlug}/${params.projectSlug}/${
@@ -51,7 +51,7 @@ export default async function Layout({
               <p className="text-codac-pink hover:text-gray-50">Next</p>
             </Link>
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );
