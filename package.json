@@ -48,5 +48,8 @@
     "turbo": "latest",
     "typescript": "^5.0.4"
   },
-  "packageManager": "pnpm@8.4.0"
+  "packageManager": "pnpm@8.4.0",
+  "dependencies": {
+    "next": "^13.4.10"
+  }
 }

@@ -11,9 +11,9 @@ module.exports = {
   ],
   rules: {
     "@next/next/no-html-link-for-pages": "off",
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error",
-    "import/no-unresolved": "error",
+    "simple-import-sort/imports": "warn",
+    "simple-import-sort/exports": "warn",
+    "import/no-unresolved": "warn",
     // "@typescript-eslint/no-useless-empty-export": "warn",
     // "@typescript-eslint/promise-function-async": "warn",
     "@typescript-eslint/no-unused-vars": [

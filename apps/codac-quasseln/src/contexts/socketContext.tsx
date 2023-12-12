@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import type { Chat } from "codac-graphql-types";
+import type { Chat, Conversation, ConversationEntity } from "codac-graphql-types";
 import { createContext, type ReactNode, useContext, useEffect, useState } from "react";
 import { io, type Socket } from "socket.io-client";
 
 import { getToken } from "#/lib/apolloClient";
 
 import { useAuth } from "./authContext";
+import { MessageEntity } from "codac-graphql-types";
+
 
 interface ServerToClientEvents {
   noArg: () => void;
@@ -14,6 +16,10 @@ interface ServerToClientEvents {
   withAck: (d: string, callback: (e: number) => void) => void;
   ["chat:update"]: (chat: Chat) => void;
   ["chat"]: (chat: Chat) => void;
+  ["conversation:update"]: (conversation: ConversationEntity) => void;
+  ["message:update"]: (message: MessageEntity) => void;
+
+
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -45,7 +51,7 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
       return;
     } else {
       const token = getToken();
-      console.log("token", token);
+
       const s: SocketIface = io(`${process.env.NEXT_PUBLIC_CODAC_SERVER_URL ?? ""}`, {
         auth: {
           token: token,
@@ -54,9 +60,11 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
       setSocket(s);
     }
   };
+  // why do you use have Socket as dependency...? 
+  // shoud we clean it up? in the return...? 
   useEffect(() => {
     connectSocket();
-  }, [socket, user]);
+  }, [user]);
 
   const data = {
     socket,

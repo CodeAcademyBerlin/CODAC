@@ -38,26 +38,6 @@ query getCourseProject($name: String, $projectIds: ID) {
             attributes {
               name
               description
-              sprints {
-                lessons {
-                  data {
-                    attributes {
-                      title
-                      slug
-                      locale
-                    }
-                  }
-                }
-                spikes {
-                  data {
-                    attributes {
-                      title
-                      slug
-                      locale
-                    }
-                  }
-                }
-              }
             }
           }
         }
@@ -96,24 +76,6 @@ query getCourseByName($name: String!) {
                 length
                 objectives {
                   name
-                }
-                lessons {
-                  data {
-                    attributes {
-                      title
-                      slug
-                      locale
-                    }
-                  }
-                }
-                spikes {
-                  data {
-                    attributes {
-                      title
-                      slug
-                      locale
-                    }
-                  }
                 }
               }
             }

@@ -1,0 +1,56 @@
+@import "../../styles/vars";
+
+.storybook-button {
+  border: 0;
+  border-radius: 3em;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1;
+  padding: 0.5em 1em;
+  border: $border-solid transparent;
+  display: flex;
+  align-items: center;
+
+  .label {
+    font-size: 16px;
+    font-size: "Noto Sans", sans-serif;
+  }
+
+  .icon {
+    width: 1em;
+    height: 1em;
+    padding-right: 0.5em;
+  }
+
+  &.primary {
+    font-size: 1.25em;
+  }
+
+  &.secondary {
+    font-size: 1em;
+  }
+
+  &.lightmode {
+    color: white;
+    background-color: $codac-color;
+
+    &:hover {
+      background-color: darken($codac-color, 5%);
+    }
+    &:active {
+      border: $border-solid lighten($codac-color, 10%);
+    }
+  }
+
+  &.darkmode {
+    color: darken($codac-color, 20%);
+    background-color: lighten($codac-color, 30%);
+
+    &:hover {
+      background-color: lighten($codac-color, 50%);
+    }
+    &:active {
+      border: $border-solid lighten($codac-color, 20%);
+    }
+  }
+}

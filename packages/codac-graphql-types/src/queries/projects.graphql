@@ -11,24 +11,6 @@ query getProjects {
           objectives {
             name
           }
-          lessons {
-            data {
-              attributes {
-                title
-                slug
-                locale
-              }
-            }
-          }
-          spikes {
-            data {
-              attributes {
-                title
-                slug
-                locale
-              }
-            }
-          }
         }
       }
     }
@@ -46,24 +28,6 @@ query getProject($id: ID!) {
           length
           objectives {
             name
-          }
-          lessons {
-            data {
-              attributes {
-                title
-                slug
-                locale
-              }
-            }
-          }
-          spikes {
-            data {
-              attributes {
-                title
-                slug
-                locale
-              }
-            }
           }
         }
       }

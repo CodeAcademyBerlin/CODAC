@@ -31,7 +31,8 @@ function Params() {
 
 export function AddressBar() {
   const pathname = usePathname();
-  const segments = pathname.split("/").slice(1) ?? [];
+
+  const segments = pathname?.split("/").slice(1) ?? [];
 
   return (
     <div className="flex items-center gap-x-2 p-3.5 lg:px-5 lg:py-3">
