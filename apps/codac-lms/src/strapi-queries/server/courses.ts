@@ -1,41 +1,40 @@
-/* eslint-disable turbo/no-undeclared-env-vars */
 // `server-only` guarantees any modules that import code in file
 // will never run on the client. Even though this particular api
 // doesn't currently use sensitive environment variables, it's
 // good practise to add `server-only` preemptively.
 import "server-only";
 
-import type { ProjectEntity } from "codac-graphql-types";
+import { CourseEntity } from "codac-graphql-types";
 import { notFound } from "next/navigation";
 
 import { fetchAPI } from "#/utils/fetch-api";
 
-import { getCourseBySlug } from "./courses";
+export async function getCourses() {
+  const token = process.env.CODAC_SSG_TOKEN ?? "";
+  const options = { headers: { Authorization: `Bearer ${token}` } };
 
-export async function getProjectsByCoursesName({ slug }: { slug: string }) {
-  const course = await getCourseBySlug({ slug });
-
-  const { projects } = course.attributes;
-  if (!projects || projects.data.length === 0) {
+  const courses = await fetchAPI<CourseEntity[]>("/courses", { populate: "*" }, options);
+  if (courses?.length === 0) {
     // Render the closest `not-found.js` Error Boundary
     notFound();
   }
 
-  return projects.data;
+  return courses;
 }
-export async function getProjectByName({ slug }: { slug: string }) {
+
+export async function getCourseBySlug({ slug }: { slug: string }) {
   const token = process.env.CODAC_SSG_TOKEN ?? "";
-  const path = `/projects`;
+  const path = `/courses`;
   const urlParamsObject = {
     filters: { slug },
     populate: "*",
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
-  const projects = await fetchAPI<ProjectEntity[]>(path, urlParamsObject, options);
-  if (!projects.length) {
+  const courses = await fetchAPI<CourseEntity[]>(path, urlParamsObject, options);
+  if (!courses?.length) {
     // Render the closest `not-found.js` Error Boundary
     notFound();
   }
 
-  return projects[0];
+  return courses[0];
 }

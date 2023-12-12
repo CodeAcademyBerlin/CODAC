@@ -6,9 +6,10 @@ import type {
 } from "codac-graphql-types";
 import type { AuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
-// import CredentialsProvider from "next-auth/providers/credentials";
+import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 
+import { UserLoginResponse } from "#/types/user";
 import { fetchAPI } from "#/utils/fetch-api";
 
 export const authOptions: AuthOptions = {
@@ -23,7 +24,7 @@ export const authOptions: AuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID ?? "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
     }),
-    /*  CredentialsProvider({
+    CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
       name: "Credentials",
       // `credentials` is used to generate a form on the sign in page.
@@ -53,6 +54,7 @@ export const authOptions: AuthOptions = {
           false
         );
         console.log("userData", userData);
+        console.log("accessToken", accessToken);
         // const { user: userData, jwt, error } = await res.json();
         if (userData && accessToken) {
           const user = { ...userData, accessToken };
@@ -61,7 +63,7 @@ export const authOptions: AuthOptions = {
           return null;
         }
       },
-    }), */
+    }),
   ],
   callbacks: {
     async signIn({ account, profile }) {
@@ -92,11 +94,12 @@ export const authOptions: AuthOptions = {
         }
         return "/unauthorized";
       }
-      return false;
-      // return true;Do different verification for other providers that don't have `email_verified`
+      // return false;
+      // Do different verification for other providers that don't have `email_verified`
+      return true;
     },
 
-    async jwt({ token, account }) {
+    async jwt({ token, account, user }) {
       if (account?.provider === "google") {
         const strapiToken = process.env.CODAC_OAUTH_TOKEN ?? "";
 
@@ -116,46 +119,47 @@ export const authOptions: AuthOptions = {
           options,
           false
         );
-
+        console.log("jwt", jwt);
         if (jwt != null) {
-          const options = { headers: { Authorization: `Bearer ${jwt}` } };
-          const urlParamsObject = {
-            // sort: { createdAt: 'desc' },
-            // filters: {
-            //     category: {
-            //         slug: filter,
-            //     },
-            // },
-            populate: ["role", "student", "student.course"],
-          };
+          // const options = { headers: { Authorization: `Bearer ${jwt}` } };
+          // const urlParamsObject = {
+          //   populate: ["role", "student", "student.course"],
+          // };
 
-          const data = await fetchAPI<UsersPermissionsMe>(
-            "/users/me",
-            urlParamsObject,
-            options,
-            false
-          );
-          console.log("data", data);
+          // const data = await fetchAPI<UsersPermissionsMe>(
+          //   "/users/me",
+          //   urlParamsObject,
+          //   options,
+          //   false
+          // );
+          // console.log("data", data);
           token.accessToken = jwt;
           token.id = userData.id;
-          token.userRole = data.role?.name;
+          // token.userRole = data.role?.name;
+          console.log("token", token);
+          return token;
         }
       }
       // If we are using credentials, we already have the token from strapi
-      // else {
-      //   // (token.id = user.id), (token.jwt = user.jwt);
-      //   return { ...token, ...user };
-      // }
+      else {
+        console.log("token", token);
+        console.log("user", user);
+        console.log("account", account);
+        // (token.id = user.id), (token.jwt = user.jwt);
+        return { ...token, ...user };
+      }
       return token;
     },
     session({ session, token }) {
+      console.log("token", token);
+
       // Send properties to the client, like an access_token and user id from a provider.
-      if (session.user) {
+      if (session.user && token) {
         session.user.accessToken = token.accessToken;
         session.user.id = token.id;
         session.user.role = token.userRole;
       }
-
+      console.log("sessioqqqqqqqqqqqqqn", session);
       return session;
     },
   },

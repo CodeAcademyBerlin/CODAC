@@ -1,6 +1,7 @@
-import { Boundary, Header, LMSLayout } from "codac-ui";
-import { LMSNav } from "codac-ui/layouts/lms-nav";
+import { LMSLayout } from "codac-ui";
 import React from "react";
+
+import LayoutHeader from "#/components/layout-header";
 
 export const metadata = {
   title: "Dashboard",
@@ -8,11 +9,10 @@ export const metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <LMSLayout
-      // topNav={<Header />}
-      sideNav={<LMSNav />}
-    >
-      <div className="space-y-10">{children}</div>
-    </LMSLayout>
+    <div className="h-screen bg-[url('/grid.svg')]">
+      <LMSLayout topNav={<LayoutHeader />}>
+        <div className="space-y-10 ">{children}</div>
+      </LMSLayout>
+    </div>
   );
 }

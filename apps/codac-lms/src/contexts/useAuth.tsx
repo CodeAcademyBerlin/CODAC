@@ -35,7 +35,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         //         slug: filter,
         //     },
         // },
-        populate: ["role", "student", "student.course"],
+        populate: ["role", "avatar", "student", "student.course"],
       };
       const data = await fetchAPI<UsersPermissionsMe>("/users/me", urlParamsObject, options, false);
 

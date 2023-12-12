@@ -19,7 +19,6 @@ import { unified } from "unified";
 
 export const codeblockProcessor = async (content: string) => {
   // parse markdown to html
-  console.log("content", content);
   const processed = await unified()
     .use(remarkParse)
     .use(remarkRehype)
@@ -28,7 +27,6 @@ export const codeblockProcessor = async (content: string) => {
     .use(rehypeStringify)
     .process(content);
   // .processSync(/* markdown string */)
-  console.log("processed", processed);
   return processed.toString();
   // parse code block in html string
   // rehype().use(rehypePrism).use(rehypeStringify).parse(/* html string */);

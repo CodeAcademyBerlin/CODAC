@@ -1,42 +1,41 @@
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 /* eslint-disable turbo/no-undeclared-env-vars */
 // `server-only` guarantees any modules that import code in file
 // will never run on the client. Even though this particular api
 // doesn't currently use sensitive environment variables, it's
 // good practise to add `server-only` preemptively.
-import "server-only";
+"server-only";
 
-import type { CourseEntity } from "codac-graphql-types";
+import type { ProjectEntity } from "codac-graphql-types";
 import { notFound } from "next/navigation";
 
 import { fetchAPI } from "#/utils/fetch-api";
 
-export async function getCourses() {
-  const token = process.env.CODAC_SSG_TOKEN ?? "";
-  const options = { headers: { Authorization: `Bearer ${token}` } };
+import { getCourseBySlug } from "./courses";
 
-  const courses = await fetchAPI<CourseEntity[]>("/courses", { populate: "*" }, options);
-  if (courses?.length === 0) {
+export async function getProjectsByCoursesName({ slug }: { slug: string }) {
+  const course = await getCourseBySlug({ slug });
+
+  const { projects } = course.attributes;
+  if (!projects || projects.data.length === 0) {
     // Render the closest `not-found.js` Error Boundary
     notFound();
   }
 
-  return courses;
+  return projects.data;
 }
-
-export async function getCourseBySlug({ slug }: { slug: string }) {
+export async function getProjectByName({ slug }: { slug: string }) {
   const token = process.env.CODAC_SSG_TOKEN ?? "";
-  const path = `/courses`;
+  const path = `/projects`;
   const urlParamsObject = {
     filters: { slug },
     populate: "*",
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
-  const courses = await fetchAPI<CourseEntity[]>(path, urlParamsObject, options);
-  if (!courses?.length) {
+  const projects = await fetchAPI<ProjectEntity[]>(path, urlParamsObject, options);
+  if (!projects.length) {
     // Render the closest `not-found.js` Error Boundary
     notFound();
   }
 
-  return courses[0];
+  return projects[0];
 }

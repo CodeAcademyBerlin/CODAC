@@ -1,11 +1,7 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
-// import { ClickCounter } from '#/ui/click-counter';
-
-import { LMSAddressBar, LMSLayout } from "codac-ui";
-import { LMSNav } from "codac-ui/layouts/lms-nav";
+import { ComponentLmsSprints } from "codac-graphql-types";
 import Link from "next/link";
 
-import { getProjectBySlug } from "#/strapi-queries/pages";
+import { getProjectBySlug } from "#/strapi-queries/server/pages";
 
 export default async function Layout({
   children,
@@ -20,7 +16,7 @@ export default async function Layout({
 }) {
   const { projectSlug } = params;
   const { project } = await getProjectBySlug({ slug: projectSlug });
-  const { sprints } = project.attributes;
+  const sprints = project.attributes.sprints;
 
   // const pages = sprints?.map((sprint) => sprint?.lessons).flat()[0]?.data ?? [];
   // const index = pages.findIndex((page) => page.attributes.slug === params.pageSlug);
@@ -37,18 +33,26 @@ export default async function Layout({
                 previousPage.attributes.slug ?? ""
               }`}
             >
-              <p className="text-codac-pink hover:text-gray-50">Previous</p>
+              <p className="text-codac-pink hover:text-gray-50">previous</p>
+            </Link>
+          ) : (
+            <Link href={`/courses/${params.courseSlug}/${params.projectSlug}`}>
+              <p className="text-codac-pink hover:text-gray-50">start of sprint</p>
             </Link>
           )}
         </div>
         <div className="text-right">
-          {nextPage && (
+          {nextPage ? (
             <Link
               href={`/courses/${params.courseSlug}/${params.projectSlug}/${
                 nextPage.attributes.slug ?? ""
               }`}
             >
-              <p className="text-codac-pink hover:text-gray-50">Next</p>
+              <p className="text-codac-pink hover:text-gray-50">next</p>
+            </Link>
+          ) : (
+            <Link href={`/courses/${params.courseSlug}/${params.projectSlug}`}>
+              <p className="text-codac-pink hover:text-gray-50">end of sprint</p>
             </Link>
           )}
         </div> */}

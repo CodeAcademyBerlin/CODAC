@@ -3,6 +3,7 @@ import {
   SectionGoogleSlide,
   SectionHeader,
   SectionMarkdownAsync,
+  SectionMDXAsync,
 } from "codac-ui";
 
 import type { PageContentSectionsDynamicZone } from "#/types/page";
@@ -11,7 +12,8 @@ export function dynamicSections({ section }: { section: PageContentSectionsDynam
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   switch (section.__component) {
     case "sections.rich-text":
-      return <SectionMarkdownAsync data={section} />;
+      return <SectionMDXAsync data={section} />;
+    // return <SectionMarkdownAsync data={section} />;
     case "sections.codeblock":
       return <SectionCodeblock data={section} />;
     case "sections.header":

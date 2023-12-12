@@ -36,6 +36,7 @@ export async function fetchAPI<T>(
       encodeValuesOnly: true, // prettify URL
     });
     const requestUrl = `${getStrapiURL(`/api${path}${queryString ? `?${queryString}` : ""}`)}`;
+    console.log("requestUrl", requestUrl);
     // Trigger API call
     const response = await fetch(requestUrl, mergedOptions);
     const getData = async () => {
@@ -67,12 +68,12 @@ export async function fetchStrapiSuspense({
   options = {},
 }: {
   path: string;
-  urlParamsObject: { populate?: string[]; sort?: object; filters?: object };
+  urlParamsObject: object;
   options: object;
 }) {
   // Merge default and user options
   const mergedOptions = {
-    next: { revalidate: 60 },
+    // next: { revalidate: 60 },
 
     headers: {
       "Content-Type": "application/json",
