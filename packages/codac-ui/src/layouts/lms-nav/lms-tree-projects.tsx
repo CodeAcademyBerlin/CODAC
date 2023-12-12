@@ -41,7 +41,7 @@ export function LMSTreeProjects({ projects, segments }: Props) {
                   sprints &&
                   sprints.map((sprint) => {
                     if (sprint) {
-                      const { lessons, spikes } = sprint ?? [];
+                      // const { lessons, spikes } = sprint ?? [];
                       // const pages = [...lessons.data, ...spikes.data]
                       return (
                         <Accordion
@@ -50,8 +50,8 @@ export function LMSTreeProjects({ projects, segments }: Props) {
                           title={sprint.name ?? ""}
                         >
                           <div className="flex flex-col gap-y-5">
-                            <Boundary size="xsmall" labels={["lessons"]} color={"orange"}>
-                              {lessons &&
+                            {/*    <Boundary size="xsmall" labels={["lessons"]} color={"orange"}>
+                               {lessons &&
                                 lessons.data.map((lesson) => (
                                   <div key={lesson.id} className="my-2 flex items-center">
                                     <div className="flex-1">
@@ -67,11 +67,11 @@ export function LMSTreeProjects({ projects, segments }: Props) {
                                         <ArrowRightIcon className="fill-codac-pink h-3 w-3 animate-[highlight_1s_ease-in-out_1]" />
                                       ))}
                                   </div>
-                                ))}
+                                ))} 
                             </Boundary>
 
                             <Boundary size="xsmall" labels={["spikes"]} color={"cyan"}>
-                              {spikes &&
+                               {spikes &&
                                 spikes.data.map((spike) => {
                                   return (
                                     <div key={spike.id} className="my-2 flex items-center">
@@ -88,8 +88,8 @@ export function LMSTreeProjects({ projects, segments }: Props) {
                                       )}
                                     </div>
                                   );
-                                })}
-                            </Boundary>
+                                })} 
+                            </Boundary>*/}
                           </div>
                         </Accordion>
                       );
