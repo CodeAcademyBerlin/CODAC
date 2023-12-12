@@ -7,7 +7,6 @@ import { useState } from "react";
 
 import { BrandText } from "../brand";
 import { CodacLogoIcon } from "../icons/codac-logo";
-import { ThemeSwitch } from "../theme/theme-switch";
 import { LMSAddressBar } from "./lms-address-bar";
 export interface Item {
   name: string;
