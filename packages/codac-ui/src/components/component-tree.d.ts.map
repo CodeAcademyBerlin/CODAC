@@ -1,1 +1,0 @@
-{"version":3,"file":"component-tree.d.ts","sourceRoot":"","sources":["component-tree.tsx"],"names":[],"mappings":";AAIA,UAAU,IAAI;IACZ,IAAI,EAAE,MAAM,CAAC;IACb,IAAI,EAAE,QAAQ,GAAG,QAAQ,CAAC;IAC1B,IAAI,EAAE,MAAM,CAAC;IACb,QAAQ,CAAC,EAAE,IAAI,EAAE,CAAC;CACnB;AA4ED,eAAO,MAAM,aAAa;WAAwB,IAAI,EAAE;iCAsDvD,CAAC"}
